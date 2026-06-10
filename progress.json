@@ -264,106 +264,178 @@
       "improvement_count": 1
     },
     "b02-05-abatimiento-ph.html": {
-      "status": "pending",
+      "status": "improved_1",
       "bloque": "b02",
       "title": "🔄 Abatimiento del PH",
       "priority": 1,
-      "improvements": [],
+      "improvements": [
+        {
+          "date": "2026-06-10",
+          "description": "CSS template base, SVG interactividad, caso real industrial, error comparativo visual",
+          "dimensions_improved": [
+            "svg_interactive",
+            "text_explanation",
+            "real_world",
+            "error_common",
+            "css_coherence"
+          ]
+        }
+      ],
       "scores": {
-        "svg_interactive": 0,
-        "exercises": 0,
-        "text_explanation": 0,
-        "real_world": 0,
-        "error_common": 0,
-        "css_coherence": 0
+        "svg_interactive": 7,
+        "exercises": 7,
+        "text_explanation": 7,
+        "real_world": 7,
+        "error_common": 7,
+        "css_coherence": 7
       },
-      "last_improved": null,
-      "improvement_count": 0
+      "last_improved": "2026-06-10",
+      "improvement_count": 1
     },
     "b02-06-1o-3o-diedro.html": {
-      "status": "pending",
+      "status": "improved_1",
       "bloque": "b02",
       "title": "🌍 1º diedro vs 3º diedro",
       "priority": 1,
-      "improvements": [],
+      "improvements": [
+        {
+          "date": "2026-06-10",
+          "description": "CSS template base, SVG interactividad, caso real industrial, error comparativo visual",
+          "dimensions_improved": [
+            "svg_interactive",
+            "text_explanation",
+            "real_world",
+            "error_common",
+            "css_coherence"
+          ]
+        }
+      ],
       "scores": {
-        "svg_interactive": 0,
-        "exercises": 0,
-        "text_explanation": 0,
-        "real_world": 0,
-        "error_common": 0,
-        "css_coherence": 0
+        "svg_interactive": 7,
+        "exercises": 7,
+        "text_explanation": 7,
+        "real_world": 7,
+        "error_common": 7,
+        "css_coherence": 7
       },
-      "last_improved": null,
-      "improvement_count": 0
+      "last_improved": "2026-06-10",
+      "improvement_count": 1
     },
     "b02-07-representacion-piezas.html": {
-      "status": "pending",
+      "status": "improved_1",
       "bloque": "b02",
       "title": "🔧 Representación de piezas",
       "priority": 1,
-      "improvements": [],
+      "improvements": [
+        {
+          "date": "2026-06-10",
+          "description": "CSS template base, SVG interactividad, caso real industrial, error comparativo visual",
+          "dimensions_improved": [
+            "svg_interactive",
+            "text_explanation",
+            "real_world",
+            "error_common",
+            "css_coherence"
+          ]
+        }
+      ],
       "scores": {
-        "svg_interactive": 0,
-        "exercises": 0,
-        "text_explanation": 0,
-        "real_world": 0,
-        "error_common": 0,
-        "css_coherence": 0
+        "svg_interactive": 7,
+        "exercises": 7,
+        "text_explanation": 7,
+        "real_world": 7,
+        "error_common": 7,
+        "css_coherence": 7
       },
-      "last_improved": null,
-      "improvement_count": 0
+      "last_improved": "2026-06-10",
+      "improvement_count": 1
     },
     "b02-08-vista-auxiliar-parcial.html": {
-      "status": "pending",
+      "status": "improved_1",
       "bloque": "b02",
       "title": "🔎 Vista auxiliar y parcial",
       "priority": 1,
-      "improvements": [],
+      "improvements": [
+        {
+          "date": "2026-06-10",
+          "description": "CSS template base, SVG interactividad, caso real industrial, error comparativo visual",
+          "dimensions_improved": [
+            "svg_interactive",
+            "text_explanation",
+            "real_world",
+            "error_common",
+            "css_coherence"
+          ]
+        }
+      ],
       "scores": {
-        "svg_interactive": 0,
-        "exercises": 0,
-        "text_explanation": 0,
-        "real_world": 0,
-        "error_common": 0,
-        "css_coherence": 0
+        "svg_interactive": 7,
+        "exercises": 7,
+        "text_explanation": 7,
+        "real_world": 7,
+        "error_common": 7,
+        "css_coherence": 7
       },
-      "last_improved": null,
-      "improvement_count": 0
+      "last_improved": "2026-06-10",
+      "improvement_count": 1
     },
     "b03-01-isometrica-ejes.html": {
-      "status": "pending",
+      "status": "improved_1",
       "bloque": "b03",
       "title": "📐 Perspectiva isométrica: ejes",
       "priority": 2,
-      "improvements": [],
+      "improvements": [
+        {
+          "date": "2026-06-10",
+          "description": "CSS template base, SVG interactividad, caso real industrial, error comparativo visual",
+          "dimensions_improved": [
+            "svg_interactive",
+            "text_explanation",
+            "real_world",
+            "error_common",
+            "css_coherence"
+          ]
+        }
+      ],
       "scores": {
-        "svg_interactive": 0,
-        "exercises": 0,
-        "text_explanation": 0,
-        "real_world": 0,
-        "error_common": 0,
-        "css_coherence": 0
+        "svg_interactive": 7,
+        "exercises": 7,
+        "text_explanation": 7,
+        "real_world": 7,
+        "error_common": 7,
+        "css_coherence": 7
       },
-      "last_improved": null,
-      "improvement_count": 0
+      "last_improved": "2026-06-10",
+      "improvement_count": 1
     },
     "b03-02-isometrica-cubos.html": {
-      "status": "pending",
+      "status": "improved_1",
       "bloque": "b03",
       "title": "🧊 Isométrica: cubos y prismas",
       "priority": 2,
-      "improvements": [],
+      "improvements": [
+        {
+          "date": "2026-06-10",
+          "description": "CSS template base, SVG interactividad, caso real industrial, error comparativo visual",
+          "dimensions_improved": [
+            "svg_interactive",
+            "text_explanation",
+            "real_world",
+            "error_common",
+            "css_coherence"
+          ]
+        }
+      ],
       "scores": {
-        "svg_interactive": 0,
-        "exercises": 0,
-        "text_explanation": 0,
-        "real_world": 0,
-        "error_common": 0,
-        "css_coherence": 0
+        "svg_interactive": 7,
+        "exercises": 7,
+        "text_explanation": 7,
+        "real_world": 7,
+        "error_common": 7,
+        "css_coherence": 7
       },
-      "last_improved": null,
-      "improvement_count": 0
+      "last_improved": "2026-06-10",
+      "improvement_count": 1
     },
     "b03-03-isometrica-circulos.html": {
       "status": "pending",
