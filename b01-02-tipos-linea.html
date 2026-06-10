@@ -51,6 +51,16 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .nav a:hover{background:var(--azul-claro)}
 .nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+.table-container{overflow-x:auto;margin:1rem 0}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th{background:var(--azul);color:#fff;padding:.6rem .8rem;text-align:left}
+td{padding:.5rem .8rem;border-bottom:1px solid #e2e8f0}
+tr:nth-child(even){background:#f8fafc}
+tr:hover{background:var(--azul-claro)}
+.legend{display:flex;flex-wrap:wrap;gap:1rem;margin:1rem 0;justify-content:center}
+.legend-item{display:flex;align-items:center;gap:.4rem;font-size:.85rem}
+.legend-line{width:60px;height:3px;border-radius:1px}
+.warning{background:var(--rojo-claro);border:1px solid #fca5a5;border-radius:8px;padding:.8rem 1rem;margin:1rem 0;font-size:.9rem}
 </style>
 </head>
 <body>
@@ -60,98 +70,282 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
 </header>
 <main class="container">
-
 <section class="chapter">
 <h2 class="chapter-title">🎯 ¿Qué vamos a aprender?</h2>
-<div class="box box-idea">
-<strong>💡 Idea clave</strong>
-Cada tipo de línea tiene un significado específico en un plano. Confundir una línea discontinua gruesa (ocultas) con una fina (ejes) es un error clásico — ¡y es al revés de lo que mucha gente piensa!
-</div>
+<div class="box box-idea"><strong>💡 Idea clave</strong>Cada tipo de línea tiene un significado: continua gruesa = contornos visibles, discontinua = aristas ocultas, discontinua fina = ejes de simetría.</div>
 <p>En esta sesión aprenderás a:</p>
 <ul style="margin:.8rem 0 1rem 1.5rem">
-<li>Identificar los 10 tipos de línea de la norma ISO 128-20</li>
-<li>Saber cuándo usar cada tipo</li>
-<li>Distinguir entre líneas gruesas y finas</li>
-<li>Aplicar los tipos correctos en tus planos</li>
+<li>Conocer los tipos de línea de la norma ISO 128</li>
+<li>Saber qué tipo usar en cada caso</li>
+<li>Distinguir entre línea gruesa y fina</li>
+<li>Aplicar las normas de representación</li>
 </ul>
 </section>
 
 <section class="chapter">
-<h2 class="chapter-title">1️⃣ Los 10 tipos de línea</h2>
+<h2 class="chapter-title">1️⃣ Tipos de línea (ISO 128-20)</h2>
+
 <div class="box box-teoria">
 <strong>📖 Teoría</strong>
-La norma ISO 128-20 define 10 tipos de línea, clasificados en <strong>gruesas</strong> (0.5-2 mm) y <strong>finas</strong> (0.25-1 mm):<br><br>
-<strong>Líneas gruesas:</strong><br>
-• <strong>Continua gruesa (A/B)</strong> → Contornos visibles, aristas<br>
-• <strong>Discontinua gruesa</strong> → Aristas ocultas<br>
-• <strong>Línea de rotura (J)</strong> → Límites de rotura<br><br>
-<strong>Líneas finas:</strong><br>
-• <strong>Continua fina (C/D)</strong> → Acotaciones, hachuras, guías<br>
-• <strong>Discontinua fina</strong> → Ejes de simetría, trayectorias<br>
-• <strong>Trazos y puntos fina</strong> → Superficies de contacto<br>
-• <strong>Continua fina ondulada</strong> → Líneas de rotura a mano alzada
+<p>La norma <strong>ISO 128-20</strong> establece los tipos de línea que se utilizan en el dibujo técnico. Cada tipo transmite información diferente sobre la pieza representada.</p>
+<p>Los dos parámetros fundamentales son:</p>
+<ul style="margin:.5rem 0 .5rem 1.5rem">
+<li><strong>Ancho de línea:</strong> gruesa (0,5–2 mm) y fina (0,25–1 mm)</li>
+<li><strong>Patrón:</strong> continua, discontinua, a trazos y puntos, etc.</li>
+</ul>
 </div>
+
+<!-- TABLA DE TIPOS DE LÍNEA -->
+<div class="box box-teoria" style="margin-top:1rem">
+<strong>📋 Tabla de tipos de línea ISO 128-20</strong>
+<div class="table-container">
+<table>
+<thead>
+<tr><th>Código</th><th>Patrón</th><th>Ancho</th><th>Uso principal</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>A</strong></td><td>Continua</td><td>Gruesa</td><td>Contornos y aristas visibles</td></tr>
+<tr><td><strong>B</strong></td><td>Continua</td><td>Gruesa</td><td>Cambios de plano visibles</td></tr>
+<tr><td><strong>C</strong></td><td>Continua</td><td>Fina</td><td>Acotaciones, hachuras, guías</td></tr>
+<tr><td><strong>D</strong></td><td>Continua</td><td>Fina</td><td>Líneas de cota, auxiliares</td></tr>
+<tr><td><strong>E</strong></td><td>Continua</td><td>Fina</td><td>Líneas de corte</td></tr>
+<tr><td><strong>F</strong></td><td>Continua</td><td>Fina</td><td>Contornos adyacentes</td></tr>
+<tr><td><strong>G</strong></td><td>Continua</td><td>Fina</td><td>Piezas adyacentes</td></tr>
+<tr><td><strong>H</strong></td><td>A trazos y puntos</td><td>Fina</td><td>Centro de círculos, ejes</td></tr>
+<tr><td><strong>J</strong></td><td>A trazos y puntos</td><td>Gruesa</td><td>Líneas de rotura</td></tr>
+<tr><td><strong>K</strong></td><td>Discontinua</td><td>Fina</td><td>Superficie rugosa</td></tr>
+<tr><td>—</td><td>Discontinua</td><td>Gruesa</td><td>Aristas ocultas</td></tr>
+<tr><td>—</td><td>Discontinua</td><td>Fina</td><td>Ejes de simetría, trayectorias</td></tr>
+<tr><td>—</td><td>A trazos y puntos fina</td><td>Fina</td><td>Ejes, superficies de contacto</td></tr>
+<tr><td>—</td><td>Continua fina (ondulada)</td><td>Fina</td><td>Línea de rotura a mano alzada</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- EJEMPLOS VISUALES -->
 <div class="box box-ejemplo">
-<strong>🔍 Ejemplo 1</strong>
-Contorno visible → línea continua GRUESA (0.5-2mm)<br>
-Es la línea principal del plano, la que define la forma.
+<strong>🔍 Ejemplo 1: Línea continua gruesa</strong>
+<p>Se usa para los <strong>contornos visibles</strong> y las <strong>aristas</strong> que se pueden ver directamente desde la vista. Es la línea más destacada del dibujo.</p>
+<p style="margin-top:.5rem"><em>Imagina un cubo: los bordes que ves son líneas continuas gruesas.</em></p>
 </div>
+
 <div class="box box-ejemplo">
-<strong>🔍 Ejemplo 2</strong>
-Arista oculta → línea discontinua GRUESA<br>
-Se usa cuando hay una arista que no se ve desde esa vista.
+<strong>🔍 Ejemplo 2: Línea discontinua gruesa</strong>
+<p>Se usa para las <strong>aristas ocultas</strong>, es decir, bordes que existen pero no se ven directamente desde la vista actual. Los trazos son más largos que los espacios.</p>
+<p style="margin-top:.5rem"><em>Imagina un cubo transparente: los bordes de atrás son discontinuos gruesos.</em></p>
 </div>
+
 <div class="box box-ejemplo">
-<strong>🔍 Ejemplo 3</strong>
-Eje de simetría → línea discontinua FINA<br>
-Dos trazos largos y uno corto repetidos. ¡NO es gruesa!
+<strong>🔍 Ejemplo 3: Línea discontinua fina / a trazos y puntos</strong>
+<p>Se usa para los <strong>ejes de simetría</strong> y las trayectorias. La línea a trazos y puntos fina (larga-corta-larga) marca el centro de círculos y los ejes.</p>
+<p style="margin-top:.5rem"><em>Un círculo tiene un eje que pasa por su centro: línea larga-corta-larga.</em></p>
 </div>
+
+<!-- WARNING: ERROR COMÚN -->
+<div class="warning">
+⚠️ <strong>Error común:</strong> ¡No confundas discontinua gruesa con fina! La <strong>discontinua gruesa</strong> es para aristas <em>ocultas</em>. La <strong>discontinua fina</strong> es para <em>ejes de simetría</em>. ¡Es al revés de lo que mucha gente piensa!
+</div>
+
 </section>
 
 <section class="chapter">
-<h2 class="chapter-title">2️⃣ Identifica los tipos de línea</h2>
+<h2 class="chapter-title">2️⃣ ¡Identifica los tipos de línea!</h2>
+
 <div class="svg-container">
-<svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
-<!-- Fondo -->
-<rect x="0" y="0" width="600" height="400" fill="#f8fafc" rx="8"/>
-<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Tipos de línea ISO 128-20</text>
+<svg viewBox="0 0 700 520" xmlns="http://www.w3.org/2000/svg">
+<!-- Título -->
+<text x="350" y="25" text-anchor="middle" font-size="16" font-weight="bold" fill="#1e293b">Tipos de línea ISO 128</text>
+
 <!-- 1. Continua gruesa -->
-<line x1="30" y1="60" x2="250" y2="60" stroke="#333" stroke-width="2.5"/>
-<text x="260" y="64" font-size="11" fill="#333">Continua gruesa</text>
-<text x="260" y="78" font-size="9" fill="#64748b">(contornos)</text>
+<text x="35" y="55" font-size="12" font-weight="bold" fill="#2563eb">A. Continua gruesa</text>
+<line x1="35" y1="68" x2="200" y2="68" stroke="#1e293b" stroke-width="4"/>
+<text x="210" y="72" font-size="10" fill="#64748b">Contornos visibles</text>
+
+<!-- Cubo con contornos visibles -->
+<rect x="35" y="85" width="50" height="50" fill="none" stroke="#1e293b" stroke-width="4"/>
+<line x1="50" y1="85" x2="85" y2="55" stroke="#1e293b" stroke-width="4"/>
+<line x1="85" y1="85" x2="120" y2="55" stroke="#1e293b" stroke-width="4"/>
+<line x1="85" y1="55" x2="135" y2="55" stroke="#1e293b" stroke-width="4"/>
+<line x1="35" y1="110" x2="70" y2="80" stroke="#1e293b" stroke-width="4"/>
+<line x1="120" y1="80" x2="120" y2="130" stroke="#1e293b" stroke-width="4"/>
+<line x1="70" y1="80" x2="70" y2="130" stroke="#1e293b" stroke-width="4"/>
+<line x1="120" y1="130" x2="70" y2="130" stroke="#1e293b" stroke-width="4"/>
+<line x1="135" y1="55" x2="135" y2="105" stroke="#1e293b" stroke-width="4"/>
+<text x="35" y="155" font-size="9" fill="#64748b">Bordes visibles = gruesa continua</text>
+
+<!-- Separador -->
+<line x1="220" y1="40" x2="220" y2="170" stroke="#e2e8f0" stroke-width="1"/>
+
 <!-- 2. Continua fina -->
-<line x1="30" y1="100" x2="250" y2="100" stroke="#333" stroke-width="0.8"/>
-<text x="260" y="104" font-size="11" fill="#333">Continua fina</text>
-<text x="260" y="118" font-size="9" fill="#64748b">(acotaciones)</text>
+<text x="240" y="55" font-size="12" font-weight="bold" fill="#2563eb">C/D. Continua fina</text>
+<line x1="240" y1="68" x2="405" y2="68" stroke="#1e293b" stroke-width="1.2"/>
+<text x="415" y="72" font-size="10" fill="#64748b">Acotaciones</text>
+
+<!-- Ejemplo de acotación -->
+<line x1="260" y1="100" x2="360" y2="100" stroke="#1e293b" stroke-width="4"/>
+<!-- Líneas auxiliares -->
+<line x1="260" y1="90" x2="260" y2="115" stroke="#64748b" stroke-width="0.8"/>
+<line x1="360" y1="90" x2="360" y2="115" stroke="#64748b" stroke-width="0.8"/>
+<!-- Flechas -->
+<polygon points="260,96 252,100 260,104" fill="#1e293b"/>
+<polygon points="360,96 368,100 360,104" fill="#1e293b"/>
+<!-- Línea de cota fina -->
+<line x1="250" y1="125" x2="370" y2="125" stroke="#64748b" stroke-width="0.7"/>
+<text x="310" y="122" text-anchor="middle" font-size="10" fill="#1e293b">50</text>
+<text x="240" y="148" font-size="9" fill="#64748b">Línea de cota = fina continua</text>
+
+<!-- Separador -->
+<line x1="440" y1="40" x2="440" y2="170" stroke="#e2e8f0" stroke-width="1"/>
+
 <!-- 3. Discontinua gruesa -->
-<line x1="30" y1="145" x2="250" y2="145" stroke="#333" stroke-width="2" stroke-dasharray="12,5,3,5"/>
-<text x="260" y="149" font-size="11" fill="#333">Discontinua gruesa</text>
-<text x="260" y="163" font-size="9" fill="#64748b">(aristas ocultas)</text>
+<text x="460" y="55" font-size="12" font-weight="bold" fill="#f97316">Discontinua gruesa</text>
+<line x1="460" y1="68" x2="540" y2="68" stroke="#1e293b" stroke-width="3" stroke-dasharray="12,6"/>
+<text x="550" y="72" font-size="10" fill="#64748b">Aristas ocultas</text>
+
+<!-- Cubo con aristas ocultas -->
+<rect x="460" y="85" width="50" height="50" fill="none" stroke="#1e293b" stroke-width="4"/>
+<line x1="475" y1="85" x2="510" y2="55" stroke="#1e293b" stroke-width="4"/>
+<line x1="510" y1="85" x2="545" y2="55" stroke="#1e293b" stroke-width="4"/>
+<line x1="510" y1="55" x2="560" y2="55" stroke="#1e293b" stroke-width="4"/>
+<line x1="460" y1="110" x2="495" y2="80" stroke="#1e293b" stroke-width="4"/>
+<line x1="545" y1="80" x2="545" y2="130" stroke="#1e293b" stroke-width="4"/>
+<line x1="495" y1="80" x2="495" y2="130" stroke="#1e293b" stroke-width="4"/>
+<line x1="545" y1="130" x2="495" y2="130" stroke="#1e293b" stroke-width="4"/>
+<!-- Aristas ocultas (discontinua gruesa) -->
+<line x1="460" y1="85" x2="495" y2="55" stroke="#1e293b" stroke-width="3" stroke-dasharray="12,6"/>
+<line x1="560" y1="55" x2="560" y2="105" stroke="#1e293b" stroke-width="3" stroke-dasharray="12,6"/>
+<line x1="560" y1="105" x2="510" y2="105" stroke="#1e293b" stroke-width="3" stroke-dasharray="12,6"/>
+<text x="460" y="155" font-size="9" fill="#64748b">Bordes ocultos = discontinua gruesa</text>
+
+<!-- Separador -->
+<line x1="20" y1="180" x2="680" y2="180" stroke="#e2e8f0" stroke-width="1"/>
+
 <!-- 4. Discontinua fina -->
-<line x1="30" y1="190" x2="250" y2="190" stroke="#333" stroke-width="0.8" stroke-dasharray="8,3,2,3"/>
-<text x="260" y="194" font-size="11" fill="#333">Discontinua fina</text>
-<text x="260" y="208" font-size="9" fill="#64748b">(ejes de simetría)</text>
-<!-- 5. Trazos y puntos fina -->
-<line x1="30" y1="235" x2="250" y2="235" stroke="#333" stroke-width="0.8" stroke-dasharray="12,2,2,2"/>
-<text x="260" y="239" font-size="11" fill="#333">Trazos y puntos fina</text>
-<text x="260" y="253" font-size="9" fill="#64748b">(superficies contacto)</text>
-<!-- 6. Ondulada -->
-<path d="M30 280 Q40 275,50 280 Q60 285,70 280 Q80 275,90 280 Q100 285,110 280 Q120 275,130 280 Q140 285,150 280 Q160 275,170 280 Q180 285,190 280 Q200 275,210 280 Q220 285,230 280 Q240 275,250 280" fill="none" stroke="#333" stroke-width="0.8"/>
-<text x="260" y="284" font-size="11" fill="#333">Ondulada</text>
-<text x="260" y="298" font-size="9" fill="#64748b">(rotura a mano alzada)</text>
-<!-- Resultado -->
-<rect x="30" y="320" width="540" height="50" fill="#eff6ff" rx="8"/>
-<text x="300" y="345" text-anchor="middle" font-size="13" fill="#2563eb" font-weight="600" id="lineResult">👆 Haz click en una línea para ver su uso</text>
+<text x="35" y="205" font-size="12" font-weight="bold" fill="#2563eb">Discontinua fina</text>
+<line x1="35" y1="218" x2="200" y2="218" stroke="#1e293b" stroke-width="1" stroke-dasharray="8,4"/>
+<text x="210" y="222" font-size="10" fill="#64748b">Ejes de simetría</text>
+
+<!-- Círculo con eje -->
+<circle cx="115" cy="270" r="40" fill="none" stroke="#1e293b" stroke-width="4"/>
+<line x1="65" y1="270" x2="165" y2="270" stroke="#1e293b" stroke-width="1" stroke-dasharray="8,4"/>
+<line x1="115" y1="220" x2="115" y2="320" stroke="#1e293b" stroke-width="1" stroke-dasharray="8,4"/>
+<text x="35" y="340" font-size="9" fill="#64748b">Eje horizontal y vertical</text>
+
+<!-- 5. A trazos y puntos fina -->
+<text x="240" y="205" font-size="12" font-weight="bold" fill="#2563eb">H. Trazos y puntos fina</text>
+<line x1="240" y1="218" x2="405" y2="218" stroke="#1e293b" stroke-width="1" stroke-dasharray="20,3,3,3"/>
+<text x="415" y="222" font-size="10" fill="#64748b">Centro de círculos</text>
+
+<!-- Ejemplo de centro -->
+<circle cx="310" cy="270" r="35" fill="none" stroke="#1e293b" stroke-width="4"/>
+<line x1="265" y1="270" x2="355" y2="270" stroke="#1e293b" stroke-width="1" stroke-dasharray="20,3,3,3"/>
+<line x1="310" y1="225" x2="310" y2="315" stroke="#1e293b" stroke-width="1" stroke-dasharray="20,3,3,3"/>
+<!-- Punto central -->
+<circle cx="310" cy="270" r="2" fill="#f97316"/>
+<text x="240" y="340" font-size="9" fill="#64748b">Larga-corta-larga</text>
+
+<!-- Separador -->
+<line x1="440" y1="180" x2="440" y2="340" stroke="#e2e8f0" stroke-width="1"/>
+
+<!-- 6. Línea de rotura -->
+<text x="460" y="205" font-size="12" font-weight="bold" fill="#2563eb">J. Línea de rotura</text>
+
+<!-- Rotura ondulada -->
+<line x1="460" y1="218" x2="530" y2="218" stroke="#1e293b" stroke-width="1.5"/>
+<path d="M530,218 Q535,210 540,218 Q545,226 550,218 Q555,210 560,218 Q565,226 570,218 Q575,210 580,218 Q585,226 590,218 Q595,210 600,218 Q605,226 610,218 Q615,210 620,218 Q625,226 630,218 Q635,210 640,218 Q645,226 650,218 Q655,210 660,218 Q665,226 670,218" fill="none" stroke="#1e293b" stroke-width="1.5"/>
+<line x1="670" y1="218" x2="680" y2="218" stroke="#1e293b" stroke-width="1.5"/>
+<text x="460" y="240" font-size="9" fill="#64748b">Rotura a mano alzada</text>
+
+<!-- 7. Contorno adyacente -->
+<text x="35" y="375" font-size="12" font-weight="bold" fill="#2563eb">F. Contorno adyacente</text>
+<!-- Pieza principal -->
+<rect x="35" y="385" width="60" height="60" fill="none" stroke="#1e293b" stroke-width="3"/>
+<!-- Pieza adyacente (fantasma) -->
+<rect x="95" y="385" width="60" height="60" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,4"/>
+<text x="35" y="465" font-size="9" fill="#64748b">Pieza vecina = fina discontinua</text>
+
+<!-- 8. Hachuras -->
+<text x="240" y="375" font-size="12" font-weight="bold" fill="#2563eb">Hachuras (C)</text>
+<!-- Rectángulo con hachuras -->
+<rect x="240" y="385" width="60" height="60" fill="#f0f4ff" stroke="#1e293b" stroke-width="3"/>
+<line x1="245" y1="390" x2="255" y2="440" stroke="#94a3b8" stroke-width="0.8"/>
+<line x1="255" y1="390" x2="265" y2="440" stroke="#94a3b8" stroke-width="0.8"/>
+<line x1="265" y1="390" x2="275" y2="440" stroke="#94a3b8" stroke-width="0.8"/>
+<line x1="275" y1="390" x2="285" y2="440" stroke="#94a3b8" stroke-width="0.8"/>
+<line x1="285" y1="390" x2="295" y2="440" stroke="#94a3b8" stroke-width="0.8"/>
+<line x1="295" y1="390" x2="305" y2="440" stroke="#94a3b8" stroke-width="0.8"/>
+<line x1="305" y1="390" x2="315" y2="440" stroke="#94a3b8" stroke-width="0.8"/>
+<line x1="315" y1="390" x2="325" y2="440" stroke="#94a3b8" stroke-width="0.8"/>
+<text x="240" y="465" font-size="9" fill="#64748b">Hachuras 45°, fina continua</text>
+
+<!-- 9. Superficie rugosa -->
+<text x="460" y="375" font-size="12" font-weight="bold" fill="#2563eb">K. Superficie rugosa</text>
+<line x1="460" y1="395" x2="540" y2="395" stroke="#1e293b" stroke-width="3"/>
+<!-- Patrón rugoso -->
+<path d="M460,395 Q465,388 470,395 Q475,402 480,395 Q485,388 490,395 Q495,402 500,395 Q505,388 510,395 Q515,402 520,395 Q525,388 530,395 Q535,402 540,395" fill="none" stroke="#1e293b" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="460" y="420" font-size="9" fill="#64748b">Acabado superficial</text>
+
+<!-- 10. Línea de corte -->
+<text x="35" y="490" font-size="12" font-weight="bold" fill="#2563eb">E. Línea de corte</text>
+<line x1="35" y1="505" x2="140" y2="505" stroke="#1e293b" stroke-width="1" stroke-dasharray="10,3,3,3"/>
+<text x="150" y="509" font-size="9" fill="#64748b">Indica plano de corte</text>
+
+<!-- 11. Piezas adyacentes -->
+<text x="240" y="490" font-size="12" font-weight="bold" fill="#2563eb">G. Piezas adyacentes</text>
+<!-- Dos piezas encajadas -->
+<rect x="240" y="500" width="30" height="20" fill="#e0e7ff" stroke="#94a3b8" stroke-width="1.5"/>
+<rect x="270" y="500" width="30" height="20" fill="#fff7ed" stroke="#1e293b" stroke-width="3"/>
+<text x="240" y="535" font-size="9" fill="#64748b">Vecina = fina, propia = gruesa</text>
 </svg>
 </div>
+
 <div class="interactive">
-<h3>🧠 Regla mnemotécnica</h3>
-<p style="margin-bottom:1rem">Recuerda esta regla para no confundir nunca:</p>
-<div class="box box-idea" style="margin-bottom:1rem">
-<strong>🔗 "Gruesa = Visible, Fina = Invisible"</strong><br>
-• <strong>Gruesa</strong> → lo que se VE (contornos, aristas visibles)<br>
-• <strong>Discontinua gruesa</strong> → lo que NO se VE pero existe (aristas ocultas)<br>
-• <strong>Discontinua fina</strong> → lo que es conceptual (ejes, simetría)
+<h3>🎯 ¡Identifica los tipos de línea!</h3>
+<p style="margin-bottom:1rem;color:#64748b;font-size:.95rem">Selecciona el tipo correcto para cada situación:</p>
+
+<div style="margin-bottom:1.5rem">
+<p style="font-weight:600;margin-bottom:.5rem">1. ¿Qué tipo de línea se usa para los <strong>contornos visibles</strong>?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false, 'r1')">Discontinua gruesa</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true, 'r1')">Continua gruesa</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false, 'r1')">A trazos y puntos</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false, 'r1')">Continua fina</button>
+</div>
+<div class="result" id="r1"></div>
+</div>
+
+<div style="margin-bottom:1.5rem">
+<p style="font-weight:600;margin-bottom:.5rem">2. ¿Qué tipo de línea se usa para las <strong>aristas ocultas</strong>?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false, 'r2')">Continua gruesa</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false, 'r2')">Discontinua fina</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true, 'r2')">Discontinua gruesa</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false, 'r2')">Línea de rotura</button>
+</div>
+<div class="result" id="r2"></div>
+</div>
+
+<div style="margin-bottom:1.5rem">
+<p style="font-weight:600;margin-bottom:.5rem">3. ¿Qué tipo de línea se usa para los <strong>ejes de simetría</strong>?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false, 'r3')">Continua gruesa</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true, 'r3')">Discontinua fina / a trazos y puntos</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false, 'r3')">Discontinua gruesa</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false, 'r3')">Línea de corte</button>
+</div>
+<div class="result" id="r3"></div>
+</div>
+
+<div style="margin-bottom:1.5rem">
+<p style="font-weight:600;margin-bottom:.5rem">4. ¿Qué tipo de línea se usa para las <strong>acotaciones</strong>?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false, 'r4')">Continua gruesa</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false, 'r4')">Discontinua fina</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true, 'r4')">Continua fina</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false, 'r4')">Discontinua gruesa</button>
+</div>
+<div class="result" id="r4"></div>
 </div>
 </div>
 </section>
@@ -160,77 +354,63 @@ Dos trazos largos y uno corto repetidos. ¡NO es gruesa!
 <h2 class="chapter-title">📝 Ejercicios</h2>
 <div class="exercises">
 
+<!-- Ejercicio 1: Quiz -->
 <div class="exercise">
-<p>📐 Ejercicio 1: ¿Qué tipo de línea se usa para contornos visibles?</p>
+<p>1️⃣ ¿Cuál de las siguientes afirmaciones es correcta según la norma ISO 128?</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Discontinua fina</button>
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Continua gruesa</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Continua fina</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Discontinua gruesa</button>
+<button class="quiz-btn" onclick="checkExercise(this, false, 'ex1')">La línea discontinua gruesa se usa para ejes de simetría</button>
+<button class="quiz-btn" onclick="checkExercise(this, true, 'ex1')">La línea continua gruesa se usa para contornos visibles</button>
+<button class="quiz-btn" onclick="checkExercise(this, false, 'ex1')">La línea fina se usa para aristas ocultas</button>
+<button class="quiz-btn" onclick="checkExercise(this, false, 'ex1')">No hay diferencia entre gruesa y fina</button>
 </div>
-<p class="feedback"></p>
+<div class="result" id="ex1"></div>
 </div>
 
+<!-- Ejercicio 2: Completar -->
 <div class="exercise">
-<p>📐 Ejercicio 2: ¿Qué tipo de línea se usa para aristas ocultas?</p>
+<p>2️⃣ Completa: La línea <span style="color:var(--azul);font-weight:bold">________</span> se usa para las aristas ocultas, mientras que la línea <span style="color:var(--azul);font-weight:bold">________</span> se usa para los ejes de simetría.</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Continua fina</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Discontinua fina</button>
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Discontinua gruesa</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Trazos y puntos</button>
+<button class="quiz-btn" onclick="checkExercise(this, false, 'ex2')">continua gruesa / continua fina</button>
+<button class="quiz-btn" onclick="checkExercise(this, true, 'ex2')">discontinua gruesa / discontinua fina</button>
+<button class="quiz-btn" onclick="checkExercise(this, false, 'ex2')">discontinua fina / discontinua gruesa</button>
+<button class="quiz-btn" onclick="checkExercise(this, false, 'ex2')">a trazos y puntos / continua</button>
 </div>
-<p class="feedback"></p>
+<div class="result" id="ex2"></div>
 </div>
 
+<!-- Ejercicio 3: Verdadero/Falso -->
 <div class="exercise">
-<p>📐 Ejercicio 3: Los ejes de simetría se representan con...</p>
+<p>3️⃣ Verdadero o Falso: La línea a trazos y puntos fina se usa para marcar el centro de círculos y los ejes de simetría.</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Línea continua gruesa</button>
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Discontinua fina</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Discontinua gruesa</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Ondulada</button>
+<button class="quiz-btn" onclick="checkVF(this, true, 'ex3')">✅ Verdadero</button>
+<button class="quiz-btn" onclick="checkVF(this, false, 'ex3')">❌ Falso</button>
 </div>
-<p class="feedback"></p>
+<div class="result" id="ex3"></div>
 </div>
 
+<!-- Ejercicio 4: Identificar -->
 <div class="exercise">
-<p>📐 Ejercicio 4: Verdadero o Falso — Las líneas de acotación son finas.</p>
+<p>4️⃣ Identifica el tipo de línea: En un plano, una pieza adyacente a la que estamos dibujando se representa con:</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Verdadero</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Falso</button>
+<button class="quiz-btn" onclick="checkExercise(this, false, 'ex4')">Línea continua gruesa</button>
+<button class="quiz-btn" onclick="checkExercise(this, false, 'ex4')">Línea discontinua gruesa</button>
+<button class="quiz-btn" onclick="checkExercise(this, true, 'ex4')">Línea continua fina (tipo G)</button>
+<button class="quiz-btn" onclick="checkExercise(this, false, 'ex4')">Línea de rotura</button>
 </div>
-<p class="feedback"></p>
-</div>
-
-<div class="exercise">
-<p>📐 Ejercicio 5: ¿Qué tipo de línea se usa para hachuras?</p>
-<input type="text" id="ex5" placeholder="Ej: continua fina" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:250px">
-<button onclick="checkExercise('ex5', 'continua fina', this)">Comprobar</button>
-<p class="feedback"></p>
+<div class="result" id="ex4"></div>
 </div>
 
 </div>
 </section>
 
-<div class="box box-error">
-<strong>⚠️ Error clásico</strong>
-Confundir línea discontinua gruesa (aristas ocultas) con discontinua fina (ejes de simetría). ¡Es al revés de lo que mucha gente piensa! La discontinua es GRUESA para ocultas, FINA para ejes.
-</div>
-
-<div class="box box-idea">
-<strong>🔗 Conexión</strong>
-Los tipos de línea que acabas de aprender son la base de TODOS los planos técnicos. Sin ellos, no podrías distinguir un contorno de un eje de simetría.
-</div>
-
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
 <ul>
-<li>10 tipos de línea: 3 gruesas + 7 finas</li>
-<li>Continua gruesa → contornos visibles</li>
-<li>Discontinua gruesa → aristas ocultas</li>
-<li>Discontinua fina → ejes de simetría</li>
-<li>Continua fina → acotaciones, hachuras</li>
-<li>¡Ya dominas los tipos de línea ISO 128! 🎉</li>
+<li>La norma ISO 128-20 define los tipos de línea del dibujo técnico</li>
+<li><strong>Continua gruesa</strong> = contornos y aristas visibles (lo que se ve)</li>
+<li><strong>Discontinua gruesa</strong> = aristas ocultas (lo que existe pero no se ve)</li>
+<li><strong>Discontinua fina / a trazos y puntos</strong> = ejes de simetría y centros</li>
+<li><strong>Continua fina</strong> = acotaciones, hachuras, líneas auxiliares</li>
 </ul>
 </div>
 
@@ -238,52 +418,64 @@ Los tipos de línea que acabas de aprender son la base de TODOS los planos técn
 <a href="b01-01-formatos-papel.html">← Anterior</a>
 <a href="b01-03-escalas.html">Siguiente →</a>
 </div>
-
 </main>
 <footer class="footer">Hecho con ❤️ por David Antizar</footer>
 <script>
-function checkAnswer(btn, correct) {
+function checkAnswer(btn, isCorrect, resultId) {
   var parent = btn.parentElement;
-  parent.querySelectorAll('button').forEach(function(b) {
-    b.disabled = true; b.classList.remove('correct','wrong');
-  });
-  btn.classList.add(correct ? 'correct' : 'wrong');
-  var feedback = parent.nextElementSibling;
-  if(feedback && feedback.classList.contains('feedback')) {
-    if(correct) {
-      feedback.textContent = '✅ ¡Correcto! ¡Muy bien!';
-      feedback.className = 'feedback correct';
-    } else {
-      feedback.textContent = '❌ ¡Intenta de nuevo!';
-      feedback.className = 'feedback incorrect';
-      setTimeout(function() {
-        parent.querySelectorAll('button').forEach(function(b) {
-          b.disabled = false; b.classList.remove('correct','wrong');
-        });
-        feedback.textContent = '';
-        feedback.className = 'feedback';
-      }, 1500);
-    }
+  var buttons = parent.querySelectorAll('.quiz-btn');
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].classList.remove('correct', 'wrong');
+    buttons[i].disabled = true;
   }
-}
-
-function checkExercise(id, correct, btn) {
-  var input = document.getElementById(id);
-  var feedback = input.parentElement.nextElementSibling;
-  var userVal = input.value.trim().toLowerCase().replace(/\s+/g, ' ');
-  var correctVal = correct.toLowerCase();
-  if(userVal === correctVal) {
-    feedback.textContent = '✅ ¡Correcto! ' + correct;
-    feedback.className = 'feedback correct';
-    input.style.borderColor = 'var(--verde)';
+  if (isCorrect) {
+    btn.classList.add('correct');
+    document.getElementById(resultId).className = 'result ok';
+    document.getElementById(resultId).innerHTML = '✅ ¡Correcto! Esa es la línea que se usa en ese caso.';
   } else {
-    feedback.textContent = '❌ Respuesta correcta: ' + correct;
-    feedback.className = 'feedback incorrect';
-    input.style.borderColor = 'var(--rojo)';
+    btn.classList.add('wrong');
+    document.getElementById(resultId).className = 'result fail';
+    document.getElementById(resultId).innerHTML = '❌ Incorrecto. Repasa la teoría y vuelve a intentarlo.';
   }
 }
 
-window.onscroll = function(){
+function checkExercise(btn, isCorrect, resultId) {
+  var parent = btn.parentElement;
+  var buttons = parent.querySelectorAll('.quiz-btn');
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].classList.remove('correct', 'wrong');
+    buttons[i].disabled = true;
+  }
+  if (isCorrect) {
+    btn.classList.add('correct');
+    document.getElementById(resultId).className = 'result ok';
+    document.getElementById(resultId).innerHTML = '✅ ¡Perfecto! Has identificado correctamente el tipo de línea.';
+  } else {
+    btn.classList.add('wrong');
+    document.getElementById(resultId).className = 'result fail';
+    document.getElementById(resultId).innerHTML = '❌ No es correcto. Recuerda: cada tipo de línea tiene un significado específico.';
+  }
+}
+
+function checkVF(btn, isCorrect, resultId) {
+  var parent = btn.parentElement;
+  var buttons = parent.querySelectorAll('.quiz-btn');
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].classList.remove('correct', 'wrong');
+    buttons[i].disabled = true;
+  }
+  if (isCorrect) {
+    btn.classList.add('correct');
+    document.getElementById(resultId).className = 'result ok';
+    document.getElementById(resultId).innerHTML = '✅ ¡Verdadero! La línea a trazos y puntos fina marca centros y ejes de simetría.';
+  } else {
+    btn.classList.add('wrong');
+    document.getElementById(resultId).className = 'result fail';
+    document.getElementById(resultId).innerHTML = '❌ Falso. La afirmación es correcta: esa es precisamente su función.';
+  }
+}
+
+window.onscroll = function() {
   var h = document.documentElement;
   var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
   document.getElementById('progress').style.width = p+'%';
