@@ -51,6 +51,14 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .nav a:hover{background:var(--azul-claro)}
 .nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+.real-world-badge{display:inline-block;background:var(--naranja);color:#fff;padding:.2rem .6rem;border-radius:12px;font-size:.75rem;font-weight:600;margin-bottom:.5rem}
+.comparison{display:flex;gap:1.5rem;margin:1.5rem 0;flex-wrap:wrap}
+.comparison-side{flex:1;min-width:250px;text-align:center}
+.comparison-side.correct-side h4{color:var(--verde)}
+.comparison-side.wrong-side h4{color:var(--rojo)}
+.scale-calculator{background:#fff;border:2px solid var(--azul);border-radius:12px;padding:1.5rem;margin:1rem 0}
+.scale-calculator input{padding:.5rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:100px}
+.scale-result{margin-top:.8rem;padding:.8rem;border-radius:6px;font-weight:600;min-height:2rem}
 </style>
 </head>
 <body>
@@ -112,41 +120,136 @@ Se usa cuando el tamaño lo permite.
 </div>
 </section>
 
+<!-- CALCULADORA INTERACTIVA -->
 <section class="chapter">
-<h2 class="chapter-title">2️⃣ Visualiza las escalas</h2>
+<h2 class="chapter-title">🧮 Calculadora de escalas interactiva</h2>
+<div class="interactive">
+<h3>🔢 Calcula la escala tú mismo</h3>
+<p style="margin-bottom:1rem;color:#64748b;font-size:.95rem">Introduce la medida real y la medida en plano para ver qué escala se usó:</p>
+<div class="scale-calculator">
+<label>Medida real (mm): <input type="number" id="realSize" value="100" oninput="calculateScale()"></label>
+&nbsp;&nbsp;
+<label>Medida en plano (mm): <input type="number" id="planSize" value="10" oninput="calculateScale()"></label>
+<br>
+<div class="scale-result" id="scaleResult" style="background:var(--azul-claro);color:var(--azul)">
+📊 Escala = <strong id="scaleValue">1:10</strong> — Tipo: <strong id="scaleType">Reducción</strong>
+</div>
+</div>
+</div>
+
+<!-- SVG INTERACTIVO: Escalas con slider -->
 <div class="svg-container">
-<svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
-<!-- Fondo -->
-<rect x="0" y="0" width="600" height="300" fill="#f8fafc" rx="8"/>
-<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Escala = Dimensión en plano / Dimensión real</text>
-<!-- Ampliación 2:1 -->
-<rect x="20" y="50" width="160" height="200" fill="#fff" stroke="#2563eb" stroke-width="2" rx="8"/>
-<text x="100" y="75" text-anchor="middle" font-size="14" font-weight="bold" fill="#2563eb">AMPLIACIÓN</text>
-<rect x="40" y="90" width="120" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
-<text x="100" y="120" text-anchor="middle" font-size="12" fill="#2563eb">10mm en plano</text>
-<text x="100" y="140" text-anchor="middle" font-size="10" fill="#64748b">= 5mm real</text>
-<text x="100" y="175" text-anchor="middle" font-size="18" font-weight="bold" fill="#f97316">2:1</text>
-<text x="100" y="195" text-anchor="middle" font-size="10" fill="#64748b">10:5 = 2:1</text>
-<!-- Natural 1:1 -->
-<rect x="220" y="50" width="160" height="200" fill="#fff" stroke="#10b981" stroke-width="2" rx="8"/>
-<text x="300" y="75" text-anchor="middle" font-size="14" font-weight="bold" fill="#10b981">NATURAL</text>
-<rect x="240" y="90" width="120" height="50" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
-<text x="300" y="120" text-anchor="middle" font-size="12" fill="#10b981">10mm en plano</text>
-<text x="300" y="140" text-anchor="middle" font-size="10" fill="#64748b">= 10mm real</text>
-<text x="300" y="175" text-anchor="middle" font-size="18" font-weight="bold" fill="#10b981">1:1</text>
-<text x="300" y="195" text-anchor="middle" font-size="10" fill="#64748b">10:10 = 1:1</text>
-<!-- Reducción 1:2 -->
-<rect x="420" y="50" width="160" height="200" fill="#fff" stroke="#f97316" stroke-width="2" rx="8"/>
-<text x="500" y="75" text-anchor="middle" font-size="14" font-weight="bold" fill="#f97316">REDUCCIÓN</text>
-<rect x="440" y="90" width="120" height="50" fill="#fff7ed" stroke="#f97316" stroke-width="1.5"/>
-<text x="500" y="120" text-anchor="middle" font-size="12" fill="#f97316">5mm en plano</text>
-<text x="500" y="140" text-anchor="middle" font-size="10" fill="#64748b">= 10mm real</text>
-<text x="500" y="175" text-anchor="middle" font-size="18" font-weight="bold" fill="#f97316">1:2</text>
-<text x="500" y="195" text-anchor="middle" font-size="10" fill="#64748b">5:10 = 1:2</text>
-<!-- Regla de oro -->
-<rect x="20" y="265" width="560" height="25" fill="#faf5ff" stroke="#a855f7" stroke-width="1.5" rx="6"/>
-<text x="300" y="282" text-anchor="middle" font-size="11" fill="#a855f7" font-weight="600">⚠️ REGLA DE ORO: Siempre acotar a tamaño real, ¡independientemente de la escala!</text>
+<h3 style="margin-bottom:1rem;color:var(--azul)">🎮 Arrastra para ver cómo cambia el dibujo según la escala</h3>
+<svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+<!-- Pieza real siempre del mismo tamaño (referencia) -->
+<rect x="20" y="60" width="60" height="80" fill="#ecfdf5" stroke="#10b981" stroke-width="2" rx="4"/>
+<text x="50" y="108" text-anchor="middle" font-size="10" font-weight="bold" fill="#10b981">REAL</text>
+<text x="50" y="155" text-anchor="middle" font-size="9" fill="#10b981">100 mm</text>
+<text x="50" y="168" text-anchor="middle" font-size="8" fill="#94a3b8">siempre igual</text>
+
+<!-- Flecha -->
+<line x1="90" y1="100" x2="130" y2="100" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="110" y="92" text-anchor="middle" font-size="8" fill="#64748b">Escala</text>
+
+<!-- Pieza en plano (cambia con slider) -->
+<rect id="planRect" x="160" y="60" width="60" height="80" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="4"/>
+<text x="190" y="108" text-anchor="middle" font-size="10" font-weight="bold" fill="#2563eb" id="planLabel">PLANO</text>
+<text x="190" y="155" text-anchor="middle" font-size="9" fill="#2563eb" id="planDim">10 mm</text>
+
+<!-- Slider visual -->
+<text x="300" y="50" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e293b">Escala: <tspan fill="#2563eb" id="scaleLabel">1:10</tspan></text>
+<text x="300" y="68" text-anchor="middle" font-size="9" fill="#64748b" id="scaleHint">→ el plano se reduce 10 veces</text>
+
+<!-- Representación visual de la escala -->
+<rect x="250" y="80" width="100" height="60" fill="#fff" stroke="#e2e8f0" stroke-width="1" rx="6"/>
+<text x="300" y="100" text-anchor="middle" font-size="9" fill="#64748b">Fórmula:</text>
+<text x="300" y="118" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb" id="formulaText">10/100 = 1/10</text>
+<text x="300" y="135" text-anchor="middle" font-size="9" fill="#64748b">plano / real</text>
+
+<!-- Escalas normalizadas -->
+<text x="400" y="50" text-anchor="middle" font-size="10" font-weight="bold" fill="#1e293b">Normalizadas:</text>
+<text x="400" y="68" text-anchor="middle" font-size="8" fill="#10b981">Ampliación: 2:1 5:1 10:1</text>
+<text x="400" y="80" text-anchor="middle" font-size="8" fill="#10b981">20:1 50:1 100:1</text>
+<text x="400" y="96" text-anchor="middle" font-size="8" fill="#10b981">Natural: 1:1</text>
+<text x="400" y="112" text-anchor="middle" font-size="8" fill="#f97316">Reducción: 1:2 1:5</text>
+<text x="400" y="124" text-anchor="middle" font-size="8" fill="#f97316">1:10 1:20 1:50</text>
+<text x="400" y="136" text-anchor="middle" font-size="8" fill="#f97316">1:100 1:200 1:500</text>
 </svg>
+</div>
+</section>
+
+<!-- CASO REAL INDUSTRIAL -->
+<section class="chapter">
+<h2 class="chapter-title">🏭 Caso real: Plano de un puente</h2>
+<div class="box box-ejemplo">
+<span class="real-world-badge">CASO REAL</span>
+<strong>🌉 Ingeniería civil — Plano de un apoyo de puente</strong>
+<p>Un ingeniero civil diseña el apoyo de un puente sobre un río. La pieza de acero (una placa base) mide <strong>2.400 × 1.200 × 150 mm</strong> — pesa más de 3 toneladas.</p>
+<p style="margin-top:.5rem">No cabe en un A0. El ingeniero la dibuja a escala <strong>1:20</strong> en un A1 (594 × 841 mm). En el plano, la placa mide solo 120 × 60 mm. Pero la cota SIEMPRE pone <strong>2400 × 1200 mm</strong>.</p>
+<p style="margin-top:.5rem">Si el operario de soldadura lee la cota como 120 × 60 mm (lo que ve en el plano) en vez de 2400 × 1200 mm (lo que dice la cota), <strong>la placa no llega a los pernos de anclaje → el puente no se fija → colapso estructural. Coste: vidas humanas.</strong></p>
+<p style="margin-top:.5rem;font-style:italic;color:var(--rojo)">La escala es una herramienta de representación, NO de medición. La cota SIEMPRE manda.</p>
+</div>
+</section>
+
+<!-- ERROR COMÚN VISUAL -->
+<section class="chapter">
+<h2 class="chapter-title">⚠️ Error visual: Cotar según lo que se ve</h2>
+<div class="box box-error">
+<strong>⚠️ Error clásico</strong>
+Cotar según lo que se ve en el plano. Si una pieza mide 100mm y la dibujas a escala 1:2 (50mm en plano), la cota SIEMPRE debe poner 100, no 50. ¡Siempre acotar a tamaño real!
+</div>
+
+<div class="comparison">
+<div class="comparison-side correct-side">
+<h4>✅ Correcto: Cota = 100 mm (tamaño real)</h4>
+<div class="svg-container" style="margin:0;padding:1rem">
+<svg viewBox="0 0 250 150" xmlns="http://www.w3.org/2000/svg">
+<!-- Pieza real -->
+<rect x="20" y="50" width="50" height="50" fill="#ecfdf5" stroke="#10b981" stroke-width="2" rx="3"/>
+<text x="45" y="80" text-anchor="middle" font-size="9" fill="#10b981" font-weight="bold">REAL</text>
+<text x="45" y="120" text-anchor="middle" font-size="9" fill="#10b981">100 mm</text>
+<!-- Flecha -->
+<line x1="75" y1="75" x2="100" y2="75" stroke="#64748b" stroke-width="1" marker-end="url(#arrow)"/>
+<!-- Pieza en plano a 1:2 -->
+<rect x="110" y="50" width="25" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="3"/>
+<text x="122" y="80" text-anchor="middle" font-size="8" fill="#2563eb" font-weight="bold">1:2</text>
+<!-- COTA CORRECTA -->
+<line x1="105" y1="40" x2="145" y2="40" stroke="#10b981" stroke-width="2"/>
+<polygon points="105,37 112,40 105,43" fill="#10b981"/>
+<polygon points="145,37 138,40 145,43" fill="#10b981"/>
+<text x="125" y="35" text-anchor="middle" font-size="11" font-weight="bold" fill="#10b981">100</text>
+<text x="125" y="130" text-anchor="middle" font-size="9" fill="#10b981" font-weight="bold">COTA = 100 mm ✓</text>
+</svg>
+</div>
+<p style="font-size:.85rem;color:var(--verde);margin-top:.5rem">Aunque se vea de 50mm, la cota pone 100</p>
+</div>
+
+<div class="comparison-side wrong-side">
+<h4>❌ Incorrecto: Cota = 50 mm (lo que se ve)</h4>
+<div class="svg-container" style="margin:0;padding:1rem">
+<svg viewBox="0 0 250 150" xmlns="http://www.w3.org/2000/svg">
+<!-- Pieza real -->
+<rect x="20" y="50" width="50" height="50" fill="#ecfdf5" stroke="#10b981" stroke-width="2" rx="3"/>
+<text x="45" y="80" text-anchor="middle" font-size="9" fill="#10b981" font-weight="bold">REAL</text>
+<text x="45" y="120" text-anchor="middle" font-size="9" fill="#10b981">100 mm</text>
+<!-- Flecha -->
+<line x1="75" y1="75" x2="100" y2="75" stroke="#64748b" stroke-width="1"/>
+<!-- Pieza en plano a 1:2 -->
+<rect x="110" y="50" width="25" height="50" fill="#fef2f2" stroke="#ef4444" stroke-width="2" rx="3"/>
+<text x="122" y="80" text-anchor="middle" font-size="8" fill="#ef4444" font-weight="bold">1:2</text>
+<!-- X roja de error -->
+<line x1="135" y1="40" x2="150" y2="55" stroke="#ef4444" stroke-width="2"/>
+<line x1="150" y1="40" x2="135" y2="55" stroke="#ef4444" stroke-width="2"/>
+<!-- COTA INCORRECTA -->
+<line x1="105" y1="35" x2="145" y2="35" stroke="#ef4444" stroke-width="2"/>
+<polygon points="105,32 112,35 105,38" fill="#ef4444"/>
+<polygon points="145,32 138,35 145,38" fill="#ef4444"/>
+<text x="125" y="30" text-anchor="middle" font-size="11" font-weight="bold" fill="#ef4444">50 ✗</text>
+<text x="125" y="130" text-anchor="middle" font-size="9" fill="#ef4444" font-weight="bold">COTA = 50 mm ✗</text>
+</svg>
+</div>
+<p style="font-size:.85rem;color:var(--rojo);margin-top:.5rem">¡NUNCA! La cota debe ser el tamaño real</p>
+</div>
 </div>
 </section>
 
@@ -202,13 +305,32 @@ Se usa cuando el tamaño lo permite.
 <p class="feedback"></p>
 </div>
 
+<!-- NUEVO: Ejercicio de caso real -->
+<div class="exercise">
+<p>🏭 Ejercicio 6 (caso real): Un puente tiene un apoyo de 2400 mm de largo. Se dibuja a escala 1:20. ¿Cuánto mide en el plano?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">240 mm</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">120 mm</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">24 mm</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">4800 mm</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<!-- NUEVO: Ejercicio de regla de oro -->
+<div class="exercise">
+<p>🏷️ Ejercicio 7 (regla de oro): En el plano del puente del ejercicio anterior, ¿qué cota debe aparecer?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">120 mm — lo que se ve en el plano</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">2400 mm — el tamaño real de la pieza</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">1:20 — la escala usada</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">1200 mm — la mitad del tamaño real</button>
+</div>
+<p class="feedback"></p>
+</div>
+
 </div>
 </section>
-
-<div class="box box-error">
-<strong>⚠️ Error clásico</strong>
-Cotar según lo que se ve en el plano. Si una pieza mide 100mm y la dibujas a escala 1:2 (50mm en plano), la cota SIEMPRE debe poner 100, no 50. ¡Siempre acotar a tamaño real!
-</div>
 
 <div class="box box-idea">
 <strong>🔗 Conexión</strong>
@@ -223,6 +345,7 @@ La escala 1:100 es la más usada en planos de arquitectura. Un edificio de 10 me
 <li>Natural: 1:1</li>
 <li>Reducción: 1:2, 1:5, 1:10, 1:20, 1:50, 1:100, 1:200, 1:500, 1:1000</li>
 <li>¡REGLA DE ORO: Siempre acotar a tamaño real!</li>
+<li>La escala es solo para representación visual, la cota siempre es el tamaño real</li>
 <li>¡Ya dominas las escalas ISO 5455! 🎉</li>
 </ul>
 </div>
@@ -235,6 +358,51 @@ La escala 1:100 es la más usada en planos de arquitectura. Un edificio de 10 me
 </main>
 <footer class="footer">Hecho con ❤️ por David Antizar</footer>
 <script>
+// Calculadora de escalas
+function calculateScale() {
+  var real = parseFloat(document.getElementById('realSize').value) || 1;
+  var plan = parseFloat(document.getElementById('planSize').value) || 1;
+  var ratio = plan / real;
+  
+  // Simplificar a 1:X o X:1
+  var scaleText, scaleType, planDim, scaleHint, formulaText;
+  
+  if (Math.abs(ratio - 1) < 0.01) {
+    scaleText = '1:1';
+    scaleType = 'Natural';
+    planDim = real + ' mm';
+    scaleHint = '→ el plano es del mismo tamaño';
+    formulaText = plan + '/' + real + ' = 1/1';
+  } else if (ratio > 1) {
+    var x = Math.round(1 / ratio);
+    scaleText = Math.round(ratio * 10) + ':1';
+    scaleType = 'Ampliación';
+    planDim = plan + ' mm (ampliado)';
+    scaleHint = '→ el plano es ' + Math.round(ratio * 10) + 'x más grande';
+    formulaText = plan + '/' + real + ' = ' + Math.round(ratio * 10) + '/1';
+  } else {
+    var x = Math.round(real / plan);
+    scaleText = '1:' + x;
+    scaleType = 'Reducción';
+    planDim = plan + ' mm (reducido)';
+    scaleHint = '→ el plano se reduce ' + x + ' veces';
+    formulaText = plan + '/' + real + ' = 1/' + x;
+  }
+  
+  document.getElementById('scaleValue').textContent = scaleText;
+  document.getElementById('scaleType').textContent = scaleType;
+  document.getElementById('planDim').textContent = planDim;
+  document.getElementById('scaleLabel').textContent = scaleText;
+  document.getElementById('scaleHint').textContent = scaleHint;
+  document.getElementById('formulaText').textContent = formulaText;
+  
+  // Actualizar el rectángulo del plano (escala visual)
+  var rect = document.getElementById('planRect');
+  var baseWidth = 60;
+  var scaleFactor = Math.min(Math.max(ratio, 0.25), 4);
+  rect.setAttribute('width', Math.round(baseWidth * scaleFactor));
+}
+
 function checkAnswer(btn, correct) {
   var parent = btn.parentElement;
   parent.querySelectorAll('button').forEach(function(b) {
@@ -281,6 +449,9 @@ window.onscroll = function(){
   var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
   document.getElementById('progress').style.width = p+'%';
 };
+
+// Inicializar calculadora
+calculateScale();
 </script>
 </body>
 </html>
