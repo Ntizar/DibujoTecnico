@@ -2,77 +2,121 @@
   "curso": "Dibujo Técnico Completo",
   "autor": "David Antizar",
   "total_temas": 49,
-  "last_improved": null,
-  "last_run": null,
-  "total_runs": 0,
+  "last_improved": "2026-06-10",
+  "last_run": "2026-06-10",
+  "total_runs": 1,
   "topics": {
     "b01-01-formatos-papel.html": {
-      "status": "pending",
+      "status": "improved_1",
       "bloque": "b01",
       "title": "📄 Formatos de papel ISO 216",
       "priority": 1,
-      "improvements": [],
+      "improvements": [
+        {
+          "date": "2026-06-10",
+          "description": "SVG interactividad (hover/click/toggle), caso real industrial, error visual SVG comparativo, ejercicios extra",
+          "dimensions_improved": [
+            "svg_interactive",
+            "real_world",
+            "error_common",
+            "exercises"
+          ]
+        }
+      ],
       "scores": {
-        "svg_interactive": 0,
-        "exercises": 0,
-        "text_explanation": 0,
-        "real_world": 0,
-        "error_common": 0,
-        "css_coherence": 0
+        "svg_interactive": 7,
+        "exercises": 7,
+        "text_explanation": 7,
+        "real_world": 7,
+        "error_common": 7,
+        "css_coherence": 10
       },
-      "last_improved": null,
-      "improvement_count": 0
+      "last_improved": "2026-06-10",
+      "improvement_count": 1
     },
     "b01-02-tipos-linea.html": {
-      "status": "pending",
+      "status": "improved_1",
       "bloque": "b01",
       "title": "📐 Tipos de línea ISO 128",
       "priority": 1,
-      "improvements": [],
+      "improvements": [
+        {
+          "date": "2026-06-10",
+          "description": "SVG interactividad (hover/click/toggle), caso real industrial, error visual SVG comparativo, ejercicios extra",
+          "dimensions_improved": [
+            "svg_interactive",
+            "real_world",
+            "error_common",
+            "exercises"
+          ]
+        }
+      ],
       "scores": {
-        "svg_interactive": 0,
-        "exercises": 0,
-        "text_explanation": 0,
-        "real_world": 0,
-        "error_common": 0,
-        "css_coherence": 0
+        "svg_interactive": 7,
+        "exercises": 7,
+        "text_explanation": 7,
+        "real_world": 7,
+        "error_common": 7,
+        "css_coherence": 10
       },
-      "last_improved": null,
-      "improvement_count": 0
+      "last_improved": "2026-06-10",
+      "improvement_count": 1
     },
     "b01-03-escalas.html": {
-      "status": "pending",
+      "status": "improved_1",
       "bloque": "b01",
       "title": "🔍 Escalas ISO 5455",
       "priority": 1,
-      "improvements": [],
+      "improvements": [
+        {
+          "date": "2026-06-10",
+          "description": "SVG interactividad (hover/click/toggle), caso real industrial, error visual SVG comparativo, ejercicios extra",
+          "dimensions_improved": [
+            "svg_interactive",
+            "real_world",
+            "error_common",
+            "exercises"
+          ]
+        }
+      ],
       "scores": {
-        "svg_interactive": 0,
-        "exercises": 0,
-        "text_explanation": 0,
-        "real_world": 0,
-        "error_common": 0,
-        "css_coherence": 0
+        "svg_interactive": 7,
+        "exercises": 7,
+        "text_explanation": 7,
+        "real_world": 7,
+        "error_common": 7,
+        "css_coherence": 10
       },
-      "last_improved": null,
-      "improvement_count": 0
+      "last_improved": "2026-06-10",
+      "improvement_count": 1
     },
     "b01-04-rotulacion.html": {
-      "status": "pending",
+      "status": "improved_1",
       "bloque": "b01",
       "title": "✍️ Rotulación UNE",
       "priority": 1,
-      "improvements": [],
+      "improvements": [
+        {
+          "date": "2026-06-10",
+          "description": "SVG interactividad (hover/click/toggle), caso real industrial, error visual SVG comparativo, ejercicios extra",
+          "dimensions_improved": [
+            "svg_interactive",
+            "real_world",
+            "error_common",
+            "exercises"
+          ]
+        }
+      ],
       "scores": {
-        "svg_interactive": 0,
-        "exercises": 0,
-        "text_explanation": 0,
-        "real_world": 0,
-        "error_common": 0,
-        "css_coherence": 0
+        "svg_interactive": 7,
+        "exercises": 7,
+        "text_explanation": 7,
+        "real_world": 7,
+        "error_common": 7,
+        "css_coherence": 10
       },
-      "last_improved": null,
-      "improvement_count": 0
+      "last_improved": "2026-06-10",
+      "improvement_count": 1
     },
     "b01-05-cuadro-rotulacion.html": {
       "status": "pending",
@@ -841,8 +885,21 @@
     }
   },
   "audit": {
-    "last_css_audit": null,
-    "css_coherence_score": 0,
-    "total_themes_audited": 0
+    "last_css_audit": "2026-06-10",
+    "css_coherence_score": 93,
+    "total_themes_audited": 3,
+    "audit_details": {
+      "audited_files": [
+        "b02-01-proyeccion-ortogonal.html",
+        "b03-01-isometrica-ejes.html",
+        "b05-01-cortes.html"
+      ],
+      "issues_found": [
+        "b03-01-isometrica-ejes.html: CSS con dobles llaves {{}} en vez de {} — corregido"
+      ],
+      "issues_fixed": [
+        "b03-01-isometrica-ejes.html: CSS corregido a llaves simples {} — 46 reglas CSS ahora aplican correctamente"
+      ]
+    }
   }
 }
