@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌍 S02.6: 1º diedro vs 3º diedro — Dibujo Técnico</title>
+<style>
+:root{--azul:#2563eb;--naranja:#f97316;--verde:#10b981;--rojo:#ef4444;--fondo:#fff;--texto:#1e293b;--gris:#94a3b8;--azul-claro:#eff6ff;--naranja-claro:#fff7ed;--verde-claro:#ecfdf5;--rojo-claro:#fef2f2;--pura-claro:#faf5ff;--pura:#a855f7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-gradient(135deg,#f8faff 0%,#fffaf5 100%);color:var(--texto);line-height:1.7}
+.header{background:linear-gradient(135deg,var(--azul),#1d4ed8);color:#fff;padding:2rem 1.5rem;text-align:center}
+.header h1{font-size:1.8rem;margin-bottom:.5rem}
+.header p{opacity:.9;font-size:1rem}
+.progress-bar{height:4px;background:rgba(255,255,255,.3);border-radius:2px;margin-top:1rem;overflow:hidden}
+.progress-fill{height:100%;background:#fff;border-radius:2px;width:0%;transition:width .3s}
+.container{max-width:900px;margin:0 auto;padding:1.5rem}
+.chapter{margin-bottom:2.5rem}
+.chapter-title{font-size:1.4rem;color:var(--azul);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:2px solid var(--azul-claro)}
+.box{padding:1rem 1.2rem;border-radius:10px;margin:1rem 0;border-left:4px solid;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.box-teoria{background:var(--azul-claro);border-color:var(--azul)}
+.box-ejemplo{background:var(--naranja-claro);border-color:var(--naranja)}
+.box-error{background:var(--rojo-claro);border-color:var(--rojo)}
+.box-idea{background:var(--pura-claro);border-color:var(--pura)}
+.box-success{background:var(--verde-claro);border-color:var(--verde)}
+.box strong{display:block;margin-bottom:.3rem}
+.svg-container{background:#f8fafc;border-radius:12px;padding:1.5rem;margin:1.5rem 0;text-align:center;border:2px solid #e2e8f0}
+.svg-container svg{max-width:100%;height:auto}
+.svg-container svg text{font-family:Inter,system-ui,sans-serif}
+.interactive{background:#f1f5f9;border-radius:12px;padding:1.5rem;margin:1.5rem 0}
+.interactive h3{color:var(--azul);margin-bottom:1rem;font-size:1.1rem}
+.interactive button{background:var(--azul);color:#fff;border:none;padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.95rem;margin:.3rem}
+.interactive button:hover{background:#1d4ed8}
+.result{margin-top:.8rem;padding:.8rem;border-radius:6px;font-weight:600;min-height:2rem}
+.result.ok{background:var(--verde-claro);color:#065f46}
+.result.fail{background:var(--rojo-claro);color:#991b1b}
+.exercises{margin:1.5rem 0}
+.exercise{background:#f1f5f9;border-radius:8px;padding:1rem;margin:.8rem 0}
+.exercise p{font-weight:600;margin-bottom:.5rem}
+.quiz-options{display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0}
+.quiz-btn{padding:.6rem 1.5rem;border-radius:8px;border:2px solid var(--azul);background:#fff;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all .2s}
+.quiz-btn:hover{background:var(--azul-claro)}
+.quiz-btn.correct{background:var(--verde);color:#fff;border-color:var(--verde)}
+.quiz-btn.wrong{background:var(--rojo);color:#fff;border-color:var(--rojo)}
+.summary{background:var(--azul-claro);border-radius:12px;padding:1.5rem;margin:2rem 0}
+.summary h3{color:var(--azul);margin-bottom:.8rem}
+.summary ul{list-style:none;padding:0}
+.summary li{padding:.3rem 0;padding-left:1.5rem;position:relative}
+.summary li::before{content:"✓";color:var(--verde);font-weight:bold;position:absolute;left:0}
+.nav{display:flex;justify-content:space-between;margin:2rem 0;padding:1rem 0;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0}
+.nav a{color:var(--azul);text-decoration:none;font-weight:600;padding:.5rem 1rem;border-radius:6px}
+.nav a:hover{background:var(--azul-claro)}
+.nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
+.footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+</style>
+</head>
+<body>
+<header class="header">
+<h1>🌍 S02.6: 1º diedro vs 3º diedro</h1>
+<p>Dibujo Técnico — Proyecciones</p>
+<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+</header>
+<main class="container">
+
+<section class="chapter">
+<h2 class="chapter-title">🎯 ¿Qué vamos a aprender?</h2>
+<div class="box box-idea">
+<strong>💡 Idea clave</strong>
+Europa usa el 1º diedro (pieza entre observador y plano) y EE.UU. usa el 3º diedro (plano entre observador y pieza). Es como si uno mirara desde fuera de una caja y el otro desde dentro. ¡La diferencia está en dónde se coloca la planta!
+</div>
+<p>En esta sesión aprenderás a:</p>
+<ul style="margin:.8rem 0 1rem 1.5rem">
+<li>Distinguir entre 1º y 3º diedro</li>
+<li>Saber qué países usan cada método</li>
+<li>Entender la diferencia en la posición de la planta</li>
+<li>Identificar el símbolo de proyección obligatorio</li>
+</ul>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">1️⃣ 1º diedro vs 3º diedro</h2>
+<div class="box box-teoria">
+<strong>📖 Teoría</strong>
+Existen dos métodos de proyección, que difieren en la posición relativa de la pieza respecto a los planos:<br><br>
+<strong>🔹 1º DIEDRO (Europa):</strong><br>
+• Pieza ENTRE observador y plano<br>
+• Planta va DEBAJO del alzado<br>
+• Se usa en Europa, Asia, Sudamérica<br>
+• Es el método de la norma ISO<br><br>
+<strong>🔹 3º DIEDRO (EE.UU.):</strong><br>
+• Plano ENTRE observador y pieza<br>
+• Planta va ENCIMA del alzado<br>
+• Se usa en EE.UU., Canadá, Australia<br>
+• Común en ingeniería mecánica americana
+</div>
+<div class="box box-ejemplo">
+<strong>🔍 Ejemplo 1</strong>
+1º diedro: miras una pieza desde el frente, los rayos atraviesan la pieza y proyectan en el plano de detrás.<br>
+Planta = vista desde arriba → va DEBAJO del alzado.
+</div>
+<div class="box box-ejemplo">
+<strong>🔍 Ejemplo 2</strong>
+3º diedro: el plano está entre tus ojos y la pieza.<br>
+Planta = vista desde arriba → va ENCIMA del alzado.
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">2️⃣ Visualiza la diferencia</h2>
+<div class="svg-container">
+<svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+<!-- Fondo -->
+<rect x="0" y="0" width="600" height="300" fill="#f8fafc" rx="8"/>
+<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">1º diedro vs 3º diedro</text>
+<!-- 1º diedro -->
+<text x="150" y="55" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">1º DIEDRO (Europa)</text>
+<!-- Observador -->
+<text x="60" y="100" text-anchor="middle" font-size="24">👁️</text>
+<text x="60" y="120" text-anchor="middle" font-size="9" fill="#2563eb">Observador</text>
+<!-- Pieza -->
+<rect x="110" y="80" width="40" height="40" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="130" y="105" text-anchor="middle" font-size="8" fill="#2563eb">Pieza</text>
+<!-- Plano -->
+<rect x="160" y="70" width="5" height="60" fill="#10b981" stroke="#10b981" stroke-width="1"/>
+<text x="160" y="145" text-anchor="middle" font-size="9" fill="#10b981">Plano</text>
+<!-- Flecha de proyección -->
+<line x1="80" y1="100" x2="155" y2="100" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrow)"/>
+<!-- Resultado -->
+<rect x="100" y="170" width="100" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" rx="4"/>
+<text x="150" y="195" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="600">Alzado</text>
+<rect x="100" y="245" width="100" height="40" fill="#fff7ed" stroke="#f97316" stroke-width="1.5" rx="4"/>
+<text x="150" y="270" text-anchor="middle" font-size="10" fill="#f97316" font-weight="600">Planta (DEBAJO)</text>
+<!-- 3º diedro -->
+<text x="450" y="55" text-anchor="middle" font-size="13" font-weight="bold" fill="#f97316">3º DIEDRO (EE.UU.)</text>
+<!-- Observador -->
+<text x="360" y="100" text-anchor="middle" font-size="24">👁️</text>
+<text x="360" y="120" text-anchor="middle" font-size="9" fill="#f97316">Observador</text>
+<!-- Plano -->
+<rect x="400" y="70" width="5" height="60" fill="#10b981" stroke="#10b981" stroke-width="1"/>
+<text x="400" y="145" text-anchor="middle" font-size="9" fill="#10b981">Plano</text>
+<!-- Pieza -->
+<rect x="450" y="80" width="40" height="40" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+<text x="470" y="105" text-anchor="middle" font-size="8" fill="#f97316">Pieza</text>
+<!-- Flecha de proyección -->
+<line x1="380" y1="100" x2="395" y2="100" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrow)"/>
+<!-- Resultado -->
+<rect x="400" y="170" width="100" height="70" fill="#eff6ff" stroke="#f97316" stroke-width="1.5" rx="4"/>
+<text x="450" y="195" text-anchor="middle" font-size="10" fill="#f97316" font-weight="600">Alzado</text>
+<rect x="400" y="130" width="100" height="40" fill="#fff7ed" stroke="#f97316" stroke-width="1.5" rx="4"/>
+<text x="450" y="155" text-anchor="middle" font-size="10" fill="#f97316" font-weight="600">Planta (ENCIMA)</text>
+<!-- Leyenda -->
+<rect x="20" y="290" width="560" height="25" fill="#faf5ff" rx="4"/>
+<text x="300" y="307" text-anchor="middle" font-size="11" fill="#a855f7" font-weight="600">¡El símbolo de proyección es OBLIGATORIO en todo plano!</text>
+</svg>
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">📝 Ejercicios</h2>
+<div class="exercises">
+
+<div class="exercise">
+<p>📐 Ejercicio 1: ¿Dónde va la planta en el 1º diedro?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Debajo del alzado</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Encima del alzado</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">A la derecha del alzado</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">No tiene planta</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 2: ¿Qué método usa Europa?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">1º diedro</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">3º diedro</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Ambos</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Ninguno</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 3: En el 3º diedro, ¿dónde va la planta?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Debajo del alzado</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Encima del alzado</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">A la izquierda del alzado</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">No tiene planta</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 4: ¿Qué diferencia al 1º diedro del 3º?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">El tipo de línea</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">La posición de la pieza respecto al plano</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">La escala</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">El formato de papel</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 5: ¿El símbolo de proyección es obligatorio?</p>
+<input type="text" id="ex5" placeholder="Sí o No" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
+<button onclick="checkExercise('ex5', 'sí', this)">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+</div>
+</section>
+
+<div class="box box-error">
+<strong>⚠️ Error clásico</strong>
+Confundir 1º diedro con 3º diedro. En 1º diedro (Europa), la planta va DEBAJO del alzado. En 3º diedro (EE.UU.), la planta va ENCIMA. ¡Siempre lleva símbolo de proyección!
+</div>
+
+<div class="box box-idea">
+<strong>🔗 Conexión</strong>
+Cuando veas un plano americano, fíjate en el símbolo de proyección. Si es 3º diedro, la planta va ENCIMA del alzado — ¡todo lo contrario que en Europa!
+</div>
+
+<div class="summary">
+<h3>📋 Resumen de lo aprendido</h3>
+<ul>
+<li>1º diedro (Europa): pieza entre observador y plano</li>
+<li>3º diedro (EE.UU.): plano entre observador y pieza</li>
+<li>1º diedro: planta DEBAJO del alzado</li>
+<li>3º diedro: planta ENCIMA del alzado</li>
+<li>¡El símbolo de proyección es OBLIGATORIO!</li>
+<li>¡Ya dominas el 1º y 3º diedro! 🎉</li>
+</ul>
+</div>
+
+<div class="nav">
+<a href="b02-05-abatimiento-ph.html">← Anterior</a>
+<a href="b02-07-representacion-piezas.html">Siguiente →</a>
+</div>
+
+</main>
+<footer class="footer">Hecho con ❤️ por David Antizar</footer>
+<script>
+function checkAnswer(btn, correct) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) {
+    b.disabled = true; b.classList.remove('correct','wrong');
+  });
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  var feedback = parent.nextElementSibling;
+  if(feedback && feedback.classList.contains('feedback')) {
+    if(correct) {
+      feedback.textContent = '✅ ¡Correcto! ¡Muy bien!';
+      feedback.className = 'feedback correct';
+    } else {
+      feedback.textContent = '❌ ¡Intenta de nuevo!';
+      feedback.className = 'feedback incorrect';
+      setTimeout(function() {
+        parent.querySelectorAll('button').forEach(function(b) {
+          b.disabled = false; b.classList.remove('correct','wrong');
+        });
+        feedback.textContent = '';
+        feedback.className = 'feedback';
+      }, 1500);
+    }
+  }
+}
+
+function checkExercise(id, correct, btn) {
+  var input = document.getElementById(id);
+  var feedback = input.parentElement.nextElementSibling;
+  var userVal = input.value.trim().toLowerCase();
+  var correctVal = correct.toLowerCase();
+  if(userVal === correctVal) {
+    feedback.textContent = '✅ ¡Correcto! ' + correct;
+    feedback.className = 'feedback correct';
+    input.style.borderColor = 'var(--verde)';
+  } else {
+    feedback.textContent = '❌ Respuesta correcta: ' + correct;
+    feedback.className = 'feedback incorrect';
+    input.style.borderColor = 'var(--rojo)';
+  }
+}
+
+window.onscroll = function(){
+  var h = document.documentElement;
+  var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
+  document.getElementById('progress').style.width = p+'%';
+};
+</script>
+</body>
+</html>
