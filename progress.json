@@ -786,55 +786,91 @@
       "improvement_count": 1
     },
     "b04-09-resumen-diedrico.html": {
-      "status": "pending",
+      "status": "improved_1",
       "bloque": "b04",
       "title": "⊥ Perpendicularidad recta-plano",
       "priority": 2,
-      "improvements": [],
+      "improvements": [
+        {
+          "date": "2026-06-10",
+          "description": "CSS template base, caso real industrial, error comparativo SVG",
+          "dimensions_improved": [
+            "svg_interactive",
+            "text_explanation",
+            "real_world",
+            "error_common",
+            "css_coherence"
+          ]
+        }
+      ],
       "scores": {
-        "svg_interactive": 0,
-        "exercises": 0,
-        "text_explanation": 0,
-        "real_world": 0,
-        "error_common": 0,
-        "css_coherence": 0
+        "svg_interactive": 7,
+        "exercises": 7,
+        "text_explanation": 7,
+        "real_world": 7,
+        "error_common": 7,
+        "css_coherence": 7
       },
-      "last_improved": null,
-      "improvement_count": 0
+      "last_improved": "2026-06-10",
+      "improvement_count": 1
     },
     "b05-01-cortes.html": {
-      "status": "pending",
+      "status": "improved_1",
       "bloque": "b05",
       "title": "✂️ Corte total",
       "priority": 3,
-      "improvements": [],
+      "improvements": [
+        {
+          "date": "2026-06-10",
+          "description": "CSS template base, caso real industrial, error comparativo SVG",
+          "dimensions_improved": [
+            "svg_interactive",
+            "text_explanation",
+            "real_world",
+            "error_common",
+            "css_coherence"
+          ]
+        }
+      ],
       "scores": {
-        "svg_interactive": 0,
-        "exercises": 0,
-        "text_explanation": 0,
-        "real_world": 0,
-        "error_common": 0,
-        "css_coherence": 0
+        "svg_interactive": 7,
+        "exercises": 7,
+        "text_explanation": 7,
+        "real_world": 7,
+        "error_common": 7,
+        "css_coherence": 7
       },
-      "last_improved": null,
-      "improvement_count": 0
+      "last_improved": "2026-06-10",
+      "improvement_count": 1
     },
     "b05-02-corte-tipos.html": {
-      "status": "pending",
+      "status": "improved_1",
       "bloque": "b05",
       "title": "🔪 Corte parcial y semicorte",
       "priority": 3,
-      "improvements": [],
+      "improvements": [
+        {
+          "date": "2026-06-10",
+          "description": "CSS template base, caso real industrial, error comparativo SVG",
+          "dimensions_improved": [
+            "svg_interactive",
+            "text_explanation",
+            "real_world",
+            "error_common",
+            "css_coherence"
+          ]
+        }
+      ],
       "scores": {
-        "svg_interactive": 0,
-        "exercises": 0,
-        "text_explanation": 0,
-        "real_world": 0,
-        "error_common": 0,
-        "css_coherence": 0
+        "svg_interactive": 7,
+        "exercises": 7,
+        "text_explanation": 7,
+        "real_world": 7,
+        "error_common": 7,
+        "css_coherence": 7
       },
-      "last_improved": null,
-      "improvement_count": 0
+      "last_improved": "2026-06-10",
+      "improvement_count": 1
     },
     "b06-01-acotacion.html": {
       "status": "pending",
@@ -905,55 +941,91 @@
       "improvement_count": 0
     },
     "b05-03-corte-escalonado.html": {
-      "status": "pending",
+      "status": "improved_1",
       "bloque": "b05",
       "title": "🔪 Corte escalonado",
       "priority": 3,
-      "improvements": [],
+      "improvements": [
+        {
+          "date": "2026-06-10",
+          "description": "CSS template base, caso real industrial, error comparativo SVG",
+          "dimensions_improved": [
+            "svg_interactive",
+            "text_explanation",
+            "real_world",
+            "error_common",
+            "css_coherence"
+          ]
+        }
+      ],
       "scores": {
-        "svg_interactive": 0,
-        "exercises": 0,
-        "text_explanation": 0,
-        "real_world": 0,
-        "error_common": 0,
-        "css_coherence": 0
+        "svg_interactive": 7,
+        "exercises": 7,
+        "text_explanation": 7,
+        "real_world": 7,
+        "error_common": 7,
+        "css_coherence": 7
       },
-      "last_improved": null,
-      "improvement_count": 0
+      "last_improved": "2026-06-10",
+      "improvement_count": 1
     },
     "b05-04-seccion-rotura.html": {
-      "status": "pending",
+      "status": "improved_1",
       "bloque": "b05",
       "title": "📐 Sección y rotura",
       "priority": 3,
-      "improvements": [],
+      "improvements": [
+        {
+          "date": "2026-06-10",
+          "description": "CSS template base, caso real industrial, error comparativo SVG",
+          "dimensions_improved": [
+            "svg_interactive",
+            "text_explanation",
+            "real_world",
+            "error_common",
+            "css_coherence"
+          ]
+        }
+      ],
       "scores": {
-        "svg_interactive": 0,
-        "exercises": 0,
-        "text_explanation": 0,
-        "real_world": 0,
-        "error_common": 0,
-        "css_coherence": 0
+        "svg_interactive": 7,
+        "exercises": 7,
+        "text_explanation": 7,
+        "real_world": 7,
+        "error_common": 7,
+        "css_coherence": 7
       },
-      "last_improved": null,
-      "improvement_count": 0
+      "last_improved": "2026-06-10",
+      "improvement_count": 1
     },
     "b05-05-hachuras.html": {
-      "status": "pending",
+      "status": "improved_1",
       "bloque": "b05",
       "title": "✏️ Hachuras y rayado",
       "priority": 3,
-      "improvements": [],
+      "improvements": [
+        {
+          "date": "2026-06-10",
+          "description": "CSS template base, caso real industrial, error comparativo SVG",
+          "dimensions_improved": [
+            "svg_interactive",
+            "text_explanation",
+            "real_world",
+            "error_common",
+            "css_coherence"
+          ]
+        }
+      ],
       "scores": {
-        "svg_interactive": 0,
-        "exercises": 0,
-        "text_explanation": 0,
-        "real_world": 0,
-        "error_common": 0,
-        "css_coherence": 0
+        "svg_interactive": 7,
+        "exercises": 7,
+        "text_explanation": 7,
+        "real_world": 7,
+        "error_common": 7,
+        "css_coherence": 7
       },
-      "last_improved": null,
-      "improvement_count": 0
+      "last_improved": "2026-06-10",
+      "improvement_count": 1
     },
     "b05-06-ejercicios-cortes.html": {
       "status": "pending",

@@ -50,6 +50,17 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .nav a{color:var(--azul);text-decoration:none;font-weight:600;padding:.5rem 1rem;border-radius:6px}
 .nav a:hover{background:var(--azul-claro)}
 .nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
+.comparison{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0}
+.comparison-side{background:#f8fafc;border-radius:12px;padding:1.5rem;border:2px solid #e2e8f0;text-align:center;transition:all .3s}
+.comparison-side:hover{border-color:var(--azul);box-shadow:0 4px 12px rgba(37,99,235,.1)}
+.real-world-badge{display:inline-block;background:linear-gradient(135deg,var(--naranja),#ea580c);color:#fff;padding:.3rem .8rem;border-radius:20px;font-size:.8rem;font-weight:700;margin-bottom:.8rem}
+.step-indicator{display:flex;gap:.5rem;justify-content:center;margin:1rem 0}
+.step-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:#fff;transition:all .3s;cursor:pointer}
+.step-dot:hover{transform:scale(1.2)}
+.step-dot.active{box-shadow:0 0 0 4px rgba(37,99,235,.3)}
+.stack-item{background:#f8fafc;border:2px solid #e2e8f0;border-radius:10px;padding:1rem;margin:.5rem 0;transition:all .3s;cursor:pointer}
+.stack-item:hover{border-color:var(--azul);transform:translateX(4px)}
+.stack-item.active{border-color:var(--azul);background:var(--azul-claro)}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
 </style>
 </head>
@@ -259,6 +270,8 @@ Resultado: los tres agujeros aparecen en la misma vista de corte.
 </div>
 </section>
 
+<div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ CORTE SIMPLE</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><circle cx="60" cy="65" r="8" fill="#fef2f2" stroke="#94a3b8" stroke-width="1"/><circle cx="140" cy="65" r="8" fill="#fef2f2" stroke="#94a3b8" stroke-width="1"/><text x="100" y="120" text-anchor="middle" font-size="9" fill="#ef4444">Solo se ven 2 agujeros</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ CORTE ESCALONADO</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><circle cx="60" cy="65" r="8" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/><circle cx="140" cy="65" r="8" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/><line x1="68" y1="65" x2="132" y2="65" stroke="#10b981" stroke-width="1" stroke-dasharray="3,2"/><text x="100" y="120" text-anchor="middle" font-size="9" fill="#10b981">Todos los agujeros ✓</text></svg></div></div>
+
 <div class="box box-error">
 <strong>⚠️ Error clásico</strong>
 Dibujar las líneas de los escalones dentro de la vista de corte. ¡INCORRECTO! En la vista de corte A-A solo se ve el resultado: las secciones cortadas con rayado uniforme. Los escalones son solo una referencia en la vista frontal.
@@ -268,6 +281,8 @@ Dibujar las líneas de los escalones dentro de la vista de corte. ¡INCORRECTO! 
 <strong>🔗 Conexión</strong>
 El corte escalonado es una evolución del corte total. Mientras el corte total usa un solo plano, el escalonado usa varios planos paralelos. Es especialmente útil en piezas de fundición con múltiples alojamientos internos.
 </div>
+
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: bloque de motor con varios agujeros</strong>Un bloque de motor tiene 4 agujeros de bujía en línea a diferentes profundidades. Un corte simple no los muestra todos en la misma vista. El corte escalonado gira 90° cada vez que encuentra un nuevo agujero, permitiendo ver todos en una sola vista sin necesidad de vistas auxiliares.</div>
 
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
