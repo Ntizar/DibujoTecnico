@@ -119,89 +119,149 @@
       "improvement_count": 1
     },
     "b01-05-cuadro-rotulacion.html": {
-      "status": "pending",
+      "status": "improved_1",
       "bloque": "b01",
       "title": "📋 Cuadro de rotulación y pie de plano",
       "priority": 1,
-      "improvements": [],
+      "improvements": [
+        {
+          "date": "2026-06-10",
+          "description": "SVG interactividad (click en campos, hover), caso real industrial (cigüeñal), error visual SVG comparativo (correcto/incorrecto ubicación), ejercicios variados (completar, V/F, ordenar), CSS template base completo",
+          "dimensions_improved": [
+            "svg_interactive",
+            "real_world",
+            "error_common",
+            "exercises",
+            "css_coherence"
+          ]
+        }
+      ],
       "scores": {
-        "svg_interactive": 0,
-        "exercises": 0,
-        "text_explanation": 0,
-        "real_world": 0,
-        "error_common": 0,
-        "css_coherence": 0
+        "svg_interactive": 7,
+        "exercises": 7,
+        "text_explanation": 7,
+        "real_world": 7,
+        "error_common": 7,
+        "css_coherence": 10
       },
-      "last_improved": null,
-      "improvement_count": 0
+      "last_improved": "2026-06-10",
+      "improvement_count": 1
     },
     "b02-01-proyeccion-ortogonal.html": {
-      "status": "pending",
+      "status": "improved_1",
       "bloque": "b02",
       "title": "👁️ Proyección ortogonal",
       "priority": 1,
-      "improvements": [],
+      "improvements": [
+        {
+          "date": "2026-06-10",
+          "description": "SVG interactivo con toggle ortogonal/cónica, caso real industrial (Airbus larguero), error visual SVG comparativo (ortogonal vs cónica), ejercicios variados (completar, V/F, ordenar), CSS template base completo",
+          "dimensions_improved": [
+            "svg_interactive",
+            "real_world",
+            "error_common",
+            "exercises",
+            "css_coherence"
+          ]
+        }
+      ],
       "scores": {
-        "svg_interactive": 0,
-        "exercises": 0,
-        "text_explanation": 0,
-        "real_world": 0,
-        "error_common": 0,
-        "css_coherence": 0
+        "svg_interactive": 7,
+        "exercises": 7,
+        "text_explanation": 7,
+        "real_world": 7,
+        "error_common": 7,
+        "css_coherence": 10
       },
-      "last_improved": null,
-      "improvement_count": 0
+      "last_improved": "2026-06-10",
+      "improvement_count": 1
     },
     "b02-02-sistema-3-planos.html": {
-      "status": "pending",
+      "status": "improved_1",
       "bloque": "b02",
       "title": "📦 Sistema de 3 planos",
       "priority": 1,
-      "improvements": [],
+      "improvements": [
+        {
+          "date": "2026-06-10",
+          "description": "SVG interactivo (click en planos 3D), caso real industrial (Boeing tren de aterrizaje), error visual SVG comparativo (PH correcto/incorrecto), ejercicios variados (completar, V/F, ordenar), CSS template base completo",
+          "dimensions_improved": [
+            "svg_interactive",
+            "real_world",
+            "error_common",
+            "exercises",
+            "css_coherence"
+          ]
+        }
+      ],
       "scores": {
-        "svg_interactive": 0,
-        "exercises": 0,
-        "text_explanation": 0,
-        "real_world": 0,
-        "error_common": 0,
-        "css_coherence": 0
+        "svg_interactive": 7,
+        "exercises": 7,
+        "text_explanation": 7,
+        "real_world": 7,
+        "error_common": 7,
+        "css_coherence": 10
       },
-      "last_improved": null,
-      "improvement_count": 0
+      "last_improved": "2026-06-10",
+      "improvement_count": 1
     },
     "b02-03-vistas-principales.html": {
-      "status": "pending",
+      "status": "improved_1",
       "bloque": "b02",
       "title": "👀 Vistas principales",
       "priority": 1,
-      "improvements": [],
+      "improvements": [
+        {
+          "date": "2026-06-10",
+          "description": "CSS template base, SVG interactividad (click/hover), paso a paso visual, caso real industrial (biela), error visual comparativo (planta encima/debajo)",
+          "dimensions_improved": [
+            "svg_interactive",
+            "text_explanation",
+            "real_world",
+            "error_common",
+            "css_coherence"
+          ]
+        }
+      ],
       "scores": {
-        "svg_interactive": 0,
-        "exercises": 0,
-        "text_explanation": 0,
-        "real_world": 0,
-        "error_common": 0,
-        "css_coherence": 0
+        "svg_interactive": 7,
+        "exercises": 7,
+        "text_explanation": 7,
+        "real_world": 7,
+        "error_common": 7,
+        "css_coherence": 7
       },
-      "last_improved": null,
-      "improvement_count": 0
+      "last_improved": "2026-06-10",
+      "improvement_count": 1
     },
     "b02-04-correspondencia-vistas.html": {
-      "status": "pending",
+      "status": "improved_1",
       "bloque": "b02",
       "title": "🔗 Correspondencia entre vistas",
       "priority": 1,
-      "improvements": [],
+      "improvements": [
+        {
+          "date": "2026-06-10",
+          "description": "CSS template base, SVG interactividad (click/hover en líneas de correspondencia), paso a paso visual, caso real industrial (bridas), error visual comparativo (X vs Z)",
+          "dimensions_improved": [
+            "svg_interactive",
+            "text_explanation",
+            "real_world",
+            "error_common",
+            "css_coherence"
+          ]
+        }
+      ],
       "scores": {
-        "svg_interactive": 0,
-        "exercises": 0,
-        "text_explanation": 0,
-        "real_world": 0,
-        "error_common": 0,
-        "css_coherence": 0
+        "svg_interactive": 7,
+        "exercises": 7,
+        "text_explanation": 7,
+        "real_world": 7,
+        "error_common": 7,
+        "css_coherence": 7
       },
-      "last_improved": null,
-      "improvement_count": 0
+      "last_improved": "2026-06-10",
+      "improvement_count": 1
     },
     "b02-05-abatimiento-ph.html": {
       "status": "pending",
