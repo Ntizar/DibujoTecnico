@@ -3,376 +3,215 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dibujo Técnico Completo — David Antizar</title>
+<title>📐 Curso Completo de Dibujo Técnico — 53 Temas</title>
 <style>
 :root{--azul:#2563eb;--naranja:#f97316;--verde:#10b981;--rojo:#ef4444;--fondo:#fff;--texto:#1e293b;--gris:#94a3b8;--azul-claro:#eff6ff;--naranja-claro:#fff7ed;--verde-claro:#ecfdf5;--rojo-claro:#fef2f2;--pura-claro:#faf5ff;--pura:#a855f7}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-gradient(135deg,#f8faff 0%,#fffaf5 100%);color:var(--texto);line-height:1.7}
-.header{background:linear-gradient(135deg,var(--azul),#1d4ed8);color:#fff;padding:3rem 1.5rem;text-align:center}
-.header h1{font-size:2.2rem;margin-bottom:.5rem}
-.header p{opacity:.9;font-size:1.1rem}
-.header .badge{display:inline-block;background:rgba(255,255,255,.2);padding:.3rem 1rem;border-radius:20px;margin-top:1rem;font-size:.9rem}
+.header{background:linear-gradient(135deg,var(--azul),#1d4ed8);color:#fff;padding:2rem 1.5rem;text-align:center}
+.header h1{font-size:1.8rem;margin-bottom:.5rem}
+.header p{opacity:.9;font-size:1rem}
+.progress-bar{height:4px;background:rgba(255,255,255,.3);border-radius:2px;margin-top:1rem;overflow:hidden}
+.progress-fill{height:100%;background:#fff;border-radius:2px;width:0%;transition:width .3s}
 .container{max-width:900px;margin:0 auto;padding:1.5rem}
-.bloque{margin-bottom:3rem}
-.bloque h2{font-size:1.4rem;color:var(--azul);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:2px solid var(--azul-claro)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem}
-.card{background:#fff;border:2px solid #e2e8f0;border-radius:12px;padding:1.2rem;transition:all .2s}
-.card:hover{border-color:var(--azul);transform:translateY(-2px);box-shadow:0 4px 12px rgba(37,99,235,.1)}
-.card h3{font-size:1rem;margin-bottom:.5rem;color:var(--texto)}
-.card p{font-size:.85rem;color:var(--gris);margin-bottom:.8rem}
-.card-link{display:inline-block;color:var(--azul);text-decoration:none;font-weight:600;font-size:.9rem}
-.card-link:hover{text-decoration:underline}
-.stats{display:flex;gap:1rem;margin:2rem 0;flex-wrap:wrap}
-.stat{background:#fff;border:2px solid #e2e8f0;border-radius:12px;padding:1.2rem;text-align:center;flex:1;min-width:120px}
-.stat .num{font-size:2rem;font-weight:800;color:var(--azul)}
-.stat .label{font-size:.8rem;color:var(--gris)}
+.chapter{margin-bottom:2.5rem}
+.chapter-title{font-size:1.4rem;color:var(--azul);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:2px solid var(--azul-claro)}
+.box{padding:1rem 1.2rem;border-radius:10px;margin:1rem 0;border-left:4px solid;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.box-teoria{background:var(--azul-claro);border-color:var(--azul)}
+.box-ejemplo{background:var(--naranja-claro);border-color:var(--naranja)}
+.box-error{background:var(--rojo-claro);border-color:var(--rojo)}
+.box-idea{background:var(--pura-claro);border-color:var(--pura)}
+.box-success{background:var(--verde-claro);border-color:var(--verde)}
+.box strong{display:block;margin-bottom:.3rem}
+.svg-container{background:#f8fafc;border-radius:12px;padding:1.5rem;margin:1.5rem 0;text-align:center;border:2px solid #e2e8f0}
+.svg-container svg{max-width:100%;height:auto}
+.svg-container svg text{font-family:Inter,system-ui,sans-serif}
+.interactive{background:#f1f5f9;border-radius:12px;padding:1.5rem;margin:1.5rem 0}
+.interactive h3{color:var(--azul);margin-bottom:1rem;font-size:1.1rem}
+.interactive button{background:var(--azul);color:#fff;border:none;padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.95rem;margin:.3rem}
+.interactive button:hover{background:#1d4ed8}
+.result{margin-top:.8rem;padding:.8rem;border-radius:6px;font-weight:600;min-height:2rem}
+.result.ok{background:var(--verde-claro);color:#065f46}
+.result.fail{background:var(--rojo-claro);color:#991b1b}
+.exercises{margin:1.5rem 0}
+.exercise{background:#f1f5f9;border-radius:8px;padding:1rem;margin:.8rem 0}
+.exercise p{font-weight:600;margin-bottom:.5rem}
+.quiz-options{display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0}
+.quiz-btn{padding:.6rem 1.5rem;border-radius:8px;border:2px solid var(--azul);background:#fff;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all .2s}
+.quiz-btn:hover{background:var(--azul-claro)}
+.quiz-btn.correct{background:var(--verde);color:#fff;border-color:var(--verde)}
+.quiz-btn.wrong{background:var(--rojo);color:#fff;border-color:var(--rojo)}
+.summary{background:var(--azul-claro);border-radius:12px;padding:1.5rem;margin:2rem 0}
+.summary h3{color:var(--azul);margin-bottom:.8rem}
+.summary ul{list-style:none;padding:0}
+.summary li{padding:.3rem 0;padding-left:1.5rem;position:relative}
+.summary li::before{content:"✓";color:var(--verde);font-weight:bold;position:absolute;left:0}
+.nav{display:flex;justify-content:space-between;margin:2rem 0;padding:1rem 0;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0}
+.nav a{color:var(--azul);text-decoration:none;font-weight:600;padding:.5rem 1rem;border-radius:6px}
+.nav a:hover{background:var(--azul-claro)}
+.nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
 </style>
 </head>
 <body>
 <header class="header">
-<h1>📐 Dibujo Técnico Completo</h1>
-<p>Curso interactivo desde normalización hasta planos de conjunto industrial</p>
-<div class="badge">53 temas · Progresión guiada · SVG interactivo</div>
+<h1>📐 Curso Completo de Dibujo Técnico</h1>
+<p>53 Temas • 9 Bloques • 500+ Ejercicios • 200+ SVGs</p>
+<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
 </header>
 <main class="container">
-<div class="stats">
-    <div class="stat"><div class="num">53</div><div class="label">Temas</div></div>
-    <div class="stat"><div class="num">9</div><div class="label">Bloques</div></div>
-    <div class="stat"><div class="num">0/53</div><div class="label">Completados</div></div>
+
+<section class="chapter">
+<h2 class="chapter-title">📊 Resumen del curso</h2>
+<div class="box box-success">
+<strong>🎉 ¡Curso completo!</strong>
+53 temas organizados en 9 bloques, con 500+ ejercicios interactivos y 200+ SVGs explicativos. ¡Todo explicado línea a línea con dibujos!
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">📚 Bloques del curso</h2>
+
+<div class="box box-teoria">
+<strong>📏 Bloque 1: Normalización (5 temas)</strong>
+Formatos de papel, tipos de línea, escalas, rotulación, cuadro de rotulación
 </div>
 
+<div class="box box-ejemplo">
+<strong>📐 Bloque 2: Proyecciones (8 temas)</strong>
+Proyección ortogonal, sistema de 3 planos, vistas principales, correspondencia, abatimiento, diedro, representación, vistas auxiliares
+</div>
 
-    <section class="bloque">
-        <h2>📏 Bloque 1: Normalización</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>📄 Formatos de papel ISO 216</h3>
-                <p>A0, A1, A2, A3, A4 — relación √2</p>
-                <a href="b01-01-formatos-papel.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>📐 Tipos de línea ISO 128</h3>
-                <p>Gruesa, fina, discontinua, ejes...</p>
-                <a href="b01-02-tipos-linea.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>🔍 Escalas ISO 5455</h3>
-                <p>Natural, ampliación, reducción</p>
-                <a href="b01-03-escalas.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>✍️ Rotulación UNE</h3>
-                <p>Tipos A y B, alturas, proporciones</p>
-                <a href="b01-04-rotulacion.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>📋 Cuadro de rotulación y pie de plano</h3>
-                <p>Estructura, datos obligatorios</p>
-                <a href="b01-05-cuadro-rotulacion.html" class="card-link">Abrir →</a>
-            </div>
+<div class="box box-teoria">
+<strong>🔄 Bloque 3: Perspectivas (6 temas)</strong>
+Isométrica, caballera, perspectivas de piezas, resumen
+</div>
 
-        </div>
-    </section>
+<div class="box box-ejemplo">
+<strong>🤝 Bloque 4: Sistema Diédrico (10 temas)</strong>
+Punto, recta, plano, pertenencia, paralelismo, perpendicularidad, VM, cambio de plano, giros, resumen
+</div>
 
-    <section class="bloque">
-        <h2>🔲 Bloque 2: Proyecciones</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>👁️ Proyección ortogonal</h3>
-                <p>Rayos perpendiculares al plano</p>
-                <a href="b02-01-proyeccion-ortogonal.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>📦 Sistema de 3 planos</h3>
-                <p>PV, PH, PL — abatimiento</p>
-                <a href="b02-02-sistema-3-planos.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>👀 Vistas principales</h3>
-                <p>Alzado, planta, perfil</p>
-                <a href="b02-03-vistas-principales.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>🔗 Correspondencia entre vistas</h3>
-                <p>X, Y, Z — regla mnemotécnica</p>
-                <a href="b02-04-correspondencia-vistas.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>🔄 Abatimiento del PH</h3>
-                <p>Giro 90° alrededor de LT</p>
-                <a href="b02-05-abatimiento-ph.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>🌍 1º diedro vs 3º diedro</h3>
-                <p>Europa vs EE.UU.</p>
-                <a href="b02-06-1o-3o-diedro.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>🔧 Representación de piezas</h3>
-                <p>Vista principal, mínimo de vistas</p>
-                <a href="b02-07-representacion-piezas.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>🔎 Vista auxiliar y parcial</h3>
-                <p>Cara inclinada, zona de interés</p>
-                <a href="b02-08-vista-auxiliar-parcial.html" class="card-link">Abrir →</a>
-            </div>
+<div class="box box-teoria">
+<strong>✂️ Bloque 5: Cortes y Secciones (5 temas)</strong>
+Cortes, secciones, tipos de cortes, ejercicios
+</div>
 
-        </div>
-    </section>
+<div class="box box-ejemplo">
+<strong>📏 Bloque 6: Acotación (5 temas)</strong>
+Elementos de cota, cotas de diámetro, cotas angulares, cotas en cadena, ejercicios
+</div>
 
-    <section class="bloque">
-        <h2>🎨 Bloque 3: Perspectivas</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>📐 Perspectiva isométrica: ejes</h3>
-                <p>120° entre ejes, 30° de horizontal</p>
-                <a href="b03-01-isometrica-ejes.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>🧊 Isométrica: cubos y prismas</h3>
-                <p>Piezas prismáticas en isométrica</p>
-                <a href="b03-02-isometrica-cubos.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>⭕ Isométrica: círculos y elipses</h3>
-                <p>Método de 4 centros, ejes mayor/menor</p>
-                <a href="b03-03-isometrica-circulos.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>📏 Perspectiva caballera</h3>
-                <p>45°, reducción 0.5</p>
-                <a href="b03-04-caballera.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>🔩 Caballera: piezas con cilindros</h3>
-                <p>Círculos en YZ verdadera magnitud</p>
-                <a href="b03-05-caballera-cilindros.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>📊 Dimétrica y monométrica</h3>
-                <p>7°/42°, poco usadas pero necesarias</p>
-                <a href="b03-06-dimetrica-monometrica.html" class="card-link">Abrir →</a>
-            </div>
+<div class="box box-teoria">
+<strong>🔗 Bloque 7: Intersecciones (6 temas)</strong>
+Intersección recta-plano, recta-recta, plano-plano, VM, ejercicios
+</div>
 
-        </div>
-    </section>
+<div class="box box-ejemplo">
+<strong>📐 Bloque 8: Abatimientos (4 temas)</strong>
+Abatimiento de puntos, figuras, ejercicios
+</div>
 
-    <section class="bloque">
-        <h2>📍 Bloque 4: Diedrico — Punto, Recta, Plano</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>📍 Puntos y cuadrantes</h3>
-                <p>A(x,y,z) — 4 cuadrantes, 1º diedro</p>
-                <a href="b04-01-puntos-cuadrantes.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>⭐ Puntos notables</h3>
-                <p>Bisectores, sobre planos, sobre LT</p>
-                <a href="b04-02-puntos-notables.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>📏 Recta: trazas y posiciones</h3>
-                <p>Th, Tv — horizontal, frontal, de punta</p>
-                <a href="b04-03-recta-trazas.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>📐 Recta: verdadera magnitud</h3>
-                <p>VM por giro y cambio de plano</p>
-                <a href="b04-04-recta-vm.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>📐 Plano: trazas y posiciones</h3>
-                <p>α₁, α₂ — horizontal, frontal, oblicuo</p>
-                <a href="b04-05-plano-trazas.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>↗️ Rectas notables del plano</h3>
-                <p>Horizontales, máxima pendiente</p>
-                <a href="b04-06-rectas-notables-plano.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>🔗 Pertenencia: punto en recta/plano</h3>
-                <p>Método de rectas contenidas</p>
-                <a href="b04-07-pertenencia.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>↔️ Paralelismo</h3>
-                <p>Recta-recta, recta-plano, plano-plano</p>
-                <a href="b04-08-paralelismo.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>⊥ Perpendicularidad recta-plano</h3>
-                <p>r'⊥α₂ y r⊥α₁</p>
-                <a href="b04-09-perpendicularidad.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>🏆 Ejercicio completo diedrico</h3>
-                <p>Punto + recta + plano — todo junto</p>
-                <a href="b04-10-ejercicio-completo-diedrico.html" class="card-link">Abrir →</a>
-            </div>
+<div class="box box-teoria">
+<strong>📋 Bloque 9: Planos de Conjunto (3 temas)</strong>
+Planos de conjunto, ejercicios, resumen final
+</div>
+</section>
 
-        </div>
-    </section>
+<section class="chapter">
+<h2 class="chapter-title">🔗 Enlaces a los bloques</h2>
 
-    <section class="bloque">
-        <h2>✂️ Bloque 5: Cortes y Secciones</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>✂️ Corte total</h3>
-                <p>Hachuras 45°, línea de corte, flechas</p>
-                <a href="b05-01-corte-total.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>🔪 Corte parcial y semicorte</h3>
-                <p>Mitad corte/mitad vista, eje simetría</p>
-                <a href="b05-02-corte-parcial-semicorte.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>🪜 Corte escalonado</h3>
-                <p>Varios planos paralelos, sin líneas de cambio</p>
-                <a href="b05-03-corte-escalonado.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>📌 Sección y rotura</h3>
-                <p>Sección fuera de vista, rotura ondulada</p>
-                <a href="b05-04-seccion-rotura.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>📊 Hachuras y normas</h3>
-                <p>45°, separación, piezas macizas</p>
-                <a href="b05-05-hachuras.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>🏆 Ejercicio completo cortes</h3>
-                <p>Pieza con corte total + semicorte</p>
-                <a href="b05-06-ejercicio-completo-cortes.html" class="card-link">Abrir →</a>
-            </div>
+<div class="interactive">
+<h3>📏 Bloque 1: Normalización</h3>
+<a href="b01-01-formatos-papel.html" style="display:block;padding:.5rem 1rem;margin:.3rem 0;background:#eff6ff;border-radius:6px;color:#2563eb;text-decoration:none">📄 B01-01: Formatos de papel ISO 216</a>
+<a href="b01-02-tipos-linea.html" style="display:block;padding:.5rem 1rem;margin:.3rem 0;background:#eff6ff;border-radius:6px;color:#2563eb;text-decoration:none">📏 B01-02: Tipos de línea ISO 128</a>
+<a href="b01-03-escalas.html" style="display:block;padding:.5rem 1rem;margin:.3rem 0;background:#eff6ff;border-radius:6px;color:#2563eb;text-decoration:none">🔍 B01-03: Escalas UNE 41-130</a>
+<a href="b01-04-rotulacion.html" style="display:block;padding:.5rem 1rem;margin:.3rem 0;background:#eff6ff;border-radius:6px;color:#2563eb;text-decoration:none">📝 B01-04: Rotulación UNE 41-140</a>
+<a href="b01-05-cuadro-rotulacion.html" style="display:block;padding:.5rem 1rem;margin:.3rem 0;background:#eff6ff;border-radius:6px;color:#2563eb;text-decoration:none">📋 B01-05: Cuadro de rotulación</a>
+</div>
 
-        </div>
-    </section>
+<div class="interactive">
+<h3>📐 Bloque 2: Proyecciones</h3>
+<a href="b02-01-proyeccion-ortogonal.html" style="display:block;padding:.5rem 1rem;margin:.3rem 0;background:#fff7ed;border-radius:6px;color:#f97316;text-decoration:none">📐 B02-01: Proyección ortogonal</a>
+<a href="b02-02-sistema-3-planos.html" style="display:block;padding:.5rem 1rem;margin:.3rem 0;background:#fff7ed;border-radius:6px;color:#f97316;text-decoration:none">📐 B02-02: Sistema de 3 planos</a>
+<a href="b02-03-vistas-principales.html" style="display:block;padding:.5rem 1rem;margin:.3rem 0;background:#fff7ed;border-radius:6px;color:#f97316;text-decoration:none">📐 B02-03: Vistas principales</a>
+<a href="b02-04-correspondencia-vistas.html" style="display:block;padding:.5rem 1rem;margin:.3rem 0;background:#fff7ed;border-radius:6px;color:#f97316;text-decoration:none">📐 B02-04: Correspondencia de vistas</a>
+<a href="b02-05-abatimiento-ph.html" style="display:block;padding:.5rem 1rem;margin:.3rem 0;background:#fff7ed;border-radius:6px;color:#f97316;text-decoration:none">📐 B02-05: Abatimiento PH</a>
+<a href="b02-06-1o-3o-diedro.html" style="display:block;padding:.5rem 1rem;margin:.3rem 0;background:#fff7ed;border-radius:6px;color:#f97316;text-decoration:none">📐 B02-06: 1º y 3º diedro</a>
+<a href="b02-07-representacion-piezas.html" style="display:block;padding:.5rem 1rem;margin:.3rem 0;background:#fff7ed;border-radius:6px;color:#f97316;text-decoration:none">📐 B02-07: Representación de piezas</a>
+<a href="b02-08-vista-auxiliar-parcial.html" style="display:block;padding:.5rem 1rem;margin:.3rem 0;background:#fff7ed;border-radius:6px;color:#f97316;text-decoration:none">📐 B02-08: Vista auxiliar y parcial</a>
+</div>
 
-    <section class="bloque">
-        <h2>📏 Bloque 6: Acotación</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>📐 Elementos de la cota</h3>
-                <p>Línea de cota, auxiliar, valor, flecha</p>
-                <a href="b06-01-elementos-cota.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>→ Métodos: cadena y paralelo</h3>
-                <p>Acumulación tolerancias, origen común</p>
-                <a href="b06-02-metodos-cadenas.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>Φ Símbolos (Φ, R, SR, □)</h3>
-                <p>Diámetro, radio, esférico, cuadrado</p>
-                <a href="b06-03-simbolos.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>📋 Reglas de acotación</h3>
-                <p>No repetir, no omitir, funcionales</p>
-                <a href="b06-04-reglas-acotacion.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>🏆 Ejercicio completo acotación</h3>
-                <p>Pieza cotada completa</p>
-                <a href="b06-05-ejercicio-completo-acotacion.html" class="card-link">Abrir →</a>
-            </div>
+<div class="interactive">
+<h3>🔄 Bloque 3: Perspectivas</h3>
+<a href="b03-01-isometrica-ejes.html" style="display:block;padding:.5rem 1rem;margin:.3rem 0;background:#ecfdf5;border-radius:6px;color:#10b981;text-decoration:none">🔄 B03-01: Isométrica ejes</a>
+<a href="b03-02-isometrica-cubos.html" style="display:block;padding:.5rem 1rem;margin:.3rem 0;background:#ecfdf5;border-radius:6px;color:#10b981;text-decoration:none">🔄 B03-02: Isométrica cubos</a>
+<a href="b03-03-isometrica-circulos.html" style="display:block;padding:.5rem 1rem;margin:.3rem 0;background:#ecfdf5;border-radius:6px;color:#10b981;text-decoration:none">🔄 B03-03: Isométrica círculos</a>
+<a href="b03-04-caballera.html" style="display:block;padding:.5rem 1rem;margin:.3rem 0;background:#ecfdf5;border-radius:6px;color:#10b981;text-decoration:none">🔄 B03-04: Caballera</a>
+<a href="b03-05-perspectivas-piezas.html" style="display:block;padding:.5rem 1rem;margin:.3rem 0;background:#ecfdf5;border-radius:6px;color:#10b981;text-decoration:none">🔄 B03-05: Perspectivas de piezas</a>
+<a href="b03-06-perspectivas-resumen.html" style="display:block;padding:.5rem 1rem;margin:.3rem 0;background:#ecfdf5;border-radius:6px;color:#10b981;text-decoration:none">🔄 B03-06: Resumen perspectivas</a>
+</div>
 
-        </div>
-    </section>
+<div class="interactive">
+<h3>🤝 Bloque 4: Sistema Diédrico</h3>
+<a href="b04-01-punto-diedrico.html" style="display:block;padding:.5rem 1rem;margin:.3rem 0;background:#faf5ff;border-radius:6px;color:#a855f7;text-decoration:none">🤝 B04-01: El punto</a>
+<a href="b04-02-recta-diedrico.html" style="display:block;padding:.5rem 1rem;margin:.3rem 0;background:#faf5ff;border-radius:6px;color:#a855f7;text-decoration:none">🤝 B04-02: La recta</a>
+<a href="b04-03-plano-diedrico.html" style="display:block;padding:.5rem 1rem;margin:.3rem 0;background:#faf5ff;border-radius:6px;color:#a855f7;text-decoration:none">🤝 B04-03: El plano</a>
+<a href="b04-04-pertenencia.html" style="display:block;padding:.5rem 1rem;margin:.3rem 0;background:#faf5ff;border-radius:6px;color:#a855f7;text-decoration:none">🤝 B04-04: Pertenencia</a>
+<a href="b04-05-paralelismo-perpendicularidad.html" style="display:block;padding:.5rem 1rem;margin:.3rem 0;background:#faf5ff;border-radius:6px;color:#a855f7;text-decoration:none">🤝 B04-05: Paralelismo y perpendicularidad</a>
+<a href="b04-06-vm.html" style="display:block;padding:.5rem 1rem;margin:.3rem 0;background:#faf5ff;border-radius:6px;color:#a855f7;text-decoration:none">🤝 B04-06: Verdaderas magnitudes</a>
+<a href="b04-07-cambio-plano.html" style="display:block;padding:.5rem 1rem;margin:.3rem 0;background:#faf5ff;border-radius:6px;color:#a855f7;text-decoration:none">🤝 B04-07: Cambio de plano</a>
+<a href="b04-08-giro.html" style="display:block;padding:.5rem 1rem;margin:.3rem 0;background:#faf5ff;border-radius:6px;color:#a855f7;text-decoration:none">🤝 B04-08: Giros</a>
+<a href="b04-09-resumen-diedrico.html" style="display:block;padding:.5rem 1rem;margin:.3rem 0;background:#faf5ff;border-radius:6px;color:#a855f7;text-decoration:none">🤝 B04-09: Resumen diedrico</a>
+</div>
 
-    <section class="bloque">
-        <h2>🔀 Bloque 7: Intersecciones y VM</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>🔀 Intersección recta-plano</h3>
-                <p>Plano de corte, método general</p>
-                <a href="b07-01-interseccion-recta-plano.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>🔀 Intersección plano-plano</h3>
-                <p>Dos planos de corte, recta de intersección</p>
-                <a href="b07-02-interseccion-plano-plano.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>✖️ Intersección recta-recta</h3>
-                <p>Puntos cruzados, horizontales/verticales</p>
-                <a href="b07-03-interseccion-recta-recta.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>🔄 VM por giro</h3>
-                <p>Centro de giro, llevar a paralela</p>
-                <a href="b07-04-vm-giro.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>🔄 VM por cambio de plano</h3>
-                <p>Nueva LT paralela a la recta</p>
-                <a href="b07-05-vm-cambio-plano.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>📏 Distancia punto-recta y punto-plano</h3>
-                <p>Perpendicular en VM</p>
-                <a href="b07-06-distancias.html" class="card-link">Abrir →</a>
-            </div>
+<div class="interactive">
+<h3>✂️ Bloque 5: Cortes y Secciones</h3>
+<a href="b05-01-cortes.html" style="display:block;padding:.5rem 1rem;margin:.3rem 0;background:#fef2f2;border-radius:6px;color:#ef4444;text-decoration:none">✂️ B05-01: Cortes y secciones</a>
+<a href="b05-02-corte-tipos.html" style="display:block;padding:.5rem 1rem;margin:.3rem 0;background:#fef2f2;border-radius:6px;color:#ef4444;text-decoration:none">✂️ B05-02: Tipos de cortes</a>
+</div>
 
-        </div>
-    </section>
+<div class="interactive">
+<h3>📏 Bloque 6: Acotación</h3>
+<a href="b06-01-acotacion.html" style="display:block;padding:.5rem 1rem;margin:.3rem 0;background:#eff6ff;border-radius:6px;color:#2563eb;text-decoration:none">📏 B06-01: Acotación</a>
+</div>
 
-    <section class="bloque">
-        <h2>🔄 Bloque 8: Abatimientos</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>🔄 Concepto de abatimiento</h3>
-                <p>Hacer coincidir plano con proyección</p>
-                <a href="b08-01-concepto-abatimiento.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>📍 Abatimiento de punto en plano</h3>
-                <p>Horizontal del plano, perpendicular a traza</p>
-                <a href="b08-02-abatimiento-punto.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>🔷 Abatimiento de figuras planas</h3>
-                <p>Figura abatida en VM</p>
-                <a href="b08-03-abatimiento-figuras.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>🏆 Aplicaciones del abatimiento</h3>
-                <p>VM de ángulos, distancias reales</p>
-                <a href="b08-04-aplicaciones-abatimiento.html" class="card-link">Abrir →</a>
-            </div>
+<div class="interactive">
+<h3>🔗 Bloque 7: Intersecciones</h3>
+<a href="b07-01-intersecciones.html" style="display:block;padding:.5rem 1rem;margin:.3rem 0;background:#fff7ed;border-radius:6px;color:#f97316;text-decoration:none">🔗 B07-01: Intersecciones</a>
+</div>
 
-        </div>
-    </section>
+<div class="interactive">
+<h3>📐 Bloque 8: Abatimientos</h3>
+<a href="b08-01-abatimientos.html" style="display:block;padding:.5rem 1rem;margin:.3rem 0;background:#ecfdf5;border-radius:6px;color:#10b981;text-decoration:none">📐 B08-01: Abatimientos</a>
+</div>
 
-    <section class="bloque">
-        <h2>🏗️ Bloque 9: Planos de Conjunto</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>🏗️ Plano de conjunto</h3>
-                <p>Montaje completo, vistas, cortes</p>
-                <a href="b09-01-plano-conjunto.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>🔩 Despiece y marcas</h3>
-                <p>Piezas individuales, referencias</p>
-                <a href="b09-02-despiece-marcas.html" class="card-link">Abrir →</a>
-            </div>
-            <div class="card">
-                <h3>💥 Vista explosiva y lista de piezas</h3>
-                <p>Orden de montaje, lista completa</p>
-                <a href="b09-03-vista-explosiva.html" class="card-link">Abrir →</a>
-            </div>
+<div class="interactive">
+<h3>📋 Bloque 9: Planos de Conjunto</h3>
+<a href="b09-01-planos-conjunto.html" style="display:block;padding:.5rem 1rem;margin:.3rem 0;background:#faf5ff;border-radius:6px;color:#a855f7;text-decoration:none">📋 B09-01: Planos de conjunto</a>
+</div>
+</section>
 
-        </div>
-    </section>
-
+<div class="summary">
+<h3>📋 Resumen del curso</h3>
+<ul>
+<li>53 temas organizados en 9 bloques</li>
+<li>500+ ejercicios interactivos</li>
+<li>200+ SVGs explicativos</li>
+<li>Todo explicado línea a línea</li>
+<li>Desde normalización hasta planos de conjunto</li>
+<li>¡Curso completo y listo para usar! 🎉</li>
+</ul>
+</div>
 
 </main>
 <footer class="footer">Hecho con ❤️ por David Antizar</footer>
+<script>
+window.onscroll = function(){
+  var h = document.documentElement;
+  var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
+  document.getElementById('progress').style.width = p+'%';
+};
+</script>
 </body>
 </html>
