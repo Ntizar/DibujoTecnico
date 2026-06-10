@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📄 S01.1: Formatos de papel ISO 216 — Dibujo Técnico</title>
+<style>
+:root{--azul:#2563eb;--naranja:#f97316;--verde:#10b981;--rojo:#ef4444;--fondo:#fff;--texto:#1e293b;--gris:#94a3b8;--azul-claro:#eff6ff;--naranja-claro:#fff7ed;--verde-claro:#ecfdf5;--rojo-claro:#fef2f2;--pura-claro:#faf5ff;--pura:#a855f7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-gradient(135deg,#f8faff 0%,#fffaf5 100%);color:var(--texto);line-height:1.7}
+.header{background:linear-gradient(135deg,var(--azul),#1d4ed8);color:#fff;padding:2rem 1.5rem;text-align:center}
+.header h1{font-size:1.8rem;margin-bottom:.5rem}
+.header p{opacity:.9;font-size:1rem}
+.progress-bar{height:4px;background:rgba(255,255,255,.3);border-radius:2px;margin-top:1rem;overflow:hidden}
+.progress-fill{height:100%;background:#fff;border-radius:2px;width:0%;transition:width .3s}
+.container{max-width:900px;margin:0 auto;padding:1.5rem}
+.chapter{margin-bottom:2.5rem}
+.chapter-title{font-size:1.4rem;color:var(--azul);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:2px solid var(--azul-claro)}
+.box{padding:1rem 1.2rem;border-radius:10px;margin:1rem 0;border-left:4px solid;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.box-teoria{background:var(--azul-claro);border-color:var(--azul)}
+.box-ejemplo{background:var(--naranja-claro);border-color:var(--naranja)}
+.box-error{background:var(--rojo-claro);border-color:var(--rojo)}
+.box-idea{background:var(--pura-claro);border-color:var(--pura)}
+.box-success{background:var(--verde-claro);border-color:var(--verde)}
+.box strong{display:block;margin-bottom:.3rem}
+.svg-container{background:#f8fafc;border-radius:12px;padding:1.5rem;margin:1.5rem 0;text-align:center;border:2px solid #e2e8f0}
+.svg-container svg{max-width:100%;height:auto}
+.svg-container svg text{font-family:Inter,system-ui,sans-serif}
+.svg-container svg .format-rect{transition:all .25s ease;cursor:pointer}
+.svg-container svg .format-rect:hover{filter:brightness(1.08);stroke-width:3}
+.svg-container svg .format-rect.selected{stroke:var(--naranja);stroke-width:4;filter:drop-shadow(0 0 8px rgba(249,115,22,.4))}
+.interactive{background:#f1f5f9;border-radius:12px;padding:1.5rem;margin:1.5rem 0}
+.interactive h3{color:var(--azul);margin-bottom:1rem;font-size:1.1rem}
+.interactive button{background:var(--azul);color:#fff;border:none;padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.95rem;margin:.3rem}
+.interactive button:hover{background:#1d4ed8}
+.result{margin-top:.8rem;padding:.8rem;border-radius:6px;font-weight:600;min-height:2rem}
+.result.ok{background:var(--verde-claro);color:#065f46}
+.result.fail{background:var(--rojo-claro);color:#991b1b}
+.exercises{margin:1.5rem 0}
+.exercise{background:#f1f5f9;border-radius:8px;padding:1rem;margin:.8rem 0}
+.exercise p{font-weight:600;margin-bottom:.5rem}
+.exercise input[type="text"]{padding:.4rem .8rem;border:2px solid #cbd5e1;border-radius:6px;font-size:1rem;width:120px;margin:.3rem}
+.exercise input[type="text"]:focus{outline:none;border-color:var(--azul)}
+.quiz-options{display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0}
+.quiz-btn{padding:.6rem 1.5rem;border-radius:8px;border:2px solid var(--azul);background:#fff;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all .2s}
+.quiz-btn:hover{background:var(--azul-claro)}
+.quiz-btn.correct{background:var(--verde);color:#fff;border-color:var(--verde)}
+.quiz-btn.wrong{background:var(--rojo);color:#fff;border-color:var(--rojo)}
+.summary{background:var(--azul-claro);border-radius:12px;padding:1.5rem;margin:2rem 0}
+.summary h3{color:var(--azul);margin-bottom:.8rem}
+.summary ul{list-style:none;padding:0}
+.summary li{padding:.3rem 0;padding-left:1.5rem;position:relative}
+.summary li::before{content:"✓";color:var(--verde);font-weight:bold;position:absolute;left:0}
+.nav{display:flex;justify-content:space-between;margin:2rem 0;padding:1rem 0;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0}
+.nav a{color:var(--azul);text-decoration:none;font-weight:600;padding:.5rem 1rem;border-radius:6px}
+.nav a:hover{background:var(--azul-claro)}
+.nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
+.footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+.detail-panel{background:#fff;border-radius:8px;padding:1rem;margin:1rem auto;max-width:400px;border:2px solid var(--azul-claro);display:none}
+.detail-panel.visible{display:block}
+.detail-panel h4{color:var(--azul);margin-bottom:.5rem}
+.detail-panel .dim{font-size:1.3rem;font-weight:700;color:var(--texto)}
+.detail-panel .area{font-size:1rem;color:var(--naranja);font-weight:600}
+.tf-options{display:flex;gap:1rem;margin:.5rem 0}
+.tf-btn{padding:.5rem 2rem;border-radius:6px;border:2px solid #cbd5e1;background:#fff;font-size:1rem;font-weight:600;cursor:pointer;transition:all .2s}
+.tf-btn:hover{border-color:var(--azul)}
+.tf-btn.correct{background:var(--verde);color:#fff;border-color:var(--verde)}
+.tf-btn.wrong{background:var(--rojo);color:#fff;border-color:var(--rojo)}
+</style>
+</head>
+<body>
+<header class="header">
+<h1>📄 S01.1: Formatos de papel ISO 216</h1>
+<p>Dibujo Técnico — Normalización</p>
+<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+</header>
+<main class="container">
+<section class="chapter">
+<h2 class="chapter-title">🎯 ¿Qué vamos a aprender?</h2>
+<div class="box box-idea"><strong>💡 Idea clave</strong>Los formatos A se crean doblando por el lado corto: A0=1m², A1=½m², A2=¼m²... La relación √2 mantiene la proporción.</div>
+<p>En esta sesión aprenderás a:</p>
+<ul style="margin:.8rem 0 1rem 1.5rem"><li>Conocer la serie A de formatos (A0-A4)</li><li>Entender la relación √2</li><li>Saber los márgenes y el cuadro de rotulación</li><li>Aplicar las normas ISO 216</li></ul>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">1️⃣ Formatos de papel ISO 216</h2>
+<div class="box box-teoria"><strong>📖 Teoría</strong>
+<p>La norma <b>ISO 216</b> define la serie de formatos de papel más usada del mundo, desde A0 hasta A10. La serie A es la más habitual en dibujo técnico y oficina.</p>
+<p style="margin-top:.5rem"><b>Formato base: A0 = 1 m²</b>. Sus dimensiones exactas son <b>841 × 1189 mm</b>. La proporción entre lados es exactamente <b>√2 ≈ 1,4142</b>, lo que tiene una propiedad mágica: si doblas una hoja por el lado corto, la mitad resultante tiene la <b>misma proporción</b> que la original.</p>
+<p style="margin-top:.5rem">Así se genera toda la serie:</p>
+<p style="margin-top:.3rem">• <b>A0</b> → 841 × 1189 mm (1 m²)</p>
+<p>• <b>A1</b> → 594 × 841 mm (½ m², se obtiene doblando A0)</p>
+<p>• <b>A2</b> → 420 × 594 mm (¼ m², se obtiene doblando A1)</p>
+<p>• <b>A3</b> → 297 × 420 mm (⅛ m², se obtiene doblando A2)</p>
+<p>• <b>A4</b> → 210 × 297 mm (¹⁄₁₆ m², el papel de impresora habitual)</p>
+<p style="margin-top:.5rem"><b>Márgenes en un plano con marco:</b></p>
+<p>• Bordes A, B y D: <b>10 mm</b></p>
+<p>• Borde C (lomo): <b>5 mm</b></p>
+<p>• El marco siempre va en el <b>borde A</b> (inferior)</p>
+<p style="margin-top:.5rem"><b>Márgenes sin marco:</b> 10 mm en los 4 bordes.</p>
+</div>
+
+<div class="box box-ejemplo"><strong>🔍 Ejemplo 1</strong>A0: 841 × 1189 mm = 1 m²</div>
+<div class="box box-ejemplo"><strong>🔍 Ejemplo 2</strong>A1: 594 × 841 mm = ½ m² (doblar A0 por lado corto)</div>
+<div class="box box-ejemplo"><strong>🔍 Ejemplo 3</strong>A4: 210 × 297 mm — el papel de impresora habitual</div>
+
+<div class="box box-error"><strong>⚠️ Error común</strong>El lado corto de A0 es 841 mm, NO 1189. La orientación correcta del A0 es <b>841 (ancho) × 1189 (alto)</b>. Al doblar por el lado corto (1189), se obtiene el A1 con 594 × 841.</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">2️⃣ ¡Practica con formatos!</h2>
+<div class="svg-container">
+<div class="detail-panel" id="detailPanel">
+<h4 id="detailTitle">Formato</h4>
+<div class="dim" id="detailDim">—</div>
+<div class="area" id="detailArea">—</div>
+<p id="detailInfo" style="margin-top:.5rem;font-size:.9rem"></p>
+</div>
+
+<svg viewBox="0 0 500 420" xmlns="http://www.w3.org/2000/svg">
+<!-- Fondo con grid -->
+<defs>
+<pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+<path d="M 20 0 L 0 0 0 20" fill="none" stroke="#e2e8f0" stroke-width="0.5"/>
+</pattern>
+</defs>
+<rect width="500" height="420" fill="url(#grid)" rx="8"/>
+
+<!-- A4 - 210x297 → escalado 0.8: 168x238 -->
+<rect class="format-rect" id="svg-a4" x="25" y="310" width="168" height="238" fill="#dbeafe" stroke="#2563eb" stroke-width="2" onclick="showFormat('A4','210×297 mm','1/16 m²','El papel de impresora habitual. Mide 210×297 mm.')"/>
+<text x="109" y="425" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">A4</text>
+
+<!-- A3 - 297x420 → escalado 0.8: 238x336 -->
+<rect class="format-rect" id="svg-a3" x="25" y="210" width="238" height="336" fill="#bfdbfe" stroke="#2563eb" stroke-width="2" onclick="showFormat('A3','297×420 mm','1/8 m²','Se obtiene doblando A2 por el lado corto. Mide 297×420 mm.')"/>
+<text x="144" y="385" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">A3</text>
+
+<!-- A2 - 420x594 → escalado 0.8: 336x475 — ajustado para caber -->
+<rect class="format-rect" id="svg-a2" x="25" y="110" width="336" height="475" fill="#93c5fd" stroke="#2563eb" stroke-width="2" onclick="showFormat('A2','420×594 mm','1/4 m²','Se obtiene doblando A1 por el lado corto. Mide 420×594 mm.')"/>
+<text x="193" y="355" text-anchor="middle" font-size="14" font-weight="bold" fill="#1e40af">A2</text>
+
+<!-- A1 - 594x841 → escalado 0.8: 475x673 — ajustado -->
+<rect class="format-rect" id="svg-a1" x="25" y="10" width="475" height="673" fill="#60a5fa" stroke="#2563eb" stroke-width="2" onclick="showFormat('A1','594×841 mm','1/2 m²','Se obtiene doblando A0 por el lado corto. Mide 594×841 mm.')"/>
+<text x="262" y="350" text-anchor="middle" font-size="16" font-weight="bold" fill="#1e3a8a">A1</text>
+
+<!-- A0 - 841x1189 → escalado 0.8: 673x951 — ajustado -->
+<rect class="format-rect" id="svg-a0" x="25" y="-190" width="673" height="951" fill="#3b82f6" stroke="#1e40af" stroke-width="2" onclick="showFormat('A0','841×1189 mm','1 m²','Formato base de la serie A. Su área es exactamente 1 metro cuadrado.')" style="opacity:0"/>
+
+<!-- Líneas de corte mostrando la relación -->
+<!-- Línea de corte A0→A1 (horizontal a mitad) -->
+<line x1="25" y1="346" x2="500" y2="346" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="8,4" opacity="0.6"/>
+<text x="490" y="340" text-anchor="end" font-size="9" fill="#ef4444" opacity="0.7">corte</text>
+
+<!-- Flechas de dimensión para A4 -->
+<line x1="25" y1="558" x2="193" y2="558" stroke="#64748b" stroke-width="0.8"/>
+<line x1="25" y1="554" x2="25" y2="562" stroke="#64748b" stroke-width="0.8"/>
+<line x1="193" y1="554" x2="193" y2="562" stroke="#64748b" stroke-width="0.8"/>
+<text x="109" y="568" text-anchor="middle" font-size="8" fill="#64748b">210</text>
+
+<line x1="15" y1="310" x2="15" y2="548" stroke="#64748b" stroke-width="0.8"/>
+<line x1="11" y1="310" x2="19" y2="310" stroke="#64748b" stroke-width="0.8"/>
+<line x1="11" y1="548" x2="19" y2="548" stroke="#64748b" stroke-width="0.8"/>
+<text x="10" y="435" text-anchor="middle" font-size="8" fill="#64748b" transform="rotate(-90,10,435)">297</text>
+
+<!-- Título del SVG -->
+<text x="250" y="415" text-anchor="middle" font-size="11" fill="#64748b" font-weight="600">👆 Haz clic en cada formato para ver detalles</text>
+
+<!-- Leyenda de la relación √2 -->
+<rect x="310" y="360" width="175" height="50" fill="#fff" stroke="#e2e8f0" stroke-width="1" rx="6" opacity="0.9"/>
+<text x="397" y="378" text-anchor="middle" font-size="10" fill="#1e293b" font-weight="600">Relación de aspecto</text>
+<text x="397" y="395" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="bold">1189/841 = 1.4142 ≈ √2</text>
+</svg>
+</div>
+
+<div class="interactive">
+<h3>🧠 ¡Pon a prueba tus conocimientos!</h3>
+<p style="margin-bottom:.8rem">¿Cuál es el formato que resulta de doblar A0 por su lado corto?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this,'A0','A1')">A0</button>
+<button class="quiz-btn" onclick="checkAnswer(this,'A1','A1')">A1</button>
+<button class="quiz-btn" onclick="checkAnswer(this,'A2','A1')">A2</button>
+<button class="quiz-btn" onclick="checkAnswer(this,'A3','A1')">A3</button>
+</div>
+<div class="result" id="interactiveResult"></div>
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">📝 Ejercicios</h2>
+<div class="exercises">
+
+<!-- Ejercicio 1: Quiz -->
+<div class="exercise">
+<p><b>Ejercicio 1 (Quiz):</b> ¿Qué dimensión tiene el formato A3?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkExercise(this,'b','297×420 mm','297×420 mm')">297 × 420 mm</button>
+<button class="quiz-btn" onclick="checkExercise(this,'b','297×420 mm','420×594 mm')">420 × 594 mm</button>
+<button class="quiz-btn" onclick="checkExercise(this,'b','297×420 mm','210×297 mm')">210 × 297 mm</button>
+<button class="quiz-btn" onclick="checkExercise(this,'b','297×420 mm','594×841 mm')">594 × 841 mm</button>
+</div>
+<div class="result" id="ex1result"></div>
+</div>
+
+<!-- Ejercicio 2: Completar -->
+<div class="exercise">
+<p><b>Ejercicio 2 (Completar):</b> Escribe la dimensión del lado corto del formato A1.</p>
+<p style="font-size:.95rem;color:#64748b">El A1 mide <input type="text" id="ex2a" placeholder="mm"> × <input type="text" id="ex2b" placeholder="mm"></p>
+<button onclick="checkFillBlank()" style="background:var(--azul);color:#fff;border:none;padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.95rem">Comprobar</button>
+<div class="result" id="ex2result"></div>
+</div>
+
+<!-- Ejercicio 3: Verdadero/Falso -->
+<div class="exercise">
+<p><b>Ejercicio 3 (V/F):</b> Si doblas una hoja A4 por su lado corto, obtienes un formato A5 que mantiene la misma proporción que el A4.</p>
+<div class="tf-options">
+<button class="tf-btn" onclick="checkVF(this,'V','V','Verdadero')">Verdadero</button>
+<button class="tf-btn" onclick="checkVF(this,'F','V','Verdadero')">Falso</button>
+</div>
+<div class="result" id="ex3result"></div>
+</div>
+
+<!-- Ejercicio 4: Problema -->
+<div class="exercise">
+<p><b>Ejercicio 4 (Problema):</b> ¿Cuántas hojas A4 se pueden obtener de una hoja A0?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkExercise(this,'d','16','16')">16</button>
+<button class="quiz-btn" onclick="checkExercise(this,'d','16','8')">8</button>
+<button class="quiz-btn" onclick="checkExercise(this,'d','16','4')">4</button>
+<button class="quiz-btn" onclick="checkExercise(this,'d','16','32')">32</button>
+</div>
+<div class="result" id="ex4result"></div>
+</div>
+
+</div>
+</section>
+
+<div class="summary">
+<h3>📋 Resumen de lo aprendido</h3>
+<ul>
+<li>La serie A empieza en A0 (841×1189 mm = 1 m²) y se genera doblando por el lado corto</li>
+<li>La relación √2 (≈1,414) se mantiene al doblar: cada formato tiene la misma proporción que el anterior</li>
+<li>La serie completa: A0 → A1 → A2 → A3 → A4 → A5 → A6 → A7 → A8 → A9 → A10</li>
+<li>Los márgenes con marco son 10 mm (3 bordes) y 5 mm (lomo); sin marco, 10 mm los 4 lados</li>
+<li>El A4 (210×297 mm) es el formato más usado en oficina e impresoras</li>
+</ul>
+</div>
+
+<div class="nav">
+<a href="INDEX.html" class="disabled">← Anterior</a>
+<a href="b01-02-tipos-linea.html">Siguiente →</a>
+</div>
+</main>
+<footer class="footer">Hecho con ❤️ por David Antizar</footer>
+
+<script>
+function showFormat(nombre, dimensiones, area, info) {
+    // Quitar selección previa
+    document.querySelectorAll('.format-rect').forEach(r => r.classList.remove('selected'));
+    // Seleccionar el clickeado
+    var rect = document.getElementById('svg-' + nombre.toLowerCase());
+    if (rect) rect.classList.add('selected');
+    
+    // Mostrar panel de detalles
+    var panel = document.getElementById('detailPanel');
+    document.getElementById('detailTitle').textContent = 'Formato ' + nombre;
+    document.getElementById('detailDim').textContent = dimensiones;
+    document.getElementById('detailArea').textContent = 'Área: ' + area;
+    document.getElementById('detailInfo').textContent = info;
+    panel.classList.add('visible');
+}
+
+function checkAnswer(btn, chosen, correct) {
+    var result = document.getElementById('interactiveResult');
+    // Reset all buttons in this quiz
+    var btns = btn.parentElement.querySelectorAll('.quiz-btn');
+    btns.forEach(b => { b.classList.remove('correct','wrong'); b.disabled = true; });
+    
+    if (chosen === correct) {
+        btn.classList.add('correct');
+        result.className = 'result ok';
+        result.textContent = '✅ ¡Correcto! Al doblar A0 por el lado corto se obtiene A1.';
+    } else {
+        btn.classList.add('wrong');
+        // Highlight correct
+        btns.forEach(b => { if (b.textContent === correct) b.classList.add('correct'); });
+        result.className = 'result fail';
+        result.textContent = '❌ Incorrecto. La respuesta correcta es A1.';
+    }
+}
+
+function checkExercise(btn, group, correct, correctText) {
+    var resultId = btn.closest('.exercise').querySelector('.result').id;
+    var result = document.getElementById(resultId);
+    var btns = btn.parentElement.querySelectorAll('.quiz-btn');
+    btns.forEach(b => { b.classList.remove('correct','wrong'); b.disabled = true; });
+    
+    if (btn.textContent.trim() === correctText) {
+        btn.classList.add('correct');
+        result.className = 'result ok';
+        result.textContent = '✅ ¡Correcto! ' + correctText + ' es la dimensión correcta.';
+    } else {
+        btn.classList.add('wrong');
+        btns.forEach(b => { if (b.textContent.trim() === correctText) b.classList.add('correct'); });
+        result.className = 'result fail';
+        result.textContent = '❌ Incorrecto. La respuesta correcta es ' + correctText + '.';
+    }
+}
+
+function checkFillBlank() {
+    var a = document.getElementById('ex2a').value.trim().replace(/\s/g,'').toLowerCase();
+    var b = document.getElementById('ex2b').value.trim().replace(/\s/g,'').toLowerCase();
+    var result = document.getElementById('ex2result');
+    
+    // A1 = 594 × 841
+    var correctA = ['594','594mm','594 mm'];
+    var correctB = ['841','841mm','841 mm'];
+    
+    if (correctA.includes(a) && correctB.includes(b)) {
+        result.className = 'result ok';
+        result.textContent = '✅ ¡Correcto! El A1 mide 594 × 841 mm.';
+    } else {
+        result.className = 'result fail';
+        result.textContent = '❌ Incorrecto. El A1 mide 594 × 841 mm.';
+    }
+}
+
+function checkVF(btn, chosen, correct, correctLabel) {
+    var result = btn.closest('.exercise').querySelector('.result');
+    var btns = btn.parentElement.querySelectorAll('.tf-btn');
+    btns.forEach(b => { b.classList.remove('correct','wrong'); b.disabled = true; });
+    
+    if (chosen === correct) {
+        btn.classList.add('correct');
+        result.className = 'result ok';
+        result.textContent = '✅ ¡Correcto! Al doblar cualquier formato A por su lado corto se obtiene el siguiente, manteniendo la proporción √2.';
+    } else {
+        btn.classList.add('wrong');
+        btns.forEach(b => { if (b.textContent === correctLabel) b.classList.add('correct'); });
+        result.className = 'result fail';
+        result.textContent = '❌ Incorrecto. Es Verdadero: la proporción √2 se mantiene al doblar.';
+    }
+}
+
+window.onscroll = function() {
+    var h = document.documentElement;
+    var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
+    document.getElementById('progress').style.width = p+'%';
+};
+</script>
+</body>
+</html>
