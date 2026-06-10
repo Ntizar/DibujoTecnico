@@ -173,6 +173,60 @@ Si la planta mide 80mm de profundidad → el perfil también mide 80mm de profun
 <div class="step-dot" id="sd2"></div>
 <div class="step-dot" id="sd3"></div>
 </div>
+<div class="svg-container" style="cursor:pointer">
+<svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" id="pasoASvg">
+<!-- Paso 1: X vertical -->
+<g id="paso1" style="cursor:pointer" onclick="showPaso(1)">
+<rect x="20" y="20" width="260" height="120" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" rx="6"/>
+<text x="150" y="40" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="600">PASO 1: X (ancho) — vertical</text>
+<rect x="60" y="55" width="70" height="50" fill="#fff" stroke="#2563eb" stroke-width="2" rx="3"/>
+<text x="95" y="85" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="600">ALZADO</text>
+<line x1="55" y1="55" x2="55" y2="130" stroke="#f97316" stroke-width="2.5"/>
+<text x="42" y="95" text-anchor="middle" font-size="11" fill="#f97316" font-weight="bold" transform="rotate(-90,42,95)">X</text>
+<rect x="60" y="135" width="70" height="40" fill="#fff" stroke="#f97316" stroke-width="2" rx="3"/>
+<text x="95" y="160" text-anchor="middle" font-size="9" fill="#f97316" font-weight="600">PLANTA</text>
+<text x="150" y="175" text-anchor="middle" font-size="10" fill="#64748b">Click para ver Paso 2 →</text>
+</g>
+<!-- Paso 2: Z horizontal -->
+<g id="paso2" style="display:none;cursor:pointer" onclick="showPaso(2)">
+<rect x="20" y="20" width="260" height="120" fill="#faf5ff" stroke="#a855f7" stroke-width="1.5" rx="6"/>
+<text x="150" y="40" text-anchor="middle" font-size="12" fill="#a855f7" font-weight="600">PASO 2: Z (altura) — horizontal</text>
+<rect x="60" y="55" width="70" height="50" fill="#fff" stroke="#2563eb" stroke-width="2" rx="3"/>
+<text x="95" y="85" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="600">ALZADO</text>
+<line x1="130" y1="50" x2="170" y2="50" stroke="#a855f7" stroke-width="2.5"/>
+<text x="150" y="44" text-anchor="middle" font-size="11" fill="#a855f7" font-weight="bold">Z</text>
+<rect x="180" y="55" width="70" height="50" fill="#fff" stroke="#a855f7" stroke-width="2" rx="3"/>
+<text x="215" y="85" text-anchor="middle" font-size="9" fill="#a855f7" font-weight="600">PERFIL</text>
+<text x="150" y="175" text-anchor="middle" font-size="10" fill="#64748b">Click para ver Paso 3 →</text>
+</g>
+<!-- Paso 3: Y diagonal 45° -->
+<g id="paso3" style="display:none;cursor:pointer" onclick="showPaso(3)">
+<rect x="20" y="20" width="260" height="120" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5" rx="6"/>
+<text x="150" y="40" text-anchor="middle" font-size="12" fill="#10b981" font-weight="600">PASO 3: Y (profundidad) — diagonal 45°</text>
+<rect x="60" y="55" width="70" height="40" fill="#fff" stroke="#f97316" stroke-width="2" rx="3"/>
+<text x="95" y="80" text-anchor="middle" font-size="9" fill="#f97316" font-weight="600">PLANTA</text>
+<line x1="130" y1="75" x2="180" y2="125" stroke="#10b981" stroke-width="2.5" stroke-dasharray="4,3"/>
+<text x="155" y="105" text-anchor="middle" font-size="11" fill="#10b981" font-weight="bold">Y</text>
+<rect x="170" y="130" width="70" height="40" fill="#fff" stroke="#a855f7" stroke-width="2" rx="3"/>
+<text x="205" y="155" text-anchor="middle" font-size="9" fill="#a855f7" font-weight="600">PERFIL</text>
+<text x="150" y="195" text-anchor="middle" font-size="10" fill="#64748b">← Click para volver</text>
+</g>
+<!-- Resumen -->
+<rect x="300" y="20" width="280" height="240" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5" rx="8"/>
+<text x="440" y="45" text-anchor="middle" font-size="12" fill="#334155" font-weight="600">📋 Resumen rápido</text>
+<line x1="320" y1="55" x2="560" y2="55" stroke="#e2e8f0" stroke-width="1"/>
+<text x="320" y="75" font-size="11" fill="#2563eb" font-weight="600">🔹 X = ancho → vertical</text>
+<text x="320" y="95" font-size="11" fill="#a855f7" font-weight="600">🔹 Z = altura → horizontal</text>
+<text x="320" y="115" font-size="11" fill="#10b981" font-weight="600">🔹 Y = profundidad → 45°</text>
+<line x1="320" y1="130" x2="560" y2="130" stroke="#e2e8f0" stroke-width="1"/>
+<text x="320" y="150" font-size="10" fill="#64748b">Cada dimensión aparece en</text>
+<text x="320" y="165" font-size="10" fill="#64748b">EXACTAMENTE DOS VISTAS.</text>
+<text x="320" y="190" font-size="10" fill="#64748b">Si una dimensión no aparece</text>
+<text x="320" y="205" font-size="10" fill="#64748b">en ninguna vista, ¡hay un error!</text>
+<text x="320" y="230" font-size="9" fill="#94a3b8">Hover sobre cada paso para</text>
+<text x="320" y="243" font-size="9" fill="#94a3b8">resaltar sus líneas de transporte</text>
+</svg>
+</div>
 <div class="box box-teoria">
 <strong>📖 Regla de transporte:</strong><br>
 <strong>Paso 1 (X):</strong> Alzado y Planta se alinean verticalmente → la dimensión X cae directa<br>
@@ -332,6 +386,16 @@ La correspondencia entre vistas es lo que hace que un plano sea coherente. Si un
 </main>
 <footer class="footer">Hecho con ❤️ por David Antizar</footer>
 <script>
+function showPaso(n) {
+  document.getElementById('paso1').style.display = n===1 ? '' : 'none';
+  document.getElementById('paso2').style.display = n===2 ? '' : 'none';
+  document.getElementById('paso3').style.display = n===3 ? '' : 'none';
+  for(var i=1;i<=3;i++){
+    var d=document.getElementById('sd'+i);
+    if(d) d.classList.toggle('active', i===n);
+  }
+}
+
 function highlightCorr(dim) {
   var lines = document.querySelectorAll('.corr-line');
   lines.forEach(function(l) { l.classList.remove('active'); });
