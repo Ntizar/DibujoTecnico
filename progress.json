@@ -1,7 +1,7 @@
 {
   "curso": "Dibujo Técnico Completo",
   "autor": "David Antizar",
-  "total_temas": 34,
+  "total_temas": 38,
   "temas": [
     {
       "id": "b01-01",
@@ -272,6 +272,38 @@
       "bloque": "b09",
       "file": "b09-01-planos-conjunto.html",
       "title": "🏗️ Plano de conjunto",
+      "status": "completed",
+      "last_completed": "2026-06-10"
+    },
+    {
+      "id": "b05-03",
+      "bloque": "b05",
+      "file": "b05-03-corte-escalonado.html",
+      "title": "🔪 Corte escalonado",
+      "status": "completed",
+      "last_completed": "2026-06-10"
+    },
+    {
+      "id": "b05-04",
+      "bloque": "b05",
+      "file": "b05-04-seccion-rotura.html",
+      "title": "📐 Sección y rotura",
+      "status": "completed",
+      "last_completed": "2026-06-10"
+    },
+    {
+      "id": "b05-05",
+      "bloque": "b05",
+      "file": "b05-05-hachuras.html",
+      "title": "✏️ Hachuras y rayado",
+      "status": "completed",
+      "last_completed": "2026-06-10"
+    },
+    {
+      "id": "b05-06",
+      "bloque": "b05",
+      "file": "b05-06-ejercicios-cortes.html",
+      "title": "📝 Ejercicios: cortes y secciones",
       "status": "completed",
       "last_completed": "2026-06-10"
     }

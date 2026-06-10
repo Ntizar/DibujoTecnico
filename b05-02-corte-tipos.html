@@ -1,285 +1,286 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>✂️ S05.2: Tipos de cortes y secciones — Dibujo Técnico</title>
-<style>
-:root{--azul:#2563eb;--naranja:#f97316;--verde:#10b981;--rojo:#ef4444;--fondo:#fff;--texto:#1e293b;--gris:#94a3b8;--azul-claro:#eff6ff;--naranja-claro:#fff7ed;--verde-claro:#ecfdf5;--rojo-claro:#fef2f2;--pura-claro:#faf5ff;--pura:#a855f7}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-gradient(135deg,#f8faff 0%,#fffaf5 100%);color:var(--texto);line-height:1.7}
-.header{background:linear-gradient(135deg,var(--azul),#1d4ed8);color:#fff;padding:2rem 1.5rem;text-align:center}
-.header h1{font-size:1.8rem;margin-bottom:.5rem}
-.header p{opacity:.9;font-size:1rem}
-.progress-bar{height:4px;background:rgba(255,255,255,.3);border-radius:2px;margin-top:1rem;overflow:hidden}
-.progress-fill{height:100%;background:#fff;border-radius:2px;width:0%;transition:width .3s}
-.container{max-width:900px;margin:0 auto;padding:1.5rem}
-.chapter{margin-bottom:2.5rem}
-.chapter-title{font-size:1.4rem;color:var(--azul);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:2px solid var(--azul-claro)}
-.box{padding:1rem 1.2rem;border-radius:10px;margin:1rem 0;border-left:4px solid;box-shadow:0 1px 3px rgba(0,0,0,.04)}
-.box-teoria{background:var(--azul-claro);border-color:var(--azul)}
-.box-ejemplo{background:var(--naranja-claro);border-color:var(--naranja)}
-.box-error{background:var(--rojo-claro);border-color:var(--rojo)}
-.box-idea{background:var(--pura-claro);border-color:var(--pura)}
-.box-success{background:var(--verde-claro);border-color:var(--verde)}
-.box strong{display:block;margin-bottom:.3rem}
-.svg-container{background:#f8fafc;border-radius:12px;padding:1.5rem;margin:1.5rem 0;text-align:center;border:2px solid #e2e8f0}
-.svg-container svg{max-width:100%;height:auto}
-.svg-container svg text{font-family:Inter,system-ui,sans-serif}
-.interactive{background:#f1f5f9;border-radius:12px;padding:1.5rem;margin:1.5rem 0}
-.interactive h3{color:var(--azul);margin-bottom:1rem;font-size:1.1rem}
-.interactive button{background:var(--azul);color:#fff;border:none;padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.95rem;margin:.3rem}
-.interactive button:hover{background:#1d4ed8}
-.result{margin-top:.8rem;padding:.8rem;border-radius:6px;font-weight:600;min-height:2rem}
-.result.ok{background:var(--verde-claro);color:#065f46}
-.result.fail{background:var(--rojo-claro);color:#991b1b}
-.exercises{margin:1.5rem 0}
-.exercise{background:#f1f5f9;border-radius:8px;padding:1rem;margin:.8rem 0}
-.exercise p{font-weight:600;margin-bottom:.5rem}
-.quiz-options{display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0}
-.quiz-btn{padding:.6rem 1.5rem;border-radius:8px;border:2px solid var(--azul);background:#fff;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all .2s}
-.quiz-btn:hover{background:var(--azul-claro)}
-.quiz-btn.correct{background:var(--verde);color:#fff;border-color:var(--verde)}
-.quiz-btn.wrong{background:var(--rojo);color:#fff;border-color:var(--rojo)}
-.summary{background:var(--azul-claro);border-radius:12px;padding:1.5rem;margin:2rem 0}
-.summary h3{color:var(--azul);margin-bottom:.8rem}
-.summary ul{list-style:none;padding:0}
-.summary li{padding:.3rem 0;padding-left:1.5rem;position:relative}
-.summary li::before{content:"✓";color:var(--verde);font-weight:bold;position:absolute;left:0}
-.nav{display:flex;justify-content:space-between;margin:2rem 0;padding:1rem 0;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0}
-.nav a{color:var(--azul);text-decoration:none;font-weight:600;padding:.5rem 1rem;border-radius:6px}
-.nav a:hover{background:var(--azul-claro)}
-.nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
-.footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
-</style>
-</head>
-<body>
-<header class="header">
-<h1>✂️ S05.2: Tipos de cortes y secciones</h1>
-<p>Dibujo Técnico — Cortes y Secciones</p>
-<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
-</header>
-<main class="container">
-
-<section class="chapter">
-<h2 class="chapter-title">🎯 ¿Qué vamos a aprender?</h2>
-<div class="box box-idea">
-<strong>💡 Idea clave</strong>
-Existen varios tipos de cortes: total (corta toda la pieza), parcial (solo una zona), semicorte (mitad cortada, mitad vista), y escalonado (varios planos de corte). Cada tipo tiene su uso específico.
-</div>
-<p>En esta sesión aprenderás a:</p>
-<ul style="margin:.8rem 0 1rem 1.5rem">
-<li>Identificar los tipos de cortes</li>
-<li>Saber cuándo usar cada tipo</li>
-<li>Representar correctamente cada corte</li>
-<li>Diferenciar corte de sección</li>
-</ul>
-</section>
-
-<section class="chapter">
-<h2 class="chapter-title">1️⃣ Tipos de cortes</h2>
-<div class="box box-teoria">
-<strong>📖 Teoría</strong>
-<strong>🔹 CORTE TOTAL:</strong><br>
-• El plano de corte atraviesa toda la pieza<br>
-• Se representa la parte trasera eliminada<br>
-• Se muestran las partes internas<br><br>
-<strong>🔹 CORTE PARCIAL:</strong><br>
-• Solo se corta una zona de la pieza<br>
-• El límite se marca con línea ondulada<br>
-• Útil para detalles específicos<br><br>
-<strong>🔹 SEMICORTE:</strong><br>
-• Mitad cortada, mitad vista<br>
-• Separados por línea de centro<br>
-• Ideal para piezas simétricas<br><br>
-<strong>🔹 CORTE ESCALONADO:</strong><br>
-• Varios planos de corte paralelos<br>
-• Se "dobla" el plano de corte<br>
-• Para piezas con detalles en diferentes profundidades
-</div>
-<div class="box box-ejemplo">
-<strong>🔍 Ejemplo 1</strong>
-Corte total: pieza cilíndrica con agujero central.<br>
-Se corta por el eje para mostrar el agujero.
-</div>
-<div class="box box-ejemplo">
-<strong>🔍 Ejemplo 2</strong>
-Semicorte: caja simétrica con interior complejo.<br>
-Mitad exterior (vista), mitad interior (corte).
-</div>
-</section>
-
-<section class="chapter">
-<h2 class="chapter-title">2️⃣ Visualiza los tipos de cortes</h2>
-<div class="svg-container">
-<svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
-<!-- Fondo -->
-<rect x="0" y="0" width="600" height="300" fill="#f8fafc" rx="8"/>
-<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Tipos de cortes y secciones</text>
-<!-- Corte total -->
-<text x="75" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">Corte total</text>
-<rect x="40" y="70" width="70" height="80" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
-<line x1="75" y1="70" x2="75" y2="150" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,2"/>
-<text x="75" y="170" text-anchor="middle" font-size="9" fill="#64748b">Plano de corte</text>
-<!-- Corte parcial -->
-<text x="225" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#f97316">Corte parcial</text>
-<rect x="190" y="70" width="70" height="80" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
-<path d="M 225 70 Q 235 80, 225 90 Q 215 100, 225 110 Q 235 120, 225 130 Q 215 140, 225 150" fill="none" stroke="#f97316" stroke-width="2"/>
-<text x="225" y="170" text-anchor="middle" font-size="9" fill="#64748b">Línea ondulada</text>
-<!-- Semicorte -->
-<text x="375" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#10b981">Semicorte</text>
-<rect x="340" y="70" width="70" height="80" fill="#eff6ff" stroke="#10b981" stroke-width="2"/>
-<line x1="375" y1="70" x2="375" y2="150" stroke="#10b981" stroke-width="1.5" stroke-dasharray="8,4,2,4"/>
-<text x="375" y="170" text-anchor="middle" font-size="9" fill="#64748b">Línea de centro</text>
-<!-- Corte escalonado -->
-<text x="525" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#a855f7">Escalonado</text>
-<rect x="490" y="70" width="70" height="80" fill="#faf5ff" stroke="#a855f7" stroke-width="2"/>
-<line x1="505" y1="70" x2="505" y2="110" stroke="#a855f7" stroke-width="2"/>
-<line x1="505" y1="110" x2="545" y2="110" stroke="#a855f7" stroke-width="2"/>
-<line x1="545" y1="110" x2="545" y2="150" stroke="#a855f7" stroke-width="2"/>
-<text x="525" y="170" text-anchor="middle" font-size="9" fill="#64748b">Planos paralelos</text>
-<!-- Leyenda -->
-<rect x="20" y="240" width="560" height="45" fill="#ecfdf5" rx="6"/>
-<text x="300" y="260" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">Total: toda la pieza | Parcial: zona específica | Semicorte: mitad cortada | Escalonado: varios planos</text>
-<text x="300" y="278" text-anchor="middle" font-size="10" fill="#64748b">Siempre mostrar las secciones cortadas con rayado</text>
-</svg>
-</div>
-</section>
-
-<section class="chapter">
-<h2 class="chapter-title">📝 Ejercicios</h2>
-<div class="exercises">
-
-<div class="exercise">
-<p>📐 Ejercicio 1: ¿Cuántos tipos de cortes principales existen?</p>
-<div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false)">2</button>
-<button class="quiz-btn" onclick="checkAnswer(this, true)">4</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">3</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">5</button>
-</div>
-<p class="feedback"></p>
-</div>
-
-<div class="exercise">
-<p>📐 Ejercicio 2: ¿Qué tipo de corte muestra mitad cortada y mitad vista?</p>
-<div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Total</button>
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Semicorte</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Parcial</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Escalonado</button>
-</div>
-<p class="feedback"></p>
-</div>
-
-<div class="exercise">
-<p>📐 Ejercicio 3: ¿Qué línea separa el semicorte?</p>
-<div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Línea continua</button>
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Línea de centro</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Línea ondulada</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Línea de corte</button>
-</div>
-<p class="feedback"></p>
-</div>
-
-<div class="exercise">
-<p>📐 Ejercicio 4: ¿Cuándo se usa el corte escalonado?</p>
-<div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false">Siempre</button>
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Cuando hay detalles en diferentes profundidades</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Solo en piezas simétricas</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Solo en piezas pequeñas</button>
-</div>
-<p class="feedback"></p>
-</div>
-
-<div class="exercise">
-<p>📐 Ejercicio 5: ¿Cómo se marca el límite del corte parcial?</p>
-<input type="text" id="ex5" placeholder="Tipo de línea" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
-<button onclick="checkExercise('ex5', 'ondulada', this)">Comprobar</button>
-<p class="feedback"></p>
-</div>
-
-</div>
-</section>
-
-<div class="box box-error">
-<strong>⚠️ Error clásico</strong>
-Confundir corte con sección. El corte muestra la pieza cortada (incluye lo que hay detrás). La sección muestra solo la intersección del plano de corte con la pieza.
-</div>
-
-<div class="box box-idea">
-<strong>🔗 Conexión</strong>
-Los cortes son esenciales para mostrar interiores de piezas. Sin cortes, no se verían agujeros, cámaras, o elementos internos.
-</div>
-
-<div class="summary">
-<h3>📋 Resumen de lo aprendido</h3>
-<ul>
-<li>Corte total: atraviesa toda la pieza</li>
-<li>Corte parcial: solo una zona (línea ondulada)</li>
-<li>Semicorte: mitad cortada, mitad vista (línea de centro)</li>
-<li>Corte escalonado: varios planos paralelos</li>
-<li>Siempre mostrar secciones con rayado</li>
-<li>¡Ya dominas los tipos de cortes! 🎉</li>
-</ul>
-</div>
-
-<div class="nav">
-<a href="b05-01-cortes.html">← Anterior</a>
-<a href="b05-03-semicorte-parcial.html">Siguiente →</a>
-</div>
-
-</main>
-<footer class="footer">Hecho con ❤️ por David Antizar</footer>
-<script>
-function checkAnswer(btn, correct) {
-  var parent = btn.parentElement;
-  parent.querySelectorAll('button').forEach(function(b) {
-    b.disabled = true; b.classList.remove('correct','wrong');
-  });
-  btn.classList.add(correct ? 'correct' : 'wrong');
-  var feedback = parent.nextElementSibling;
-  if(feedback && feedback.classList.contains('feedback')) {
-    if(correct) {
-      feedback.textContent = '✅ ¡Correcto! ¡Muy bien!';
-      feedback.className = 'feedback correct';
-    } else {
-      feedback.textContent = '❌ ¡Intenta de nuevo!';
-      feedback.className = 'feedback incorrect';
-      setTimeout(function() {
-        parent.querySelectorAll('button').forEach(function(b) {
-          b.disabled = false; b.classList.remove('correct','wrong');
-        });
-        feedback.textContent = '';
-        feedback.className = 'feedback';
-      }, 1500);
-    }
-  }
-}
-
-function checkExercise(id, correct, btn) {
-  var input = document.getElementById(id);
-  var feedback = input.parentElement.nextElementSibling;
-  var userVal = input.value.trim().toLowerCase();
-  var correctVal = correct.toLowerCase();
-  if(userVal === correctVal) {
-    feedback.textContent = '✅ ¡Correcto! ' + correct;
-    feedback.className = 'feedback correct';
-    input.style.borderColor = 'var(--verde)';
-  } else {
-    feedback.textContent = '❌ Respuesta correcta: ' + correct;
-    feedback.className = 'feedback incorrect';
-    input.style.borderColor = 'var(--rojo)';
-  }
-}
-
-window.onscroll = function(){
-  var h = document.documentElement;
-  var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
-  document.getElementById('progress').style.width = p+'%';
-};
-</script>
-</body>
-</html>
+     1|<!DOCTYPE html>
+     2|<html lang="es">
+     3|<head>
+     4|<meta charset="UTF-8">
+     5|<meta name="viewport" content="width=device-width, initial-scale=1.0">
+     6|<title>✂️ S05.2: Tipos de cortes y secciones — Dibujo Técnico</title>
+     7|<style>
+     8|:root{--azul:#2563eb;--naranja:#f97316;--verde:#10b981;--rojo:#ef4444;--fondo:#fff;--texto:#1e293b;--gris:#94a3b8;--azul-claro:#eff6ff;--naranja-claro:#fff7ed;--verde-claro:#ecfdf5;--rojo-claro:#fef2f2;--pura-claro:#faf5ff;--pura:#a855f7}
+     9|*{margin:0;padding:0;box-sizing:border-box}
+    10|body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-gradient(135deg,#f8faff 0%,#fffaf5 100%);color:var(--texto);line-height:1.7}
+    11|.header{background:linear-gradient(135deg,var(--azul),#1d4ed8);color:#fff;padding:2rem 1.5rem;text-align:center}
+    12|.header h1{font-size:1.8rem;margin-bottom:.5rem}
+    13|.header p{opacity:.9;font-size:1rem}
+    14|.progress-bar{height:4px;background:rgba(255,255,255,.3);border-radius:2px;margin-top:1rem;overflow:hidden}
+    15|.progress-fill{height:100%;background:#fff;border-radius:2px;width:0%;transition:width .3s}
+    16|.container{max-width:900px;margin:0 auto;padding:1.5rem}
+    17|.chapter{margin-bottom:2.5rem}
+    18|.chapter-title{font-size:1.4rem;color:var(--azul);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:2px solid var(--azul-claro)}
+    19|.box{padding:1rem 1.2rem;border-radius:10px;margin:1rem 0;border-left:4px solid;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+    20|.box-teoria{background:var(--azul-claro);border-color:var(--azul)}
+    21|.box-ejemplo{background:var(--naranja-claro);border-color:var(--naranja)}
+    22|.box-error{background:var(--rojo-claro);border-color:var(--rojo)}
+    23|.box-idea{background:var(--pura-claro);border-color:var(--pura)}
+    24|.box-success{background:var(--verde-claro);border-color:var(--verde)}
+    25|.box strong{display:block;margin-bottom:.3rem}
+    26|.svg-container{background:#f8fafc;border-radius:12px;padding:1.5rem;margin:1.5rem 0;text-align:center;border:2px solid #e2e8f0}
+    27|.svg-container svg{max-width:100%;height:auto}
+    28|.svg-container svg text{font-family:Inter,system-ui,sans-serif}
+    29|.interactive{background:#f1f5f9;border-radius:12px;padding:1.5rem;margin:1.5rem 0}
+    30|.interactive h3{color:var(--azul);margin-bottom:1rem;font-size:1.1rem}
+    31|.interactive button{background:var(--azul);color:#fff;border:none;padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.95rem;margin:.3rem}
+    32|.interactive button:hover{background:#1d4ed8}
+    33|.result{margin-top:.8rem;padding:.8rem;border-radius:6px;font-weight:600;min-height:2rem}
+    34|.result.ok{background:var(--verde-claro);color:#065f46}
+    35|.result.fail{background:var(--rojo-claro);color:#991b1b}
+    36|.exercises{margin:1.5rem 0}
+    37|.exercise{background:#f1f5f9;border-radius:8px;padding:1rem;margin:.8rem 0}
+    38|.exercise p{font-weight:600;margin-bottom:.5rem}
+    39|.quiz-options{display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0}
+    40|.quiz-btn{padding:.6rem 1.5rem;border-radius:8px;border:2px solid var(--azul);background:#fff;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all .2s}
+    41|.quiz-btn:hover{background:var(--azul-claro)}
+    42|.quiz-btn.correct{background:var(--verde);color:#fff;border-color:var(--verde)}
+    43|.quiz-btn.wrong{background:var(--rojo);color:#fff;border-color:var(--rojo)}
+    44|.summary{background:var(--azul-claro);border-radius:12px;padding:1.5rem;margin:2rem 0}
+    45|.summary h3{color:var(--azul);margin-bottom:.8rem}
+    46|.summary ul{list-style:none;padding:0}
+    47|.summary li{padding:.3rem 0;padding-left:1.5rem;position:relative}
+    48|.summary li::before{content:"✓";color:var(--verde);font-weight:bold;position:absolute;left:0}
+    49|.nav{display:flex;justify-content:space-between;margin:2rem 0;padding:1rem 0;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0}
+    50|.nav a{color:var(--azul);text-decoration:none;font-weight:600;padding:.5rem 1rem;border-radius:6px}
+    51|.nav a:hover{background:var(--azul-claro)}
+    52|.nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
+    53|.footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+    54|</style>
+    55|</head>
+    56|<body>
+    57|<header class="header">
+    58|<h1>✂️ S05.2: Tipos de cortes y secciones</h1>
+    59|<p>Dibujo Técnico — Cortes y Secciones</p>
+    60|<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+    61|</header>
+    62|<main class="container">
+    63|
+    64|<section class="chapter">
+    65|<h2 class="chapter-title">🎯 ¿Qué vamos a aprender?</h2>
+    66|<div class="box box-idea">
+    67|<strong>💡 Idea clave</strong>
+    68|Existen varios tipos de cortes: total (corta toda la pieza), parcial (solo una zona), semicorte (mitad cortada, mitad vista), y escalonado (varios planos de corte). Cada tipo tiene su uso específico.
+    69|</div>
+    70|<p>En esta sesión aprenderás a:</p>
+    71|<ul style="margin:.8rem 0 1rem 1.5rem">
+    72|<li>Identificar los tipos de cortes</li>
+    73|<li>Saber cuándo usar cada tipo</li>
+    74|<li>Representar correctamente cada corte</li>
+    75|<li>Diferenciar corte de sección</li>
+    76|</ul>
+    77|</section>
+    78|
+    79|<section class="chapter">
+    80|<h2 class="chapter-title">1️⃣ Tipos de cortes</h2>
+    81|<div class="box box-teoria">
+    82|<strong>📖 Teoría</strong>
+    83|<strong>🔹 CORTE TOTAL:</strong><br>
+    84|• El plano de corte atraviesa toda la pieza<br>
+    85|• Se representa la parte trasera eliminada<br>
+    86|• Se muestran las partes internas<br><br>
+    87|<strong>🔹 CORTE PARCIAL:</strong><br>
+    88|• Solo se corta una zona de la pieza<br>
+    89|• El límite se marca con línea ondulada<br>
+    90|• Útil para detalles específicos<br><br>
+    91|<strong>🔹 SEMICORTE:</strong><br>
+    92|• Mitad cortada, mitad vista<br>
+    93|• Separados por línea de centro<br>
+    94|• Ideal para piezas simétricas<br><br>
+    95|<strong>🔹 CORTE ESCALONADO:</strong><br>
+    96|• Varios planos de corte paralelos<br>
+    97|• Se "dobla" el plano de corte<br>
+    98|• Para piezas con detalles en diferentes profundidades
+    99|</div>
+   100|<div class="box box-ejemplo">
+   101|<strong>🔍 Ejemplo 1</strong>
+   102|Corte total: pieza cilíndrica con agujero central.<br>
+   103|Se corta por el eje para mostrar el agujero.
+   104|</div>
+   105|<div class="box box-ejemplo">
+   106|<strong>🔍 Ejemplo 2</strong>
+   107|Semicorte: caja simétrica con interior complejo.<br>
+   108|Mitad exterior (vista), mitad interior (corte).
+   109|</div>
+   110|</section>
+   111|
+   112|<section class="chapter">
+   113|<h2 class="chapter-title">2️⃣ Visualiza los tipos de cortes</h2>
+   114|<div class="svg-container">
+   115|<svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+   116|<!-- Fondo -->
+   117|<rect x="0" y="0" width="600" height="300" fill="#f8fafc" rx="8"/>
+   118|<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Tipos de cortes y secciones</text>
+   119|<!-- Corte total -->
+   120|<text x="75" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">Corte total</text>
+   121|<rect x="40" y="70" width="70" height="80" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+   122|<line x1="75" y1="70" x2="75" y2="150" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,2"/>
+   123|<text x="75" y="170" text-anchor="middle" font-size="9" fill="#64748b">Plano de corte</text>
+   124|<!-- Corte parcial -->
+   125|<text x="225" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#f97316">Corte parcial</text>
+   126|<rect x="190" y="70" width="70" height="80" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+   127|<path d="M 225 70 Q 235 80, 225 90 Q 215 100, 225 110 Q 235 120, 225 130 Q 215 140, 225 150" fill="none" stroke="#f97316" stroke-width="2"/>
+   128|<text x="225" y="170" text-anchor="middle" font-size="9" fill="#64748b">Línea ondulada</text>
+   129|<!-- Semicorte -->
+   130|<text x="375" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#10b981">Semicorte</text>
+   131|<rect x="340" y="70" width="70" height="80" fill="#eff6ff" stroke="#10b981" stroke-width="2"/>
+   132|<line x1="375" y1="70" x2="375" y2="150" stroke="#10b981" stroke-width="1.5" stroke-dasharray="8,4,2,4"/>
+   133|<text x="375" y="170" text-anchor="middle" font-size="9" fill="#64748b">Línea de centro</text>
+   134|<!-- Corte escalonado -->
+   135|<text x="525" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#a855f7">Escalonado</text>
+   136|<rect x="490" y="70" width="70" height="80" fill="#faf5ff" stroke="#a855f7" stroke-width="2"/>
+   137|<line x1="505" y1="70" x2="505" y2="110" stroke="#a855f7" stroke-width="2"/>
+   138|<line x1="505" y1="110" x2="545" y2="110" stroke="#a855f7" stroke-width="2"/>
+   139|<line x1="545" y1="110" x2="545" y2="150" stroke="#a855f7" stroke-width="2"/>
+   140|<text x="525" y="170" text-anchor="middle" font-size="9" fill="#64748b">Planos paralelos</text>
+   141|<!-- Leyenda -->
+   142|<rect x="20" y="240" width="560" height="45" fill="#ecfdf5" rx="6"/>
+   143|<text x="300" y="260" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">Total: toda la pieza | Parcial: zona específica | Semicorte: mitad cortada | Escalonado: varios planos</text>
+   144|<text x="300" y="278" text-anchor="middle" font-size="10" fill="#64748b">Siempre mostrar las secciones cortadas con rayado</text>
+   145|</svg>
+   146|</div>
+   147|</section>
+   148|
+   149|<section class="chapter">
+   150|<h2 class="chapter-title">📝 Ejercicios</h2>
+   151|<div class="exercises">
+   152|
+   153|<div class="exercise">
+   154|<p>📐 Ejercicio 1: ¿Cuántos tipos de cortes principales existen?</p>
+   155|<div class="quiz-options">
+   156|<button class="quiz-btn" onclick="checkAnswer(this, false)">2</button>
+   157|<button class="quiz-btn" onclick="checkAnswer(this, true)">4</button>
+   158|<button class="quiz-btn" onclick="checkAnswer(this, false">3</button>
+   159|<button class="quiz-btn" onclick="checkAnswer(this, false">5</button>
+   160|</div>
+   161|<p class="feedback"></p>
+   162|</div>
+   163|
+   164|<div class="exercise">
+   165|<p>📐 Ejercicio 2: ¿Qué tipo de corte muestra mitad cortada y mitad vista?</p>
+   166|<div class="quiz-options">
+   167|<button class="quiz-btn" onclick="checkAnswer(this, false)">Total</button>
+   168|<button class="quiz-btn" onclick="checkAnswer(this, true)">Semicorte</button>
+   169|<button class="quiz-btn" onclick="checkAnswer(this, false">Parcial</button>
+   170|<button class="quiz-btn" onclick="checkAnswer(this, false">Escalonado</button>
+   171|</div>
+   172|<p class="feedback"></p>
+   173|</div>
+   174|
+   175|<div class="exercise">
+   176|<p>📐 Ejercicio 3: ¿Qué línea separa el semicorte?</p>
+   177|<div class="quiz-options">
+   178|<button class="quiz-btn" onclick="checkAnswer(this, false)">Línea continua</button>
+   179|<button class="quiz-btn" onclick="checkAnswer(this, true)">Línea de centro</button>
+   180|<button class="quiz-btn" onclick="checkAnswer(this, false">Línea ondulada</button>
+   181|<button class="quiz-btn" onclick="checkAnswer(this, false">Línea de corte</button>
+   182|</div>
+   183|<p class="feedback"></p>
+   184|</div>
+   185|
+   186|<div class="exercise">
+   187|<p>📐 Ejercicio 4: ¿Cuándo se usa el corte escalonado?</p>
+   188|<div class="quiz-options">
+   189|<button class="quiz-btn" onclick="checkAnswer(this, false">Siempre</button>
+   190|<button class="quiz-btn" onclick="checkAnswer(this, true)">Cuando hay detalles en diferentes profundidades</button>
+   191|<button class="quiz-btn" onclick="checkAnswer(this, false">Solo en piezas simétricas</button>
+   192|<button class="quiz-btn" onclick="checkAnswer(this, false">Solo en piezas pequeñas</button>
+   193|</div>
+   194|<p class="feedback"></p>
+   195|</div>
+   196|
+   197|<div class="exercise">
+   198|<p>📐 Ejercicio 5: ¿Cómo se marca el límite del corte parcial?</p>
+   199|<input type="text" id="ex5" placeholder="Tipo de línea" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
+   200|<button onclick="checkExercise('ex5', 'ondulada', this)">Comprobar</button>
+   201|<p class="feedback"></p>
+   202|</div>
+   203|
+   204|</div>
+   205|</section>
+   206|
+   207|<div class="box box-error">
+   208|<strong>⚠️ Error clásico</strong>
+   209|Confundir corte con sección. El corte muestra la pieza cortada (incluye lo que hay detrás). La sección muestra solo la intersección del plano de corte con la pieza.
+   210|</div>
+   211|
+   212|<div class="box box-idea">
+   213|<strong>🔗 Conexión</strong>
+   214|Los cortes son esenciales para mostrar interiores de piezas. Sin cortes, no se verían agujeros, cámaras, o elementos internos.
+   215|</div>
+   216|
+   217|<div class="summary">
+   218|<h3>📋 Resumen de lo aprendido</h3>
+   219|<ul>
+   220|<li>Corte total: atraviesa toda la pieza</li>
+   221|<li>Corte parcial: solo una zona (línea ondulada)</li>
+   222|<li>Semicorte: mitad cortada, mitad vista (línea de centro)</li>
+   223|<li>Corte escalonado: varios planos paralelos</li>
+   224|<li>Siempre mostrar secciones con rayado</li>
+   225|<li>¡Ya dominas los tipos de cortes! 🎉</li>
+   226|</ul>
+   227|</div>
+   228|
+   229|<div class="nav">
+   230|<a href="b05-01-cortes.html">← Anterior</a>
+   231|<a href="b05-03-corte-escalonado.html">Siguiente →</a>
+   232|</div>
+   233|
+   234|</main>
+   235|<footer class="footer">Hecho con ❤️ por David Antizar</footer>
+   236|<script>
+   237|function checkAnswer(btn, correct) {
+   238|  var parent = btn.parentElement;
+   239|  parent.querySelectorAll('button').forEach(function(b) {
+   240|    b.disabled = true; b.classList.remove('correct','wrong');
+   241|  });
+   242|  btn.classList.add(correct ? 'correct' : 'wrong');
+   243|  var feedback = parent.nextElementSibling;
+   244|  if(feedback && feedback.classList.contains('feedback')) {
+   245|    if(correct) {
+   246|      feedback.textContent = '✅ ¡Correcto! ¡Muy bien!';
+   247|      feedback.className = 'feedback correct';
+   248|    } else {
+   249|      feedback.textContent = '❌ ¡Intenta de nuevo!';
+   250|      feedback.className = 'feedback incorrect';
+   251|      setTimeout(function() {
+   252|        parent.querySelectorAll('button').forEach(function(b) {
+   253|          b.disabled = false; b.classList.remove('correct','wrong');
+   254|        });
+   255|        feedback.textContent = '';
+   256|        feedback.className = 'feedback';
+   257|      }, 1500);
+   258|    }
+   259|  }
+   260|}
+   261|
+   262|function checkExercise(id, correct, btn) {
+   263|  var input = document.getElementById(id);
+   264|  var feedback = input.parentElement.nextElementSibling;
+   265|  var userVal = input.value.trim().toLowerCase();
+   266|  var correctVal = correct.toLowerCase();
+   267|  if(userVal === correctVal) {
+   268|    feedback.textContent = '✅ ¡Correcto! ' + correct;
+   269|    feedback.className = 'feedback correct';
+   270|    input.style.borderColor = 'var(--verde)';
+   271|  } else {
+   272|    feedback.textContent = '❌ Respuesta correcta: ' + correct;
+   273|    feedback.className = 'feedback incorrect';
+   274|    input.style.borderColor = 'var(--rojo)';
+   275|  }
+   276|}
+   277|
+   278|window.onscroll = function(){
+   279|  var h = document.documentElement;
+   280|  var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
+   281|  document.getElementById('progress').style.width = p+'%';
+   282|};
+   283|</script>
+   284|</body>
+   285|</html>
+   286|

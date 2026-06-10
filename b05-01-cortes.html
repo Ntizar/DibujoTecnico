@@ -1,279 +1,280 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>✂️ S05.1: Cortes y secciones — Dibujo Técnico</title>
-<style>
-:root{--azul:#2563eb;--naranja:#f97316;--verde:#10b981;--rojo:#ef4444;--fondo:#fff;--texto:#1e293b;--gris:#94a3b8;--azul-claro:#eff6ff;--naranja-claro:#fff7ed;--verde-claro:#ecfdf5;--rojo-claro:#fef2f2;--pura-claro:#faf5ff;--pura:#a855f7}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-gradient(135deg,#f8faff 0%,#fffaf5 100%);color:var(--texto);line-height:1.7}
-.header{background:linear-gradient(135deg,var(--azul),#1d4ed8);color:#fff;padding:2rem 1.5rem;text-align:center}
-.header h1{font-size:1.8rem;margin-bottom:.5rem}
-.header p{opacity:.9;font-size:1rem}
-.progress-bar{height:4px;background:rgba(255,255,255,.3);border-radius:2px;margin-top:1rem;overflow:hidden}
-.progress-fill{height:100%;background:#fff;border-radius:2px;width:0%;transition:width .3s}
-.container{max-width:900px;margin:0 auto;padding:1.5rem}
-.chapter{margin-bottom:2.5rem}
-.chapter-title{font-size:1.4rem;color:var(--azul);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:2px solid var(--azul-claro)}
-.box{padding:1rem 1.2rem;border-radius:10px;margin:1rem 0;border-left:4px solid;box-shadow:0 1px 3px rgba(0,0,0,.04)}
-.box-teoria{background:var(--azul-claro);border-color:var(--azul)}
-.box-ejemplo{background:var(--naranja-claro);border-color:var(--naranja)}
-.box-error{background:var(--rojo-claro);border-color:var(--rojo)}
-.box-idea{background:var(--pura-claro);border-color:var(--pura)}
-.box-success{background:var(--verde-claro);border-color:var(--verde)}
-.box strong{display:block;margin-bottom:.3rem}
-.svg-container{background:#f8fafc;border-radius:12px;padding:1.5rem;margin:1.5rem 0;text-align:center;border:2px solid #e2e8f0}
-.svg-container svg{max-width:100%;height:auto}
-.svg-container svg text{font-family:Inter,system-ui,sans-serif}
-.interactive{background:#f1f5f9;border-radius:12px;padding:1.5rem;margin:1.5rem 0}
-.interactive h3{color:var(--azul);margin-bottom:1rem;font-size:1.1rem}
-.interactive button{background:var(--azul);color:#fff;border:none;padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.95rem;margin:.3rem}
-.interactive button:hover{background:#1d4ed8}
-.result{margin-top:.8rem;padding:.8rem;border-radius:6px;font-weight:600;min-height:2rem}
-.result.ok{background:var(--verde-claro);color:#065f46}
-.result.fail{background:var(--rojo-claro);color:#991b1b}
-.exercises{margin:1.5rem 0}
-.exercise{background:#f1f5f9;border-radius:8px;padding:1rem;margin:.8rem 0}
-.exercise p{font-weight:600;margin-bottom:.5rem}
-.quiz-options{display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0}
-.quiz-btn{padding:.6rem 1.5rem;border-radius:8px;border:2px solid var(--azul);background:#fff;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all .2s}
-.quiz-btn:hover{background:var(--azul-claro)}
-.quiz-btn.correct{background:var(--verde);color:#fff;border-color:var(--verde)}
-.quiz-btn.wrong{background:var(--rojo);color:#fff;border-color:var(--rojo)}
-.summary{background:var(--azul-claro);border-radius:12px;padding:1.5rem;margin:2rem 0}
-.summary h3{color:var(--azul);margin-bottom:.8rem}
-.summary ul{list-style:none;padding:0}
-.summary li{padding:.3rem 0;padding-left:1.5rem;position:relative}
-.summary li::before{content:"✓";color:var(--verde);font-weight:bold;position:absolute;left:0}
-.nav{display:flex;justify-content:space-between;margin:2rem 0;padding:1rem 0;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0}
-.nav a{color:var(--azul);text-decoration:none;font-weight:600;padding:.5rem 1rem;border-radius:6px}
-.nav a:hover{background:var(--azul-claro)}
-.nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
-.footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
-</style>
-</head>
-<body>
-<header class="header">
-<h1>✂️ S05.1: Cortes y secciones</h1>
-<p>Dibujo Técnico — Cortes y Secciones</p>
-<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
-</header>
-<main class="container">
-
-<section class="chapter">
-<h2 class="chapter-title">🎯 ¿Qué vamos a aprender?</h2>
-<div class="box box-idea">
-<strong>💡 Idea clave</strong>
-Un corte es como rebanar un pan: cortas la pieza con un plano para ver lo que hay dentro. La sección es la cara que queda al cortar. Los cortes se usan cuando hay detalles internos que no se ven en las vistas normales.
-</div>
-<p>En esta sesión aprenderás a:</p>
-<ul style="margin:.8rem 0 1rem 1.5rem">
-<li>Diferenciar corte de sección</li>
-<li>Saber cuándo usar cortes</li>
-<li>Entender las líneas de corte</li>
-<li>Representar materiales en secciones</li>
-</ul>
-</section>
-
-<section class="chapter">
-<h2 class="chapter-title">1️⃣ Corte vs Sección</h2>
-<div class="box box-teoria">
-<strong>📖 Teoría</strong>
-<strong>🔹 CORTE:</strong><br>
-• Se elimina una parte de la pieza para ver el interior<br>
-• Se muestra la sección + lo que queda detrás<br>
-• Se indica con líneas de corte y flechas<br><br>
-<strong>🔹 SECCIÓN:</strong><br>
-• Es la cara que queda al cortar<br>
-• Se representa con líneas de cotas diagonales (rayado)<br>
-• El rayado indica el material (acero, aluminio, etc.)<br><br>
-<strong>🔹 ¿Cuándo usar corte?</strong><br>
-• Cuando hay agujeros internos no visibles<br>
-• Cuando hay formas internas complejas<br>
-• Cuando las líneas ocultas confunden
-</div>
-<div class="box box-ejemplo">
-<strong>🔍 Ejemplo 1</strong>
-Un tubo con agujero interno:<br>
-Corte longitudinal → se ve el agujero y las paredes
-</div>
-<div class="box box-ejemplo">
-<strong>🔍 Ejemplo 2</strong>
-Una pieza con nervaduras:<br>
-Corte transversal → se ven las nervaduras y su forma
-</div>
-</section>
-
-<section class="chapter">
-<h2 class="chapter-title">2️⃣ Visualiza corte y sección</h2>
-<div class="svg-container">
-<svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
-<!-- Fondo -->
-<rect x="0" y="0" width="600" height="300" fill="#f8fafc" rx="8"/>
-<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Corte y sección</text>
-<!-- Pieza sin corte -->
-<text x="150" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">SIN CORTE</text>
-<rect x="80" y="80" width="140" height="100" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
-<circle cx="150" cy="130" r="25" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,2"/>
-<text x="150" y="135" text-anchor="middle" font-size="9" fill="#94a3b8">agujero (oculto)</text>
-<!-- Pieza con corte -->
-<text x="450" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#10b981">CON CORTE</text>
-<rect x="380" y="80" width="140" height="100" fill="#eff6ff" stroke="#10b981" stroke-width="2"/>
-<!-- Sección rayada -->
-<polygon points="405,80 405,180 495,180 495,80" fill="#fff7ed" stroke="#f97316" stroke-width="1"/>
-<!-- Rayado -->
-<line x1="410" y1="85" x2="420" y2="175" stroke="#f97316" stroke-width="0.5"/>
-<line x1="420" y1="85" x2="430" y2="175" stroke="#f97316" stroke-width="0.5"/>
-<line x1="430" y1="85" x2="440" y2="175" stroke="#f97316" stroke-width="0.5"/>
-<line x1="440" y1="85" x2="450" y2="175" stroke="#f97316" stroke-width="0.5"/>
-<line x1="450" y1="85" x2="460" y2="175" stroke="#f97316" stroke-width="0.5"/>
-<line x1="460" y1="85" x2="470" y2="175" stroke="#f97316" stroke-width="0.5"/>
-<line x1="470" y1="85" x2="480" y2="175" stroke="#f97316" stroke-width="0.5"/>
-<line x1="480" y1="85" x2="490" y2="175" stroke="#f97316" stroke-width="0.5"/>
-<circle cx="450" cy="130" r="25" fill="#fff7ed" stroke="#10b981" stroke-width="2"/>
-<text x="450" y="135" text-anchor="middle" font-size="9" fill="#10b981">agujero (visible)</text>
-<!-- Leyenda -->
-<rect x="20" y="240" width="560" height="45" fill="#ecfdf5" rx="6"/>
-<text x="300" y="260" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">Corte: muestra interior + lo que queda detrás | Sección: cara cortada con rayado</text>
-<text x="300" y="278" text-anchor="middle" font-size="10" fill="#64748b">Rayado: líneas diagonales que indican el material (acero, aluminio, etc.)</text>
-</svg>
-</div>
-</section>
-
-<section class="chapter">
-<h2 class="chapter-title">📝 Ejercicios</h2>
-<div class="exercises">
-
-<div class="exercise">
-<p>📐 Ejercicio 1: ¿Qué se muestra en un corte?</p>
-<div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">La sección + lo que queda detrás</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Solo la sección</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Solo el exterior</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Nada</button>
-</div>
-<p class="feedback"></p>
-</div>
-
-<div class="exercise">
-<p>📐 Ejercicio 2: ¿Qué indica el rayado?</p>
-<div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">El material de la pieza</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">La escala</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">El tipo de línea</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">La orientación</button>
-</div>
-<p class="feedback"></p>
-</div>
-
-<div class="exercise">
-<p>📐 Ejercicio 3: ¿Cuándo se usa un corte?</p>
-<div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Cuando hay detalles internos no visibles</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Siempre</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Solo en piezas pequeñas</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Solo en piezas grandes</button>
-</div>
-<p class="feedback"></p>
-</div>
-
-<div class="exercise">
-<p>📐 Ejercicio 4: ¿Qué es la sección?</p>
-<div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">La cara que queda al cortar</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">El exterior de la pieza</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">La escala</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">La vista auxiliar</button>
-</div>
-<p class="feedback"></p>
-</div>
-
-<div class="exercise">
-<p>📐 Ejercicio 5: ¿Cuántos tipos principales de corte existen?</p>
-<input type="text" id="ex5" placeholder="Número" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
-<button onclick="checkExercise('ex5', '3', this)">Comprobar</button>
-<p class="feedback"></p>
-</div>
-
-</div>
-</section>
-
-<div class="box box-error">
-<strong>⚠️ Error clásico</strong>
-Confundir corte con sección. El corte muestra la sección + lo que queda detrás. La sección es solo la cara cortada con rayado. ¡Son cosas diferentes!
-</div>
-
-<div class="box box-idea">
-<strong>🔗 Conexión</strong>
-Los cortes son esenciales para piezas con agujeros internos, nervaduras y formas complejas. Sin cortes, no se vería nada del interior.
-</div>
-
-<div class="summary">
-<h3>📋 Resumen de lo aprendido</h3>
-<ul>
-<li>Corte: sección + lo que queda detrás</li>
-<li>Sección: cara cortada con rayado</li>
-<li>Rayado: indica el material</li>
-<li>Se usa para detalles internos no visibles</li>
-<li>¡Ya dominas cortes y secciones! 🎉</li>
-</ul>
-</div>
-
-<div class="nav">
-<a href="b04-09-resumen-diedrico.html">← Anterior</a>
-<a href="b05-02-corte-total.html">Siguiente →</a>
-</div>
-
-</main>
-<footer class="footer">Hecho con ❤️ por David Antizar</footer>
-<script>
-function checkAnswer(btn, correct) {
-  var parent = btn.parentElement;
-  parent.querySelectorAll('button').forEach(function(b) {
-    b.disabled = true; b.classList.remove('correct','wrong');
-  });
-  btn.classList.add(correct ? 'correct' : 'wrong');
-  var feedback = parent.nextElementSibling;
-  if(feedback && feedback.classList.contains('feedback')) {
-    if(correct) {
-      feedback.textContent = '✅ ¡Correcto! ¡Muy bien!';
-      feedback.className = 'feedback correct';
-    } else {
-      feedback.textContent = '❌ ¡Intenta de nuevo!';
-      feedback.className = 'feedback incorrect';
-      setTimeout(function() {
-        parent.querySelectorAll('button').forEach(function(b) {
-          b.disabled = false; b.classList.remove('correct','wrong');
-        });
-        feedback.textContent = '';
-        feedback.className = 'feedback';
-      }, 1500);
-    }
-  }
-}
-
-function checkExercise(id, correct, btn) {
-  var input = document.getElementById(id);
-  var feedback = input.parentElement.nextElementSibling;
-  var userVal = input.value.trim().toLowerCase();
-  var correctVal = correct.toLowerCase();
-  if(userVal === correctVal) {
-    feedback.textContent = '✅ ¡Correcto! ' + correct;
-    feedback.className = 'feedback correct';
-    input.style.borderColor = 'var(--verde)';
-  } else {
-    feedback.textContent = '❌ Respuesta correcta: ' + correct;
-    feedback.className = 'feedback incorrect';
-    input.style.borderColor = 'var(--rojo)';
-  }
-}
-
-window.onscroll = function(){
-  var h = document.documentElement;
-  var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
-  document.getElementById('progress').style.width = p+'%';
-};
-</script>
-</body>
-</html>
+     1|<!DOCTYPE html>
+     2|<html lang="es">
+     3|<head>
+     4|<meta charset="UTF-8">
+     5|<meta name="viewport" content="width=device-width, initial-scale=1.0">
+     6|<title>✂️ S05.1: Cortes y secciones — Dibujo Técnico</title>
+     7|<style>
+     8|:root{--azul:#2563eb;--naranja:#f97316;--verde:#10b981;--rojo:#ef4444;--fondo:#fff;--texto:#1e293b;--gris:#94a3b8;--azul-claro:#eff6ff;--naranja-claro:#fff7ed;--verde-claro:#ecfdf5;--rojo-claro:#fef2f2;--pura-claro:#faf5ff;--pura:#a855f7}
+     9|*{margin:0;padding:0;box-sizing:border-box}
+    10|body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-gradient(135deg,#f8faff 0%,#fffaf5 100%);color:var(--texto);line-height:1.7}
+    11|.header{background:linear-gradient(135deg,var(--azul),#1d4ed8);color:#fff;padding:2rem 1.5rem;text-align:center}
+    12|.header h1{font-size:1.8rem;margin-bottom:.5rem}
+    13|.header p{opacity:.9;font-size:1rem}
+    14|.progress-bar{height:4px;background:rgba(255,255,255,.3);border-radius:2px;margin-top:1rem;overflow:hidden}
+    15|.progress-fill{height:100%;background:#fff;border-radius:2px;width:0%;transition:width .3s}
+    16|.container{max-width:900px;margin:0 auto;padding:1.5rem}
+    17|.chapter{margin-bottom:2.5rem}
+    18|.chapter-title{font-size:1.4rem;color:var(--azul);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:2px solid var(--azul-claro)}
+    19|.box{padding:1rem 1.2rem;border-radius:10px;margin:1rem 0;border-left:4px solid;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+    20|.box-teoria{background:var(--azul-claro);border-color:var(--azul)}
+    21|.box-ejemplo{background:var(--naranja-claro);border-color:var(--naranja)}
+    22|.box-error{background:var(--rojo-claro);border-color:var(--rojo)}
+    23|.box-idea{background:var(--pura-claro);border-color:var(--pura)}
+    24|.box-success{background:var(--verde-claro);border-color:var(--verde)}
+    25|.box strong{display:block;margin-bottom:.3rem}
+    26|.svg-container{background:#f8fafc;border-radius:12px;padding:1.5rem;margin:1.5rem 0;text-align:center;border:2px solid #e2e8f0}
+    27|.svg-container svg{max-width:100%;height:auto}
+    28|.svg-container svg text{font-family:Inter,system-ui,sans-serif}
+    29|.interactive{background:#f1f5f9;border-radius:12px;padding:1.5rem;margin:1.5rem 0}
+    30|.interactive h3{color:var(--azul);margin-bottom:1rem;font-size:1.1rem}
+    31|.interactive button{background:var(--azul);color:#fff;border:none;padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.95rem;margin:.3rem}
+    32|.interactive button:hover{background:#1d4ed8}
+    33|.result{margin-top:.8rem;padding:.8rem;border-radius:6px;font-weight:600;min-height:2rem}
+    34|.result.ok{background:var(--verde-claro);color:#065f46}
+    35|.result.fail{background:var(--rojo-claro);color:#991b1b}
+    36|.exercises{margin:1.5rem 0}
+    37|.exercise{background:#f1f5f9;border-radius:8px;padding:1rem;margin:.8rem 0}
+    38|.exercise p{font-weight:600;margin-bottom:.5rem}
+    39|.quiz-options{display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0}
+    40|.quiz-btn{padding:.6rem 1.5rem;border-radius:8px;border:2px solid var(--azul);background:#fff;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all .2s}
+    41|.quiz-btn:hover{background:var(--azul-claro)}
+    42|.quiz-btn.correct{background:var(--verde);color:#fff;border-color:var(--verde)}
+    43|.quiz-btn.wrong{background:var(--rojo);color:#fff;border-color:var(--rojo)}
+    44|.summary{background:var(--azul-claro);border-radius:12px;padding:1.5rem;margin:2rem 0}
+    45|.summary h3{color:var(--azul);margin-bottom:.8rem}
+    46|.summary ul{list-style:none;padding:0}
+    47|.summary li{padding:.3rem 0;padding-left:1.5rem;position:relative}
+    48|.summary li::before{content:"✓";color:var(--verde);font-weight:bold;position:absolute;left:0}
+    49|.nav{display:flex;justify-content:space-between;margin:2rem 0;padding:1rem 0;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0}
+    50|.nav a{color:var(--azul);text-decoration:none;font-weight:600;padding:.5rem 1rem;border-radius:6px}
+    51|.nav a:hover{background:var(--azul-claro)}
+    52|.nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
+    53|.footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+    54|</style>
+    55|</head>
+    56|<body>
+    57|<header class="header">
+    58|<h1>✂️ S05.1: Cortes y secciones</h1>
+    59|<p>Dibujo Técnico — Cortes y Secciones</p>
+    60|<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+    61|</header>
+    62|<main class="container">
+    63|
+    64|<section class="chapter">
+    65|<h2 class="chapter-title">🎯 ¿Qué vamos a aprender?</h2>
+    66|<div class="box box-idea">
+    67|<strong>💡 Idea clave</strong>
+    68|Un corte es como rebanar un pan: cortas la pieza con un plano para ver lo que hay dentro. La sección es la cara que queda al cortar. Los cortes se usan cuando hay detalles internos que no se ven en las vistas normales.
+    69|</div>
+    70|<p>En esta sesión aprenderás a:</p>
+    71|<ul style="margin:.8rem 0 1rem 1.5rem">
+    72|<li>Diferenciar corte de sección</li>
+    73|<li>Saber cuándo usar cortes</li>
+    74|<li>Entender las líneas de corte</li>
+    75|<li>Representar materiales en secciones</li>
+    76|</ul>
+    77|</section>
+    78|
+    79|<section class="chapter">
+    80|<h2 class="chapter-title">1️⃣ Corte vs Sección</h2>
+    81|<div class="box box-teoria">
+    82|<strong>📖 Teoría</strong>
+    83|<strong>🔹 CORTE:</strong><br>
+    84|• Se elimina una parte de la pieza para ver el interior<br>
+    85|• Se muestra la sección + lo que queda detrás<br>
+    86|• Se indica con líneas de corte y flechas<br><br>
+    87|<strong>🔹 SECCIÓN:</strong><br>
+    88|• Es la cara que queda al cortar<br>
+    89|• Se representa con líneas de cotas diagonales (rayado)<br>
+    90|• El rayado indica el material (acero, aluminio, etc.)<br><br>
+    91|<strong>🔹 ¿Cuándo usar corte?</strong><br>
+    92|• Cuando hay agujeros internos no visibles<br>
+    93|• Cuando hay formas internas complejas<br>
+    94|• Cuando las líneas ocultas confunden
+    95|</div>
+    96|<div class="box box-ejemplo">
+    97|<strong>🔍 Ejemplo 1</strong>
+    98|Un tubo con agujero interno:<br>
+    99|Corte longitudinal → se ve el agujero y las paredes
+   100|</div>
+   101|<div class="box box-ejemplo">
+   102|<strong>🔍 Ejemplo 2</strong>
+   103|Una pieza con nervaduras:<br>
+   104|Corte transversal → se ven las nervaduras y su forma
+   105|</div>
+   106|</section>
+   107|
+   108|<section class="chapter">
+   109|<h2 class="chapter-title">2️⃣ Visualiza corte y sección</h2>
+   110|<div class="svg-container">
+   111|<svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+   112|<!-- Fondo -->
+   113|<rect x="0" y="0" width="600" height="300" fill="#f8fafc" rx="8"/>
+   114|<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Corte y sección</text>
+   115|<!-- Pieza sin corte -->
+   116|<text x="150" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">SIN CORTE</text>
+   117|<rect x="80" y="80" width="140" height="100" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+   118|<circle cx="150" cy="130" r="25" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,2"/>
+   119|<text x="150" y="135" text-anchor="middle" font-size="9" fill="#94a3b8">agujero (oculto)</text>
+   120|<!-- Pieza con corte -->
+   121|<text x="450" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#10b981">CON CORTE</text>
+   122|<rect x="380" y="80" width="140" height="100" fill="#eff6ff" stroke="#10b981" stroke-width="2"/>
+   123|<!-- Sección rayada -->
+   124|<polygon points="405,80 405,180 495,180 495,80" fill="#fff7ed" stroke="#f97316" stroke-width="1"/>
+   125|<!-- Rayado -->
+   126|<line x1="410" y1="85" x2="420" y2="175" stroke="#f97316" stroke-width="0.5"/>
+   127|<line x1="420" y1="85" x2="430" y2="175" stroke="#f97316" stroke-width="0.5"/>
+   128|<line x1="430" y1="85" x2="440" y2="175" stroke="#f97316" stroke-width="0.5"/>
+   129|<line x1="440" y1="85" x2="450" y2="175" stroke="#f97316" stroke-width="0.5"/>
+   130|<line x1="450" y1="85" x2="460" y2="175" stroke="#f97316" stroke-width="0.5"/>
+   131|<line x1="460" y1="85" x2="470" y2="175" stroke="#f97316" stroke-width="0.5"/>
+   132|<line x1="470" y1="85" x2="480" y2="175" stroke="#f97316" stroke-width="0.5"/>
+   133|<line x1="480" y1="85" x2="490" y2="175" stroke="#f97316" stroke-width="0.5"/>
+   134|<circle cx="450" cy="130" r="25" fill="#fff7ed" stroke="#10b981" stroke-width="2"/>
+   135|<text x="450" y="135" text-anchor="middle" font-size="9" fill="#10b981">agujero (visible)</text>
+   136|<!-- Leyenda -->
+   137|<rect x="20" y="240" width="560" height="45" fill="#ecfdf5" rx="6"/>
+   138|<text x="300" y="260" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">Corte: muestra interior + lo que queda detrás | Sección: cara cortada con rayado</text>
+   139|<text x="300" y="278" text-anchor="middle" font-size="10" fill="#64748b">Rayado: líneas diagonales que indican el material (acero, aluminio, etc.)</text>
+   140|</svg>
+   141|</div>
+   142|</section>
+   143|
+   144|<section class="chapter">
+   145|<h2 class="chapter-title">📝 Ejercicios</h2>
+   146|<div class="exercises">
+   147|
+   148|<div class="exercise">
+   149|<p>📐 Ejercicio 1: ¿Qué se muestra en un corte?</p>
+   150|<div class="quiz-options">
+   151|<button class="quiz-btn" onclick="checkAnswer(this, true)">La sección + lo que queda detrás</button>
+   152|<button class="quiz-btn" onclick="checkAnswer(this, false">Solo la sección</button>
+   153|<button class="quiz-btn" onclick="checkAnswer(this, false">Solo el exterior</button>
+   154|<button class="quiz-btn" onclick="checkAnswer(this, false">Nada</button>
+   155|</div>
+   156|<p class="feedback"></p>
+   157|</div>
+   158|
+   159|<div class="exercise">
+   160|<p>📐 Ejercicio 2: ¿Qué indica el rayado?</p>
+   161|<div class="quiz-options">
+   162|<button class="quiz-btn" onclick="checkAnswer(this, true)">El material de la pieza</button>
+   163|<button class="quiz-btn" onclick="checkAnswer(this, false">La escala</button>
+   164|<button class="quiz-btn" onclick="checkAnswer(this, false">El tipo de línea</button>
+   165|<button class="quiz-btn" onclick="checkAnswer(this, false">La orientación</button>
+   166|</div>
+   167|<p class="feedback"></p>
+   168|</div>
+   169|
+   170|<div class="exercise">
+   171|<p>📐 Ejercicio 3: ¿Cuándo se usa un corte?</p>
+   172|<div class="quiz-options">
+   173|<button class="quiz-btn" onclick="checkAnswer(this, true)">Cuando hay detalles internos no visibles</button>
+   174|<button class="quiz-btn" onclick="checkAnswer(this, false">Siempre</button>
+   175|<button class="quiz-btn" onclick="checkAnswer(this, false">Solo en piezas pequeñas</button>
+   176|<button class="quiz-btn" onclick="checkAnswer(this, false">Solo en piezas grandes</button>
+   177|</div>
+   178|<p class="feedback"></p>
+   179|</div>
+   180|
+   181|<div class="exercise">
+   182|<p>📐 Ejercicio 4: ¿Qué es la sección?</p>
+   183|<div class="quiz-options">
+   184|<button class="quiz-btn" onclick="checkAnswer(this, true)">La cara que queda al cortar</button>
+   185|<button class="quiz-btn" onclick="checkAnswer(this, false">El exterior de la pieza</button>
+   186|<button class="quiz-btn" onclick="checkAnswer(this, false">La escala</button>
+   187|<button class="quiz-btn" onclick="checkAnswer(this, false">La vista auxiliar</button>
+   188|</div>
+   189|<p class="feedback"></p>
+   190|</div>
+   191|
+   192|<div class="exercise">
+   193|<p>📐 Ejercicio 5: ¿Cuántos tipos principales de corte existen?</p>
+   194|<input type="text" id="ex5" placeholder="Número" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
+   195|<button onclick="checkExercise('ex5', '3', this)">Comprobar</button>
+   196|<p class="feedback"></p>
+   197|</div>
+   198|
+   199|</div>
+   200|</section>
+   201|
+   202|<div class="box box-error">
+   203|<strong>⚠️ Error clásico</strong>
+   204|Confundir corte con sección. El corte muestra la sección + lo que queda detrás. La sección es solo la cara cortada con rayado. ¡Son cosas diferentes!
+   205|</div>
+   206|
+   207|<div class="box box-idea">
+   208|<strong>🔗 Conexión</strong>
+   209|Los cortes son esenciales para piezas con agujeros internos, nervaduras y formas complejas. Sin cortes, no se vería nada del interior.
+   210|</div>
+   211|
+   212|<div class="summary">
+   213|<h3>📋 Resumen de lo aprendido</h3>
+   214|<ul>
+   215|<li>Corte: sección + lo que queda detrás</li>
+   216|<li>Sección: cara cortada con rayado</li>
+   217|<li>Rayado: indica el material</li>
+   218|<li>Se usa para detalles internos no visibles</li>
+   219|<li>¡Ya dominas cortes y secciones! 🎉</li>
+   220|</ul>
+   221|</div>
+   222|
+   223|<div class="nav">
+   224|<a href="b04-09-resumen-diedrico.html">← Anterior</a>
+   225|<a href="b05-02-corte-tipos.html">Siguiente →</a>
+   226|</div>
+   227|
+   228|</main>
+   229|<footer class="footer">Hecho con ❤️ por David Antizar</footer>
+   230|<script>
+   231|function checkAnswer(btn, correct) {
+   232|  var parent = btn.parentElement;
+   233|  parent.querySelectorAll('button').forEach(function(b) {
+   234|    b.disabled = true; b.classList.remove('correct','wrong');
+   235|  });
+   236|  btn.classList.add(correct ? 'correct' : 'wrong');
+   237|  var feedback = parent.nextElementSibling;
+   238|  if(feedback && feedback.classList.contains('feedback')) {
+   239|    if(correct) {
+   240|      feedback.textContent = '✅ ¡Correcto! ¡Muy bien!';
+   241|      feedback.className = 'feedback correct';
+   242|    } else {
+   243|      feedback.textContent = '❌ ¡Intenta de nuevo!';
+   244|      feedback.className = 'feedback incorrect';
+   245|      setTimeout(function() {
+   246|        parent.querySelectorAll('button').forEach(function(b) {
+   247|          b.disabled = false; b.classList.remove('correct','wrong');
+   248|        });
+   249|        feedback.textContent = '';
+   250|        feedback.className = 'feedback';
+   251|      }, 1500);
+   252|    }
+   253|  }
+   254|}
+   255|
+   256|function checkExercise(id, correct, btn) {
+   257|  var input = document.getElementById(id);
+   258|  var feedback = input.parentElement.nextElementSibling;
+   259|  var userVal = input.value.trim().toLowerCase();
+   260|  var correctVal = correct.toLowerCase();
+   261|  if(userVal === correctVal) {
+   262|    feedback.textContent = '✅ ¡Correcto! ' + correct;
+   263|    feedback.className = 'feedback correct';
+   264|    input.style.borderColor = 'var(--verde)';
+   265|  } else {
+   266|    feedback.textContent = '❌ Respuesta correcta: ' + correct;
+   267|    feedback.className = 'feedback incorrect';
+   268|    input.style.borderColor = 'var(--rojo)';
+   269|  }
+   270|}
+   271|
+   272|window.onscroll = function(){
+   273|  var h = document.documentElement;
+   274|  var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
+   275|  document.getElementById('progress').style.width = p+'%';
+   276|};
+   277|</script>
+   278|</body>
+   279|</html>
+   280|
