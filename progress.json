@@ -2,455 +2,847 @@
   "curso": "Dibujo Técnico Completo",
   "autor": "David Antizar",
   "total_temas": 49,
-  "temas": [
-    {
-      "id": "b01-01",
+  "last_improved": null,
+  "last_run": null,
+  "total_runs": 0,
+  "topics": {
+    "b01-01-formatos-papel.html": {
+      "status": "pending",
       "bloque": "b01",
-      "file": "b01-01-formatos-papel.html",
       "title": "📄 Formatos de papel ISO 216",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 1,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b01-02",
+    "b01-02-tipos-linea.html": {
+      "status": "pending",
       "bloque": "b01",
-      "file": "b01-02-tipos-linea.html",
       "title": "📐 Tipos de línea ISO 128",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 1,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b01-03",
+    "b01-03-escalas.html": {
+      "status": "pending",
       "bloque": "b01",
-      "file": "b01-03-escalas.html",
       "title": "🔍 Escalas ISO 5455",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 1,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b01-04",
+    "b01-04-rotulacion.html": {
+      "status": "pending",
       "bloque": "b01",
-      "file": "b01-04-rotulacion.html",
       "title": "✍️ Rotulación UNE",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 1,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b01-05",
+    "b01-05-cuadro-rotulacion.html": {
+      "status": "pending",
       "bloque": "b01",
-      "file": "b01-05-cuadro-rotulacion.html",
       "title": "📋 Cuadro de rotulación y pie de plano",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 1,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b02-01",
+    "b02-01-proyeccion-ortogonal.html": {
+      "status": "pending",
       "bloque": "b02",
-      "file": "b02-01-proyeccion-ortogonal.html",
       "title": "👁️ Proyección ortogonal",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 1,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b02-02",
+    "b02-02-sistema-3-planos.html": {
+      "status": "pending",
       "bloque": "b02",
-      "file": "b02-02-sistema-3-planos.html",
       "title": "📦 Sistema de 3 planos",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 1,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b02-03",
+    "b02-03-vistas-principales.html": {
+      "status": "pending",
       "bloque": "b02",
-      "file": "b02-03-vistas-principales.html",
       "title": "👀 Vistas principales",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 1,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b02-04",
+    "b02-04-correspondencia-vistas.html": {
+      "status": "pending",
       "bloque": "b02",
-      "file": "b02-04-correspondencia-vistas.html",
       "title": "🔗 Correspondencia entre vistas",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 1,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b02-05",
+    "b02-05-abatimiento-ph.html": {
+      "status": "pending",
       "bloque": "b02",
-      "file": "b02-05-abatimiento-ph.html",
       "title": "🔄 Abatimiento del PH",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 1,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b02-06",
+    "b02-06-1o-3o-diedro.html": {
+      "status": "pending",
       "bloque": "b02",
-      "file": "b02-06-1o-3o-diedro.html",
       "title": "🌍 1º diedro vs 3º diedro",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 1,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b02-07",
+    "b02-07-representacion-piezas.html": {
+      "status": "pending",
       "bloque": "b02",
-      "file": "b02-07-representacion-piezas.html",
       "title": "🔧 Representación de piezas",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 1,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b02-08",
+    "b02-08-vista-auxiliar-parcial.html": {
+      "status": "pending",
       "bloque": "b02",
-      "file": "b02-08-vista-auxiliar-parcial.html",
       "title": "🔎 Vista auxiliar y parcial",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 1,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b03-01",
+    "b03-01-isometrica-ejes.html": {
+      "status": "pending",
       "bloque": "b03",
-      "file": "b03-01-isometrica-ejes.html",
       "title": "📐 Perspectiva isométrica: ejes",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 2,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b03-02",
+    "b03-02-isometrica-cubos.html": {
+      "status": "pending",
       "bloque": "b03",
-      "file": "b03-02-isometrica-cubos.html",
       "title": "🧊 Isométrica: cubos y prismas",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 2,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b03-03",
+    "b03-03-isometrica-circulos.html": {
+      "status": "pending",
       "bloque": "b03",
-      "file": "b03-03-isometrica-circulos.html",
       "title": "⭕ Isométrica: círculos y elipses",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 2,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b03-04",
+    "b03-04-caballera.html": {
+      "status": "pending",
       "bloque": "b03",
-      "file": "b03-04-caballera.html",
       "title": "📏 Perspectiva caballera",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 2,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b03-05",
+    "b03-05-perspectivas-piezas.html": {
+      "status": "pending",
       "bloque": "b03",
-      "file": "b03-05-perspectivas-piezas.html",
       "title": "🔩 Caballera: piezas con cilindros",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 2,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b03-06",
+    "b03-06-perspectivas-resumen.html": {
+      "status": "pending",
       "bloque": "b03",
-      "file": "b03-06-perspectivas-resumen.html",
       "title": "📊 Dimétrica y monométrica",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 2,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b04-01",
+    "b04-01-punto-diedrico.html": {
+      "status": "pending",
       "bloque": "b04",
-      "file": "b04-01-punto-diedrico.html",
       "title": "📍 Puntos y cuadrantes",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 2,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b04-02",
+    "b04-02-recta-diedrico.html": {
+      "status": "pending",
       "bloque": "b04",
-      "file": "b04-02-recta-diedrico.html",
       "title": "⭐ Puntos notables",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 2,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b04-03",
+    "b04-03-plano-diedrico.html": {
+      "status": "pending",
       "bloque": "b04",
-      "file": "b04-03-plano-diedrico.html",
       "title": "📏 Recta: trazas y posiciones",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 2,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b04-04",
+    "b04-04-pertenencia.html": {
+      "status": "pending",
       "bloque": "b04",
-      "file": "b04-04-pertenencia.html",
       "title": "📐 Recta: verdadera magnitud",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 2,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b04-05",
+    "b04-05-paralelismo-perpendicularidad.html": {
+      "status": "pending",
       "bloque": "b04",
-      "file": "b04-05-paralelismo-perpendicularidad.html",
       "title": "📐 Plano: trazas y posiciones",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 2,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b04-06",
+    "b04-06-vm.html": {
+      "status": "pending",
       "bloque": "b04",
-      "file": "b04-06-vm.html",
       "title": "↗️ Rectas notables del plano",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 2,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b04-07",
+    "b04-07-cambio-plano.html": {
+      "status": "pending",
       "bloque": "b04",
-      "file": "b04-07-cambio-plano.html",
       "title": "🔗 Pertenencia: punto en recta/plano",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 2,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b04-08",
+    "b04-08-giro.html": {
+      "status": "pending",
       "bloque": "b04",
-      "file": "b04-08-giro.html",
       "title": "↔️ Paralelismo",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 2,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b04-09",
+    "b04-09-resumen-diedrico.html": {
+      "status": "pending",
       "bloque": "b04",
-      "file": "b04-09-resumen-diedrico.html",
       "title": "⊥ Perpendicularidad recta-plano",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 2,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b05-01",
+    "b05-01-cortes.html": {
+      "status": "pending",
       "bloque": "b05",
-      "file": "b05-01-cortes.html",
       "title": "✂️ Corte total",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 3,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b05-02",
+    "b05-02-corte-tipos.html": {
+      "status": "pending",
       "bloque": "b05",
-      "file": "b05-02-corte-tipos.html",
       "title": "🔪 Corte parcial y semicorte",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 3,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b06-01",
+    "b06-01-acotacion.html": {
+      "status": "pending",
       "bloque": "b06",
-      "file": "b06-01-acotacion.html",
       "title": "📐 Elementos de la cota",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 3,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b07-01",
+    "b07-01-intersecciones.html": {
+      "status": "pending",
       "bloque": "b07",
-      "file": "b07-01-intersecciones.html",
       "title": "🔀 Intersección recta-plano",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 3,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b08-01",
+    "b08-01-abatimientos.html": {
+      "status": "pending",
       "bloque": "b08",
-      "file": "b08-01-abatimientos.html",
       "title": "🔄 Concepto de abatimiento",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 4,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b09-01",
+    "b09-01-planos-conjunto.html": {
+      "status": "pending",
       "bloque": "b09",
-      "file": "b09-01-planos-conjunto.html",
       "title": "🏗️ Plano de conjunto",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 4,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b05-03",
+    "b05-03-corte-escalonado.html": {
+      "status": "pending",
       "bloque": "b05",
-      "file": "b05-03-corte-escalonado.html",
       "title": "🔪 Corte escalonado",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 3,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b05-04",
+    "b05-04-seccion-rotura.html": {
+      "status": "pending",
       "bloque": "b05",
-      "file": "b05-04-seccion-rotura.html",
       "title": "📐 Sección y rotura",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 3,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b05-05",
+    "b05-05-hachuras.html": {
+      "status": "pending",
       "bloque": "b05",
-      "file": "b05-05-hachuras.html",
       "title": "✏️ Hachuras y rayado",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 3,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b05-06",
+    "b05-06-ejercicios-cortes.html": {
+      "status": "pending",
       "bloque": "b05",
-      "file": "b05-06-ejercicios-cortes.html",
       "title": "📝 Ejercicios: cortes y secciones",
-      "status": "completed",
-      "last_completed": "2026-06-10"
+      "priority": 3,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b06-02",
-      "file": "b06-02-metodos-acotacion.html",
+    "b06-02-metodos-acotacion.html": {
+      "status": "pending",
+      "bloque": "b06",
       "title": "📐 Métodos de acotación",
-      "desc": "Cadena, paralela, combinada, coordenadas",
-      "bloque": "Bloque 6: Acotación",
-      "icon": "📏",
-      "skills": "td-acotacion",
-      "status": "completed",
-      "improvement_count": 0,
-      "priority": 2,
-      "last_completed": "2026-06-10"
+      "priority": 3,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b06-03",
-      "file": "b06-03-acotacion-coordenadas.html",
+    "b06-03-acotacion-coordenadas.html": {
+      "status": "pending",
+      "bloque": "b06",
       "title": "📐 Acotación por coordenadas",
-      "desc": "Tablas de cotas y acotación sistemática",
-      "bloque": "Bloque 6: Acotación",
-      "icon": "📏",
-      "skills": "td-acotacion",
-      "status": "completed",
-      "improvement_count": 0,
-      "priority": 2,
-      "last_completed": "2026-06-10"
+      "priority": 3,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b06-04",
-      "file": "b06-04-reglas-acotacion.html",
+    "b06-04-reglas-acotacion.html": {
+      "status": "pending",
+      "bloque": "b06",
       "title": "📐 Reglas de acotación ISO 129",
-      "desc": "Normas y reglas de acotación",
-      "bloque": "Bloque 6: Acotación",
-      "icon": "📏",
-      "skills": "td-acotacion",
-      "status": "completed",
-      "improvement_count": 0,
-      "priority": 2,
-      "last_completed": "2026-06-10"
+      "priority": 3,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b06-05",
-      "file": "b06-05-acotacion-piezas-complejas.html",
+    "b06-05-acotacion-piezas-complejas.html": {
+      "status": "pending",
+      "bloque": "b06",
       "title": "📐 Acotación en piezas complejas",
-      "desc": "Acotación funcional en conjuntos",
-      "bloque": "Bloque 6: Acotación",
-      "icon": "📏",
-      "skills": "td-acotacion",
-      "status": "completed",
-      "improvement_count": 0,
-      "priority": 2,
-      "last_completed": "2026-06-10"
+      "priority": 3,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b07-02",
-      "file": "b07-02-interseccion-plano-plano.html",
+    "b07-02-interseccion-plano-plano.html": {
+      "status": "pending",
+      "bloque": "b07",
       "title": "🔀 Intersección plano-plano",
-      "desc": "Método general y casos particulares",
-      "bloque": "Bloque 7: Intersecciones",
-      "icon": "🔀",
-      "skills": "td-intersecciones-vm",
-      "status": "completed",
-      "improvement_count": 0,
-      "priority": 2,
-      "last_completed": "2026-06-10"
+      "priority": 3,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b07-03",
-      "file": "b07-03-interseccion-recta-recta.html",
+    "b07-03-interseccion-recta-recta.html": {
+      "status": "pending",
+      "bloque": "b07",
       "title": "🔀 Intersección recta-recta",
-      "desc": "Cruzados y visibilidad",
-      "bloque": "Bloque 7: Intersecciones",
-      "icon": "🔀",
-      "skills": "td-intersecciones-vm",
-      "status": "completed",
-      "improvement_count": 0,
-      "priority": 2,
-      "last_completed": "2026-06-10"
+      "priority": 3,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b07-04",
-      "file": "b07-04-verdadera-magnitud.html",
+    "b07-04-verdadera-magnitud.html": {
+      "status": "pending",
+      "bloque": "b07",
       "title": "↗️ Verdadera magnitud",
-      "desc": "Giro y cambio de plano",
-      "bloque": "Bloque 7: Intersecciones",
-      "icon": "↗️",
-      "skills": "td-intersecciones-vm",
-      "status": "completed",
-      "improvement_count": 0,
-      "priority": 2,
-      "last_completed": "2026-06-10"
+      "priority": 3,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b08-02",
-      "file": "b08-02-abatimiento-ph.html",
+    "b08-02-abatimiento-ph.html": {
+      "status": "pending",
+      "bloque": "b08",
       "title": "🔄 Abatimiento sobre PH",
-      "desc": "Abatir planos sobre plano horizontal",
-      "bloque": "Bloque 8: Abatimientos y Giros",
-      "icon": "🔄",
-      "skills": "td-abatimientos-giros",
-      "status": "completed",
-      "improvement_count": 0,
-      "priority": 2,
-      "last_completed": "2026-06-10"
+      "priority": 4,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b08-03",
-      "file": "b08-03-giros.html",
+    "b08-03-giros.html": {
+      "status": "pending",
+      "bloque": "b08",
       "title": "🔄 Giros en sistema diédrico",
-      "desc": "Giros verticales y horizontales",
-      "bloque": "Bloque 8: Abatimientos y Giros",
-      "icon": "🔄",
-      "skills": "td-abatimientos-giros",
-      "status": "completed",
-      "improvement_count": 0,
-      "priority": 2,
-      "last_completed": "2026-06-10"
+      "priority": 4,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b09-02",
-      "file": "b09-02-lista-piezas.html",
+    "b09-02-lista-piezas.html": {
+      "status": "pending",
+      "bloque": "b09",
       "title": "📋 Lista de piezas",
-      "desc": "Bill of materials y marcas",
-      "bloque": "Bloque 9: Planos de Conjunto",
-      "icon": "📋",
-      "skills": "td-planos-conjunto",
-      "status": "completed",
-      "improvement_count": 0,
-      "priority": 2,
-      "last_completed": "2026-06-10"
+      "priority": 4,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     },
-    {
-      "id": "b09-03",
-      "file": "b09-03-despiece.html",
+    "b09-03-despiece.html": {
+      "status": "pending",
+      "bloque": "b09",
       "title": "🔧 Planos de despiece",
-      "desc": "Despiece y vista explosiva",
-      "bloque": "Bloque 9: Planos de Conjunto",
-      "icon": "🔧",
-      "skills": "td-planos-conjunto",
-      "status": "completed",
-      "improvement_count": 0,
-      "priority": 2,
-      "last_completed": "2026-06-10"
+      "priority": 4,
+      "improvements": [],
+      "scores": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 0,
+        "error_common": 0,
+        "css_coherence": 0
+      },
+      "last_improved": null,
+      "improvement_count": 0
     }
-  ],
-  "progreso_global": 34,
-  "ult_actualizacion": "2026-06-10"
+  },
+  "audit": {
+    "last_css_audit": null,
+    "css_coherence_score": 0,
+    "total_themes_audited": 0
+  }
 }
