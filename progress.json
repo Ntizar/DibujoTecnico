@@ -854,7 +854,7 @@
       "improvement_count": 1
     },
     "b05-01-cortes.html": {
-      "status": "improved_1",
+      "status": "improved_2",
       "bloque": "b05",
       "title": "✂️ Corte total",
       "priority": 3,
@@ -869,18 +869,28 @@
             "error_common",
             "css_coherence"
           ]
+        },
+        {
+          "date": "2026-06-10",
+          "description": "SVG interactivo con onclick/onmouseover para explorar corte total (3 zonas clicables + toggle mostrar/ocultar), explicación visual paso a paso 4 pasos con mini-SVGs, 3 ejercicios nuevos (V/F, identificar error visual, asociar materiales), CSS: step-indicator, step-dot, feedback.correct/incorrect, comparison-side, toggle-btn, box-problema, real-world-badge, corrección de bugs HTML (atributos onclick sin cerrar comillas)",
+          "dimensions_improved": [
+            "svg_interactive",
+            "text_explanation",
+            "exercises",
+            "css_coherence"
+          ]
         }
       ],
       "scores": {
-        "svg_interactive": 7,
-        "exercises": 7,
-        "text_explanation": 7,
+        "svg_interactive": 10,
+        "exercises": 10,
+        "text_explanation": 10,
         "real_world": 7,
         "error_common": 7,
-        "css_coherence": 7
+        "css_coherence": 10
       },
       "last_improved": "2026-06-10",
-      "improvement_count": 1
+      "improvement_count": 2
     },
     "b05-02-corte-tipos.html": {
       "status": "improved_1",

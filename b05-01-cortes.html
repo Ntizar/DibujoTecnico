@@ -1,284 +1,765 @@
-     1|<!DOCTYPE html>
-     2|<html lang="es">
-     3|<head>
-     4|<meta charset="UTF-8">
-     5|<meta name="viewport" content="width=device-width, initial-scale=1.0">
-     6|<title>✂️ S05.1: Cortes y secciones — Dibujo Técnico</title>
-     7|<style>
-     8|:root{--azul:#2563eb;--naranja:#f97316;--verde:#10b981;--rojo:#ef4444;--fondo:#fff;--texto:#1e293b;--gris:#94a3b8;--azul-claro:#eff6ff;--naranja-claro:#fff7ed;--verde-claro:#ecfdf5;--rojo-claro:#fef2f2;--pura-claro:#faf5ff;--pura:#a855f7}
-     9|*{margin:0;padding:0;box-sizing:border-box}
-    10|body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-gradient(135deg,#f8faff 0%,#fffaf5 100%);color:var(--texto);line-height:1.7}
-    11|.header{background:linear-gradient(135deg,var(--azul),#1d4ed8);color:#fff;padding:2rem 1.5rem;text-align:center}
-    12|.header h1{font-size:1.8rem;margin-bottom:.5rem}
-    13|.header p{opacity:.9;font-size:1rem}
-    14|.progress-bar{height:4px;background:rgba(255,255,255,.3);border-radius:2px;margin-top:1rem;overflow:hidden}
-    15|.progress-fill{height:100%;background:#fff;border-radius:2px;width:0%;transition:width .3s}
-    16|.container{max-width:900px;margin:0 auto;padding:1.5rem}
-    17|.chapter{margin-bottom:2.5rem}
-    18|.chapter-title{font-size:1.4rem;color:var(--azul);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:2px solid var(--azul-claro)}
-    19|.box{padding:1rem 1.2rem;border-radius:10px;margin:1rem 0;border-left:4px solid;box-shadow:0 1px 3px rgba(0,0,0,.04)}
-    20|.box-teoria{background:var(--azul-claro);border-color:var(--azul)}
-    21|.box-ejemplo{background:var(--naranja-claro);border-color:var(--naranja)}
-    22|.box-error{background:var(--rojo-claro);border-color:var(--rojo)}
-    23|.box-idea{background:var(--pura-claro);border-color:var(--pura)}
-    24|.box-success{background:var(--verde-claro);border-color:var(--verde)}
-    25|.box strong{display:block;margin-bottom:.3rem}
-    26|.svg-container{background:#f8fafc;border-radius:12px;padding:1.5rem;margin:1.5rem 0;text-align:center;border:2px solid #e2e8f0}
-    27|.svg-container svg{max-width:100%;height:auto}
-    28|.svg-container svg text{font-family:Inter,system-ui,sans-serif}
-    29|.interactive{background:#f1f5f9;border-radius:12px;padding:1.5rem;margin:1.5rem 0}
-    30|.interactive h3{color:var(--azul);margin-bottom:1rem;font-size:1.1rem}
-    31|.interactive button{background:var(--azul);color:#fff;border:none;padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.95rem;margin:.3rem}
-    32|.interactive button:hover{background:#1d4ed8}
-    33|.result{margin-top:.8rem;padding:.8rem;border-radius:6px;font-weight:600;min-height:2rem}
-    34|.result.ok{background:var(--verde-claro);color:#065f46}
-    35|.result.fail{background:var(--rojo-claro);color:#991b1b}
-    36|.exercises{margin:1.5rem 0}
-    37|.exercise{background:#f1f5f9;border-radius:8px;padding:1rem;margin:.8rem 0}
-    38|.exercise p{font-weight:600;margin-bottom:.5rem}
-    39|.quiz-options{display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0}
-    40|.quiz-btn{padding:.6rem 1.5rem;border-radius:8px;border:2px solid var(--azul);background:#fff;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all .2s}
-    41|.quiz-btn:hover{background:var(--azul-claro)}
-    42|.quiz-btn.correct{background:var(--verde);color:#fff;border-color:var(--verde)}
-    43|.quiz-btn.wrong{background:var(--rojo);color:#fff;border-color:var(--rojo)}
-    44|.summary{background:var(--azul-claro);border-radius:12px;padding:1.5rem;margin:2rem 0}
-    45|.summary h3{color:var(--azul);margin-bottom:.8rem}
-    46|.summary ul{list-style:none;padding:0}
-    47|.summary li{padding:.3rem 0;padding-left:1.5rem;position:relative}
-    48|.summary li::before{content:"✓";color:var(--verde);font-weight:bold;position:absolute;left:0}
-    49|.nav{display:flex;justify-content:space-between;margin:2rem 0;padding:1rem 0;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0}
-    50|.nav a{color:var(--azul);text-decoration:none;font-weight:600;padding:.5rem 1rem;border-radius:6px}
-    51|.nav a:hover{background:var(--azul-claro)}
-    52|.nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
-    53|.footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
-    54|</style>
-    55|</head>
-    56|<body>
-    57|<header class="header">
-    58|<h1>✂️ S05.1: Cortes y secciones</h1>
-    59|<p>Dibujo Técnico — Cortes y Secciones</p>
-    60|<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
-    61|</header>
-    62|<main class="container">
-    63|
-    64|<section class="chapter">
-    65|<h2 class="chapter-title">🎯 ¿Qué vamos a aprender?</h2>
-    66|<div class="box box-idea">
-    67|<strong>💡 Idea clave</strong>
-    68|Un corte es como rebanar un pan: cortas la pieza con un plano para ver lo que hay dentro. La sección es la cara que queda al cortar. Los cortes se usan cuando hay detalles internos que no se ven en las vistas normales.
-    69|</div>
-    70|<p>En esta sesión aprenderás a:</p>
-    71|<ul style="margin:.8rem 0 1rem 1.5rem">
-    72|<li>Diferenciar corte de sección</li>
-    73|<li>Saber cuándo usar cortes</li>
-    74|<li>Entender las líneas de corte</li>
-    75|<li>Representar materiales en secciones</li>
-    76|</ul>
-    77|</section>
-    78|
-    79|<section class="chapter">
-    80|<h2 class="chapter-title">1️⃣ Corte vs Sección</h2>
-    81|<div class="box box-teoria">
-    82|<strong>📖 Teoría</strong>
-    83|<strong>🔹 CORTE:</strong><br>
-    84|• Se elimina una parte de la pieza para ver el interior<br>
-    85|• Se muestra la sección + lo que queda detrás<br>
-    86|• Se indica con líneas de corte y flechas<br><br>
-    87|<strong>🔹 SECCIÓN:</strong><br>
-    88|• Es la cara que queda al cortar<br>
-    89|• Se representa con líneas de cotas diagonales (rayado)<br>
-    90|• El rayado indica el material (acero, aluminio, etc.)<br><br>
-    91|<strong>🔹 ¿Cuándo usar corte?</strong><br>
-    92|• Cuando hay agujeros internos no visibles<br>
-    93|• Cuando hay formas internas complejas<br>
-    94|• Cuando las líneas ocultas confunden
-    95|</div>
-    96|<div class="box box-ejemplo">
-    97|<strong>🔍 Ejemplo 1</strong>
-    98|Un tubo con agujero interno:<br>
-    99|Corte longitudinal → se ve el agujero y las paredes
-   100|</div>
-   101|<div class="box box-ejemplo">
-   102|<strong>🔍 Ejemplo 2</strong>
-   103|Una pieza con nervaduras:<br>
-   104|Corte transversal → se ven las nervaduras y su forma
-   105|</div>
-   106|</section>
-   107|
-   108|<section class="chapter">
-   109|<h2 class="chapter-title">2️⃣ Visualiza corte y sección</h2>
-   110|<div class="svg-container">
-   111|<svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
-   112|<!-- Fondo -->
-   113|<rect x="0" y="0" width="600" height="300" fill="#f8fafc" rx="8"/>
-   114|<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Corte y sección</text>
-   115|<!-- Pieza sin corte -->
-   116|<text x="150" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">SIN CORTE</text>
-   117|<rect x="80" y="80" width="140" height="100" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
-   118|<circle cx="150" cy="130" r="25" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,2"/>
-   119|<text x="150" y="135" text-anchor="middle" font-size="9" fill="#94a3b8">agujero (oculto)</text>
-   120|<!-- Pieza con corte -->
-   121|<text x="450" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#10b981">CON CORTE</text>
-   122|<rect x="380" y="80" width="140" height="100" fill="#eff6ff" stroke="#10b981" stroke-width="2"/>
-   123|<!-- Sección rayada -->
-   124|<polygon points="405,80 405,180 495,180 495,80" fill="#fff7ed" stroke="#f97316" stroke-width="1"/>
-   125|<!-- Rayado -->
-   126|<line x1="410" y1="85" x2="420" y2="175" stroke="#f97316" stroke-width="0.5"/>
-   127|<line x1="420" y1="85" x2="430" y2="175" stroke="#f97316" stroke-width="0.5"/>
-   128|<line x1="430" y1="85" x2="440" y2="175" stroke="#f97316" stroke-width="0.5"/>
-   129|<line x1="440" y1="85" x2="450" y2="175" stroke="#f97316" stroke-width="0.5"/>
-   130|<line x1="450" y1="85" x2="460" y2="175" stroke="#f97316" stroke-width="0.5"/>
-   131|<line x1="460" y1="85" x2="470" y2="175" stroke="#f97316" stroke-width="0.5"/>
-   132|<line x1="470" y1="85" x2="480" y2="175" stroke="#f97316" stroke-width="0.5"/>
-   133|<line x1="480" y1="85" x2="490" y2="175" stroke="#f97316" stroke-width="0.5"/>
-   134|<circle cx="450" cy="130" r="25" fill="#fff7ed" stroke="#10b981" stroke-width="2"/>
-   135|<text x="450" y="135" text-anchor="middle" font-size="9" fill="#10b981">agujero (visible)</text>
-   136|<!-- Leyenda -->
-   137|<rect x="20" y="240" width="560" height="45" fill="#ecfdf5" rx="6"/>
-   138|<text x="300" y="260" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">Corte: muestra interior + lo que queda detrás | Sección: cara cortada con rayado</text>
-   139|<text x="300" y="278" text-anchor="middle" font-size="10" fill="#64748b">Rayado: líneas diagonales que indican el material (acero, aluminio, etc.)</text>
-   140|</svg>
-   141|</div>
-   142|</section>
-   143|
-   144|<section class="chapter">
-   145|<h2 class="chapter-title">📝 Ejercicios</h2>
-   146|<div class="exercises">
-   147|
-   148|<div class="exercise">
-   149|<p>📐 Ejercicio 1: ¿Qué se muestra en un corte?</p>
-   150|<div class="quiz-options">
-   151|<button class="quiz-btn" onclick="checkAnswer(this, true)">La sección + lo que queda detrás</button>
-   152|<button class="quiz-btn" onclick="checkAnswer(this, false">Solo la sección</button>
-   153|<button class="quiz-btn" onclick="checkAnswer(this, false">Solo el exterior</button>
-   154|<button class="quiz-btn" onclick="checkAnswer(this, false">Nada</button>
-   155|</div>
-   156|<p class="feedback"></p>
-   157|</div>
-   158|
-   159|<div class="exercise">
-   160|<p>📐 Ejercicio 2: ¿Qué indica el rayado?</p>
-   161|<div class="quiz-options">
-   162|<button class="quiz-btn" onclick="checkAnswer(this, true)">El material de la pieza</button>
-   163|<button class="quiz-btn" onclick="checkAnswer(this, false">La escala</button>
-   164|<button class="quiz-btn" onclick="checkAnswer(this, false">El tipo de línea</button>
-   165|<button class="quiz-btn" onclick="checkAnswer(this, false">La orientación</button>
-   166|</div>
-   167|<p class="feedback"></p>
-   168|</div>
-   169|
-   170|<div class="exercise">
-   171|<p>📐 Ejercicio 3: ¿Cuándo se usa un corte?</p>
-   172|<div class="quiz-options">
-   173|<button class="quiz-btn" onclick="checkAnswer(this, true)">Cuando hay detalles internos no visibles</button>
-   174|<button class="quiz-btn" onclick="checkAnswer(this, false">Siempre</button>
-   175|<button class="quiz-btn" onclick="checkAnswer(this, false">Solo en piezas pequeñas</button>
-   176|<button class="quiz-btn" onclick="checkAnswer(this, false">Solo en piezas grandes</button>
-   177|</div>
-   178|<p class="feedback"></p>
-   179|</div>
-   180|
-   181|<div class="exercise">
-   182|<p>📐 Ejercicio 4: ¿Qué es la sección?</p>
-   183|<div class="quiz-options">
-   184|<button class="quiz-btn" onclick="checkAnswer(this, true)">La cara que queda al cortar</button>
-   185|<button class="quiz-btn" onclick="checkAnswer(this, false">El exterior de la pieza</button>
-   186|<button class="quiz-btn" onclick="checkAnswer(this, false">La escala</button>
-   187|<button class="quiz-btn" onclick="checkAnswer(this, false">La vista auxiliar</button>
-   188|</div>
-   189|<p class="feedback"></p>
-   190|</div>
-   191|
-   192|<div class="exercise">
-   193|<p>📐 Ejercicio 5: ¿Cuántos tipos principales de corte existen?</p>
-   194|<input type="text" id="ex5" placeholder="Número" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
-   195|<button onclick="checkExercise('ex5', '3', this)">Comprobar</button>
-   196|<p class="feedback"></p>
-   197|</div>
-   198|
-   199|</div>
-   200|</section>
-   201|
-   202|<div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ SIN CORTE</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="50" y="30" width="100" height="70" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/><line x1="70" y1="50" x2="130" y2="50" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/><line x1="70" y1="70" x2="130" y2="70" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/><line x1="70" y1="90" x2="130" y2="90" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/><text x="100" y="120" text-anchor="middle" font-size="9" fill="#ef4444">Líneas ocultas = confuso</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ CON CORTE</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="50" y="30" width="100" height="70" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/><rect x="70" y="50" width="30" height="30" fill="#10b981" opacity="0.3"/><rect x="110" y="60" width="20" height="20" fill="#10b981" opacity="0.3"/><text x="100" y="120" text-anchor="middle" font-size="9" fill="#10b981">Interior visible ✓</text></svg></div></div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>✂️ S05.1: Cortes y secciones — Dibujo Técnico</title>
+<style>
+:root{--azul:#2563eb;--naranja:#f97316;--verde:#10b981;--rojo:#ef4444;--fondo:#fff;--texto:#1e293b;--gris:#94a3b8;--azul-claro:#eff6ff;--naranja-claro:#fff7ed;--verde-claro:#ecfdf5;--rojo-claro:#fef2f2;--pura-claro:#faf5ff;--pura:#a855f7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-gradient(135deg,#f8faff 0%,#fffaf5 100%);color:var(--texto);line-height:1.7}
+.header{background:linear-gradient(135deg,var(--azul),#1d4ed8);color:#fff;padding:2rem 1.5rem;text-align:center}
+.header h1{font-size:1.8rem;margin-bottom:.5rem}
+.header p{opacity:.9;font-size:1rem}
+.progress-bar{height:4px;background:rgba(255,255,255,.3);border-radius:2px;margin-top:1rem;overflow:hidden}
+.progress-fill{height:100%;background:#fff;border-radius:2px;width:0%;transition:width .3s}
+.container{max-width:900px;margin:0 auto;padding:1.5rem}
+.chapter{margin-bottom:2.5rem}
+.chapter-title{font-size:1.4rem;color:var(--azul);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:2px solid var(--azul-claro)}
+.box{padding:1rem 1.2rem;border-radius:10px;margin:1rem 0;border-left:4px solid;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.box-teoria{background:var(--azul-claro);border-color:var(--azul)}
+.box-ejemplo{background:var(--naranja-claro);border-color:var(--naranja)}
+.box-error{background:var(--rojo-claro);border-color:var(--rojo)}
+.box-idea{background:var(--pura-claro);border-color:var(--pura)}
+.box-success{background:var(--verde-claro);border-color:var(--verde)}
+.box-problema{background:#fff1f2;border-color:var(--rojo);border-left:4px solid var(--rojo)}
+.box-problema strong{color:var(--rojo)}
+.box strong{display:block;margin-bottom:.3rem}
+.svg-container{background:#f8fafc;border-radius:12px;padding:1.5rem;margin:1.5rem 0;text-align:center;border:2px solid #e2e8f0}
+.svg-container svg{max-width:100%;height:auto}
+.svg-container svg text{font-family:Inter,system-ui,sans-serif}
+.interactive{background:#f1f5f9;border-radius:12px;padding:1.5rem;margin:1.5rem 0}
+.interactive h3{color:var(--azul);margin-bottom:1rem;font-size:1.1rem}
+.interactive button{background:var(--azul);color:#fff;border:none;padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.95rem;margin:.3rem}
+.interactive button:hover{background:#1d4ed8}
+.result{margin-top:.8rem;padding:.8rem;border-radius:6px;font-weight:600;min-height:2rem}
+.result.ok{background:var(--verde-claro);color:#065f46}
+.result.fail{background:var(--rojo-claro);color:#991b1b}
+.exercises{margin:1.5rem 0}
+.exercise{background:#f1f5f9;border-radius:8px;padding:1rem;margin:.8rem 0}
+.exercise p{font-weight:600;margin-bottom:.5rem}
+.quiz-options{display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0}
+.quiz-btn{padding:.6rem 1.5rem;border-radius:8px;border:2px solid var(--azul);background:#fff;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all .2s}
+.quiz-btn:hover{background:var(--azul-claro)}
+.quiz-btn.correct{background:var(--verde);color:#fff;border-color:var(--verde)}
+.quiz-btn.wrong{background:var(--rojo);color:#fff;border-color:var(--rojo)}
+.summary{background:var(--azul-claro);border-radius:12px;padding:1.5rem;margin:2rem 0}
+.summary h3{color:var(--azul);margin-bottom:.8rem}
+.summary ul{list-style:none;padding:0}
+.summary li{padding:.3rem 0;padding-left:1.5rem;position:relative}
+.summary li::before{content:"✓";color:var(--verde);font-weight:bold;position:absolute;left:0}
+.nav{display:flex;justify-content:space-between;margin:2rem 0;padding:1rem 0;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0}
+.nav a{color:var(--azul);text-decoration:none;font-weight:600;padding:.5rem 1rem;border-radius:6px}
+.nav a:hover{background:var(--azul-claro)}
+.nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
+.footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+
+/* === Template base: feedback === */
+.feedback{margin-top:.5rem;padding:.6rem 1rem;border-radius:6px;font-weight:600;min-height:1.5rem;transition:all .3s}
+.feedback.correct{background:var(--verde-claro);color:#065f46;border:1px solid var(--verde)}
+.feedback.incorrect{background:var(--rojo-claro);color:#991b1b;border:1px solid var(--rojo)}
+
+/* === Template base: comparison === */
+.comparison{display:flex;gap:1.5rem;margin:1.5rem 0;flex-wrap:wrap}
+.comparison-side{flex:1;min-width:250px;background:#f8fafc;border-radius:10px;padding:1rem;text-align:center;border:2px solid #e2e8f0}
+.comparison-side svg{max-width:100%;height:auto}
+
+/* === Template base: step-indicator === */
+.step-indicator{display:flex;align-items:flex-start;gap:1.2rem;margin:1.2rem 0;padding:1rem;background:#f8fafc;border-radius:10px;border:1px solid #e2e8f0;transition:all .3s}
+.step-indicator:hover{background:var(--azul-claro);border-color:var(--azul)}
+.step-indicator:hover .step-dot{background:var(--azul);color:#fff;transform:scale(1.15)}
+.step-indicator:hover .step-content{color:var(--azul)}
+.step-dot{width:36px;height:36px;border-radius:50%;background:var(--azul);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.95rem;flex-shrink:0;transition:all .3s}
+.step-content{flex:1}
+.step-content h4{margin-bottom:.3rem;color:var(--texto)}
+.step-content p{font-size:.92rem;color:#475569}
+
+/* === Template base: toggle-btn === */
+.toggle-btn{background:var(--azul);color:#fff;border:none;padding:.6rem 1.4rem;border-radius:8px;cursor:pointer;font-size:1rem;font-weight:600;transition:all .2s;display:inline-flex;align-items:center;gap:.5rem}
+.toggle-btn:hover{background:#1d4ed8;transform:translateY(-1px)}
+.toggle-btn.active{background:var(--naranja)}
+
+/* === Template base: real-world-badge === */
+.real-world-badge{display:inline-block;background:var(--naranja-claro);color:var(--naranja);padding:.2rem .7rem;border-radius:20px;font-size:.85rem;font-weight:600;margin-bottom:.5rem}
+
+/* === SVG interactivo styles === */
+.svg-interactive-part{cursor:pointer;transition:all .3s}
+.svg-interactive-part:hover{opacity:.7;stroke-width:3}
+.svg-interactive-part.selected{stroke:var(--naranja);stroke-width:3;filter:drop-shadow(0 0 4px rgba(249,115,22,.5))}
+.cut-plane{stroke:var(--rojo);stroke-width:2;stroke-dasharray:8,4;opacity:.8}
+.section-area{fill:var(--naranja);opacity:.25;transition:opacity .5s}
+.section-area.visible{opacity:.6}
+.hidden-part{opacity:.3;transition:opacity .5s}
+</style>
+</head>
+<body>
+<header class="header">
+<h1>✂️ S05.1: Cortes y secciones</h1>
+<p>Dibujo Técnico — Cortes y Secciones</p>
+<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+</header>
+<main class="container">
+
+<section class="chapter">
+<h2 class="chapter-title">🎯 ¿Qué vamos a aprender?</h2>
+<div class="box box-idea">
+<strong>💡 Idea clave</strong>
+Un corte es como rebanar un pan: cortas la pieza con un plano para ver lo que hay dentro. La sección es la cara que queda al cortar. Los cortes se usan cuando hay detalles internos que no se ven en las vistas normales.
+</div>
+<p>En esta sesión aprenderás a:</p>
+<ul style="margin:.8rem 0 1rem 1.5rem">
+<li>Diferenciar corte de sección</li>
+<li>Saber cuándo usar cortes</li>
+<li>Entender las líneas de corte</li>
+<li>Representar materiales en secciones</li>
+</ul>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">1️⃣ Corte vs Sección</h2>
+<div class="box box-teoria">
+<strong>📖 Teoría</strong>
+<strong>🔹 CORTE:</strong><br>
+• Se elimina una parte de la pieza para ver el interior<br>
+• Se muestra la sección + lo que queda detrás<br>
+• Se indica con líneas de corte y flechas<br><br>
+<strong>🔹 SECCIÓN:</strong><br>
+• Es la cara que queda al cortar<br>
+• Se representa con líneas de cotas diagonales (rayado)<br>
+• El rayado indica el material (acero, aluminio, etc.)<br><br>
+<strong>🔹 ¿Cuándo usar corte?</strong><br>
+• Cuando hay agujeros internos no visibles<br>
+• Cuando hay formas internas complejas<br>
+• Cuando las líneas ocultas confunden
+</div>
+<div class="box box-ejemplo">
+<strong>🔍 Ejemplo 1</strong>
+Un tubo con agujero interno:<br>
+Corte longitudinal → se ve el agujero y las paredes
+</div>
+<div class="box box-ejemplo">
+<strong>🔍 Ejemplo 2</strong>
+Una pieza con nervaduras:<br>
+Corte transversal → se ven las nervaduras y su forma
+</div>
+</section>
+
+<!-- ===== SVG INTERACTIVO: Cómo se hace un corte total ===== -->
+<section class="chapter">
+<h2 class="chapter-title">🖱️ SVG Interactivo: Haz el corte tú mismo</h2>
+<div class="interactive">
+<h3>🔪 Haz clic en las zonas de la pieza para simular el corte total</h3>
+<p style="margin-bottom:.8rem;color:#64748b;font-size:.9rem">Pulsa <strong>"Mostrar corte"</strong> para ver el resultado. Pasa el ratón sobre las zonas numeradas para ver qué pasa al cortar.</p>
+<div style="margin-bottom:.8rem">
+<button class="toggle-btn" id="cutToggle" onclick="toggleCut()">🔪 Mostrar corte</button>
+<button class="toggle-btn" id="resetBtn" onclick="resetCut()" style="background:var(--gris)">↺ Resetear</button>
+</div>
+<div class="svg-container">
+<svg viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg" id="cutSvg">
+<!-- Título -->
+<text x="300" y="22" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Corte total — Haz clic para explorar</text>
+
+<!-- Pieza original (izquierda) -->
+<text x="150" y="50" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">PIEZA ORIGINAL</text>
+<rect x="60" y="60" width="180" height="120" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="4"/>
+<!-- Agujero interno (oculto) -->
+<circle cx="150" cy="120" r="30" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,3" id="holeOriginal"/>
+<text x="150" y="124" text-anchor="middle" font-size="9" fill="#94a3b8">⌀ 30 (oculto)</text>
+<!-- Ranura interna -->
+<rect x="130" y="100" width="40" height="8" fill="none" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2" rx="2"/>
+
+<!-- Flecha indicadora -->
+<line x1="255" y1="120" x2="310" y2="120" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+<defs><marker id="arrowGray" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#64748b"/></marker></defs>
+
+<!-- Pieza cortada (derecha) -->
+<text x="450" y="50" text-anchor="middle" font-size="11" font-weight="bold" fill="#10b981">CON CORTE TOTAL</text>
+<rect x="360" y="60" width="180" height="120" fill="#ecfdf5" stroke="#10b981" stroke-width="2" rx="4"/>
+
+<!-- Plano de corte (rojo, punteado) -->
+<line x1="450" y1="55" x2="450" y2="185" class="cut-plane" id="cutPlane"/>
+<text x="450" y="50" text-anchor="middle" font-size="8" fill="#ef4444" font-weight="bold">PLANO DE CORTE</text>
+
+<!-- Sección rayada (izquierda del corte) -->
+<polygon id="sectionLeft" points="360,60 360,180 450,180 450,60" class="section-area" opacity="0"/>
+<!-- Rayado diagonal -->
+<g id="hatchingLeft" opacity="0">
+<line x1="365" y1="65" x2="375" y2="175" stroke="#f97316" stroke-width=".6"/>
+<line x1="375" y1="65" x2="385" y2="175" stroke="#f97316" stroke-width=".6"/>
+<line x1="385" y1="65" x2="395" y2="175" stroke="#f97336" stroke-width=".6"/>
+<line x1="395" y1="65" x2="405" y2="175" stroke="#f97316" stroke-width=".6"/>
+<line x1="405" y1="65" x2="415" y2="175" stroke="#f97316" stroke-width=".6"/>
+<line x1="415" y1="65" x2="425" y2="175" stroke="#f97316" stroke-width=".6"/>
+<line x1="425" y1="65" x2="435" y2="175" stroke="#f97316" stroke-width=".6"/>
+<line x1="435" y1="65" x2="445" y2="175" stroke="#f97316" stroke-width=".6"/>
+</g>
+
+<!-- Agujero visible (derecha del corte) -->
+<circle cx="450" cy="120" r="30" fill="#ecfdf5" stroke="#10b981" stroke-width="2" id="holeCortado"/>
+<text x="450" y="124" text-anchor="middle" font-size="9" fill="#10b981" font-weight="600">⌀ 30 (visible ✓)</text>
+<rect x="430" y="100" width="40" height="8" fill="#ecfdf5" stroke="#10b981" stroke-width="1" rx="2"/>
+
+<!-- Zonas interactivas numeradas -->
+<g id="interactiveZones">
+<!-- Zona 1: Agujero -->
+<circle cx="150" cy="120" r="30" fill="transparent" stroke="none" class="svg-interactive-part" data-zone="1"
+onmouseover="showZoneInfo(1)" onmouseout="hideZoneInfo()" onclick="selectZone(1)"/>
+<rect x="138" y="88" width="24" height="24" fill="var(--azul)" rx="12" opacity=".8"/>
+<text x="150" y="105" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">1</text>
+
+<!-- Zona 2: Plano de corte -->
+<rect x="438" y="80" width="24" height="24" fill="var(--rojo)" rx="12" opacity=".8" class="svg-interactive-part" data-zone="2"
+onmouseover="showZoneInfo(2)" onmouseout="hideZoneInfo()" onclick="selectZone(2)"/>
+<text x="450" y="97" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">2</text>
+
+<!-- Zona 3: Rayado/material -->
+<rect x="398" y="80" width="24" height="24" fill="var(--naranja)" rx="12" opacity=".8" class="svg-interactive-part" data-zone="3"
+onmouseover="showZoneInfo(3)" onmouseout="hideZoneInfo()" onclick="selectZone(3)"/>
+<text x="410" y="97" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">3</text>
+</g>
+
+<!-- Panel de info -->
+<rect x="100" y="210" width="400" height="60" fill="#f1f5f9" rx="8" stroke="#e2e8f0" stroke-width="1"/>
+<text x="300" y="235" text-anchor="middle" font-size="12" fill="#64748b" id="zoneInfo">👆 Pasa el ratón o haz clic en los números 1, 2, 3 para aprender sobre el corte</text>
+<text x="300" y="255" text-anchor="middle" font-size="10" fill="#94a3b8" id="zoneInfoDetail">Cada zona muestra un concepto clave del corte total</text>
+
+<!-- Leyenda inferior -->
+<rect x="20" y="290" width="560" height="40" fill="#ecfdf5" rx="6"/>
+<text x="300" y="310" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">Corte total: el plano corta la pieza por completo → se ve toda la sección + lo que queda detrás</text>
+<text x="300" y="326" text-anchor="middle" font-size="10" fill="#64748b">Rayado: líneas diagonales a 45° que indican el material cortado (acero, aluminio, fundición...)</text>
+</svg>
+</div>
+</div>
+</section>
+
+<!-- ===== EXPLICACIÓN VISUAL PASO A PASO (4 pasos) ===== -->
+<section class="chapter">
+<h2 class="chapter-title">📐 Paso a paso: Cómo hacer un corte total</h2>
+<p style="margin-bottom:1rem;color:#475569">Sigue estos 4 pasos para representar correctamente un corte total en un plano técnico:</p>
+
+<!-- Paso 1 -->
+<div class="step-indicator" id="step1">
+<div class="step-dot">1</div>
+<div class="step-content">
+<h4>Dibujar la pieza sin corte</h4>
+<p>Representa la pieza en vista principal con todas las aristas visibles. Los agujeros y huecos internos se dibujan con <strong>líneas discontinuas</strong> (grises), pero es difícil de leer.</p>
+</div>
+</div>
+<!-- SVG mini-paso 1 -->
+<div class="svg-container" style="margin-bottom:1rem">
+<svg viewBox="0 0 500 120" xmlns="http://www.w3.org/2000/svg">
+<rect x="20" y="10" width="460" height="100" fill="#eff6ff" rx="6" stroke="#2563eb" stroke-width="1"/>
+<text x="250" y="30" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="bold">PASO 1: Pieza original con líneas ocultas</text>
+<!-- Pieza rectangular -->
+<rect x="80" y="45" width="140" height="50" fill="#fff" stroke="#2563eb" stroke-width="2" rx="3"/>
+<!-- Agujero con línea discontinua -->
+<circle cx="150" cy="70" r="15" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="150" y="88" text-anchor="middle" font-size="8" fill="#94a3b8">⌀ oculto</text>
+<!-- Flecha -->
+<line x1="240" y1="70" x2="270" y2="70" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+<!-- Pieza cortada -->
+<rect x="280" y="45" width="140" height="50" fill="#ecfdf5" stroke="#10b981" stroke-width="2" rx="3"/>
+<!-- Corte visible -->
+<line x1="350" y1="45" x2="350" y2="95" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="6,3"/>
+<circle cx="350" cy="70" r="15" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+<text x="350" y="88" text-anchor="middle" font-size="8" fill="#10b981">⌀ visible ✓</text>
+<text x="350" y="115" text-anchor="middle" font-size="9" fill="#10b981" font-weight="600">Resultado del corte</text>
+</svg>
+</div>
+
+<!-- Paso 2 -->
+<div class="step-indicator" id="step2">
+<div class="step-dot">2</div>
+<div class="step-content">
+<h4>Colocar el plano de corte</h4>
+<p>Trazamos una <strong>línea de corte</strong> (roja, con trazo largo-corto) que atraviesa la pieza por donde queremos ver el interior. Esta línea debe pasar por los elementos que queremos revelar (agujeros, ranuras, etc.).</p>
+</div>
+</div>
+<div class="svg-container" style="margin-bottom:1rem">
+<svg viewBox="0 0 500 120" xmlns="http://www.w3.org/2000/svg">
+<rect x="20" y="10" width="460" height="100" fill="#fff7ed" rx="6" stroke="#f97316" stroke-width="1"/>
+<text x="250" y="30" text-anchor="middle" font-size="11" fill="#f97316" font-weight="bold">PASO 2: Plano de corte atraviesa la pieza</text>
+<!-- Pieza -->
+<rect x="100" y="40" width="160" height="55" fill="#fff" stroke="#2563eb" stroke-width="2" rx="3"/>
+<circle cx="180" cy="67" r="18" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,2"/>
+<!-- Plano de corte (rojo) -->
+<line x1="180" y1="20" x2="180" y2="105" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="10,4"/>
+<!-- Flechas de visión -->
+<polygon points="180,22 174,30 186,30" fill="#ef4444"/>
+<polygon points="180,103 174,95 186,95" fill="#ef4444"/>
+<text x="180" y="18" text-anchor="middle" font-size="8" fill="#ef4444" font-weight="bold">PLANO</text>
+<text x="180" y="118" text-anchor="middle" font-size="8" fill="#ef4444" font-weight="bold">DE CORTE</text>
+<!-- Flechas dirección vista -->
+<text x="130" y="72" text-anchor="middle" font-size="10" fill="#64748b">👁️ Vista</text>
+</svg>
+</div>
+
+<!-- Paso 3 -->
+<div class="step-indicator" id="step3">
+<div class="step-dot">3</div>
+<div class="step-content">
+<h4>Representar la sección con rayado</h4>
+<p>La zona cortada se rellena con <strong>rayado</strong> (líneas diagonales paralelas a 45°). El espaciamiento del rayado depende del tamaño de la sección: más juntas para secciones pequeñas, más separadas para grandes.</p>
+</div>
+</div>
+<div class="svg-container" style="margin-bottom:1rem">
+<svg viewBox="0 0 500 120" xmlns="http://www.w3.org/2000/svg">
+<rect x="20" y="10" width="460" height="100" fill="#faf5ff" rx="6" stroke="#a855f7" stroke-width="1"/>
+<text x="250" y="30" text-anchor="middle" font-size="11" fill="#a855f7" font-weight="bold">PASO 3: Sección con rayado diagonal</text>
+<!-- Pieza cortada con rayado -->
+<rect x="100" y="40" width="160" height="55" fill="#fff" stroke="#a855f7" stroke-width="2" rx="3"/>
+<!-- Rayado -->
+<g opacity=".6">
+<line x1="105" y1="45" x2="115" y2="90" stroke="#a855f7" stroke-width=".8"/>
+<line x1="115" y1="45" x2="125" y2="90" stroke="#a855f7" stroke-width=".8"/>
+<line x1="125" y1="45" x2="135" y2="90" stroke="#a855f7" stroke-width=".8"/>
+<line x1="135" y1="45" x2="145" y2="90" stroke="#a855f7" stroke-width=".8"/>
+<line x1="145" y1="45" x2="155" y2="90" stroke="#a855f7" stroke-width=".8"/>
+<line x1="155" y1="45" x2="165" y2="90" stroke="#a855f7" stroke-width=".8"/>
+<line x1="165" y1="45" x2="175" y2="90" stroke="#a855f7" stroke-width=".8"/>
+<line x1="175" y1="45" x2="185" y2="90" stroke="#a855f7" stroke-width=".8"/>
+<line x1="185" y1="45" x2="195" y2="90" stroke="#a855f7" stroke-width=".8"/>
+<line x1="195" y1="45" x2="205" y2="90" stroke="#a855f7" stroke-width=".8"/>
+<line x1="205" y1="45" x2="215" y2="90" stroke="#a855f7" stroke-width=".8"/>
+<line x1="215" y1="45" x2="225" y2="90" stroke="#a855f7" stroke-width=".8"/>
+</g>
+<circle cx="180" cy="67" r="18" fill="#fff" stroke="#a855f7" stroke-width="2"/>
+<text x="180" y="71" text-anchor="middle" font-size="8" fill="#a855f7" font-weight="600">⌀</text>
+<text x="180" y="115" text-anchor="middle" font-size="9" fill="#a855f7" font-weight="600">Líneas a 45° = material cortado</text>
+</svg>
+</div>
+
+<!-- Paso 4 -->
+<div class="step-indicator" id="step4">
+<div class="step-dot">4</div>
+<div class="step-content">
+<h4>Añadir flechas y etiqueta del corte</h4>
+<p>Se colocan <strong>flechas</strong> en los extremos de la línea de corte indicando la dirección de visión, y una <strong>etiqueta</strong> (ej: "A-A") que identifica el corte en el plano. Esto permite que cualquier técnico pueda localizar y entender el corte.</p>
+</div>
+</div>
+<div class="svg-container" style="margin-bottom:1rem">
+<svg viewBox="0 0 500 120" xmlns="http://www.w3.org/2000/svg">
+<rect x="20" y="10" width="460" height="100" fill="#ecfdf5" rx="6" stroke="#10b981" stroke-width="1"/>
+<text x="250" y="30" text-anchor="middle" font-size="11" fill="#10b981" font-weight="bold">PASO 4: Corte A-A con flechas y etiqueta</text>
+<!-- Pieza con corte completo -->
+<rect x="100" y="40" width="160" height="55" fill="#fff" stroke="#10b981" stroke-width="2" rx="3"/>
+<!-- Rayado -->
+<g opacity=".5">
+<line x1="105" y1="45" x2="115" y2="90" stroke="#10b981" stroke-width=".7"/>
+<line x1="115" y1="45" x2="125" y2="90" stroke="#10b981" stroke-width=".7"/>
+<line x1="125" y1="45" x2="135" y2="90" stroke="#10b981" stroke-width=".7"/>
+<line x1="135" y1="45" x2="145" y2="90" stroke="#10b981" stroke-width=".7"/>
+<line x1="145" y1="45" x2="155" y2="90" stroke="#10b981" stroke-width=".7"/>
+<line x1="155" y1="45" x2="165" y2="90" stroke="#10b981" stroke-width=".7"/>
+<line x1="165" y1="45" x2="175" y2="90" stroke="#10b981" stroke-width=".7"/>
+<line x1="175" y1="45" x2="185" y2="90" stroke="#10b981" stroke-width=".7"/>
+<line x1="185" y1="45" x2="195" y2="90" stroke="#10b981" stroke-width=".7"/>
+<line x1="195" y1="45" x2="205" y2="90" stroke="#10b981" stroke-width=".7"/>
+<line x1="205" y1="45" x2="215" y2="90" stroke="#10b981" stroke-width=".7"/>
+</g>
+<circle cx="180" cy="67" r="18" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+<!-- Línea de corte con flechas -->
+<line x1="180" y1="15" x2="180" y2="100" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="10,4"/>
+<!-- Flecha superior -->
+<polygon points="180,17 173,27 187,27" fill="#ef4444"/>
+<!-- Flecha inferior -->
+<polygon points="180,98 173,88 187,88" fill="#ef4444"/>
+<!-- Etiqueta A-A -->
+<rect x="155" y="4" width="50" height="14" fill="#ef4444" rx="3"/>
+<text x="180" y="14" text-anchor="middle" font-size="9" fill="#fff" font-weight="bold">A-A</text>
+<text x="180" y="118" text-anchor="middle" font-size="9" fill="#10b981" font-weight="600">Corte A-A completo ✓</text>
+</svg>
+</div>
+</section>
+
+<!-- ===== EJERCICIOS ===== -->
+<section class="chapter">
+<h2 class="chapter-title">📝 Ejercicios</h2>
+<div class="exercises">
+
+<div class="exercise">
+<p>📐 Ejercicio 1: ¿Qué se muestra en un corte?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">La sección + lo que queda detrás</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Solo la sección</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Solo el exterior</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Nada</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 2: ¿Qué indica el rayado?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">El material de la pieza</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">La escala</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">El tipo de línea</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">La orientación</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 3: ¿Cuándo se usa un corte?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Cuando hay detalles internos no visibles</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Siempre</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Solo en piezas pequeñas</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Solo en piezas grandes</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 4: ¿Qué es la sección?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">La cara que queda al cortar</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">El exterior de la pieza</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">La escala</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">La vista auxiliar</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 5: ¿Cuántos tipos principales de corte existen?</p>
+<input type="text" id="ex5" placeholder="Número" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
+<button onclick="checkExercise('ex5', '3', this)">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+<!-- ===== EJERCICIOS NUEVOS (3 tipos diferentes) ===== -->
+
+<div class="exercise">
+<p>🧩 Ejercicio 6 (Verdadero/Falso): En un corte total, el plano de corte atraviesa la pieza por completo, mostrando toda la sección transversal.</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkTF(this, true)">✅ Verdadero</button>
+<button class="quiz-btn" onclick="checkTF(this, false)">❌ Falso</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>🔍 Ejercicio 7 (Identificar error): Observa el siguiente corte. ¿Qué elemento FALTA para que esté correctamente representado?</p>
+<div class="svg-container" style="margin:.8rem 0;padding:.8rem">
+<svg viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
+<!-- Pieza con corte pero sin flechas -->
+<rect x="30" y="20" width="240" height="60" fill="#ecfdf5" stroke="#10b981" stroke-width="2" rx="3"/>
+<!-- Rayado -->
+<g opacity=".4">
+<line x1="35" y1="25" x2="45" y2="75" stroke="#10b981" stroke-width=".6"/>
+<line x1="45" y1="25" x2="55" y2="75" stroke="#10b981" stroke-width=".6"/>
+<line x1="55" y1="25" x2="65" y2="75" stroke="#10b981" stroke-width=".6"/>
+<line x1="65" y1="25" x2="75" y2="75" stroke="#10b981" stroke-width=".6"/>
+<line x1="75" y1="25" x2="85" y2="75" stroke="#10b981" stroke-width=".6"/>
+<line x1="85" y1="25" x2="95" y2="75" stroke="#10b981" stroke-width=".6"/>
+<line x1="95" y1="25" x2="105" y2="75" stroke="#10b981" stroke-width=".6"/>
+<line x1="105" y1="25" x2="115" y2="75" stroke="#10b981" stroke-width=".6"/>
+<line x1="115" y1="25" x2="125" y2="75" stroke="#10b981" stroke-width=".6"/>
+<line x1="125" y1="25" x2="135" y2="75" stroke="#10b981" stroke-width=".6"/>
+<line x1="135" y1="25" x2="145" y2="75" stroke="#10b981" stroke-width=".6"/>
+<line x1="145" y1="25" x2="155" y2="75" stroke="#10b981" stroke-width=".6"/>
+<line x1="155" y1="25" x2="165" y2="75" stroke="#10b981" stroke-width=".6"/>
+<line x1="165" y1="25" x2="175" y2="75" stroke="#10b981" stroke-width=".6"/>
+<line x1="175" y1="25" x2="185" y2="75" stroke="#10b981" stroke-width=".6"/>
+<line x1="185" y1="25" x2="195" y2="75" stroke="#10b981" stroke-width=".6"/>
+<line x1="195" y1="25" x2="205" y2="75" stroke="#10b981" stroke-width=".6"/>
+<line x1="205" y1="25" x2="215" y2="75" stroke="#10b981" stroke-width=".6"/>
+<line x1="215" y1="25" x2="225" y2="75" stroke="#10b981" stroke-width=".6"/>
+<line x1="225" y1="25" x2="235" y2="75" stroke="#10b981" stroke-width=".6"/>
+<line x1="235" y1="25" x2="245" y2="75" stroke="#10b981" stroke-width=".6"/>
+</g>
+<!-- Línea de corte (sin flechas) -->
+<line x1="150" y1="10" x2="150" y2="85" stroke="#ef4444" stroke-width="2" stroke-dasharray="8,3"/>
+<!-- ¡Sin flechas ni etiqueta! -->
+<text x="150" y="98" text-anchor="middle" font-size="8" fill="#ef4444" font-weight="bold">⚠️ ¿Qué falta?</text>
+</svg>
+</div>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkIdentify(this, true)">Las flechas de visión y la etiqueta (ej: A-A)</button>
+<button class="quiz-btn" onclick="checkIdentify(this, false)">La escala del plano</button>
+<button class="quiz-btn" onclick="checkIdentify(this, false)">El título de la pieza</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>🏗️ Ejercicio 8 (Asociar material con rayado): Asocia cada material con su representación típica de rayado en un corte.</p>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;margin:.8rem 0">
+<div style="flex:1;min-width:120px;padding:.8rem;background:#fff;border-radius:8px;border:2px solid #e2e8f0;text-align:center">
+<div style="font-size:2rem;margin-bottom:.3rem">🔩</div>
+<strong>Acero</strong>
+</div>
+<div style="flex:1;min-width:120px;padding:.8rem;background:#fff;border-radius:8px;border:2px solid #e2e8f0;text-align:center">
+<div style="font-size:2rem;margin-bottom:.3rem">🪨</div>
+<strong>Hormigón</strong>
+</div>
+<div style="flex:1;min-width:120px;padding:.8rem;background:#fff;border-radius:8px;border:2px solid #e2e8f0;text-align:center">
+<div style="font-size:2rem;margin-bottom:.3rem">🪵</div>
+<strong>Madera</strong>
+</div>
+</div>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkMatch(this, true)">Acero: líneas diagonales finas | Hormigón: puntos + líneas | Madera: fibras onduladas</button>
+<button class="quiz-btn" onclick="checkMatch(this, false)">Todos usan el mismo rayado</button>
+<button class="quiz-btn" onclick="checkMatch(this, false)">Acero: puntos | Hormigón: diagonal | Madera: nada</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+</div>
+</section>
+
+<!-- ===== ERROR COMÚN CON SVG COMPARATIVO ===== -->
+<div class="comparison">
+<div class="comparison-side">
+<strong style="color:var(--rojo)">❌ ERROR: Rayado incorrecto</strong>
+<svg viewBox="0 0 200 140" width="180" style="margin:1rem 0">
+<rect x="30" y="20" width="140" height="80" fill="#fef2f2" stroke="#ef4444" stroke-width="2" rx="4"/>
+<!-- Rayado horizontal (WRONG) -->
+<g opacity=".5">
+<line x1="35" y1="30" x2="165" y2="30" stroke="#ef4444" stroke-width=".8"/>
+<line x1="35" y1="40" x2="165" y2="40" stroke="#ef4444" stroke-width=".8"/>
+<line x1="35" y1="50" x2="165" y2="50" stroke="#ef4444" stroke-width=".8"/>
+<line x1="35" y1="60" x2="165" y2="60" stroke="#ef4444" stroke-width=".8"/>
+<line x1="35" y1="70" x2="165" y2="70" stroke="#ef4444" stroke-width=".8"/>
+<line x1="35" y1="80" x2="165" y2="80" stroke="#ef4444" stroke-width=".8"/>
+<line x1="35" y1="90" x2="165" y2="90" stroke="#ef4444" stroke-width=".8"/>
+<line x1="35" y1="100" x2="165" y2="100" stroke="#ef4444" stroke-width=".8"/>
+</g>
+<text x="100" y="125" text-anchor="middle" font-size="8" fill="#ef4444" font-weight="bold">❌ Rayado horizontal (incorrecto)</text>
+</svg>
+</div>
+<div class="comparison-side">
+<strong style="color:var(--verde)">✅ CORRECTO: Rayado a 45°</strong>
+<svg viewBox="0 0 200 140" width="180" style="margin:1rem 0">
+<rect x="30" y="20" width="140" height="80" fill="#ecfdf5" stroke="#10b981" stroke-width="2" rx="4"/>
+<!-- Rayado diagonal (CORRECT) -->
+<g opacity=".5">
+<line x1="35" y1="25" x2="45" y2="95" stroke="#10b981" stroke-width=".8"/>
+<line x1="45" y1="25" x2="55" y2="95" stroke="#10b981" stroke-width=".8"/>
+<line x1="55" y1="25" x2="65" y2="95" stroke="#10b981" stroke-width=".8"/>
+<line x1="65" y1="25" x2="75" y2="95" stroke="#10b981" stroke-width=".8"/>
+<line x1="75" y1="25" x2="85" y2="95" stroke="#10b981" stroke-width=".8"/>
+<line x1="85" y1="25" x2="95" y2="95" stroke="#10b981" stroke-width=".8"/>
+<line x1="95" y1="25" x2="105" y2="95" stroke="#10b981" stroke-width=".8"/>
+<line x1="105" y1="25" x2="115" y2="95" stroke="#10b981" stroke-width=".8"/>
+<line x1="115" y1="25" x2="125" y2="95" stroke="#10b981" stroke-width=".8"/>
+<line x1="125" y1="25" x2="135" y2="95" stroke="#10b981" stroke-width=".8"/>
+<line x1="135" y1="25" x2="145" y2="95" stroke="#10b981" stroke-width=".8"/>
+<line x1="145" y1="25" x2="155" y2="95" stroke="#10b981" stroke-width=".8"/>
+<line x1="155" y1="25" x2="165" y2="95" stroke="#10b981" stroke-width=".8"/>
+</g>
+<text x="100" y="125" text-anchor="middle" font-size="8" fill="#10b981" font-weight="bold">✅ Rayado a 45° (correcto)</text>
+</svg>
+</div>
+</div>
 
 <div class="box box-error">
-   203|<strong>⚠️ Error clásico</strong>
-   204|Confundir corte con sección. El corte muestra la sección + lo que queda detrás. La sección es solo la cara cortada con rayado. ¡Son cosas diferentes!
-   205|</div>
-   206|
-   207|<div class="box box-idea">
-   208|<strong>🔗 Conexión</strong>
-   209|Los cortes son esenciales para piezas con agujeros internos, nervaduras y formas complejas. Sin cortes, no se vería nada del interior.
-   210|</div>
-   211|
-   212|<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: motor de combustión</strong>Un bloque de motor tiene cámaras de combustión, conductos de refrigeración y passages de aceite internos. Sin corte, todo son líneas discontinuas que confunden. Un corte longitudinal muestra el interior completo: pistón, biela, cigüeñal. El mecánico lee el corte para entender cómo funciona el motor.</div>
+<strong>⚠️ Error clásico</strong>
+Confundir corte con sección. El corte muestra la sección + lo que queda detrás. La sección es solo la cara cortada con rayado. ¡Son cosas diferentes!
+</div>
+
+<div class="box box-idea">
+<strong>🔗 Conexión</strong>
+Los cortes son esenciales para piezas con agujeros internos, nervaduras y formas complejas. Sin cortes, no se vería nada del interior.
+</div>
+
+<div class="box box-teoria" style="margin:1.5rem 0">
+<span class="real-world-badge">🏭 CASO REAL</span>
+<strong>Caso industrial: motor de combustión</strong>
+Un bloque de motor tiene cámaras de combustión, conductos de refrigeración y passages de aceite internos. Sin corte, todo son líneas discontinuas que confunden. Un corte longitudinal muestra el interior completo: pistón, biela, cigüeñal. El mecánico lee el corte para entender cómo funciona el motor.
+</div>
 
 <div class="summary">
-   213|<h3>📋 Resumen de lo aprendido</h3>
-   214|<ul>
-   215|<li>Corte: sección + lo que queda detrás</li>
-   216|<li>Sección: cara cortada con rayado</li>
-   217|<li>Rayado: indica el material</li>
-   218|<li>Se usa para detalles internos no visibles</li>
-   219|<li>¡Ya dominas cortes y secciones! 🎉</li>
-   220|</ul>
-   221|</div>
-   222|
-   223|<div class="nav">
-   224|<a href="b04-09-resumen-diedrico.html">← Anterior</a>
-   225|<a href="b05-02-corte-tipos.html">Siguiente →</a>
-   226|</div>
-   227|
-   228|</main>
-   229|<footer class="footer">Hecho con ❤️ por David Antizar</footer>
-   230|<script>
-   231|function checkAnswer(btn, correct) {
-   232|  var parent = btn.parentElement;
-   233|  parent.querySelectorAll('button').forEach(function(b) {
-   234|    b.disabled = true; b.classList.remove('correct','wrong');
-   235|  });
-   236|  btn.classList.add(correct ? 'correct' : 'wrong');
-   237|  var feedback = parent.nextElementSibling;
-   238|  if(feedback && feedback.classList.contains('feedback')) {
-   239|    if(correct) {
-   240|      feedback.textContent = '✅ ¡Correcto! ¡Muy bien!';
-   241|      feedback.className = 'feedback correct';
-   242|    } else {
-   243|      feedback.textContent = '❌ ¡Intenta de nuevo!';
-   244|      feedback.className = 'feedback incorrect';
-   245|      setTimeout(function() {
-   246|        parent.querySelectorAll('button').forEach(function(b) {
-   247|          b.disabled = false; b.classList.remove('correct','wrong');
-   248|        });
-   249|        feedback.textContent = '';
-   250|        feedback.className = 'feedback';
-   251|      }, 1500);
-   252|    }
-   253|  }
-   254|}
-   255|
-   256|function checkExercise(id, correct, btn) {
-   257|  var input = document.getElementById(id);
-   258|  var feedback = input.parentElement.nextElementSibling;
-   259|  var userVal = input.value.trim().toLowerCase();
-   260|  var correctVal = correct.toLowerCase();
-   261|  if(userVal === correctVal) {
-   262|    feedback.textContent = '✅ ¡Correcto! ' + correct;
-   263|    feedback.className = 'feedback correct';
-   264|    input.style.borderColor = 'var(--verde)';
-   265|  } else {
-   266|    feedback.textContent = '❌ Respuesta correcta: ' + correct;
-   267|    feedback.className = 'feedback incorrect';
-   268|    input.style.borderColor = 'var(--rojo)';
-   269|  }
-   270|}
-   271|
-   272|window.onscroll = function(){
-   273|  var h = document.documentElement;
-   274|  var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
-   275|  document.getElementById('progress').style.width = p+'%';
-   276|};
-   277|</script>
-   278|</body>
-   279|</html>
-   280|
+<h3>📋 Resumen de lo aprendido</h3>
+<ul>
+<li>Corte: sección + lo que queda detrás</li>
+<li>Sección: cara cortada con rayado</li>
+<li>Rayado: indica el material</li>
+<li>Se usa para detalles internos no visibles</li>
+<li>¡Ya dominas cortes y secciones! 🎉</li>
+</ul>
+</div>
+
+<div class="nav">
+<a href="b04-09-resumen-diedrico.html">← Anterior</a>
+<a href="b05-02-corte-tipos.html">Siguiente →</a>
+</div>
+
+</main>
+<footer class="footer">Hecho con ❤️ por David Antizar</footer>
+<script>
+function checkAnswer(btn, correct) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) {
+    b.disabled = true; b.classList.remove('correct','wrong');
+  });
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  var feedback = parent.nextElementSibling;
+  if(feedback && feedback.classList.contains('feedback')) {
+    if(correct) {
+      feedback.textContent = '✅ ¡Correcto! ¡Muy bien!';
+      feedback.className = 'feedback correct';
+    } else {
+      feedback.textContent = '❌ ¡Intenta de nuevo!';
+      feedback.className = 'feedback incorrect';
+      setTimeout(function() {
+        parent.querySelectorAll('button').forEach(function(b) {
+          b.disabled = false; b.classList.remove('correct','wrong');
+        });
+        feedback.textContent = '';
+        feedback.className = 'feedback';
+      }, 1500);
+    }
+  }
+}
+
+function checkTF(btn, correct) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) {
+    b.disabled = true; b.classList.remove('correct','wrong');
+  });
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  var feedback = parent.nextElementSibling;
+  if(feedback && feedback.classList.contains('feedback')) {
+    if(correct) {
+      feedback.textContent = '✅ ¡Correcto! En un corte total el plano atraviesa la pieza por completo.';
+      feedback.className = 'feedback correct';
+    } else {
+      feedback.textContent = '❌ Falso. En un corte total SÍ se atraviesa la pieza por completo.';
+      feedback.className = 'feedback incorrect';
+    }
+  }
+}
+
+function checkIdentify(btn, correct) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) {
+    b.disabled = true; b.classList.remove('correct','wrong');
+  });
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  var feedback = parent.nextElementSibling;
+  if(feedback && feedback.classList.contains('feedback')) {
+    if(correct) {
+      feedback.textContent = '✅ ¡Correcto! Todo corte debe tener flechas de visión y una etiqueta (A-A, B-B...) para identificarlo.';
+      feedback.className = 'feedback correct';
+    } else {
+      feedback.textContent = '❌ No. Lo que falta son las flechas de visión y la etiqueta del corte.';
+      feedback.className = 'feedback incorrect';
+    }
+  }
+}
+
+function checkMatch(btn, correct) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) {
+    b.disabled = true; b.classList.remove('correct','wrong');
+  });
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  var feedback = parent.nextElementSibling;
+  if(feedback && feedback.classList.contains('feedback')) {
+    if(correct) {
+      feedback.textContent = '✅ ¡Correcto! Cada material tiene su propio rayado: acero (diagonal), hormigón (puntos), madera (fibras).';
+      feedback.className = 'feedback correct';
+    } else {
+      feedback.textContent = '❌ Cada material tiene un rayado diferente según la norma ISO.';
+      feedback.className = 'feedback incorrect';
+    }
+  }
+}
+
+function checkExercise(id, correct, btn) {
+  var input = document.getElementById(id);
+  var feedback = input.parentElement.nextElementSibling;
+  var userVal = input.value.trim().toLowerCase();
+  var correctVal = correct.toLowerCase();
+  if(userVal === correctVal) {
+    feedback.textContent = '✅ ¡Correcto! ' + correct;
+    feedback.className = 'feedback correct';
+    input.style.borderColor = 'var(--verde)';
+  } else {
+    feedback.textContent = '❌ Respuesta correcta: ' + correct;
+    feedback.className = 'feedback incorrect';
+    input.style.borderColor = 'var(--rojo)';
+  }
+}
+
+// === SVG Interactivo: Toggle corte ===
+var cutActive = false;
+function toggleCut() {
+  cutActive = !cutActive;
+  var sectionLeft = document.getElementById('sectionLeft');
+  var hatchingLeft = document.getElementById('hatchingLeft');
+  var btn = document.getElementById('cutToggle');
+  if(cutActive) {
+    sectionLeft.setAttribute('opacity', '1');
+    hatchingLeft.setAttribute('opacity', '1');
+    btn.textContent = '👁️ Ocultar corte';
+    btn.classList.add('active');
+  } else {
+    sectionLeft.setAttribute('opacity', '0');
+    hatchingLeft.setAttribute('opacity', '0');
+    btn.textContent = '🔪 Mostrar corte';
+    btn.classList.remove('active');
+  }
+}
+
+function resetCut() {
+  cutActive = false;
+  var sectionLeft = document.getElementById('sectionLeft');
+  var hatchingLeft = document.getElementById('hatchingLeft');
+  var btn = document.getElementById('cutToggle');
+  sectionLeft.setAttribute('opacity', '0');
+  hatchingLeft.setAttribute('opacity', '0');
+  btn.textContent = '🔪 Mostrar corte';
+  btn.classList.remove('active');
+  hideZoneInfo();
+}
+
+// === SVG Interactivo: Zona info ===
+var zoneData = {
+  1: {
+    title: '🔵 Agujero interno',
+    detail: 'En la vista original el agujero es invisible (línea discontinua). Con el corte total se ve completamente: su forma circular, su diámetro ⌀30, y su posición exacta.'
+  },
+  2: {
+    title: '🔴 Plano de corte',
+    detail: 'Es la línea roja que atraviesa la pieza. Indica por dónde "cortamos" mentalmente. Debe pasar por los elementos internos que queremos revelar. Las flechas muestran la dirección de visión.'
+  },
+  3: {
+    title: '🟠 Rayado (sección)',
+    detail: 'Las líneas diagonales a 45° muestran la zona cortada. El rayado indica que es material sólido (no vacío). Diferentes materiales tienen rayados distintos: acero = diagonal, hormigón = puntos, madera = fibras.'
+  }
+};
+
+function showZoneInfo(num) {
+  var data = zoneData[num];
+  document.getElementById('zoneInfo').textContent = data.title;
+  document.getElementById('zoneInfoDetail').textContent = data.detail;
+}
+
+function hideZoneInfo() {
+  document.getElementById('zoneInfo').textContent = '👆 Pasa el ratón o haz clic en los números 1, 2, 3 para aprender sobre el corte';
+  document.getElementById('zoneInfoDetail').textContent = 'Cada zona muestra un concepto clave del corte total';
+}
+
+function selectZone(num) {
+  // Highlight selected zone
+  document.querySelectorAll('.svg-interactive-part').forEach(function(el) {
+    el.classList.remove('selected');
+  });
+  var zone = document.querySelector('.svg-interactive-part[data-zone="' + num + '"]');
+  if(zone) zone.classList.add('selected');
+  showZoneInfo(num);
+}
+
+// === Progress bar ===
+window.onscroll = function(){
+  var h = document.documentElement;
+  var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
+  document.getElementById('progress').style.width = p+'%';
+};
+</script>
+</body>
+</html>
