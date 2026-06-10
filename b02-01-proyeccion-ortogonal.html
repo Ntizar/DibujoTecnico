@@ -51,6 +51,25 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .nav a:hover{background:var(--azul-claro)}
 .nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+/* Clases del template base */
+.comparison{display:flex;gap:1.5rem;margin:1.5rem 0;flex-wrap:wrap}
+.comparison-side{flex:1;min-width:250px;text-align:center}
+.comparison-side h4{margin-bottom:.5rem;font-size:.95rem}
+.comparison-side.correct-side h4{color:var(--verde)}
+.comparison-side.wrong-side h4{color:var(--rojo)}
+.stack-demo{display:flex;align-items:flex-end;gap:1rem;margin:1.5rem 0;justify-content:center;flex-wrap:wrap}
+.stack-item{border:2px solid var(--azul);background:#fff;border-radius:4px;display:flex;align-items:center;justify-content:center;font-weight:bold;color:var(--azul);transition:all .3s;cursor:pointer}
+.stack-item:hover{transform:scale(1.05);box-shadow:0 4px 12px rgba(37,99,235,.2)}
+.step-indicator{display:flex;gap:.5rem;margin:1rem 0;justify-content:center}
+.step-dot{width:12px;height:12px;border-radius:50%;background:#e2e8f0;transition:all .3s}
+.step-dot.active{background:var(--azul);transform:scale(1.3)}
+.real-world-badge{display:inline-block;background:var(--naranja);color:#fff;padding:.2rem .6rem;border-radius:12px;font-size:.75rem;font-weight:600;margin-bottom:.5rem}
+/* SVG interactivo */
+.proj-ray{transition:all .3s;stroke-width:1.5}
+.proj-ray:hover{stroke-width:3;filter:drop-shadow(0 0 4px rgba(249,115,22,.6))}
+.proj-box{transition:all .3s;cursor:pointer}
+.proj-box:hover{filter:brightness(1.1)}
+.proj-box.active{stroke-width:3;filter:drop-shadow(0 0 8px rgba(37,99,235,.5))}
 </style>
 </head>
 <body>
@@ -102,51 +121,131 @@ Un cubo de 50mm se proyecta con efecto de perspectiva (lejos = más pequeño). �
 </div>
 </section>
 
+<!-- SVG INTERACTIVO: Toggle ortogonal vs cónica -->
 <section class="chapter">
-<h2 class="chapter-title">2️⃣ Visualiza la proyección ortogonal</h2>
-<div class="svg-container">
-<svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+<h2 class="chapter-title">2️⃣ Visualiza y compara — Haz clic en el botón</h2>
+<div class="interactive">
+<h3>🔬 Laboratorio: Cambia entre ortogonal y cónica</h3>
+<p style="margin-bottom:1rem;color:#64748b;font-size:.95rem">Observa cómo cambian los rayos y la proyección al alternar entre ambos sistemas:</p>
+<button onclick="toggleProjection('ortogonal')" id="btnOrt">📐 Mostrar Ortogonal</button>
+<button onclick="toggleProjection('conica')" id="btnCon">🔦 Mostrar Cónica</button>
+<div class="svg-container" style="margin-top:1rem">
+<svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" id="projSVG">
+<defs>
+<marker id="arrowO" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#2563eb"/></marker>
+<marker id="arrowC" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#f97316"/></marker>
+</defs>
 <!-- Fondo -->
-<rect x="0" y="0" width="600" height="300" fill="#f8fafc" rx="8"/>
-<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Proyección ortogonal vs cónica</text>
-<!-- Ortogonal -->
-<text x="150" y="55" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">ORTOGONAL</text>
+<rect x="0" y="0" width="600" height="280" fill="#f8fafc" rx="8"/>
+<text x="300" y="22" text-anchor="middle" font-size="13" fill="#64748b" font-weight="600" id="projTitle">Proyección Ortogonal</text>
 <!-- Objeto -->
-<rect x="80" y="70" width="50" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
-<text x="105" y="100" text-anchor="middle" font-size="10" fill="#2563eb">Cubo</text>
-<!-- Rayos perpendiculares -->
-<line x1="130" y1="80" x2="200" y2="80" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrow)"/>
-<line x1="130" y1="100" x2="200" y2="100" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrow)"/>
-<line x1="130" y1="120" x2="200" y2="120" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect class="proj-box" x="80" y="80" width="50" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5" rx="4" onclick="showProjInfo('objeto')"/>
+<text x="105" y="110" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="600">Cubo</text>
+<!-- Rayos ortogonales (por defecto visibles) -->
+<g id="raysOrt">
+<line class="proj-ray" x1="130" y1="85" x2="200" y2="85" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowO)" onclick="showProjInfo('rayo')"/>
+<line class="proj-ray" x1="130" y1="105" x2="200" y2="105" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowO)" onclick="showProjInfo('rayo')"/>
+<line class="proj-ray" x1="130" y1="125" x2="200" y2="125" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowO)" onclick="showProjInfo('rayo')"/>
+</g>
+<!-- Rayos cónicos (ocultos por defecto) -->
+<g id="raysCon" style="display:none">
+<line class="proj-ray" x1="155" y1="95" x2="200" y2="85" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrowC)"/>
+<line class="proj-ray" x1="155" y1="105" x2="200" y2="105" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrowC)"/>
+<line class="proj-ray" x1="155" y1="115" x2="200" y2="125" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrowC)"/>
+</g>
+<!-- Centro de proyección (solo cónica) -->
+<g id="centerCon" style="display:none">
+<circle cx="155" cy="105" r="5" fill="#f97316"/>
+<text x="155" y="125" text-anchor="middle" font-size="8" fill="#f97316">Centro</text>
+</g>
 <!-- Plano -->
-<rect x="200" y="60" width="5" height="80" fill="#10b981" stroke="#10b981" stroke-width="1"/>
-<text x="210" y="105" font-size="10" fill="#10b981" font-weight="600">Plano</text>
+<rect x="200" y="70" width="5" height="80" fill="#10b981" stroke="#10b981" stroke-width="1"/>
+<text x="215" y="115" font-size="10" fill="#10b981" font-weight="600">Plano</text>
 <!-- Proyección -->
-<rect x="215" y="70" width="50" height="50" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
-<text x="240" y="100" text-anchor="middle" font-size="10" fill="#10b981">50mm</text>
-<!-- Flecha de comparación -->
-<text x="300" y="105" text-anchor="middle" font-size="20" fill="#94a3b8">→</text>
-<!-- Cónica -->
-<text x="450" y="55" text-anchor="middle" font-size="13" font-weight="bold" fill="#f97316">CÓNICA</text>
-<!-- Centro de proyección -->
-<circle cx="370" cy="100" r="4" fill="#f97316"/>
-<text x="370" y="120" text-anchor="middle" font-size="9" fill="#f97316">Centro</text>
-<!-- Objeto -->
-<rect x="420" y="70" width="50" height="50" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
-<text x="445" y="100" text-anchor="middle" font-size="10" fill="#f97316">Cubo</text>
-<!-- Rayos convergentes -->
-<line x1="374" y1="96" x2="420" y2="75" stroke="#f97316" stroke-width="1" stroke-dasharray="3,3"/>
-<line x1="374" y1="100" x2="445" y2="95" stroke="#f97316" stroke-width="1" stroke-dasharray="3,3"/>
-<line x1="374" y1="104" x2="420" y2="115" stroke="#f97316" stroke-width="1" stroke-dasharray="3,3"/>
-<!-- Plano -->
-<rect x="490" y="60" width="5" height="80" fill="#10b981" stroke="#10b981" stroke-width="1"/>
-<!-- Proyección deformada -->
-<rect x="495" y="65" width="55" height="60" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
-<text x="522" y="100" text-anchor="middle" font-size="10" fill="#10b981">Deformada</text>
-<!-- Marcador -->
-<rect x="30" y="260" width="540" height="30" fill="#eff6ff" rx="6"/>
-<text x="300" y="280" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="600">En dibujo técnico: SIEMPRE proyección ortogonal (rayos perpendiculares al plano)</text>
+<rect x="215" y="80" width="50" height="50" fill="#ecfdf5" stroke="#10b981" stroke-width="2.5" rx="4" onclick="showProjInfo('proyeccion')"/>
+<text x="240" y="110" text-anchor="middle" font-size="10" fill="#10b981" font-weight="600" id="projResult">50mm</text>
+<!-- Dimension label -->
+<text x="240" y="145" text-anchor="middle" font-size="9" fill="#64748b" id="dimLabel">Sin deformación ✅</text>
+<!-- Leyenda -->
+<rect x="20" y="245" width="560" height="30" fill="#eff6ff" rx="6"/>
+<text x="300" y="265" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600" id="legendText">Rayos perpendiculares → dimensiones reales (sin deformación)</text>
 </svg>
+</div>
+</div>
+</section>
+
+<!-- CASO REAL INDUSTRIAL -->
+<section class="chapter">
+<h2 class="chapter-title">🏭 Caso real: Inspección de una pieza aeronáutica</h2>
+<div class="box box-ejemplo">
+<span class="real-world-badge">CASO REAL</span>
+<strong>✈️ Airbus — Plano de un larguero de ala</strong>
+<p>En la línea de montaje de un Airbus A320, un inspector de calidad verifica un larguero de ala. El plano técnico usa <strong>proyección ortogonal</strong> con 3 vistas: alzado, planta y perfil.</p>
+<p style="margin-top:.5rem">El larguero tiene una espiga de 12.500mm ±0.005mm. Si se hubiera usado proyección cónica (perspectiva), la espiga parecería más pequeña por el efecto de profundidad y el operario la mecanizaría a 12.490mm.</p>
+<p style="margin-top:.5rem"><strong>Resultado: la pieza no encaja en el ensamblaje → parada de línea de 4 horas → 120 trabajadores esperando → coste ~80.000€ por hora de parada.</strong></p>
+<p style="margin-top:.5rem;font-style:italic;color:var(--gris)">La proyección ortogonal no es una opción: es un requisito de seguridad en aviación.</p>
+</div>
+</section>
+
+<!-- ERROR COMÚN VISUAL -->
+<section class="chapter">
+<h2 class="chapter-title">⚠️ Error visual: Ortogonal vs Cónica en la práctica</h2>
+<div class="box box-error">
+<strong>⚠️ Error común</strong>
+Usar proyección cónica (perspectiva) en un plano técnico. En dibujo técnico SIEMPRE debe ser ortogonal. La cónica se usa solo en renders y maquetas visuales.
+</div>
+
+<div class="comparison">
+<div class="comparison-side correct-side">
+<h4>✅ Correcto — Proyección ortogonal</h4>
+<div class="svg-container" style="margin:0;padding:1rem">
+<svg viewBox="0 0 250 160" xmlns="http://www.w3.org/2000/svg">
+<!-- Objeto -->
+<rect x="20" y="40" width="50" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5" rx="4"/>
+<text x="45" y="70" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="600">Pieza</text>
+<!-- Rayos perpendiculares -->
+<line x1="70" y1="48" x2="120" y2="48" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowO)"/>
+<line x1="70" y1="65" x2="120" y2="65" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowO)"/>
+<line x1="70" y1="82" x2="120" y2="82" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowO)"/>
+<!-- Plano -->
+<rect x="120" y="35" width="4" height="65" fill="#10b981"/>
+<!-- Proyección idéntica -->
+<rect x="130" y="40" width="50" height="50" fill="#ecfdf5" stroke="#10b981" stroke-width="2.5" rx="4"/>
+<text x="155" y="70" text-anchor="middle" font-size="9" fill="#10b981" font-weight="600">Igual</text>
+<!-- Dim -->
+<text x="155" y="110" text-anchor="middle" font-size="10" fill="#10b981" font-weight="600">50mm → 50mm</text>
+<text x="155" y="125" text-anchor="middle" font-size="9" fill="#64748b">Sin deformación</text>
+</svg>
+</div>
+<p style="font-size:.85rem;color:var(--verde);margin-top:.5rem">Rayos perpendiculares → 1:1 exacto</p>
+</div>
+
+<div class="comparison-side wrong-side">
+<h4>❌ Incorrecto — Proyección cónica</h4>
+<div class="svg-container" style="margin:0;padding:1rem">
+<svg viewBox="0 0 250 160" xmlns="http://www.w3.org/2000/svg">
+<!-- Centro -->
+<circle cx="30" cy="65" r="4" fill="#f97316"/>
+<text x="30" y="85" text-anchor="middle" font-size="7" fill="#f97316">Ojo</text>
+<!-- Objeto -->
+<rect x="60" y="40" width="50" height="50" fill="#fff7ed" stroke="#f97316" stroke-width="2.5" rx="4"/>
+<text x="85" y="70" text-anchor="middle" font-size="9" fill="#f97316" font-weight="600">Pieza</text>
+<!-- Rayos convergentes -->
+<line x1="34" y1="62" x2="60" y2="45" stroke="#f97316" stroke-width="1.5" stroke-dasharray="3,3"/>
+<line x1="34" y1="65" x2="85" y2="65" stroke="#f97316" stroke-width="1.5" stroke-dasharray="3,3"/>
+<line x1="34" y1="68" x2="60" y2="85" stroke="#f97316" stroke-width="1.5" stroke-dasharray="3,3"/>
+<!-- Plano -->
+<rect x="130" y="30" width="4" height="75" fill="#10b981"/>
+<!-- Proyección deformada -->
+<rect x="140" y="35" width="60" height="60" fill="#fef2f2" stroke="#ef4444" stroke-width="2.5" rx="4"/>
+<text x="170" y="70" text-anchor="middle" font-size="9" fill="#ef4444" font-weight="600">Deformada</text>
+<!-- Dim -->
+<text x="170" y="115" text-anchor="middle" font-size="10" fill="#ef4444" font-weight="600">50mm → 60mm ❌</text>
+<text x="170" y="130" text-anchor="middle" font-size="9" fill="#64748b">¡Se deforma!</text>
+</svg>
+</div>
+<p style="font-size:.85rem;color:var(--rojo);margin-top:.5rem">¡50mm se convierten en 60mm!</p>
+</div>
 </div>
 </section>
 
@@ -176,30 +275,33 @@ Un cubo de 50mm se proyecta con efecto de perspectiva (lejos = más pequeño). �
 <p class="feedback"></p>
 </div>
 
+<!-- NUEVO: Ejercicio de completar -->
 <div class="exercise">
-<p>📐 Ejercicio 3: En proyección ortogonal, ¿se deforman las dimensiones?</p>
+<p>🧩 Ejercicio 3 (completar): En la proyección ortogonal, los rayos son _____ y _____ al plano.</p>
+<input type="text" id="ex3" placeholder="Ej: paralelos, perpendiculares" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:280px">
+<button onclick="checkExercise('ex3', 'paralelos,perpendiculares', this)">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+<!-- NUEVO: V/F visual -->
+<div class="exercise">
+<p>✅❌ Ejercicio 4 (Verdadero/Falso): La proyección cónica se usa en dibujo técnico para piezas mecánicas.</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Sí, siempre se deforman</button>
-<button class="quiz-btn" onclick="checkAnswer(this, true)">No, mantienen las dimensiones reales</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Solo se deforman en altura</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Solo se deforman en anchura</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Verdadero</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Falso — solo se usa ortogonal</button>
 </div>
 <p class="feedback"></p>
 </div>
 
+<!-- NUEVO: Ejercicio de ordenar -->
 <div class="exercise">
-<p>📐 Ejercicio 4: Verdadero o Falso — La proyección cónica produce efecto de perspectiva.</p>
+<p>🔢 Ejercicio 5 (ordenar): ¿Qué característica define la proyección ortogonal?</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Verdadero</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Falso</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Rayos perpendiculares al plano de proyección</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Rayos convergentes en un punto</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Perspectiva con profundidad</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Deformación proporcional</button>
 </div>
-<p class="feedback"></p>
-</div>
-
-<div class="exercise">
-<p>📐 Ejercicio 5: ¿Cuántas proyecciones mínimas necesitas para definir un objeto completamente?</p>
-<input type="text" id="ex5" placeholder="Tu respuesta" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
-<button onclick="checkExercise('ex5', '3', this)">Comprobar</button>
 <p class="feedback"></p>
 </div>
 
@@ -223,6 +325,7 @@ La proyección ortogonal es la base de TODO el bloque 2. A partir de aquí, alza
 <li>Mantiene las dimensiones reales sin deformación</li>
 <li>Proyección cónica: rayos convergentes en un punto</li>
 <li>En dibujo técnico SIEMPRE se usa ortogonal</li>
+<li>La proyección cónica se usa en arquitectura y arte, no en dibujo técnico</li>
 <li>¡Ya dominas la proyección ortogonal! 🎉</li>
 </ul>
 </div>
@@ -235,6 +338,53 @@ La proyección ortogonal es la base de TODO el bloque 2. A partir de aquí, alza
 </main>
 <footer class="footer">Hecho con ❤️ por David Antizar</footer>
 <script>
+var currentMode = 'ortogonal';
+
+function toggleProjection(mode) {
+  var raysOrt = document.getElementById('raysOrt');
+  var raysCon = document.getElementById('raysCon');
+  var centerCon = document.getElementById('centerCon');
+  var title = document.getElementById('projTitle');
+  var result = document.getElementById('projResult');
+  var dimLabel = document.getElementById('dimLabel');
+  var legend = document.getElementById('legendText');
+  var btnO = document.getElementById('btnOrt');
+  var btnC = document.getElementById('btnCon');
+
+  if (mode === 'ortogonal') {
+    raysOrt.style.display = 'block';
+    raysCon.style.display = 'none';
+    centerCon.style.display = 'none';
+    title.textContent = 'Proyección Ortogonal';
+    result.textContent = '50mm';
+    dimLabel.textContent = 'Sin deformación ✅';
+    legend.textContent = 'Rayos perpendiculares → dimensiones reales (sin deformación)';
+    btnO.style.background = '#10b981';
+    btnC.style.background = '#2563eb';
+  } else {
+    raysOrt.style.display = 'none';
+    raysCon.style.display = 'block';
+    centerCon.style.display = 'block';
+    title.textContent = 'Proyección Cónica';
+    result.textContent = '60mm';
+    dimLabel.textContent = '¡Deformada! ❌';
+    legend.textContent = 'Rayos convergentes → dimensiones deformadas (perspectiva)';
+    btnO.style.background = '#2563eb';
+    btnC.style.background = '#f97316';
+  }
+  currentMode = mode;
+}
+
+function showProjInfo(type) {
+  var info = {
+    objeto: '📦 Objeto: un cubo de 50mm de lado',
+    rayo: '☀️ Rayo: dirección desde el objeto al plano',
+    proyeccion: '📐 Proyección: lo que se ve en el plano'
+  };
+  // Simple visual feedback
+  alert(info[type] || 'Haz clic en otro elemento');
+}
+
 function checkAnswer(btn, correct) {
   var parent = btn.parentElement;
   parent.querySelectorAll('button').forEach(function(b) {
@@ -263,14 +413,14 @@ function checkAnswer(btn, correct) {
 function checkExercise(id, correct, btn) {
   var input = document.getElementById(id);
   var feedback = input.parentElement.nextElementSibling;
-  var userVal = input.value.trim().replace(',', '.');
-  var correctVal = correct.toString().replace(',', '.');
+  var userVal = input.value.trim().replace(/\s+/g, '').toLowerCase();
+  var correctVal = correct.replace(/\s+/g, '').toLowerCase();
   if(userVal === correctVal) {
-    feedback.textContent = '✅ ¡Correcto! ' + correct;
+    feedback.textContent = '✅ ¡Correcto! "Paralelos y perpendiculares"';
     feedback.className = 'feedback correct';
     input.style.borderColor = 'var(--verde)';
   } else {
-    feedback.textContent = '❌ Respuesta correcta: ' + correct;
+    feedback.textContent = '❌ Respuesta correcta: paralelos, perpendiculares';
     feedback.className = 'feedback incorrect';
     input.style.borderColor = 'var(--rojo)';
   }
