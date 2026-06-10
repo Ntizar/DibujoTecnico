@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📏 S03.4: Perspectiva caballera — Dibujo Técnico</title>
+<style>
+:root{--azul:#2563eb;--naranja:#f97316;--verde:#10b981;--rojo:#ef4444;--fondo:#fff;--texto:#1e293b;--gris:#94a3b8;--azul-claro:#eff6ff;--naranja-claro:#fff7ed;--verde-claro:#ecfdf5;--rojo-claro:#fef2f2;--pura-claro:#faf5ff;--pura:#a855f7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-gradient(135deg,#f8faff 0%,#fffaf5 100%);color:var(--texto);line-height:1.7}
+.header{background:linear-gradient(135deg,var(--azul),#1d4ed8);color:#fff;padding:2rem 1.5rem;text-align:center}
+.header h1{font-size:1.8rem;margin-bottom:.5rem}
+.header p{opacity:.9;font-size:1rem}
+.progress-bar{height:4px;background:rgba(255,255,255,.3);border-radius:2px;margin-top:1rem;overflow:hidden}
+.progress-fill{height:100%;background:#fff;border-radius:2px;width:0%;transition:width .3s}
+.container{max-width:900px;margin:0 auto;padding:1.5rem}
+.chapter{margin-bottom:2.5rem}
+.chapter-title{font-size:1.4rem;color:var(--azul);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:2px solid var(--azul-claro)}
+.box{padding:1rem 1.2rem;border-radius:10px;margin:1rem 0;border-left:4px solid;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.box-teoria{background:var(--azul-claro);border-color:var(--azul)}
+.box-ejemplo{background:var(--naranja-claro);border-color:var(--naranja)}
+.box-error{background:var(--rojo-claro);border-color:var(--rojo)}
+.box-idea{background:var(--pura-claro);border-color:var(--pura)}
+.box-success{background:var(--verde-claro);border-color:var(--verde)}
+.box strong{display:block;margin-bottom:.3rem}
+.svg-container{background:#f8fafc;border-radius:12px;padding:1.5rem;margin:1.5rem 0;text-align:center;border:2px solid #e2e8f0}
+.svg-container svg{max-width:100%;height:auto}
+.svg-container svg text{font-family:Inter,system-ui,sans-serif}
+.interactive{background:#f1f5f9;border-radius:12px;padding:1.5rem;margin:1.5rem 0}
+.interactive h3{color:var(--azul);margin-bottom:1rem;font-size:1.1rem}
+.interactive button{background:var(--azul);color:#fff;border:none;padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.95rem;margin:.3rem}
+.interactive button:hover{background:#1d4ed8}
+.result{margin-top:.8rem;padding:.8rem;border-radius:6px;font-weight:600;min-height:2rem}
+.result.ok{background:var(--verde-claro);color:#065f46}
+.result.fail{background:var(--rojo-claro);color:#991b1b}
+.exercises{margin:1.5rem 0}
+.exercise{background:#f1f5f9;border-radius:8px;padding:1rem;margin:.8rem 0}
+.exercise p{font-weight:600;margin-bottom:.5rem}
+.quiz-options{display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0}
+.quiz-btn{padding:.6rem 1.5rem;border-radius:8px;border:2px solid var(--azul);background:#fff;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all .2s}
+.quiz-btn:hover{background:var(--azul-claro)}
+.quiz-btn.correct{background:var(--verde);color:#fff;border-color:var(--verde)}
+.quiz-btn.wrong{background:var(--rojo);color:#fff;border-color:var(--rojo)}
+.summary{background:var(--azul-claro);border-radius:12px;padding:1.5rem;margin:2rem 0}
+.summary h3{color:var(--azul);margin-bottom:.8rem}
+.summary ul{list-style:none;padding:0}
+.summary li{padding:.3rem 0;padding-left:1.5rem;position:relative}
+.summary li::before{content:"✓";color:var(--verde);font-weight:bold;position:absolute;left:0}
+.nav{display:flex;justify-content:space-between;margin:2rem 0;padding:1rem 0;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0}
+.nav a{color:var(--azul);text-decoration:none;font-weight:600;padding:.5rem 1rem;border-radius:6px}
+.nav a:hover{background:var(--azul-claro)}
+.nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
+.footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+</style>
+</head>
+<body>
+<header class="header">
+<h1>📏 S03.4: Perspectiva caballera</h1>
+<p>Dibujo Técnico — Perspectivas</p>
+<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+</header>
+<main class="container">
+
+<section class="chapter">
+<h2 class="chapter-title">🎯 ¿Qué vamos a aprender?</h2>
+<div class="box box-idea">
+<strong>💡 Idea clave</strong>
+La caballera es la más fácil de dibujar: una cara va en verdadera magnitud (frontal) y la profundidad sale a 45° con reducción 0.5. Es ideal para piezas con cara frontal compleja.
+</div>
+<p>En esta sesión aprenderás a:</p>
+<ul style="margin:.8rem 0 1rem 1.5rem">
+<li>Identificar los ejes de la caballera</li>
+<li>Saber que una cara va en verdadera magnitud</li>
+<li>Conocer la reducción del eje oblicuo (0.5)</li>
+<li>Distinguir caballera normal (0.5) de simplificada (1)</li>
+</ul>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">1️⃣ Ejes y reducción de la caballera</h2>
+<div class="box box-teoria">
+<strong>📖 Teoría</strong>
+<strong>Perspectiva caballera:</strong><br><br>
+<strong>🔹 Ejes:</strong><br>
+• Z: siempre VERTICAL (sin reducción)<br>
+• X: HORIZONTAL (sin reducción)<br>
+• Y: oblicuo a 45° (reducción 0.5)<br><br>
+<strong>🔹 Cara frontal en VM:</strong><br>
+• La cara YZ se representa en verdadera magnitud<br>
+• X e Y salen de la cara frontal a 45°<br><br>
+<strong>🔹 Reducción del eje Y:</strong><br>
+• Caballera NORMAL: 0.5 (la más usada)<br>
+• Caballera SIMPLIFICADA: 1 (más fácil)<br>
+• En la práctica, la normal (0.5) es la estándar
+</div>
+<div class="box box-ejemplo">
+<strong>🔍 Ejemplo 1</strong>
+Una pieza de 100×60×40:<br>
+Cara frontal: 60×40 en VM (tamaño real)<br>
+Profundidad: 100 a 45° → se dibuja de 50mm (100 × 0.5)
+</div>
+<div class="box box-ejemplo">
+<strong>🔍 Ejemplo 2</strong>
+Círculos en cara frontal: se ven en VM (círculos)<br>
+Círculos en cara lateral: se ven como elipses
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">2️⃣ Visualiza la caballera</h2>
+<div class="svg-container">
+<svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+<!-- Fondo -->
+<rect x="0" y="0" width="600" height="300" fill="#f8fafc" rx="8"/>
+<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Perspectiva caballera: cara frontal en VM</text>
+<!-- Ejes -->
+<line x1="300" y1="150" x2="200" y2="150" stroke="#2563eb" stroke-width="3"/>
+<text x="185" y="145" font-size="12" font-weight="bold" fill="#2563eb">X</text>
+<line x1="300" y1="150" x2="300" y2="80" stroke="#10b981" stroke-width="3"/>
+<text x="310" y="75" font-size="12" font-weight="bold" fill="#10b981">Z</text>
+<line x1="300" y1="150" x2="400" y2="100" stroke="#f97316" stroke-width="3"/>
+<text x="410" y="95" font-size="12" font-weight="bold" fill="#f97316">Y</text>
+<!-- Pieza frontal -->
+<rect x="200" y="80" width="100" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="250" y="120" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="600">Cara frontal (VM)</text>
+<!-- Profundidad -->
+<line x1="200" y1="80" x2="250" y2="50" stroke="#f97316" stroke-width="2"/>
+<line x1="300" y1="80" x2="350" y2="50" stroke="#f97316" stroke-width="2"/>
+<line x1="200" y1="150" x2="250" y2="120" stroke="#f97316" stroke-width="2"/>
+<line x1="300" y1="150" x2="350" y2="120" stroke="#f97316" stroke-width="2"/>
+<!-- Cara posterior -->
+<rect x="250" y="50" width="100" height="70" fill="#fff7ed" stroke="#f97316" stroke-width="1.5" stroke-dasharray="4,2"/>
+<text x="300" y="90" text-anchor="middle" font-size="10" fill="#f97316">45°</text>
+<!-- Reducción -->
+<text x="275" y="40" text-anchor="middle" font-size="10" fill="#f97316">100→50</text>
+<!-- Leyenda -->
+<rect x="20" y="230" width="560" height="55" fill="#ecfdf5" rx="6"/>
+<text x="300" y="250" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">Cara frontal = verdadera magnitud | Profundidad = 45° × 0.5</text>
+<text x="300" y="270" text-anchor="middle" font-size="10" fill="#64748b">Z: vertical | X: horizontal | Y: 45° oblicuo | Reducción Y: 0.5</text>
+</svg>
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">📝 Ejercicios</h2>
+<div class="exercises">
+
+<div class="exercise">
+<p>📐 Ejercicio 1: ¿Qué cara va en verdadera magnitud en la caballera?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">La cara frontal (YZ)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">La cara lateral (XZ)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">La cara inferior (XY)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">Todas</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 2: ¿A qué ángulo sale el eje Y?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">30°</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">45°</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">60°</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">90°</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 3: ¿Cuál es la reducción del eje Y en caballera normal?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">1</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">0.5</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">0.82</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">0.7</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 4: ¿Qué eje es vertical en la caballera?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Z</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">X</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">Y</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">Todos</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 5: Una profundidad de 80mm en caballera normal se dibuja de...</p>
+<input type="text" id="ex5" placeholder="Tu respuesta en mm" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
+<button onclick="checkExercise('ex5', '40', this)">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+</div>
+</section>
+
+<div class="box box-error">
+<strong>⚠️ Error común</strong>
+Usar reducción 1 en vez de 0.5. La caballera NORMAL usa 0.5. La simplificada (1) se usa solo si se pide explícitamente. ¡No confundas!
+</div>
+
+<div class="box box-idea">
+<strong>🔗 Conexión</strong>
+La caballera es ideal para piezas con cara frontal compleja (muchos agujeros, formas irregulares). La cara frontal va en VM, así que no necesitas deformarla.
+</div>
+
+<div class="summary">
+<h3>📋 Resumen de lo aprendido</h3>
+<ul>
+<li>Caballera: cara frontal en verdadera magnitud</li>
+<li>Z: vertical | X: horizontal | Y: 45° oblicuo</li>
+<li>Reducción Y: 0.5 (normal) o 1 (simplificada)</li>
+<li>Ideal para piezas con cara frontal compleja</li>
+<li>¡Ya dominas la perspectiva caballera! 🎉</li>
+</ul>
+</div>
+
+<div class="nav">
+<a href="b03-03-isometrica-circulos.html">← Anterior</a>
+<a href="b03-05-piezas-caballera.html">Siguiente →</a>
+</div>
+
+</main>
+<footer class="footer">Hecho con ❤️ por David Antizar</footer>
+<script>
+function checkAnswer(btn, correct) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) {
+    b.disabled = true; b.classList.remove('correct','wrong');
+  });
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  var feedback = parent.nextElementSibling;
+  if(feedback && feedback.classList.contains('feedback')) {
+    if(correct) {
+      feedback.textContent = '✅ ¡Correcto! ¡Muy bien!';
+      feedback.className = 'feedback correct';
+    } else {
+      feedback.textContent = '❌ ¡Intenta de nuevo!';
+      feedback.className = 'feedback incorrect';
+      setTimeout(function() {
+        parent.querySelectorAll('button').forEach(function(b) {
+          b.disabled = false; b.classList.remove('correct','wrong');
+        });
+        feedback.textContent = '';
+        feedback.className = 'feedback';
+      }, 1500);
+    }
+  }
+}
+
+function checkExercise(id, correct, btn) {
+  var input = document.getElementById(id);
+  var feedback = input.parentElement.nextElementSibling;
+  var userVal = input.value.trim().replace(',', '.');
+  var correctVal = correct.toString().replace(',', '.');
+  if(userVal === correctVal) {
+    feedback.textContent = '✅ ¡Correcto! ' + correct;
+    feedback.className = 'feedback correct';
+    input.style.borderColor = 'var(--verde)';
+  } else {
+    feedback.textContent = '❌ Respuesta correcta: ' + correct;
+    feedback.className = 'feedback incorrect';
+    input.style.borderColor = 'var(--rojo)';
+  }
+}
+
+window.onscroll = function(){
+  var h = document.documentElement;
+  var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
+  document.getElementById('progress').style.width = p+'%';
+};
+</script>
+</body>
+</html>
