@@ -4,7 +4,7 @@
   "total_temas": 53,
   "temas": [
     {"id": "b01-01", "file": "b01-01-formatos-papel.html", "title": "📄 Formatos de papel ISO 216", "desc": "A0, A1, A2, A3, A4 — relación √2", "bloque": "Bloque 1: Normalización", "icon": "📏", "skills": "td-normalizacion", "status": "completed", "improvement_count": 0, "priority": 1, "last_completed": "2026-06-10"},
-    {"id": "b01-02", "file": "b01-02-tipos-linea.html", "title": "📐 Tipos de línea ISO 128", "desc": "Gruesa, fina, discontinua, ejes...", "bloque": "Bloque 1: Normalización", "icon": "📏", "skills": "td-normalizacion", "status": "pending", "improvement_count": 0, "priority": 2},
+    {"id": "b01-02", "file": "b01-02-tipos-linea.html", "title": "📐 Tipos de línea ISO 128", "desc": "Gruesa, fina, discontinua, ejes...", "bloque": "Bloque 1: Normalización", "icon": "📏", "skills": "td-normalizacion", "status": "completed", "improvement_count": 0, "priority": 2, "last_completed": "2026-06-10"},
     {"id": "b01-03", "file": "b01-03-escalas.html", "title": "🔍 Escalas ISO 5455", "desc": "Natural, ampliación, reducción", "bloque": "Bloque 1: Normalización", "icon": "📏", "skills": "td-normalizacion", "status": "pending", "improvement_count": 0, "priority": 3},
     {"id": "b01-04", "file": "b01-04-rotulacion.html", "title": "✍️ Rotulación UNE", "desc": "Tipos A y B, alturas, proporciones", "bloque": "Bloque 1: Normalización", "icon": "📏", "skills": "td-normalizacion", "status": "pending", "improvement_count": 0, "priority": 4},
     {"id": "b01-05", "file": "b01-05-cuadro-rotulacion.html", "title": "📋 Cuadro de rotulación y pie de plano", "desc": "Estructura, datos obligatorios", "bloque": "Bloque 1: Normalización", "icon": "📏", "skills": "td-normalizacion", "status": "pending", "improvement_count": 0, "priority": 5},
@@ -57,6 +57,6 @@
     {"id": "b09-02", "file": "b09-02-despiece-marcas.html", "title": "🔩 Despiece y marcas", "desc": "Piezas individuales, referencias", "bloque": "Bloque 9: Planos de Conjunto", "icon": "🏗️", "skills": "td-planos-conjunto", "status": "pending", "improvement_count": 0, "priority": 52},
     {"id": "b09-03", "file": "b09-03-vista-explosiva.html", "title": "💥 Vista explosiva y lista de piezas", "desc": "Orden de montaje, lista completa", "bloque": "Bloque 9: Planos de Conjunto", "icon": "🏗️", "skills": "td-planos-conjunto", "status": "pending", "improvement_count": 0, "priority": 53}
   ],
-  "progreso_global": 1,
+  "progreso_global": 2,
   "ult_actualizacion": "2026-06-10"
 }
