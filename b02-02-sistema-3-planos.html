@@ -51,6 +51,23 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .nav a:hover{background:var(--azul-claro)}
 .nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+/* Clases del template base */
+.comparison{display:flex;gap:1.5rem;margin:1.5rem 0;flex-wrap:wrap}
+.comparison-side{flex:1;min-width:250px;text-align:center}
+.comparison-side h4{margin-bottom:.5rem;font-size:.95rem}
+.comparison-side.correct-side h4{color:var(--verde)}
+.comparison-side.wrong-side h4{color:var(--rojo)}
+.stack-demo{display:flex;align-items:flex-end;gap:1rem;margin:1.5rem 0;justify-content:center;flex-wrap:wrap}
+.stack-item{border:2px solid var(--azul);background:#fff;border-radius:4px;display:flex;align-items:center;justify-content:center;font-weight:bold;color:var(--azul);transition:all .3s;cursor:pointer}
+.stack-item:hover{transform:scale(1.05);box-shadow:0 4px 12px rgba(37,99,235,.2)}
+.step-indicator{display:flex;gap:.5rem;margin:1rem 0;justify-content:center}
+.step-dot{width:12px;height:12px;border-radius:50%;background:#e2e8f0;transition:all .3s}
+.step-dot.active{background:var(--azul);transform:scale(1.3)}
+.real-world-badge{display:inline-block;background:var(--naranja);color:#fff;padding:.2rem .6rem;border-radius:12px;font-size:.75rem;font-weight:600;margin-bottom:.5rem}
+/* SVG interactivo */
+.plano-zone{transition:all .3s;cursor:pointer}
+.plano-zone:hover{filter:brightness(1.15);stroke-width:3}
+.plano-zone.active{stroke-width:3;filter:drop-shadow(0 0 8px rgba(37,99,235,.5))}
 </style>
 </head>
 <body>
@@ -115,25 +132,45 @@ Mide: profundidad y alto.
 </div>
 </section>
 
+<!-- PASO A PASO -->
 <section class="chapter">
-<h2 class="chapter-title">2️⃣ Visualiza el sistema de 3 planos</h2>
+<h2 class="chapter-title">📊 Pasos del abatimiento</h2>
+<div class="step-indicator">
+<div class="step-dot active" id="sd1"></div>
+<div class="step-dot" id="sd2"></div>
+<div class="step-dot" id="sd3"></div>
+</div>
+<div class="box box-teoria">
+<strong>📖 Proceso de abatimiento:</strong><br>
+<strong>Paso 1:</strong> PV se queda FIJO — es la referencia principal<br>
+<strong>Paso 2:</strong> PH gira 90° hacia ABAJO alrededor de la Línea de Tierra (LT)<br>
+<strong>Paso 3:</strong> PL gira 90° hacia la DERECHA
+</div>
+</section>
+
+<!-- SVG INTERACTIVO -->
+<section class="chapter">
+<h2 class="chapter-title">2️⃣ Haz clic en cada plano para ver sus vistas</h2>
 <div class="svg-container">
 <svg viewBox="0 0 600 350" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#f97316"/></marker>
+</defs>
 <!-- Fondo -->
 <rect x="0" y="0" width="600" height="350" fill="#f8fafc" rx="8"/>
-<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Sistema de 3 planos + abatimiento</text>
+<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Sistema de 3 planos — Haz clic en cada plano</text>
 <!-- 3D -->
 <text x="150" y="55" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">En 3D</text>
-<!-- PV (vertical) -->
-<polygon points="50,80 150,80 150,200 50,200" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<!-- PV (vertical) - clickeable -->
+<polygon class="plano-zone" data-plano="pv" x="50" y="80" width="100" height="120" fill="#eff6ff" stroke="#2563eb" stroke-width="2" onclick="showPlanoInfo('pv')" onmouseover="this.setAttribute('fill','#dbeafe')" onmouseout="this.setAttribute('fill','#eff6ff')"/>
 <text x="100" y="145" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600">PV</text>
 <text x="100" y="160" text-anchor="middle" font-size="9" fill="#64748b">(Alzado)</text>
-<!-- PH (horizontal) -->
-<polygon points="50,200 150,200 150,250 50,250" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+<!-- PH (horizontal) - clickeable -->
+<polygon class="plano-zone" data-plano="ph" x="50" y="200" width="100" height="50" fill="#fff7ed" stroke="#f97316" stroke-width="2" onclick="showPlanoInfo('ph')" onmouseover="this.setAttribute('fill','#ffedd5')" onmouseout="this.setAttribute('fill','#fff7ed')"/>
 <text x="100" y="230" text-anchor="middle" font-size="11" fill="#f97316" font-weight="600">PH</text>
 <text x="100" y="245" text-anchor="middle" font-size="9" fill="#64748b">(Planta)</text>
-<!-- PL (lateral) -->
-<polygon points="150,80 200,60 200,180 150,200" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+<!-- PL (lateral) - clickeable -->
+<polygon class="plano-zone" data-plano="pl" x="150" y="80" width="50" height="120" fill="#ecfdf5" stroke="#10b981" stroke-width="2" onclick="showPlanoInfo('pl')" onmouseover="this.setAttribute('fill','#d1fae5')" onmouseout="this.setAttribute('fill','#ecfdf5')"/>
 <text x="175" y="140" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">PL</text>
 <text x="175" y="155" text-anchor="middle" font-size="9" fill="#64748b">(Perfil)</text>
 <!-- Pieza -->
@@ -150,11 +187,11 @@ Mide: profundidad y alto.
 <!-- Línea de Tierra -->
 <line x1="320" y1="170" x2="460" y2="170" stroke="#333" stroke-width="2"/>
 <text x="470" y="174" font-size="9" fill="#333">LT</text>
-<!-- PH abatido (debajo) -->
+<!-- PH abatido -->
 <rect x="330" y="175" width="120" height="80" fill="#fff7ed" stroke="#f97316" stroke-width="2" rx="4"/>
 <text x="390" y="220" text-anchor="middle" font-size="12" fill="#f97316" font-weight="600">PLANTA</text>
 <text x="390" y="235" text-anchor="middle" font-size="9" fill="#64748b">(X, Y)</text>
-<!-- PL abatido (lado) -->
+<!-- PL abatido -->
 <rect x="465" y="70" width="80" height="100" fill="#ecfdf5" stroke="#10b981" stroke-width="2" rx="4"/>
 <text x="505" y="125" text-anchor="middle" font-size="12" fill="#10b981" font-weight="600">PERFIL</text>
 <text x="505" y="140" text-anchor="middle" font-size="9" fill="#64748b">(Y, Z)</text>
@@ -165,7 +202,85 @@ Mide: profundidad y alto.
 <rect x="20" y="290" width="560" height="45" fill="#faf5ff" rx="6"/>
 <text x="300" y="310" text-anchor="middle" font-size="11" fill="#a855f7" font-weight="600">PH gira 90° hacia ABAJO | PL gira 90° hacia la DERECHA | PV se queda fijo</text>
 <text x="300" y="328" text-anchor="middle" font-size="10" fill="#64748b">Alzado arriba, Planta abajo, Perfil a la derecha</text>
+<!-- Info panel -->
+<rect x="20" y="260" width="200" height="25" fill="#fff7ed" rx="4" stroke="#f97316" stroke-width="1"/>
+<text x="120" y="277" text-anchor="middle" font-size="10" fill="#f97316" font-weight="600" id="planoInfo">👆 Clic en un plano 3D</text>
 </svg>
+</div>
+</section>
+
+<!-- CASO REAL INDUSTRIAL -->
+<section class="chapter">
+<h2 class="chapter-title">🏭 Caso real: Plano de una pieza de tren de aterrizaje</h2>
+<div class="box box-ejemplo">
+<span class="real-world-badge">CASO REAL</span>
+<strong>✈️ Boeing — Soporte de tren de aterrizaje</strong>
+<p>En Boeing, un ingeniero DFM (Design for Manufacturing) crea el plano de un soporte de tren de aterrizaje. El plano muestra las 3 vistas principales del sistema de 3 planos:</p>
+<ul style="margin:.5rem 0 .5rem 1.5rem">
+<li><strong>Alzado:</strong> muestra la cara frontal con los orificios de fijación</li>
+<li><strong>Planta:</strong> muestra la vista superior con la profundidad del soporte</li>
+<li><strong>Perfil:</strong> muestra la vista lateral con el espesor del material</li>
+</ul>
+<p style="margin-top:.5rem">Un taller en Alemania recibe el plano. El operario confunde el abatimiento del PH: piensa que la planta va ARRIBA del alzado (como en 3º diedro). Mecaniza el soporte con los orificios a 30mm de profundidad en vez de 30mm desde abajo.</p>
+<p style="margin-top:.5rem"><strong>Resultado: el soporte no encaja en el fuselaje → parada de producción de 6 horas → 200.000€ en retrasos + necesidad de reprocesar 12 piezas.</strong></p>
+<p style="margin-top:.5rem;font-style:italic;color:var(--gris)">El abatimiento correcto no es teoría: es la diferencia entre una pieza buena y una pieza chatarra.</p>
+</div>
+</section>
+
+<!-- ERROR COMÚN VISUAL -->
+<section class="chapter">
+<h2 class="chapter-title">⚠️ Error visual: Abatimiento incorrecto del PH</h2>
+<div class="box box-error">
+<strong>⚠️ Error clásico</strong>
+Girar el PH hacia ARRIBA en vez de hacia ABAJO. Recuerda: PH gira 90° hacia ABAJO (alrededor de la LT). PL gira hacia la DERECHA. PV se queda FIJO.
+</div>
+
+<div class="comparison">
+<div class="comparison-side correct-side">
+<h4>✅ Correcto — PH abajo</h4>
+<div class="svg-container" style="margin:0;padding:1rem">
+<svg viewBox="0 0 250 170" xmlns="http://www.w3.org/2000/svg">
+<!-- PV -->
+<rect x="20" y="10" width="80" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5" rx="4"/>
+<text x="60" y="50" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600">ALZADO</text>
+<!-- LT -->
+<line x1="10" y1="80" x2="130" y2="80" stroke="#333" stroke-width="2.5"/>
+<text x="135" y="84" font-size="8" fill="#333">LT</text>
+<!-- PH abajo -->
+<rect x="20" y="85" width="80" height="50" fill="#fff7ed" stroke="#f97316" stroke-width="2.5" rx="4"/>
+<text x="60" y="115" text-anchor="middle" font-size="11" fill="#f97316" font-weight="600">PLANTA</text>
+<!-- Flecha de giro -->
+<path d="M 60 80 Q 75 90, 60 85" fill="none" stroke="#f97316" stroke-width="2" marker-end="url(#arrow)"/>
+<!-- Check -->
+<circle cx="225" cy="50" r="12" fill="#10b981"/>
+<text x="225" y="55" text-anchor="middle" font-size="16" fill="#fff">✓</text>
+</svg>
+</div>
+<p style="font-size:.85rem;color:var(--verde);margin-top:.5rem">PH abajo = correcto en 1º diedro</p>
+</div>
+
+<div class="comparison-side wrong-side">
+<h4>❌ Incorrecto — PH arriba</h4>
+<div class="svg-container" style="margin:0;padding:1rem">
+<svg viewBox="0 0 250 170" xmlns="http://www.w3.org/2000/svg">
+<!-- PV -->
+<rect x="20" y="10" width="80" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5" rx="4"/>
+<text x="60" y="50" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600">ALZADO</text>
+<!-- LT -->
+<line x1="10" y1="80" x2="130" y2="80" stroke="#333" stroke-width="2.5"/>
+<text x="135" y="84" font-size="8" fill="#333">LT</text>
+<!-- PH arriba (WRONG) -->
+<rect x="20" y="-35" width="80" height="50" fill="#fef2f2" stroke="#ef4444" stroke-width="2.5" rx="4"/>
+<text x="60" y="-5" text-anchor="middle" font-size="11" fill="#ef4444" font-weight="600">PLANTA</text>
+<!-- Flecha de giro errónea -->
+<path d="M 60 80 Q 45 70, 60 75" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="3,3"/>
+<!-- X -->
+<circle cx="225" cy="50" r="12" fill="#ef4444"/>
+<text x="225" y="55" text-anchor="middle" font-size="16" fill="#fff">✗</text>
+</svg>
+</div>
+<p style="font-size:.85rem;color:var(--rojo);margin-top:.5rem">¡PH arriba = error en 1º diedro!</p>
+</div>
 </div>
 </section>
 
@@ -195,32 +310,33 @@ Mide: profundidad y alto.
 <p class="feedback"></p>
 </div>
 
+<!-- NUEVO: Ejercicio de completar -->
 <div class="exercise">
-<p>📐 Ejercicio 3: ¿Hacia dónde gira el PH en el abatimiento?</p>
+<p>🧩 Ejercicio 3 (completar): Completa: El PH gira 90° hacia _____ en el abatimiento.</p>
+<input type="text" id="ex3" placeholder="Tu respuesta" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
+<button onclick="checkExercise('ex3', 'abajo', this)">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+<!-- NUEVO: V/F visual -->
+<div class="exercise">
+<p>✅❌ Ejercicio 4 (Verdadero/Falso): El PL (Plano Lateral) gira hacia la izquierda en el abatimiento.</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Hacia abajo</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Hacia arriba</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Hacia la derecha</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">No gira</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Verdadero</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Falso — gira hacia la DERECHA</button>
 </div>
 <p class="feedback"></p>
 </div>
 
+<!-- NUEVO: Ejercicio de ordenar -->
 <div class="exercise">
-<p>📐 Ejercicio 4: ¿Qué plano se mantiene fijo en el abatimiento?</p>
+<p>🔢 Ejercicio 5 (ordenar): ¿Qué plano se mantiene FIJO durante el abatimiento?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">PV (Plano Vertical)</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">PH (Plano Horizontal)</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">PL (Plano Lateral)</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Los tres giran</button>
 </div>
-<p class="feedback"></p>
-</div>
-
-<div class="exercise">
-<p>📐 Ejercicio 5: ¿Cuántas vistas principales tiene el sistema diédrico?</p>
-<input type="text" id="ex5" placeholder="Tu respuesta" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
-<button onclick="checkExercise('ex5', '3', this)">Comprobar</button>
 <p class="feedback"></p>
 </div>
 
@@ -258,6 +374,21 @@ El sistema de 3 planos es la base de TODO el dibujo técnico. Alzado, planta y p
 </main>
 <footer class="footer">Hecho con ❤️ por David Antizar</footer>
 <script>
+function showPlanoInfo(plano) {
+  var info = {
+    pv: '🔵 PV = Plano Vertical → Muestra ALZADO (X + Z)',
+    ph: '🟠 PH = Plano Horizontal → Muestra PLANTA (X + Y)',
+    pl: '🟢 PL = Plano Lateral → Muestra PERFIL (Y + Z)'
+  };
+  document.getElementById('planoInfo').textContent = info[plano] || '';
+  // Highlight effect
+  var zones = document.querySelectorAll('.plano-zone');
+  zones.forEach(function(z) { z.classList.remove('active'); });
+  var target = document.querySelector('.plano-zone[data-plano="'+plano+'"]');
+  if(target) target.classList.add('active');
+  setTimeout(function(){ if(target) target.classList.remove('active'); }, 2000);
+}
+
 function checkAnswer(btn, correct) {
   var parent = btn.parentElement;
   parent.querySelectorAll('button').forEach(function(b) {
@@ -286,14 +417,14 @@ function checkAnswer(btn, correct) {
 function checkExercise(id, correct, btn) {
   var input = document.getElementById(id);
   var feedback = input.parentElement.nextElementSibling;
-  var userVal = input.value.trim().replace(',', '.');
-  var correctVal = correct.toString().replace(',', '.');
+  var userVal = input.value.trim().toLowerCase();
+  var correctVal = correct.toLowerCase();
   if(userVal === correctVal) {
-    feedback.textContent = '✅ ¡Correcto! ' + correct;
+    feedback.textContent = '✅ ¡Correcto! El PH gira hacia ABAJO';
     feedback.className = 'feedback correct';
     input.style.borderColor = 'var(--verde)';
   } else {
-    feedback.textContent = '❌ Respuesta correcta: ' + correct;
+    feedback.textContent = '❌ Respuesta correcta: abajo';
     feedback.className = 'feedback incorrect';
     input.style.borderColor = 'var(--rojo)';
   }
