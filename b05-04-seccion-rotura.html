@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📐 S05.4: Sección y rotura — Dibujo Técnico</title>
+<style>
+:root{--azul:#2563eb;--naranja:#f97316;--verde:#10b981;--rojo:#ef4444;--fondo:#fff;--texto:#1e293b;--gris:#94a3b8;--azul-claro:#eff6ff;--naranja-claro:#fff7ed;--verde-claro:#ecfdf5;--rojo-claro:#fef2f2;--pura-claro:#faf5ff;--pura:#a855f7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-gradient(135deg,#f8faff 0%,#fffaf5 100%);color:var(--texto);line-height:1.7}
+.header{background:linear-gradient(135deg,var(--azul),#1d4ed8);color:#fff;padding:2rem 1.5rem;text-align:center}
+.header h1{font-size:1.8rem;margin-bottom:.5rem}
+.header p{opacity:.9;font-size:1rem}
+.progress-bar{height:4px;background:rgba(255,255,255,.3);border-radius:2px;margin-top:1rem;overflow:hidden}
+.progress-fill{height:100%;background:#fff;border-radius:2px;width:0%;transition:width .3s}
+.container{max-width:900px;margin:0 auto;padding:1.5rem}
+.chapter{margin-bottom:2.5rem}
+.chapter-title{font-size:1.4rem;color:var(--azul);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:2px solid var(--azul-claro)}
+.box{padding:1rem 1.2rem;border-radius:10px;margin:1rem 0;border-left:4px solid;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.box-teoria{background:var(--azul-claro);border-color:var(--azul)}
+.box-ejemplo{background:var(--naranja-claro);border-color:var(--naranja)}
+.box-error{background:var(--rojo-claro);border-color:var(--rojo)}
+.box-idea{background:var(--pura-claro);border-color:var(--pura)}
+.box-success{background:var(--verde-claro);border-color:var(--verde)}
+.box strong{display:block;margin-bottom:.3rem}
+.svg-container{background:#f8fafc;border-radius:12px;padding:1.5rem;margin:1.5rem 0;text-align:center;border:2px solid #e2e8f0}
+.svg-container svg{max-width:100%;height:auto}
+.svg-container svg text{font-family:Inter,system-ui,sans-serif}
+.interactive{background:#f1f5f9;border-radius:12px;padding:1.5rem;margin:1.5rem 0}
+.interactive h3{color:var(--azul);margin-bottom:1rem;font-size:1.1rem}
+.interactive button{background:var(--azul);color:#fff;border:none;padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.95rem;margin:.3rem}
+.interactive button:hover{background:#1d4ed8}
+.result{margin-top:.8rem;padding:.8rem;border-radius:6px;font-weight:600;min-height:2rem}
+.result.ok{background:var(--verde-claro);color:#065f46}
+.result.fail{background:var(--rojo-claro);color:#991b1b}
+.exercises{margin:1.5rem 0}
+.exercise{background:#f1f5f9;border-radius:8px;padding:1rem;margin:.8rem 0}
+.exercise p{font-weight:600;margin-bottom:.5rem}
+.quiz-options{display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0}
+.quiz-btn{padding:.6rem 1.5rem;border-radius:8px;border:2px solid var(--azul);background:#fff;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all .2s}
+.quiz-btn:hover{background:var(--azul-claro)}
+.quiz-btn.correct{background:var(--verde);color:#fff;border-color:var(--verde)}
+.quiz-btn.wrong{background:var(--rojo);color:#fff;border-color:var(--rojo)}
+.summary{background:var(--azul-claro);border-radius:12px;padding:1.5rem;margin:2rem 0}
+.summary h3{color:var(--azul);margin-bottom:.8rem}
+.summary ul{list-style:none;padding:0}
+.summary li{padding:.3rem 0;padding-left:1.5rem;position:relative}
+.summary li::before{content:"✓";color:var(--verde);font-weight:bold;position:absolute;left:0}
+.nav{display:flex;justify-content:space-between;margin:2rem 0;padding:1rem 0;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0}
+.nav a{color:var(--azul);text-decoration:none;font-weight:600;padding:.5rem 1rem;border-radius:6px}
+.nav a:hover{background:var(--azul-claro)}
+.nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
+.footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+</style>
+</head>
+<body>
+<header class="header">
+<h1>📐 S05.4: Sección y rotura</h1>
+<p>Dibujo Técnico — Cortes y Secciones</p>
+<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+</header>
+<main class="container">
+
+<section class="chapter">
+<h2 class="chapter-title">🎯 ¿Qué vamos a aprender?</h2>
+<div class="box box-idea">
+<strong>💡 Idea clave</strong>
+La sección muestra solo la cara cortada (sin lo que hay detrás), mientras que la rotura es una interrupción intencionada de la pieza para acortar su representación. Ambas técnicas ahorran espacio y simplifican el dibujo.
+</div>
+<p>En esta sesión aprenderás a:</p>
+<ul style="margin:.8rem 0 1rem 1.5rem">
+<li>Diferenciar sección de rotura</li>
+<li>Representar secciones abatidas y desplazadas</li>
+<li>Dibujar roturas en piezas largas</li>
+<li>Aplicar los tipos de línea de rotura</li>
+</ul>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">1️⃣ Sección: definición y tipos</h2>
+<div class="box box-teoria">
+<strong>📖 Teoría</strong>
+<strong>🔹 SECCIÓN:</strong><br>
+• Es la superficie de intersección entre el plano de corte y la pieza<br>
+• NO se muestra lo que hay detrás del plano de corte<br>
+• Se representa con rayado diagonal (hachuras)<br>
+• Se usa para mostrar perfiles, nervaduras, espesores<br><br>
+<strong>🔹 TIPOS DE SECCIÓN:</strong><br>
+• <strong>Sección abatida:</strong> se dibuja girada sobre la propia vista<br>
+• <strong>Sección desplazada:</strong> se dibuja fuera de la vista, cerca del corte<br>
+• <strong>Sección sucesiva:</strong> varias secciones en diferentes puntos<br><br>
+<strong>🔹 DIFERENCIA CON CORTE:</strong><br>
+• Corte = sección + lo que hay detrás<br>
+• Sección = solo la cara cortada (sin fondo)
+</div>
+<div class="box box-ejemplo">
+<strong>🔍 Ejemplo 1 — Sección abatida</strong>
+Perfil de una viga en I:<br>
+Se dibuja la sección directamente sobre la vista longitudinal, girada 90°. Se ve la forma de la viga sin necesidad de una vista adicional.
+</div>
+<div class="box box-ejemplo">
+<strong>🔍 Ejemplo 2 — Sección desplazada</strong>
+Eje escalonado con chavetero:<br>
+La sección se dibuja aparte, cerca de donde se realizó el corte. Se indica con línea de corte y letras A-A.
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">2️⃣ Rotura: definición y tipos</h2>
+<div class="box box-teoria">
+<strong>📖 Teoría</strong>
+<strong>🔹 ROTURA:</strong><br>
+• Interrupción de una pieza para acortar su representación<br>
+• Se usa en piezas muy largas (ejes, barras, perfiles)<br>
+• La forma de la rotura indica el tipo de material<br>
+• La cota de la pieza sigue siendo la longitud real<br><br>
+<strong>🔹 TIPOS DE ROTURA:</strong><br>
+• <strong>Rotura recta:</strong> línea en zigzag para piezas prismáticas<br>
+• <strong>Rotura cilíndrica:</strong> forma de "S" o espiral para piezas redondas<br>
+• <strong>Rotura de madera:</strong> forma dentada irregular<br>
+• <strong>Rotura de tubo:</strong> dos curvas opuestas<br><br>
+<strong>🔹 NORMAS:</strong><br>
+• La línea de rotura es fina y se dibuja a mano alzada<br>
+• La cota indica la longitud total real, no la dibujada<br>
+• No se acotan las partes de la rotura
+</div>
+<div class="box box-ejemplo">
+<strong>🔍 Ejemplo 3 — Rotura en eje cilíndrico</strong>
+Eje de 500 mm de largo representado en solo 100 mm:<br>
+Se usa rotura en forma de "S" en ambos extremos. La cota dice 500 aunque el dibujo mida 100.
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">3️⃣ Visualiza sección y rotura</h2>
+<div class="svg-container">
+<svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+<!-- Fondo -->
+<rect x="0" y="0" width="600" height="300" fill="#f8fafc" rx="8"/>
+<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Sección vs Rotura</text>
+<!-- Sección abatida -->
+<text x="150" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">SECCIÓN ABATIDA</text>
+<!-- Viga longitudinal -->
+<rect x="50" y="100" width="200" height="30" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="150" y="120" text-anchor="middle" font-size="9" fill="#2563eb">Vista longitudinal</text>
+<!-- Sección abatida sobre la vista -->
+<rect x="130" y="80" width="40" height="70" fill="#fff7ed" stroke="#f97316" stroke-width="1.5" rx="3"/>
+<line x1="135" y1="85" x2="145" y2="145" stroke="#f97316" stroke-width="0.5"/>
+<line x1="145" y1="85" x2="155" y2="145" stroke="#f97316" stroke-width="0.5"/>
+<line x1="155" y1="85" x2="165" y2="145" stroke="#f97316" stroke-width="0.5"/>
+<text x="150" y="165" text-anchor="middle" font-size="9" fill="#f97316">Sección girada 90°</text>
+<!-- Rotura -->
+<text x="450" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#10b981">ROTURA CILÍNDRICA</text>
+<!-- Eje con rotura -->
+<rect x="350" y="100" width="60" height="30" fill="#eff6ff" stroke="#10b981" stroke-width="2"/>
+<path d="M 410 100 Q 420 85, 430 100 Q 440 115, 450 100 Q 460 85, 470 100 Q 480 115, 490 100" fill="none" stroke="#10b981" stroke-width="2"/>
+<rect x="490" y="100" width="60" height="30" fill="#eff6ff" stroke="#10b981" stroke-width="2"/>
+<text x="450" y="145" text-anchor="middle" font-size="9" fill="#10b981">Rotura en "S"</text>
+<!-- Cota de longitud real -->
+<line x1="350" y1="80" x2="350" y2="70" stroke="#94a3b8" stroke-width="1"/>
+<line x1="550" y1="80" x2="550" y2="70" stroke="#94a3b8" stroke-width="1"/>
+<line x1="350" y1="65" x2="550" y2="65" stroke="#2563eb" stroke-width="1.5"/>
+<polygon points="350,65 360,62 360,68" fill="#2563eb"/>
+<polygon points="550,65 540,62 540,68" fill="#2563eb"/>
+<text x="450" y="60" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="600">500</text>
+<!-- Leyenda -->
+<rect x="20" y="240" width="560" height="50" fill="#ecfdf5" rx="6"/>
+<text x="300" y="258" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">Sección: solo la cara cortada | Rotura: acorta la pieza, la cota indica la longitud real</text>
+<text x="300" y="278" text-anchor="middle" font-size="10" fill="#64748b">Sección abatida se dibuja girada sobre la vista | Rotura cilíndrica usa forma de "S"</text>
+</svg>
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">4️⃣ Tipos de línea de rotura</h2>
+<div class="box box-teoria">
+<strong>📖 Teoría</strong>
+<strong>🔹 SEGÚN EL MATERIAL:</strong><br>
+• <strong>Metales (barras, ejes):</strong> línea en forma de "S" o espiral<br>
+• <strong>Madera:</strong> línea en zigzag dentado<br>
+• <strong>Tubos / perfiles huecos:</strong> dos curvas opuestas<br>
+• <strong>Materiales prismáticos:</strong> línea quebrada en zigzag<br><br>
+<strong>🔹 NORMAS ISO:</strong><br>
+• La línea de rotura se dibuja a mano alzada (trazo fino)<br>
+• No debe confundirse con el contorno de la pieza<br>
+• En piezas muy largas se pueden usar dos roturas<br>
+• La rotura no se acota ni se considera parte de la pieza
+</div>
+<div class="box box-ejemplo">
+<strong>🔍 Ejemplo 4 — Rotura en madera</strong>
+Listón de madera de 2 m:<br>
+Se representa con rotura dentada. La cota indica 2000 mm aunque el dibujo mida 80 mm.
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">📝 Ejercicios</h2>
+<div class="exercises">
+
+<div class="exercise">
+<p>📐 Ejercicio 1: ¿Qué muestra una sección?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Solo la cara cortada</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">La cara cortada + lo que hay detrás</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Toda la pieza</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Nada</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 2: ¿Qué tipo de sección se dibuja girada sobre la propia vista?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Sección abatida</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Sección desplazada</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Sección sucesiva</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Corte total</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 3: ¿Para qué sirve la rotura?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Acortar la representación de piezas largas</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Mostrar el interior de la pieza</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Indicar el material</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Decorar el dibujo</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 4: ¿Qué forma tiene la rotura para piezas cilíndricas?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Forma de "S" o espiral</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Línea recta</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Zigzag dentado</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Círculo</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 5: ¿Qué indica la cota en una pieza con rotura?</p>
+<input type="text" id="ex5" placeholder="Respuesta" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:250px">
+<button onclick="checkExercise('ex5', 'la longitud real', this)">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+</div>
+</section>
+
+<div class="box box-error">
+<strong>⚠️ Error clásico</strong>
+Confundir sección con corte. La sección muestra SOLO la cara cortada (con rayado). El corte muestra la sección + todo lo que hay detrás del plano de corte. ¡No son lo mismo!
+</div>
+
+<div class="box box-idea">
+<strong>🔗 Conexión</strong>
+Las secciones son ideales para perfiles estructurales (vigas IPN, UPN, tubos) donde solo interesa la forma de la sección transversal. Las roturas son esenciales en planos de ejes y barras largas para ahorrar espacio.
+</div>
+
+<div class="summary">
+<h3>📋 Resumen de lo aprendido</h3>
+<ul>
+<li>Sección: solo la cara cortada (con rayado)</li>
+<li>Sección abatida: girada sobre la vista</li>
+<li>Sección desplazada: dibujada fuera de la vista</li>
+<li>Rotura: acorta piezas largas, la cota indica la longitud real</li>
+<li>Rotura cilíndrica: forma de "S"</li>
+<li>Rotura de madera: zigzag dentado</li>
+<li>¡Ya dominas secciones y roturas! 🎉</li>
+</ul>
+</div>
+
+<div class="nav">
+<a href="b05-03-corte-escalonado.html">← Anterior</a>
+<a href="b05-05-hachuras.html">Siguiente →</a>
+</div>
+
+</main>
+<footer class="footer">Hecho con ❤️ por David Antizar</footer>
+<script>
+function checkAnswer(btn, correct) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) {
+    b.disabled = true; b.classList.remove('correct','wrong');
+  });
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  var feedback = parent.nextElementSibling;
+  if(feedback && feedback.classList.contains('feedback')) {
+    if(correct) {
+      feedback.textContent = '✅ ¡Correcto! ¡Muy bien!';
+      feedback.className = 'feedback correct';
+    } else {
+      feedback.textContent = '❌ ¡Intenta de nuevo!';
+      feedback.className = 'feedback incorrect';
+      setTimeout(function() {
+        parent.querySelectorAll('button').forEach(function(b) {
+          b.disabled = false; b.classList.remove('correct','wrong');
+        });
+        feedback.textContent = '';
+        feedback.className = 'feedback';
+      }, 1500);
+    }
+  }
+}
+
+function checkExercise(id, correct, btn) {
+  var input = document.getElementById(id);
+  var feedback = input.parentElement.nextElementSibling;
+  var userVal = input.value.trim().toLowerCase();
+  var correctVal = correct.toLowerCase();
+  if(userVal === correctVal) {
+    feedback.textContent = '✅ ¡Correcto! ' + correct;
+    feedback.className = 'feedback correct';
+    input.style.borderColor = 'var(--verde)';
+  } else {
+    feedback.textContent = '❌ Respuesta correcta: ' + correct;
+    feedback.className = 'feedback incorrect';
+    input.style.borderColor = 'var(--rojo)';
+  }
+}
+
+window.onscroll = function(){
+  var h = document.documentElement;
+  var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
+  document.getElementById('progress').style.width = p+'%';
+};
+</script>
+</body>
+</html>

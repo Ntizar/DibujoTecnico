@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📝 S05.6: Ejercicio completo cortes — Dibujo Técnico</title>
+<style>
+:root{--azul:#2563eb;--naranja:#f97316;--verde:#10b981;--rojo:#ef4444;--fondo:#fff;--texto:#1e293b;--gris:#94a3b8;--azul-claro:#eff6ff;--naranja-claro:#fff7ed;--verde-claro:#ecfdf5;--rojo-claro:#fef2f2;--pura-claro:#faf5ff;--pura:#a855f7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-gradient(135deg,#f8faff 0%,#fffaf5 100%);color:var(--texto);line-height:1.7}
+.header{background:linear-gradient(135deg,var(--azul),#1d4ed8);color:#fff;padding:2rem 1.5rem;text-align:center}
+.header h1{font-size:1.8rem;margin-bottom:.5rem}
+.header p{opacity:.9;font-size:1rem}
+.progress-bar{height:4px;background:rgba(255,255,255,.3);border-radius:2px;margin-top:1rem;overflow:hidden}
+.progress-fill{height:100%;background:#fff;border-radius:2px;width:0%;transition:width .3s}
+.container{max-width:900px;margin:0 auto;padding:1.5rem}
+.chapter{margin-bottom:2.5rem}
+.chapter-title{font-size:1.4rem;color:var(--azul);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:2px solid var(--azul-claro)}
+.box{padding:1rem 1.2rem;border-radius:10px;margin:1rem 0;border-left:4px solid;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.box-teoria{background:var(--azul-claro);border-color:var(--azul)}
+.box-ejemplo{background:var(--naranja-claro);border-color:var(--naranja)}
+.box-error{background:var(--rojo-claro);border-color:var(--rojo)}
+.box-idea{background:var(--pura-claro);border-color:var(--pura)}
+.box-success{background:var(--verde-claro);border-color:var(--verde)}
+.box strong{display:block;margin-bottom:.3rem}
+.svg-container{background:#f8fafc;border-radius:12px;padding:1.5rem;margin:1.5rem 0;text-align:center;border:2px solid #e2e8f0}
+.svg-container svg{max-width:100%;height:auto}
+.svg-container svg text{font-family:Inter,system-ui,sans-serif}
+.interactive{background:#f1f5f9;border-radius:12px;padding:1.5rem;margin:1.5rem 0}
+.interactive h3{color:var(--azul);margin-bottom:1rem;font-size:1.1rem}
+.interactive button{background:var(--azul);color:#fff;border:none;padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.95rem;margin:.3rem}
+.interactive button:hover{background:#1d4ed8}
+.result{margin-top:.8rem;padding:.8rem;border-radius:6px;font-weight:600;min-height:2rem}
+.result.ok{background:var(--verde-claro);color:#065f46}
+.result.fail{background:var(--rojo-claro);color:#991b1b}
+.exercises{margin:1.5rem 0}
+.exercise{background:#f1f5f9;border-radius:8px;padding:1rem;margin:.8rem 0}
+.exercise p{font-weight:600;margin-bottom:.5rem}
+.quiz-options{display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0}
+.quiz-btn{padding:.6rem 1.5rem;border-radius:8px;border:2px solid var(--azul);background:#fff;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all .2s}
+.quiz-btn:hover{background:var(--azul-claro)}
+.quiz-btn.correct{background:var(--verde);color:#fff;border-color:var(--verde)}
+.quiz-btn.wrong{background:var(--rojo);color:#fff;border-color:var(--rojo)}
+.summary{background:var(--azul-claro);border-radius:12px;padding:1.5rem;margin:2rem 0}
+.summary h3{color:var(--azul);margin-bottom:.8rem}
+.summary ul{list-style:none;padding:0}
+.summary li{padding:.3rem 0;padding-left:1.5rem;position:relative}
+.summary li::before{content:"✓";color:var(--verde);font-weight:bold;position:absolute;left:0}
+.nav{display:flex;justify-content:space-between;margin:2rem 0;padding:1rem 0;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0}
+.nav a{color:var(--azul);text-decoration:none;font-weight:600;padding:.5rem 1rem;border-radius:6px}
+.nav a:hover{background:var(--azul-claro)}
+.nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
+.footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+</style>
+</head>
+<body>
+<header class="header">
+<h1>📝 S05.6: Ejercicio completo cortes</h1>
+<p>Dibujo Técnico — Cortes y Secciones</p>
+<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+</header>
+<main class="container">
+
+<section class="chapter">
+<h2 class="chapter-title">🎯 ¿Qué vamos a practicar?</h2>
+<div class="box box-idea">
+<strong>💡 Idea clave</strong>
+Esta es la sesión de práctica intensiva del Bloque 5. Vamos a aplicar todo lo aprendido: cortes totales, parciales, semicortes, cortes escalonados, secciones, roturas y hachuras. Resolveremos ejercicios completos paso a paso.
+</div>
+<p>En esta sesión practicarás:</p>
+<ul style="margin:.8rem 0 1rem 1.5rem">
+<li>Identificar el tipo de corte adecuado para cada pieza</li>
+<li>Dibujar la línea de corte correctamente</li>
+<li>Aplicar el rayado según el material</li>
+<li>Resolver un ejercicio completo de cortes</li>
+</ul>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">1️⃣ Ejercicio completo: Pieza con múltiples detalles</h2>
+<div class="box box-teoria">
+<strong>📖 Enunciado</strong>
+Se tiene una pieza prismática de acero de 120×80×60 mm con las siguientes características:<br>
+• Un agujero pasante cilíndrico de ⌀20 mm centrado a 30 mm del borde izquierdo y 40 mm de la base<br>
+• Un agujero ciego roscado M10 en la parte superior, centrado a 90 mm del borde izquierdo<br>
+• Una ranura en forma de "T" en la base, centrada, de 10 mm de profundidad<br>
+• Dos nervaduras laterales de 8 mm de espesor<br><br>
+<strong>Se pide:</strong><br>
+1. Determinar qué tipo de corte es más adecuado<br>
+2. Dibujar la línea de corte en la vista frontal<br>
+3. Representar el corte con su rayado correspondiente<br>
+4. Identificar cada elemento en la vista de corte
+</div>
+<div class="box box-ejemplo">
+<strong>🔍 Solución paso a paso</strong>
+<strong>Paso 1:</strong> Los agujeros están a diferentes alturas → Corte escalonado (A-A)<br>
+<strong>Paso 2:</strong> Plano 1 pasa por agujero pasante (y=40), escalón horizontal, Plano 2 pasa por agujero roscado (y=60)<br>
+<strong>Paso 3:</strong> Rayado a 45° uniforme (acero). Nervaduras NO se rayan (corte longitudinal)<br>
+<strong>Paso 4:</strong> En la vista de corte se ven: agujero pasante, agujero roscado, ranura en T, espesor de paredes
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">2️⃣ Visualiza el ejercicio resuelto</h2>
+<div class="svg-container">
+<svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+<!-- Fondo -->
+<rect x="0" y="0" width="600" height="300" fill="#f8fafc" rx="8"/>
+<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Ejercicio completo — Corte escalonado A-A</text>
+<!-- Vista frontal con línea de corte -->
+<text x="150" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">VISTA FRONTAL</text>
+<rect x="50" y="70" width="200" height="120" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<!-- Agujero pasante -->
+<circle cx="100" cy="110" r="12" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,2"/>
+<text x="100" y="115" text-anchor="middle" font-size="7" fill="#94a3b8">⌀20</text>
+<!-- Agujero roscado -->
+<circle cx="180" cy="85" r="8" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,2"/>
+<text x="180" y="90" text-anchor="middle" font-size="7" fill="#94a3b8">M10</text>
+<!-- Ranura en T -->
+<rect x="130" y="175" width="40" height="15" fill="none" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="150" y="195" text-anchor="middle" font-size="7" fill="#94a3b8">Ranura T</text>
+<!-- Línea de corte escalonado A-A -->
+<line x1="60" y1="70" x2="60" y2="110" stroke="#ef4444" stroke-width="2.5"/>
+<line x1="60" y1="110" x2="100" y2="110" stroke="#ef4444" stroke-width="2.5"/>
+<line x1="100" y1="110" x2="100" y2="85" stroke="#ef4444" stroke-width="2.5"/>
+<line x1="100" y1="85" x2="180" y2="85" stroke="#ef4444" stroke-width="2.5"/>
+<line x1="180" y1="85" x2="180" y2="190" stroke="#ef4444" stroke-width="2.5"/>
+<line x1="180" y1="190" x2="240" y2="190" stroke="#ef4444" stroke-width="2.5"/>
+<polygon points="60,70 55,80 65,80" fill="#ef4444"/>
+<polygon points="240,190 230,185 230,195" fill="#ef4444"/>
+<text x="50" y="65" text-anchor="end" font-size="10" fill="#ef4444" font-weight="bold">A</text>
+<text x="250" y="205" text-anchor="start" font-size="10" fill="#ef4444" font-weight="bold">A</text>
+<!-- Vista en corte A-A -->
+<text x="450" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#10b981">CORTE A-A</text>
+<rect x="350" y="70" width="200" height="120" fill="#eff6ff" stroke="#10b981" stroke-width="2"/>
+<!-- Rayado -->
+<line x1="355" y1="75" x2="365" y2="185" stroke="#f97316" stroke-width="0.5"/>
+<line x1="365" y1="75" x2="375" y2="185" stroke="#f97316" stroke-width="0.5"/>
+<line x1="375" y1="75" x2="385" y2="185" stroke="#f97316" stroke-width="0.5"/>
+<line x1="385" y1="75" x2="395" y2="185" stroke="#f97316" stroke-width="0.5"/>
+<line x1="395" y1="75" x2="405" y2="185" stroke="#f97316" stroke-width="0.5"/>
+<line x1="405" y1="75" x2="415" y2="185" stroke="#f97316" stroke-width="0.5"/>
+<line x1="415" y1="75" x2="425" y2="185" stroke="#f97316" stroke-width="0.5"/>
+<line x1="425" y1="75" x2="435" y2="185" stroke="#f97316" stroke-width="0.5"/>
+<line x1="435" y1="75" x2="445" y2="185" stroke="#f97316" stroke-width="0.5"/>
+<line x1="445" y1="75" x2="455" y2="185" stroke="#f97316" stroke-width="0.5"/>
+<line x1="455" y1="75" x2="465" y2="185" stroke="#f97316" stroke-width="0.5"/>
+<line x1="465" y1="75" x2="475" y2="185" stroke="#f97316" stroke-width="0.5"/>
+<line x1="475" y1="75" x2="485" y2="185" stroke="#f97316" stroke-width="0.5"/>
+<line x1="485" y1="75" x2="495" y2="185" stroke="#f97316" stroke-width="0.5"/>
+<line x1="495" y1="75" x2="505" y2="185" stroke="#f97316" stroke-width="0.5"/>
+<line x1="505" y1="75" x2="515" y2="185" stroke="#f97316" stroke-width="0.5"/>
+<line x1="515" y1="75" x2="525" y2="185" stroke="#f97316" stroke-width="0.5"/>
+<line x1="525" y1="75" x2="535" y2="185" stroke="#f97316" stroke-width="0.5"/>
+<line x1="535" y1="75" x2="545" y2="185" stroke="#f97316" stroke-width="0.5"/>
+<!-- Agujero pasante en corte -->
+<rect x="395" y="100" width="24" height="20" fill="#fff7ed" stroke="#10b981" stroke-width="1.5"/>
+<text x="407" y="114" text-anchor="middle" font-size="7" fill="#10b981">⌀20</text>
+<!-- Agujero roscado en corte -->
+<rect x="470" y="78" width="16" height="14" fill="#fff7ed" stroke="#10b981" stroke-width="1.5"/>
+<text x="478" y="90" text-anchor="middle" font-size="7" fill="#10b981">M10</text>
+<!-- Ranura en T -->
+<rect x="440" y="175" width="30" height="15" fill="#fff7ed" stroke="#10b981" stroke-width="1.5"/>
+<text x="455" y="190" text-anchor="middle" font-size="7" fill="#10b981">Ranura</text>
+<!-- Leyenda -->
+<rect x="20" y="240" width="560" height="50" fill="#ecfdf5" rx="6"/>
+<text x="300" y="258" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">Corte escalonado A-A: agujero pasante ⌀20 + agujero roscado M10 + ranura en T</text>
+<text x="300" y="278" text-anchor="middle" font-size="10" fill="#64748b">Rayado uniforme a 45° (acero) | Nervaduras sin rayar (corte longitudinal)</text>
+</svg>
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">3️⃣ Casos prácticos adicionales</h2>
+<div class="box box-teoria">
+<strong>📖 Más ejercicios resueltos</strong>
+<strong>🔹 CASO 1 — Semicorte en pieza simétrica:</strong><br>
+Pieza cilíndrica simétrica con cavidad interior.<br>
+Solución: semicorte — mitad exterior (vista) + mitad interior (corte).<br>
+Separación con línea de centro (trazo mixto fino).<br><br>
+<strong>🔹 CASO 2 — Corte parcial para detalle local:</strong><br>
+Pieza con un pequeño chaflán interno no visible.<br>
+Solución: corte parcial con línea ondulada rodeando el chaflán.<br>
+El resto de la pieza se mantiene sin cortar.<br><br>
+<strong>🔹 CASO 3 — Sección desplazada de perfil:</strong><br>
+Viga IPN-200 con agujeros en el alma.<br>
+Solución: sección desplazada A-A mostrando el perfil en I con los agujeros.
+</div>
+<div class="box box-ejemplo">
+<strong>🔍 Consejo práctico</strong>
+Antes de dibujar cualquier corte, pregúntate:<br>
+1. ¿Qué detalles internos necesito mostrar?<br>
+2. ¿Están alineados en un solo plano? → Corte total<br>
+3. ¿Están a diferentes alturas? → Corte escalonado<br>
+4. ¿La pieza es simétrica? → Semicorte<br>
+5. ¿Solo necesito un detalle pequeño? → Corte parcial
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">📝 Ejercicios</h2>
+<div class="exercises">
+
+<div class="exercise">
+<p>📐 Ejercicio 1: ¿Qué tipo de corte usarías para una pieza con dos agujeros a diferentes alturas?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Corte escalonado</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Corte total</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Semicorte</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Corte parcial</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 2: ¿Qué tipo de corte es ideal para piezas simétricas?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Semicorte</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Corte total</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Corte escalonado</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Sección</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 3: ¿Cómo se separan las dos mitades en un semicorte?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Línea de centro</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Línea continua gruesa</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Línea ondulada</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Línea discontinua</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 4: ¿Qué elemento NO se debe rayar en un corte longitudinal?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Nervaduras</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Paredes exteriores</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Agujeros pasantes</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Bases</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 5: ¿Qué inclinación tienen las hachuras estándar?</p>
+<input type="text" id="ex5" placeholder="Ejemplo: 45 grados" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
+<button onclick="checkExercise('ex5', '45', this)">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+</div>
+</section>
+
+<div class="box box-error">
+<strong>⚠️ Error clásico</strong>
+Usar corte total cuando se necesita escalonado. Si los detalles internos están a diferentes alturas, un solo plano de corte no los capturará todos. Usa corte escalonado con planos paralelos.
+</div>
+
+<div class="box box-idea">
+<strong>🔗 Conexión</strong>
+Este ejercicio completo integra todos los conceptos del Bloque 5. En el Bloque 6 (Acotación) aprenderás a añadir las medidas a estos cortes. ¡Todo está conectado!
+</div>
+
+<div class="summary">
+<h3>📋 Resumen de lo aprendido</h3>
+<ul>
+<li>Corte total: un plano, toda la pieza</li>
+<li>Corte parcial: zona específica con línea ondulada</li>
+<li>Semicorte: mitad vista + mitad cortada (piezas simétricas)</li>
+<li>Corte escalonado: varios planos paralelos (diferentes alturas)</li>
+<li>Sección: solo la cara cortada (abatida o desplazada)</li>
+<li>Rotura: acorta piezas largas</li>
+<li>Hachuras: indican material (45°, 1-3 mm separación)</li>
+<li>¡Bloque 5 completado! 🎉</li>
+</ul>
+</div>
+
+<div class="nav">
+<a href="b05-05-hachuras.html">← Anterior</a>
+<a href="b06-01-acotacion.html">Siguiente →</a>
+</div>
+
+</main>
+<footer class="footer">Hecho con ❤️ por David Antizar</footer>
+<script>
+function checkAnswer(btn, correct) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) {
+    b.disabled = true; b.classList.remove('correct','wrong');
+  });
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  var feedback = parent.nextElementSibling;
+  if(feedback && feedback.classList.contains('feedback')) {
+    if(correct) {
+      feedback.textContent = '✅ ¡Correcto! ¡Muy bien!';
+      feedback.className = 'feedback correct';
+    } else {
+      feedback.textContent = '❌ ¡Intenta de nuevo!';
+      feedback.className = 'feedback incorrect';
+      setTimeout(function() {
+        parent.querySelectorAll('button').forEach(function(b) {
+          b.disabled = false; b.classList.remove('correct','wrong');
+        });
+        feedback.textContent = '';
+        feedback.className = 'feedback';
+      }, 1500);
+    }
+  }
+}
+
+function checkExercise(id, correct, btn) {
+  var input = document.getElementById(id);
+  var feedback = input.parentElement.nextElementSibling;
+  var userVal = input.value.trim().toLowerCase();
+  var correctVal = correct.toLowerCase();
+  if(userVal === correctVal) {
+    feedback.textContent = '✅ ¡Correcto! ' + correct;
+    feedback.className = 'feedback correct';
+    input.style.borderColor = 'var(--verde)';
+  } else {
+    feedback.textContent = '❌ Respuesta correcta: ' + correct;
+    feedback.className = 'feedback incorrect';
+    input.style.borderColor = 'var(--rojo)';
+  }
+}
+
+window.onscroll = function(){
+  var h = document.documentElement;
+  var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
+  document.getElementById('progress').style.width = p+'%';
+};
+</script>
+</body>
+</html>

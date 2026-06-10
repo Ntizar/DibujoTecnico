@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>〰 S05.5: Hachuras y normas — Dibujo Técnico</title>
+<style>
+:root{--azul:#2563eb;--naranja:#f97316;--verde:#10b981;--rojo:#ef4444;--fondo:#fff;--texto:#1e293b;--gris:#94a3b8;--azul-claro:#eff6ff;--naranja-claro:#fff7ed;--verde-claro:#ecfdf5;--rojo-claro:#fef2f2;--pura-claro:#faf5ff;--pura:#a855f7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-gradient(135deg,#f8faff 0%,#fffaf5 100%);color:var(--texto);line-height:1.7}
+.header{background:linear-gradient(135deg,var(--azul),#1d4ed8);color:#fff;padding:2rem 1.5rem;text-align:center}
+.header h1{font-size:1.8rem;margin-bottom:.5rem}
+.header p{opacity:.9;font-size:1rem}
+.progress-bar{height:4px;background:rgba(255,255,255,.3);border-radius:2px;margin-top:1rem;overflow:hidden}
+.progress-fill{height:100%;background:#fff;border-radius:2px;width:0%;transition:width .3s}
+.container{max-width:900px;margin:0 auto;padding:1.5rem}
+.chapter{margin-bottom:2.5rem}
+.chapter-title{font-size:1.4rem;color:var(--azul);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:2px solid var(--azul-claro)}
+.box{padding:1rem 1.2rem;border-radius:10px;margin:1rem 0;border-left:4px solid;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.box-teoria{background:var(--azul-claro);border-color:var(--azul)}
+.box-ejemplo{background:var(--naranja-claro);border-color:var(--naranja)}
+.box-error{background:var(--rojo-claro);border-color:var(--rojo)}
+.box-idea{background:var(--pura-claro);border-color:var(--pura)}
+.box-success{background:var(--verde-claro);border-color:var(--verde)}
+.box strong{display:block;margin-bottom:.3rem}
+.svg-container{background:#f8fafc;border-radius:12px;padding:1.5rem;margin:1.5rem 0;text-align:center;border:2px solid #e2e8f0}
+.svg-container svg{max-width:100%;height:auto}
+.svg-container svg text{font-family:Inter,system-ui,sans-serif}
+.interactive{background:#f1f5f9;border-radius:12px;padding:1.5rem;margin:1.5rem 0}
+.interactive h3{color:var(--azul);margin-bottom:1rem;font-size:1.1rem}
+.interactive button{background:var(--azul);color:#fff;border:none;padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.95rem;margin:.3rem}
+.interactive button:hover{background:#1d4ed8}
+.result{margin-top:.8rem;padding:.8rem;border-radius:6px;font-weight:600;min-height:2rem}
+.result.ok{background:var(--verde-claro);color:#065f46}
+.result.fail{background:var(--rojo-claro);color:#991b1b}
+.exercises{margin:1.5rem 0}
+.exercise{background:#f1f5f9;border-radius:8px;padding:1rem;margin:.8rem 0}
+.exercise p{font-weight:600;margin-bottom:.5rem}
+.quiz-options{display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0}
+.quiz-btn{padding:.6rem 1.5rem;border-radius:8px;border:2px solid var(--azul);background:#fff;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all .2s}
+.quiz-btn:hover{background:var(--azul-claro)}
+.quiz-btn.correct{background:var(--verde);color:#fff;border-color:var(--verde)}
+.quiz-btn.wrong{background:var(--rojo);color:#fff;border-color:var(--rojo)}
+.summary{background:var(--azul-claro);border-radius:12px;padding:1.5rem;margin:2rem 0}
+.summary h3{color:var(--azul);margin-bottom:.8rem}
+.summary ul{list-style:none;padding:0}
+.summary li{padding:.3rem 0;padding-left:1.5rem;position:relative}
+.summary li::before{content:"✓";color:var(--verde);font-weight:bold;position:absolute;left:0}
+.nav{display:flex;justify-content:space-between;margin:2rem 0;padding:1rem 0;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0}
+.nav a{color:var(--azul);text-decoration:none;font-weight:600;padding:.5rem 1rem;border-radius:6px}
+.nav a:hover{background:var(--azul-claro)}
+.nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
+.footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+</style>
+</head>
+<body>
+<header class="header">
+<h1>〰 S05.5: Hachuras y normas</h1>
+<p>Dibujo Técnico — Cortes y Secciones</p>
+<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+</header>
+<main class="container">
+
+<section class="chapter">
+<h2 class="chapter-title">🎯 ¿Qué vamos a aprender?</h2>
+<div class="box box-idea">
+<strong>💡 Idea clave</strong>
+Las hachuras (rayado) son las líneas diagonales que se dibujan en las superficies cortadas. No son un adorno: indican el material de la pieza y siguen normas ISO estrictas. Cada material tiene su propio patrón de hachura.
+</div>
+<p>En esta sesión aprenderás a:</p>
+<ul style="margin:.8rem 0 1rem 1.5rem">
+<li>Identificar los patrones de hachura según ISO</li>
+<li>Dibujar hachuras correctamente</li>
+<li>Conocer las normas de separación e inclinación</li>
+<li>Aplicar hachuras en piezas con varios materiales</li>
+</ul>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">1️⃣ Hachuras según ISO 128</h2>
+<div class="box box-teoria">
+<strong>📖 Teoría</strong>
+<strong>🔹 NORMAS GENERALES (ISO 128 / UNE 1-032):</strong><br>
+• Inclinación: 45° respecto a los ejes principales<br>
+• Separación: uniforme, entre 1 y 3 mm según el tamaño<br>
+• Dirección: hacia la derecha o izquierda, pero consistente<br>
+• Grosor: línea fina (0.25 mm o menor)<br>
+• No deben cruzarse con el contorno de la pieza<br><br>
+<strong>🔹 PATRONES POR MATERIAL:</strong><br>
+• <strong>Acero / Fundición:</strong> líneas paralelas a 45°<br>
+• <strong>Aluminio / Aleaciones ligeras:</strong> líneas paralelas + alternas<br>
+• <strong>Cobre / Latón:</strong> líneas paralelas a 45° con separación media<br>
+• <strong>Plástico / Goma:</strong> cuadrícula o líneas cruzadas<br>
+• <strong>Madera:</strong> líneas paralelas + vetas irregulares<br>
+• <strong>Hormigón:</strong> puntos + líneas<br>
+• <strong>Tierra / Terreno:</strong> puntos irregulares<br>
+• <strong>Aislamiento:</strong> líneas onduladas
+</div>
+<div class="box box-ejemplo">
+<strong>🔍 Ejemplo 1</strong>
+Pieza de acero en corte:<br>
+Rayado a 45° con separación de 2 mm. Líneas finas paralelas. Todas con la misma inclinación.
+</div>
+<div class="box box-ejemplo">
+<strong>🔍 Ejemplo 2</strong>
+Pieza compuesta (acero + aluminio):<br>
+Acero: rayado a 45° derecha. Aluminio: rayado a 45° izquierda. Así se distinguen los materiales.
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">2️⃣ Visualiza los patrones de hachura</h2>
+<div class="svg-container">
+<svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+<!-- Fondo -->
+<rect x="0" y="0" width="600" height="300" fill="#f8fafc" rx="8"/>
+<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Patrones de hachura según ISO 128</text>
+<!-- Acero -->
+<text x="75" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">ACERO</text>
+<rect x="20" y="65" width="110" height="80" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<line x1="25" y1="70" x2="35" y2="140" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="35" y1="70" x2="45" y2="140" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="45" y1="70" x2="55" y2="140" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="55" y1="70" x2="65" y2="140" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="65" y1="70" x2="75" y2="140" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="75" y1="70" x2="85" y2="140" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="85" y1="70" x2="95" y2="140" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="95" y1="70" x2="105" y2="140" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="105" y1="70" x2="115" y2="140" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="115" y1="70" x2="125" y2="140" stroke="#2563eb" stroke-width="0.5"/>
+<!-- Aluminio -->
+<text x="225" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#f97316">ALUMINIO</text>
+<rect x="170" y="65" width="110" height="80" fill="#fff7ed" stroke="#f97316" stroke-width="1.5"/>
+<line x1="175" y1="70" x2="185" y2="140" stroke="#f97316" stroke-width="0.5"/>
+<line x1="185" y1="70" x2="195" y2="140" stroke="#f97316" stroke-width="0.5"/>
+<line x1="195" y1="70" x2="205" y2="140" stroke="#f97316" stroke-width="0.5"/>
+<line x1="205" y1="70" x2="215" y2="140" stroke="#f97316" stroke-width="0.5"/>
+<line x1="215" y1="70" x2="225" y2="140" stroke="#f97316" stroke-width="0.5"/>
+<line x1="225" y1="70" x2="235" y2="140" stroke="#f97316" stroke-width="0.5"/>
+<line x1="235" y1="70" x2="245" y2="140" stroke="#f97316" stroke-width="0.5"/>
+<line x1="245" y1="70" x2="255" y2="140" stroke="#f97316" stroke-width="0.5"/>
+<line x1="255" y1="70" x2="265" y2="140" stroke="#f97316" stroke-width="0.5"/>
+<line x1="265" y1="70" x2="275" y2="140" stroke="#f97316" stroke-width="0.5"/>
+<!-- Líneas alternas aluminio -->
+<line x1="180" y1="70" x2="190" y2="140" stroke="#f97316" stroke-width="0.5" stroke-dasharray="2,2"/>
+<line x1="200" y1="70" x2="210" y2="140" stroke="#f97316" stroke-width="0.5" stroke-dasharray="2,2"/>
+<line x1="220" y1="70" x2="230" y2="140" stroke="#f97316" stroke-width="0.5" stroke-dasharray="2,2"/>
+<line x1="240" y1="70" x2="250" y2="140" stroke="#f97316" stroke-width="0.5" stroke-dasharray="2,2"/>
+<line x1="260" y1="70" x2="270" y2="140" stroke="#f97316" stroke-width="0.5" stroke-dasharray="2,2"/>
+<!-- Plástico -->
+<text x="375" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#a855f7">PLÁSTICO</text>
+<rect x="320" y="65" width="110" height="80" fill="#faf5ff" stroke="#a855f7" stroke-width="1.5"/>
+<line x1="325" y1="70" x2="335" y2="140" stroke="#a855f7" stroke-width="0.5"/>
+<line x1="335" y1="70" x2="345" y2="140" stroke="#a855f7" stroke-width="0.5"/>
+<line x1="345" y1="70" x2="355" y2="140" stroke="#a855f7" stroke-width="0.5"/>
+<line x1="355" y1="70" x2="365" y2="140" stroke="#a855f7" stroke-width="0.5"/>
+<line x1="365" y1="70" x2="375" y2="140" stroke="#a855f7" stroke-width="0.5"/>
+<line x1="375" y1="70" x2="385" y2="140" stroke="#a855f7" stroke-width="0.5"/>
+<line x1="385" y1="70" x2="395" y2="140" stroke="#a855f7" stroke-width="0.5"/>
+<line x1="395" y1="70" x2="405" y2="140" stroke="#a855f7" stroke-width="0.5"/>
+<line x1="405" y1="70" x2="415" y2="140" stroke="#a855f7" stroke-width="0.5"/>
+<line x1="415" y1="70" x2="425" y2="140" stroke="#a855f7" stroke-width="0.5"/>
+<!-- Cuadrícula plástico -->
+<line x1="320" y1="75" x2="430" y2="75" stroke="#a855f7" stroke-width="0.3"/>
+<line x1="320" y1="85" x2="430" y2="85" stroke="#a855f7" stroke-width="0.3"/>
+<line x1="320" y1="95" x2="430" y2="95" stroke="#a855f7" stroke-width="0.3"/>
+<line x1="320" y1="105" x2="430" y2="105" stroke="#a855f7" stroke-width="0.3"/>
+<line x1="320" y1="115" x2="430" y2="115" stroke="#a855f7" stroke-width="0.3"/>
+<line x1="320" y1="125" x2="430" y2="125" stroke="#a855f7" stroke-width="0.3"/>
+<line x1="320" y1="135" x2="430" y2="135" stroke="#a855f7" stroke-width="0.3"/>
+<!-- Madera -->
+<text x="525" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#10b981">MADERA</text>
+<rect x="470" y="65" width="110" height="80" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
+<line x1="475" y1="70" x2="485" y2="140" stroke="#10b981" stroke-width="0.5"/>
+<line x1="485" y1="70" x2="495" y2="140" stroke="#10b981" stroke-width="0.5"/>
+<line x1="495" y1="70" x2="505" y2="140" stroke="#10b981" stroke-width="0.5"/>
+<line x1="505" y1="70" x2="515" y2="140" stroke="#10b981" stroke-width="0.5"/>
+<line x1="515" y1="70" x2="525" y2="140" stroke="#10b981" stroke-width="0.5"/>
+<line x1="525" y1="70" x2="535" y2="140" stroke="#10b981" stroke-width="0.5"/>
+<line x1="535" y1="70" x2="545" y2="140" stroke="#10b981" stroke-width="0.5"/>
+<line x1="545" y1="70" x2="555" y2="140" stroke="#10b981" stroke-width="0.5"/>
+<line x1="555" y1="70" x2="565" y2="140" stroke="#10b981" stroke-width="0.5"/>
+<line x1="565" y1="70" x2="575" y2="140" stroke="#10b981" stroke-width="0.5"/>
+<!-- Vetas madera -->
+<path d="M 480 80 Q 500 85, 520 80" fill="none" stroke="#10b981" stroke-width="0.5"/>
+<path d="M 490 100 Q 510 105, 530 100" fill="none" stroke="#10b981" stroke-width="0.5"/>
+<path d="M 475 120 Q 495 125, 515 120" fill="none" stroke="#10b981" stroke-width="0.5"/>
+<!-- Leyenda -->
+<rect x="20" y="240" width="560" height="50" fill="#ecfdf5" rx="6"/>
+<text x="300" y="258" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">Acero: 45° paralelas | Aluminio: alternas | Plástico: cuadrícula | Madera: paralelas + vetas</text>
+<text x="300" y="278" text-anchor="middle" font-size="10" fill="#64748b">Separación 1-3 mm | Inclinación 45° | Línea fina | Consistente en toda la pieza</text>
+</svg>
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">3️⃣ Reglas avanzadas de hachuras</h2>
+<div class="box box-teoria">
+<strong>📖 Teoría</strong>
+<strong>🔹 REGLAS ISO 128:</strong><br>
+• Las hachuras deben detenerse en el contorno de la pieza<br>
+• No deben atravesar textos ni cotas<br>
+• En piezas delgadas (chapa), se puede ennegrecer la sección<br>
+• En piezas con varios materiales, cambiar inclinación o patrón<br>
+• Las hachuras de piezas adyacentes deben diferenciarse<br><br>
+<strong>🔹 EXCEPCIONES:</strong><br>
+• Nervaduras y refuerzos: NO se rayan si el corte es longitudinal<br>
+• Tornillos, ejes, pasadores: NO se rayan en corte longitudinal<br>
+• Piezas de pared delgada: se ennegrecen en lugar de rayar<br>
+• Uniones soldadas: patrón específico de puntos
+</div>
+<div class="box box-ejemplo">
+<strong>🔍 Ejemplo 3 — Piezas adyacentes</strong>
+Dos piezas unidas en un conjunto:<br>
+Pieza 1 (acero): rayado a 45° derecha<br>
+Pieza 2 (aluminio): rayado a 45° izquierda<br>
+Así se distinguen visualmente los componentes.
+</div>
+<div class="box box-ejemplo">
+<strong>🔍 Ejemplo 4 — Nervadura en corte</strong>
+Nervadura de refuerzo en una pieza de fundición:<br>
+Si el plano de corte es longitudinal a la nervadura, NO se raya. Si es transversal, SÍ se raya.
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">📝 Ejercicios</h2>
+<div class="exercises">
+
+<div class="exercise">
+<p>📐 Ejercicio 1: ¿A qué inclinación se dibujan las hachuras estándar?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">45°</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">30°</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">60°</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">90°</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 2: ¿Qué separación deben tener las líneas de hachura?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">1 a 3 mm</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">5 a 10 mm</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">0.1 a 0.5 mm</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">No importa</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 3: ¿Qué material se representa con cuadrícula?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Plástico / Goma</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Acero</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Madera</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Aluminio</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 4: ¿Qué elemento NO se raya en corte longitudinal?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Nervaduras y refuerzos</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Paredes gruesas</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Bases de apoyo</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Bridas</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 5: ¿Cómo se representan piezas de pared muy delgada en sección?</p>
+<input type="text" id="ex5" placeholder="Respuesta" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:250px">
+<button onclick="checkExercise('ex5', 'ennegrecidas', this)">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+</div>
+</section>
+
+<div class="box box-error">
+<strong>⚠️ Error clásico</strong>
+Dibujar hachuras que atraviesan el texto de las cotas. ¡INCORRECTO! Las hachuras deben interrumpirse para dejar espacio a las cifras y notas. Tampoco deben salirse del contorno de la pieza.
+</div>
+
+<div class="box box-idea">
+<strong>🔗 Conexión</strong>
+Las hachuras son el lenguaje universal de los materiales en dibujo técnico. Un ingeniero en Japón, Alemania o Argentina interpreta el mismo patrón para el mismo material gracias a las normas ISO.
+</div>
+
+<div class="summary">
+<h3>📋 Resumen de lo aprendido</h3>
+<ul>
+<li>Hachuras: líneas diagonales que indican el material</li>
+<li>Inclinación estándar: 45°</li>
+<li>Separación: 1-3 mm, uniforme</li>
+<li>Cada material tiene su patrón ISO</li>
+<li>Nervaduras en corte longitudinal NO se rayan</li>
+<li>Piezas delgadas se ennegrecen</li>
+<li>¡Ya dominas las hachuras! 🎉</li>
+</ul>
+</div>
+
+<div class="nav">
+<a href="b05-04-seccion-rotura.html">← Anterior</a>
+<a href="b05-06-ejercicios-cortes.html">Siguiente →</a>
+</div>
+
+</main>
+<footer class="footer">Hecho con ❤️ por David Antizar</footer>
+<script>
+function checkAnswer(btn, correct) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) {
+    b.disabled = true; b.classList.remove('correct','wrong');
+  });
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  var feedback = parent.nextElementSibling;
+  if(feedback && feedback.classList.contains('feedback')) {
+    if(correct) {
+      feedback.textContent = '✅ ¡Correcto! ¡Muy bien!';
+      feedback.className = 'feedback correct';
+    } else {
+      feedback.textContent = '❌ ¡Intenta de nuevo!';
+      feedback.className = 'feedback incorrect';
+      setTimeout(function() {
+        parent.querySelectorAll('button').forEach(function(b) {
+          b.disabled = false; b.classList.remove('correct','wrong');
+        });
+        feedback.textContent = '';
+        feedback.className = 'feedback';
+      }, 1500);
+    }
+  }
+}
+
+function checkExercise(id, correct, btn) {
+  var input = document.getElementById(id);
+  var feedback = input.parentElement.nextElementSibling;
+  var userVal = input.value.trim().toLowerCase();
+  var correctVal = correct.toLowerCase();
+  if(userVal === correctVal) {
+    feedback.textContent = '✅ ¡Correcto! ' + correct;
+    feedback.className = 'feedback correct';
+    input.style.borderColor = 'var(--verde)';
+  } else {
+    feedback.textContent = '❌ Respuesta correcta: ' + correct;
+    feedback.className = 'feedback incorrect';
+    input.style.borderColor = 'var(--rojo)';
+  }
+}
+
+window.onscroll = function(){
+  var h = document.documentElement;
+  var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
+  document.getElementById('progress').style.width = p+'%';
+};
+</script>
+</body>
+</html>
