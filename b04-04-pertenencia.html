@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🤝 S04.4: Pertenencia punto y recta en un plano — Dibujo Técnico</title>
+<title>🔗 S04.4: Pertenencia: punto en recta y plano — Dibujo Técnico</title>
 <style>
 :root{--azul:#2563eb;--naranja:#f97316;--verde:#10b981;--rojo:#ef4444;--fondo:#fff;--texto:#1e293b;--gris:#94a3b8;--azul-claro:#eff6ff;--naranja-claro:#fff7ed;--verde-claro:#ecfdf5;--rojo-claro:#fef2f2;--pura-claro:#faf5ff;--pura:#a855f7}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -55,7 +55,7 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 </head>
 <body>
 <header class="header">
-<h1>🤝 S04.4: Pertenencia punto y recta en un plano</h1>
+<h1>🔗 S04.4: Pertenencia: punto en recta y plano</h1>
 <p>Dibujo Técnico — Sistema Diédrico</p>
 <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
 </header>
@@ -65,45 +65,41 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 <h2 class="chapter-title">🎯 ¿Qué vamos a aprender?</h2>
 <div class="box box-idea">
 <strong>💡 Idea clave</strong>
-Un punto pertenece a un plano si está en una recta que está en el plano. Es como decir: si el punto está en una línea que está dibujada sobre el plano, entonces el punto está en el plano. ¡La clave son las rectas del plano!
+Un punto pertenece a una recta si sus proyecciones están en las proyecciones de la recta. Un punto pertenece a un plano si está en una recta del plano. ¡Es la base de todo el diédrico!
 </div>
 <p>En esta sesión aprenderás a:</p>
 <ul style="margin:.8rem 0 1rem 1.5rem">
-<li>Saber si un punto pertenece a un plano</li>
-<li>Saber si una recta pertenece a un plano</li>
-<li>Usar rectas horizontales y frontales del plano</li>
-<li>Aplicar el método de la recta auxiliar</li>
+<li>Determinar si un punto pertenece a una recta</li>
+<li>Determinar si un punto pertenece a un plano</li>
+<li>Construir rectas y puntos en planos</li>
+<li>Aplicar el método de las rectas auxiliares</li>
 </ul>
 </section>
 
 <section class="chapter">
-<h2 class="chapter-title">1️⃣ Pertenencia de punto a plano</h2>
+<h2 class="chapter-title">1️⃣ Pertenencia: punto en recta</h2>
 <div class="box box-teoria">
 <strong>📖 Teoría</strong>
-<strong>Punto en un plano:</strong><br>
-A ∈ α ↔ existe una recta r ∈ α tal que A ∈ r<br><br>
-<strong>🔹 Método práctico:</strong><br>
-1. Trazar una recta por A en el plano (usando horizontales o frontales)<br>
-2. Verificar que las proyecciones de A están en las proyecciones de r<br><br>
-<strong>🔹 Usando horizontales del plano:</strong><br>
-• La horizontal del plano tiene alzado ∥ α₁<br>
-• Si A está en una horizontal, su alzado A' está ∥ α₁<br><br>
-<strong>🔹 Usando frontales del plano:</strong><br>
-• La frontal del plano tiene planta ∥ α₂<br>
-• Si A está en una frontal, su planta A está ∥ α₂
+<strong>Un punto A pertenece a una recta r si:</strong><br>
+• A' ∈ r' (alzado del punto está en alzado de la recta)<br>
+• A ∈ r (planta del punto está en planta de la recta)<br>
+• A' y A están en la misma línea de unión (perpendicular a LT)<br><br>
+<strong>🔹 Pertenencia punto en plano:</strong><br>
+• Un punto pertenece a un plano si está en una recta del plano<br>
+• Método: trazar una recta por el punto en el plano<br>
+• Usar horizontales o frontales del plano como auxiliares
 </div>
 <div class="box box-ejemplo">
 <strong>🔍 Ejemplo 1</strong>
-¿Pertenece A al plano α?<br>
-1. Trazo una horizontal del plano por A'<br>
-2. Encuentro su planta<br>
-3. Verifico que A está en esa planta
+Punto A en recta r:<br>
+A' está en r' | A está en r | A' y A en misma vertical
 </div>
 <div class="box box-ejemplo">
 <strong>🔍 Ejemplo 2</strong>
-Recta r en plano α:<br>
-Th ∈ α₁ y Tv ∈ α₂ → r ∈ α<br>
-O: r pasa por dos puntos de α
+Punto A en plano α:<br>
+Trazar horizontal del plano por A'<br>
+Encontrar la horizontal en planta<br>
+A debe estar en esa horizontal
 </div>
 </section>
 
@@ -113,29 +109,34 @@ O: r pasa por dos puntos de α
 <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
 <!-- Fondo -->
 <rect x="0" y="0" width="600" height="300" fill="#f8fafc" rx="8"/>
-<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Punto A pertenece al plano α</text>
+<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Pertenencia: punto en recta y plano</text>
 <!-- LT -->
 <line x1="50" y1="150" x2="550" y2="150" stroke="#333" stroke-width="2"/>
-<!-- α₁ y α₂ -->
-<line x1="100" y1="220" x2="500" y2="150" stroke="#2563eb" stroke-width="2.5"/>
-<text x="510" y="165" font-size="11" fill="#2563eb">α₁</text>
-<line x1="100" y1="80" x2="500" y2="150" stroke="#f97316" stroke-width="2.5"/>
-<text x="510" y="145" font-size="11" fill="#f97316">α₂</text>
-<!-- Horizontal del plano -->
-<line x1="150" y1="120" x2="450" y2="120" stroke="#10b981" stroke-width="2"/>
-<text x="460" y="125" font-size="10" fill="#10b981">Horizontal h del plano</text>
-<!-- Punto A' y A -->
-<circle cx="300" cy="120" r="5" fill="#a855f7"/>
-<text x="310" y="115" font-size="12" font-weight="bold" fill="#a855f7">A'</text>
-<circle cx="300" cy="170" r="5" fill="#a855f7"/>
-<text x="310" y="175" font-size="12" font-weight="bold" fill="#a855f7">A</text>
-<line x1="300" y1="120" x2="300" y2="170" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="3,3"/>
-<text x="310" y="150" font-size="10" fill="#a855f7">A ∈ h ∈ α</text>
+<!-- Recta r -->
+<line x1="100" y1="200" x2="500" y2="80" stroke="#2563eb" stroke-width="2.5"/>
+<text x="510" y="85" font-size="11" fill="#2563eb">r'</text>
+<line x1="100" y1="100" x2="500" y2="220" stroke="#2563eb" stroke-width="2.5"/>
+<text x="510" y="225" font-size="11" fill="#2563eb">r</text>
+<!-- Punto A en r -->
+<circle cx="300" cy="140" r="6" fill="#10b981"/>
+<text x="310" y="135" font-size="12" font-weight="bold" fill="#10b981">A'</text>
+<circle cx="300" cy="160" r="6" fill="#10b981"/>
+<text x="310" y="175" font-size="12" font-weight="bold" fill="#10b981">A</text>
+<!-- Línea de unión -->
+<line x1="300" y1="140" x2="300" y2="160" stroke="#a855f7" stroke-width="1.5"/>
+<!-- Plano α -->
+<line x1="350" y1="80" x2="550" y2="150" stroke="#f97316" stroke-width="2"/>
+<text x="560" y="145" font-size="11" fill="#f97316">α₁</text>
+<line x1="350" y1="220" x2="550" y2="150" stroke="#f97316" stroke-width="2"/>
+<text x="560" y="165" font-size="11" fill="#f97316">α₂</text>
+<!-- Punto B en α -->
+<circle cx="450" cy="130" r="5" fill="#a855f7"/>
+<text x="460" y="125" font-size="11" font-weight="bold" fill="#a855f7">B'</text>
+<circle cx="450" cy="170" r="5" fill="#a855f7"/>
+<text x="460" y="185" font-size="11" font-weight="bold" fill="#a855f7">B</text>
 <!-- Leyenda -->
-<rect x="20" y="230" width="560" height="55" fill="#ecfdf5" rx="6"/>
-<text x="300" y="250" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">A ∈ α ↔ existe h ∈ α tal que A ∈ h</text>
-<text x="300" y="268" text-anchor="middle" font-size="10" fill="#64748b">Usa horizontales (alzado ∥ α₁) o frontales (planta ∥ α₂) del plano</text>
-<text x="300" y="282" text-anchor="middle" font-size="10" fill="#f97316">Recta r ∈ α ↔ Th ∈ α₁ y Tv ∈ α₂</text>
+<rect x="20" y="250" width="560" height="35" fill="#ecfdf5" rx="6"/>
+<text x="300" y="270" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">Punto en recta: proyecciones en proyecciones | Punto en plano: está en recta del plano</text>
 </svg>
 </div>
 </section>
@@ -145,53 +146,55 @@ O: r pasa por dos puntos de α
 <div class="exercises">
 
 <div class="exercise">
-<p>📐 Ejercicio 1: ¿Cómo se verifica si un punto pertenece a un plano?</p>
+<p>📐 Ejercicio 1: ¿Cuántas condiciones debe cumplir un punto para pertenecer a una recta?</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Tras una recta del plano por el punto</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Mediante una regla</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Con un compás</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">No se puede verificar</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">1</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">2</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">3</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">4</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 2: La horizontal del plano tiene el alzado...</p>
+<p>📐 Ejercicio 2: ¿Dónde debe estar A' para pertenecer a r?</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Paralelo a α₁</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Perpendicular a α₁</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Oblicuo a α₁</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Paralelo a α₂</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">En r'</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">En r</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">En la LT</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">Donde quiera</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 3: Una recta pertenece a un plano si sus trazas están...</p>
+<p>📐 Ejercicio 3: ¿Cómo se determina si un punto pertenece a un plano?</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">En las trazas del plano (Th ∈ α₁, Tv ∈ α₂)</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Fuera del plano</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">En la LT únicamente</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">En el origen</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">Directamente con las trazas</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Si está en una recta del plano</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">Con las proyecciones solas</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">No se puede determinar</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 4: La frontal del plano tiene la planta...</p>
+<p>📐 Ejercicio 4: ¿Qué tipo de recta se usa como auxiliar en un plano?</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Paralela a α₂</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Perpendicular a α₂</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Oblicua a α₂</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Paralela a α₁</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Horizontal o frontal</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">De máxima pendiente</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">De punta</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">De perfil</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 5: ¿Cuántas condiciones necesita una recta para pertenecer a un plano?</p>
-<input type="text" id="ex5" placeholder="Número" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
-<button onclick="checkExercise('ex5', '2', this)">Comprobar</button>
+<p>📐 Ejercicio 5: Verdadero o Falso — A' y A deben estar en la misma línea de unión.</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Verdadero</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Falso</button>
+</div>
 <p class="feedback"></p>
 </div>
 
@@ -200,21 +203,21 @@ O: r pasa por dos puntos de α
 
 <div class="box box-error">
 <strong>⚠️ Error clásico</strong>
-Pensar que si las proyecciones del punto coinciden con las del plano, el punto pertenece al plano. ¡No! El punto debe estar en una RECTA que esté en el plano. Las proyecciones pueden coincidir sin que el punto pertenezca.
+Pensar que un punto pertenece a un plano si sus proyecciones están cerca de las trazas. NO: debe estar EN una recta del plano. Siempre usar rectas auxiliares (horizontales o frontales).
 </div>
 
 <div class="box box-idea">
 <strong>🔗 Conexión</strong>
-La pertenencia es fundamental para todo lo que viene: cortes, secciones, intersecciones. Todo se basa en saber si un punto o recta está en un plano.
+La pertenencia es fundamental para todo lo que viene: cortes, intersecciones, abatimientos. Sin pertenencia, no se puede construir nada en el diédrico.
 </div>
 
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
 <ul>
-<li>Punto A ∈ plano α ↔ A está en una recta r ∈ α</li>
-<li>Usa horizontales del plano (alzado ∥ α₁)</li>
-<li>Usa frontales del plano (planta ∥ α₂)</li>
-<li>Recta r ∈ α ↔ Th ∈ α₁ y Tv ∈ α₂</li>
+<li>Punto en recta: A' ∈ r' y A ∈ r</li>
+<li>Punto en plano: está en una recta del plano</li>
+<li>Usar horizontales o frontales como auxiliares</li>
+<li>A' y A siempre en la misma línea de unión</li>
 <li>¡Ya dominas la pertenencia! 🎉</li>
 </ul>
 </div>
@@ -255,8 +258,8 @@ function checkAnswer(btn, correct) {
 function checkExercise(id, correct, btn) {
   var input = document.getElementById(id);
   var feedback = input.parentElement.nextElementSibling;
-  var userVal = input.value.trim().replace(',', '.');
-  var correctVal = correct.toString().replace(',', '.');
+  var userVal = input.value.trim().toLowerCase();
+  var correctVal = correct.toLowerCase();
   if(userVal === correctVal) {
     feedback.textContent = '✅ ¡Correcto! ' + correct;
     feedback.className = 'feedback correct';

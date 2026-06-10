@@ -65,44 +65,45 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 <h2 class="chapter-title">🎯 ¿Qué vamos a aprender?</h2>
 <div class="box box-idea">
 <strong>💡 Idea clave</strong>
-El cambio de plano consiste en introducir un nuevo plano de proyección paralelo a la recta o plano que nos interesa. Así se obtiene la verdadera magnitud directamente. Es como cambiar el ángulo de visión para ver algo mejor.
+El cambio de plano consiste en sustituir uno de los planos de proyección por uno nuevo, paralelo o perpendicular al elemento que queremos estudiar. Permite obtener verdaderas magnitudes, simplificar problemas y resolver intersecciones.
 </div>
 <p>En esta sesión aprenderás a:</p>
 <ul style="margin:.8rem 0 1rem 1.5rem">
-<li>Entender el principio del cambio de plano</li>
-<li>Saber cuándo usarlo</li>
-<li>Aplicar el cambio de plano paso a paso</li>
-<li>Obtener la VM de una recta oblicua</li>
+<li>Entender qué es un cambio de plano</li>
+<li>Saber cuándo se usa</li>
+<li>Realizar un cambio de plano vertical</li>
+<li>Realizar un cambio de plano horizontal</li>
 </ul>
 </section>
 
 <section class="chapter">
-<h2 class="chapter-title">1️⃣ Cambio de plano paso a paso</h2>
+<h2 class="chapter-title">1️⃣ ¿Qué es el cambio de plano?</h2>
 <div class="box box-teoria">
 <strong>📖 Teoría</strong>
-<strong>Principio:</strong> Introducir un nuevo plano de proyección paralelo a la recta o plano.<br><br>
-<strong>🔹 Reglas del cambio de plano:</strong><br>
-• El nuevo plano debe ser paralelo a la recta/plano que nos interesa<br>
-• La nueva LT debe ser paralela a la proyección de la recta<br>
-• Las nuevas cotas se miden desde la nueva LT<br><br>
-<strong>🔹 Para obtener VM de una recta oblicua:</strong><br>
-1. Trazar una nueva LT paralela a r (planta)<br>
-2. Medir las cotas z desde la LT original<br>
-3. Las nuevas proyecciones r' muestran la VM<br><br>
-<strong>🔹 Para ver una recta como punto:</strong><br>
-1. Primer cambio: hacerla paralela a un plano<br>
-2. Segundo cambio: hacerla perpendicular al otro plano
+<strong>🔹 Concepto:</strong><br>
+• Se sustituye un plano de proyección por uno nuevo<br>
+• El nuevo plano debe ser paralelo o perpendicular al elemento<br>
+• Las cotas se mantienen respecto al plano que no se cambia<br><br>
+<strong>🔹 Cambio de plano vertical:</strong><br>
+• Se cambia el PV por un PV' nuevo<br>
+• La nueva LT' se coloca paralela a la proyección horizontal<br>
+• Las cotas z se mantienen (distancia al PH)<br><br>
+<strong>🔹 Cambio de plano horizontal:</strong><br>
+• Se cambia el PH por un PH' nuevo<br>
+• La nueva LT' se coloca paralela a la proyección vertical<br>
+• Las cotas y se mantienen (distancia al PV)
 </div>
 <div class="box box-ejemplo">
 <strong>🔍 Ejemplo 1</strong>
-Recta oblicua → VM:<br>
-Nueva LT ∥ r → nuevas cotas z → r' = VM
+Para obtener VM de una recta oblicua:<br>
+1er cambio: PV' ∥ a r → r' en VM<br>
+2do cambio: PH' ⊥ a r' → r en punto
 </div>
 <div class="box box-ejemplo">
 <strong>🔍 Ejemplo 2</strong>
-Recta oblicua → como punto:<br>
-Cambio 1: LT ∥ r → r' = VM<br>
-Cambio 2: LT ⊥ r' → r'' = punto
+Para obtener VM de un plano oblicuo:<br>
+1er cambio: PV' ⊥ a α₁ → α₂' en línea<br>
+2do cambio: PH' ∥ a α → α en VM
 </div>
 </section>
 
@@ -112,27 +113,26 @@ Cambio 2: LT ⊥ r' → r'' = punto
 <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
 <!-- Fondo -->
 <rect x="0" y="0" width="600" height="300" fill="#f8fafc" rx="8"/>
-<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Cambio de plano: de oblicua a VM</text>
-<!-- Original -->
-<text x="150" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">ORIGINAL</text>
-<line x1="50" y1="150" x2="250" y2="150" stroke="#333" stroke-width="2"/>
-<text x="260" y="154" font-size="10" fill="#333">LT</text>
-<line x1="80" y1="100" x2="200" y2="150" stroke="#2563eb" stroke-width="2.5"/>
-<text x="210" y="140" font-size="10" fill="#2563eb">r</text>
-<text x="140" y="180" text-anchor="middle" font-size="10" fill="#64748b">No es VM</text>
+<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Cambio de plano: PV' paralelo a la recta</text>
+<!-- LT original -->
+<line x1="50" y1="150" x2="550" y2="150" stroke="#333" stroke-width="2"/>
+<text x="560" y="154" font-size="11" fill="#333">LT</text>
+<!-- Recta original -->
+<line x1="100" y1="200" x2="400" y2="100" stroke="#2563eb" stroke-width="2"/>
+<text x="410" y="105" font-size="11" fill="#2563eb">r'</text>
+<line x1="100" y1="100" x2="400" y2="200" stroke="#f97316" stroke-width="2"/>
+<text x="410" y="205" font-size="11" fill="#f97316">r</text>
+<!-- Nueva LT' -->
+<line x1="100" y1="200" x2="400" y2="200" stroke="#a855f7" stroke-width="2" stroke-dasharray="6,3"/>
+<text x="410" y="204" font-size="11" fill="#a855f7">LT'</text>
+<!-- Nueva proyección r'' -->
+<line x1="100" y1="200" x2="400" y2="200" stroke="#10b981" stroke-width="2.5"/>
+<text x="410" y="195" font-size="11" fill="#10b981">r'' (VM)</text>
 <!-- Flecha -->
-<text x="300" y="130" text-anchor="middle" font-size="24" fill="#94a3b8">→</text>
-<!-- Nuevo -->
-<text x="450" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#10b981">NUEVO SISTEMA</text>
-<line x1="350" y1="125" x2="550" y2="125" stroke="#10b981" stroke-width="2"/>
-<text x="560" y="129" font-size="10" fill="#10b981">LT' ∥ r</text>
-<line x1="380" y1="125" x2="500" y2="125" stroke="#10b981" stroke-width="3"/>
-<text x="510" y="120" font-size="11" font-weight="bold" fill="#10b981">r' = VM ✓</text>
+<text x="300" y="240" text-anchor="middle" font-size="11" fill="#64748b">PV' ∥ r → r' en VM</text>
 <!-- Leyenda -->
-<rect x="20" y="230" width="560" height="55" fill="#ecfdf5" rx="6"/>
-<text x="300" y="250" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">Nuevo plano ∥ recta → la proyección muestra la VM</text>
-<text x="300" y="268" text-anchor="middle" font-size="10" fill="#64748b">LT' paralela a r → nuevas cotas z medidas desde LT' → r' = VM</text>
-<text x="300" y="282" text-anchor="middle" font-size="10" fill="#f97316">Para ver como punto: 2 cambios de plano necesarios</text>
+<rect x="20" y="260" width="560" height="30" fill="#ecfdf5" rx="6"/>
+<text x="300" y="280" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">1er cambio: PV' ∥ r → VM | 2do cambio: PH' ⊥ r' → punto</text>
 </svg>
 </div>
 </section>
@@ -142,50 +142,50 @@ Cambio 2: LT ⊥ r' → r'' = punto
 <div class="exercises">
 
 <div class="exercise">
-<p>📐 Ejercicio 1: ¿Qué condición debe cumplir el nuevo plano?</p>
+<p>📐 Ejercicio 1: ¿Cuántos planos se cambian en un cambio de plano?</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Ser paralelo a la recta o plano</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Ser perpendicular a la recta</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">No importa</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Ser paralelo a la LT original</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">0</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">1</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">2</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">3</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 2: ¿Cuántos cambios de plano se necesitan para ver una recta como punto?</p>
+<p>📐 Ejercicio 2: El nuevo plano debe ser...</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Paralelo al elemento</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Perpendicular al elemento</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Paralelo o perpendicular al elemento</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">En cualquier posición</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 3: ¿Cuántos cambios se necesitan para ver una recta como punto?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">1</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">2</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">3</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">No se puede</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">3</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">4</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 3: La nueva LT debe ser...</p>
+<p>📐 Ejercicio 4: Verdadero o Falso — El cambio de plano modifica la pieza</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Paralela a la proyección de la recta</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Perpendicular a la proyección</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Coincidente con la LT original</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Oblicua</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Verdadero</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Falso</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 4: Verdadero o Falso — Las nuevas cotas se miden desde la nueva LT.</p>
-<div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Verdadero</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Falso</button>
-</div>
-<p class="feedback"></p>
-</div>
-
-<div class="exercise">
-<p>📐 Ejercicio 5: ¿Qué se obtiene con un cambio de plano bien hecho?</p>
-<input type="text" id="ex5" placeholder="VM o punto" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
+<p>📐 Ejercicio 5: ¿Qué se obtiene con un cambio de plano?</p>
+<input type="text" id="ex5" placeholder="VM o..." style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
 <button onclick="checkExercise('ex5', 'vm', this)">Comprobar</button>
 <p class="feedback"></p>
 </div>
@@ -195,21 +195,21 @@ Cambio 2: LT ⊥ r' → r'' = punto
 
 <div class="box box-error">
 <strong>⚠️ Error clásico</strong>
-Poner la nueva LT perpendicular a la recta en vez de paralela. Para obtener VM, la nueva LT DEBE ser PARALELA a la proyección de la recta. Si es perpendicular, no obtendrás la VM.
+Colocar la nueva LT en cualquier posición. La nueva LT debe ser PARALELA a la proyección del elemento que se mantiene. Si no es paralela, no se obtiene VM.
 </div>
 
 <div class="box box-idea">
 <strong>🔗 Conexión</strong>
-El cambio de plano es una herramienta poderosa. Con él puedes resolver casi cualquier problema de perpendicularidad, paralelismo y VM.
+El cambio de plano es una herramienta fundamental del diédrico. Se usa para obtener VM, resolver intersecciones y simplificar problemas complejos.
 </div>
 
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
 <ul>
-<li>Nuevo plano ∥ recta/plano → VM directa</li>
-<li>Nueva LT ∥ proyección de la recta</li>
-<li>Nuevas cotas medidas desde la nueva LT</li>
-<li>Para ver como punto: 2 cambios de plano</li>
+<li>Cambio de plano: sustituir un plano de proyección</li>
+<li>Nuevo plano ∥ o ⊥ al elemento</li>
+<li>1er cambio: PV' ∥ r → VM en alzado</li>
+<li>2do cambio: PH' ⊥ r' → punto en planta</li>
 <li>¡Ya dominas el cambio de plano! 🎉</li>
 </ul>
 </div>

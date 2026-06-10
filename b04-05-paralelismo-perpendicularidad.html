@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>📏 S04.5: Paralelismo y perpendicularidad — Dibujo Técnico</title>
+<title>↔️ S04.5: Paralelismo y perpendicularidad — Dibujo Técnico</title>
 <style>
 :root{--azul:#2563eb;--naranja:#f97316;--verde:#10b981;--rojo:#ef4444;--fondo:#fff;--texto:#1e293b;--gris:#94a3b8;--azul-claro:#eff6ff;--naranja-claro:#fff7ed;--verde-claro:#ecfdf5;--rojo-claro:#fef2f2;--pura-claro:#faf5ff;--pura:#a855f7}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -55,7 +55,7 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 </head>
 <body>
 <header class="header">
-<h1>📏 S04.5: Paralelismo y perpendicularidad</h1>
+<h1>↔️ S04.5: Paralelismo y perpendicularidad</h1>
 <p>Dibujo Técnico — Sistema Diédrico</p>
 <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
 </header>
@@ -65,70 +65,110 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 <h2 class="chapter-title">🎯 ¿Qué vamos a aprender?</h2>
 <div class="box box-idea">
 <strong>💡 Idea clave</strong>
-La perpendicularidad recta-plano es la regla más importante: r' ⊥ α₂ Y r ⊥ α₁. Ambas condiciones son necesarias. Es como un candado de dos claves: necesitas las dos para que funcione.
+Dos rectas son paralelas si sus proyecciones son paralelas. Una recta es perpendicular a un plano si es perpendicular a dos rectas del plano (una horizontal y una frontal). ¡Es la base para resolver problemas de intersecciones!
 </div>
 <p>En esta sesión aprenderás a:</p>
 <ul style="margin:.8rem 0 1rem 1.5rem">
-<li>Aplicar la regla de perpendicularidad recta-plano</li>
-<li>Identificar paralelismo entre rectas y planos</li>
-<li>Resolver problemas de perpendicularidad</li>
-<li>Distinguir paralelismo de perpendicularidad</li>
+<li>Determinar si dos rectas son paralelas</li>
+<li>Saber si una recta es perpendicular a un plano</li>
+<li>Identificar planos paralelos y perpendiculares</li>
+<li>Aplicar las condiciones de paralelismo y perpendicularidad</li>
 </ul>
 </section>
 
 <section class="chapter">
-<h2 class="chapter-title">1️⃣ Perpendicularidad recta-plano</h2>
+<h2 class="chapter-title">1️⃣ Paralelismo</h2>
 <div class="box box-teoria">
 <strong>📖 Teoría</strong>
-<strong>Recta perpendicular a un plano:</strong><br>
-r ⊥ α ↔ r' ⊥ α₂ Y r ⊥ α₁<br><br>
-<strong>🔹 Regla de oro:</strong><br>
-• La proyección de la recta en alzado (r') es perpendicular a la traza vertical del plano (α₂)<br>
-• La proyección de la recta en planta (r) es perpendicular a la traza horizontal del plano (α₁)<br>
-• ¡AMBIAS condiciones son necesarias!<br><br>
-<strong>🔹 Paralelismo:</strong><br>
-• r ∥ α ↔ existe s ∈ α tal que r ∥ s<br>
-• α ∥ β ↔ α₁ ∥ β₁ y α₂ ∥ β₂
+<strong>🔹 Paralelismo entre rectas:</strong><br>
+• r ∥ s ↔ r' ∥ s' y r ∥ s<br>
+• Las proyecciones deben ser paralelas en AMBAS vistas<br><br>
+<strong>🔹 Paralelismo recta-plano:</strong><br>
+• r ∥ α ↔ existe una recta s ∈ α tal que r ∥ s<br>
+• O: Th ∈ α₁ o Tv ∈ α₂ (o ambas paralelas)<br><br>
+<strong>🔹 Paralelismo entre planos:</strong><br>
+• α ∥ β ↔ α₁ ∥ β₁ y α₂ ∥ β₂<br>
+• Las trazas deben ser paralelas en AMBAS vistas
 </div>
 <div class="box box-ejemplo">
 <strong>🔍 Ejemplo 1</strong>
-Recta r perpendicular a plano α:<br>
-r' ⊥ α₂ (en alzado)<br>
-r ⊥ α₁ (en planta)
+Rectas paralelas: r' ∥ s' y r ∥ s.<br>
+Si solo una proyección es paralela, las rectas se cruzan.
 </div>
 <div class="box box-ejemplo">
 <strong>🔍 Ejemplo 2</strong>
-Dos planos paralelos α y β:<br>
-α₁ ∥ β₁ y α₂ ∥ β₂<br>
-Las trazas son paralelas en ambas proyecciones
+Planos paralelos: α₁ ∥ β₁ y α₂ ∥ β₂.<br>
+Si solo una traza es paralela, los planos se cortan.
 </div>
 </section>
 
 <section class="chapter">
-<h2 class="chapter-title">2️⃣ Visualiza perpendicularidad</h2>
+<h2 class="chapter-title">2️⃣ Perpendicularidad</h2>
+<div class="box box-teoria">
+<strong>📖 Teoría</strong>
+<strong>🔹 Perpendicularidad recta-plano:</strong><br>
+• r ⊥ α ↔ r' ⊥ α₂ y r ⊥ α₁<br>
+• La recta debe ser perpendicular a las dos trazas del plano<br><br>
+<strong>🔹 Perpendicularidad entre rectas:</strong><br>
+• r ⊥ s (se cortan o se cruzan)<br>
+• No basta con que las proyecciones sean perpendiculares<br><br>
+<strong>🔹 Perpendicularidad entre planos:</strong><br>
+• α ⊥ β ↔ una traza de α es perpendicular a la otra traza de β<br>
+• α₁ ⊥ β₂ o α₂ ⊥ β₁
+</div>
+<div class="box box-ejemplo">
+<strong>🔍 Ejemplo 1</strong>
+Recta ⊥ plano: r' ⊥ α₂ y r ⊥ α₁.<br>
+Ambas condiciones son necesarias.
+</div>
+<div class="box box-ejemplo">
+<strong>🔍 Ejemplo 2</strong>
+Planos perpendiculares: α₁ ⊥ β₂.<br>
+La traza horizontal de α es perpendicular a la traza vertical de β.
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">3️⃣ Visualiza paralelismo y perpendicularidad</h2>
 <div class="svg-container">
 <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
 <!-- Fondo -->
 <rect x="0" y="0" width="600" height="300" fill="#f8fafc" rx="8"/>
-<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Recta r ⊥ Plano α</text>
+<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Paralelismo y perpendicularidad en el diédrico</text>
 <!-- LT -->
 <line x1="50" y1="150" x2="550" y2="150" stroke="#333" stroke-width="2"/>
-<!-- α₁ y α₂ -->
-<line x1="100" y1="220" x2="500" y2="150" stroke="#2563eb" stroke-width="2.5"/>
-<text x="510" y="165" font-size="11" fill="#2563eb">α₁</text>
-<line x1="100" y1="80" x2="500" y2="150" stroke="#f97316" stroke-width="2.5"/>
-<text x="510" y="145" font-size="11" fill="#f97316">α₂</text>
-<!-- Recta perpendicular -->
-<line x1="300" y1="100" x2="300" y2="200" stroke="#ef4444" stroke-width="3"/>
-<text x="310" y="155" font-size="12" font-weight="bold" fill="#ef4444">r</text>
-<!-- Ángulos rectos -->
-<rect x="285" y="135" width="15" height="15" fill="none" stroke="#10b981" stroke-width="1.5"/>
-<text x="300" y="180" text-anchor="middle" font-size="10" fill="#10b981">90°</text>
-<!-- Regla -->
-<rect x="20" y="230" width="560" height="55" fill="#fef2f2" rx="6" stroke="#ef4444" stroke-width="1"/>
-<text x="300" y="250" text-anchor="middle" font-size="12" fill="#ef4444" font-weight="600">r ⊥ α → r' ⊥ α₂ Y r ⊥ α₁</text>
-<text x="300" y="268" text-anchor="middle" font-size="10" fill="#64748b">¡AMBIAS condiciones son necesarias! No basta con una sola.</text>
-<text x="300" y="282" text-anchor="middle" font-size="10" fill="#2563eb">Paralelismo: α ∥ β ↔ α₁ ∥ β₁ y α₂ ∥ β₂</text>
+<text x="560" y="154" font-size="11" fill="#333">LT</text>
+<!-- Rectas paralelas -->
+<text x="100" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">Rectas ∥</text>
+<line x1="60" y1="80" x2="140" y2="80" stroke="#2563eb" stroke-width="2"/>
+<text x="150" y="84" font-size="10" fill="#2563eb">r'</text>
+<line x1="60" y1="100" x2="140" y2="100" stroke="#2563eb" stroke-width="2"/>
+<text x="150" y="104" font-size="10" fill="#2563eb">s'</text>
+<line x1="60" y1="200" x2="140" y2="200" stroke="#f97316" stroke-width="2"/>
+<text x="150" y="204" font-size="10" fill="#f97316">r</text>
+<line x1="60" y1="220" x2="140" y2="220" stroke="#f97316" stroke-width="2"/>
+<text x="150" y="224" font-size="10" fill="#f97316">s</text>
+<!-- Recta ⊥ plano -->
+<text x="300" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#f97316">Recta ⊥ Plano</text>
+<line x1="250" y1="80" x2="350" y2="80" stroke="#2563eb" stroke-width="2"/>
+<text x="360" y="84" font-size="10" fill="#2563eb">α₂</text>
+<line x1="250" y1="220" x2="350" y2="220" stroke="#f97316" stroke-width="2"/>
+<text x="360" y="224" font-size="10" fill="#f97316">α₁</text>
+<line x1="300" y1="80" x2="300" y2="220" stroke="#a855f7" stroke-width="2.5"/>
+<text x="310" y="155" font-size="10" fill="#a855f7">r ⊥ α</text>
+<!-- Planos paralelos -->
+<text x="500" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#10b981">Planos ∥</text>
+<line x1="450" y1="80" x2="550" y2="80" stroke="#2563eb" stroke-width="2"/>
+<text x="560" y="84" font-size="10" fill="#2563eb">α₂</text>
+<line x1="450" y1="100" x2="550" y2="100" stroke="#2563eb" stroke-width="2"/>
+<text x="560" y="104" font-size="10" fill="#2563eb">β₂</text>
+<line x1="450" y1="220" x2="550" y2="220" stroke="#f97316" stroke-width="2"/>
+<text x="560" y="224" font-size="10" fill="#f97316">α₁</text>
+<line x1="450" y1="240" x2="550" y2="240" stroke="#f97316" stroke-width="2"/>
+<text x="560" y="244" font-size="10" fill="#f97316">β₁</text>
+<!-- Leyenda -->
+<rect x="20" y="260" width="560" height="30" fill="#ecfdf5" rx="6"/>
+<text x="300" y="280" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">Rectas ∥: proyecciones ∥ | Recta ⊥ plano: r' ⊥ α₂ y r ⊥ α₁ | Planos ∥: trazas ∥</text>
 </svg>
 </div>
 </section>
@@ -142,48 +182,48 @@ Las trazas son paralelas en ambas proyecciones
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">1</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">2</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">3</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">4</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">3</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">4</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 2: r' ⊥ α₂ significa que...</p>
+<p>📐 Ejercicio 2: ¿Cómo se representan rectas paralelas en diédrico?</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">La proyección de r en alzado es perpendicular a α₂</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">La planta de r es perpendicular a α₂</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">La recta r es perpendicular a la LT</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">La recta r es paralela a α₂</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Solo en alzado</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Solo en planta</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">En ambas proyecciones</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">No se pueden representar</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 3: Dos planos paralelos tienen las trazas...</p>
+<p>📐 Ejercicio 3: Un plano paralelo a otro tiene sus trazas...</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Paralelas entre sí</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Perpendiculares</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Oblicuas</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Coincidentes</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Perpendiculares</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Paralelas</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Oblicuas</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">No tiene trazas</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 4: Verdadero o Falso — Basta con una condición para que r ⊥ α.</p>
+<p>📐 Ejercicio 4: Verdadero o Falso — r' ⊥ α₂ y r ⊥ α₁ implica r ⊥ α</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Verdadero</button>
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Falso</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Verdadero</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Falso</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 5: ¿Qué significa α₁ ∥ β₁?</p>
-<input type="text" id="ex5" placeholder="Explica" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:250px">
-<button onclick="checkAnswer(this, true)">Comprobar</button>
-<p class="feedback">Las trazas horizontales de ambos planos son paralelas</p>
+<p>📐 Ejercicio 5: ¿Cuántas proyecciones deben ser paralelas para que dos rectas sean paralelas?</p>
+<input type="text" id="ex5" placeholder="Tu respuesta" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
+<button onclick="checkExercise('ex5', '2', this)">Comprobar</button>
+<p class="feedback"></p>
 </div>
 
 </div>
@@ -191,20 +231,21 @@ Las trazas son paralelas en ambas proyecciones
 
 <div class="box box-error">
 <strong>⚠️ Error clásico</strong>
-Pensar que con una sola condición (r' ⊥ α₂ o r ⊥ α₁) es suficiente. ¡NO! Necesitas AMBAS: r' ⊥ α₂ Y r ⊥ α₁. Es como un candado de dos claves.
+Pensar que si una proyección es paralela, las rectas son paralelas. NO: deben ser paralelas en AMBAS proyecciones. Si solo una es paralela, las rectas se cruzan.
 </div>
 
 <div class="box box-idea">
 <strong>🔗 Conexión</strong>
-La perpendicularidad es clave para las verdaderas magnitudes y los cambios de plano. Todo lo que viene después se basa en esto.
+El paralelismo y la perpendicularidad son la base de las intersecciones. Sin estos conceptos, no se pueden resolver problemas de rectas que cortan planos o planos que se cortan.
 </div>
 
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
 <ul>
-<li>r ⊥ α → r' ⊥ α₂ Y r ⊥ α₁ (ambas necesarias)</li>
-<li>Paralelismo: α ∥ β ↔ α₁ ∥ β₁ y α₂ ∥ β₂</li>
-<li>Es como un candado de dos claves</li>
+<li>Rectas ∥: r' ∥ s' y r ∥ s</li>
+<li>Recta ⊥ plano: r' ⊥ α₂ y r ⊥ α₁</li>
+<li>Planos ∥: α₁ ∥ β₁ y α₂ ∥ β₂</li>
+<li>Planos ⊥: α₁ ⊥ β₂ o α₂ ⊥ β₁</li>
 <li>¡Ya dominas paralelismo y perpendicularidad! 🎉</li>
 </ul>
 </div>
@@ -245,8 +286,8 @@ function checkAnswer(btn, correct) {
 function checkExercise(id, correct, btn) {
   var input = document.getElementById(id);
   var feedback = input.parentElement.nextElementSibling;
-  var userVal = input.value.trim().toLowerCase();
-  var correctVal = correct.toLowerCase();
+  var userVal = input.value.trim().replace(',', '.');
+  var correctVal = correct.toString().replace(',', '.');
   if(userVal === correctVal) {
     feedback.textContent = '✅ ¡Correcto! ' + correct;
     feedback.className = 'feedback correct';

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>✂️ S05.2-5: Cortes y Secciones — Dibujo Técnico</title>
+<title>✂️ S05.2: Tipos de cortes y secciones — Dibujo Técnico</title>
 <style>
 :root{--azul:#2563eb;--naranja:#f97316;--verde:#10b981;--rojo:#ef4444;--fondo:#fff;--texto:#1e293b;--gris:#94a3b8;--azul-claro:#eff6ff;--naranja-claro:#fff7ed;--verde-claro:#ecfdf5;--rojo-claro:#fef2f2;--pura-claro:#faf5ff;--pura:#a855f7}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -55,78 +55,93 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 </head>
 <body>
 <header class="header">
-<h1>✂️ S05.2-5: Tipos de cortes y secciones</h1>
+<h1>✂️ S05.2: Tipos de cortes y secciones</h1>
 <p>Dibujo Técnico — Cortes y Secciones</p>
 <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
 </header>
 <main class="container">
 
 <section class="chapter">
-<h2 class="chapter-title">🎯 Tipos de cortes</h2>
+<h2 class="chapter-title">🎯 ¿Qué vamos a aprender?</h2>
 <div class="box box-idea">
 <strong>💡 Idea clave</strong>
-Hay 3 tipos principales de cortes: total (corta toda la pieza), parcial (solo una parte), y semicorte (mitad exterior, mitad interior). Cada uno tiene su uso según lo que necesitemos mostrar.
+Existen varios tipos de cortes: total (corta toda la pieza), parcial (solo una zona), semicorte (mitad cortada, mitad vista), y escalonado (varios planos de corte). Cada tipo tiene su uso específico.
 </div>
+<p>En esta sesión aprenderás a:</p>
+<ul style="margin:.8rem 0 1rem 1.5rem">
+<li>Identificar los tipos de cortes</li>
+<li>Saber cuándo usar cada tipo</li>
+<li>Representar correctamente cada corte</li>
+<li>Diferenciar corte de sección</li>
+</ul>
 </section>
 
 <section class="chapter">
 <h2 class="chapter-title">1️⃣ Tipos de cortes</h2>
 <div class="box box-teoria">
 <strong>📖 Teoría</strong>
-<strong>🔹 Corte total:</strong><br>
+<strong>🔹 CORTE TOTAL:</strong><br>
 • El plano de corte atraviesa toda la pieza<br>
-• Muestra el interior completo<br>
-• Se indica con línea de corte gruesa<br><br>
-<strong>🔹 Corte parcial:</strong><br>
-• El plano de corte no atraviesa toda la pieza<br>
-• Solo muestra una parte del interior<br>
-• Se indica con línea de corte con flechas<br><br>
-<strong>🔹 Semicorte:</strong><br>
-• Mitad exterior, mitad interior<br>
-• Se usa en piezas simétricas<br>
-• La línea de separación es el eje de simetría
+• Se representa la parte trasera eliminada<br>
+• Se muestran las partes internas<br><br>
+<strong>🔹 CORTE PARCIAL:</strong><br>
+• Solo se corta una zona de la pieza<br>
+• El límite se marca con línea ondulada<br>
+• Útil para detalles específicos<br><br>
+<strong>🔹 SEMICORTE:</strong><br>
+• Mitad cortada, mitad vista<br>
+• Separados por línea de centro<br>
+• Ideal para piezas simétricas<br><br>
+<strong>🔹 CORTE ESCALONADO:</strong><br>
+• Varios planos de corte paralelos<br>
+• Se "dobla" el plano de corte<br>
+• Para piezas con detalles en diferentes profundidades
 </div>
 <div class="box box-ejemplo">
 <strong>🔍 Ejemplo 1</strong>
-Corte total de un tubo:<br>
-Plano longitudinal → se ven las paredes y el agujero
+Corte total: pieza cilíndrica con agujero central.<br>
+Se corta por el eje para mostrar el agujero.
 </div>
 <div class="box box-ejemplo">
 <strong>🔍 Ejemplo 2</strong>
-Semicorte de una pieza simétrica:<br>
-Izquierda: vista exterior | Derecha: vista interior
+Semicorte: caja simétrica con interior complejo.<br>
+Mitad exterior (vista), mitad interior (corte).
 </div>
 </section>
 
 <section class="chapter">
-<h2 class="chapter-title">2️⃣ Visualiza los tipos de corte</h2>
+<h2 class="chapter-title">2️⃣ Visualiza los tipos de cortes</h2>
 <div class="svg-container">
 <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
 <!-- Fondo -->
 <rect x="0" y="0" width="600" height="300" fill="#f8fafc" rx="8"/>
-<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Tipos de cortes</text>
+<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Tipos de cortes y secciones</text>
 <!-- Corte total -->
-<text x="100" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">TOTAL</text>
-<rect x="40" y="70" width="120" height="80" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
-<line x1="40" y1="110" x2="160" y2="110" stroke="#ef4444" stroke-width="3"/>
-<text x="100" y="150" text-anchor="middle" font-size="10" fill="#64748b">Plano atraviesa todo</text>
+<text x="75" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">Corte total</text>
+<rect x="40" y="70" width="70" height="80" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<line x1="75" y1="70" x2="75" y2="150" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,2"/>
+<text x="75" y="170" text-anchor="middle" font-size="9" fill="#64748b">Plano de corte</text>
 <!-- Corte parcial -->
-<text x="300" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#f97316">PARCIAL</text>
-<rect x="240" y="70" width="120" height="80" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
-<line x1="240" y1="90" x2="300" y2="90" stroke="#ef4444" stroke-width="3"/>
-<text x="300" y="150" text-anchor="middle" font-size="10" fill="#64748b">Solo una parte</text>
+<text x="225" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#f97316">Corte parcial</text>
+<rect x="190" y="70" width="70" height="80" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+<path d="M 225 70 Q 235 80, 225 90 Q 215 100, 225 110 Q 235 120, 225 130 Q 215 140, 225 150" fill="none" stroke="#f97316" stroke-width="2"/>
+<text x="225" y="170" text-anchor="middle" font-size="9" fill="#64748b">Línea ondulada</text>
 <!-- Semicorte -->
-<text x="500" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#10b981">SEMICORTE</text>
-<rect x="440" y="70" width="120" height="80" fill="#eff6ff" stroke="#10b981" stroke-width="2"/>
-<line x1="500" y1="70" x2="500" y2="150" stroke="#10b981" stroke-width="1.5" stroke-dasharray="4,2"/>
-<text x="470" y="115" text-anchor="middle" font-size="9" fill="#10b981">exterior</text>
-<text x="530" y="115" text-anchor="middle" font-size="9" fill="#ef4444">interior</text>
-<text x="500" y="170" text-anchor="middle" font-size="10" fill="#64748b">Mitad y mitad</text>
+<text x="375" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#10b981">Semicorte</text>
+<rect x="340" y="70" width="70" height="80" fill="#eff6ff" stroke="#10b981" stroke-width="2"/>
+<line x1="375" y1="70" x2="375" y2="150" stroke="#10b981" stroke-width="1.5" stroke-dasharray="8,4,2,4"/>
+<text x="375" y="170" text-anchor="middle" font-size="9" fill="#64748b">Línea de centro</text>
+<!-- Corte escalonado -->
+<text x="525" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#a855f7">Escalonado</text>
+<rect x="490" y="70" width="70" height="80" fill="#faf5ff" stroke="#a855f7" stroke-width="2"/>
+<line x1="505" y1="70" x2="505" y2="110" stroke="#a855f7" stroke-width="2"/>
+<line x1="505" y1="110" x2="545" y2="110" stroke="#a855f7" stroke-width="2"/>
+<line x1="545" y1="110" x2="545" y2="150" stroke="#a855f7" stroke-width="2"/>
+<text x="525" y="170" text-anchor="middle" font-size="9" fill="#64748b">Planos paralelos</text>
 <!-- Leyenda -->
-<rect x="20" y="230" width="560" height="55" fill="#ecfdf5" rx="6"/>
-<text x="300" y="250" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">Total: atraviesa todo | Parcial: solo una parte | Semicorte: mitad/exterior, mitad/interior</text>
-<text x="300" y="268" text-anchor="middle" font-size="10" fill="#64748b">El semicorte se usa en piezas simétricas: la línea de separación es el eje de simetría</text>
-<text x="300" y="282" text-anchor="middle" font-size="10" fill="#a855f7">Rayado: líneas diagonales a 45° que indican el material</text>
+<rect x="20" y="240" width="560" height="45" fill="#ecfdf5" rx="6"/>
+<text x="300" y="260" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">Total: toda la pieza | Parcial: zona específica | Semicorte: mitad cortada | Escalonado: varios planos</text>
+<text x="300" y="278" text-anchor="middle" font-size="10" fill="#64748b">Siempre mostrar las secciones cortadas con rayado</text>
 </svg>
 </div>
 </section>
@@ -136,53 +151,53 @@ Izquierda: vista exterior | Derecha: vista interior
 <div class="exercises">
 
 <div class="exercise">
-<p>📐 Ejercicio 1: ¿Cuántos tipos principales de cortes existen?</p>
+<p>📐 Ejercicio 1: ¿Cuántos tipos de cortes principales existen?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">2</button>
-<button class="quiz-btn" onclick="checkAnswer(this, true)">3</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">4</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">4</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">3</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false">5</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 2: ¿Qué tipo de corte atraviesa toda la pieza?</p>
+<p>📐 Ejercicio 2: ¿Qué tipo de corte muestra mitad cortada y mitad vista?</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Corte total</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Corte parcial</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Semicorte</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Ninguno</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Total</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Semicorte</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">Parcial</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">Escalonado</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 3: ¿Cuándo se usa el semicorte?</p>
+<p>📐 Ejercicio 3: ¿Qué línea separa el semicorte?</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">En piezas simétricas</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">En piezas pequeñas</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">En piezas grandes</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Nunca</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Línea continua</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Línea de centro</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">Línea ondulada</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">Línea de corte</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 4: ¿Qué indica la línea de corte?</p>
+<p>📐 Ejercicio 4: ¿Cuándo se usa el corte escalonado?</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Por dónde se corta la pieza</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">La escala</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">El material</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">La orientación</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">Siempre</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Cuando hay detalles en diferentes profundidades</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">Solo en piezas simétricas</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">Solo en piezas pequeñas</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 5: ¿Qué ángulo tienen las líneas de rayado?</p>
-<input type="text" id="ex5" placeholder="Grados" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
-<button onclick="checkExercise('ex5', '45', this)">Comprobar</button>
+<p>📐 Ejercicio 5: ¿Cómo se marca el límite del corte parcial?</p>
+<input type="text" id="ex5" placeholder="Tipo de línea" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
+<button onclick="checkExercise('ex5', 'ondulada', this)">Comprobar</button>
 <p class="feedback"></p>
 </div>
 
@@ -191,29 +206,29 @@ Izquierda: vista exterior | Derecha: vista interior
 
 <div class="box box-error">
 <strong>⚠️ Error clásico</strong>
-Poner el rayado en todo el corte. Solo se pone en la sección (la cara cortada), no en lo que queda detrás. Lo que queda detrás se muestra con líneas finas, sin rayado.
+Confundir corte con sección. El corte muestra la pieza cortada (incluye lo que hay detrás). La sección muestra solo la intersección del plano de corte con la pieza.
 </div>
 
 <div class="box box-idea">
 <strong>🔗 Conexión</strong>
-Los cortes son esenciales para piezas con agujeros internos, nervaduras y formas complejas. Sin cortes, no se vería nada del interior.
+Los cortes son esenciales para mostrar interiores de piezas. Sin cortes, no se verían agujeros, cámaras, o elementos internos.
 </div>
 
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
 <ul>
-<li>3 tipos: total, parcial, semicorte</li>
-<li>Total: atraviesa toda la pieza</li>
-<li>Parcial: solo una parte</li>
-<li>Semicorte: mitad/exterior, mitad/interior (simétricas)</li>
-<li>Rayado a 45°: indica el material</li>
+<li>Corte total: atraviesa toda la pieza</li>
+<li>Corte parcial: solo una zona (línea ondulada)</li>
+<li>Semicorte: mitad cortada, mitad vista (línea de centro)</li>
+<li>Corte escalonado: varios planos paralelos</li>
+<li>Siempre mostrar secciones con rayado</li>
 <li>¡Ya dominas los tipos de cortes! 🎉</li>
 </ul>
 </div>
 
 <div class="nav">
 <a href="b05-01-cortes.html">← Anterior</a>
-<a href="b06-01-cotas-basico.html">Siguiente → Bloque 6: Acotación</a>
+<a href="b05-03-semicorte-parcial.html">Siguiente →</a>
 </div>
 
 </main>
