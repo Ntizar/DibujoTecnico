@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📏 S04.2: La recta en el diedrico — Dibujo Técnico</title>
+<style>
+:root{--azul:#2563eb;--naranja:#f97316;--verde:#10b981;--rojo:#ef4444;--fondo:#fff;--texto:#1e293b;--gris:#94a3b8;--azul-claro:#eff6ff;--naranja-claro:#fff7ed;--verde-claro:#ecfdf5;--rojo-claro:#fef2f2;--pura-claro:#faf5ff;--pura:#a855f7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-gradient(135deg,#f8faff 0%,#fffaf5 100%);color:var(--texto);line-height:1.7}
+.header{background:linear-gradient(135deg,var(--azul),#1d4ed8);color:#fff;padding:2rem 1.5rem;text-align:center}
+.header h1{font-size:1.8rem;margin-bottom:.5rem}
+.header p{opacity:.9;font-size:1rem}
+.progress-bar{height:4px;background:rgba(255,255,255,.3);border-radius:2px;margin-top:1rem;overflow:hidden}
+.progress-fill{height:100%;background:#fff;border-radius:2px;width:0%;transition:width .3s}
+.container{max-width:900px;margin:0 auto;padding:1.5rem}
+.chapter{margin-bottom:2.5rem}
+.chapter-title{font-size:1.4rem;color:var(--azul);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:2px solid var(--azul-claro)}
+.box{padding:1rem 1.2rem;border-radius:10px;margin:1rem 0;border-left:4px solid;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.box-teoria{background:var(--azul-claro);border-color:var(--azul)}
+.box-ejemplo{background:var(--naranja-claro);border-color:var(--naranja)}
+.box-error{background:var(--rojo-claro);border-color:var(--rojo)}
+.box-idea{background:var(--pura-claro);border-color:var(--pura)}
+.box-success{background:var(--verde-claro);border-color:var(--verde)}
+.box strong{display:block;margin-bottom:.3rem}
+.svg-container{background:#f8fafc;border-radius:12px;padding:1.5rem;margin:1.5rem 0;text-align:center;border:2px solid #e2e8f0}
+.svg-container svg{max-width:100%;height:auto}
+.svg-container svg text{font-family:Inter,system-ui,sans-serif}
+.interactive{background:#f1f5f9;border-radius:12px;padding:1.5rem;margin:1.5rem 0}
+.interactive h3{color:var(--azul);margin-bottom:1rem;font-size:1.1rem}
+.interactive button{background:var(--azul);color:#fff;border:none;padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.95rem;margin:.3rem}
+.interactive button:hover{background:#1d4ed8}
+.result{margin-top:.8rem;padding:.8rem;border-radius:6px;font-weight:600;min-height:2rem}
+.result.ok{background:var(--verde-claro);color:#065f46}
+.result.fail{background:var(--rojo-claro);color:#991b1b}
+.exercises{margin:1.5rem 0}
+.exercise{background:#f1f5f9;border-radius:8px;padding:1rem;margin:.8rem 0}
+.exercise p{font-weight:600;margin-bottom:.5rem}
+.quiz-options{display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0}
+.quiz-btn{padding:.6rem 1.5rem;border-radius:8px;border:2px solid var(--azul);background:#fff;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all .2s}
+.quiz-btn:hover{background:var(--azul-claro)}
+.quiz-btn.correct{background:var(--verde);color:#fff;border-color:var(--verde)}
+.quiz-btn.wrong{background:var(--rojo);color:#fff;border-color:var(--rojo)}
+.summary{background:var(--azul-claro);border-radius:12px;padding:1.5rem;margin:2rem 0}
+.summary h3{color:var(--azul);margin-bottom:.8rem}
+.summary ul{list-style:none;padding:0}
+.summary li{padding:.3rem 0;padding-left:1.5rem;position:relative}
+.summary li::before{content:"✓";color:var(--verde);font-weight:bold;position:absolute;left:0}
+.nav{display:flex;justify-content:space-between;margin:2rem 0;padding:1rem 0;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0}
+.nav a{color:var(--azul);text-decoration:none;font-weight:600;padding:.5rem 1rem;border-radius:6px}
+.nav a:hover{background:var(--azul-claro)}
+.nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
+.footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+</style>
+</head>
+<body>
+<header class="header">
+<h1>📏 S04.2: La recta en el diedrico</h1>
+<p>Dibujo Técnico — Sistema Diédrico</p>
+<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+</header>
+<main class="container">
+
+<section class="chapter">
+<h2 class="chapter-title">🎯 ¿Qué vamos a aprender?</h2>
+<div class="box box-idea">
+<strong>💡 Idea clave</strong>
+Una recta se define por dos puntos. Se representa con dos proyecciones: r' (alzado) y r (planta). Las trazas son los puntos donde la recta corta a los planos: Th (corta PH) y Tv (corta PV).
+</div>
+<p>En esta sesión aprenderás a:</p>
+<ul style="margin:.8rem 0 1rem 1.5rem">
+<li>Representar una recta por sus proyecciones</li>
+<li>Encontrar las trazas (Th y Tv)</li>
+<li>Identificar las posiciones de la recta</li>
+<li>Entender la verdadera magnitud</li>
+</ul>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">1️⃣ La recta y sus trazas</h2>
+<div class="box box-teoria">
+<strong>📖 Teoría</strong>
+<strong>Una recta r se define por:</strong><br>
+• Dos puntos A y B → recta r<br>
+• r' (alzado): une A' y B'<br>
+• r (planta): une A y B<br><br>
+<strong>🔹 Trazas:</strong><br>
+• Th (traza horizontal): donde r corta PH → z = 0<br>
+• Tv (traza vertical): donde r corta PV → y = 0<br><br>
+<strong>🔹 Posiciones:</strong><br>
+• Horizontal: paralela a PH → r' ∥ LT<br>
+• Frontal: paralela a PV → r ∥ LT<br>
+• De punta: perpendicular a PH → r' es un punto<br>
+• De perfil: paralela a PL → r' y r ⊥ LT<br>
+• Oblicua: no paralela ni perpendicular
+</div>
+<div class="box box-ejemplo">
+<strong>🔍 Ejemplo 1</strong>
+Th: punto donde la recta corta el PH.<br>
+En alzado, Th' está sobre la LT. En planta, Th está en la recta r.
+</div>
+<div class="box box-ejemplo">
+<strong>🔍 Ejemplo 2</strong>
+Tv: punto donde la recta corta el PV.<br>
+En planta, Tv está sobre la LT. En alzado, Tv' está en la recta r'.
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">2️⃣ Visualiza la recta y sus trazas</h2>
+<div class="svg-container">
+<svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+<!-- Fondo -->
+<rect x="0" y="0" width="600" height="300" fill="#f8fafc" rx="8"/>
+<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Recta r con sus trazas Th y Tv</text>
+<!-- LT -->
+<line x1="50" y1="150" x2="550" y2="150" stroke="#333" stroke-width="2"/>
+<text x="560" y="154" font-size="11" fill="#333">LT</text>
+<!-- Recta r' (alzado) -->
+<line x1="100" y1="200" x2="500" y2="80" stroke="#2563eb" stroke-width="2.5"/>
+<text x="510" y="85" font-size="11" fill="#2563eb">r'</text>
+<!-- Recta r (planta) -->
+<line x1="100" y1="100" x2="500" y2="220" stroke="#f97316" stroke-width="2.5"/>
+<text x="510" y="225" font-size="11" fill="#f97316">r</text>
+<!-- Th -->
+<circle cx="350" cy="150" r="5" fill="#10b981"/>
+<text x="360" y="145" font-size="11" font-weight="bold" fill="#10b981">Th</text>
+<text x="360" y="160" font-size="9" fill="#64748b">z=0</text>
+<!-- Tv -->
+<circle cx="300" cy="150" r="5" fill="#a855f7"/>
+<text x="310" y="145" font-size="11" font-weight="bold" fill="#a855f7">Tv</text>
+<text x="310" y="160" font-size="9" fill="#64748b">y=0</text>
+<!-- Leyenda -->
+<rect x="20" y="240" width="560" height="45" fill="#ecfdf5" rx="6"/>
+<text x="300" y="260" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">Th: donde r corta PH (z=0) | Tv: donde r corta PV (y=0)</text>
+<text x="300" y="278" text-anchor="middle" font-size="10" fill="#64748b">r' = alzado | r = planta | LT = línea de tierra</text>
+</svg>
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">📝 Ejercicios</h2>
+<div class="exercises">
+
+<div class="exercise">
+<p>📐 Ejercicio 1: ¿Cuántas proyecciones tiene una recta?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">1</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">2</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">3</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">4</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 2: ¿Qué es la traza horizontal (Th)?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Donde la recta corta el PH</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">Donde la recta corta el PV</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">Donde la recta corta la LT</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">El punto medio de la recta</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 3: Una recta horizontal tiene r'...</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Paralela a la LT</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">Perpendicular a la LT</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">Oblicua a la LT</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">Es un punto</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 4: ¿Cuántas trazas tiene una recta oblicua?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">0</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">1</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">2</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">3</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 5: ¿Qué coordenada es 0 en la traza horizontal?</p>
+<input type="text" id="ex5" placeholder="x, y o z" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
+<button onclick="checkExercise('ex5', 'z', this)">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+</div>
+</section>
+
+<div class="box box-error">
+<strong>⚠️ Error clásico</strong>
+Confundir Th con Tv. Th = traza horizontal = corta el PH → z = 0. Tv = traza vertical = corta el PV → y = 0. ¡Recuerda: Th = horizontal = z=0, Tv = vertical = y=0!
+</div>
+
+<div class="box box-idea">
+<strong>🔗 Conexión</strong>
+La recta es el segundo elemento del diédrico. Con puntos y rectas, podemos construir planos y piezas completas.
+</div>
+
+<div class="summary">
+<h3>📋 Resumen de lo aprendido</h3>
+<ul>
+<li>Recta r = r' (alzado) + r (planta)</li>
+<li>Th: donde r corta PH (z=0)</li>
+<li>Tv: donde r corta PV (y=0)</li>
+<li>Posiciones: horizontal, frontal, de punta, de perfil, oblicua</li>
+<li>¡Ya dominas la recta en el diedrico! 🎉</li>
+</ul>
+</div>
+
+<div class="nav">
+<a href="b04-01-punto-diedrico.html">← Anterior</a>
+<a href="b04-03-plano-diedrico.html">Siguiente →</a>
+</div>
+
+</main>
+<footer class="footer">Hecho con ❤️ por David Antizar</footer>
+<script>
+function checkAnswer(btn, correct) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) {
+    b.disabled = true; b.classList.remove('correct','wrong');
+  });
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  var feedback = parent.nextElementSibling;
+  if(feedback && feedback.classList.contains('feedback')) {
+    if(correct) {
+      feedback.textContent = '✅ ¡Correcto! ¡Muy bien!';
+      feedback.className = 'feedback correct';
+    } else {
+      feedback.textContent = '❌ ¡Intenta de nuevo!';
+      feedback.className = 'feedback incorrect';
+      setTimeout(function() {
+        parent.querySelectorAll('button').forEach(function(b) {
+          b.disabled = false; b.classList.remove('correct','wrong');
+        });
+        feedback.textContent = '';
+        feedback.className = 'feedback';
+      }, 1500);
+    }
+  }
+}
+
+function checkExercise(id, correct, btn) {
+  var input = document.getElementById(id);
+  var feedback = input.parentElement.nextElementSibling;
+  var userVal = input.value.trim().toLowerCase();
+  var correctVal = correct.toLowerCase();
+  if(userVal === correctVal) {
+    feedback.textContent = '✅ ¡Correcto! ' + correct;
+    feedback.className = 'feedback correct';
+    input.style.borderColor = 'var(--verde)';
+  } else {
+    feedback.textContent = '❌ Respuesta correcta: ' + correct;
+    feedback.className = 'feedback incorrect';
+    input.style.borderColor = 'var(--rojo)';
+  }
+}
+
+window.onscroll = function(){
+  var h = document.documentElement;
+  var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
+  document.getElementById('progress').style.width = p+'%';
+};
+</script>
+</body>
+</html>

@@ -258,9 +258,10 @@
       "bloque": "Bloque 4: Diedrico",
       "icon": "📍",
       "skills": "td-diedrico-punto-recta-plano",
-      "status": "pending",
+      "status": "completed",
       "improvement_count": 0,
-      "priority": 20
+      "priority": 20,
+      "last_completed": "2026-06-10"
     },
     {
       "id": "b04-02",
@@ -270,9 +271,10 @@
       "bloque": "Bloque 4: Diedrico",
       "icon": "📍",
       "skills": "td-diedrico-punto-recta-plano",
-      "status": "pending",
+      "status": "completed",
       "improvement_count": 0,
-      "priority": 21
+      "priority": 21,
+      "last_completed": "2026-06-10"
     },
     {
       "id": "b04-03",
@@ -282,9 +284,10 @@
       "bloque": "Bloque 4: Diedrico",
       "icon": "📍",
       "skills": "td-diedrico-punto-recta-plano",
-      "status": "pending",
+      "status": "completed",
       "improvement_count": 0,
-      "priority": 22
+      "priority": 22,
+      "last_completed": "2026-06-10"
     },
     {
       "id": "b04-04",
@@ -659,6 +662,6 @@
       "priority": 53
     }
   ],
-  "progreso_global": 19,
+  "progreso_global": 22,
   "ult_actualizacion": "2026-06-10"
 }
