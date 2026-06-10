@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔄 S04.8: Giro — Dibujo Técnico</title>
+<style>
+:root{--azul:#2563eb;--naranja:#f97316;--verde:#10b981;--rojo:#ef4444;--fondo:#fff;--texto:#1e293b;--gris:#94a3b8;--azul-claro:#eff6ff;--naranja-claro:#fff7ed;--verde-claro:#ecfdf5;--rojo-claro:#fef2f2;--pura-claro:#faf5ff;--pura:#a855f7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-gradient(135deg,#f8faff 0%,#fffaf5 100%);color:var(--texto);line-height:1.7}
+.header{background:linear-gradient(135deg,var(--azul),#1d4ed8);color:#fff;padding:2rem 1.5rem;text-align:center}
+.header h1{font-size:1.8rem;margin-bottom:.5rem}
+.header p{opacity:.9;font-size:1rem}
+.progress-bar{height:4px;background:rgba(255,255,255,.3);border-radius:2px;margin-top:1rem;overflow:hidden}
+.progress-fill{height:100%;background:#fff;border-radius:2px;width:0%;transition:width .3s}
+.container{max-width:900px;margin:0 auto;padding:1.5rem}
+.chapter{margin-bottom:2.5rem}
+.chapter-title{font-size:1.4rem;color:var(--azul);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:2px solid var(--azul-claro)}
+.box{padding:1rem 1.2rem;border-radius:10px;margin:1rem 0;border-left:4px solid;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.box-teoria{background:var(--azul-claro);border-color:var(--azul)}
+.box-ejemplo{background:var(--naranja-claro);border-color:var(--naranja)}
+.box-error{background:var(--rojo-claro);border-color:var(--rojo)}
+.box-idea{background:var(--pura-claro);border-color:var(--pura)}
+.box-success{background:var(--verde-claro);border-color:var(--verde)}
+.box strong{display:block;margin-bottom:.3rem}
+.svg-container{background:#f8fafc;border-radius:12px;padding:1.5rem;margin:1.5rem 0;text-align:center;border:2px solid #e2e8f0}
+.svg-container svg{max-width:100%;height:auto}
+.svg-container svg text{font-family:Inter,system-ui,sans-serif}
+.interactive{background:#f1f5f9;border-radius:12px;padding:1.5rem;margin:1.5rem 0}
+.interactive h3{color:var(--azul);margin-bottom:1rem;font-size:1.1rem}
+.interactive button{background:var(--azul);color:#fff;border:none;padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.95rem;margin:.3rem}
+.interactive button:hover{background:#1d4ed8}
+.result{margin-top:.8rem;padding:.8rem;border-radius:6px;font-weight:600;min-height:2rem}
+.result.ok{background:var(--verde-claro);color:#065f46}
+.result.fail{background:var(--rojo-claro);color:#991b1b}
+.exercises{margin:1.5rem 0}
+.exercise{background:#f1f5f9;border-radius:8px;padding:1rem;margin:.8rem 0}
+.exercise p{font-weight:600;margin-bottom:.5rem}
+.quiz-options{display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0}
+.quiz-btn{padding:.6rem 1.5rem;border-radius:8px;border:2px solid var(--azul);background:#fff;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all .2s}
+.quiz-btn:hover{background:var(--azul-claro)}
+.quiz-btn.correct{background:var(--verde);color:#fff;border-color:var(--verde)}
+.quiz-btn.wrong{background:var(--rojo);color:#fff;border-color:var(--rojo)}
+.summary{background:var(--azul-claro);border-radius:12px;padding:1.5rem;margin:2rem 0}
+.summary h3{color:var(--azul);margin-bottom:.8rem}
+.summary ul{list-style:none;padding:0}
+.summary li{padding:.3rem 0;padding-left:1.5rem;position:relative}
+.summary li::before{content:"✓";color:var(--verde);font-weight:bold;position:absolute;left:0}
+.nav{display:flex;justify-content:space-between;margin:2rem 0;padding:1rem 0;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0}
+.nav a{color:var(--azul);text-decoration:none;font-weight:600;padding:.5rem 1rem;border-radius:6px}
+.nav a:hover{background:var(--azul-claro)}
+.nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
+.footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+.feedback{margin-top:.5rem;font-weight:600;min-height:1.5rem}
+.feedback.correct{color:#065f46}
+.feedback.incorrect{color:#991b1b}
+input[type="text"]{padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px}
+input[type="text"]:focus{outline:none;border-color:var(--azul)}
+</style>
+</head>
+<body>
+<header class="header">
+<h1>🔄 S04.8: Giro</h1>
+<p>Dibujo Técnico — Sistema Diédrico</p>
+<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+</header>
+<main class="container">
+
+<section class="chapter">
+<h2 class="chapter-title">🎯 ¿Qué vamos a aprender?</h2>
+<div class="box box-idea">
+<strong>💡 Idea clave</strong>
+El giro es un método para obtener verdaderas magnitudes en sistema diédrico. Consiste en girar un elemento alrededor de un eje perpendicular a uno de los planos de proyección. Al girar, el elemento cambia de posición pero mantiene su forma y tamaño reales, permitiendo medir directamente sobre la proyección.
+</div>
+<p>En esta sesión aprenderás a:</p>
+<ul style="margin:.8rem 0 1rem 1.5rem">
+<li>Entender qué es un giro y para qué sirve</li>
+<li>Girar un punto alrededor de un eje vertical u horizontal</li>
+<li>Girar una recta para obtener su verdadera magnitud</li>
+<li>Girar un plano para verlo en verdadera magnitud</li>
+<li>Aplicar el giro a problemas reales de diédrico</li>
+</ul>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">1️⃣ ¿Qué es un giro?</h2>
+<div class="box box-teoria">
+<strong>📖 Teoría</strong>
+<strong>🔹 Concepto:</strong><br>
+• El giro consiste en rotar un elemento geométrico alrededor de un eje fijo<br>
+• El eje de giro debe ser perpendicular a uno de los planos de proyección<br>
+• Si el eje es vertical (⊥ PH), la proyección horizontal del elemento gira en verdadera magnitud<br>
+• Si el eje es horizontal (⊥ PV), la proyección vertical del elemento gira en verdadera magnitud<br>
+• El radio de giro es la distancia del punto al eje<br><br>
+<strong>🔹 Propiedades fundamentales:</strong><br>
+• Las distancias se conservan (el giro es una isometría)<br>
+• Los ángulos se conservan<br>
+• La forma y tamaño del elemento no cambian<br>
+• Solo cambia la orientación respecto a los planos de proyección
+</div>
+
+<div class="box box-ejemplo">
+<strong>🔍 Ejemplo: Giro de un punto</strong>
+Dado un punto A(a,a') y un eje vertical e(e,e') que pasa por O(o,o'):<br>
+• La proyección horizontal a gira describiendo un arco de circunferencia con centro en o y radio oa<br>
+• La proyección vertical a' se desplaza horizontalmente (misma cota z) hasta la nueva posición a₁'<br>
+• El punto girado A₁ tiene proyecciones (a₁, a₁')<br>
+• La cota z del punto NO cambia porque el eje es vertical
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">2️⃣ Giro de una recta</h2>
+<div class="box box-teoria">
+<strong>📖 Teoría</strong>
+<strong>🔹 Giro de recta alrededor de eje vertical:</strong><br>
+• Se elige un eje vertical e que pase por un punto conveniente<br>
+• Se gira cada punto de la recta el mismo ángulo<br>
+• En la práctica, basta con girar dos puntos de la recta<br>
+• La nueva recta r₁ se obtiene uniendo los puntos girados<br><br>
+<strong>🔹 Para obtener VM de una recta oblicua:</strong><br>
+• Se gira la recta hasta dejarla paralela al PV (frontal)<br>
+• En esa posición, la proyección vertical r₁' muestra la VM<br>
+• El ángulo de giro necesario es el que forma r con la LT en proyección horizontal<br><br>
+<strong>🔹 Para obtener VM de una recta oblicua (eje horizontal):</strong><br>
+• Se gira la recta hasta dejarla paralela al PH (horizontal)<br>
+• En esa posición, la proyección horizontal r₁ muestra la VM
+</div>
+
+<div class="svg-container">
+<svg viewBox="0 0 600 350" xmlns="http://www.w3.org/2000/svg">
+<!-- Fondo -->
+<rect x="0" y="0" width="600" height="350" fill="#f8fafc" rx="8"/>
+<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Giro de una recta alrededor de un eje vertical</text>
+<!-- LT -->
+<line x1="40" y1="180" x2="560" y2="180" stroke="#333" stroke-width="2"/>
+<text x="570" y="184" font-size="11" fill="#333">LT</text>
+<!-- Eje vertical e (punto en PH, línea en PV) -->
+<circle cx="200" cy="180" r="3" fill="#a855f7"/>
+<text x="195" y="170" font-size="11" fill="#a855f7">e</text>
+<line x1="200" y1="180" x2="200" y2="40" stroke="#a855f7" stroke-width="2" stroke-dasharray="4,3"/>
+<text x="205" y="55" font-size="11" fill="#a855f7">e'</text>
+<!-- Recta original r (oblicua) -->
+<line x1="80" y1="220" x2="350" y2="120" stroke="#2563eb" stroke-width="2"/>
+<text x="360" y="125" font-size="11" fill="#2563eb">r'</text>
+<line x1="80" y1="140" x2="350" y2="240" stroke="#f97316" stroke-width="2"/>
+<text x="360" y="245" font-size="11" fill="#f97316">r</text>
+<!-- Arco de giro (proyección horizontal) -->
+<path d="M 350 240 A 150 150 0 0 1 500 180" fill="none" stroke="#10b981" stroke-width="1.5" stroke-dasharray="4,3"/>
+<!-- Recta girada r₁ (paralela a LT → VM en PV) -->
+<line x1="80" y1="140" x2="500" y2="180" stroke="#10b981" stroke-width="2.5"/>
+<text x="510" y="184" font-size="11" fill="#10b981">r₁</text>
+<line x1="80" y1="220" x2="500" y2="180" stroke="#10b981" stroke-width="2.5"/>
+<text x="510" y="175" font-size="11" fill="#10b981">r₁' (VM)</text>
+<!-- Ángulo de giro -->
+<path d="M 340 235 A 10 10 0 0 1 345 225" fill="none" stroke="#ef4444" stroke-width="1.5"/>
+<text x="355" y="230" font-size="10" fill="#ef4444">θ</text>
+<!-- Leyenda -->
+<rect x="20" y="310" width="560" height="30" fill="#ecfdf5" rx="6"/>
+<text x="300" y="330" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">Al girar r hasta hacerla paralela a LT, r₁' muestra la VM de la recta</text>
+</svg>
+</div>
+
+<div class="box box-ejemplo">
+<strong>🔍 Ejemplo: Giro de recta paso a paso</strong>
+Recta oblicua r(A,B) con A(20,30,10) y B(50,10,40):<br>
+1. Elegimos eje vertical e que pase por A (no movemos A)<br>
+2. Medimos la distancia en PH desde e hasta B: d = √((50-20)² + (10-30)²) = √(900+400) = √1300 ≈ 36.06<br>
+3. Giramos B en PH hasta que AB sea paralela a LT (horizontal en PH)<br>
+4. La nueva proyección horizontal b₁ está a la misma distancia del eje<br>
+5. En PV, b₁' se desplaza horizontalmente manteniendo cota z=40<br>
+6. Unimos a' con b₁' → r₁' muestra la VM de la recta
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">3️⃣ Giro de un plano</h2>
+<div class="box box-teoria">
+<strong>📖 Teoría</strong>
+<strong>🔹 Giro de plano alrededor de eje vertical:</strong><br>
+• Para girar un plano α, se gira su traza horizontal α₁ y un punto del plano<br>
+• La traza vertical α₂ se obtiene a partir del punto girado<br>
+• El plano girado α₁ tiene su traza horizontal girada el mismo ángulo<br><br>
+<strong>🔹 Para obtener VM de un plano oblicuo:</strong><br>
+• Se gira el plano hasta dejarlo proyectante vertical (⊥ PV)<br>
+• En esa posición, la traza vertical α₂' se ve como una línea recta<br>
+• Luego se puede obtener la VM del plano abatiéndolo o con un segundo giro<br><br>
+<strong>🔹 Aplicaciones del giro de plano:</strong><br>
+• Obtener VM de figuras contenidas en el plano<br>
+• Resolver intersecciones entre planos<br>
+• Determinar ángulos entre planos y rectas
+</div>
+
+<div class="box box-ejemplo">
+<strong>🔍 Ejemplo: Giro de plano paso a paso</strong>
+Plano oblicuo α(α₁,α₂):<br>
+1. Elegimos un eje vertical e que pase por un punto O del plano<br>
+2. Giramos la traza horizontal α₁ alrededor de e hasta la posición deseada<br>
+3. La nueva traza horizontal α₁₁ pasa por el punto girado<br>
+4. La nueva traza vertical α₂₁ se obtiene: pasa por la intersección de α₁₁ con LT y por la proyección vertical del punto girado<br>
+5. Si α₁₁ es perpendicular a LT, el plano es proyectante vertical y α₂₁ se ve como línea
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">4️⃣ Aplicaciones del giro</h2>
+<div class="box box-teoria">
+<strong>📖 Teoría</strong>
+<strong>🔹 Principales aplicaciones:</strong><br>
+• <strong>Verdadera magnitud de segmentos:</strong> girar la recta hasta paralela a un plano de proyección<br>
+• <strong>Verdadera magnitud de figuras planas:</strong> girar el plano hasta proyectante, luego abatir o girar de nuevo<br>
+• <strong>Distancia entre dos rectas paralelas:</strong> girar ambas hasta que sean proyectantes<br>
+• <strong>Ángulo entre recta y plano:</strong> girar el plano hasta proyectante y medir directamente<br>
+• <strong>Intersecciones:</strong> simplificar la posición relativa de los elementos<br><br>
+<strong>🔹 Comparativa: Giro vs Cambio de plano</strong><br>
+• El giro mantiene fijo el sistema de referencia (planos de proyección)<br>
+• El cambio de plano mantiene fijo el elemento y mueve los planos<br>
+• Ambos métodos son equivalentes y complementarios<br>
+• El giro es más intuitivo para problemas de ángulos
+</div>
+
+<div class="box box-idea">
+<strong>💡 Consejo práctico</strong>
+Para elegir el eje de giro, busca un punto que pertenezca al elemento que quieres girar. Así ese punto no se mueve y reduces el trabajo. Por ejemplo, para girar una recta, elige el eje pasando por uno de sus extremos.
+</div>
+
+<div class="box box-error">
+<strong>⚠️ Error clásico</strong>
+Olvidar que al girar un punto alrededor de un eje vertical, la cota z NO cambia. La proyección vertical se desplaza horizontalmente, nunca verticalmente. Si mueves la cota, el giro es incorrecto.
+</div>
+
+<div class="box box-error">
+<strong>⚠️ Error clásico 2</strong>
+Confundir el radio de giro. El radio es la distancia en VERDADERA MAGNITUD desde el punto al eje, medida en el plano de proyección perpendicular al eje. Para eje vertical, se mide en PH. Para eje horizontal, se mide en PV.
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">📝 Ejercicios</h2>
+<div class="exercises">
+
+<div class="exercise">
+<p>📐 Ejercicio 1: ¿Alrededor de qué tipo de eje se gira en un giro en sistema diédrico?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Eje oblicuo</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Eje perpendicular a un plano de proyección</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Eje paralelo a LT</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Eje cualquiera</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 2: Si giramos un punto alrededor de un eje vertical, ¿qué coordenada NO cambia?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">La x (alejamiento)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">La y (distancia al PV)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">La z (cota)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Todas cambian</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 3: ¿Cuántos puntos de una recta hay que girar como mínimo para obtener la recta girada?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">0</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">2</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">3</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Todos los puntos</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 4: Verdadero o Falso — El giro conserva las distancias y los ángulos</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Verdadero</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Falso</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 5: ¿Cómo se llama la distancia desde un punto hasta el eje de giro?</p>
+<input type="text" id="ex5" placeholder="Escribe tu respuesta...">
+<button onclick="checkExercise('ex5', 'radio de giro', this)">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+</div>
+</section>
+
+<div class="summary">
+<h3>📋 Resumen de lo aprendido</h3>
+<ul>
+<li>El giro es un método isométrico: conserva distancias y ángulos</li>
+<li>El eje de giro debe ser perpendicular a un plano de proyección</li>
+<li>Eje vertical → la cota z se mantiene; giro visible en PH</li>
+<li>Eje horizontal → el alejamiento se mantiene; giro visible en PV</li>
+<li>Para girar una recta, basta con girar dos de sus puntos</li>
+<li>Para girar un plano, se gira su traza horizontal y un punto</li>
+<li>El giro permite obtener VM de segmentos, figuras y ángulos</li>
+<li>¡Ya dominas el giro en sistema diédrico! 🎉</li>
+</ul>
+</div>
+
+<div class="nav">
+<a href="b04-07-cambio-plano.html">← Anterior</a>
+<a href="b04-09-resumen-diedrico.html">Siguiente →</a>
+</div>
+
+</main>
+<footer class="footer">Hecho con ❤️ por David Antizar</footer>
+<script>
+function checkAnswer(btn, correct) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) {
+    b.disabled = true; b.classList.remove('correct','wrong');
+  });
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  var feedback = parent.nextElementSibling;
+  if(feedback && feedback.classList.contains('feedback')) {
+    if(correct) {
+      feedback.textContent = '✅ ¡Correcto! ¡Muy bien!';
+      feedback.className = 'feedback correct';
+    } else {
+      feedback.textContent = '❌ ¡Intenta de nuevo!';
+      feedback.className = 'feedback incorrect';
+      setTimeout(function() {
+        parent.querySelectorAll('button').forEach(function(b) {
+          b.disabled = false; b.classList.remove('correct','wrong');
+        });
+        feedback.textContent = '';
+        feedback.className = 'feedback';
+      }, 1500);
+    }
+  }
+}
+
+function checkExercise(id, correct, btn) {
+  var input = document.getElementById(id);
+  var feedback = input.parentElement.nextElementSibling;
+  var userVal = input.value.trim().toLowerCase();
+  var correctVal = correct.toLowerCase();
+  if(userVal === correctVal) {
+    feedback.textContent = '✅ ¡Correcto! ' + correct;
+    feedback.className = 'feedback correct';
+    input.style.borderColor = 'var(--verde)';
+  } else {
+    feedback.textContent = '❌ Respuesta correcta: ' + correct;
+    feedback.className = 'feedback incorrect';
+    input.style.borderColor = 'var(--rojo)';
+  }
+}
+
+window.onscroll = function(){
+  var h = document.documentElement;
+  var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
+  document.getElementById('progress').style.width = p+'%';
+};
+</script>
+</body>
+</html>
