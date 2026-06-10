@@ -102,9 +102,10 @@
       "bloque": "Bloque 2: Proyecciones",
       "icon": "🔲",
       "skills": "td-proyecciones",
-      "status": "pending",
+      "status": "completed",
       "improvement_count": 0,
-      "priority": 8
+      "priority": 8,
+      "last_completed": "2026-06-10"
     },
     {
       "id": "b02-04",
@@ -114,9 +115,10 @@
       "bloque": "Bloque 2: Proyecciones",
       "icon": "🔲",
       "skills": "td-proyecciones",
-      "status": "pending",
+      "status": "completed",
       "improvement_count": 0,
-      "priority": 9
+      "priority": 9,
+      "last_completed": "2026-06-10"
     },
     {
       "id": "b02-05",
@@ -126,9 +128,10 @@
       "bloque": "Bloque 2: Proyecciones",
       "icon": "🔲",
       "skills": "td-proyecciones",
-      "status": "pending",
+      "status": "completed",
       "improvement_count": 0,
-      "priority": 10
+      "priority": 10,
+      "last_completed": "2026-06-10"
     },
     {
       "id": "b02-06",
@@ -647,6 +650,6 @@
       "priority": 53
     }
   ],
-  "progreso_global": 7,
+  "progreso_global": 10,
   "ult_actualizacion": "2026-06-10"
 }
