@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>↗️ S07.4: Verdadera magnitud — Dibujo Técnico</title>
+<style>
+:root{--azul:#2563eb;--naranja:#f97316;--verde:#10b981;--rojo:#ef4444;--fondo:#fff;--texto:#1e293b;--gris:#94a3b8;--azul-claro:#eff6ff;--naranja-claro:#fff7ed;--verde-claro:#ecfdf5;--rojo-claro:#fef2f2;--pura-claro:#faf5ff;--pura:#a855f7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-gradient(135deg,#f8faff 0%,#fffaf5 100%);color:var(--texto);line-height:1.7}
+.header{background:linear-gradient(135deg,var(--azul),#1d4ed8);color:#fff;padding:2rem 1.5rem;text-align:center}
+.header h1{font-size:1.8rem;margin-bottom:.5rem}
+.header p{opacity:.9;font-size:1rem}
+.progress-bar{height:4px;background:rgba(255,255,255,.3);border-radius:2px;margin-top:1rem;overflow:hidden}
+.progress-fill{height:100%;background:#fff;border-radius:2px;width:0%;transition:width .3s}
+.container{max-width:900px;margin:0 auto;padding:1.5rem}
+.chapter{margin-bottom:2.5rem}
+.chapter-title{font-size:1.4rem;color:var(--azul);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:2px solid var(--azul-claro)}
+.box{padding:1rem 1.2rem;border-radius:10px;margin:1rem 0;border-left:4px solid;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.box-teoria{background:var(--azul-claro);border-color:var(--azul)}
+.box-ejemplo{background:var(--naranja-claro);border-color:var(--naranja)}
+.box-error{background:var(--rojo-claro);border-color:var(--rojo)}
+.box-idea{background:var(--pura-claro);border-color:var(--pura)}
+.box-success{background:var(--verde-claro);border-color:var(--verde)}
+.box strong{display:block;margin-bottom:.3rem}
+.svg-container{background:#f8fafc;border-radius:12px;padding:1.5rem;margin:1.5rem 0;text-align:center;border:2px solid #e2e8f0}
+.svg-container svg{max-width:100%;height:auto}
+.svg-container svg text{font-family:Inter,system-ui,sans-serif}
+.interactive{background:#f1f5f9;border-radius:12px;padding:1.5rem;margin:1.5rem 0}
+.interactive h3{color:var(--azul);margin-bottom:1rem;font-size:1.1rem}
+.interactive button{background:var(--azul);color:#fff;border:none;padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.95rem;margin:.3rem}
+.interactive button:hover{background:#1d4ed8}
+.result{margin-top:.8rem;padding:.8rem;border-radius:6px;font-weight:600;min-height:2rem}
+.result.ok{background:var(--verde-claro);color:#065f46}
+.result.fail{background:var(--rojo-claro);color:#991b1b}
+.exercises{margin:1.5rem 0}
+.exercise{background:#f1f5f9;border-radius:8px;padding:1rem;margin:.8rem 0}
+.exercise p{font-weight:600;margin-bottom:.5rem}
+.quiz-options{display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0}
+.quiz-btn{padding:.6rem 1.5rem;border-radius:8px;border:2px solid var(--azul);background:#fff;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all .2s}
+.quiz-btn:hover{background:var(--azul-claro)}
+.quiz-btn.correct{background:var(--verde);color:#fff;border-color:var(--verde)}
+.quiz-btn.wrong{background:var(--rojo);color:#fff;border-color:var(--rojo)}
+.summary{background:var(--azul-claro);border-radius:12px;padding:1.5rem;margin:2rem 0}
+.summary h3{color:var(--azul);margin-bottom:.8rem}
+.summary ul{list-style:none;padding:0}
+.summary li{padding:.3rem 0;padding-left:1.5rem;position:relative}
+.summary li::before{content:"✓";color:var(--verde);font-weight:bold;position:absolute;left:0}
+.nav{display:flex;justify-content:space-between;margin:2rem 0;padding:1rem 0;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0}
+.nav a{color:var(--azul);text-decoration:none;font-weight:600;padding:.5rem 1rem;border-radius:6px}
+.nav a:hover{background:var(--azul-claro)}
+.nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
+.footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+</style>
+</head>
+<body>
+<header class="header">
+<h1>↗️ S07.4: Verdadera magnitud</h1>
+<p>Dibujo Técnico — Intersecciones y VM</p>
+<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+</header>
+<main class="container">
+
+<section class="chapter">
+<h2 class="chapter-title">🎯 ¿Qué vamos a aprender?</h2>
+<div class="box box-idea">
+<strong>💡 Idea clave</strong>
+Un segmento solo se ve en verdadera magnitud (VM) cuando la recta que lo contiene es paralela al plano de proyección. Si es oblicua, hay que usar giro o cambio de plano para verla en VM.
+</div>
+<p>En esta sesión aprenderás a:</p>
+<ul style="margin:.8rem 0 1rem 1.5rem">
+<li>Entender qué es la verdadera magnitud y cuándo se obtiene</li>
+<li>Usar el método del giro para obtener VM de rectas oblicuas</li>
+<li>Usar el método del cambio de plano para obtener VM</li>
+<li>Diferenciar rectas horizontales, frontales y oblicuas</li>
+<li>Aplicar VM para medir distancias reales</li>
+</ul>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">1️⃣ Verdadera Magnitud (VM)</h2>
+<div class="box box-teoria">
+<strong>📖 Teoría</strong>
+<strong>🔹 ¿Qué es la VM?</strong><br>
+La verdadera magnitud de un segmento es su longitud real. En diédrico, un segmento se ve en VM solo cuando la recta que lo contiene es paralela al plano de proyección.<br><br>
+<strong>🔹 Tipos de rectas y su VM:</strong><br>
+• <strong>Recta horizontal:</strong> paralela a PH → VM en planta<br>
+• <strong>Recta frontal:</strong> paralela a PV → VM en alzado<br>
+• <strong>Recta oblicua:</strong> no paralela a ningún plano → NO se ve en VM en ninguna proyección<br><br>
+<strong>🔹 Método del giro:</strong><br>
+Para obtener VM de una recta oblicua:<br>
+<strong>Paso 1:</strong> Elegir la proyección donde girar (planta para VM en planta, alzado para VM en alzado).<br>
+<strong>Paso 2:</strong> Girar la proyección elegida hasta que sea paralela a la LT.<br>
+<strong>Paso 3:</strong> La otra proyección de la recta girada muestra la VM.<br>
+<strong>Centro de giro:</strong> la proyección donde se gira (planta si se quiere VM en planta).<br><br>
+<strong>🔹 Método del cambio de plano:</strong><br>
+<strong>Paso 1:</strong> Trazar una nueva LT paralela a la proyección de la recta.<br>
+<strong>Paso 2:</strong> Obtener la nueva proyección del segmento.<br>
+<strong>Paso 3:</strong> La nueva proyección muestra la VM.<br><br>
+<strong>🔹 Ángulo de una recta con los planos:</strong><br>
+• Ángulo con PH (α): se obtiene en VM de la recta<br>
+• Ángulo con PV (β): se obtiene en VM de la recta<br><br>
+<strong>🔹 Distancia de un punto a una recta:</strong><br>
+1. Llevar la recta a VM<br>
+2. Trazar la perpendicular desde el punto a la recta en VM<br>
+3. La VM de esta perpendicular es la distancia real
+</div>
+<div class="box box-ejemplo">
+<strong>🔍 Ejemplo 1: VM por giro</strong>
+Segmento AB oblicuo: A(30, 20, 40), B(80, 60, 70).<br>
+Paso 1: Girar la planta de AB hasta que sea paralela a LT.<br>
+Paso 2: A₁ gira a A₁' y B₁ gira a B₁'.<br>
+Paso 3: La recta A'B' en alzado muestra la VM = 67.1 mm.
+</div>
+<div class="box box-ejemplo">
+<strong>🔍 Ejemplo 2: VM por cambio de plano</strong>
+Segmento AB oblicuo.<br>
+Paso 1: Nueva LT paralela a la planta de AB.<br>
+Paso 2: Nueva proyección A₂B₂.<br>
+Paso 3: A₂B₂ = VM del segmento.
+</div>
+<div class="box box-ejemplo">
+<strong>🔍 Ejemplo 3: Ángulo con PH</strong>
+Recta oblicua r.<br>
+Paso 1: Llevar r a VM (giro o cambio de plano).<br>
+Paso 2: El ángulo entre la VM y su proyección en PH es el ángulo α.<br>
+Paso 3: Medir α con transportador = 35°.
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">2️⃣ Visualiza la verdadera magnitud</h2>
+<div class="svg-container">
+<svg viewBox="0 0 700 520" xmlns="http://www.w3.org/2000/svg">
+<!-- Fondo -->
+<rect x="0" y="0" width="700" height="520" fill="#f8fafc" rx="8"/>
+<text x="350" y="22" text-anchor="middle" font-size="14" fill="#2563eb" font-weight="700">Verdadera Magnitud (VM)</text>
+
+<!-- ===== MÉTODO DEL GIRO ===== -->
+<text x="175" y="50" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="700">Método del Giro</text>
+<!-- LT -->
+<line x1="30" y1="70" x2="320" y2="70" stroke="#1e293b" stroke-width="2"/>
+<text x="325" y="74" font-size="9" fill="#1e293b" font-weight="600">LT</text>
+<!-- Segmento AB oblicuo -->
+<line x1="80" y1="100" x2="250" y2="140" stroke="#2563eb" stroke-width="2"/>
+<circle cx="80" cy="100" r="3" fill="#2563eb"/>
+<text x="65" y="95" font-size="9" fill="#2563eb" font-weight="600">A</text>
+<circle cx="250" cy="140" r="3" fill="#2563eb"/>
+<text x="255" y="145" font-size="9" fill="#2563eb" font-weight="600">B</text>
+<text x="175" y="115" text-anchor="middle" font-size="9" fill="#64748b">AB no es VM</text>
+<!-- Arco de giro -->
+<path d="M 250 140 A 170 170 0 0 0 250 70" fill="none" stroke="#f97316" stroke-width="1" stroke-dasharray="4,2"/>
+<text x="330" y="110" font-size="8" fill="#f97316">giro</text>
+<!-- Segmento girado (paralelo a LT) -->
+<line x1="80" y1="160" x2="250" y2="160" stroke="#10b981" stroke-width="2.5"/>
+<circle cx="80" cy="160" r="3" fill="#10b981"/>
+<text x="65" y="155" font-size="9" fill="#10b981" font-weight="600">A'</text>
+<circle cx="250" cy="160" r="3" fill="#10b981"/>
+<text x="255" y="155" font-size="9" fill="#10b981" font-weight="600">B'</text>
+<text x="165" y="180" text-anchor="middle" font-size="10" fill="#10b981" font-weight="700">A'B' = VM = 170 mm</text>
+
+<!-- Separador -->
+<line x1="350" y1="50" x2="350" y2="200" stroke="#e2e8f0" stroke-width="1"/>
+
+<!-- ===== MÉTODO DEL CAMBIO DE PLANO ===== -->
+<text x="540" y="50" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="700">Cambio de Plano</text>
+<!-- LT antigua -->
+<line x1="370" y1="70" x2="670" y2="70" stroke="#1e293b" stroke-width="1.5"/>
+<text x="675" y="74" font-size="8" fill="#1e293b">LT</text>
+<!-- Segmento original -->
+<line x1="420" y1="100" x2="580" y2="130" stroke="#2563eb" stroke-width="2"/>
+<circle cx="420" cy="100" r="3" fill="#2563eb"/>
+<text x="405" y="95" font-size="9" fill="#2563eb" font-weight="600">A</text>
+<circle cx="580" cy="130" r="3" fill="#2563eb"/>
+<text x="585" y="135" font-size="9" fill="#2563eb" font-weight="600">B</text>
+<!-- Nueva LT paralela -->
+<line x1="370" y1="155" x2="670" y2="155" stroke="#10b981" stroke-width="2"/>
+<text x="675" y="158" font-size="8" fill="#10b981" font-weight="600">LT'</text>
+<!-- Nueva proyección (VM) -->
+<line x1="420" y1="175" x2="580" y2="175" stroke="#10b981" stroke-width="2.5"/>
+<circle cx="420" cy="175" r="3" fill="#10b981"/>
+<text x="405" y="195" font-size="9" fill="#10b981" font-weight="600">A₂</text>
+<circle cx="580" cy="175" r="3" fill="#10b981"/>
+<text x="585" y="195" font-size="9" fill="#10b981" font-weight="600">B₂</text>
+<text x="500" y="205" text-anchor="middle" font-size="10" fill="#10b981" font-weight="700">A₂B₂ = VM</text>
+
+<!-- ===== RESUMEN TIPOS ===== -->
+<text x="350" y="245" text-anchor="middle" font-size="13" fill="#2563eb" font-weight="700">Tipos de rectas y VM</text>
+
+<rect x="20" y="255" width="210" height="100" fill="#eff6ff" rx="6" stroke="#2563eb" stroke-width="1"/>
+<text x="125" y="275" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="700">Horizontal</text>
+<line x1="40" y1="290" x2="210" y2="290" stroke="#2563eb" stroke-width="1.5"/>
+<text x="125" y="310" text-anchor="middle" font-size="10" fill="#1e293b">Paralela a PH</text>
+<text x="125" y="330" text-anchor="middle" font-size="10" fill="#10b981">VM en planta ✓</text>
+
+<rect x="250" y="255" width="210" height="100" fill="#fff7ed" rx="6" stroke="#f97316" stroke-width="1"/>
+<text x="355" y="275" text-anchor="middle" font-size="11" fill="#f97316" font-weight="700">Frontal</text>
+<line x1="270" y1="290" x2="270" y2="340" stroke="#f97316" stroke-width="1.5"/>
+<text x="355" y="310" text-anchor="middle" font-size="10" fill="#1e293b">Paralela a PV</text>
+<text x="355" y="330" text-anchor="middle" font-size="10" fill="#10b981">VM en alzado ✓</text>
+
+<rect x="480" y="255" width="210" height="100" fill="#fef2f2" rx="6" stroke="#ef4444" stroke-width="1"/>
+<text x="585" y="275" text-anchor="middle" font-size="11" fill="#ef4444" font-weight="700">Oblicua</text>
+<line x1="500" y1="290" x2="670" y2="340" stroke="#ef4444" stroke-width="1.5"/>
+<text x="585" y="310" text-anchor="middle" font-size="10" fill="#1e293b">No paralela a ningún plano</text>
+<text x="585" y="330" text-anchor="middle" font-size="10" fill="#ef4444">GIRO o CAMBIO → VM</text>
+
+<!-- ===== MÉTODOS COMPARATIVOS ===== -->
+<rect x="20" y="375" width="670" height="130" fill="#fff" stroke="#e2e8f0" stroke-width="1" rx="6"/>
+<text x="355" y="398" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="700">Comparación de métodos para obtener VM</text>
+<!-- Giro -->
+<rect x="40" y="408" width="310" height="85" fill="#eff6ff" rx="4"/>
+<text x="195" y="425" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="700">Método del Giro</text>
+<text x="55" y="443" font-size="9" fill="#1e293b">• Se gira la recta hasta ser paralela a LT</text>
+<text x="55" y="458" font-size="9" fill="#1e293b">• Centro de giro en la proyección elegida</text>
+<text x="55" y="473" font-size="9" fill="#1e293b">• La otra proyección muestra la VM</text>
+<!-- Cambio de plano -->
+<rect x="370" y="408" width="310" height="85" fill="#fff7ed" rx="4"/>
+<text x="525" y="425" text-anchor="middle" font-size="10" fill="#f97316" font-weight="700">Cambio de Plano</text>
+<text x="385" y="443" font-size="9" fill="#1e293b">• Nueva LT paralela a la proyección</text>
+<text x="385" y="458" font-size="9" fill="#1e293b">• Se obtiene nueva proyección del segmento</text>
+<text x="385" y="473" font-size="9" fill="#1e293b">• La nueva proyección = VM</text>
+</svg>
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">📝 Ejercicios</h2>
+<div class="exercises">
+
+<div class="exercise">
+<p>📐 Ejercicio 1: ¿Cuándo se ve un segmento en verdadera magnitud?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Siempre en alzado</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Cuando la recta es paralela al plano de proyección</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Solo si es horizontal</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Nunca en diédrico</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 2: ¿Qué método se usa para obtener VM de una recta oblicua?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Acotación</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Giro o cambio de plano</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Corte total</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Abatimiento</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 3: Una recta frontal tiene su VM en...</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Planta</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Alzado</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Ambas proyecciones</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Ninguna</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 4: En el método del giro, ¿dónde se coloca el centro de giro?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">En el origen de coordenadas</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">En la proyección donde se gira (planta o alzado)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">En la LT</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">En el punto medio del segmento</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 5: ¿Para qué se usa la VM de una recta?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Solo para decorar el dibujo</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Para medir distancias reales y ángulos</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Para acotar la pieza</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Para determinar la visibilidad</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+</div>
+</section>
+
+<div class="box box-error">
+<strong>⚠️ Error clásico</strong>
+Crear un arco de giro con el radio incorrecto. El radio del arco de giro debe ser la distancia desde el centro de giro hasta el punto que se gira. Si el centro está en planta, el radio se mide en planta, no en alzado.
+</div>
+
+<div class="box box-idea">
+<strong>🔗 Conexión</strong>
+¡Has completado el bloque de Intersecciones! En el siguiente bloque aprenderás abatimientos y giros en geometría descriptiva, herramientas esenciales para ver planos en verdadera magnitud.
+</div>
+
+<div class="summary">
+<h3>📋 Resumen de lo aprendido</h3>
+<ul>
+<li>VM = longitud real, solo cuando la recta es paralela al plano</li>
+<li>Horizontal → VM en planta | Frontal → VM en alzado</li>
+<li>Oblicua → necesita giro o cambio de plano</li>
+<li>Método del giro: girar hasta paralela a LT</li>
+<li>Cambio de plano: nueva LT paralela a la recta</li>
+</ul>
+</div>
+
+<div class="nav">
+<a href="b07-03-interseccion-recta-recta.html">← Anterior</a>
+<a href="b08-01-abatimientos.html">Siguiente → Bloque 8: Abatimientos</a>
+</div>
+
+</main>
+<footer class="footer">Hecho con ❤️ por David Antizar</footer>
+<script>
+function checkAnswer(btn, correct) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) {
+    b.disabled = true; b.classList.remove('correct','wrong');
+  });
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  var feedback = parent.nextElementSibling;
+  if(feedback && feedback.classList.contains('feedback')) {
+    if(correct) {
+      feedback.textContent = '✅ ¡Correcto! ¡Muy bien!';
+      feedback.className = 'feedback correct';
+    } else {
+      feedback.textContent = '❌ ¡Intenta de nuevo!';
+      feedback.className = 'feedback incorrect';
+      setTimeout(function() {
+        parent.querySelectorAll('button').forEach(function(b) {
+          b.disabled = false; b.classList.remove('correct','wrong');
+        });
+        feedback.textContent = '';
+        feedback.className = 'feedback';
+      }, 1500);
+    }
+  }
+}
+
+function checkExercise(id, correct, btn) {
+  var input = document.getElementById(id);
+  var feedback = input.parentElement.nextElementSibling;
+  var userVal = input.value.trim().toLowerCase();
+  var correctVal = correct.toLowerCase();
+  if(userVal === correctVal) {
+    feedback.textContent = '✅ ¡Correcto! La respuesta es ' + correct;
+    feedback.className = 'feedback correct';
+    input.style.borderColor = 'var(--verde)';
+  } else {
+    feedback.textContent = '❌ Respuesta correcta: ' + correct;
+    feedback.className = 'feedback incorrect';
+    input.style.borderColor = 'var(--rojo)';
+  }
+}
+
+function checkVF(btn, correct) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) {
+    b.disabled = true; b.classList.remove('correct','wrong');
+  });
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  var feedback = parent.nextElementSibling;
+  if(feedback && feedback.classList.contains('feedback')) {
+    if(correct) {
+      feedback.textContent = '✅ ¡Correcto!';
+      feedback.className = 'feedback correct';
+    } else {
+      feedback.textContent = '❌ Incorrecto.';
+      feedback.className = 'feedback incorrect';
+    }
+  }
+}
+window.onscroll = function(){
+  var h = document.documentElement;
+  var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
+  document.getElementById('progress').style.width = p+'%';
+};
+</script>
+</body>
+</html>

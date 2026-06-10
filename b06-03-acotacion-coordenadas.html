@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📏 S06.3: Acotación por coordenadas — Dibujo Técnico</title>
+<style>
+:root{--azul:#2563eb;--naranja:#f97316;--verde:#10b981;--rojo:#ef4444;--fondo:#fff;--texto:#1e293b;--gris:#94a3b8;--azul-claro:#eff6ff;--naranja-claro:#fff7ed;--verde-claro:#ecfdf5;--rojo-claro:#fef2f2;--pura-claro:#faf5ff;--pura:#a855f7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-gradient(135deg,#f8faff 0%,#fffaf5 100%);color:var(--texto);line-height:1.7}
+.header{background:linear-gradient(135deg,var(--azul),#1d4ed8);color:#fff;padding:2rem 1.5rem;text-align:center}
+.header h1{font-size:1.8rem;margin-bottom:.5rem}
+.header p{opacity:.9;font-size:1rem}
+.progress-bar{height:4px;background:rgba(255,255,255,.3);border-radius:2px;margin-top:1rem;overflow:hidden}
+.progress-fill{height:100%;background:#fff;border-radius:2px;width:0%;transition:width .3s}
+.container{max-width:900px;margin:0 auto;padding:1.5rem}
+.chapter{margin-bottom:2.5rem}
+.chapter-title{font-size:1.4rem;color:var(--azul);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:2px solid var(--azul-claro)}
+.box{padding:1rem 1.2rem;border-radius:10px;margin:1rem 0;border-left:4px solid;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.box-teoria{background:var(--azul-claro);border-color:var(--azul)}
+.box-ejemplo{background:var(--naranja-claro);border-color:var(--naranja)}
+.box-error{background:var(--rojo-claro);border-color:var(--rojo)}
+.box-idea{background:var(--pura-claro);border-color:var(--pura)}
+.box-success{background:var(--verde-claro);border-color:var(--verde)}
+.box strong{display:block;margin-bottom:.3rem}
+.svg-container{background:#f8fafc;border-radius:12px;padding:1.5rem;margin:1.5rem 0;text-align:center;border:2px solid #e2e8f0}
+.svg-container svg{max-width:100%;height:auto}
+.svg-container svg text{font-family:Inter,system-ui,sans-serif}
+.interactive{background:#f1f5f9;border-radius:12px;padding:1.5rem;margin:1.5rem 0}
+.interactive h3{color:var(--azul);margin-bottom:1rem;font-size:1.1rem}
+.interactive button{background:var(--azul);color:#fff;border:none;padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.95rem;margin:.3rem}
+.interactive button:hover{background:#1d4ed8}
+.result{margin-top:.8rem;padding:.8rem;border-radius:6px;font-weight:600;min-height:2rem}
+.result.ok{background:var(--verde-claro);color:#065f46}
+.result.fail{background:var(--rojo-claro);color:#991b1b}
+.exercises{margin:1.5rem 0}
+.exercise{background:#f1f5f9;border-radius:8px;padding:1rem;margin:.8rem 0}
+.exercise p{font-weight:600;margin-bottom:.5rem}
+.quiz-options{display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0}
+.quiz-btn{padding:.6rem 1.5rem;border-radius:8px;border:2px solid var(--azul);background:#fff;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all .2s}
+.quiz-btn:hover{background:var(--azul-claro)}
+.quiz-btn.correct{background:var(--verde);color:#fff;border-color:var(--verde)}
+.quiz-btn.wrong{background:var(--rojo);color:#fff;border-color:var(--rojo)}
+.summary{background:var(--azul-claro);border-radius:12px;padding:1.5rem;margin:2rem 0}
+.summary h3{color:var(--azul);margin-bottom:.8rem}
+.summary ul{list-style:none;padding:0}
+.summary li{padding:.3rem 0;padding-left:1.5rem;position:relative}
+.summary li::before{content:"✓";color:var(--verde);font-weight:bold;position:absolute;left:0}
+.nav{display:flex;justify-content:space-between;margin:2rem 0;padding:1rem 0;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0}
+.nav a{color:var(--azul);text-decoration:none;font-weight:600;padding:.5rem 1rem;border-radius:6px}
+.nav a:hover{background:var(--azul-claro)}
+.nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
+.footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+</style>
+</head>
+<body>
+<header class="header">
+<h1>📏 S06.3: Acotación por coordenadas</h1>
+<p>Dibujo Técnico — Acotación ISO 129</p>
+<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+</header>
+<main class="container">
+
+<section class="chapter">
+<h2 class="chapter-title">🎯 ¿Qué vamos a aprender?</h2>
+<div class="box box-idea">
+<strong>💡 Idea clave</strong>
+La acotación por coordenadas asigna a cada punto un par (X, Y) desde un origen común. Es el método favorito del mecanizado CNC porque el operario lee una tabla y programa la máquina directamente.
+</div>
+<p>En esta sesión aprenderás a:</p>
+<ul style="margin:.8rem 0 1rem 1.5rem">
+<li>Definir el origen de coordenadas en un plano</li>
+<li>Acotar agujeros y taladros por coordenadas X e Y</li>
+<li>Crear tablas de coordenadas para grupos de agujeros</li>
+<li>Usar símbolos de cota (⌀, R, SR, SΦ, □)</li>
+<li>Aplicar acotación por coordenadas en mecanizado CNC</li>
+</ul>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">1️⃣ Acotación por coordenadas y tablas</h2>
+<div class="box box-teoria">
+<strong>📖 Teoría</strong>
+<strong>🔹 Origen de coordenadas:</strong><br>
+El origen es el punto de referencia (0, 0) desde el que se miden todas las cotas X e Y. Se elige normalmente en una esquina o centro de la pieza.<br><br>
+<strong>🔹 Coordenada X:</strong><br>
+Distancia horizontal desde el origen. Positiva hacia la derecha, negativa hacia la izquierda.<br><br>
+<strong>🔹 Coordenada Y:</strong><br>
+Distancia vertical desde el origen. Positiva hacia arriba, negativa hacia abajo.<br><br>
+<strong>🔹 Tabla de coordenadas:</strong><br>
+Para piezas con múltiples agujeros o taladros, se usa una tabla que lista cada punto con sus coordenadas X, Y y el diámetro si es un agujero.<br><br>
+<strong>🔹 Símbolos de cota:</strong><br>
+• ⌀ (diámetro): antes del valor, ej. ⌀10<br>
+• R (radio): antes del valor, ej. R5<br>
+• SR (radio esférico): antes del valor, ej. SR20<br>
+• S⌀ (diámetro esférico): antes del valor, ej. S⌀30<br>
+• □ (cuadrado): antes del valor, ej. □25<br>
+• C (chaflán): ej. C2 = 2×45°
+</div>
+<div class="box box-ejemplo">
+<strong>🔍 Ejemplo 1: Placa con 4 agujeros</strong>
+Origen en la esquina inferior izquierda. Agujeros en (20, 15), (20, 85), (80, 15), (80, 85). Todos ⌀8.<br>
+Se acotan las distancias X e Y desde el origen a cada agujero.
+</div>
+<div class="box box-ejemplo">
+<strong>🔍 Ejemplo 2: Tabla de coordenadas</strong>
+| Agujero | X  | Y  | ⌀ |<br>|---------|----|----|----|<br>| 1       | 20 | 15 | 8  |<br>| 2       | 20 | 85 | 8  |<br>| 3       | 80 | 15 | 8  |<br>| 4       | 80 | 85 | 8  |<br>El operario CNC lee la tabla y programa cada punto.
+</div>
+<div class="box box-ejemplo">
+<strong>🔍 Ejemplo 3: Chaflanes y radios</strong>
+Una pieza con chaflán C2 en las 4 esquinas y radio R5 en una esquina redondeada.<br>
+Chaflán: C2 = 2 mm × 45° en cada esquina.<br>
+Radio: R5 = radio de 5 mm en la esquina redondeada.<br>
+Se indica con símbolo + valor en la cota correspondiente.
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">2️⃣ Visualiza la acotación por coordenadas</h2>
+<div class="svg-container">
+<svg viewBox="0 0 700 520" xmlns="http://www.w3.org/2000/svg">
+<!-- Fondo -->
+<rect x="0" y="0" width="700" height="520" fill="#f8fafc" rx="8"/>
+<text x="350" y="22" text-anchor="middle" font-size="14" fill="#2563eb" font-weight="700">Acotación por Coordenadas</text>
+
+<!-- Placa con agujeros -->
+<rect x="30" y="50" width="300" height="200" fill="#fff" stroke="#2563eb" stroke-width="2" rx="3"/>
+
+<!-- Origen -->
+<circle cx="30" cy="250" r="5" fill="#ef4444"/>
+<text x="15" y="268" font-size="10" fill="#ef4444" font-weight="700">O(0,0)</text>
+
+<!-- Ejes de referencia -->
+<line x1="30" y1="250" x2="330" y2="250" stroke="#94a3b8" stroke-width="0.5" stroke-dasharray="5,3"/>
+<line x1="30" y1="50" x2="30" y2="270" stroke="#94a3b8" stroke-width="0.5" stroke-dasharray="5,3"/>
+<text x="340" y="254" font-size="10" fill="#94a3b8">X</text>
+<text x="22" y="45" font-size="10" fill="#94a3b8">Y</text>
+
+<!-- Agujeros -->
+<circle cx="100" cy="120" r="10" fill="none" stroke="#f97316" stroke-width="2"/>
+<text x="100" y="124" text-anchor="middle" font-size="9" fill="#f97316" font-weight="700">⌀8</text>
+<circle cx="100" cy="210" r="10" fill="none" stroke="#f97316" stroke-width="2"/>
+<text x="100" y="214" text-anchor="middle" font-size="9" fill="#f97316" font-weight="700">⌀8</text>
+<circle cx="280" cy="120" r="10" fill="none" stroke="#f97316" stroke-width="2"/>
+<text x="280" y="124" text-anchor="middle" font-size="9" fill="#f97316" font-weight="700">⌀8</text>
+<circle cx="280" cy="210" r="10" fill="none" stroke="#f97316" stroke-width="2"/>
+<text x="280" y="214" text-anchor="middle" font-size="9" fill="#f97316" font-weight="700">⌀8</text>
+
+<!-- Líneas de referencia a cada agujero -->
+<line x1="100" y1="120" x2="100" y2="250" stroke="#94a3b8" stroke-width="0.5" stroke-dasharray="3,2"/>
+<line x1="100" y1="120" x2="30" y2="120" stroke="#94a3b8" stroke-width="0.5" stroke-dasharray="3,2"/>
+<line x1="280" y1="210" x2="280" y2="250" stroke="#94a3b8" stroke-width="0.5" stroke-dasharray="3,2"/>
+<line x1="280" y1="210" x2="30" y2="210" stroke="#94a3b8" stroke-width="0.5" stroke-dasharray="3,2"/>
+
+<!-- Cotas X para agujero 1 -->
+<line x1="30" y1="265" x2="100" y2="265" stroke="#2563eb" stroke-width="1"/>
+<polygon points="30,265 37,262 37,268" fill="#2563eb"/>
+<polygon points="100,265 93,262 93,268" fill="#2563eb"/>
+<text x="65" y="280" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600">X = 70</text>
+
+<!-- Cotas Y para agujero 1 -->
+<line x1="18" y1="120" x2="30" y2="120" stroke="#10b981" stroke-width="1"/>
+<polygon points="18,120 21,113 25,113" fill="#10b981"/>
+<polygon points="18,120 21,127 25,127" fill="#10b981"/>
+<text x="10" y="124" text-anchor="end" font-size="11" fill="#10b981" font-weight="600">Y = 130</text>
+
+<!-- Cotas X para agujero 4 -->
+<line x1="100" y1="265" x2="280" y2="265" stroke="#2563eb" stroke-width="1"/>
+<polygon points="100,265 107,262 107,268" fill="#2563eb"/>
+<polygon points="280,265 273,262 273,268" fill="#2563eb"/>
+<text x="190" y="280" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600">X = 180</text>
+
+<!-- Cotas Y para agujero 4 -->
+<line x1="18" y1="210" x2="30" y2="210" stroke="#10b981" stroke-width="1"/>
+<polygon points="18,210 21,203 25,203" fill="#10b981"/>
+<polygon points="18,210 21,217 25,217" fill="#10b981"/>
+<text x="10" y="214" text-anchor="end" font-size="11" fill="#10b981" font-weight="600">Y = 40</text>
+
+<!-- ===== TABLA DE COORDENADAS ===== -->
+<rect x="380" y="50" width="290" height="240" fill="#fff" stroke="#e2e8f0" stroke-width="1.5" rx="6"/>
+<text x="525" y="72" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="700">Tabla de Coordenadas</text>
+<line x1="390" y1="80" x2="660" y2="80" stroke="#e2e8f0" stroke-width="1"/>
+<!-- Cabeceras -->
+<text x="405" y="98" font-size="10" fill="#64748b" font-weight="700">Agujero</text>
+<text x="475" y="98" font-size="10" fill="#64748b" font-weight="700">X</text>
+<text x="540" y="98" font-size="10" fill="#64748b" font-weight="700">Y</text>
+<text x="605" y="98" font-size="10" fill="#64748b" font-weight="700">⌀</text>
+<line x1="390" y1="105" x2="660" y2="105" stroke="#e2e8f0" stroke-width="0.5"/>
+<!-- Datos -->
+<text x="405" y="122" font-size="10" fill="#2563eb" font-weight="600">1</text>
+<text x="475" y="122" font-size="10" fill="#2563eb">70</text>
+<text x="540" y="122" font-size="10" fill="#2563eb">130</text>
+<text x="605" y="122" font-size="10" fill="#2563eb">8</text>
+<text x="405" y="140" font-size="10" fill="#2563eb" font-weight="600">2</text>
+<text x="475" y="140" font-size="10" fill="#2563eb">70</text>
+<text x="540" y="140" font-size="10" fill="#2563eb">40</text>
+<text x="605" y="140" font-size="10" fill="#2563eb">8</text>
+<text x="405" y="158" font-size="10" fill="#2563eb" font-weight="600">3</text>
+<text x="475" y="158" font-size="10" fill="#2563eb">250</text>
+<text x="540" y="158" font-size="10" fill="#2563eb">130</text>
+<text x="605" y="158" font-size="10" fill="#2563eb">8</text>
+<text x="405" y="176" font-size="10" fill="#2563eb" font-weight="600">4</text>
+<text x="475" y="176" font-size="10" fill="#2563eb">250</text>
+<text x="540" y="176" font-size="10" fill="#2563eb">40</text>
+<text x="605" y="176" font-size="10" fill="#2563eb">8</text>
+
+<!-- Símbolos de cota -->
+<rect x="380" y="310" width="290" height="120" fill="#fff7ed" stroke="#f97316" stroke-width="1" rx="6"/>
+<text x="525" y="332" text-anchor="middle" font-size="12" fill="#f97316" font-weight="700">Símbolos de Cota</text>
+<line x1="390" y1="340" x2="660" y2="340" stroke="#f97316" stroke-width="0.5"/>
+<text x="400" y="358" font-size="11" fill="#2563eb" font-weight="600">⌀10</text>
+<text x="450" y="358" font-size="10" fill="#64748b">= diámetro</text>
+<text x="400" y="378" font-size="11" fill="#2563eb" font-weight="600">R5</text>
+<text x="450" y="378" font-size="10" fill="#64748b">= radio</text>
+<text x="400" y="398" font-size="11" fill="#2563eb" font-weight="600">SR20</text>
+<text x="450" y="398" font-size="10" fill="#64748b">= radio esférico</text>
+<text x="400" y="418" font-size="11" fill="#2563eb" font-weight="600">□25</text>
+<text x="450" y="418" font-size="10" fill="#64748b">= cuadrado</text>
+<text x="400" y="438" font-size="11" fill="#2563eb" font-weight="600">C2</text>
+<text x="450" y="438" font-size="10" fill="#64748b">= chaflán 2×45°</text>
+
+<!-- CNC nota -->
+<rect x="380" y="445" width="290" height="35" fill="#ecfdf5" rx="4"/>
+<text x="525" y="467" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">✅ Ideal para mecanizado CNC — G01 X_ Y_</text>
+</svg>
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">📝 Ejercicios</h2>
+<div class="exercises">
+
+<div class="exercise">
+<p>📐 Ejercicio 1: ¿Qué símbolo se usa para indicar diámetro?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">⌀</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">R</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">□</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">SR</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 2: ¿Qué significa C2 en acotación?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Radio de 2 mm</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Chaflán 2×45°</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Cuadrado de 2 mm</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Diámetro de 2 mm</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 3: ¿Dónde se coloca el origen de coordenadas?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">En el centro de la pieza siempre</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">En la esquina superior derecha</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">En una esquina o centro de la pieza</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">En cualquier lugar sin criterio</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 4: ¿Qué información contiene una tabla de coordenadas?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Solo el diámetro de cada agujero</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Agujero, X, Y y diámetro</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Solo las coordenadas X e Y</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">El material de la pieza</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 5: Si un agujero está en X=50, Y=30, ¿qué distancia hay desde el origen al agujero en el eje X?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">50 mm</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">30 mm</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">80 mm</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">500 mm</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+</div>
+</section>
+
+<div class="box box-error">
+<strong>⚠️ Error clásico</strong>
+Olvidar poner el símbolo ⌀ antes del diámetro. Sin él, no se sabe si es una distancia lineal o un diámetro. Siempre indicar ⌀10, no solo 10.
+</div>
+
+<div class="box box-idea">
+<strong>🔗 Conexión</strong>
+Con los métodos y la acotación por coordenadas dominados, en el siguiente tema aprenderás las reglas generales de acotación ISO 129 que debes seguir siempre.
+</div>
+
+<div class="summary">
+<h3>📋 Resumen de lo aprendido</h3>
+<ul>
+<li>Origen de coordenadas como referencia (0, 0)</li>
+<li>Coordenada X = horizontal, Y = vertical desde el origen</li>
+<li>Tabla de coordenadas para grupos de agujeros</li>
+<li>Símbolos: ⌀ (diámetro), R (radio), SR (esférico), □ (cuadrado), C (chaflán)</li>
+<li>La acotación por coordenadas es ideal para CNC</li>
+</ul>
+</div>
+
+<div class="nav">
+<a href="b06-02-metodos-acotacion.html">← Anterior</a>
+<a href="b06-04-reglas-acotacion.html">Siguiente →</a>
+</div>
+
+</main>
+<footer class="footer">Hecho con ❤️ por David Antizar</footer>
+<script>
+function checkAnswer(btn, correct) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) {
+    b.disabled = true; b.classList.remove('correct','wrong');
+  });
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  var feedback = parent.nextElementSibling;
+  if(feedback && feedback.classList.contains('feedback')) {
+    if(correct) {
+      feedback.textContent = '✅ ¡Correcto! ¡Muy bien!';
+      feedback.className = 'feedback correct';
+    } else {
+      feedback.textContent = '❌ ¡Intenta de nuevo!';
+      feedback.className = 'feedback incorrect';
+      setTimeout(function() {
+        parent.querySelectorAll('button').forEach(function(b) {
+          b.disabled = false; b.classList.remove('correct','wrong');
+        });
+        feedback.textContent = '';
+        feedback.className = 'feedback';
+      }, 1500);
+    }
+  }
+}
+
+function checkExercise(id, correct, btn) {
+  var input = document.getElementById(id);
+  var feedback = input.parentElement.nextElementSibling;
+  var userVal = input.value.trim().toLowerCase();
+  var correctVal = correct.toLowerCase();
+  if(userVal === correctVal) {
+    feedback.textContent = '✅ ¡Correcto! La respuesta es ' + correct;
+    feedback.className = 'feedback correct';
+    input.style.borderColor = 'var(--verde)';
+  } else {
+    feedback.textContent = '❌ Respuesta correcta: ' + correct;
+    feedback.className = 'feedback incorrect';
+    input.style.borderColor = 'var(--rojo)';
+  }
+}
+
+function checkVF(btn, correct) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) {
+    b.disabled = true; b.classList.remove('correct','wrong');
+  });
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  var feedback = parent.nextElementSibling;
+  if(feedback && feedback.classList.contains('feedback')) {
+    if(correct) {
+      feedback.textContent = '✅ ¡Correcto!';
+      feedback.className = 'feedback correct';
+    } else {
+      feedback.textContent = '❌ Incorrecto.';
+      feedback.className = 'feedback incorrect';
+    }
+  }
+}
+window.onscroll = function(){
+  var h = document.documentElement;
+  var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
+  document.getElementById('progress').style.width = p+'%';
+};
+</script>
+</body>
+</html>

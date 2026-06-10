@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📏 S06.4: Reglas de acotación ISO 129 — Dibujo Técnico</title>
+<style>
+:root{--azul:#2563eb;--naranja:#f97316;--verde:#10b981;--rojo:#ef4444;--fondo:#fff;--texto:#1e293b;--gris:#94a3b8;--azul-claro:#eff6ff;--naranja-claro:#fff7ed;--verde-claro:#ecfdf5;--rojo-claro:#fef2f2;--pura-claro:#faf5ff;--pura:#a855f7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-gradient(135deg,#f8faff 0%,#fffaf5 100%);color:var(--texto);line-height:1.7}
+.header{background:linear-gradient(135deg,var(--azul),#1d4ed8);color:#fff;padding:2rem 1.5rem;text-align:center}
+.header h1{font-size:1.8rem;margin-bottom:.5rem}
+.header p{opacity:.9;font-size:1rem}
+.progress-bar{height:4px;background:rgba(255,255,255,.3);border-radius:2px;margin-top:1rem;overflow:hidden}
+.progress-fill{height:100%;background:#fff;border-radius:2px;width:0%;transition:width .3s}
+.container{max-width:900px;margin:0 auto;padding:1.5rem}
+.chapter{margin-bottom:2.5rem}
+.chapter-title{font-size:1.4rem;color:var(--azul);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:2px solid var(--azul-claro)}
+.box{padding:1rem 1.2rem;border-radius:10px;margin:1rem 0;border-left:4px solid;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.box-teoria{background:var(--azul-claro);border-color:var(--azul)}
+.box-ejemplo{background:var(--naranja-claro);border-color:var(--naranja)}
+.box-error{background:var(--rojo-claro);border-color:var(--rojo)}
+.box-idea{background:var(--pura-claro);border-color:var(--pura)}
+.box-success{background:var(--verde-claro);border-color:var(--verde)}
+.box strong{display:block;margin-bottom:.3rem}
+.svg-container{background:#f8fafc;border-radius:12px;padding:1.5rem;margin:1.5rem 0;text-align:center;border:2px solid #e2e8f0}
+.svg-container svg{max-width:100%;height:auto}
+.svg-container svg text{font-family:Inter,system-ui,sans-serif}
+.interactive{background:#f1f5f9;border-radius:12px;padding:1.5rem;margin:1.5rem 0}
+.interactive h3{color:var(--azul);margin-bottom:1rem;font-size:1.1rem}
+.interactive button{background:var(--azul);color:#fff;border:none;padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.95rem;margin:.3rem}
+.interactive button:hover{background:#1d4ed8}
+.result{margin-top:.8rem;padding:.8rem;border-radius:6px;font-weight:600;min-height:2rem}
+.result.ok{background:var(--verde-claro);color:#065f46}
+.result.fail{background:var(--rojo-claro);color:#991b1b}
+.exercises{margin:1.5rem 0}
+.exercise{background:#f1f5f9;border-radius:8px;padding:1rem;margin:.8rem 0}
+.exercise p{font-weight:600;margin-bottom:.5rem}
+.quiz-options{display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0}
+.quiz-btn{padding:.6rem 1.5rem;border-radius:8px;border:2px solid var(--azul);background:#fff;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all .2s}
+.quiz-btn:hover{background:var(--azul-claro)}
+.quiz-btn.correct{background:var(--verde);color:#fff;border-color:var(--verde)}
+.quiz-btn.wrong{background:var(--rojo);color:#fff;border-color:var(--rojo)}
+.summary{background:var(--azul-claro);border-radius:12px;padding:1.5rem;margin:2rem 0}
+.summary h3{color:var(--azul);margin-bottom:.8rem}
+.summary ul{list-style:none;padding:0}
+.summary li{padding:.3rem 0;padding-left:1.5rem;position:relative}
+.summary li::before{content:"✓";color:var(--verde);font-weight:bold;position:absolute;left:0}
+.nav{display:flex;justify-content:space-between;margin:2rem 0;padding:1rem 0;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0}
+.nav a{color:var(--azul);text-decoration:none;font-weight:600;padding:.5rem 1rem;border-radius:6px}
+.nav a:hover{background:var(--azul-claro)}
+.nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
+.footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+</style>
+</head>
+<body>
+<header class="header">
+<h1>📏 S06.4: Reglas de acotación ISO 129</h1>
+<p>Dibujo Técnico — Acotación ISO 129</p>
+<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+</header>
+<main class="container">
+
+<section class="chapter">
+<h2 class="chapter-title">🎯 ¿Qué vamos a aprender?</h2>
+<div class="box box-idea">
+<strong>💡 Idea clave</strong>
+La norma ISO 129 establece 6 reglas de oro de la acotación: no repetir cotas, no omitir cotas necesarias, cotar en la vista más clara, no acotar en cortes, leer desde abajo y derecha, y priorizar cotas funcionales.
+</div>
+<p>En esta sesión aprenderás a:</p>
+<ul style="margin:.8rem 0 1rem 1.5rem">
+<li>Aplicar las 6 reglas generales de acotación ISO 129</li>
+<li>Diferenciar cota funcional de cota auxiliar</li>
+<li>Colocar la cifra de cota correctamente (horizontal, vertical, inclinada)</li>
+<li>Saber cuándo NO acotar (aristas ocultas, cortes longitudinalmente)</li>
+<li>Identificar errores de acotación comunes</li>
+</ul>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">1️⃣ Reglas de acotación ISO 129</h2>
+<div class="box box-teoria">
+<strong>📖 Teoría</strong>
+<strong>🔹 Regla 1 — No repetir cotas:</strong><br>
+Cada dimensión se acota exactamente UNA vez. Si la repites, pueden surgir contradicciones entre tolerancias.<br><br>
+<strong>🔹 Regla 2 — No omitir cotas necesarias:</strong><br>
+La pieza debe poder fabricarse e inspeccionarse con las cotas dadas. Si falta una cota, el operario no sabe qué medida tiene.<br><br>
+<strong>🔹 Regla 3 — Cotas en la vista más clara:</strong><br>
+Cada dimensión se acota en la vista donde se representa en verdadera magnitud (VM).<br><br>
+<strong>🔹 Regla 4 — No acotar en cortes ni secciones:</strong><br>
+Las cotas van en las vistas normales, no en los cortes (salvo excepciones muy justificadas).<br><br>
+<strong>🔹 Regla 5 — Las cotas se leen desde abajo y desde la derecha:</strong><br>
+Las líneas de ceta horizontales se leen de izquierda a derecha (debajo de la línea). Las verticales se leen de abajo a arriba (a la izquierda de la línea).<br><br>
+<strong>🔹 Regla 6 — Cotas funcionales prioritarias:</strong><br>
+Las cotas que afectan al funcionamiento de la pieza son las más importantes. Se marcan con (F) y tienen tolerancias más estrictas.<br><br>
+<strong>🔹 Cota funcional vs auxiliar:</strong><br>
+• Funcional (F): necesaria para el funcionamiento. Tiene tolerancia estricta.<br>
+• Auxiliar: información complementaria, entre paréntesis, con tolerancia más laxa.<br><br>
+<strong>🔹 Posición de la cifra:</strong><br>
+• Horizontal: sobre la línea de cota<br>
+• Vertical: a la izquierda de la línea de cota<br>
+• Inclinada: siguiendo la dirección de la línea (ángulo ≤ 45°)
+</div>
+<div class="box box-ejemplo">
+<strong>🔍 Ejemplo 1: Cota funcional vs auxiliar</strong>
+Un eje con cojinete: el diámetro ⌀20h7 es funcional (F) porque determina el ajuste con el cojinete. La longitud total de 80 mm es auxiliar porque no afecta al funcionamiento del rodamiento.
+</div>
+<div class="box box-ejemplo">
+<strong>🔍 Ejemplo 2: Cota en la vista más clara</strong>
+Un agujero pasante: se acota el diámetro ⌀10 en la vista circular (donde se ve como círculo), no en la vista lateral donde se ve como línea.
+</div>
+<div class="box box-ejemplo">
+<strong>🔍 Ejemplo 3: No repetir cotas</strong>
+Una pieza de 100 mm de largo con dos escalones de 40 y 30 mm. No se acota ni la cadena (40+30) ni el total (100) al mismo tiempo. Se elige uno u otro método.
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">2️⃣ Visualiza las reglas de acotación</h2>
+<div class="svg-container">
+<svg viewBox="0 0 700 520" xmlns="http://www.w3.org/2000/svg">
+<!-- Fondo -->
+<rect x="0" y="0" width="700" height="520" fill="#f8fafc" rx="8"/>
+<text x="350" y="22" text-anchor="middle" font-size="14" fill="#2563eb" font-weight="700">Reglas de Acotación ISO 129</text>
+
+<!-- REGLA 1: No repetir -->
+<rect x="15" y="35" width="210" height="120" fill="#fef2f2" rx="6" stroke="#ef4444" stroke-width="1"/>
+<text x="120" y="55" text-anchor="middle" font-size="11" fill="#ef4444" font-weight="700">❌ Regla 1: No repetir</text>
+<rect x="30" y="65" width="180" height="25" fill="#fff" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="120" y="83" text-anchor="middle" font-size="10" fill="#64748b">Pieza 100 mm</text>
+<!-- Cotas repetidas -->
+<line x1="30" y1="60" x2="210" y2="60" stroke="#ef4444" stroke-width="1"/>
+<text x="120" y="55" text-anchor="middle" font-size="9" fill="#ef4444" font-weight="600">100</text>
+<line x1="30" y1="95" x2="100" y2="95" stroke="#ef4444" stroke-width="1"/>
+<text x="65" y="90" text-anchor="middle" font-size="9" fill="#ef4444">40</text>
+<line x1="100" y1="95" x2="210" y2="95" stroke="#ef4444" stroke-width="1"/>
+<text x="155" y="90" text-anchor="middle" font-size="9" fill="#ef4444">60</text>
+<text x="120" y="125" text-anchor="middle" font-size="9" fill="#ef4444">⚠️ 40+60=100 → repetido</text>
+<text x="120" y="140" text-anchor="middle" font-size="9" fill="#ef4444">¡Contradicción posible!</text>
+
+<!-- REGLA 2: No omitir -->
+<rect x="245" y="35" width="210" height="120" fill="#fef2f2" rx="6" stroke="#ef4444" stroke-width="1"/>
+<text x="350" y="55" text-anchor="middle" font-size="11" fill="#ef4444" font-weight="700">❌ Regla 2: No omitir</text>
+<rect x="260" y="65" width="180" height="50" fill="#fff" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="350" y="95" text-anchor="middle" font-size="10" fill="#64748b">Pieza</text>
+<!-- Solo una cota -->
+<line x1="260" y1="60" x2="350" y2="60" stroke="#ef4444" stroke-width="1"/>
+<text x="305" y="55" text-anchor="middle" font-size="9" fill="#ef4444" font-weight="600">80</text>
+<!-- Falta la altura -->
+<text x="350" y="135" text-anchor="middle" font-size="9" fill="#ef4444">❌ Falta cota de altura</text>
+<text x="350" y="150" text-anchor="middle" font-size="9" fill="#ef4444">No se puede fabricar</text>
+
+<!-- REGLA 3: Vista más clara -->
+<rect x="475" y="35" width="210" height="120" fill="#ecfdf5" rx="6" stroke="#10b981" stroke-width="1"/>
+<text x="580" y="55" text-anchor="middle" font-size="11" fill="#10b981" font-weight="700">✅ Regla 3: Vista clara</text>
+<!-- Vista circular -->
+<circle cx="530" cy="90" r="25" fill="none" stroke="#10b981" stroke-width="1.5"/>
+<line x1="505" y1="90" x2="555" y2="90" stroke="#10b981" stroke-width="1"/>
+<text x="530" y="85" text-anchor="middle" font-size="9" fill="#10b981" font-weight="600">⌀50</text>
+<!-- Vista lateral -->
+<rect x="570" y="70" width="100" height="40" fill="none" stroke="#94a3b8" stroke-width="1"/>
+<text x="620" y="95" text-anchor="middle" font-size="9" fill="#64748b">Lateral (no aquí)</text>
+<text x="580" y="135" text-anchor="middle" font-size="9" fill="#10b981">Cota en vista circular ✓</text>
+<text x="580" y="150" text-anchor="middle" font-size="9" fill="#10b981">VM visible ✓</text>
+
+<!-- REGLA 4: No acotar en cortes -->
+<rect x="15" y="170" width="210" height="120" fill="#fef2f2" rx="6" stroke="#ef4444" stroke-width="1"/>
+<text x="120" y="190" text-anchor="middle" font-size="11" fill="#ef4444" font-weight="700">❌ Regla 4: No en cortes</text>
+<rect x="30" y="200" width="180" height="60" fill="#fff" stroke="#94a3b8" stroke-width="1.5"/>
+<!-- Corte con hachuras -->
+<line x1="30" y1="200" x2="210" y2="260" stroke="#94a3b8" stroke-width="0.5"/>
+<line x1="40" y1="200" x2="220" y2="260" stroke="#94a3b8" stroke-width="0.5"/>
+<line x1="50" y1="200" x2="230" y2="260" stroke="#94a3b8" stroke-width="0.5"/>
+<line x1="60" y1="200" x2="240" y2="260" stroke="#94a3b8" stroke-width="0.5"/>
+<text x="120" y="270" text-anchor="middle" font-size="9" fill="#ef4444">❌ No acotar aquí</text>
+<text x="120" y="285" text-anchor="middle" font-size="9" fill="#ef4444">Ir a vista normal</text>
+
+<!-- REGLA 5: Leer desde abajo -->
+<rect x="245" y="170" width="210" height="120" fill="#ecfdf5" rx="6" stroke="#10b981" stroke-width="1"/>
+<text x="350" y="190" text-anchor="middle" font-size="11" fill="#10b981" font-weight="700">✅ Regla 5: Lectura correcta</text>
+<!-- Cota horizontal -->
+<line x1="260" y1="215" x2="400" y2="215" stroke="#10b981" stroke-width="1.5"/>
+<polygon points="260,215 268,212 268,218" fill="#10b981"/>
+<polygon points="400,215 392,212 392,218" fill="#10b981"/>
+<text x="330" y="210" text-anchor="middle" font-size="12" fill="#10b981" font-weight="700">50</text>
+<!-- Flecha lectura -->
+<text x="330" y="235" text-anchor="middle" font-size="9" fill="#10b981">← lectura izquierda →</text>
+<!-- Cota vertical -->
+<line x1="420" y1="200" x2="420" y2="260" stroke="#10b981" stroke-width="1.5"/>
+<polygon points="420,200 417,208 423,208" fill="#10b981"/>
+<polygon points="420,260 417,252 423,252" fill="#10b981"/>
+<text x="415" y="235" text-anchor="end" font-size="12" fill="#10b981" font-weight="700">30</text>
+<text x="430" y="235" text-anchor="start" font-size="9" fill="#10b981">↓ lectura abajo ↑</text>
+
+<!-- REGLA 6: Funcional -->
+<rect x="475" y="170" width="210" height="120" fill="#ecfdf5" rx="6" stroke="#10b981" stroke-width="1"/>
+<text x="580" y="190" text-anchor="middle" font-size="11" fill="#10b981" font-weight="700">✅ Regla 6: Funcional (F)</text>
+<!-- Eje con cojinete -->
+<rect x="490" y="205" width="180" height="20" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<line x1="530" y1="205" x2="530" y2="225" stroke="#94a3b8" stroke-width="0.5"/>
+<line x1="630" y1="205" x2="630" y2="225" stroke="#94a3b8" stroke-width="0.5"/>
+<line x1="530" y1="215" x2="630" y2="215" stroke="#2563eb" stroke-width="1"/>
+<text x="580" y="210" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="600">⌀20 (F)</text>
+<!-- Cojinete -->
+<rect x="520" y="200" width="120" height="30" fill="none" stroke="#f97316" stroke-width="1.5" rx="3"/>
+<text x="580" y="255" text-anchor="middle" font-size="9" fill="#10b981">Cota funcional = ajuste</text>
+<text x="580" y="270" text-anchor="middle" font-size="9" fill="#10b981">Tolerancia estricta</text>
+
+<!-- ===== TABLA RESUMEN ===== -->
+<text x="350" y="320" text-anchor="middle" font-size="13" fill="#2563eb" font-weight="700">Resumen de las 6 reglas</text>
+<rect x="20" y="330" width="660" height="170" fill="#fff" stroke="#e2e8f0" stroke-width="1" rx="6"/>
+<!-- Cabecera -->
+<text x="50" y="350" font-size="10" fill="#fff" font-weight="700" fill="#2563eb">Regla</text>
+<text x="150" y="350" font-size="10" fill="#2563eb" font-weight="700">Descripción</text>
+<text x="450" y="350" font-size="10" fill="#2563eb" font-weight="700">Estado</text>
+<line x1="30" y1="356" x2="670" y2="356" stroke="#e2e8f0" stroke-width="1"/>
+<!-- Reglas -->
+<text x="50" y="375" font-size="10" fill="#1e293b">1</text>
+<text x="150" y="375" font-size="10" fill="#1e293b">No repetir cotas</text>
+<text x="500" y="375" font-size="10" fill="#10b981">✅</text>
+<text x="50" y="395" font-size="10" fill="#1e293b">2</text>
+<text x="150" y="395" font-size="10" fill="#1e293b">No omitir cotas necesarias</text>
+<text x="500" y="395" font-size="10" fill="#10b981">✅</text>
+<text x="50" y="415" font-size="10" fill="#1e293b">3</text>
+<text x="150" y="415" font-size="10" fill="#1e293b">Cotar en vista más clara (VM)</text>
+<text x="500" y="415" font-size="10" fill="#10b981">✅</text>
+<text x="50" y="435" font-size="10" fill="#1e293b">4</text>
+<text x="150" y="435" font-size="10" fill="#1e293b">No acotar en cortes</text>
+<text x="500" y="435" font-size="10" fill="#10b981">✅</text>
+<text x="50" y="455" font-size="10" fill="#1e293b">5</text>
+<text x="150" y="455" font-size="10" fill="#1e293b">Lectura: desde abajo y derecha</text>
+<text x="500" y="455" font-size="10" fill="#10b981">✅</text>
+<text x="50" y="475" font-size="10" fill="#1e293b">6</text>
+<text x="150" y="475" font-size="10" fill="#1e293b">Cotas funcionales prioritarias</text>
+<text x="500" y="475" font-size="10" fill="#10b981">✅</text>
+<!-- Funcional vs auxiliar -->
+<rect x="540" y="360" width="120" height="110" fill="#f1f5f9" rx="4"/>
+<text x="600" y="378" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="700">Tipos de cota</text>
+<text x="550" y="398" font-size="9" fill="#10b981">Funcional (F)</text>
+<text x="550" y="413" font-size="9" fill="#64748b">Afecta al funcionamiento</text>
+<text x="550" y="428" font-size="9" fill="#64748b">Tolerancia estricta</text>
+<text x="550" y="448" font-size="9" fill="#f97316">Auxiliar ( )</text>
+<text x="550" y="463" font-size="9" fill="#64748b">Información complementaria</text>
+<text x="550" y="478" font-size="9" fill="#64748b">Entre paréntesis</text>
+</svg>
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">📝 Ejercicios</h2>
+<div class="exercises">
+
+<div class="exercise">
+<p>📐 Ejercicio 1: ¿Cuántas reglas generales de acotación establece ISO 129?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">4</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">6</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">8</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">10</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 2: ¿Qué es una cota funcional?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">La que se repite varias veces</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">La que afecta al funcionamiento de la pieza</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">La que va entre paréntesis</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">La que se acota en cortes</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 3: ¿Dónde se debe acotar un diámetro?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">En la vista lateral</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">En la vista circular (donde se ve VM)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">En el corte</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">En cualquier vista</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 4: ¿Las cotas auxiliares van...</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Sin paréntesis</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Entre paréntesis</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">En rojo</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Con símbolo (F)</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 5: ¿Desde qué dirección se leen las cotas?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Desde arriba y izquierda</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Desde arriba y derecha</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Desde abajo y derecha</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Desde cualquier dirección</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+</div>
+</section>
+
+<div class="box box-error">
+<strong>⚠️ Error clásico</strong>
+Repetir la misma cota de dos formas diferentes (ej: acotar la cadena 30+40+50 Y también el total 120). Esto crea contradicciones si hay tolerancias. Elige UNO: o la cadena o el total, nunca ambos.
+</div>
+
+<div class="box box-idea">
+<strong>🔗 Conexión</strong>
+Con las reglas de acotación dominadas, en el siguiente tema aprenderás a acotar piezas complejas con múltiples características: taladros, chaflanes, radios y formas irregulares.
+</div>
+
+<div class="summary">
+<h3>📋 Resumen de lo aprendido</h3>
+<ul>
+<li>6 reglas de oro: no repetir, no omitir, vista clara, no en cortes, lectura, funcional</li>
+<li>Cota funcional (F): afecta al funcionamiento, tolerancia estricta</li>
+<li>Cota auxiliar: entre paréntesis, información complementaria</li>
+<li>La cifra se lee desde abajo (horizontal) y derecha (vertical)</li>
+<li>¡Ahora puedes acotar como un profesional! 🎉</li>
+</ul>
+</div>
+
+<div class="nav">
+<a href="b06-03-acotacion-coordenadas.html">← Anterior</a>
+<a href="b06-05-acotacion-piezas-complejas.html">Siguiente →</a>
+</div>
+
+</main>
+<footer class="footer">Hecho con ❤️ por David Antizar</footer>
+<script>
+function checkAnswer(btn, correct) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) {
+    b.disabled = true; b.classList.remove('correct','wrong');
+  });
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  var feedback = parent.nextElementSibling;
+  if(feedback && feedback.classList.contains('feedback')) {
+    if(correct) {
+      feedback.textContent = '✅ ¡Correcto! ¡Muy bien!';
+      feedback.className = 'feedback correct';
+    } else {
+      feedback.textContent = '❌ ¡Intenta de nuevo!';
+      feedback.className = 'feedback incorrect';
+      setTimeout(function() {
+        parent.querySelectorAll('button').forEach(function(b) {
+          b.disabled = false; b.classList.remove('correct','wrong');
+        });
+        feedback.textContent = '';
+        feedback.className = 'feedback';
+      }, 1500);
+    }
+  }
+}
+
+function checkExercise(id, correct, btn) {
+  var input = document.getElementById(id);
+  var feedback = input.parentElement.nextElementSibling;
+  var userVal = input.value.trim().toLowerCase();
+  var correctVal = correct.toLowerCase();
+  if(userVal === correctVal) {
+    feedback.textContent = '✅ ¡Correcto! La respuesta es ' + correct;
+    feedback.className = 'feedback correct';
+    input.style.borderColor = 'var(--verde)';
+  } else {
+    feedback.textContent = '❌ Respuesta correcta: ' + correct;
+    feedback.className = 'feedback incorrect';
+    input.style.borderColor = 'var(--rojo)';
+  }
+}
+
+function checkVF(btn, correct) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) {
+    b.disabled = true; b.classList.remove('correct','wrong');
+  });
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  var feedback = parent.nextElementSibling;
+  if(feedback && feedback.classList.contains('feedback')) {
+    if(correct) {
+      feedback.textContent = '✅ ¡Correcto!';
+      feedback.className = 'feedback correct';
+    } else {
+      feedback.textContent = '❌ Incorrecto.';
+      feedback.className = 'feedback incorrect';
+    }
+  }
+}
+window.onscroll = function(){
+  var h = document.documentElement;
+  var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
+  document.getElementById('progress').style.width = p+'%';
+};
+</script>
+</body>
+</html>
