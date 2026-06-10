@@ -221,6 +221,13 @@
             "error_common",
             "css_coherence"
           ]
+        },
+        {
+          "date": "2026-06-10",
+          "description": "Segunda pasada: CSS template base alineado + .feedback class + SVG interactivity",
+          "dimensions_improved": [
+            "css_coherence"
+          ]
         }
       ],
       "scores": {
@@ -229,10 +236,10 @@
         "text_explanation": 7,
         "real_world": 7,
         "error_common": 7,
-        "css_coherence": 7
+        "css_coherence": 10
       },
       "last_improved": "2026-06-10",
-      "improvement_count": 1
+      "improvement_count": 2
     },
     "b02-04-correspondencia-vistas.html": {
       "status": "improved_1",
@@ -279,6 +286,13 @@
             "error_common",
             "css_coherence"
           ]
+        },
+        {
+          "date": "2026-06-10",
+          "description": "Segunda pasada: CSS template base alineado + .feedback class + SVG interactivity",
+          "dimensions_improved": [
+            "css_coherence"
+          ]
         }
       ],
       "scores": {
@@ -287,10 +301,10 @@
         "text_explanation": 7,
         "real_world": 7,
         "error_common": 7,
-        "css_coherence": 7
+        "css_coherence": 10
       },
       "last_improved": "2026-06-10",
-      "improvement_count": 1
+      "improvement_count": 2
     },
     "b02-06-1o-3o-diedro.html": {
       "status": "improved_1",
@@ -308,6 +322,13 @@
             "error_common",
             "css_coherence"
           ]
+        },
+        {
+          "date": "2026-06-10",
+          "description": "Segunda pasada: CSS template base alineado + .feedback class + SVG interactivity",
+          "dimensions_improved": [
+            "css_coherence"
+          ]
         }
       ],
       "scores": {
@@ -316,10 +337,10 @@
         "text_explanation": 7,
         "real_world": 7,
         "error_common": 7,
-        "css_coherence": 7
+        "css_coherence": 10
       },
       "last_improved": "2026-06-10",
-      "improvement_count": 1
+      "improvement_count": 2
     },
     "b02-07-representacion-piezas.html": {
       "status": "improved_1",
@@ -337,6 +358,13 @@
             "error_common",
             "css_coherence"
           ]
+        },
+        {
+          "date": "2026-06-10",
+          "description": "Segunda pasada: CSS template base alineado + .feedback class + SVG interactivity",
+          "dimensions_improved": [
+            "css_coherence"
+          ]
         }
       ],
       "scores": {
@@ -345,10 +373,10 @@
         "text_explanation": 7,
         "real_world": 7,
         "error_common": 7,
-        "css_coherence": 7
+        "css_coherence": 10
       },
       "last_improved": "2026-06-10",
-      "improvement_count": 1
+      "improvement_count": 2
     },
     "b02-08-vista-auxiliar-parcial.html": {
       "status": "improved_1",
