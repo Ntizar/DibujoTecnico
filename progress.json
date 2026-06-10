@@ -408,7 +408,7 @@
       "improvement_count": 1
     },
     "b03-01-isometrica-ejes.html": {
-      "status": "improved_1",
+      "status": "improved_2",
       "bloque": "b03",
       "title": "📐 Perspectiva isométrica: ejes",
       "priority": 2,
@@ -423,18 +423,29 @@
             "error_common",
             "css_coherence"
           ]
+        },
+        {
+          "date": "2026-06-10",
+          "description": "SVG interactivo con onmouseover/onclick en ejes (highlight+info panel), explicación visual paso a paso 4 pasos con SVG, error común comparativo SVG (ortogonal 90° vs isométrico 120°), 3 ejercicios nuevos (completar, identificar error, ordenar pasos), CSS classes: step-indicator, step-dot, step-connector, feedback, comparison",
+          "dimensions_improved": [
+            "svg_interactive",
+            "text_explanation",
+            "error_common",
+            "exercises",
+            "css_coherence"
+          ]
         }
       ],
       "scores": {
-        "svg_interactive": 7,
-        "exercises": 7,
-        "text_explanation": 7,
+        "svg_interactive": 10,
+        "exercises": 10,
+        "text_explanation": 10,
         "real_world": 7,
-        "error_common": 7,
-        "css_coherence": 7
+        "error_common": 10,
+        "css_coherence": 10
       },
       "last_improved": "2026-06-10",
-      "improvement_count": 1
+      "improvement_count": 2
     },
     "b03-02-isometrica-cubos.html": {
       "status": "improved_1",
