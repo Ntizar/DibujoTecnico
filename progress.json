@@ -180,9 +180,10 @@
       "bloque": "Bloque 3: Perspectivas",
       "icon": "🎨",
       "skills": "td-perspectivas",
-      "status": "pending",
+      "status": "completed",
       "improvement_count": 0,
-      "priority": 14
+      "priority": 14,
+      "last_completed": "2026-06-10"
     },
     {
       "id": "b03-02",
@@ -192,9 +193,10 @@
       "bloque": "Bloque 3: Perspectivas",
       "icon": "🎨",
       "skills": "td-perspectivas",
-      "status": "pending",
+      "status": "completed",
       "improvement_count": 0,
-      "priority": 15
+      "priority": 15,
+      "last_completed": "2026-06-10"
     },
     {
       "id": "b03-03",
@@ -204,9 +206,10 @@
       "bloque": "Bloque 3: Perspectivas",
       "icon": "🎨",
       "skills": "td-perspectivas",
-      "status": "pending",
+      "status": "completed",
       "improvement_count": 0,
-      "priority": 16
+      "priority": 16,
+      "last_completed": "2026-06-10"
     },
     {
       "id": "b03-04",
@@ -653,6 +656,6 @@
       "priority": 53
     }
   ],
-  "progreso_global": 13,
+  "progreso_global": 16,
   "ult_actualizacion": "2026-06-10"
 }
