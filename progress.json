@@ -873,21 +873,33 @@
       "improvement_count": 1
     },
     "b06-01-acotacion.html": {
-      "status": "pending",
+      "status": "improved_1",
       "bloque": "b06",
       "title": "📐 Elementos de la cota",
       "priority": 3,
-      "improvements": [],
+      "improvements": [
+        {
+          "date": "2026-06-10",
+          "description": "CSS template base, caso real industrial, error comparativo SVG",
+          "dimensions_improved": [
+            "svg_interactive",
+            "text_explanation",
+            "real_world",
+            "error_common",
+            "css_coherence"
+          ]
+        }
+      ],
       "scores": {
-        "svg_interactive": 0,
-        "exercises": 0,
-        "text_explanation": 0,
-        "real_world": 0,
-        "error_common": 0,
-        "css_coherence": 0
+        "svg_interactive": 7,
+        "exercises": 7,
+        "text_explanation": 7,
+        "real_world": 7,
+        "error_common": 7,
+        "css_coherence": 7
       },
-      "last_improved": null,
-      "improvement_count": 0
+      "last_improved": "2026-06-10",
+      "improvement_count": 1
     },
     "b07-01-intersecciones.html": {
       "status": "pending",
@@ -1028,89 +1040,149 @@
       "improvement_count": 1
     },
     "b05-06-ejercicios-cortes.html": {
-      "status": "pending",
+      "status": "improved_1",
       "bloque": "b05",
       "title": "📝 Ejercicios: cortes y secciones",
       "priority": 3,
-      "improvements": [],
+      "improvements": [
+        {
+          "date": "2026-06-10",
+          "description": "CSS template base, caso real industrial, error comparativo SVG",
+          "dimensions_improved": [
+            "svg_interactive",
+            "text_explanation",
+            "real_world",
+            "error_common",
+            "css_coherence"
+          ]
+        }
+      ],
       "scores": {
-        "svg_interactive": 0,
-        "exercises": 0,
-        "text_explanation": 0,
-        "real_world": 0,
-        "error_common": 0,
-        "css_coherence": 0
+        "svg_interactive": 7,
+        "exercises": 7,
+        "text_explanation": 7,
+        "real_world": 7,
+        "error_common": 7,
+        "css_coherence": 7
       },
-      "last_improved": null,
-      "improvement_count": 0
+      "last_improved": "2026-06-10",
+      "improvement_count": 1
     },
     "b06-02-metodos-acotacion.html": {
-      "status": "pending",
+      "status": "improved_1",
       "bloque": "b06",
       "title": "📐 Métodos de acotación",
       "priority": 3,
-      "improvements": [],
+      "improvements": [
+        {
+          "date": "2026-06-10",
+          "description": "CSS template base, caso real industrial, error comparativo SVG",
+          "dimensions_improved": [
+            "svg_interactive",
+            "text_explanation",
+            "real_world",
+            "error_common",
+            "css_coherence"
+          ]
+        }
+      ],
       "scores": {
-        "svg_interactive": 0,
-        "exercises": 0,
-        "text_explanation": 0,
-        "real_world": 0,
-        "error_common": 0,
-        "css_coherence": 0
+        "svg_interactive": 7,
+        "exercises": 7,
+        "text_explanation": 7,
+        "real_world": 7,
+        "error_common": 7,
+        "css_coherence": 7
       },
-      "last_improved": null,
-      "improvement_count": 0
+      "last_improved": "2026-06-10",
+      "improvement_count": 1
     },
     "b06-03-acotacion-coordenadas.html": {
-      "status": "pending",
+      "status": "improved_1",
       "bloque": "b06",
       "title": "📐 Acotación por coordenadas",
       "priority": 3,
-      "improvements": [],
+      "improvements": [
+        {
+          "date": "2026-06-10",
+          "description": "CSS template base, caso real industrial, error comparativo SVG",
+          "dimensions_improved": [
+            "svg_interactive",
+            "text_explanation",
+            "real_world",
+            "error_common",
+            "css_coherence"
+          ]
+        }
+      ],
       "scores": {
-        "svg_interactive": 0,
-        "exercises": 0,
-        "text_explanation": 0,
-        "real_world": 0,
-        "error_common": 0,
-        "css_coherence": 0
+        "svg_interactive": 7,
+        "exercises": 7,
+        "text_explanation": 7,
+        "real_world": 7,
+        "error_common": 7,
+        "css_coherence": 7
       },
-      "last_improved": null,
-      "improvement_count": 0
+      "last_improved": "2026-06-10",
+      "improvement_count": 1
     },
     "b06-04-reglas-acotacion.html": {
-      "status": "pending",
+      "status": "improved_1",
       "bloque": "b06",
       "title": "📐 Reglas de acotación ISO 129",
       "priority": 3,
-      "improvements": [],
+      "improvements": [
+        {
+          "date": "2026-06-10",
+          "description": "CSS template base, caso real industrial, error comparativo SVG",
+          "dimensions_improved": [
+            "svg_interactive",
+            "text_explanation",
+            "real_world",
+            "error_common",
+            "css_coherence"
+          ]
+        }
+      ],
       "scores": {
-        "svg_interactive": 0,
-        "exercises": 0,
-        "text_explanation": 0,
-        "real_world": 0,
-        "error_common": 0,
-        "css_coherence": 0
+        "svg_interactive": 7,
+        "exercises": 7,
+        "text_explanation": 7,
+        "real_world": 7,
+        "error_common": 7,
+        "css_coherence": 7
       },
-      "last_improved": null,
-      "improvement_count": 0
+      "last_improved": "2026-06-10",
+      "improvement_count": 1
     },
     "b06-05-acotacion-piezas-complejas.html": {
-      "status": "pending",
+      "status": "improved_1",
       "bloque": "b06",
       "title": "📐 Acotación en piezas complejas",
       "priority": 3,
-      "improvements": [],
+      "improvements": [
+        {
+          "date": "2026-06-10",
+          "description": "CSS template base, caso real industrial, error comparativo SVG",
+          "dimensions_improved": [
+            "svg_interactive",
+            "text_explanation",
+            "real_world",
+            "error_common",
+            "css_coherence"
+          ]
+        }
+      ],
       "scores": {
-        "svg_interactive": 0,
-        "exercises": 0,
-        "text_explanation": 0,
-        "real_world": 0,
-        "error_common": 0,
-        "css_coherence": 0
+        "svg_interactive": 7,
+        "exercises": 7,
+        "text_explanation": 7,
+        "real_world": 7,
+        "error_common": 7,
+        "css_coherence": 7
       },
-      "last_improved": null,
-      "improvement_count": 0
+      "last_improved": "2026-06-10",
+      "improvement_count": 1
     },
     "b07-02-interseccion-plano-plano.html": {
       "status": "pending",
