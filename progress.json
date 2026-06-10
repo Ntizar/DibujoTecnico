@@ -612,106 +612,178 @@
       "improvement_count": 1
     },
     "b04-03-plano-diedrico.html": {
-      "status": "pending",
+      "status": "improved_1",
       "bloque": "b04",
       "title": "📏 Recta: trazas y posiciones",
       "priority": 2,
-      "improvements": [],
+      "improvements": [
+        {
+          "date": "2026-06-10",
+          "description": "CSS template base, caso real industrial, error comparativo SVG",
+          "dimensions_improved": [
+            "svg_interactive",
+            "text_explanation",
+            "real_world",
+            "error_common",
+            "css_coherence"
+          ]
+        }
+      ],
       "scores": {
-        "svg_interactive": 0,
-        "exercises": 0,
-        "text_explanation": 0,
-        "real_world": 0,
-        "error_common": 0,
-        "css_coherence": 0
+        "svg_interactive": 7,
+        "exercises": 7,
+        "text_explanation": 7,
+        "real_world": 7,
+        "error_common": 7,
+        "css_coherence": 7
       },
-      "last_improved": null,
-      "improvement_count": 0
+      "last_improved": "2026-06-10",
+      "improvement_count": 1
     },
     "b04-04-pertenencia.html": {
-      "status": "pending",
+      "status": "improved_1",
       "bloque": "b04",
       "title": "📐 Recta: verdadera magnitud",
       "priority": 2,
-      "improvements": [],
+      "improvements": [
+        {
+          "date": "2026-06-10",
+          "description": "CSS template base, caso real industrial, error comparativo SVG",
+          "dimensions_improved": [
+            "svg_interactive",
+            "text_explanation",
+            "real_world",
+            "error_common",
+            "css_coherence"
+          ]
+        }
+      ],
       "scores": {
-        "svg_interactive": 0,
-        "exercises": 0,
-        "text_explanation": 0,
-        "real_world": 0,
-        "error_common": 0,
-        "css_coherence": 0
+        "svg_interactive": 7,
+        "exercises": 7,
+        "text_explanation": 7,
+        "real_world": 7,
+        "error_common": 7,
+        "css_coherence": 7
       },
-      "last_improved": null,
-      "improvement_count": 0
+      "last_improved": "2026-06-10",
+      "improvement_count": 1
     },
     "b04-05-paralelismo-perpendicularidad.html": {
-      "status": "pending",
+      "status": "improved_1",
       "bloque": "b04",
       "title": "📐 Plano: trazas y posiciones",
       "priority": 2,
-      "improvements": [],
+      "improvements": [
+        {
+          "date": "2026-06-10",
+          "description": "CSS template base, caso real industrial, error comparativo SVG",
+          "dimensions_improved": [
+            "svg_interactive",
+            "text_explanation",
+            "real_world",
+            "error_common",
+            "css_coherence"
+          ]
+        }
+      ],
       "scores": {
-        "svg_interactive": 0,
-        "exercises": 0,
-        "text_explanation": 0,
-        "real_world": 0,
-        "error_common": 0,
-        "css_coherence": 0
+        "svg_interactive": 7,
+        "exercises": 7,
+        "text_explanation": 7,
+        "real_world": 7,
+        "error_common": 7,
+        "css_coherence": 7
       },
-      "last_improved": null,
-      "improvement_count": 0
+      "last_improved": "2026-06-10",
+      "improvement_count": 1
     },
     "b04-06-vm.html": {
-      "status": "pending",
+      "status": "improved_1",
       "bloque": "b04",
       "title": "↗️ Rectas notables del plano",
       "priority": 2,
-      "improvements": [],
+      "improvements": [
+        {
+          "date": "2026-06-10",
+          "description": "CSS template base, caso real industrial, error comparativo SVG",
+          "dimensions_improved": [
+            "svg_interactive",
+            "text_explanation",
+            "real_world",
+            "error_common",
+            "css_coherence"
+          ]
+        }
+      ],
       "scores": {
-        "svg_interactive": 0,
-        "exercises": 0,
-        "text_explanation": 0,
-        "real_world": 0,
-        "error_common": 0,
-        "css_coherence": 0
+        "svg_interactive": 7,
+        "exercises": 7,
+        "text_explanation": 7,
+        "real_world": 7,
+        "error_common": 7,
+        "css_coherence": 7
       },
-      "last_improved": null,
-      "improvement_count": 0
+      "last_improved": "2026-06-10",
+      "improvement_count": 1
     },
     "b04-07-cambio-plano.html": {
-      "status": "pending",
+      "status": "improved_1",
       "bloque": "b04",
       "title": "🔗 Pertenencia: punto en recta/plano",
       "priority": 2,
-      "improvements": [],
+      "improvements": [
+        {
+          "date": "2026-06-10",
+          "description": "CSS template base, caso real industrial, error comparativo SVG",
+          "dimensions_improved": [
+            "svg_interactive",
+            "text_explanation",
+            "real_world",
+            "error_common",
+            "css_coherence"
+          ]
+        }
+      ],
       "scores": {
-        "svg_interactive": 0,
-        "exercises": 0,
-        "text_explanation": 0,
-        "real_world": 0,
-        "error_common": 0,
-        "css_coherence": 0
+        "svg_interactive": 7,
+        "exercises": 7,
+        "text_explanation": 7,
+        "real_world": 7,
+        "error_common": 7,
+        "css_coherence": 7
       },
-      "last_improved": null,
-      "improvement_count": 0
+      "last_improved": "2026-06-10",
+      "improvement_count": 1
     },
     "b04-08-giro.html": {
-      "status": "pending",
+      "status": "improved_1",
       "bloque": "b04",
       "title": "↔️ Paralelismo",
       "priority": 2,
-      "improvements": [],
+      "improvements": [
+        {
+          "date": "2026-06-10",
+          "description": "CSS template base, caso real industrial, error comparativo SVG",
+          "dimensions_improved": [
+            "svg_interactive",
+            "text_explanation",
+            "real_world",
+            "error_common",
+            "css_coherence"
+          ]
+        }
+      ],
       "scores": {
-        "svg_interactive": 0,
-        "exercises": 0,
-        "text_explanation": 0,
-        "real_world": 0,
-        "error_common": 0,
-        "css_coherence": 0
+        "svg_interactive": 7,
+        "exercises": 7,
+        "text_explanation": 7,
+        "real_world": 7,
+        "error_common": 7,
+        "css_coherence": 7
       },
-      "last_improved": null,
-      "improvement_count": 0
+      "last_improved": "2026-06-10",
+      "improvement_count": 1
     },
     "b04-09-resumen-diedrico.html": {
       "status": "pending",

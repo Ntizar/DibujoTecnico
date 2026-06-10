@@ -50,6 +50,17 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .nav a{color:var(--azul);text-decoration:none;font-weight:600;padding:.5rem 1rem;border-radius:6px}
 .nav a:hover{background:var(--azul-claro)}
 .nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
+.comparison{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0}
+.comparison-side{background:#f8fafc;border-radius:12px;padding:1.5rem;border:2px solid #e2e8f0;text-align:center;transition:all .3s}
+.comparison-side:hover{border-color:var(--azul);box-shadow:0 4px 12px rgba(37,99,235,.1)}
+.real-world-badge{display:inline-block;background:linear-gradient(135deg,var(--naranja),#ea580c);color:#fff;padding:.3rem .8rem;border-radius:20px;font-size:.8rem;font-weight:700;margin-bottom:.8rem}
+.step-indicator{display:flex;gap:.5rem;justify-content:center;margin:1rem 0}
+.step-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:#fff;transition:all .3s;cursor:pointer}
+.step-dot:hover{transform:scale(1.2)}
+.step-dot.active{box-shadow:0 0 0 4px rgba(37,99,235,.3)}
+.stack-item{background:#f8fafc;border:2px solid #e2e8f0;border-radius:10px;padding:1rem;margin:.5rem 0;transition:all .3s;cursor:pointer}
+.stack-item:hover{border-color:var(--azul);transform:translateX(4px)}
+.stack-item.active{border-color:var(--azul);background:var(--azul-claro)}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
 </style>
 </head>
@@ -187,6 +198,8 @@ Entonces la planta r muestra la VM.
 </div>
 </section>
 
+<div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ MEDIDA ACORTADA</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="50" y1="110" x2="150" y2="40" stroke="#ef4444" stroke-width="3"/><text x="100" y="80" text-anchor="middle" font-size="9" fill="#ef4444">Acortada en alzado</text><text x="100" y="130" text-anchor="middle" font-size="9" fill="#ef4444">No es la VM</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ VERDADERA MAGNITUD</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="30" y1="70" x2="170" y2="70" stroke="#10b981" stroke-width="3"/><text x="100" y="60" text-anchor="middle" font-size="9" fill="#10b981">VM = longitud real</text><text x="100" y="130" text-anchor="middle" font-size="9" fill="#10b981">Cambio de plano paralelo ✓</text></svg></div></div>
+
 <div class="box box-error">
 <strong>⚠️ Error clásico</strong>
 Pensar que cualquier recta se ve en VM directamente. Solo las rectas horizontales (VM en planta) y frontales (VM en alzado) se ven en VM sin procedimientos adicionales. Las oblicuas necesitan giro o cambio de plano.
@@ -196,6 +209,8 @@ Pensar que cualquier recta se ve en VM directamente. Solo las rectas horizontale
 <strong>🔗 Conexión</strong>
 La VM es esencial para acotar piezas correctamente. Sin VM, las cotas no representan la medida real.
 </div>
+
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: medir la verdadera longitud de una soldadura</strong>Una soldadura inclinada en una unión de acero no se puede medir en alzado ni en planta porque aparece acortada. La verdadera magnitud (VM) se obtiene con un cambio de plano paralelo a la soldadura. El inspector usa esa medida para verificar que la soldadura cumple la longitud especificada.</div>
 
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
