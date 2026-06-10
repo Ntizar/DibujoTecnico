@@ -50,6 +50,17 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .nav a{color:var(--azul);text-decoration:none;font-weight:600;padding:.5rem 1rem;border-radius:6px}
 .nav a:hover{background:var(--azul-claro)}
 .nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
+.comparison{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0}
+.comparison-side{background:#f8fafc;border-radius:12px;padding:1.5rem;border:2px solid #e2e8f0;text-align:center;transition:all .3s}
+.comparison-side:hover{border-color:var(--azul);box-shadow:0 4px 12px rgba(37,99,235,.1)}
+.real-world-badge{display:inline-block;background:linear-gradient(135deg,var(--naranja),#ea580c);color:#fff;padding:.3rem .8rem;border-radius:20px;font-size:.8rem;font-weight:700;margin-bottom:.8rem}
+.step-indicator{display:flex;gap:.5rem;justify-content:center;margin:1rem 0}
+.step-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:#fff;transition:all .3s;cursor:pointer}
+.step-dot:hover{transform:scale(1.2)}
+.step-dot.active{box-shadow:0 0 0 4px rgba(37,99,235,.3)}
+.stack-item{background:#f8fafc;border:2px solid #e2e8f0;border-radius:10px;padding:1rem;margin:.5rem 0;transition:all .3s;cursor:pointer}
+.stack-item:hover{border-color:var(--azul);transform:translateX(4px)}
+.stack-item.active{border-color:var(--azul);background:var(--azul-claro)}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
 </style>
 </head>
@@ -196,6 +207,8 @@ En planta, Tv está sobre la LT. En alzado, Tv' está en la recta r'.
 </div>
 </section>
 
+<div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ RECTA PARALELA A LT</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="20" y1="70" x2="180" y2="70" stroke="#333" stroke-width="2"/><text x="100" y="65" text-anchor="middle" font-size="9" fill="#333">LT</text><line x1="50" y1="40" x2="150" y2="40" stroke="#ef4444" stroke-width="2"/><text x="100" y="35" text-anchor="middle" font-size="9" fill="#ef4444">Paralela a LT → VF en alzado</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ RECTA OBLICUA</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="20" y1="70" x2="180" y2="70" stroke="#333" stroke-width="2"/><text x="100" y="65" text-anchor="middle" font-size="9" fill="#333">LT</text><line x1="50" y1="100" x2="150" y2="40" stroke="#10b981" stroke-width="2"/><text x="100" y="120" text-anchor="middle" font-size="9" fill="#10b981">Oblicua → VM en auxiliar</text></svg></div></div>
+
 <div class="box box-error">
 <strong>⚠️ Error clásico</strong>
 Confundir Th con Tv. Th = traza horizontal = corta el PH → z = 0. Tv = traza vertical = corta el PV → y = 0. ¡Recuerda: Th = horizontal = z=0, Tv = vertical = y=0!
@@ -205,6 +218,8 @@ Confundir Th con Tv. Th = traza horizontal = corta el PH → z = 0. Tv = traza v
 <strong>🔗 Conexión</strong>
 La recta es el segundo elemento del diédrico. Con puntos y rectas, podemos construir planos y piezas completas.
 </div>
+
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: cableado y tuberías</strong>Una tubería que va de un punto A a un punto B en una planta industrial se representa con su proyección en alzado y planta. La recta en el diedrico permite saber la longitud real de la tubería y su orientación. Sin diedrico, no se podría fabricar el trazado de tuberías de una refinería.</div>
 
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
