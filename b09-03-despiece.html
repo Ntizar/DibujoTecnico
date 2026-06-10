@@ -50,6 +50,17 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .nav a{color:var(--azul);text-decoration:none;font-weight:600;padding:.5rem 1rem;border-radius:6px}
 .nav a:hover{background:var(--azul-claro)}
 .nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
+.comparison{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0}
+.comparison-side{background:#f8fafc;border-radius:12px;padding:1.5rem;border:2px solid #e2e8f0;text-align:center;transition:all .3s}
+.comparison-side:hover{border-color:var(--azul);box-shadow:0 4px 12px rgba(37,99,235,.1)}
+.real-world-badge{display:inline-block;background:linear-gradient(135deg,var(--naranja),#ea580c);color:#fff;padding:.3rem .8rem;border-radius:20px;font-size:.8rem;font-weight:700;margin-bottom:.8rem}
+.step-indicator{display:flex;gap:.5rem;justify-content:center;margin:1rem 0}
+.step-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:#fff;transition:all .3s;cursor:pointer}
+.step-dot:hover{transform:scale(1.2)}
+.step-dot.active{box-shadow:0 0 0 4px rgba(37,99,235,.3)}
+.stack-item{background:#f8fafc;border:2px solid #e2e8f0;border-radius:10px;padding:1rem;margin:.5rem 0;transition:all .3s;cursor:pointer}
+.stack-item:hover{border-color:var(--azul);transform:translateX(4px)}
+.stack-item.active{border-color:var(--azul);background:var(--azul-claro)}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
 </style>
 </head>
@@ -333,6 +344,8 @@ Orden: de dentro hacia fuera, de abajo hacia arriba.
 </div>
 </section>
 
+<div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ SIN LÍNEAS</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="100" y="70" text-anchor="middle" font-size="9" fill="#ef4444">Sin líneas ❌</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ CON LÍNEAS</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><line x1="100" y1="40" x2="140" y2="20" stroke="#2563eb" stroke-width="1"/><text x="100" y="120" text-anchor="middle" font-size="9" fill="#10b981">Con líneas ✓</text></svg></div></div>
+
 <div class="box box-error">
 <strong>⚠️ Error clásico</strong>
 Representar piezas estándar (tornillos, tuercas, arandelas) en el despiece con todas sus vistas y cotas. Las piezas estándar NO se representan en el despiece: solo se indican en la lista de piezas con su norma correspondiente (ISO, DIN, UNE).
@@ -342,6 +355,8 @@ Representar piezas estándar (tornillos, tuercas, arandelas) en el despiece con 
 <strong>🔗 Conexión</strong>
 ¡Has completado el curso de Dibujo Técnico! 49 temas desde la normalización hasta los planos de conjunto. Ahora dominas: formatos, líneas, escalas, vistas, perspectivas, sistema diédrico, cortes, acotación, intersecciones, abatimientos, giros y planos de conjunto.
 </div>
+
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: despiece de un motor eléctrico</strong>Un motor eléctrico tiene 20+ piezas. El despiece muestra cada pieza separada con sus líneas de referencia. El operario de taller usa el despiece para verificar que todas las piezas están presentes antes del montaje.</div>
 
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
