@@ -51,6 +51,23 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .nav a:hover{background:var(--azul-claro)}
 .nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+/* Clases del template base */
+.comparison{display:flex;gap:1.5rem;margin:1.5rem 0;flex-wrap:wrap}
+.comparison-side{flex:1;min-width:250px;text-align:center}
+.comparison-side h4{margin-bottom:.5rem;font-size:.95rem}
+.comparison-side.correct-side h4{color:var(--verde)}
+.comparison-side.wrong-side h4{color:var(--rojo)}
+.stack-demo{display:flex;align-items:flex-end;gap:1rem;margin:1.5rem 0;justify-content:center;flex-wrap:wrap}
+.stack-item{border:2px solid var(--azul);background:#fff;border-radius:4px;display:flex;align-items:center;justify-content:center;font-weight:bold;color:var(--azul);transition:all .3s;cursor:pointer}
+.stack-item:hover{transform:scale(1.05);box-shadow:0 4px 12px rgba(37,99,235,.2)}
+.step-indicator{display:flex;gap:.5rem;margin:1rem 0;justify-content:center}
+.step-dot{width:12px;height:12px;border-radius:50%;background:#e2e8f0;transition:all .3s}
+.step-dot.active{background:var(--azul);transform:scale(1.3)}
+.real-world-badge{display:inline-block;background:var(--naranja);color:#fff;padding:.2rem .6rem;border-radius:12px;font-size:.75rem;font-weight:600;margin-bottom:.5rem}
+/* SVG interactivo */
+.rotul-field{cursor:pointer;transition:all .2s}
+.rotul-field:hover{filter:brightness(1.1);stroke-width:3}
+.rotul-field.highlight{stroke:#f97316;stroke-width:3;filter:drop-shadow(0 0 6px rgba(249,115,22,.5))}
 </style>
 </head>
 <body>
@@ -65,7 +82,7 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 <h2 class="chapter-title">🎯 ¿Qué vamos a aprender?</h2>
 <div class="box box-idea">
 <strong>💡 Idea clave</strong>
-El cuadro de rotulación es como la tarjeta de presentación del dibujo: contiene toda la información esencial — qué es, quién lo hizo, cuándo, en qué escala, etc. Sin él, el dibujo no tiene valor.
+El cuadro de rotulación es como la tarjeta de presentación del dibujo: contiene toda la información esencial — qué es, quién lo hizo, cuándo, en qué escala, etc. Sin él, el dibujo no tiene valor legal ni técnico.
 </div>
 <p>En esta sesión aprenderás a:</p>
 <ul style="margin:.8rem 0 1rem 1.5rem">
@@ -104,29 +121,142 @@ Fecha: 2026-06-10
 </div>
 </section>
 
+<!-- PASO A PASO INDICATOR -->
 <section class="chapter">
-<h2 class="chapter-title">2️⃣ Visualiza el cuadro de rotulación</h2>
+<h2 class="chapter-title">📊 Pasos para completar el cuadro</h2>
+<div class="step-indicator">
+<div class="step-dot active" id="sd1"></div>
+<div class="step-dot" id="sd2"></div>
+<div class="step-dot" id="sd3"></div>
+<div class="step-dot" id="sd4"></div>
+</div>
+<div class="box box-teoria">
+<strong>📖 Proceso paso a paso:</strong><br>
+<strong>Paso 1:</strong> Identificar el formato de papel (A3, A4...) → define el tamaño del recuadro<br>
+<strong>Paso 2:</strong> Escribir el nombre del proyecto → qué se está dibujando<br>
+<strong>Paso 3:</strong> Añadir título, autor, fecha, escala, norma → datos técnicos completos<br>
+<strong>Paso 4:</strong> Verificar que todo está en la esquina inferior derecha → siempre ahí
+</div>
+</section>
+
+<!-- SVG INTERACTIVO -->
+<section class="chapter">
+<h2 class="chapter-title">2️⃣ Haz clic en cada campo del cuadro</h2>
 <div class="svg-container">
 <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#f97316"/></marker>
+</defs>
 <!-- Fondo -->
 <rect x="0" y="0" width="600" height="300" fill="#f8fafc" rx="8"/>
-<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Cuadro de rotulación</text>
+<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Cuadro de rotulación — Haz clic en cada campo</text>
 <!-- Hoja -->
 <rect x="50" y="50" width="500" height="200" fill="#fff" stroke="#333" stroke-width="2"/>
-<!-- Cuadro de rotulación -->
-<rect x="400" y="200" width="150" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
-<text x="475" y="215" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="600">PROYECTO: PUENTE</text>
-<text x="475" y="228" text-anchor="middle" font-size="9" fill="#2563eb">TÍTULO: VISTA SUPERIOR</text>
-<text x="475" y="241" text-anchor="middle" font-size="9" fill="#2563eb">ESCALA: 1:100</text>
-<text x="475" y="254" text-anchor="middle" font-size="9" fill="#2563eb">AUTOR: DAVID ANTIZAR</text>
+<!-- Cuadro de rotulación con campos interactivos -->
+<rect x="400" y="200" width="150" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="3"/>
+<!-- Campo 1: Proyecto -->
+<rect class="rotul-field" data-field="proyecto" x="402" y="202" width="70" height="10" fill="#eff6ff" stroke="#2563eb" stroke-width="1" rx="2" onclick="showFieldInfo('proyecto')" onmouseover="this.setAttribute('fill','#dbeafe')" onmouseout="this.setAttribute('fill','#eff6ff')"/>
+<text x="437" y="210" text-anchor="middle" font-size="7" fill="#2563eb" font-weight="600">PROYECTO</text>
+<!-- Campo 2: Título -->
+<rect class="rotul-field" data-field="titulo" x="475" y="202" width="73" height="10" fill="#eff6ff" stroke="#2563eb" stroke-width="1" rx="2" onclick="showFieldInfo('titulo')" onmouseover="this.setAttribute('fill','#dbeafe')" onmouseout="this.setAttribute('fill','#eff6ff')"/>
+<text x="511" y="210" text-anchor="middle" font-size="7" fill="#2563eb" font-weight="600">TÍTULO</text>
+<!-- Campo 3: Escala -->
+<rect class="rotul-field" data-field="escala" x="402" y="214" width="70" height="10" fill="#eff6ff" stroke="#2563eb" stroke-width="1" rx="2" onclick="showFieldInfo('escala')" onmouseover="this.setAttribute('fill','#dbeafe')" onmouseout="this.setAttribute('fill','#eff6ff')"/>
+<text x="437" y="222" text-anchor="middle" font-size="7" fill="#2563eb" font-weight="600">ESCALA</text>
+<!-- Campo 4: Autor -->
+<rect class="rotul-field" data-field="autor" x="475" y="214" width="73" height="10" fill="#eff6ff" stroke="#2563eb" stroke-width="1" rx="2" onclick="showFieldInfo('autor')" onmouseover="this.setAttribute('fill','#dbeafe')" onmouseout="this.setAttribute('fill','#eff6ff')"/>
+<text x="511" y="222" text-anchor="middle" font-size="7" fill="#2563eb" font-weight="600">AUTOR</text>
+<!-- Campo 5: Fecha -->
+<rect class="rotul-field" data-field="fecha" x="402" y="226" width="70" height="10" fill="#eff6ff" stroke="#2563eb" stroke-width="1" rx="2" onclick="showFieldInfo('fecha')" onmouseover="this.setAttribute('fill','#dbeafe')" onmouseout="this.setAttribute('fill','#eff6ff')"/>
+<text x="437" y="234" text-anchor="middle" font-size="7" fill="#2563eb" font-weight="600">FECHA</text>
+<!-- Campo 6: Formato -->
+<rect class="rotul-field" data-field="formato" x="475" y="226" width="73" height="10" fill="#eff6ff" stroke="#2563eb" stroke-width="1" rx="2" onclick="showFieldInfo('formato')" onmouseover="this.setAttribute('fill','#dbeafe')" onmouseout="this.setAttribute('fill','#eff6ff')"/>
+<text x="511" y="234" text-anchor="middle" font-size="7" fill="#2563eb" font-weight="600">FORMATO</text>
+<!-- Campo 7: Norma -->
+<rect class="rotul-field" data-field="norma" x="402" y="238" width="70" height="10" fill="#eff6ff" stroke="#2563eb" stroke-width="1" rx="2" onclick="showFieldInfo('norma')" onmouseover="this.setAttribute('fill','#dbeafe')" onmouseout="this.setAttribute('fill','#eff6ff')"/>
+<text x="437" y="246" text-anchor="middle" font-size="7" fill="#2563eb" font-weight="600">NORMA</text>
+<!-- Campo 8: Nº Hoja -->
+<rect class="rotul-field" data-field="hoja" x="475" y="238" width="73" height="10" fill="#eff6ff" stroke="#2563eb" stroke-width="1" rx="2" onclick="showFieldInfo('hoja')" onmouseover="this.setAttribute('fill','#dbeafe')" onmouseout="this.setAttribute('fill','#eff6ff')"/>
+<text x="511" y="246" text-anchor="middle" font-size="7" fill="#2563eb" font-weight="600">Nº HOJA</text>
 <!-- Flecha -->
 <line x1="400" y1="225" x2="350" y2="225" stroke="#ef4444" stroke-width="1.5"/>
 <polygon points="350,225 360,220 360,230" fill="#ef4444"/>
-<text x="330" y="230" text-anchor="middle" font-size="10" fill="#ef4444" font-weight="600">Cuadro de rotulación</text>
+<text x="330" y="230" text-anchor="middle" font-size="10" fill="#ef4444" font-weight="600">Esquina inferior derecha</text>
 <!-- Leyenda -->
 <rect x="20" y="270" width="560" height="25" fill="#ecfdf5" rx="6"/>
-<text x="300" y="287" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">Siempre en la esquina inferior derecha del dibujo</text>
+<text x="300" y="287" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">Haz clic en cada campo del cuadro para ver su descripción</text>
+<!-- Info panel -->
+<rect x="20" y="245" width="200" height="22" fill="#fff7ed" rx="4" stroke="#f97316" stroke-width="1"/>
+<text x="120" y="260" text-anchor="middle" font-size="10" fill="#f97316" font-weight="600" id="fieldInfo">👆 Clic en un campo</text>
 </svg>
+</div>
+</section>
+
+<!-- CASO REAL INDUSTRIAL -->
+<section class="chapter">
+<h2 class="chapter-title">🏭 Caso real: Plano de una pieza mecánica</h2>
+<div class="box box-ejemplo">
+<span class="real-world-badge">CASO REAL</span>
+<strong>🔧 Fábrica de automóviles — Plano de un cigüeñal</strong>
+<p>En una fábrica de motores, un ingeniero recibe un plano A2 de un cigüeñal. El cuadro de rotulación indica:</p>
+<ul style="margin:.5rem 0 .5rem 1.5rem">
+<li><strong>Proyecto:</strong> Motor V6 3.0L</li>
+<li><strong>Título:</strong> Cigüeñal — Vista en sección</li>
+<li><strong>Escala:</strong> 1:2</li>
+<li><strong>Norma:</strong> UNE-EN ISO 128</li>
+<li><strong>Formato:</strong> A2 (420 × 594 mm)</li>
+</ul>
+<p style="margin-top:.5rem">Un operario de control de calidad encuentra el plano sin cuadro de rotulación en un cajón. No puede verificar la escala, la norma ni la fecha. <strong>Inspecciona una pieza con la escala incorrecta → detecta un eje de 24.5mm como bueno cuando debería ser 25.0mm → el motor vibra a 3000 RPM → fallo catastrófico en carretera. Coste: 200.000€ en garantías + daño a la marca.</strong></p>
+<p style="margin-top:.5rem;font-style:italic;color:var(--gris)">El cuadro de rotulación no es burocracia: es trazabilidad y seguridad.</p>
+</div>
+</section>
+
+<!-- ERROR COMÚN VISUAL -->
+<section class="chapter">
+<h2 class="chapter-title">⚠️ Error visual: Cuadro mal ubicado</h2>
+<div class="box box-error">
+<strong>⚠️ Error común</strong>
+Colocar el cuadro de rotulación en la esquina superior derecha o en el centro del plano. La norma UNE exige que SIEMPRE esté en la esquina inferior derecha.
+</div>
+
+<div class="comparison">
+<div class="comparison-side correct-side">
+<h4>✅ Correcto — Esquina inferior derecha</h4>
+<div class="svg-container" style="margin:0;padding:1rem">
+<svg viewBox="0 0 250 180" xmlns="http://www.w3.org/2000/svg">
+<!-- Hoja -->
+<rect x="20" y="10" width="210" height="150" fill="#fff" stroke="#333" stroke-width="2"/>
+<!-- Cuadro en esquina inferior derecha -->
+<rect x="150" y="110" width="75" height="45" fill="#ecfdf5" stroke="#10b981" stroke-width="2.5" rx="3"/>
+<text x="187" y="128" text-anchor="middle" font-size="7" fill="#10b981" font-weight="600">PROYECTO</text>
+<text x="187" y="140" text-anchor="middle" font-size="7" fill="#10b981">ESCALA</text>
+<text x="187" y="152" text-anchor="middle" font-size="7" fill="#10b981">AUTOR</text>
+<!-- Checkmark -->
+<circle cx="235" cy="132" r="10" fill="#10b981"/>
+<text x="235" y="136" text-anchor="middle" font-size="14" fill="#fff">✓</text>
+</svg>
+</div>
+<p style="font-size:.85rem;color:var(--verde);margin-top:.5rem">Siempre en la esquina inferior derecha</p>
+</div>
+
+<div class="comparison-side wrong-side">
+<h4>❌ Incorrecto — Esquina superior derecha</h4>
+<div class="svg-container" style="margin:0;padding:1rem">
+<svg viewBox="0 0 250 180" xmlns="http://www.w3.org/2000/svg">
+<!-- Hoja -->
+<rect x="20" y="10" width="210" height="150" fill="#fff" stroke="#333" stroke-width="2"/>
+<!-- Cuadro en esquina incorrecta -->
+<rect x="150" y="10" width="75" height="45" fill="#fef2f2" stroke="#ef4444" stroke-width="2.5" rx="3"/>
+<text x="187" y="28" text-anchor="middle" font-size="7" fill="#ef4444" font-weight="600">PROYECTO</text>
+<text x="187" y="40" text-anchor="middle" font-size="7" fill="#ef4444">ESCALA</text>
+<text x="187" y="52" text-anchor="middle" font-size="7" fill="#ef4444">AUTOR</text>
+<!-- X mark -->
+<circle cx="235" cy="32" r="10" fill="#ef4444"/>
+<text x="235" y="36" text-anchor="middle" font-size="14" fill="#fff">✗</text>
+</svg>
+</div>
+<p style="font-size:.85rem;color:var(--rojo);margin-top:.5rem">¡El cuadro NUNCA va arriba!</p>
+</div>
 </div>
 </section>
 
@@ -138,9 +268,9 @@ Fecha: 2026-06-10
 <p>📐 Ejercicio 1: ¿Dónde se coloca el cuadro de rotulación?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">En la esquina inferior derecha</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">En la esquina superior izquierda</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">En el centro</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">No tiene ubicación fija</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">En la esquina superior izquierda</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">En el centro</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">No tiene ubicación fija</button>
 </div>
 <p class="feedback"></p>
 </div>
@@ -149,39 +279,41 @@ Fecha: 2026-06-10
 <p>📐 Ejercicio 2: ¿Qué información contiene el cuadro de rotulación?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Proyecto, título, autor, fecha, escala</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Solo el nombre</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Solo la escala</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">No contiene información</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Solo el nombre</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Solo la escala</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">No contiene información</button>
 </div>
 <p class="feedback"></p>
 </div>
 
+<!-- NUEVO: Ejercicio de completar (tipo diferente) -->
 <div class="exercise">
-<p>📐 Ejercicio 3: ¿Cuántos datos típicos tiene un cuadro de rotulación?</p>
+<p>🧩 Ejercicio 3 (completar): Completa los datos del cuadro de rotulación. Escribe el dato que falta:</p>
+<p style="font-size:.95rem;margin-bottom:.5rem">Proyecto: ______ | Título: Vista superior | Autor: David Antizar | Fecha: 2026-06-10 | Escala: 1:100</p>
+<input type="text" id="ex3" placeholder="¿Qué dato falta?" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
+<button onclick="checkExercise('ex3', 'título', this)">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+<!-- NUEVO: Ejercicio V/F visual -->
+<div class="exercise">
+<p>✅❌ Ejercicio 4 (Verdadero/Falso): El cuadro de rotulación solo es necesario en planos A0.</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false">2</button>
-<button class="quiz-btn" onclick="checkAnswer(this, true)">8</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">5</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">10</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Verdadero</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Falso — es necesario en TODOS los formatos</button>
 </div>
 <p class="feedback"></p>
 </div>
 
+<!-- NUEVO: Ejercicio de ordenar -->
 <div class="exercise">
-<p>📐 Ejercicio 4: ¿Por qué es importante el cuadro de rotulación?</p>
+<p>🔢 Ejercicio 5 (ordenar): ¿Cuál es el primer paso para completar un cuadro de rotulación?</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Porque sin él el dibujo no tiene valor</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">No es importante</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Solo es decorativo</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Solo es para firmas</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Identificar el formato de papel</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Escribir el autor</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Poner la fecha</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Verificar la escala</button>
 </div>
-<p class="feedback"></p>
-</div>
-
-<div class="exercise">
-<p>📐 Ejercicio 4: ¿Cuántos bloques tiene el curso de dibujo técnico?</p>
-<input type="text" id="ex5" placeholder="Número" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
-<button onclick="checkExercise('ex5', '9', this)">Comprobar</button>
 <p class="feedback"></p>
 </div>
 
@@ -212,6 +344,26 @@ Has completado el Bloque 1: Normalización. Ahora dominas formatos, líneas, esc
 </main>
 <footer class="footer">Hecho con ❤️ por David Antizar</footer>
 <script>
+function showFieldInfo(field) {
+  var info = {
+    proyecto: '📁 Nombre del proyecto — qué se está diseñando',
+    titulo: '📝 Título del dibujo — qué vista se muestra',
+    escala: '🔍 Escala — relación entre dibujo y realidad (1:100)',
+    autor: '✍️ Nombre del autor — responsable del dibujo',
+    fecha: '📅 Fecha — cuándo se creó/modificó el dibujo',
+    formato: '📄 Formato — tamaño del papel (A3, A4...)',
+    norma: '📏 Norma — norma de ejecución (UNE, ISO...)',
+    hoja: '🔢 Nº Hoja — número de hoja dentro del proyecto'
+  };
+  document.getElementById('fieldInfo').textContent = info[field] || 'Campo desconocido';
+  // Highlight effect
+  var fields = document.querySelectorAll('.rotul-field');
+  fields.forEach(function(f) { f.classList.remove('highlight'); });
+  var target = document.querySelector('.rotul-field[data-field="'+field+'"]');
+  if(target) target.classList.add('highlight');
+  setTimeout(function(){ if(target) target.classList.remove('highlight'); }, 2000);
+}
+
 function checkAnswer(btn, correct) {
   var parent = btn.parentElement;
   parent.querySelectorAll('button').forEach(function(b) {
@@ -243,7 +395,7 @@ function checkExercise(id, correct, btn) {
   var userVal = input.value.trim().toLowerCase();
   var correctVal = correct.toLowerCase();
   if(userVal === correctVal) {
-    feedback.textContent = '✅ ¡Correcto! ' + correct;
+    feedback.textContent = '✅ ¡Correcto! El dato que faltaba era "' + correct + '"';
     feedback.className = 'feedback correct';
     input.style.borderColor = 'var(--verde)';
   } else {
