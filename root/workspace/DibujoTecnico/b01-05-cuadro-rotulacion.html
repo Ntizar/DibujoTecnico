@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📋 S01.5: Cuadro de rotulación — Dibujo Técnico</title>
+<style>
+:root{--azul:#2563eb;--naranja:#f97316;--verde:#10b981;--rojo:#ef4444;--fondo:#fff;--texto:#1e293b;--gris:#94a3b8;--azul-claro:#eff6ff;--naranja-claro:#fff7ed;--verde-claro:#ecfdf5;--rojo-claro:#fef2f2;--pura-claro:#faf5ff;--pura:#a855f7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-gradient(135deg,#f8faff 0%,#fffaf5 100%);color:var(--texto);line-height:1.7}
+.header{background:linear-gradient(135deg,var(--azul),#1d4ed8);color:#fff;padding:2rem 1.5rem;text-align:center}
+.header h1{font-size:1.8rem;margin-bottom:.5rem}
+.header p{opacity:.9;font-size:1rem}
+.progress-bar{height:4px;background:rgba(255,255,255,.3);border-radius:2px;margin-top:1rem;overflow:hidden}
+.progress-fill{height:100%;background:#fff;border-radius:2px;width:0%;transition:width .3s}
+.container{max-width:900px;margin:0 auto;padding:1.5rem}
+.chapter{margin-bottom:2.5rem}
+.chapter-title{font-size:1.4rem;color:var(--azul);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:2px solid var(--azul-claro)}
+.box{padding:1rem 1.2rem;border-radius:10px;margin:1rem 0;border-left:4px solid;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.box-teoria{background:var(--azul-claro);border-color:var(--azul)}
+.box-ejemplo{background:var(--naranja-claro);border-color:var(--naranja)}
+.box-error{background:var(--rojo-claro);border-color:var(--rojo)}
+.box-idea{background:var(--pura-claro);border-color:var(--pura)}
+.box-success{background:var(--verde-claro);border-color:var(--verde)}
+.box strong{display:block;margin-bottom:.3rem}
+.svg-container{background:#f8fafc;border-radius:12px;padding:1.5rem;margin:1.5rem 0;text-align:center;border:2px solid #e2e8f0}
+.svg-container svg{max-width:100%;height:auto}
+.svg-container svg text{font-family:Inter,system-ui,sans-serif}
+.interactive{background:#f1f5f9;border-radius:12px;padding:1.5rem;margin:1.5rem 0}
+.interactive h3{color:var(--azul);margin-bottom:1rem;font-size:1.1rem}
+.interactive button{background:var(--azul);color:#fff;border:none;padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.95rem;margin:.3rem}
+.interactive button:hover{background:#1d4ed8}
+.result{margin-top:.8rem;padding:.8rem;border-radius:6px;font-weight:600;min-height:2rem}
+.result.ok{background:var(--verde-claro);color:#065f46}
+.result.fail{background:var(--rojo-claro);color:#991b1b}
+.exercises{margin:1.5rem 0}
+.exercise{background:#f1f5f9;border-radius:8px;padding:1rem;margin:.8rem 0}
+.exercise p{font-weight:600;margin-bottom:.5rem}
+.quiz-options{display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0}
+.quiz-btn{padding:.6rem 1.5rem;border-radius:8px;border:2px solid var(--azul);background:#fff;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all .2s}
+.quiz-btn:hover{background:var(--azul-claro)}
+.quiz-btn.correct{background:var(--verde);color:#fff;border-color:var(--verde)}
+.quiz-btn.wrong{background:var(--rojo);color:#fff;border-color:var(--rojo)}
+.summary{background:var(--azul-claro);border-radius:12px;padding:1.5rem;margin:2rem 0}
+.summary h3{color:var(--azul);margin-bottom:.8rem}
+.summary ul{list-style:none;padding:0}
+.summary li{padding:.3rem 0;padding-left:1.5rem;position:relative}
+.summary li::before{content:"✓";color:var(--verde);font-weight:bold;position:absolute;left:0}
+.nav{display:flex;justify-content:space-between;margin:2rem 0;padding:1rem 0;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0}
+.nav a{color:var(--azul);text-decoration:none;font-weight:600;padding:.5rem 1rem;border-radius:6px}
+.nav a:hover{background:var(--azul-claro)}
+.nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
+.footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+</style>
+</head>
+<body>
+<header class="header">
+<h1>📋 S01.5: Cuadro de rotulación y pie de plano</h1>
+<p>Dibujo Técnico — Normalización</p>
+<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+</header>
+<main class="container">
+
+<section class="chapter">
+<h2 class="chapter-title">🎯 ¿Qué vamos a aprender?</h2>
+<div class="box box-idea">
+<strong>💡 Idea clave</strong>
+El cuadro de rotulación es el "DNI" del plano. Contiene toda la información necesaria para identificar quién hizo el plano, qué representa, en qué escala y cuándo. Sin él, un plano es como un documento sin firma.
+</div>
+<p>En esta sesión aprenderás a:</p>
+<ul style="margin:.8rem 0 1rem 1.5rem">
+<li>Conocer la estructura del cuadro de rotulación</li>
+<li>Saber qué datos son obligatorios</li>
+<li>Entender el pie de plano y su función</li>
+<li>Aplicar las normas de rotulación en el marco del plano</li>
+</ul>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">1️⃣ Estructura del cuadro de rotulación</h2>
+<div class="box box-teoria">
+<strong>📖 Teoría</strong>
+El cuadro de rotulación se sitúa en el <strong>borde inferior derecho</strong> del plano. Contiene:<br><br>
+<strong>🔹 Datos obligatorios:</strong><br>
+• Nombre de la empresa o titular<br>
+• Título o descripción del plano<br>
+• Número o código del plano<br>
+• Escala<br>
+• Nombre del dibujante/autor<br>
+• Fecha de elaboración<br>
+• Símbolo de proyección (1º o 3º diedro)<br>
+• País o normativa de referencia<br><br>
+<strong>🔹 Datos opcionales:</strong><br>
+• Revisión o versión del plano<br>
+• Nombre del revisor<br>
+• Estado (boceto, definitivo, aprobado)<br>
+• Notas adicionales<br><br>
+<strong>🔹 Pie de plano:</strong><br>
+Tabla de revisiones con fecha, descripción del cambio y firma.
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">2️⃣ Visualiza el cuadro de rotulación</h2>
+<div class="svg-container">
+<svg viewBox="0 0 600 350" xmlns="http://www.w3.org/2000/svg">
+<!-- Fondo -->
+<rect x="0" y="0" width="600" height="350" fill="#f8fafc" rx="8"/>
+<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Cuadro de rotulación en borde inferior derecho</text>
+<!-- Plano A4 -->
+<rect x="100" y="40" width="400" height="270" fill="#fff" stroke="#333" stroke-width="2"/>
+<text x="300" y="175" text-anchor="middle" font-size="16" fill="#94a3b8">Contenido del plano</text>
+<!-- Cuadro de rotulación -->
+<rect x="100" y="310" width="400" height="35" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="4"/>
+<text x="300" y="332" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600">EMPRESA | Pieza A | Esc. 1:1 | J. García | 10/06/2026 | ISO 128 | 1º diedro</text>
+<!-- Flecha -->
+<line x1="500" y1="200" x2="300" y2="310" stroke="#f97316" stroke-width="1.5" stroke-dasharray="4,4"/>
+<polygon points="300,310 295,300 305,300" fill="#f97316"/>
+<text x="510" y="250" font-size="11" fill="#f97316" font-weight="600">Cuadro de rotulación</text>
+<!-- Datos obligatorios -->
+<rect x="20" y="30" width="60" height="250" fill="#fff7ed" stroke="#f97316" stroke-width="1.5" rx="4"/>
+<text x="50" y="50" text-anchor="middle" font-size="10" fill="#f97316" font-weight="600">DATOS</text>
+<text x="50" y="70" text-anchor="middle" font-size="9" fill="#333">Empresa</text>
+<text x="50" y="88" text-anchor="middle" font-size="9" fill="#333">Título</text>
+<text x="50" y="106" text-anchor="middle" font-size="9" fill="#333">Nº plano</text>
+<text x="50" y="124" text-anchor="middle" font-size="9" fill="#333">Escala</text>
+<text x="50" y="142" text-anchor="middle" font-size="9" fill="#333">Dibujante</text>
+<text x="50" y="160" text-anchor="middle" font-size="9" fill="#333">Fecha</text>
+<text x="50" y="178" text-anchor="middle" font-size="9" fill="#333">Normativa</text>
+<text x="50" y="196" text-anchor="middle" font-size="9" fill="#333">Diedro</text>
+<!-- Símbolo de proyección -->
+<rect x="510" y="30" width="70" height="60" fill="#faf5ff" stroke="#a855f7" stroke-width="1.5" rx="4"/>
+<text x="545" y="50" text-anchor="middle" font-size="10" fill="#a855f7" font-weight="600">Símbolo</text>
+<!-- Cono de proyección simplificado -->
+<polygon points="545,55 530,80 560,80" fill="none" stroke="#a855f7" stroke-width="1.5"/>
+<text x="545" y="95" text-anchor="middle" font-size="9" fill="#a855f7">1º diedro</text>
+</svg>
+</div>
+<div class="interactive">
+<h3>🧠 ¿Qué pasaría si...?</h3>
+<p style="margin-bottom:1rem">Imagina que un plano no tiene cuadro de rotulación. ¿Qué información nos faltaría?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">¿Quién lo hizo?</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">¿En qué escala está?</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">¿Qué normativa se usó?</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Ninguna, no es necesario</button>
+</div>
+<p class="feedback"></p>
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">📝 Ejercicios</h2>
+<div class="exercises">
+
+<div class="exercise">
+<p>📐 Ejercicio 1: ¿Dónde se sitúa el cuadro de rotulación?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">En la esquina superior izquierda</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">En el borde inferior derecho</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">En el centro del plano</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">En cualquier lugar</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 2: ¿Cuál de estos datos es OBLIGATORIO en el cuadro de rotulación?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Escala</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Color del plano</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Material de impresión</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Tamaño del monitor</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 3: ¿Qué indica el símbolo de proyección?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">El color del plano</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Si se usa el 1º o 3º diedro</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">La escala del plano</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">El tipo de papel</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 4: Verdadero o Falso — El pie de plano contiene la tabla de revisiones.</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Verdadero</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Falso</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 5: ¿Cuántos datos obligatorios tiene el cuadro de rotulación como mínimo?</p>
+<input type="text" id="ex5" placeholder="Tu respuesta" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
+<button onclick="checkExercise('ex5', '8', this)">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+</div>
+</section>
+
+<div class="box box-error">
+<strong>⚠️ Error común</strong>
+Olvidar el símbolo de proyección. Es obligatorio en TODO plano técnico. Sin él, no se sabe si se usa el método europeo (1º diedro) o americano (3º diedro).
+</div>
+
+<div class="box box-idea">
+<strong>🔗 Conexión</strong>
+Cada vez que veas un plano en internet o en un libro, fíjate en el cuadro de rotulación. Ahí está toda la información: quién lo hizo, cuándo, en qué escala y con qué normativa. ¡Es el DNI del plano!
+</div>
+
+<div class="summary">
+<h3>📋 Resumen de lo aprendido</h3>
+<ul>
+<li>El cuadro de rotulación va en el borde inferior derecho</li>
+<li>Contiene: empresa, título, escala, autor, fecha, normativa, diedro</li>
+<li>El pie de plano contiene la tabla de revisiones</li>
+<li>El símbolo de proyección es obligatorio</li>
+<li>¡Ya dominas el cuadro de rotulación! 🎉</li>
+</ul>
+</div>
+
+<div class="nav">
+<a href="b01-04-rotulacion.html">← Anterior</a>
+<a href="b02-01-proyeccion-ortogonal.html">Siguiente →</a>
+</div>
+
+</main>
+<footer class="footer">Hecho con ❤️ por David Antizar</footer>
+<script>
+function checkAnswer(btn, correct) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) {
+    b.disabled = true; b.classList.remove('correct','wrong');
+  });
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  var feedback = parent.nextElementSibling;
+  if(feedback && feedback.classList.contains('feedback')) {
+    if(correct) {
+      feedback.textContent = '✅ ¡Correcto! ¡Muy bien!';
+      feedback.className = 'feedback correct';
+    } else {
+      feedback.textContent = '❌ ¡Intenta de nuevo!';
+      feedback.className = 'feedback incorrect';
+      setTimeout(function() {
+        parent.querySelectorAll('button').forEach(function(b) {
+          b.disabled = false; b.classList.remove('correct','wrong');
+        });
+        feedback.textContent = '';
+        feedback.className = 'feedback';
+      }, 1500);
+    }
+  }
+}
+
+function checkExercise(id, correct, btn) {
+  var input = document.getElementById(id);
+  var feedback = input.parentElement.nextElementSibling;
+  var userVal = input.value.trim().replace(',', '.');
+  var correctVal = correct.toString().replace(',', '.');
+  if(userVal === correctVal) {
+    feedback.textContent = '✅ ¡Correcto! ' + correct;
+    feedback.className = 'feedback correct';
+    input.style.borderColor = 'var(--verde)';
+  } else {
+    feedback.textContent = '❌ Respuesta correcta: ' + correct;
+    feedback.className = 'feedback incorrect';
+    input.style.borderColor = 'var(--rojo)';
+  }
+}
+
+window.onscroll = function(){
+  var h = document.documentElement;
+  var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
+  document.getElementById('progress').style.width = p+'%';
+};
+</script>
+</body>
+</html>
