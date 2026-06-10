@@ -118,28 +118,69 @@ Abatir 4 vértices → unir → cuadrado en VM
 
 <section class="chapter">
 <h2 class="chapter-title">2️⃣ Visualiza el abatimiento</h2>
-<div class="svg-container">
-<svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
-<!-- Fondo -->
-<rect x="0" y="0" width="600" height="300" fill="#f8fafc" rx="8"/>
-<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Abatimiento: de oblicuo a VM</text>
-<!-- Antes -->
-<text x="150" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">ANTES</text>
-<line x1="50" y1="150" x2="250" y2="150" stroke="#333" stroke-width="2"/>
-<text x="260" y="154" font-size="10" fill="#333">LT</text>
-<polygon points="80,80 200,80 140,140" fill="none" stroke="#2563eb" stroke-width="2"/>
-<text x="140" y="180" text-anchor="middle" font-size="10" fill="#64748b">No es VM</text>
+<div class="step-indicator">
+<div class="step-dot active" id="ab1" style="background:var(--azul)" onclick="showAbatPaso(1)"></div>
+<div class="step-dot" id="ab2" style="background:var(--naranja)" onclick="showAbatPaso(2)"></div>
+<div class="step-dot" id="ab3" style="background:var(--verde)" onclick="showAbatPaso(3)"></div>
+</div>
+<div class="svg-container" style="cursor:pointer">
+<svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg">
+<!-- Paso 1: Antes -->
+<g id="abat1" onclick="showAbatPaso(1)">
+<rect x="10" y="10" width="580" height="260" fill="#eff6ff" rx="8" stroke="#2563eb" stroke-width="1.5"/>
+<text x="300" y="35" text-anchor="middle" font-size="13" fill="#2563eb" font-weight="600">PASO 1: Plano oblicuo (antes de abatir)</text>
+<!-- Línea de tierra -->
+<line x1="60" y1="160" x2="260" y2="160" stroke="#334155" stroke-width="2.5"/>
+<text x="270" y="164" font-size="10" fill="#334155">LT</text>
+<!-- Plano oblicuo (no VM) -->
+<polygon points="100,80 200,80 140,150" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<text x="150" y="120" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="600">Triángulo</text>
+<!-- Triángulo deformado -->
+<polygon points="110,90 190,90 150,140" fill="#fef3c7" stroke="#f97316" stroke-width="2" stroke-dasharray="4,2"/>
+<text x="150" y="175" text-anchor="middle" font-size="10" fill="#f97316" font-weight="600">No es VM</text>
 <!-- Flecha -->
-<text x="300" y="130" text-anchor="middle" font-size="24" fill="#94a3b8">→</text>
-<!-- Después -->
-<text x="450" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#10b981">DESPUÉS (abatido)</text>
-<line x1="350" y1="150" x2="550" y2="150" stroke="#10b981" stroke-width="2"/>
-<text x="560" y="154" font-size="10" fill="#10b981">LT' = α₁</text>
-<polygon points="380,150 500,150 440,220" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
-<text x="440" y="240" text-anchor="middle" font-size="10" fill="#64748b">VM ✓</text>
-<!-- Leyenda -->
-<rect x="20" y="260" width="560" height="30" fill="#ecfdf5" rx="6"/>
-<text x="300" y="280" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">Abatir = girar alrededor de la traza hasta que el plano quede paralelo al PH</text>
+<text x="300" y="130" text-anchor="middle" font-size="28" fill="#94a3b8">→</text>
+<!-- Info -->
+<text x="340" y="100" font-size="11" fill="#2563eb" font-weight="600">¿Problema?</text>
+<text x="340" y="120" font-size="10" fill="#334155">La forma está deformada</text>
+<text x="340" y="135" font-size="10" fill="#334155">porque el plano es oblicuo.</text>
+<text x="340" y="155" font-size="9" fill="#94a3b8">Click para ver Paso 2 →</text>
+</g>
+<!-- Paso 2: Abatir -->
+<g id="abat2" style="display:none" onclick="showAbatPaso(2)">
+<rect x="10" y="10" width="580" height="260" fill="#fff7ed" rx="8" stroke="#f97316" stroke-width="1.5"/>
+<text x="300" y="35" text-anchor="middle" font-size="13" fill="#f97316" font-weight="600">PASO 2: Abatir (girar)</text>
+<!-- Línea de tierra = traza abatida -->
+<line x1="60" y1="160" x2="260" y2="160" stroke="#f97316" stroke-width="3"/>
+<text x="270" y="164" font-size="10" fill="#f97316">α₁ (traza)</text>
+<!-- Triángulo abatido (VM) -->
+<polygon points="100,160 200,160 150,90" fill="#ecfdf5" stroke="#10b981" stroke-width="2.5"/>
+<text x="150" y="140" text-anchor="middle" font-size="10" fill="#10b981" font-weight="600">Triángulo VM ✓</text>
+<!-- Arco de giro -->
+<path d="M 110,90 A 50,50 0 0,0 100,160" fill="none" stroke="#a855f7" stroke-width="2" stroke-dasharray="4,2"/>
+<text x="70" y="125" font-size="9" fill="#a855f7">Giro</text>
+<!-- Info -->
+<text x="320" y="100" font-size="11" fill="#f97316" font-weight="600">Regla clave:</text>
+<text x="320" y="120" font-size="10" fill="#334155">El punto gira alrededor</text>
+<text x="320" y="135" font-size="10" fill="#334155">de la TRAZA del plano.</text>
+<text x="320" y="155" font-size="9" fill="#94a3b8">Click para ver Paso 3 →</text>
+</g>
+<!-- Paso 3: Comparación -->
+<g id="abat3" style="display:none">
+<rect x="10" y="10" width="280" height="260" fill="#fef2f2" rx="8" stroke="#ef4444" stroke-width="1.5"/>
+<text x="150" y="35" text-anchor="middle" font-size="12" fill="#ef4444" font-weight="600">❌ SIN ABATIR</text>
+<line x1="60" y1="160" x2="240" y2="160" stroke="#334155" stroke-width="2"/>
+<polygon points="80,80 200,80 140,150" fill="none" stroke="#2563eb" stroke-width="2"/>
+<text x="140" y="120" text-anchor="middle" font-size="9" fill="#ef4444">Deformado</text>
+<text x="150" y="240" text-anchor="middle" font-size="9" fill="#ef4444">Plano oblicuo → forma falsa</text>
+
+<rect x="310" y="10" width="280" height="260" fill="#ecfdf5" rx="8" stroke="#10b981" stroke-width="1.5"/>
+<text x="450" y="35" text-anchor="middle" font-size="12" fill="#10b981" font-weight="600">✅ ABATIDO</text>
+<line x1="350" y1="160" x2="530" y2="160" stroke="#10b981" stroke-width="3"/>
+<polygon points="360,160 480,160 420,90" fill="#ecfdf5" stroke="#10b981" stroke-width="2.5"/>
+<text x="420" y="140" text-anchor="middle" font-size="9" fill="#10b981">Forma real ✓</text>
+<text x="450" y="240" text-anchor="middle" font-size="9" fill="#10b981">Plano abatido → VM real</text>
+</g>
 </svg>
 </div>
 </section>
@@ -152,9 +193,9 @@ Abatir 4 vértices → unir → cuadrado en VM
 <p>📐 Ejercicio 1: ¿Qué es el abatimiento?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Girar un plano hasta que quede paralelo al PH</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Cortar un plano</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Medir un plano</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">No existe</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Cortar un plano</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Medir un plano</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">No existe</button>
 </div>
 <p class="feedback"></p>
 </div>
@@ -235,6 +276,16 @@ El abatimiento es la alternativa al giro y al cambio de plano. Los 3 métodos si
 </main>
 <footer class="footer">Hecho con ❤️ por David Antizar</footer>
 <script>
+function showAbatPaso(n) {
+  document.getElementById('abat1').style.display = n===1 ? '' : 'none';
+  document.getElementById('abat2').style.display = n===2 ? '' : 'none';
+  document.getElementById('abat3').style.display = n===3 ? '' : 'none';
+  for(var i=1;i<=3;i++){
+    var d=document.getElementById('ab'+i);
+    if(d) d.classList.toggle('active', i===n);
+  }
+}
+
 function checkAnswer(btn, correct) {
   var parent = btn.parentElement;
   parent.querySelectorAll('button').forEach(function(b) {

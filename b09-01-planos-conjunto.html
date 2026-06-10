@@ -125,27 +125,76 @@ Plano de conjunto de un soporte:<br>
 
 <section class="chapter">
 <h2 class="chapter-title">2️⃣ Visualiza el plano de conjunto</h2>
-<div class="svg-container">
-<svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
-<!-- Fondo -->
-<rect x="0" y="0" width="600" height="300" fill="#f8fafc" rx="8"/>
-<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Plano de conjunto</text>
-<!-- Piezas ensambladas -->
-<rect x="100" y="60" width="400" height="150" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
-<!-- Pieza 1 -->
-<rect x="120" y="80" width="100" height="100" fill="#fff7ed" stroke="#f97316" stroke-width="1.5"/>
-<text x="170" y="135" text-anchor="middle" font-size="10" fill="#f97316" font-weight="600">1</text>
-<!-- Pieza 2 -->
-<rect x="240" y="80" width="100" height="100" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
-<text x="290" y="135" text-anchor="middle" font-size="10" fill="#10b981" font-weight="600">2</text>
-<!-- Pieza 3 -->
-<rect x="360" y="80" width="100" height="100" fill="#faf5ff" stroke="#a855f7" stroke-width="1.5"/>
-<text x="410" y="135" text-anchor="middle" font-size="10" fill="#a855f7" font-weight="600">3</text>
-<!-- Lista -->
-<rect x="20" y="230" width="560" height="55" fill="#ecfdf5" rx="6"/>
-<text x="300" y="250" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">Lista de piezas: Nº | Nombre | Material | Cantidad | Observaciones</text>
-<text x="300" y="268" text-anchor="middle" font-size="10" fill="#64748b">Cada pieza se numera con un círculo y se relaciona con la lista</text>
-<text x="300" y="282" text-anchor="middle" font-size="10" fill="#2563eb">Cotización de montaje: distancias entre piezas, tolerancias</text>
+<div class="step-indicator">
+<div class="step-dot active" id="pc1" style="background:var(--azul)" onclick="showPCPaso(1)"></div>
+<div class="step-dot" id="pc2" style="background:var(--naranja)" onclick="showPCPaso(2)"></div>
+<div class="step-dot" id="pc3" style="background:var(--verde)" onclick="showPCPaso(3)"></div>
+</div>
+<div class="svg-container" style="cursor:pointer">
+<svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg">
+<!-- Paso 1: Piezas ensambladas -->
+<g id="pc1g" onclick="showPCPaso(1)">
+<rect x="10" y="10" width="580" height="260" fill="#eff6ff" rx="8" stroke="#2563eb" stroke-width="1.5"/>
+<text x="300" y="35" text-anchor="middle" font-size="13" fill="#2563eb" font-weight="600">PASO 1: Piezas ensambladas</text>
+<!-- Máquina simplificada -->
+<rect x="80" y="60" width="200" height="120" fill="#fff7ed" stroke="#f97316" stroke-width="2.5" rx="4"/>
+<text x="180" y="125" text-anchor="middle" font-size="11" fill="#f97316" font-weight="600">Mordaza fija</text>
+<circle cx="180" cy="170" r="8" fill="#2563eb"/><text x="180" y="174" text-anchor="middle" font-size="8" fill="#fff" font-weight="bold">1</text>
+<rect x="290" y="60" width="120" height="120" fill="#ecfdf5" stroke="#10b981" stroke-width="2.5" rx="4"/>
+<text x="350" y="125" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">Tornillo</text>
+<circle cx="350" cy="170" r="8" fill="#10b981"/><text x="350" y="174" text-anchor="middle" font-size="8" fill="#fff" font-weight="bold">2</text>
+<rect x="420" y="60" width="120" height="120" fill="#faf5ff" stroke="#a855f7" stroke-width="2.5" rx="4"/>
+<text x="480" y="125" text-anchor="middle" font-size="11" fill="#a855f7" font-weight="600">Mordaza móvil</text>
+<circle cx="480" cy="170" r="8" fill="#a855f7"/><text x="480" y="174" text-anchor="middle" font-size="8" fill="#fff" font-weight="bold">3</text>
+<!-- Baloncetes -->
+<line x1="180" y1="178" x2="180" y2="200" stroke="#334155" stroke-width="1"/>
+<line x1="350" y1="178" x2="350" y2="200" stroke="#334155" stroke-width="1"/>
+<line x1="480" y1="178" x2="480" y2="200" stroke="#334155" stroke-width="1"/>
+<text x="300" y="220" text-anchor="middle" font-size="10" fill="#64748b">Click para ver Paso 2 →</text>
+</g>
+<!-- Paso 2: Lista de piezas -->
+<g id="pc2g" style="display:none" onclick="showPCPaso(2)">
+<rect x="10" y="10" width="580" height="260" fill="#fff7ed" rx="8" stroke="#f97316" stroke-width="1.5"/>
+<text x="300" y="35" text-anchor="middle" font-size="13" fill="#f97316" font-weight="600">PASO 2: Lista de piezas</text>
+<!-- Tabla -->
+<rect x="40" y="50" width="520" height="180" fill="#fff" stroke="#e2e8f0" stroke-width="1.5" rx="4"/>
+<!-- Header -->
+<rect x="40" y="50" width="520" height="30" fill="#eff6ff" rx="4"/>
+<line x1="40" y1="80" x2="560" y2="80" stroke="#e2e8f0" stroke-width="1"/>
+<text x="70" y="70" font-size="9" fill="#2563eb" font-weight="600">Nº</text>
+<text x="130" y="70" font-size="9" fill="#2563eb" font-weight="600">Nombre</text>
+<text x="280" y="70" font-size="9" fill="#2563eb" font-weight="600">Material</text>
+<text x="400" y="70" font-size="9" fill="#2563eb" font-weight="600">Cant.</text>
+<text x="460" y="70" font-size="9" fill="#2563eb" font-weight="600">Obs.</text>
+<!-- Filas -->
+<text x="70" y="100" font-size="9" fill="#334155">1</text><text x="130" y="100" font-size="9" fill="#334155">Mordaza fija</text><text x="280" y="100" font-size="9" fill="#334155">Acero</text><text x="400" y="100" font-size="9" fill="#334155">1</text>
+<text x="70" y="125" font-size="9" fill="#334155">2</text><text x="130" y="125" font-size="9" fill="#334155">Tornillo</text><text x="280" y="125" font-size="9" fill="#334155">Acero</text><text x="400" y="125" font-size="9" fill="#334155">1</text>
+<text x="70" y="150" font-size="9" fill="#334155">3</text><text x="130" y="150" font-size="9" fill="#334155">Mordaza móvil</text><text x="280" y="150" font-size="9" fill="#334155">Aluminio</text><text x="400" y="150" font-size="9" fill="#334155">1</text>
+<text x="70" y="175" font-size="9" fill="#334155">4</text><text x="130" y="175" font-size="9" fill="#334155">Placa base</text><text x="280" y="175" font-size="9" fill="#334155">Hierro</text><text x="400" y="175" font-size="9" fill="#334155">1</text>
+<text x="70" y="200" font-size="9" fill="#334155">5</text><text x="130" y="200" font-size="9" fill="#334155">Tuerca</text><text x="280" y="200" font-size="9" fill="#334155">Acero</text><text x="400" y="200" font-size="9" fill="#334155">1</text>
+<text x="300" y="250" text-anchor="middle" font-size="10" fill="#64748b">Click para ver Paso 3 →</text>
+</g>
+<!-- Paso 3: Cotización -->
+<g id="pc3g" style="display:none">
+<rect x="10" y="10" width="280" height="260" fill="#fef2f2" rx="8" stroke="#ef4444" stroke-width="1.5"/>
+<text x="140" y="35" text-anchor="middle" font-size="12" fill="#ef4444" font-weight="600">❌ COTAS FABRICACIÓN</text>
+<rect x="60" y="60" width="160" height="100" fill="#fff" stroke="#2563eb" stroke-width="2"/>
+<text x="140" y="115" text-anchor="middle" font-size="9" fill="#ef4444">Cotas de fabricación</text>
+<text x="140" y="130" text-anchor="middle" font-size="8" fill="#ef4444">❌ NO VA AQUÍ</text>
+<line x1="60" y1="165" x2="220" y2="165" stroke="#ef4444" stroke-width="2"/>
+<text x="140" y="240" text-anchor="middle" font-size="9" fill="#ef4444">Plano de conjunto solo</text>
+<text x="140" y="253" text-anchor="middle" font-size="9" fill="#ef4444">tiene cotas de MONTAJE</text>
+
+<rect x="310" y="10" width="280" height="260" fill="#ecfdf5" rx="8" stroke="#10b981" stroke-width="1.5"/>
+<text x="450" y="35" text-anchor="middle" font-size="12" fill="#10b981" font-weight="600">✅ COTAS MONTAJE</text>
+<rect x="360" y="60" width="160" height="100" fill="#fff" stroke="#2563eb" stroke-width="2"/>
+<rect x="360" y="60" width="70" height="100" fill="#fff7ed" stroke="#f97316" stroke-width="1.5"/>
+<rect x="430" y="60" width="90" height="100" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
+<text x="440" y="115" text-anchor="middle" font-size="8" fill="#334155">Distancia</text>
+<line x1="430" y1="50" x2="430" y2="60" stroke="#f97316" stroke-width="1.5"/>
+<text x="440" y="240" text-anchor="middle" font-size="9" fill="#10b981">Cotas de montaje entre</text>
+<text x="440" y="253" text-anchor="middle" font-size="9" fill="#10b981">piezas ensambladas</text>
+</g>
 </svg>
 </div>
 </section>
@@ -158,9 +207,9 @@ Plano de conjunto de un soporte:<br>
 <p>📐 Ejercicio 1: ¿Qué es un plano de conjunto?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Muestra todas las piezas ensambladas de una máquina</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Muestra una sola pieza</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Muestra el exterior de la máquina</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">No existe</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Muestra una sola pieza</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Muestra el exterior de la máquina</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">No existe</button>
 </div>
 <p class="feedback"></p>
 </div>
@@ -208,7 +257,7 @@ Plano de conjunto de un soporte:<br>
 </div>
 </section>
 
-<div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ SIN NÚMERO</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="100" y="70" text-anchor="middle" font-size="9" fill="#ef4444">Sin nº pieza ❌</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ CON BALONCETE</strong><svg viewBox="0 0 200 140" width="180" style="margin:180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><line x1="100" y1="40" x2="140" y2="20" stroke="#2563eb" stroke-width="1"/><text x="140" y="23" text-anchor="middle" font-size="9" fill="#2563eb">3</text><text x="100" y="120" text-anchor="middle" font-size="9" fill="#10b981">Baloncete ✓</text></svg></div></div>
+<div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ SIN NÚMERO</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="100" y="70" text-anchor="middle" font-size="9" fill="#ef4444">Sin nº pieza ❌</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ CON BALONCETE</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><line x1="100" y1="40" x2="140" y2="20" stroke="#2563eb" stroke-width="1"/><text x="140" y="23" text-anchor="middle" font-size="9" fill="#2563eb">3</text><text x="100" y="120" text-anchor="middle" font-size="9" fill="#10b981">Baloncete ✓</text></svg></div></div>
 
 <div class="box box-error">
 <strong>⚠️ Error clásico</strong>
@@ -241,6 +290,16 @@ El plano de conjunto es el último paso: primero se hacen los planos de cada pie
 </main>
 <footer class="footer">Hecho con ❤️ por David Antizar</footer>
 <script>
+function showPCPaso(n) {
+  document.getElementById('pc1g').style.display = n===1 ? '' : 'none';
+  document.getElementById('pc2g').style.display = n===2 ? '' : 'none';
+  document.getElementById('pc3g').style.display = n===3 ? '' : 'none';
+  for(var i=1;i<=3;i++){
+    var d=document.getElementById('pc'+i);
+    if(d) d.classList.toggle('active', i===n);
+  }
+}
+
 function checkAnswer(btn, correct) {
   var parent = btn.parentElement;
   parent.querySelectorAll('button').forEach(function(b) {

@@ -120,39 +120,82 @@ Vista auxiliar = se coloca perpendicular a la zona doblada.
 
 <section class="chapter">
 <h2 class="chapter-title">2️⃣ Visualiza vista auxiliar y parcial</h2>
-<div class="svg-container">
-<svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
-<!-- Fondo -->
-<rect x="0" y="0" width="600" height="300" fill="#f8fafc" rx="8"/>
-<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Vista auxiliar y vista parcial</text>
-<!-- Vista auxiliar -->
-<text x="150" y="55" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">VISTA AUXILIAR</text>
+<div class="step-indicator">
+<div class="step-dot active" id="sa1" style="background:var(--azul)" onclick="showAuxPaso(1)"></div>
+<div class="step-dot" id="sa2" style="background:var(--naranja)" onclick="showAuxPaso(2)"></div>
+<div class="step-dot" id="sa3" style="background:var(--verde)" onclick="showAuxPaso(3)"></div>
+</div>
+<div class="svg-container" style="cursor:pointer">
+<svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg">
+<!-- Paso 1: Vista auxiliar -->
+<g id="saux1" onclick="showAuxPaso(1)">
+<rect x="10" y="10" width="580" height="260" fill="#eff6ff" rx="8" stroke="#2563eb" stroke-width="1.5"/>
+<text x="300" y="35" text-anchor="middle" font-size="13" fill="#2563eb" font-weight="600">PASO 1: Colocar vista auxiliar</text>
 <!-- Pieza con cara inclinada -->
-<polygon points="80,80 140,80 140,140 100,140" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
-<line x1="100" y1="140" x2="140" y2="140" stroke="#f97316" stroke-width="2"/>
-<text x="120" y="160" text-anchor="middle" font-size="9" fill="#f97316">Cara inclinada</text>
-<!-- Flecha de proyección -->
-<line x1="140" y1="110" x2="180" y2="110" stroke="#a855f7" stroke-width="1.5" marker-end="url(#arrow)"/>
-<!-- Vista auxiliar -->
-<rect x="190" y="80" width="60" height="60" fill="#faf5ff" stroke="#a855f7" stroke-width="2" rx="4"/>
-<text x="220" y="115" text-anchor="middle" font-size="10" fill="#a855f7" font-weight="600">VM</text>
-<!-- Vista parcial -->
-<text x="450" y="55" text-anchor="middle" font-size="12" font-weight="bold" fill="#f97316">VISTA PARCIAL</text>
+<polygon points="100,180 200,180 200,120 160,120" fill="#fff" stroke="#2563eb" stroke-width="2.5"/>
+<text x="150" y="155" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="600">Pieza</text>
+<!-- Cara inclinada resaltada -->
+<polyline points="160,120 200,120" stroke="#f97316" stroke-width="3"/>
+<text x="180" y="110" text-anchor="middle" font-size="9" fill="#f97316" font-weight="600">Cara inclinada</text>
+<!-- Flecha perpendicular -->
+<line x1="200" y1="120" x2="280" y2="80" stroke="#a855f7" stroke-width="2" marker-end="url(#arrowPurple)"/>
+<defs><marker id="arrowPurple" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#a855f7"/></marker></defs>
+<!-- Vista auxiliar VM -->
+<rect x="280" y="50" width="80" height="60" fill="#faf5ff" stroke="#a855f7" stroke-width="2" rx="4"/>
+<text x="320" y="85" text-anchor="middle" font-size="11" fill="#a855f7" font-weight="600">VM ✓</text>
+<text x="320" y="120" text-anchor="middle" font-size="9" fill="#64748b">Paralela a la cara</text>
+<!-- Info -->
+<text x="420" y="80" font-size="11" fill="#2563eb" font-weight="600">Regla clave:</text>
+<text x="420" y="100" font-size="10" fill="#334155">El plano de proyección</text>
+<text x="420" y="115" font-size="10" fill="#334155">DEBE SER PARALELO</text>
+<text x="420" y="130" font-size="10" fill="#334155">a la cara inclinada.</text>
+<text x="420" y="155" font-size="9" fill="#94a3b8">Click para ver Paso 2 →</text>
+</g>
+<!-- Paso 2: Vista parcial -->
+<g id="saux2" style="display:none" onclick="showAuxPaso(2)">
+<rect x="10" y="10" width="580" height="260" fill="#fff7ed" rx="8" stroke="#f97316" stroke-width="1.5"/>
+<text x="300" y="35" text-anchor="middle" font-size="13" fill="#f97316" font-weight="600">PASO 2: Vista parcial</text>
 <!-- Pieza grande -->
-<rect x="370" y="70" width="160" height="100" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
-<text x="450" y="125" text-anchor="middle" font-size="10" fill="#f97316">Pieza grande</text>
+<rect x="100" y="60" width="200" height="140" fill="#fff" stroke="#f97316" stroke-width="2" rx="4"/>
+<text x="200" y="135" text-anchor="middle" font-size="10" fill="#f97316" font-weight="600">Pieza grande</text>
 <!-- Zona de interés -->
-<circle cx="450" cy="120" r="15" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
-<text x="450" y="124" text-anchor="middle" font-size="8" fill="#2563eb">Agujero</text>
-<!-- Línea ondulada -->
-<path d="M 370 170 Q 380 165, 390 170 Q 400 175, 410 170 Q 420 165, 430 170 Q 440 175, 450 170 Q 460 165, 470 170 Q 480 175, 490 170 Q 500 165, 510 170 Q 520 175, 530 170" fill="none" stroke="#f97316" stroke-width="1.5"/>
+<circle cx="200" cy="130" r="20" fill="#fef3c7" stroke="#f97316" stroke-width="2.5"/>
+<text x="200" y="134" text-anchor="middle" font-size="8" fill="#92400e">Agujero</text>
+<!-- Línea ondulada de corte -->
+<path d="M 100 200 Q 120 195, 140 200 Q 160 205, 180 200 Q 200 195, 220 200 Q 240 205, 260 200" fill="none" stroke="#f97316" stroke-width="2"/>
 <!-- Vista ampliada -->
-<circle cx="450" cy="210" r="25" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
-<text x="450" y="215" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="600">Detalle</text>
-<text x="450" y="250" text-anchor="middle" font-size="10" fill="#64748b">Límite: línea ondulada</text>
-<!-- Leyenda -->
-<rect x="20" y="270" width="560" height="25" fill="#ecfdf5" rx="4"/>
-<text x="300" y="287" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">Auxiliar = cara inclinada en VM | Parcial = solo zona de interés</text>
+<circle cx="450" cy="130" r="40" fill="#fff" stroke="#2563eb" stroke-width="2.5"/>
+<circle cx="450" cy="130" r="15" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="450" y="134" text-anchor="middle" font-size="8" fill="#2563eb">Detalle</text>
+<text x="450" y="185" text-anchor="middle" font-size="10" fill="#64748b">Línea ondulada = corte</text>
+<text x="450" y="205" text-anchor="middle" font-size="9" fill="#94a3b8">Click para ver Paso 3 →</text>
+<!-- Info -->
+<text x="50" y="240" font-size="11" fill="#f97316" font-weight="600">Regla clave:</text>
+<text x="50" y="255" font-size="10" fill="#334155">Solo se dibuja la zona</text>
+<text x="50" y="268" font-size="10" fill="#334155">de interés delimitada</text>
+<text x="50" y="281" font-size="10" fill="#334155">con línea ondulada.</text>
+</g>
+<!-- Paso 3: Comparación -->
+<g id="saux3" style="display:none">
+<rect x="10" y="10" width="280" height="260" fill="#fef2f2" rx="8" stroke="#ef4444" stroke-width="1.5"/>
+<text x="150" y="35" text-anchor="middle" font-size="12" fill="#ef4444" font-weight="600">❌ MAL</text>
+<polygon points="60,160 140,160 140,100 100,100" fill="#fff" stroke="#2563eb" stroke-width="2"/>
+<text x="100" y="135" text-anchor="middle" font-size="9" fill="#2563eb">Pieza</text>
+<line x1="140" y1="130" x2="220" y2="130" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,2"/>
+<text x="220" y="134" font-size="9" fill="#ef4444">❌ No paralelo</text>
+<rect x="210" y="100" width="50" height="40" fill="#fef2f2" stroke="#ef4444" stroke-width="1.5"/>
+<text x="235" y="124" text-anchor="middle" font-size="8" fill="#ef4444">Deformada</text>
+<text x="150" y="240" text-anchor="middle" font-size="9" fill="#ef4444">Plano NO paralelo → deformada</text>
+
+<rect x="310" y="10" width="280" height="260" fill="#ecfdf5" rx="8" stroke="#10b981" stroke-width="1.5"/>
+<text x="450" y="35" text-anchor="middle" font-size="12" fill="#10b981" font-weight="600">✅ BIEN</text>
+<polygon points="360,160 440,160 440,100 400,100" fill="#fff" stroke="#2563eb" stroke-width="2"/>
+<text x="400" y="135" text-anchor="middle" font-size="9" fill="#2563eb">Pieza</text>
+<line x1="440" y1="120" x2="510" y2="80" stroke="#10b981" stroke-width="2.5"/>
+<rect x="500" y="50" width="50" height="40" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+<text x="525" y="74" text-anchor="middle" font-size="8" fill="#10b981" font-weight="bold">VM ✓</text>
+<text x="450" y="240" text-anchor="middle" font-size="9" fill="#10b981">Plano PARALELO → VM</text>
+</g>
 </svg>
 </div>
 </section>
@@ -167,7 +210,7 @@ Vista auxiliar = se coloca perpendicular a la zona doblada.
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Para mostrar el interior de la pieza</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Para ver una cara inclinada en verdadera magnitud</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Para mostrar la pieza completa</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Para acotar la pieza</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Para acotar la pieza</button>
 </div>
 <p class="feedback"></p>
 </div>
@@ -177,7 +220,7 @@ Vista auxiliar = se coloca perpendicular a la zona doblada.
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Paralela a la cara inclinada</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Perpendicular a la cara inclinada</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">En cualquier dirección</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">En cualquier dirección</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Siempre vertical</button>
 </div>
 <p class="feedback"></p>
@@ -200,7 +243,7 @@ Vista auxiliar = se coloca perpendicular a la zona doblada.
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Línea ondulada o de rotura</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Línea continua gruesa</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Línea discontinua</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Línea de cota</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Línea de cota</button>
 </div>
 <p class="feedback"></p>
 </div>
@@ -276,6 +319,16 @@ Una chapa metálica doblada a 45° con un refuerzo de soldadura en la cara incli
 </main>
 <footer class="footer">Hecho con ❤️ por David Antizar</footer>
 <script>
+function showAuxPaso(n) {
+  document.getElementById('saux1').style.display = n===1 ? '' : 'none';
+  document.getElementById('saux2').style.display = n===2 ? '' : 'none';
+  document.getElementById('saux3').style.display = n===3 ? '' : 'none';
+  for(var i=1;i<=3;i++){
+    var d=document.getElementById('sa'+i);
+    if(d) d.classList.toggle('active', i===n);
+  }
+}
+
 function checkAnswer(btn, correct) {
   var parent = btn.parentElement;
   parent.querySelectorAll('button').forEach(function(b) {

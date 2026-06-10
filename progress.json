@@ -403,18 +403,27 @@
             "error_common",
             "css_coherence"
           ]
+        },
+        {
+          "date": "2026-06-10",
+          "description": "Segunda pasada: SVG paso a paso interactivo (3 pasos: auxiliar/parcial/comparación), step-dots animados, showAuxPaso(), 3 broken onclicks fixados, CSS step-indicator/step-dot verificados",
+          "dimensions_improved": [
+            "svg_interactive",
+            "text_explanation",
+            "css_coherence"
+          ]
         }
       ],
       "scores": {
-        "svg_interactive": 7,
+        "svg_interactive": 10,
         "exercises": 7,
-        "text_explanation": 7,
+        "text_explanation": 10,
         "real_world": 7,
         "error_common": 7,
-        "css_coherence": 7
+        "css_coherence": 10
       },
       "last_improved": "2026-06-10",
-      "improvement_count": 1
+      "improvement_count": 2
     },
     "b03-01-isometrica-ejes.html": {
       "status": "improved_2",
@@ -1004,18 +1013,27 @@
             "error_common",
             "css_coherence"
           ]
+        },
+        {
+          "date": "2026-06-10",
+          "description": "Segunda pasada: SVG paso a paso interactivo (3 pasos: antes/después/comparación), step-dots animados, showAbatPaso(), 3 broken onclicks fixados, CSS step-indicator/step-dot verificados",
+          "dimensions_improved": [
+            "svg_interactive",
+            "text_explanation",
+            "css_coherence"
+          ]
         }
       ],
       "scores": {
-        "svg_interactive": 7,
+        "svg_interactive": 10,
         "exercises": 7,
-        "text_explanation": 7,
+        "text_explanation": 10,
         "real_world": 7,
         "error_common": 7,
-        "css_coherence": 7
+        "css_coherence": 10
       },
       "last_improved": "2026-06-10",
-      "improvement_count": 1
+      "improvement_count": 2
     },
     "b09-01-planos-conjunto.html": {
       "status": "improved_1",
@@ -1033,18 +1051,27 @@
             "error_common",
             "css_coherence"
           ]
+        },
+        {
+          "date": "2026-06-10",
+          "description": "Segunda pasada: SVG paso a paso interactivo (3 pasos: conjunto/lista/cotas), step-dots animados, showPCPaso(), bug margin:180 fixado, 3 broken onclicks fixados, CSS verificado",
+          "dimensions_improved": [
+            "svg_interactive",
+            "text_explanation",
+            "css_coherence"
+          ]
         }
       ],
       "scores": {
-        "svg_interactive": 7,
+        "svg_interactive": 10,
         "exercises": 7,
-        "text_explanation": 7,
+        "text_explanation": 10,
         "real_world": 7,
         "error_common": 7,
-        "css_coherence": 7
+        "css_coherence": 10
       },
       "last_improved": "2026-06-10",
-      "improvement_count": 1
+      "improvement_count": 2
     },
     "b05-03-corte-escalonado.html": {
       "status": "improved_1",
