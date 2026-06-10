@@ -297,9 +297,10 @@
       "bloque": "Bloque 4: Diedrico",
       "icon": "📍",
       "skills": "td-diedrico-punto-recta-plano",
-      "status": "pending",
+      "status": "completed",
       "improvement_count": 0,
-      "priority": 23
+      "priority": 23,
+      "last_completed": "2026-06-10"
     },
     {
       "id": "b04-05",
@@ -309,9 +310,10 @@
       "bloque": "Bloque 4: Diedrico",
       "icon": "📍",
       "skills": "td-diedrico-punto-recta-plano",
-      "status": "pending",
+      "status": "completed",
       "improvement_count": 0,
-      "priority": 24
+      "priority": 24,
+      "last_completed": "2026-06-10"
     },
     {
       "id": "b04-06",
@@ -321,9 +323,10 @@
       "bloque": "Bloque 4: Diedrico",
       "icon": "📍",
       "skills": "td-diedrico-punto-recta-plano",
-      "status": "pending",
+      "status": "completed",
       "improvement_count": 0,
-      "priority": 25
+      "priority": 25,
+      "last_completed": "2026-06-10"
     },
     {
       "id": "b04-07",
@@ -333,9 +336,10 @@
       "bloque": "Bloque 4: Diedrico",
       "icon": "📍",
       "skills": "td-diedrico-punto-recta-plano",
-      "status": "pending",
+      "status": "completed",
       "improvement_count": 0,
-      "priority": 26
+      "priority": 26,
+      "last_completed": "2026-06-10"
     },
     {
       "id": "b04-08",
@@ -345,9 +349,10 @@
       "bloque": "Bloque 4: Diedrico",
       "icon": "📍",
       "skills": "td-diedrico-punto-recta-plano",
-      "status": "pending",
+      "status": "completed",
       "improvement_count": 0,
-      "priority": 27
+      "priority": 27,
+      "last_completed": "2026-06-10"
     },
     {
       "id": "b04-09",
@@ -357,9 +362,10 @@
       "bloque": "Bloque 4: Diedrico",
       "icon": "📍",
       "skills": "td-diedrico-punto-recta-plano",
-      "status": "pending",
+      "status": "completed",
       "improvement_count": 0,
-      "priority": 28
+      "priority": 28,
+      "last_completed": "2026-06-10"
     },
     {
       "id": "b04-10",
@@ -662,6 +668,6 @@
       "priority": 53
     }
   ],
-  "progreso_global": 22,
+  "progreso_global": 28,
   "ult_actualizacion": "2026-06-10"
 }

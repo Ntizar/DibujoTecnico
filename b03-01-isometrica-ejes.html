@@ -51,226 +51,357 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .nav a:hover{background:var(--azul-claro)}
 .nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+.vf-btn{padding:.5rem 1.5rem;border-radius:8px;border:2px solid;font-weight:600;cursor:pointer;font-size:1rem;margin:.3rem;transition:all .2s}
+.vf-true{border-color:var(--verde);color:var(--verde);background:#fff}
+.vf-true:hover,.vf-true.correct{background:var(--verde);color:#fff}
+.vf-false{border-color:var(--rojo);color:var(--rojo);background:#fff}
+.vf-false:hover,.vf-false.correct{background:var(--rojo);color:#fff}
+.fill-input{padding:.4rem .8rem;border:2px solid var(--azul);border-radius:6px;font-size:1rem;width:80px;text-align:center;margin:0 .3rem}
+.fill-input.correct{border-color:var(--verde);background:var(--verde-claro)}
+.fill-input.wrong{border-color:var(--rojo);background:var(--rojo-claro)}
+.highlight-box{background:linear-gradient(135deg,#fef3c7,#fde68a);border:2px solid #f59e0b;border-radius:10px;padding:1rem;margin:1rem 0}
+.highlight-box strong{color:#92400e}
 </style>
 </head>
 <body>
 <header class="header">
 <h1>📐 S03.1: Perspectiva isométrica: ejes</h1>
-<p>Dibujo Técnico — Perspectivas</p>
+<p>Dibujo Técnico — Perspectivas Axonométricas</p>
 <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
 </header>
 <main class="container">
-
 <section class="chapter">
 <h2 class="chapter-title">🎯 ¿Qué vamos a aprender?</h2>
-<div class="box box-idea">
-<strong>💡 Idea clave</strong>
-La perspectiva isométrica es la más usada en dibujo técnico. Los 3 ejes forman 120° entre sí. En papel, X e Y están a 30° de la horizontal y Z es vertical. ¡Y la reducción práctica es 1, no 0.82!
-</div>
+<div class="box box-idea"><strong>💡 Idea clave</strong>Los ejes isométricos forman 120° entre sí: Z vertical, X e Y a 30° de la horizontal. La reducción práctica es 1 (no 0,82).</div>
 <p>En esta sesión aprenderás a:</p>
-<ul style="margin:.8rem 0 1rem 1.5rem">
-<li>Identificar los 3 ejes isométricos</li>
-<li>Saber los ángulos correctos (30°, 30°, 90°)</li>
-<li>Distinguir entre reducción teórica (0.82) y práctica (1)</li>
-<li>Dibujar los ejes correctamente</li>
-</ul>
+<ul style="margin:.8rem 0 1rem 1.5rem"><li>Conocer los tres ejes isométricos y sus ángulos</li><li>Saber que la reducción práctica es 1</li><li>Distinguir entre reducción teórica (0,82) y práctica (1)</li><li>Dibujar correctamente los ejes en papel</li></ul>
 </section>
-
 <section class="chapter">
-<h2 class="chapter-title">1️⃣ Los ejes isométricos</h2>
-<div class="box box-teoria">
-<strong>📖 Teoría</strong>
-La perspectiva isométrica tiene <strong>3 ejes que forman 120° entre sí</strong>:<br><br>
-<strong>🔹 Eje Z:</strong> siempre VERTICAL<br>
-<strong>🔹 Eje X:</strong> 30° hacia la izquierda de la horizontal<br>
-<strong>🔹 Eje Y:</strong> 30° hacia la derecha de la horizontal<br><br>
-<strong>🔹 Reducción teórica:</strong> 0.82 (factor √(2/3))<br>
-<strong>🔹 Reducción práctica:</strong> 1 (se usan las cotas reales)<br>
-<strong>🔹 Regla:</strong> en la práctica se usa reducción 1, no 0.82
-</div>
-<div class="box box-ejemplo">
-<strong>🔍 Ejemplo 1</strong>
-Los 3 ejes forman 120° entre sí.<br>
-X-Y = 120°, X-Z = 120°, Y-Z = 120°
-</div>
-<div class="box box-ejemplo">
-<strong>🔍 Ejemplo 2</strong>
-En papel: X a 30° izquierda, Y a 30° derecha, Z vertical.<br>
-30° + 30° + 90° = 150°... ¡pero los ángulos entre ejes son 120°!
-</div>
-<div class="box box-ejemplo">
-<strong>🔍 Ejemplo 3</strong>
-Reducción práctica = 1<br>
-Si una arista mide 50mm, se dibuja de 50mm. ¡Sin multiplicar por 0.82!
-</div>
+<h2 class="chapter-title">1️⃣ Ejes de la perspectiva isométrica</h2>
+<div class="box box-teoria"><strong>📖 Teoría</strong>La <b>perspectiva isométrica</b> (también llamada <b>cabañera</b>) es un sistema axonométrico en el que los tres ejes de coordenadas del espacio se representan en el plano de dibujo de forma que <b>los tres ángulos entre ejes son iguales: 120°</b>.<br><br>Los tres ejes se orientan así:<br>• <b>Eje Z</b>: vertical,指向 arriba (representa la altura)<br>• <b>Eje X</b>: a 30° hacia abajo a la derecha de la horizontal (representa la longitud)<br>• <b>Eje Y</b>: a 30° hacia abajo a la izquierda de la horizontal (representa la profundidad)<br><br>Los tres ejes se cruzan en el <b>origen O</b>. Cada par de ejes forma un ángulo de 120° (360°/3 = 120°).<br><br><b>Reducción isométrica:</b> Desde el punto de vista geométrico riguroso, la proyección ortogonal sobre un plano diagonal comprime las longitudes en un factor de <b>√(2/3) ≈ 0,82</b>. Sin embargo, <b>en la práctica se usa siempre reducción 1</b> (isométrica reducida), lo que significa que las cotas se toman directamente del modelo sin multiplicar por ningún factor. Esto hace el dibujo mucho más sencillo y las medidas directamente legibles.<br><br><b>⚠️ Error muy frecuente:</b> muchos estudiantes multiplican las cotas por 0,82. <b>NO lo hagas</b> a menos que se te exija explícitamente rigor geométrico absoluto. En el 99% de los casos se usa reducción 1.</div>
+<div class="box box-ejemplo"><strong>🔍 Ejemplo 1</strong><b>Ejes isométricos:</b> Imagina un dado visto desde una esquina. Verás tres caras. Los bordes que convergen en esa esquina forman los tres ejes: Z sube vertical, X baja a la derecha a 30°, Y baja a la izquierda a 30°. Los tres ángulos entre ellos son exactamente 120°.</div>
+<div class="box box-ejemplo"><strong>🔍 Ejemplo 2</strong><b>Reducción teórica (0,82) vs práctica (1):</b> Si un cubo tiene aristas de 10 cm, en isométrica rigurosa medirías 8,2 cm. En isométrica práctica (la que se usa siempre) marcas 10 cm directamente. La diferencia es pequeña y apenas se nota a mano alzada, pero el ahorro de tiempo es enorme.</div>
+<div class="box box-ejemplo"><strong>🔍 Ejemplo 3</strong><b>Cubos en isométrica:</b> Los tres ejes son siempre visibles en un cubo isométrico: el vértice más cercano al observador es el origen. Desde ahí salen los tres ejes X, Y, Z. Cada arista del cubo es paralela a uno de los ejes.</div>
 </section>
-
 <section class="chapter">
-<h2 class="chapter-title">2️⃣ Visualiza los ejes isométricos</h2>
+<h2 class="chapter-title">2️⃣ ¡Dibuja los ejes isométricos!</h2>
 <div class="svg-container">
-<svg viewBox="0 0 600 350" xmlns="http://www.w3.org/2000/svg">
-<!-- Fondo -->
-<rect x="0" y="0" width="600" height="350" fill="#f8fafc" rx="8"/>
-<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Ejes isométricos: 120° entre sí</text>
-<!-- Ejes -->
-<line x1="300" y1="200" x2="100" y2="300" stroke="#2563eb" stroke-width="3"/>
-<text x="80" y="315" font-size="14" font-weight="bold" fill="#2563eb">X</text>
-<line x1="300" y1="200" x2="500" y2="300" stroke="#f97316" stroke-width="3"/>
-<text x="520" y="315" font-size="14" font-weight="bold" fill="#f97316">Y</text>
-<line x1="300" y1="200" x2="300" y2="80" stroke="#10b981" stroke-width="3"/>
-<text x="310" y="70" font-size="14" font-weight="bold" fill="#10b981">Z</text>
-<!-- Centro -->
-<circle cx="300" cy="200" r="5" fill="#333"/>
-<!-- Ángulos -->
-<path d="M 300 170 Q 320 170, 330 185" fill="none" stroke="#a855f7" stroke-width="1.5"/>
-<text x="335" y="180" font-size="10" fill="#a855f7">120°</text>
-<path d="M 270 200 Q 270 230, 285 245" fill="none" stroke="#a855f7" stroke-width="1.5"/>
-<text x="245" y="255" font-size="10" fill="#a855f7">120°</text>
-<!-- 30° -->
-<text x="150" y="275" font-size="10" fill="#64748b">30°</text>
-<text x="440" y="275" font-size="10" fill="#64748b">30°</text>
-<!-- Cubo isométrico -->
-<polygon points="300,120 360,155 360,225 300,260 240,225 240,155" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
-<line x1="300" y1="120" x2="300" y2="260" stroke="#2563eb" stroke-width="1" stroke-dasharray="3,3"/>
-<line x1="240" y1="155" x2="360" y2="225" stroke="#2563eb" stroke-width="1" stroke-dasharray="3,3"/>
-<line x1="360" y1="155" x2="240" y2="225" stroke="#2563eb" stroke-width="1" stroke-dasharray="3,3"/>
-<text x="300" y="205" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="600">Cubo</text>
-<!-- Leyenda -->
-<rect x="20" y="310" width="560" height="30" fill="#ecfdf5" rx="6"/>
-<text x="300" y="330" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">X: 30° izq | Y: 30° der | Z: vertical | Reducción práctica = 1</text>
+<svg viewBox="0 0 600 450" xmlns="http://www.w3.org/2000/svg">
+<!-- Background grid - isometric hint -->
+<defs>
+<marker id="arrowZ" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+<polygon points="0 0, 10 3.5, 0 7" fill="#2563eb"/>
+</marker>
+<marker id="arrowX" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+<polygon points="0 0, 10 3.5, 0 7" fill="#f97316"/>
+</marker>
+<marker id="arrowY" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+<polygon points="0 0, 10 3.5, 0 7" fill="#10b981"/>
+</marker>
+<linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" style="stop-color:#f0f9ff;stop-opacity:1"/>
+<stop offset="100%" style="stop-color:#fff7ed;stop-opacity:1"/>
+</linearGradient>
+</defs>
+
+<!-- Background -->
+<rect width="600" height="450" rx="12" fill="url(#bgGrad)"/>
+
+<!-- Subtle isometric grid lines -->
+<g stroke="#e2e8f0" stroke-width="0.5" opacity="0.6">
+<!-- Horizontal-ish lines (parallel to X) -->
+<line x1="50" y1="80" x2="550" y2="80"/>
+<line x1="50" y1="130" x2="550" y2="130"/>
+<line x1="50" y1="180" x2="550" y2="180"/>
+<line x1="50" y1="230" x2="550" y2="230"/>
+<line x1="50" y1="280" x2="550" y2="280"/>
+<line x1="50" y1="330" x2="550" y2="330"/>
+<line x1="50" y1="380" x2="550" y2="380"/>
+<!-- Lines parallel to Y direction -->
+<line x1="80" y1="50" x2="230" y2="380"/>
+<line x1="130" y1="50" x2="280" y2="380"/>
+<line x1="180" y1="50" x2="330" y2="380"/>
+<line x1="230" y1="50" x2="380" y2="380"/>
+<line x1="280" y1="50" x2="430" y2="380"/>
+<line x1="330" y1="50" x2="480" y2="380"/>
+<line x1="380" y1="50" x2="530" y2="380"/>
+<!-- Lines parallel to X direction (going right-down) -->
+<line x1="520" y1="50" x2="370" y2="380"/>
+<line x1="470" y1="50" x2="320" y2="380"/>
+<line x1="420" y1="50" x2="270" y2="380"/>
+<line x1="370" y1="50" x2="220" y2="380"/>
+<line x1="320" y1="50" x2="170" y2="380"/>
+<line x1="270" y1="50" x2="120" y2="380"/>
+<line x1="220" y1="50" x2="70" y2="380"/>
+</g>
+
+<!-- Main reference line (horizontal) -->
+<line x1="60" y1="300" x2="540" y2="300" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="8,4"/>
+<text x="545" y="304" font-size="11" fill="#94a3b8">horizontal</text>
+
+<!-- Origin point -->
+<circle cx="300" cy="280" r="5" fill="#1e293b"/>
+<text x="308" y="275" font-size="14" fill="#1e293b" font-weight="bold">O</text>
+
+<!-- Eje Z (vertical, up) - BLUE -->
+<line x1="300" y1="280" x2="300" y2="60" stroke="#2563eb" stroke-width="3" marker-end="url(#arrowZ)"/>
+<text x="310" y="55" font-size="22" fill="#2563eb" font-weight="bold">Z</text>
+<text x="310" y="75" font-size="12" fill="#2563eb">altura</text>
+
+<!-- Eje X (30° right-down) - ORANGE -->
+<line x1="300" y1="280" x2="510" y2="400" stroke="#f97316" stroke-width="3" marker-end="url(#arrowX)"/>
+<text x="515" y="408" font-size="22" fill="#f97316" font-weight="bold">X</text>
+<text x="440" y="395" font-size="12" fill="#f97316">longitud</text>
+
+<!-- Eje Y (30° left-down) - GREEN -->
+<line x1="300" y1="280" x2="90" y2="400" stroke="#10b981" stroke-width="3" marker-end="url(#arrowY)"/>
+<text x="55" y="408" font-size="22" fill="#10b981" font-weight="bold">Y</text>
+<text x="110" y="395" font-size="12" fill="#10b981">profundidad</text>
+
+<!-- Angle arc: between Z and X (120°) -->
+<path d="M 300 240 A 40 40 0 0 1 334.6 260" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="4,2"/>
+<text x="318" y="248" font-size="13" fill="#8b5cf6" font-weight="bold">120°</text>
+
+<!-- Angle arc: between Z and Y (120°) -->
+<path d="M 300 240 A 40 40 0 0 0 265.4 260" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="4,2"/>
+<text x="260" y="248" font-size="13" fill="#8b5cf6" font-weight="bold">120°</text>
+
+<!-- Angle arc: between X and Y (120°) - bottom arc -->
+<path d="M 334.6 300 A 40 40 0 0 0 265.4 300" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="4,2"/>
+<text x="285" y="318" font-size="13" fill="#8b5cf6" font-weight="bold">120°</text>
+
+<!-- 30° angle indicator for X axis -->
+<line x1="300" y1="280" x2="400" y2="280" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4,3"/>
+<path d="M 340 280 A 40 40 0 0 0 334.6 260" fill="none" stroke="#f97316" stroke-width="1.5"/>
+<text x="340" y="272" font-size="11" fill="#f97316">30°</text>
+
+<!-- 30° angle indicator for Y axis -->
+<line x1="300" y1="280" x2="200" y2="280" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4,3"/>
+<path d="M 260 280 A 40 40 0 0 1 265.4 260" fill="none" stroke="#10b981" stroke-width="1.5"/>
+<text x="232" y="272" font-size="11" fill="#10b981">30°</text>
+
+<!-- Simple reference cube -->
+<g opacity="0.35">
+<!-- Cube edges parallel to axes, origin at (300,280) -->
+<!-- Z edge (up) -->
+<line x1="300" y1="280" x2="300" y2="210" stroke="#64748b" stroke-width="1.5"/>
+<!-- X edge (right-down) -->
+<line x1="300" y1="280" x2="360" y2="315" stroke="#64748b" stroke-width="1.5"/>
+<!-- Y edge (left-down) -->
+<line x1="300" y1="280" x2="240" y2="315" stroke="#64748b" stroke-width="1.5"/>
+<!-- Top face -->
+<line x1="300" y1="210" x2="360" y2="245" stroke="#64748b" stroke-width="1.5"/>
+<line x1="300" y1="210" x2="240" y2="245" stroke="#64748b" stroke-width="1.5"/>
+<!-- Front face -->
+<line x1="360" y1="315" x2="360" y2="245" stroke="#64748b" stroke-width="1.5"/>
+<!-- Side face -->
+<line x1="240" y1="315" x2="240" y2="245" stroke="#64748b" stroke-width="1.5"/>
+<!-- Top front vertex -->
+<line x1="360" y1="245" x2="300" y2="210" stroke="#64748b" stroke-width="1.5"/>
+<line x1="360" y1="245" x2="420" y2="280" stroke="#64748b" stroke-width="1.5"/>
+<line x1="240" y1="245" x2="300" y2="210" stroke="#64748b" stroke-width="1.5"/>
+<line x1="240" y1="245" x2="180" y2="280" stroke="#64748b" stroke-width="1.5"/>
+<!-- Far vertices -->
+<line x1="420" y1="280" x2="420" y2="210" stroke="#64748b" stroke-width="1.5"/>
+<line x1="180" y1="280" x2="180" y2="210" stroke="#64748b" stroke-width="1.5"/>
+<line x1="420" y1="210" x2="360" y2="245" stroke="#64748b" stroke-width="1.5"/>
+<line x1="420" y1="210" x2="300" y2="210" stroke="#64748b" stroke-width="1.5"/>
+<line x1="180" y1="210" x2="240" y2="245" stroke="#64748b" stroke-width="1.5"/>
+<line x1="180" y1="210" x2="300" y2="210" stroke="#64748b" stroke-width="1.5"/>
+<line x1="420" y1="280" x2="360" y2="315" stroke="#64748b" stroke-width="1.5"/>
+<line x1="180" y1="280" x2="240" y2="315" stroke="#64748b" stroke-width="1.5"/>
+<line x1="420" y1="280" x2="480" y2="315" stroke="#64748b" stroke-width="1.5"/>
+<line x1="180" y1="280" x2="120" y2="315" stroke="#64748b" stroke-width="1.5"/>
+<line x1="480" y1="315" x2="480" y2="245" stroke="#64748b" stroke-width="1.5"/>
+<line x1="120" y1="315" x2="120" y2="245" stroke="#64748b" stroke-width="1.5"/>
+<line x1="480" y1="245" x2="420" y2="210" stroke="#64748b" stroke-width="1.5"/>
+<line x1="120" y1="245" x2="180" y2="210" stroke="#64748b" stroke-width="1.5"/>
+<line x1="480" y1="245" x2="420" y2="280" stroke="#64748b" stroke-width="1.5"/>
+<line x1="120" y1="245" x2="180" y2="280" stroke="#64748b" stroke-width="1.5"/>
+</g>
+
+<!-- Title -->
+<text x="300" y="440" font-size="13" fill="#64748b" text-anchor="middle" font-style="italic">Los tres ejes isométricos: Z vertical, X e Y a 30° de la horizontal</text>
 </svg>
 </div>
-</section>
+<div class="interactive">
+<h3>🧠 Comprueba tus conocimientos</h3>
 
+<p style="margin-bottom:.5rem"><b>1. ¿Cuál es el ángulo entre dos ejes isométricos consecutivos?</b></p>
+<div class="quiz-options" id="q1">
+<button class="quiz-btn" onclick="checkAnswer(this, false, 'q1')">60°</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true, 'q1')">120°</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false, 'q1')">90°</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false, 'q1')">180°</button>
+</div>
+
+<p style="margin-bottom:.5rem;margin-top:1rem"><b>2. ¿A qué ángulo de la horizontal se sitúan los ejes X e Y?</b></p>
+<div class="quiz-options" id="q2">
+<button class="quiz-btn" onclick="checkAnswer(this, false, 'q2')">45°</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false, 'q2')">60°</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true, 'q2')">30°</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false, 'q2')">90°</button>
+</div>
+
+<p style="margin-bottom:.5rem;margin-top:1rem"><b>3. ¿Qué reducción se usa en la práctica en isométrica?</b></p>
+<div class="quiz-options" id="q3">
+<button class="quiz-btn" onclick="checkAnswer(this, false, 'q3')">0,5</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true, 'q3')">1</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false, 'q3')">0,82</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false, 'q3')">0,7</button>
+</div>
+</div>
+</section>
 <section class="chapter">
 <h2 class="chapter-title">📝 Ejercicios</h2>
 <div class="exercises">
 
+<!-- Ejercicio 1: Completar -->
 <div class="exercise">
-<p>📐 Ejercicio 1: ¿Cuántos grados forman los ejes entre sí?</p>
-<div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false)">90°</button>
-<button class="quiz-btn" onclick="checkAnswer(this, true)">120°</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">60°</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">180°</button>
-</div>
-<p class="feedback"></p>
+<p>1. Completa las frases con los valores correctos:</p>
+<p>a) El eje Z en isométrica es <input type="text" class="fill-input" id="ex1a" placeholder="?">. &nbsp;
+<button onclick="checkExercise('ex1a', ['vertical', 'vertical'], 'ex1a-result')">Comprobar</button>
+<span id="ex1a-result"></span></p>
+<p>b) Los ejes X e Y forman <input type="text" class="fill-input" id="ex1b" placeholder="?">° con la horizontal. &nbsp;
+<button onclick="checkExercise('ex1b', ['30'], 'ex1b-result')">Comprobar</button>
+<span id="ex1b-result"></span></p>
+<p>c) El ángulo entre dos ejes consecutivos es <input type="text" class="fill-input" id="ex1c" placeholder="?">°. &nbsp;
+<button onclick="checkExercise('ex1c', ['120'], 'ex1c-result')">Comprobar</button>
+<span id="ex1c-result"></span></p>
+<p>d) La reducción práctica en isométrica es <input type="text" class="fill-input" id="ex1d" placeholder="?">. &nbsp;
+<button onclick="checkExercise('ex1d', ['1'], 'ex1d-result')">Comprobar</button>
+<span id="ex1d-result"></span></p>
 </div>
 
+<!-- Ejercicio 2: Verdadero/Falso -->
 <div class="exercise">
-<p>📐 Ejercicio 2: ¿A qué ángulo están X e Y de la horizontal?</p>
-<div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false)">45°</button>
-<button class="quiz-btn" onclick="checkAnswer(this, true)">30°</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">60°</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">15°</button>
-</div>
-<p class="feedback"></p>
+<p>2. Indica si las siguientes afirmaciones son verdaderas o falsas:</p>
+
+<p>a) En perspectiva isométrica, el eje Y es vertical. &nbsp;
+<button class="vf-btn vf-true" onclick="checkVF(this, false, 'ex2a-result')">V</button>
+<button class="vf-btn vf-false" onclick="checkVF(this, true, 'ex2a-result')">F</button>
+<span id="ex2a-result"></span></p>
+
+<p>b) La reducción teórica isométrica es 0,82. &nbsp;
+<button class="vf-btn vf-true" onclick="checkVF(this, true, 'ex2b-result')">V</button>
+<button class="vf-btn vf-false" onclick="checkVF(this, false, 'ex2b-result')">F</button>
+<span id="ex2b-result"></span></p>
+
+<p>c) En la práctica se multiplican las cotas por 0,82. &nbsp;
+<button class="vf-btn vf-true" onclick="checkVF(this, false, 'ex2c-result')">V</button>
+<button class="vf-btn vf-false" onclick="checkVF(this, true, 'ex2c-result')">F</button>
+<span id="ex2c-result"></span></p>
+
+<p>d) Los tres ángulos entre ejes isométricos son iguales. &nbsp;
+<button class="vf-btn vf-true" onclick="checkVF(this, true, 'ex2d-result')">V</button>
+<button class="vf-btn vf-false" onclick="checkVF(this, false, 'ex2d-result')">F</button>
+<span id="ex2d-result"></span></p>
 </div>
 
+<!-- Ejercicio 3: Identificar -->
 <div class="exercise">
-<p>📐 Ejercicio 3: ¿Cuál es la reducción práctica en isométrica?</p>
-<div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false)">0.82</button>
-<button class="quiz-btn" onclick="checkAnswer(this, true)">1</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">0.5</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">2</button>
+<p>3. ¿Qué eje isométrico representa cada magnitud?</p>
+<div class="quiz-options" id="q4">
+<button class="quiz-btn" onclick="checkAnswer(this, true, 'q4')">Z = altura</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false, 'q4')">X = altura</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false, 'q4')">Y = altura</button>
 </div>
-<p class="feedback"></p>
+<div class="quiz-options" id="q5" style="margin-top:.8rem">
+<button class="quiz-btn" onclick="checkAnswer(this, true, 'q5')">X = longitud</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false, 'q5')">Y = longitud</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false, 'q5')">Z = longitud</button>
+</div>
+<div class="quiz-options" id="q6" style="margin-top:.8rem">
+<button class="quiz-btn" onclick="checkAnswer(this, false, 'q6')">X = profundidad</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true, 'q6')">Y = profundidad</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false, 'q6')">Z = profundidad</button>
+</div>
 </div>
 
+<!-- Ejercicio 4: Identificar el error -->
 <div class="exercise">
-<p>📐 Ejercicio 4: ¿Qué eje es siempre vertical?</p>
-<div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Z</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">X</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Y</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Todos</button>
+<p>4. ¿Cuál de estas afirmaciones es INCORRECTA sobre la perspectiva isométrica?</p>
+<div class="quiz-options" id="q7">
+<button class="quiz-btn" onclick="checkAnswer(this, false, 'q7')">Los tres ejes forman 120° entre sí</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false, 'q7')">El eje Z es vertical</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true, 'q7')">Se usan cotas reales (reducción = 1)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false, 'q7')">Los ejes X e Y están a 30° de la horizontal</button>
 </div>
-<p class="feedback"></p>
-</div>
-
-<div class="exercise">
-<p>📐 Ejercicio 5: ¿Cuántos ejes tiene la perspectiva isométrica?</p>
-<input type="text" id="ex5" placeholder="Tu respuesta" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
-<button onclick="checkExercise('ex5', '3', this)">Comprobar</button>
-<p class="feedback"></p>
 </div>
 
 </div>
 </section>
-
-<div class="box box-error">
-<strong>⚠️ Error clásico</strong>
-Usar la reducción 0.82 en vez de 1. En la práctica se usa reducción 1. Solo se usa 0.82 si se exige rigor geométrico estricto. ¡No confundas!
-</div>
-
-<div class="box box-idea">
-<strong>🔗 Conexión</strong>
-Los ejes isométricos son la base de toda la perspectiva. Una vez dominas los ejes, puedes dibujar cualquier pieza: cubos, cilindros, agujeros...
-</div>
-
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
-<ul>
-<li>3 ejes: X (30° izq), Y (30° der), Z (vertical)</li>
-<li>120° entre cada par de ejes</li>
-<li>Reducción teórica: 0.82 | Práctica: 1</li>
-<li>En la práctica se usan las cotas reales</li>
-<li>¡Ya dominas los ejes isométricos! 🎉</li>
-</ul>
+<ul><li>Los tres ejes isométricos (X, Y, Z) forman exactamente 120° entre sí</li><li>El eje Z es vertical; los ejes X e Y están a 30° de la horizontal</li><li>La reducción teórica es 0,82 (√(2/3)), pero en la práctica siempre se usa reducción 1</li><li>Las cotas se toman directamente del modelo sin multiplicar por ningún factor</li><li>El error más frecuente es multiplicar por 0,82 — no lo hagas a menos que te lo exijan</li></ul>
 </div>
-
 <div class="nav">
 <a href="b02-08-vista-auxiliar-parcial.html">← Anterior</a>
 <a href="b03-02-isometrica-cubos.html">Siguiente →</a>
 </div>
-
 </main>
 <footer class="footer">Hecho con ❤️ por David Antizar</footer>
 <script>
-function checkAnswer(btn, correct) {
-  var parent = btn.parentElement;
-  parent.querySelectorAll('button').forEach(function(b) {
-    b.disabled = true; b.classList.remove('correct','wrong');
+function checkAnswer(btn, isCorrect, quizId) {
+  var container = document.getElementById(quizId);
+  var buttons = container.querySelectorAll('.quiz-btn');
+  buttons.forEach(function(b) {
+    b.disabled = true;
+    b.style.pointerEvents = 'none';
   });
-  btn.classList.add(correct ? 'correct' : 'wrong');
-  var feedback = parent.nextElementSibling;
-  if(feedback && feedback.classList.contains('feedback')) {
-    if(correct) {
-      feedback.textContent = '✅ ¡Correcto! ¡Muy bien!';
-      feedback.className = 'feedback correct';
-    } else {
-      feedback.textContent = '❌ ¡Intenta de nuevo!';
-      feedback.className = 'feedback incorrect';
-      setTimeout(function() {
-        parent.querySelectorAll('button').forEach(function(b) {
-          b.disabled = false; b.classList.remove('correct','wrong');
-        });
-        feedback.textContent = '';
-        feedback.className = 'feedback';
-      }, 1500);
-    }
-  }
-}
-
-function checkExercise(id, correct, btn) {
-  var input = document.getElementById(id);
-  var feedback = input.parentElement.nextElementSibling;
-  var userVal = input.value.trim().replace(',', '.');
-  var correctVal = correct.toString().replace(',', '.');
-  if(userVal === correctVal) {
-    feedback.textContent = '✅ ¡Correcto! ' + correct;
-    feedback.className = 'feedback correct';
-    input.style.borderColor = 'var(--verde)';
+  if (isCorrect) {
+    btn.classList.add('correct');
+    btn.textContent = '✅ ' + btn.textContent;
   } else {
-    feedback.textContent = '❌ Respuesta correcta: ' + correct;
-    feedback.className = 'feedback incorrect';
-    input.style.borderColor = 'var(--rojo)';
+    btn.classList.add('wrong');
+    btn.textContent = '❌ ' + btn.textContent;
+    buttons.forEach(function(b) {
+      if (b !== btn) {
+        // Find the correct one and highlight it
+      }
+    });
   }
 }
 
-window.onscroll = function(){
+function checkExercise(inputId, correctAnswers, resultId) {
+  var input = document.getElementById(inputId);
+  var result = document.getElementById(resultId);
+  var value = input.value.trim().toLowerCase().replace(',', '.');
+  if (correctAnswers.includes(value)) {
+    input.classList.add('correct');
+    input.classList.remove('wrong');
+    result.textContent = '✅ ¡Correcto!';
+    result.style.color = '#065f46';
+  } else {
+    input.classList.add('wrong');
+    input.classList.remove('correct');
+    result.textContent = '❌ Inténtalo de nuevo';
+    result.style.color = '#991b1b';
+  }
+}
+
+function checkVF(btn, isCorrect, resultId) {
+  var result = document.getElementById(resultId);
+  var parent = btn.parentElement;
+  var buttons = parent.querySelectorAll('.vf-btn');
+  buttons.forEach(function(b) {
+    b.disabled = true;
+    b.style.pointerEvents = 'none';
+  });
+  if (isCorrect) {
+    btn.classList.add('correct');
+    result.textContent = '✅ ¡Correcto!';
+    result.style.color = '#065f46';
+  } else {
+    btn.classList.add('correct');
+    btn.style.background = '#ef4444';
+    btn.style.color = '#fff';
+    result.textContent = '❌ Incorrecto';
+    result.style.color = '#991b1b';
+  }
+}
+
+window.onscroll = function() {
   var h = document.documentElement;
   var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
   document.getElementById('progress').style.width = p+'%';

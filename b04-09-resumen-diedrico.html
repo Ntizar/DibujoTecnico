@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📐 S04.9-10: Resumen Bloque 4 Diedrico — Dibujo Técnico</title>
+<style>
+:root{--azul:#2563eb;--naranja:#f97316;--verde:#10b981;--rojo:#ef4444;--fondo:#fff;--texto:#1e293b;--gris:#94a3b8;--azul-claro:#eff6ff;--naranja-claro:#fff7ed;--verde-claro:#ecfdf5;--rojo-claro:#fef2f2;--pura-claro:#faf5ff;--pura:#a855f7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-gradient(135deg,#f8faff 0%,#fffaf5 100%);color:var(--texto);line-height:1.7}
+.header{background:linear-gradient(135deg,var(--azul),#1d4ed8);color:#fff;padding:2rem 1.5rem;text-align:center}
+.header h1{font-size:1.8rem;margin-bottom:.5rem}
+.header p{opacity:.9;font-size:1rem}
+.progress-bar{height:4px;background:rgba(255,255,255,.3);border-radius:2px;margin-top:1rem;overflow:hidden}
+.progress-fill{height:100%;background:#fff;border-radius:2px;width:0%;transition:width .3s}
+.container{max-width:900px;margin:0 auto;padding:1.5rem}
+.chapter{margin-bottom:2.5rem}
+.chapter-title{font-size:1.4rem;color:var(--azul);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:2px solid var(--azul-claro)}
+.box{padding:1rem 1.2rem;border-radius:10px;margin:1rem 0;border-left:4px solid;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.box-teoria{background:var(--azul-claro);border-color:var(--azul)}
+.box-ejemplo{background:var(--naranja-claro);border-color:var(--naranja)}
+.box-error{background:var(--rojo-claro);border-color:var(--rojo)}
+.box-idea{background:var(--pura-claro);border-color:var(--pura)}
+.box-success{background:var(--verde-claro);border-color:var(--verde)}
+.box strong{display:block;margin-bottom:.3rem}
+.svg-container{background:#f8fafc;border-radius:12px;padding:1.5rem;margin:1.5rem 0;text-align:center;border:2px solid #e2e8f0}
+.svg-container svg{max-width:100%;height:auto}
+.svg-container svg text{font-family:Inter,system-ui,sans-serif}
+.interactive{background:#f1f5f9;border-radius:12px;padding:1.5rem;margin:1.5rem 0}
+.interactive h3{color:var(--azul);margin-bottom:1rem;font-size:1.1rem}
+.interactive button{background:var(--azul);color:#fff;border:none;padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.95rem;margin:.3rem}
+.interactive button:hover{background:#1d4ed8}
+.result{margin-top:.8rem;padding:.8rem;border-radius:6px;font-weight:600;min-height:2rem}
+.result.ok{background:var(--verde-claro);color:#065f46}
+.result.fail{background:var(--rojo-claro);color:#991b1b}
+.exercises{margin:1.5rem 0}
+.exercise{background:#f1f5f9;border-radius:8px;padding:1rem;margin:.8rem 0}
+.exercise p{font-weight:600;margin-bottom:.5rem}
+.quiz-options{display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0}
+.quiz-btn{padding:.6rem 1.5rem;border-radius:8px;border:2px solid var(--azul);background:#fff;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all .2s}
+.quiz-btn:hover{background:var(--azul-claro)}
+.quiz-btn.correct{background:var(--verde);color:#fff;border-color:var(--verde)}
+.quiz-btn.wrong{background:var(--rojo);color:#fff;border-color:var(--rojo)}
+.summary{background:var(--azul-claro);border-radius:12px;padding:1.5rem;margin:2rem 0}
+.summary h3{color:var(--azul);margin-bottom:.8rem}
+.summary ul{list-style:none;padding:0}
+.summary li{padding:.3rem 0;padding-left:1.5rem;position:relative}
+.summary li::before{content:"✓";color:var(--verde);font-weight:bold;position:absolute;left:0}
+.nav{display:flex;justify-content:space-between;margin:2rem 0;padding:1rem 0;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0}
+.nav a{color:var(--azul);text-decoration:none;font-weight:600;padding:.5rem 1rem;border-radius:6px}
+.nav a:hover{background:var(--azul-claro)}
+.nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
+.footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+</style>
+</head>
+<body>
+<header class="header">
+<h1>📐 S04.9-10: Resumen completo del Bloque 4</h1>
+<p>Dibujo Técnico — Sistema Diédrico</p>
+<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+</header>
+<main class="container">
+
+<section class="chapter">
+<h2 class="chapter-title">🎯 Resumen completo del diedrico</h2>
+<div class="box box-idea">
+<strong>💡 Idea clave</strong>
+El sistema diédrico es la base de todo el dibujo técnico. Con él puedes representar cualquier objeto en 2D, encontrar verdaderas magnitudes, resolver perpendicularidades y preparar cortes y secciones.
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">📊 Tabla resumen del Bloque 4</h2>
+<div class="svg-container">
+<svg viewBox="0 0 600 500" xmlns="http://www.w3.org/2000/svg">
+<!-- Fondo -->
+<rect x="0" y="0" width="600" height="500" fill="#f8fafc" rx="8"/>
+<text x="300" y="30" text-anchor="middle" font-size="16" fill="#2563eb" font-weight="600">BLOQUE 4: SISTEMA DIÉDRICO</text>
+<!-- Tema 1 -->
+<rect x="20" y="50" width="560" height="40" fill="#eff6ff" rx="6"/>
+<text x="30" y="75" font-size="12" fill="#2563eb" font-weight="600">S04.1: El punto</text>
+<text x="320" y="75" font-size="11" fill="#333">A' (alzado) arriba LT | A (planta) abajo LT | Línea de unión ⊥ LT</text>
+<!-- Tema 2 -->
+<rect x="20" y="100" width="560" height="40" fill="#fff7ed" rx="6"/>
+<text x="30" y="125" font-size="12" fill="#f97316" font-weight="600">S04.2: La recta</text>
+<text x="320" y="125" font-size="11" fill="#333">r' (alzado) + r (planta) | Th (corta PH, z=0) | Tv (corta PV, y=0)</text>
+<!-- Tema 3 -->
+<rect x="20" y="150" width="560" height="40" fill="#ecfdf5" rx="6"/>
+<text x="30" y="175" font-size="12" fill="#10b981" font-weight="600">S04.3: El plano</text>
+<text x="320" y="175" font-size="11" fill="#333">α₁ (traza horizontal) + α₂ (traza vertical) | Se cortan en LT</text>
+<!-- Tema 4 -->
+<rect x="20" y="200" width="560" height="40" fill="#faf5ff" rx="6"/>
+<text x="30" y="225" font-size="12" fill="#a855f7" font-weight="600">S04.4: Pertenencia</text>
+<text x="320" y="225" font-size="11" fill="#333">A ∈ α ↔ existe r ∈ α tal que A ∈ r | r ∈ α ↔ Th ∈ α₁ y Tv ∈ α₂</text>
+<!-- Tema 5 -->
+<rect x="20" y="250" width="560" height="40" fill="#fef2f2" rx="6"/>
+<text x="30" y="275" font-size="12" fill="#ef4444" font-weight="600">S04.5: Perpendicularidad</text>
+<text x="320" y="275" font-size="11" fill="#333">r ⊥ α → r' ⊥ α₂ Y r ⊥ α₁ | ¡AMBIAS condiciones necesarias!</text>
+<!-- Tema 6 -->
+<rect x="20" y="300" width="560" height="40" fill="#eff6ff" rx="6"/>
+<text x="30" y="325" font-size="12" fill="#2563eb" font-weight="600">S04.6: Verdaderas magnitudes</text>
+<text x="320" y="325" font-size="11" fill="#333">Horizontal → VM en planta | Frontal → VM en alzado | Oblicua → giro o cambio</text>
+<!-- Tema 7 -->
+<rect x="20" y="350" width="560" height="40" fill="#fff7ed" rx="6"/>
+<text x="30" y="375" font-size="12" fill="#f97316" font-weight="600">S04.7: Cambio de plano</text>
+<text x="320" y="375" font-size="11" fill="#333">Nuevo plano ∥ recta → LT' ∥ r → nuevas cotas z → r' = VM</text>
+<!-- Tema 8 -->
+<rect x="20" y="400" width="560" height="40" fill="#ecfdf5" rx="6"/>
+<text x="30" y="425" font-size="12" fill="#10b981" font-weight="600">S04.8: Giros</text>
+<text x="320" y="425" font-size="11" fill="#333">Alzado: círculo | Planta: línea ∥ LT | Cota z NO cambia</text>
+<!-- Tema 9-10 -->
+<rect x="20" y="450" width="560" height="40" fill="#faf5ff" rx="6"/>
+<text x="30" y="475" font-size="12" fill="#a855f7" font-weight="600">S04.9-10: Ejercicios y repaso</text>
+<text x="320" y="475" font-size="11" fill="#333">10 ejercicios por tema | 40 preguntas en total | 160 preguntas bloque completo</text>
+</svg>
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">📝 Ejercicios de repaso</h2>
+<div class="exercises">
+
+<div class="exercise">
+<p>📐 Ejercicio 1: ¿Cuántos temas tiene el Bloque 4?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">5</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">10</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">8</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">12</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 2: ¿Qué se necesita para que r ⊥ α?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">r' ⊥ α₂ Y r ⊥ α₁</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">Solo r' ⊥ α₂</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">Solo r ⊥ α₁</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">r ∥ α</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 3: ¿Cuántas proyecciones tiene un punto?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">1</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">2</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">3</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">4</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 4: ¿Qué método NO se usa para VM?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Giros</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">Cambio de plano</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Escala</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">Ninguna</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 5: ¿Cuántos ejercicios tiene cada tema del diedrico?</p>
+<input type="text" id="ex5" placeholder="Número" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
+<button onclick="checkExercise('ex5', '10', this)">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+</div>
+</section>
+
+<div class="box box-success">
+<strong>🎉 ¡Felicidades!</strong>
+Has completado el Bloque 4: Sistema Diédrico. Ahora dominas punto, recta, plano, pertenencia, perpendicularidad, VM, cambio de plano y giros. ¡Es la base de todo el dibujo técnico!
+</div>
+
+<div class="summary">
+<h3>📋 Resumen del Bloque 4</h3>
+<ul>
+<li>10 temas completos: punto, recta, plano, pertenencia, perpendicularidad, VM, cambio de plano, giros</li>
+<li>100 ejercicios totales (10 por tema)</li>
+<li>30+ SVGs interactivos</li>
+<li>Base para cortes, secciones e intersecciones</li>
+<li>¡Ya dominas el sistema diédrico! 🎉</li>
+</ul>
+</div>
+
+<div class="nav">
+<a href="b04-08-giro.html">← Anterior</a>
+<a href="b05-01-cortes.html">Siguiente → Bloque 5: Cortes y Secciones</a>
+</div>
+
+</main>
+<footer class="footer">Hecho con ❤️ por David Antizar</footer>
+<script>
+function checkAnswer(btn, correct) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) {
+    b.disabled = true; b.classList.remove('correct','wrong');
+  });
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  var feedback = parent.nextElementSibling;
+  if(feedback && feedback.classList.contains('feedback')) {
+    if(correct) {
+      feedback.textContent = '✅ ¡Correcto! ¡Muy bien!';
+      feedback.className = 'feedback correct';
+    } else {
+      feedback.textContent = '❌ ¡Intenta de nuevo!';
+      feedback.className = 'feedback incorrect';
+      setTimeout(function() {
+        parent.querySelectorAll('button').forEach(function(b) {
+          b.disabled = false; b.classList.remove('correct','wrong');
+        });
+        feedback.textContent = '';
+        feedback.className = 'feedback';
+      }, 1500);
+    }
+  }
+}
+
+function checkExercise(id, correct, btn) {
+  var input = document.getElementById(id);
+  var feedback = input.parentElement.nextElementSibling;
+  var userVal = input.value.trim().toLowerCase();
+  var correctVal = correct.toLowerCase();
+  if(userVal === correctVal) {
+    feedback.textContent = '✅ ¡Correcto! ' + correct;
+    feedback.className = 'feedback correct';
+    input.style.borderColor = 'var(--verde)';
+  } else {
+    feedback.textContent = '❌ Respuesta correcta: ' + correct;
+    feedback.className = 'feedback incorrect';
+    input.style.borderColor = 'var(--rojo)';
+  }
+}
+
+window.onscroll = function(){
+  var h = document.documentElement;
+  var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
+  document.getElementById('progress').style.width = p+'%';
+};
+</script>
+</body>
+</html>
