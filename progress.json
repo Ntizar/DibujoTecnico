@@ -76,9 +76,10 @@
       "bloque": "Bloque 2: Proyecciones",
       "icon": "🔲",
       "skills": "td-proyecciones",
-      "status": "pending",
+      "status": "completed",
       "improvement_count": 0,
-      "priority": 6
+      "priority": 6,
+      "last_completed": "2026-06-10"
     },
     {
       "id": "b02-02",
@@ -88,9 +89,10 @@
       "bloque": "Bloque 2: Proyecciones",
       "icon": "🔲",
       "skills": "td-proyecciones",
-      "status": "pending",
+      "status": "completed",
       "improvement_count": 0,
-      "priority": 7
+      "priority": 7,
+      "last_completed": "2026-06-10"
     },
     {
       "id": "b02-03",
@@ -645,6 +647,6 @@
       "priority": 53
     }
   ],
-  "progreso_global": 5,
+  "progreso_global": 7,
   "ult_actualizacion": "2026-06-10"
 }
