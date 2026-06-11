@@ -371,18 +371,27 @@
                     "dimensions_improved": [
                         "css_coherence"
                     ]
+                },
+                {
+                    "date": "2026-06-11",
+                    "description": "SVG interactividad (onclick en piezas diedro con toggle diedro-layer), 4-step visual pattern (mira→fíjate→ahora ves→prueba) con 3 SVGs + toggleDiedroView(), 3 ejercicios nuevos (V/F visual, completar huecos, ordenar pasos), 2 broken onclicks fixados, funciones JS: toggleDiedro(), toggleDiedroView(), checkOrden(), checkFillIn()",
+                    "dimensions_improved": [
+                        "svg_interactive",
+                        "text_explanation",
+                        "exercises"
+                    ]
                 }
             ],
             "scores": {
-                "svg_interactive": 7,
-                "exercises": 7,
-                "text_explanation": 7,
+                "svg_interactive": 9,
+                "exercises": 9,
+                "text_explanation": 9,
                 "real_world": 7,
                 "error_common": 7,
                 "css_coherence": 10
             },
-            "last_improved": "2026-06-10",
-            "improvement_count": 2
+            "last_improved": "2026-06-11",
+            "improvement_count": 3
         },
         "b02-07-representacion-piezas.html": {
             "status": "improved_1",
