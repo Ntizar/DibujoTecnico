@@ -854,7 +854,7 @@
             "improvement_count": 2
         },
         "b04-05-paralelismo-perpendicularidad.html": {
-            "status": "improved_1",
+            "status": "improved_2",
             "bloque": "b04",
             "title": "\ud83d\udcd0 Plano: trazas y posiciones",
             "priority": 2,
@@ -869,18 +869,27 @@
                         "error_common",
                         "css_coherence"
                     ]
+                },
+                {
+                    "date": "2026-06-11",
+                    "description": "SVG interactividad (onclick toggle en l\u00edneas paralelas/perpendiculares con toggleLayer/togglePoint), paso a paso visual 4 pasos (mira\u2192f\u00edjate\u2192ahora ves\u2192prueba) con 4 SVGs + step-dots + showStep(), 4 ejercicios variados (quiz, V/F visual con SVGs comparativos, completar huecos con checkFillIn, ordenar pasos con checkOrden), funciones JS: togglePoint(), toggleLayer(), showStep(), checkFillIn(), checkOrden()",
+                    "dimensions_improved": [
+                        "svg_interactive",
+                        "text_explanation",
+                        "exercises"
+                    ]
                 }
             ],
             "scores": {
-                "svg_interactive": 7,
-                "exercises": 7,
-                "text_explanation": 7,
+                "svg_interactive": 9,
+                "exercises": 9,
+                "text_explanation": 9,
                 "real_world": 7,
                 "error_common": 7,
                 "css_coherence": 7
             },
-            "last_improved": "2026-06-10",
-            "improvement_count": 1
+            "last_improved": "2026-06-11",
+            "improvement_count": 2
         },
         "b04-06-vm.html": {
             "status": "improved_1",
