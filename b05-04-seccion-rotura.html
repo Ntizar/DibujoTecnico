@@ -62,6 +62,9 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .stack-item:hover{border-color:var(--azul);transform:translateX(4px)}
 .stack-item.active{border-color:var(--azul);background:var(--azul-claro)}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+.feedback { margin-top: 0.5rem; font-weight: 600; padding: 0.5rem; border-radius: 6px; }
+.feedback.correct { background: var(--verde-claro); color: #065f46; }
+.feedback.incorrect { background: var(--rojo-claro); color: #991b1b; }
 </style>
 </head>
 <body>
@@ -144,41 +147,66 @@ Se usa rotura en forma de "S" en ambos extremos. La cota dice 500 aunque el dibu
 
 <section class="chapter">
 <h2 class="chapter-title">3️⃣ Visualiza sección y rotura</h2>
+<div class="interactive">
+<h3>🎬 Haz clic para ver la diferencia entre sección y corte</h3>
 <div class="svg-container">
-<svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg">
 <!-- Fondo -->
-<rect x="0" y="0" width="600" height="300" fill="#f8fafc" rx="8"/>
-<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Sección vs Rotura</text>
-<!-- Sección abatida -->
-<text x="150" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">SECCIÓN ABATIDA</text>
+<rect x="0" y="0" width="600" height="340" fill="#f8fafc" rx="8"/>
+<text x="300" y="22" text-anchor="middle" font-size="13" fill="#64748b" font-weight="600">👆 Clic en Sección o Corte para comparar</text>
+
+<!-- Info panel -->
+<rect x="10" y="290" width="580" height="40" fill="#eff6ff" rx="8" stroke="#2563eb" stroke-width="1.5" id="seccion-info-panel"/>
+<text x="300" y="315" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600" id="seccion-info-text">Selecciona Sección o Corte</text>
+
+<!-- Panel Izquierdo: Sección -->
+<rect x="20" y="35" width="270" height="245" fill="#eff6ff" rx="10" stroke="#2563eb" stroke-width="1.5" style="cursor:pointer" onclick="toggleSeccionCorte('seccion')"/>
+<text x="155" y="55" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="700">SECCIÓN</text>
+<text x="155" y="68" text-anchor="middle" font-size="9" fill="#64748b">(solo cara cortada)</text>
 <!-- Viga longitudinal -->
-<rect x="50" y="100" width="200" height="30" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
-<text x="150" y="120" text-anchor="middle" font-size="9" fill="#2563eb">Vista longitudinal</text>
-<!-- Sección abatida sobre la vista -->
-<rect x="130" y="80" width="40" height="70" fill="#fff7ed" stroke="#f97316" stroke-width="1.5" rx="3"/>
-<line x1="135" y1="85" x2="145" y2="145" stroke="#f97316" stroke-width="0.5"/>
-<line x1="145" y1="85" x2="155" y2="145" stroke="#f97316" stroke-width="0.5"/>
-<line x1="155" y1="85" x2="165" y2="145" stroke="#f97316" stroke-width="0.5"/>
-<text x="150" y="165" text-anchor="middle" font-size="9" fill="#f97316">Sección girada 90°</text>
-<!-- Rotura -->
-<text x="450" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#10b981">ROTURA CILÍNDRICA</text>
-<!-- Eje con rotura -->
-<rect x="350" y="100" width="60" height="30" fill="#eff6ff" stroke="#10b981" stroke-width="2"/>
-<path d="M 410 100 Q 420 85, 430 100 Q 440 115, 450 100 Q 460 85, 470 100 Q 480 115, 490 100" fill="none" stroke="#10b981" stroke-width="2"/>
-<rect x="490" y="100" width="60" height="30" fill="#eff6ff" stroke="#10b981" stroke-width="2"/>
-<text x="450" y="145" text-anchor="middle" font-size="9" fill="#10b981">Rotura en "S"</text>
-<!-- Cota de longitud real -->
-<line x1="350" y1="80" x2="350" y2="70" stroke="#94a3b8" stroke-width="1"/>
-<line x1="550" y1="80" x2="550" y2="70" stroke="#94a3b8" stroke-width="1"/>
-<line x1="350" y1="65" x2="550" y2="65" stroke="#2563eb" stroke-width="1.5"/>
-<polygon points="350,65 360,62 360,68" fill="#2563eb"/>
-<polygon points="550,65 540,62 540,68" fill="#2563eb"/>
-<text x="450" y="60" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="600">500</text>
-<!-- Leyenda -->
-<rect x="20" y="240" width="560" height="50" fill="#ecfdf5" rx="6"/>
-<text x="300" y="258" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">Sección: solo la cara cortada | Rotura: acorta la pieza, la cota indica la longitud real</text>
-<text x="300" y="278" text-anchor="middle" font-size="10" fill="#64748b">Sección abatida se dibuja girada sobre la vista | Rotura cilíndrica usa forma de "S"</text>
+<rect x="40" y="100" width="230" height="30" fill="#fff7ed" stroke="#2563eb" stroke-width="2"/>
+<text x="155" y="120" text-anchor="middle" font-size="8" fill="#2563eb">Vista longitudinal</text>
+<!-- Sección abatida -->
+<rect x="135" y="80" width="40" height="70" fill="#fff7ed" stroke="#f97316" stroke-width="2" rx="3" id="seccion-rect"/>
+<line x1="140" y1="85" x2="150" y2="145" stroke="#f97316" stroke-width="0.8"/>
+<line x1="150" y1="85" x2="160" y2="145" stroke="#f97316" stroke-width="0.8"/>
+<line x1="160" y1="85" x2="170" y2="145" stroke="#f97316" stroke-width="0.8"/>
+<text x="155" y="165" text-anchor="middle" font-size="8" fill="#f97316">Sección girada</text>
+<!-- Plano de corte -->
+<line x1="155" y1="75" x2="155" y2="180" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,2" id="seccion-plano"/>
+<text x="155" y="195" text-anchor="middle" font-size="8" fill="#ef4444">Plano de corte</text>
+<!-- NO lo que hay detrás -->
+<text x="155" y="215" text-anchor="middle" font-size="9" fill="#94a3b8" id="seccion-fondo">❌ NO se muestra el fondo</text>
+
+<!-- Panel Derecho: Corte -->
+<rect x="310" y="35" width="270" height="245" fill="#fff7ed" rx="10" stroke="#f97316" stroke-width="1.5" style="cursor:pointer" onclick="toggleSeccionCorte('corte')"/>
+<text x="445" y="55" text-anchor="middle" font-size="12" fill="#f97316" font-weight="700">CORTE</text>
+<text x="445" y="68" text-anchor="middle" font-size="9" fill="#64748b">(sección + fondo)</text>
+<!-- Viga longitudinal -->
+<rect x="330" y="100" width="230" height="30" fill="#eff6ff" stroke="#f97316" stroke-width="2"/>
+<text x="445" y="120" text-anchor="middle" font-size="8" fill="#f97316">Vista longitudinal</text>
+<!-- Sección en corte -->
+<rect x="425" y="80" width="40" height="70" fill="#fff7ed" stroke="#f97316" stroke-width="2" rx="3" id="corte-rect"/>
+<line x1="430" y1="85" x2="440" y2="145" stroke="#f97316" stroke-width="0.8"/>
+<line x1="440" y1="85" x2="450" y2="145" stroke="#f97316" stroke-width="0.8"/>
+<line x1="450" y1="85" x2="460" y2="145" stroke="#f97316" stroke-width="0.8"/>
+<!-- Lo que hay detrás (diferencia!) -->
+<rect x="425" y="150" width="40" height="30" fill="#ecfdf5" stroke="#10b981" stroke-width="1" id="corte-fondo" style="display:none"/>
+<text x="445" y="170" text-anchor="middle" font-size="8" fill="#10b981" id="corte-fondo-text" style="display:none">Fondo visible</text>
+<text x="445" y="165" text-anchor="middle" font-size="8" fill="#f97316">Sección +</text>
+<!-- Plano de corte -->
+<line x1="445" y1="75" x2="445" y2="180" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,2" id="corte-plano"/>
+<text x="445" y="195" text-anchor="middle" font-size="8" fill="#ef4444">Plano de corte</text>
+<text x="445" y="215" text-anchor="middle" font-size="9" fill="#10b981" id="corte-fondo2">✅ Se muestra el fondo</text>
+
+<!-- Rotura abajo -->
+<text x="300" y="245" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">ROTURA CILÍNDRICA (siempre visible)</text>
+<rect x="350" y="255" width="60" height="25" fill="#eff6ff" stroke="#10b981" stroke-width="1.5"/>
+<path d="M 410 255 Q 420 245, 430 255 Q 440 265, 450 255 Q 460 245, 470 255 Q 480 265, 490 255" fill="none" stroke="#10b981" stroke-width="1.5"/>
+<rect x="490" y="255" width="60" height="25" fill="#eff6ff" stroke="#10b981" stroke-width="1.5"/>
+<text x="450" y="295" text-anchor="middle" font-size="8" fill="#10b981">Rotura en "S" → cota = 500</text>
 </svg>
+</div>
 </div>
 </section>
 
@@ -204,12 +232,79 @@ Se representa con rotura dentada. La cota indica 2000 mm aunque el dibujo mida 8
 </div>
 </section>
 
+
+<div class="interactive">
+<h3>🎬 Paso a paso: cómo dibujar una sección abatida</h3>
+
+<div class="step-indicator">
+<div class="step-dot active" id="sd1" onclick="showStep(1)" style="background:var(--azul)">1</div>
+<div class="step-dot" id="sd2" onclick="showStep(2)" style="background:#94a3b8">2</div>
+<div class="step-dot" id="sd3" onclick="showStep(3)" style="background:#94a3b8">3</div>
+<div class="step-dot" id="sd4" onclick="showStep(4)" style="background:#94a3b8">4</div>
+</div>
+
+<div id="step-content">
+<div class="box box-teoria" id="step1">
+<strong>📍 Paso 1 — Mira: Dibuja la vista longitudinal de la pieza</strong>
+Primero dibujas la pieza como si no tuviera corte: vista lateral con contorno exterior.
+<div class="svg-container">
+<svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg">
+<rect x="30" y="25" width="240" height="30" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="3"/>
+<text x="150" y="15" text-anchor="middle" font-size="10" fill="#64748b">Vista longitudinal</text>
+<text x="150" y="75" text-anchor="middle" font-size="8" fill="#2563eb">Contorno exterior</text>
+</svg>
+</div>
+</div>
+
+<div class="box box-teoria" id="step2" style="display:none">
+<strong>📍 Paso 2 — Fíjate: Dibuja el plano de corte</strong>
+Marca dónde cortas con una línea roja discontinua perpendicular a la vista.
+<div class="svg-container">
+<svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg">
+<rect x="30" y="25" width="240" height="30" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="3"/>
+<line x1="150" y1="10" x2="150" y2="70" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4,2"/>
+<text x="150" y="8" text-anchor="middle" font-size="8" fill="#ef4444">Plano de corte</text>
+</svg>
+</div>
+</div>
+
+<div class="box box-teoria" id="step3" style="display:none">
+<strong>📍 Paso 3 — Ahora ves: Abate la sección sobre la vista</strong>
+Gira la sección 90° y dibújala sobre la vista con rayado diagonal.
+<div class="svg-container">
+<svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg">
+<rect x="30" y="25" width="240" height="30" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" rx="3"/>
+<rect x="130" y="10" width="40" height="60" fill="#fff7ed" stroke="#f97316" stroke-width="2" rx="3"/>
+<line x1="135" y1="15" x2="145" y2="65" stroke="#f97316" stroke-width="0.5"/>
+<line x1="145" y1="15" x2="155" y2="65" stroke="#f97316" stroke-width="0.5"/>
+<line x1="155" y1="15" x2="165" y2="65" stroke="#f97316" stroke-width="0.5"/>
+<text x="150" y="75" text-anchor="middle" font-size="8" fill="#f97316">Sección abatida + rayado</text>
+</svg>
+</div>
+</div>
+
+<div class="box box-teoria" id="step4" style="display:none">
+<strong>📍 Paso 4 — ¡Tú prueba! Dibuja la rotura</strong>
+Para un eje largo, añade una rotura en forma de "S" en el centro.
+<div class="svg-container">
+<svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg">
+<rect x="20" y="30" width="80" height="20" fill="#eff6ff" stroke="#10b981" stroke-width="1.5"/>
+<path d="M 100 30 Q 110 20, 120 35 Q 130 50, 140 30 Q 150 20, 160 35" fill="none" stroke="#10b981" stroke-width="1.5"/>
+<rect x="160" y="30" width="120" height="20" fill="#eff6ff" stroke="#10b981" stroke-width="1.5"/>
+<text x="150" y="65" text-anchor="middle" font-size="8" fill="#10b981">Rotura en "S"</text>
+<text x="150" y="76" text-anchor="middle" font-size="8" fill="#64748b">Cota = longitud real</text>
+</svg>
+</div>
+</div>
+</div>
+</div>
+
 <section class="chapter">
 <h2 class="chapter-title">📝 Ejercicios</h2>
 <div class="exercises">
 
 <div class="exercise">
-<p>📐 Ejercicio 1: ¿Qué muestra una sección?</p>
+<p>📐 Ejercicio 1 (Quiz): ¿Qué muestra una sección?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Solo la cara cortada</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">La cara cortada + lo que hay detrás</button>
@@ -220,42 +315,50 @@ Se representa con rotura dentada. La cota indica 2000 mm aunque el dibujo mida 8
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 2: ¿Qué tipo de sección se dibuja girada sobre la propia vista?</p>
+<p>📐 Ejercicio 2 (V/F visual): ¿Esta representación de sección es correcta?</p>
+<div class="comparison" style="margin:.5rem 0">
+<div class="comparison-side" style="padding:.8rem">
+<svg viewBox="0 0 120 80" width="100">
+<rect x="10" y="25" width="100" height="20" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<rect x="40" y="10" width="40" height="50" fill="#fff7ed" stroke="#f97316" stroke-width="1.5" rx="2"/>
+<line x1="45" y1="15" x2="55" y2="55" stroke="#f97316" stroke-width="0.5"/>
+<line x1="55" y1="15" x2="65" y2="55" stroke="#f97316" stroke-width="0.5"/>
+<text x="60" y="75" text-anchor="middle" font-size="7" fill="#10b981">✓ Sección abatida ✓</text>
+</svg>
+<p style="font-size:.8rem"><strong>Correcto:</strong> Sección con rayado diagonal sobre la vista</p>
+</div>
+<div class="comparison-side" style="padding:.8rem">
+<svg viewBox="0 0 120 80" width="100">
+<rect x="10" y="25" width="100" height="20" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<rect x="40" y="10" width="40" height="50" fill="#fff7ed" stroke="#f97316" stroke-width="1.5" rx="2"/>
+<text x="60" y="75" text-anchor="middle" font-size="7" fill="#ef4444">✗ Sin rayado ✗</text>
+</svg>
+<p style="font-size:.8rem"><strong>Incorrecto:</strong> Falta el rayado (hachuras) en la sección</p>
+</div>
+</div>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Sección abatida</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Sección desplazada</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Sección sucesiva</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Corte total</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">La izquierda (correcto)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">La derecha (incorrecto)</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 3: ¿Para qué sirve la rotura?</p>
-<div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Acortar la representación de piezas largas</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Mostrar el interior de la pieza</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Indicar el material</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Decorar el dibujo</button>
-</div>
+<p>📐 Ejercicio 3 (Completar): La sección muestra solo la ___ cortada. La rotura sirve para ___ piezas largas. La cota indica la ___ real.</p>
+<input type="text" id="ex3a" placeholder="1ª respuesta" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
+<input type="text" id="ex3b" placeholder="2ª respuesta" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
+<input type="text" id="ex3c" placeholder="3ª respuesta" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
+<button onclick="checkFillIn()">Comprobar</button>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 4: ¿Qué forma tiene la rotura para piezas cilíndricas?</p>
+<p>📐 Ejercicio 4 (Ordenar): ¿En qué orden se dibuja una sección abatida?</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Forma de "S" o espiral</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Línea recta</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Zigzag dentado</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Círculo</button>
+<button class="quiz-btn" onclick="checkOrden(this, '1-2-3')">① Vista longitudinal → ② Plano de corte → ③ Sección abatida con rayado</button>
+<button class="quiz-btn" onclick="checkOrden(this, '3-1-2')">③ Rayado → ① Vista → ② Plano</button>
+<button class="quiz-btn" onclick="checkOrden(this, '2-3-1')">② Plano → ③ Rayado → ① Vista</button>
 </div>
-<p class="feedback"></p>
-</div>
-
-<div class="exercise">
-<p>📐 Ejercicio 5: ¿Qué indica la cota en una pieza con rotura?</p>
-<input type="text" id="ex5" placeholder="Respuesta" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:250px">
-<button onclick="checkExercise('ex5', 'la longitud real', this)">Comprobar</button>
 <p class="feedback"></p>
 </div>
 
@@ -297,6 +400,85 @@ Las secciones son ideales para perfiles estructurales (vigas IPN, UPN, tubos) do
 </main>
 <footer class="footer">Hecho con ❤️ por David Antizar</footer>
 <script>
+// SVG interactividad: toggle sección vs corte
+var activeView = null;
+function toggleSeccionCorte(type) {
+  if (activeView === type) {
+    activeView = null;
+    document.getElementById('seccion-info-text').textContent = 'Selecciona Sección o Corte';
+    document.getElementById('seccion-fondo').style.display = 'block';
+    document.getElementById('seccion-fondo').textContent = '❌ NO se muestra el fondo';
+    document.getElementById('corte-fondo').style.display = 'none';
+    document.getElementById('corte-fondo-text').style.display = 'none';
+    document.getElementById('corte-fondo2').style.display = 'block';
+    document.getElementById('corte-fondo2').textContent = '✅ Se muestra el fondo';
+    return;
+  }
+  activeView = type;
+
+  if (type === 'seccion') {
+    document.getElementById('seccion-info-text').textContent = '📍 SECCIÓN: Solo la cara cortada. Sin lo que hay detrás. Con rayado diagonal.';
+    document.getElementById('seccion-fondo').textContent = '❌ NO se muestra el fondo';
+    document.getElementById('corte-fondo').style.display = 'none';
+    document.getElementById('corte-fondo-text').style.display = 'none';
+    document.getElementById('corte-fondo2').textContent = '✅ Se muestra el fondo';
+  } else {
+    document.getElementById('seccion-info-text').textContent = '📍 CORTE: Sección + lo que hay detrás. Se ve el fondo completo.';
+    document.getElementById('seccion-fondo').textContent = '❌ Se muestra el fondo';
+    document.getElementById('corte-fondo').style.display = 'block';
+    document.getElementById('corte-fondo-text').style.display = 'block';
+    document.getElementById('corte-fondo2').textContent = '✅ Se muestra el fondo';
+  }
+}
+
+// Paso a paso visual
+function showStep(n) {
+  for(var i = 1; i <= 4; i++) {
+    var step = document.getElementById('step' + i);
+    var dot = document.getElementById('sd' + i);
+    if(step) step.style.display = (i === n) ? 'block' : 'none';
+    if(dot) {
+      if(i === n) {
+        dot.classList.add('active');
+        dot.style.background = 'var(--azul)';
+      } else {
+        dot.classList.remove('active');
+        dot.style.background = '#94a3b8';
+      }
+    }
+  }
+}
+
+// Completar huecos
+function checkFillIn() {
+  var a = document.getElementById('ex3a').value.trim().toLowerCase();
+  var b = document.getElementById('ex3b').value.trim().toLowerCase();
+  var c = document.getElementById('ex3c').value.trim().toLowerCase();
+  var fb = document.querySelector('.exercises .exercise:nth-child(3) .feedback');
+  var answers = {
+    a: ['cara', 'superficie', 'interseccion', 'intersection'],
+    b: ['acortar', 'reducir', 'acortar la'],
+    c: ['longitud', 'longitud total']
+  };
+  if (answers.a.includes(a) && answers.b.includes(b) && answers.c.includes(c)) {
+    if(fb) { fb.textContent = '✅ ¡Perfecto! La sección muestra solo la cara cortada. La rotura sirve para acortar piezas largas. La cota indica la longitud real.'; fb.className = 'feedback correct'; }
+  } else {
+    if(fb) { fb.textContent = '❌ Respuesta: cara/superficie, acortar, longitud.'; fb.className = 'feedback incorrect'; }
+  }
+}
+
+// Ordenar pasos
+function checkOrden(btn, answer) {
+  var fb = btn.parentElement.nextElementSibling;
+  if (answer === '1-2-3') {
+    fb.textContent = '✅ ¡Correcto! Primero la vista longitudinal, luego el plano de corte, finalmente la sección abatida con rayado.';
+    fb.className = 'feedback correct';
+  } else {
+    fb.textContent = '❌ Incorrecto. Orden: ① Vista → ② Plano de corte → ③ Sección abatida.';
+    fb.className = 'feedback incorrect';
+  }
+}
+
 function checkAnswer(btn, correct) {
   var parent = btn.parentElement;
   parent.querySelectorAll('button').forEach(function(b) {
