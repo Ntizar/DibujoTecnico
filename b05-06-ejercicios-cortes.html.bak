@@ -279,10 +279,10 @@ Antes de dibujar cualquier corte, pregúntate:<br>
 <div class="exercise">
 <p>📐 Ejercicio 4 (Ordenar): ¿En qué orden se dibuja un corte?</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkOrden(this, false)">①→③→②→④</button>
-<button class="quiz-btn" onclick="checkOrden(this, true)">③→①→④→②</button>
-<button class="quiz-btn" onclick="checkOrden(this, false)">②→④→①→③</button>
-<button class="quiz-btn" onclick="checkOrden(this, false)">④→②→③→①</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">①→③→②→④</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">③→①→④→②</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">②→④→①→③</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">④→②→③→①</button>
 </div>
 <p class="feedback"></p>
 <p style="font-size:.85rem;color:var(--gris);margin-top:.3rem">Pistas: ① Rayar la sección cortada · ② Dibujar lo que queda detrás · ③ Trazar línea de corte · ④ Dibujar contornos visibles en corte</p>
@@ -407,39 +407,14 @@ Antes de dibujar cualquier corte, pregúntate:<br>
 </div>
 
 <div class="box box-error">
-<strong>⚠️ Error clásico: hachuras incorrectas en corte longitudinal de nervadura</strong>
-<div class="comparison" style="margin:.8rem 0">
-  <div class="comparison-side" style="padding:.8rem">
-    <svg viewBox="0 0 120 80" width="100">
-      <rect x="10" y="10" width="100" height="60" fill="none" stroke="#2563eb" stroke-width="2"/>
-      <line x1="55" y1="10" x2="55" y2="70" stroke="#1e293b" stroke-width="3"/>
-      <text x="55" y="5" text-anchor="middle" font-size="7" fill="#10b981">Nervadura</text>
-    </svg>
-    <p style="font-size:.75rem;margin-top:.3rem"><strong style="color:var(--verde)">✅ Correcto:</strong> Nervadura sin rayar (corte longitudinal)</p>
-  </div>
-  <div class="comparison-side" style="padding:.8rem">
-    <svg viewBox="0 0 120 80" width="100">
-      <rect x="10" y="10" width="100" height="60" fill="none" stroke="#2563eb" stroke-width="2"/>
-      <line x1="55" y1="10" x2="55" y2="70" stroke="#1e293b" stroke-width="3"/>
-      <line x1="58" y1="15" x2="65" y2="65" stroke="#f97316" stroke-width="0.5"/>
-      <line x1="68" y1="15" x2="75" y2="65" stroke="#f97316" stroke-width="0.5"/>
-      <text x="55" y="5" text-anchor="middle" font-size="7" fill="#ef4444">❌</text>
-    </svg>
-    <p style="font-size:.75rem;margin-top:.3rem"><strong style="color:var(--rojo)">❌ Error:</strong> Nervadura rayada (no se debe rayar)</p>
-  </div>
-</div>
-<strong>Otros errores frecuentes:</strong><br>
-• Usar corte total cuando se necesita escalonado (detalles a diferentes alturas)<br>
-• Olvidar que las nervaduras NO se rayan en corte longitudinal<br>
-• Poner rayados con ángulos diferentes en el mismo material (siempre 45° uniforme)
+<strong>⚠️ Error clásico</strong>
+Usar corte total cuando se necesita escalonado. Si los detalles internos están a diferentes alturas, un solo plano de corte no los capturará todos. Usa corte escalonado con planos paralelos.
 </div>
 
 <div class="box box-idea">
 <strong>🔗 Conexión</strong>
 Este ejercicio completo integra todos los conceptos del Bloque 5. En el Bloque 6 (Acotación) aprenderás a añadir las medidas a estos cortes. ¡Todo está conectado!
 </div>
-
-<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: plano de conjunto de un motor diésel MAN D0836</strong>El motor MAN D0836 tiene 850+ piezas. El plano de conjunto usa 8 cortes diferentes: corte total para el bloque, corte escalonado para los conductos de refrigeración, semicorte para la culata, cortes parciales para los cojinetes, y secciones para los árboles de levas. Cada uno de los 850 componentes tiene su lista numerada con cotas ISO 129. El dibujante usa hachuras diferentes para cada material: acero (45°), aluminio (60°), fundición (45° cruzada). Un error de corte en el bloque del motor costaría 15.000€ en piezas defectuosas.</div>
 
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
