@@ -124,17 +124,17 @@ A debe estar en esa horizontal
 <!-- LT -->
 <line x1="50" y1="150" x2="550" y2="150" stroke="#333" stroke-width="2"/>
 <!-- Recta r -->
-<line x1="100" y1="200" x2="500" y2="80" stroke="#2563eb" stroke-width="2.5"/>
-<text x="510" y="85" font-size="11" fill="#2563eb">r'</text>
-<line x1="100" y1="100" x2="500" y2="220" stroke="#2563eb" stroke-width="2.5"/>
-<text x="510" y="225" font-size="11" fill="#2563eb">r</text>
+<line x1="100" y1="200" x2="500" y2="80" stroke="#2563eb" stroke-width="2.5" class="recta-line" onclick="toggleLayer('r')" style="cursor:pointer"/>
+<text x="510" y="85" font-size="11" fill="#2563eb" class="svg-label">r'</text>
+<line x1="100" y1="100" x2="500" y2="220" stroke="#2563eb" stroke-width="2.5" class="recta-line" onclick="toggleLayer('r')" style="cursor:pointer"/>
+<text x="510" y="225" font-size="11" fill="#2563eb" class="svg-label">r</text>
 <!-- Punto A en r -->
-<circle cx="300" cy="140" r="6" fill="#10b981"/>
-<text x="310" y="135" font-size="12" font-weight="bold" fill="#10b981">A'</text>
-<circle cx="300" cy="160" r="6" fill="#10b981"/>
-<text x="310" y="175" font-size="12" font-weight="bold" fill="#10b981">A</text>
+<circle cx="300" cy="140" r="8" fill="#10b981" class="svg-point" onclick="togglePoint(this)" style="cursor:pointer"/>
+<text x="310" y="135" font-size="12" font-weight="bold" fill="#10b981" class="svg-label">A'</text>
+<circle cx="300" cy="160" r="8" fill="#10b981" class="svg-point" onclick="togglePoint(this)" style="cursor:pointer"/>
+<text x="310" y="175" font-size="12" font-weight="bold" fill="#10b981" class="svg-label">A</text>
 <!-- Línea de unión -->
-<line x1="300" y1="140" x2="300" y2="160" stroke="#a855f7" stroke-width="1.5"/>
+<line x1="300" y1="140" x2="300" y2="160" stroke="#a855f7" stroke-width="1.5" class="union-line" id="unionLine"/>
 <!-- Plano α -->
 <line x1="350" y1="80" x2="550" y2="150" stroke="#f97316" stroke-width="2"/>
 <text x="560" y="145" font-size="11" fill="#f97316">α₁</text>
@@ -152,64 +152,147 @@ A debe estar en esa horizontal
 </div>
 </section>
 
+<div class="interactive">
+  <h3>🎬 Paso a paso: Punto en recta</h3>
+  <div class="step-indicator">
+    <div class="step-dot active" id="sd1" onclick="showStep(1)">1</div>
+    <div class="step-dot" id="sd2" onclick="showStep(2)">2</div>
+    <div class="step-dot" id="sd3" onclick="showStep(3)">3</div>
+    <div class="step-dot" id="sd4" onclick="showStep(4)">4</div>
+  </div>
+  <div id="step-content">
+    <div class="box box-teoria" id="step1">
+      <strong>📍 Paso 1 — Mira: La recta r en el diédrico</strong>
+      Tenemos una recta r con dos proyecciones: r' (alzado, arriba) y r (planta, abajo). La línea de tierra (LT) separa ambas vistas.
+      <div class="svg-container">
+        <svg viewBox="0 0 400 120" width="350">
+          <line x1="30" y1="60" x2="370" y2="60" stroke="#333" stroke-width="2"/>
+          <text x="380" y="64" font-size="10" fill="#333">LT</text>
+          <line x1="60" y1="90" x2="340" y2="30" stroke="#2563eb" stroke-width="3"/>
+          <text x="345" y="28" font-size="11" fill="#2563eb" font-weight="bold">r'</text>
+          <line x1="60" y1="30" x2="340" y2="90" stroke="#2563eb" stroke-width="3"/>
+          <text x="345" y="95" font-size="11" fill="#2563eb" font-weight="bold">r</text>
+        </svg>
+      </div>
+    </div>
+    <div class="box box-teoria" id="step2" style="display:none">
+      <strong>📍 Paso 2 — Fíjate: El punto A con sus proyecciones</strong>
+      El punto A tiene dos proyecciones: A' en alzado y A en planta. Están en la misma línea de unión (vertical).
+      <div class="svg-container">
+        <svg viewBox="0 0 400 120" width="350">
+          <line x1="30" y1="60" x2="370" y2="60" stroke="#333" stroke-width="2"/>
+          <line x1="60" y1="90" x2="340" y2="30" stroke="#2563eb" stroke-width="2"/>
+          <line x1="60" y1="30" x2="340" y2="90" stroke="#2563eb" stroke-width="2"/>
+          <circle cx="200" cy="45" r="7" fill="#10b981"/>
+          <text x="210" y="42" font-size="11" fill="#10b981" font-weight="bold">A'</text>
+          <circle cx="200" cy="75" r="7" fill="#10b981"/>
+          <text x="210" y="80" font-size="11" fill="#10b981" font-weight="bold">A</text>
+          <line x1="200" y1="45" x2="200" y2="75" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="4,2"/>
+        </svg>
+      </div>
+    </div>
+    <div class="box box-teoria" id="step3" style="display:none">
+      <strong>📍 Paso 3 — Ahora ves: ¿Pertenece A a r?</strong>
+      ¡Sí! A' está en r' y A está en r, y están en la misma vertical. Las 3 condiciones se cumplen.
+      <div class="svg-container">
+        <svg viewBox="0 0 400 140" width="350">
+          <line x1="30" y1="70" x2="370" y2="70" stroke="#333" stroke-width="2"/>
+          <line x1="60" y1="100" x2="340" y2="40" stroke="#2563eb" stroke-width="3"/>
+          <line x1="60" y1="40" x2="340" y2="100" stroke="#2563eb" stroke-width="3"/>
+          <circle cx="200" cy="55" r="8" fill="#10b981"/>
+          <text x="212" y="52" font-size="12" fill="#10b981" font-weight="bold">A'</text>
+          <circle cx="200" cy="85" r="8" fill="#10b981"/>
+          <text x="212" y="90" font-size="12" fill="#10b981" font-weight="bold">A</text>
+          <line x1="200" y1="55" x2="200" y2="85" stroke="#a855f7" stroke-width="2"/>
+          <text x="200" y="125" text-anchor="middle" font-size="11" fill="#10b981" font-weight="bold">✓ A' ∈ r'  ✓ A ∈ r  ✓ Misma vertical</text>
+        </svg>
+      </div>
+    </div>
+    <div class="box box-teoria" id="step4" style="display:none">
+      <strong>📍 Paso 4 — ¡Tú prueba! Haz clic en los puntos</strong>
+      Haz clic en los círculos verdes para ver cómo cambian las condiciones de pertenencia.
+      <div class="svg-container">
+        <svg viewBox="0 0 400 140" width="350">
+          <line x1="30" y1="70" x2="370" y2="70" stroke="#333" stroke-width="2"/>
+          <line x1="60" y1="100" x2="340" y2="40" stroke="#2563eb" stroke-width="2"/>
+          <line x1="60" y1="40" x2="340" y2="100" stroke="#2563eb" stroke-width="2"/>
+          <circle cx="200" cy="55" r="10" fill="#10b981" class="svg-point" onclick="togglePoint(this)" style="cursor:pointer"/>
+          <text x="215" y="52" font-size="12" fill="#10b981" font-weight="bold">A'</text>
+          <circle cx="200" cy="85" r="10" fill="#10b981" class="svg-point" onclick="togglePoint(this)" style="cursor:pointer"/>
+          <text x="215" y="90" font-size="12" fill="#10b981" font-weight="bold">A</text>
+          <line x1="200" y1="55" x2="200" y2="85" stroke="#a855f7" stroke-width="1.5" id="step4Union"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
 <section class="chapter">
 <h2 class="chapter-title">📝 Ejercicios</h2>
 <div class="exercises">
 
 <div class="exercise">
-<p>📐 Ejercicio 1: ¿Cuántas condiciones debe cumplir un punto para pertenecer a una recta?</p>
+<p>📐 Ejercicio 1 (Quiz): ¿Cuántas condiciones debe cumplir un punto para pertenecer a una recta?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">1</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">2</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">3</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">4</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">3</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">4</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 2: ¿Dónde debe estar A' para pertenecer a r?</p>
+<p>📐 Ejercicio 2 (V/F visual): ¿En cuál de estos casos el punto pertenece a la recta?</p>
+<div class="comparison" style="margin:.5rem 0">
+  <div class="comparison-side" style="padding:.6rem">
+    <svg viewBox="0 0 120 80" width="100">
+      <line x1="10" y1="65" x2="110" y2="65" stroke="#333" stroke-width="1.5"/>
+      <line x1="20" y1="75" x2="100" y2="25" stroke="#2563eb" stroke-width="2"/>
+      <line x1="20" y1="25" x2="100" y2="75" stroke="#2563eb" stroke-width="2"/>
+      <circle cx="60" cy="50" r="5" fill="#10b981"/>
+      <line x1="60" y1="40" x2="60" y2="60" stroke="#a855f7" stroke-width="1" stroke-dasharray="2,1"/>
+    </svg>
+    <p style="font-size:.8rem"><strong>Izquierda:</strong> A' en r', A en r, misma vertical ✓</p>
+  </div>
+  <div class="comparison-side" style="padding:.6rem">
+    <svg viewBox="0 0 120 80" width="100">
+      <line x1="10" y1="65" x2="110" y2="65" stroke="#333" stroke-width="1.5"/>
+      <line x1="20" y1="75" x2="100" y2="25" stroke="#2563eb" stroke-width="2"/>
+      <line x1="20" y1="25" x2="100" y2="75" stroke="#2563eb" stroke-width="2"/>
+      <circle cx="70" cy="40" r="5" fill="#ef4444"/>
+      <circle cx="50" cy="60" r="5" fill="#ef4444"/>
+      <line x1="70" y1="40" x2="50" y2="60" stroke="#ef4444" stroke-width="1" stroke-dasharray="2,1"/>
+    </svg>
+    <p style="font-size:.8rem"><strong>Derecha:</strong> No en misma vertical ❌</p>
+  </div>
+</div>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">En r'</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">En r</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">En la LT</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Donde quiera</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">La izquierda</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">La derecha</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 3: ¿Cómo se determina si un punto pertenece a un plano?</p>
-<div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false">Directamente con las trazas</button>
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Si está en una recta del plano</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Con las proyecciones solas</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">No se puede determinar</button>
-</div>
+<p>📐 Ejercicio 3 (Completar): Un punto pertenece a un plano si está en una ___ del plano. Se usan rectas ___ o ___ como auxiliares.</p>
+<input type="text" id="ex3a" placeholder="1ª respuesta" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
+<input type="text" id="ex3b" placeholder="2ª respuesta" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
+<input type="text" id="ex3c" placeholder="3ª respuesta" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
+<button onclick="checkFillIn()" style="padding:.5rem 1.2rem;border-radius:6px;border:none;background:var(--azul);color:#fff;cursor:pointer;font-size:.95rem;margin:.5rem 0">Comprobar</button>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 4: ¿Qué tipo de recta se usa como auxiliar en un plano?</p>
+<p>📐 Ejercicio 4 (Ordenar): ¿En qué orden se verifica si un punto pertenece a un plano?</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Horizontal o frontal</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">De máxima pendiente</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">De punta</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">De perfil</button>
+<button class="quiz-btn" onclick="checkOrden(this, '1-2-3')">① Trazar recta auxiliar → ② Verificar en alzado → ③ Verificar en planta</button>
+<button class="quiz-btn" onclick="checkOrden(this, '3-2-1')">① Verificar en planta → ② Trazar recta → ③ Verificar en alzado</button>
+<button class="quiz-btn" onclick="checkOrden(this, '2-3-1')">① Verificar en alzado → ② Verificar en planta → ③ Trazar recta</button>
 </div>
 <p class="feedback"></p>
 </div>
 
-<div class="exercise">
-<p>📐 Ejercicio 5: Verdadero o Falso — A' y A deben estar en la misma línea de unión.</p>
-<div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Verdadero</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Falso</button>
-</div>
-<p class="feedback"></p>
-</div>
-
-</div>
+</div></div>
 </section>
 
 <div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ NO PERTENECE</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><polygon points="50,110 150,30 160,30 60,110" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><circle cx="170" cy="50" r="6" fill="#ef4444"/><text x="100" y="130" text-anchor="middle" font-size="9" fill="#ef4444">Punto fuera del plano</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ PERTENECE</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><polygon points="50,110 150,30 160,30 60,110" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><circle cx="100" cy="70" r="6" fill="#10b981"/><line x1="80" y1="110" x2="100" y2="70" stroke="#10b981" stroke-width="1" stroke-dasharray="3,2"/><text x="100" y="130" text-anchor="middle" font-size="9" fill="#10b981">Punto en el plano ✓</text></svg></div></div>
@@ -291,6 +374,82 @@ window.onscroll = function(){
   var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
   document.getElementById('progress').style.width = p+'%';
 };
+
+function togglePoint(el) {
+  el.classList.toggle('active');
+  if (el.classList.contains('active')) {
+    el.setAttribute('r', '12');
+    el.style.fill = '#f97316';
+  } else {
+    el.setAttribute('r', '8');
+    el.style.fill = '#10b981';
+  }
+}
+
+function toggleLayer(layer) {
+  var lines = document.querySelectorAll('.recta-line');
+  lines.forEach(function(line) {
+    line.classList.toggle('active');
+    if (line.classList.contains('active')) {
+      line.style.opacity = '0.3';
+    } else {
+      line.style.opacity = '1';
+    }
+  });
+}
+
+function showStep(n) {
+  for(var i = 1; i <= 4; i++) {
+    var step = document.getElementById('step' + i);
+    var dot = document.getElementById('sd' + i);
+    if(step) step.style.display = (i === n) ? 'block' : 'none';
+    if(dot) {
+      if(i === n) {
+        dot.classList.add('active');
+        dot.style.background = 'var(--azul)';
+      } else {
+        dot.classList.remove('active');
+        dot.style.background = '#94a3b8';
+      }
+    }
+  }
+}
+
+function checkFillIn() {
+  var a = document.getElementById('ex3a').value.trim().toLowerCase();
+  var b = document.getElementById('ex3b').value.trim().toLowerCase();
+  var c = document.getElementById('ex3c').value.trim().toLowerCase();
+  var feedback = document.querySelector('#ex3a').parentElement.nextElementSibling;
+  var correct = (a === 'recta' || a === 'rectas') && (b === 'horizontales' || b === 'horizontal') && (c === 'frontales' || c === 'frontal');
+  if(correct) {
+    feedback.textContent = '✅ ¡Correcto! Un punto pertenece a un plano si está en una recta del plano. Se usan rectas horizontales o frontales como auxiliares.';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ Respuesta: recta, horizontales, frontales. Recuerda: un punto está en un plano si está en una recta del plano.';
+    feedback.className = 'feedback incorrect';
+  }
+}
+
+function checkOrden(btn, answer) {
+  var parent = btn.parentElement;
+  var feedback = parent.nextElementSibling;
+  if(answer === '1-2-3') {
+    parent.querySelectorAll('button').forEach(function(b) { b.disabled = true; b.classList.remove('correct','wrong'); });
+    btn.classList.add('correct');
+    feedback.textContent = '✅ ¡Correcto! Primero trazamos la recta auxiliar por el punto, luego verificamos en alzado y finalmente en planta.';
+    feedback.className = 'feedback correct';
+  } else {
+    parent.querySelectorAll('button').forEach(function(b) { b.disabled = true; b.classList.remove('correct','wrong'); });
+    btn.classList.add('wrong');
+    feedback.textContent = '❌ El orden correcto es: ① Trazar recta auxiliar → ② Verificar en alzado → ③ Verificar en planta.';
+    feedback.className = 'feedback incorrect';
+    setTimeout(function() {
+      parent.querySelectorAll('button').forEach(function(b) { b.disabled = false; b.classList.remove('correct','wrong'); });
+      feedback.textContent = '';
+      feedback.className = 'feedback';
+    }, 2000);
+  }
+}
 </script>
 </body>
 </html>
