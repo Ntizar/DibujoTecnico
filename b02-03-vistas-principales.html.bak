@@ -182,148 +182,19 @@ Mide: profundidad y alto.
 </div>
 </section>
 
-<!-- PASO A PASO VISUAL — Patrón 4 pasos -->
+<!-- PASO A PASO VISUAL -->
 <section class="chapter">
-<h2 class="chapter-title">🎬 Paso a paso: Construir las 3 vistas</h2>
-
-<div class="interactive">
-<h3>👆 Haz clic en cada paso para ver la evolución</h3>
+<h2 class="chapter-title">📊 Cómo elegir la vista principal</h2>
 <div class="step-indicator">
-<div class="step-dot active" id="sd-paso1"></div>
-<div class="step-dot" id="sd-paso2"></div>
-<div class="step-dot" id="sd-paso3"></div>
-<div class="step-dot" id="sd-paso4"></div>
+<div class="step-dot active" id="sd1"></div>
+<div class="step-dot" id="sd2"></div>
+<div class="step-dot" id="sd3"></div>
 </div>
-
-<!-- Paso 1: Mira -->
-<div class="svg-container" id="paso1-container" style="display:none">
-<svg viewBox="0 0 500 250" xmlns="http://www.w3.org/2000/svg">
-<rect x="0" y="0" width="500" height="250" fill="#eff6ff" rx="8"/>
-<text x="250" y="25" text-anchor="middle" font-size="13" fill="#2563eb" font-weight="600">Paso 1: Mira — La pieza en 3D</text>
-<!-- Pieza simple: L-shaped bracket 3D -->
-<polygon points="180,60 220,45 260,60 260,160 220,175 180,160" fill="#fff" stroke="#2563eb" stroke-width="2.5"/>
-<polygon points="180,60 220,45 220,60 180,75" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
-<polygon points="220,45 260,60 260,75 220,60" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
-<line x1="220" y1="45" x2="220" y2="175" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="4,3"/>
-<text x="220" y="130" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600">Pieza L</text>
-<!-- Flechas de observación -->
-<line x1="120" y1="110" x2="175" y2="110" stroke="#f97316" stroke-width="2" marker-end="url(#arrow)"/>
-<text x="115" y="105" text-anchor="end" font-size="10" fill="#f97316" font-weight="600">Frente →</text>
-<line x1="220" y1="45" x2="220" y2="20" stroke="#10b981" stroke-width="2" marker-end="url(#arrow)"/>
-<text x="220" y="15" text-anchor="middle" font-size="10" fill="#10b981" font-weight="600">↑ Arriba</text>
-<line x1="260" y1="110" x2="310" y2="110" stroke="#a855f7" stroke-width="2" marker-end="url(#arrow)"/>
-<text x="315" y="105" text-anchor="start" font-size="10" fill="#a855f7" font-weight="600">→ Lado</text>
-</svg>
-</div>
-
-<!-- Paso 2: Fíjate -->
-<div class="svg-container" id="paso2-container" style="display:none">
-<svg viewBox="0 0 500 250" xmlns="http://www.w3.org/2000/svg">
-<rect x="0" y="0" width="500" height="250" fill="#fff7ed" rx="8"/>
-<text x="250" y="25" text-anchor="middle" font-size="13" fill="#f97316" font-weight="600">Paso 2: Fíjate — ¿Qué ves desde cada lado?</text>
-<!-- Alzado: rectángulo con L -->
-<rect x="50" y="50" width="120" height="130" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5" rx="4"/>
-<polyline points="50,100 170,100 170,180 50,180" fill="none" stroke="#2563eb" stroke-width="2"/>
-<line x1="50" y1="100" x2="50" y2="180" stroke="#2563eb" stroke-width="2"/>
-<text x="110" y="150" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600">ALZADO</text>
-<text x="110" y="165" text-anchor="middle" font-size="9" fill="#64748b">X + Z</text>
-<!-- Flecha -->
-<text x="230" y="120" text-anchor="middle" font-size="24" fill="#94a3b8">→</text>
-<!-- Planta: rectángulo simple -->
-<rect x="280" y="50" width="120" height="130" fill="#fff7ed" stroke="#f97316" stroke-width="2.5" rx="4"/>
-<rect x="280" y="50" width="120" height="130" fill="none" stroke="#f97316" stroke-width="2"/>
-<text x="340" y="120" text-anchor="middle" font-size="11" fill="#f97316" font-weight="600">PLANTA</text>
-<text x="340" y="135" text-anchor="middle" font-size="9" fill="#64748b">X + Y</text>
-<text x="340" y="165" text-anchor="middle" font-size="10" fill="#64748b">Rectángulo</text>
-<!-- Flecha -->
-<text x="420" y="120" text-anchor="middle" font-size="24" fill="#94a3b8">→</text>
-<!-- Perfil -->
-<rect x="440" y="50" width="50" height="130" fill="#faf5ff" stroke="#a855f7" stroke-width="2.5" rx="4"/>
-<text x="465" y="120" text-anchor="middle" font-size="10" fill="#a855f7" font-weight="600">PERFIL</text>
-<text x="465" y="135" text-anchor="middle" font-size="9" fill="#64748b">Y + Z</text>
-</svg>
-</div>
-
-<!-- Paso 3: Ahora ves -->
-<div class="svg-container" id="paso3-container" style="display:none">
-<svg viewBox="0 0 500 250" xmlns="http://www.w3.org/2000/svg">
-<rect x="0" y="0" width="500" height="250" fill="#ecfdf5" rx="8"/>
-<text x="250" y="25" text-anchor="middle" font-size="13" fill="#10b981" font-weight="600">Paso 3: Ahora ves — La correspondencia</text>
-<!-- Alzado arriba -->
-<rect x="150" y="40" width="120" height="100" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5" rx="4"/>
-<text x="210" y="95" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="600">ALZADO</text>
-<!-- Línea de tierra -->
-<line x1="50" y1="145" x2="450" y2="145" stroke="#333" stroke-width="2"/>
-<text x="455" y="149" font-size="8" fill="#333">LT</text>
-<!-- Planta debajo -->
-<rect x="150" y="150" width="120" height="80" fill="#fff7ed" stroke="#f97316" stroke-width="2.5" rx="4"/>
-<text x="210" y="195" text-anchor="middle" font-size="12" fill="#f97316" font-weight="600">PLANTA</text>
-<!-- Líneas de correspondencia X -->
-<line x1="150" y1="140" x2="150" y2="150" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3"/>
-<line x1="270" y1="140" x2="270" y2="150" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3"/>
-<text x="140" y="148" font-size="8" fill="#94a3b8">X</text>
-<!-- Perfil al lado -->
-<rect x="300" y="40" width="80" height="100" fill="#faf5ff" stroke="#a855f7" stroke-width="2.5" rx="4"/>
-<text x="340" y="95" text-anchor="middle" font-size="12" fill="#a855f7" font-weight="600">PERFIL</text>
-<!-- Líneas de correspondencia Z -->
-<line x1="270" y1="90" x2="300" y2="90" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3"/>
-<text x="285" y="85" font-size="8" fill="#94a3b8">Z</text>
-<text x="250" y="240" text-anchor="middle" font-size="10" fill="#10b981" font-weight="600">📐 Planta DEBAJO, Perfil AL LADO</text>
-</svg>
-</div>
-
-<!-- Paso 4: Tú prueba -->
-<div class="svg-container" id="paso4-container" style="display:none">
-<svg viewBox="0 0 500 250" xmlns="http://www.w3.org/2000/svg">
-<rect x="0" y="0" width="500" height="250" fill="#faf5ff" rx="8"/>
-<text x="250" y="25" text-anchor="middle" font-size="13" fill="#a855f7" font-weight="600">Paso 4: ¡Tú prueba! — Haz clic en la vista correcta</text>
-<!-- Pieza 3D simple -->
-<polygon points="200,50 250,30 300,50 300,150 250,170 200,150" fill="#fff" stroke="#a855f7" stroke-width="2.5"/>
-<polygon points="200,50 250,30 250,50 200,70" fill="#ede9fe" stroke="#a855f7" stroke-width="1.5"/>
-<polygon points="250,30 300,50 300,70 250,50" fill="#ede9fe" stroke="#a855f7" stroke-width="1.5"/>
-<text x="250" y="130" text-anchor="middle" font-size="11" fill="#a855f7" font-weight="600">Pieza prismática</text>
-<!-- 3 opciones clickeables -->
-<rect x="30" y="180" width="140" height="60" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="6" onclick="checkPaso4(this,'alz')" style="cursor:pointer"/>
-<text x="100" y="210" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="600">Opción A</text>
-<text x="100" y="225" text-anchor="middle" font-size="9" fill="#64748b">Rectángulo simple</text>
-
-<rect x="180" y="180" width="140" height="60" fill="#fff7ed" stroke="#f97316" stroke-width="2" rx="6" onclick="checkPaso4(this,'plant')" style="cursor:pointer"/>
-<text x="250" y="210" text-anchor="middle" font-size="10" fill="#f97316" font-weight="600">Opción B</text>
-<text x="250" y="225" text-anchor="middle" font-size="9" fill="#64748b">Rectángulo simple</text>
-
-<rect x="330" y="180" width="140" height="60" fill="#faf5ff" stroke="#a855f7" stroke-width="2" rx="6" onclick="checkPaso4(this,'perf')" style="cursor:pointer"/>
-<text x="400" y="210" text-anchor="middle" font-size="10" fill="#a855f7" font-weight="600">Opción C</text>
-<text x="400" y="225" text-anchor="middle" font-size="9" fill="#64748b">Rectángulo simple</text>
-<text x="250" y="248" text-anchor="middle" font-size="9" fill="#a855f7" id="paso4-result">👆 Clic en una opción</text>
-</svg>
-</div>
-
-<!-- Vista inicial: Paso 1 activo -->
-<div class="svg-container" id="paso1-container">
-<svg viewBox="0 0 500 250" xmlns="http://www.w3.org/2000/svg">
-<rect x="0" y="0" width="500" height="250" fill="#eff6ff" rx="8"/>
-<text x="250" y="25" text-anchor="middle" font-size="13" fill="#2563eb" font-weight="600">Paso 1: Mira — La pieza en 3D</text>
-<polygon points="180,60 220,45 260,60 260,160 220,175 180,160" fill="#fff" stroke="#2563eb" stroke-width="2.5"/>
-<polygon points="180,60 220,45 220,60 180,75" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
-<polygon points="220,45 260,60 260,75 220,60" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
-<line x1="220" y1="45" x2="220" y2="175" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="4,3"/>
-<text x="220" y="130" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600">Pieza L</text>
-<line x1="120" y1="110" x2="175" y2="110" stroke="#f97316" stroke-width="2" marker-end="url(#arrow)"/>
-<text x="115" y="105" text-anchor="end" font-size="10" fill="#f97316" font-weight="600">Frente →</text>
-<line x1="220" y1="45" x2="220" y2="20" stroke="#10b981" stroke-width="2" marker-end="url(#arrow)"/>
-<text x="220" y="15" text-anchor="middle" font-size="10" fill="#10b981" font-weight="600">↑ Arriba</text>
-<line x1="260" y1="110" x2="310" y2="110" stroke="#a855f7" stroke-width="2" marker-end="url(#arrow)"/>
-<text x="315" y="105" text-anchor="start" font-size="10" fill="#a855f7" font-weight="600">→ Lado</text>
-</svg>
-</div>
-
-<!-- Botones de navegación -->
-<div style="text-align:center;margin:1rem 0">
-<button onclick="showPaso(1)">Paso 1: Mira</button>
-<button onclick="showPaso(2)">Paso 2: Fíjate</button>
-<button onclick="showPaso(3)">Paso 3: Ahora ves</button>
-<button onclick="showPaso(4)">Paso 4: Tú prueba</button>
-</div>
+<div class="box box-teoria">
+<strong>📖 Regla de 3 pasos:</strong><br>
+<strong>Paso 1:</strong> Mira la pieza desde todas las direcciones → elige la que revele más forma<br>
+<strong>Paso 2:</strong> La vista principal debe mostrar la forma característica (no un simple rectángulo)<br>
+<strong>Paso 3:</strong> Las demás vistas se organizan alrededor: planta DEBAJO, perfil AL LADO
 </div>
 </section>
 
@@ -407,7 +278,7 @@ Poner la planta ENCIMA del alzado. En el 1º diedro (norma europea), la planta v
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Encima del alzado</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Debajo del alzado</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">A la derecha del alzado</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">A la izquierda del alzado</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">A la izquierda del alzado</button>
 </div>
 <p class="feedback"></p>
 </div>
@@ -441,32 +312,8 @@ Poner la planta ENCIMA del alzado. En el 1º diedro (norma europea), la planta v
 <p class="feedback"></p>
 </div>
 
-<div class="exercise">
-<p>✅ Ejercicio 6: Verdadero o Falso — "La planta siempre se sitúa debajo del alzado en el 1º diedro"</p>
-<div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">✅ Verdadero</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">❌ Falso</button>
-</div>
-<p class="feedback"></p>
-</div>
-
-<div class="exercise">
-<p>🔀 Ejercicio 7: Ordena los pasos para construir las vistas principales (clic en orden 1→2→3)</p>
-<div class="quiz-options">
-<button class="quiz-btn" onclick="orderStep(this, 2)">Colocar planta debajo y perfil al lado</button>
-<button class="quiz-btn" onclick="orderStep(this, 1)">Elegir la vista principal (la que mejor muestra la forma)</button>
-<button class="quiz-btn" onclick="orderStep(this, 3)">Dibujar líneas de correspondencia entre vistas</button>
-</div>
-<p class="feedback" id="order-feedback"></p>
-</div>
-
 </div>
 </section>
-
-<div class="box box-success">
-<strong>🏆 ¡Dominado!</strong>
-Las vistas principales son la base de todo plano técnico. Si puedes leerlas, puedes fabricar cualquier pieza. ¡Cada plano que entiendas te acerca a ser un profesional!
-</div>
 
 <div class="box box-error">
 <strong>⚠️ Error común</strong>
@@ -555,60 +402,6 @@ function checkExercise(id, correct, btn) {
     feedback.textContent = '❌ Respuesta correcta: ' + correct;
     feedback.className = 'feedback incorrect';
     input.style.borderColor = 'var(--rojo)';
-  }
-}
-
-function showPaso(n) {
-  // Ocultar todos
-  for(var i=1;i<=4;i++){
-    var c=document.getElementById('paso'+i+'-container');
-    if(c) c.style.display='none';
-    var d=document.getElementById('sd-paso'+i);
-    if(d) d.classList.remove('active');
-  }
-  // Mostrar el seleccionado
-  var target=document.getElementById('paso'+n+'-container');
-  if(target) target.style.display='block';
-  var dot=document.getElementById('sd-paso'+n);
-  if(dot) dot.classList.add('active');
-}
-
-function checkPaso4(btn, opcion) {
-  var result=document.getElementById('paso4-result');
-  if(opcion==='alz') {
-    result.textContent='✅ ¡Correcto! El alzado muestra la forma frontal (X+Z)';
-    result.style.fill='#10b981';
-  } else if(opcion==='plant') {
-    result.textContent='⚠️ La planta muestra X+Y, pero la vista principal suele ser el alzado';
-    result.style.fill='#f97316';
-  } else {
-    result.textContent='⚠️ El perfil muestra Y+Z, es una vista secundaria';
-    result.style.fill='#f97316';
-  }
-}
-
-var orderCounter=0;
-function orderStep(btn, step) {
-  orderCounter++;
-  btn.style.background='var(--azul)';
-  btn.style.color='#fff';
-  btn.disabled=true;
-  var fb=document.getElementById('order-feedback');
-  if(orderCounter===step) {
-    if(orderCounter===3) {
-      fb.textContent='✅ ¡Orden correcto! 1→2→3';
-      fb.className='feedback correct';
-    } else {
-      fb.textContent='✅ ¡Bien! Paso '+step+' correcto. Sigue así...';
-      fb.className='feedback correct';
-    }
-  } else {
-    fb.textContent='❌ Ese no es el paso '+step+'. Intenta otro.';
-    fb.className='feedback incorrect';
-    btn.style.background='';
-    btn.style.color='';
-    btn.disabled=false;
-    orderCounter--;
   }
 }
 
