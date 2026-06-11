@@ -222,7 +222,7 @@
             "improvement_count": 3
         },
         "b02-03-vistas-principales.html": {
-            "status": "improved_1",
+            "status": "improved_3",
             "bloque": "b02",
             "title": "👀 Vistas principales",
             "priority": 1,
@@ -244,18 +244,27 @@
                     "dimensions_improved": [
                         "css_coherence"
                     ]
+                },
+                {
+                    "date": "2026-06-11",
+                    "description": "Paso a paso visual 4 pasos (mira→fíjate→ahora ves→prueba) con 4 SVGs interactivos + botones showPaso(), 2 ejercicios nuevos (V/F visual + ordenar pasos), CSS: box-success usada, interactive usada, broken onclick fixed",
+                    "dimensions_improved": [
+                        "text_explanation",
+                        "exercises",
+                        "css_coherence"
+                    ]
                 }
             ],
             "scores": {
                 "svg_interactive": 7,
-                "exercises": 7,
-                "text_explanation": 7,
+                "exercises": 9,
+                "text_explanation": 9,
                 "real_world": 7,
                 "error_common": 7,
                 "css_coherence": 10
             },
-            "last_improved": "2026-06-10",
-            "improvement_count": 2
+            "last_improved": "2026-06-11",
+            "improvement_count": 3
         },
         "b02-04-correspondencia-vistas.html": {
             "status": "improved_1",
