@@ -1729,13 +1729,13 @@
         "total_themes_audited": 3,
         "audit_details": {
             "audited_files": [
-                "b06-03-acotacion-coordenadas.html",
-                "b07-01-intersecciones.html",
-                "b03-03-isometrica-circulos.html"
+                "b05-05-hachuras.html",
+                "index.html",
+                "b02-05-abatimiento-ph.html"
             ],
             "issues_found": [],
             "issues_fixed": [],
-            "summary": "3 archivos auditados aleatorios — 100% CSS coherence"
+            "summary": "3 archivos auditados aleatorios — 3/3 con 100% CSS coherence"
         }
     }
 }
