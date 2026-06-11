@@ -121,12 +121,23 @@ En planta, Tv está sobre la LT. En alzado, Tv' está en la recta r'.
 <h2 class="chapter-title">2️⃣ Visualiza la recta y sus trazas</h2>
 <div class="svg-container">
 <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
-<!-- Fondo -->
 <rect x="0" y="0" width="600" height="300" fill="#f8fafc" rx="8"/>
-<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Recta r con sus trazas Th y Tv</text>
+<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Recta r con sus trazas Th y Tv — haz clic para explorar</text>
 <!-- LT -->
 <line x1="50" y1="150" x2="550" y2="150" stroke="#333" stroke-width="2"/>
 <text x="560" y="154" font-size="11" fill="#333">LT</text>
+<!-- Capa posiciones (oculta por defecto) -->
+<g id="posicion-layer" class="posicion-layer" style="display:none">
+  <rect x="20" y="230" width="560" height="55" fill="#fff7ed" rx="6" stroke="#f97316" stroke-width="1"/>
+  <text x="300" y="248" text-anchor="middle" font-size="10" fill="#f97316" font-weight="600">Posiciones de la recta:</text>
+  <text x="300" y="263" text-anchor="middle" font-size="9" fill="#64748b">Horizontal (r'∥LT) | Frontal (r∥LT) | De punta (r'=punto) | De perfil (r'⊥LT) | Oblicua (ninguna paralela)</text>
+</g>
+<!-- Capa trazas info (oculta por defecto) -->
+<g id="trazas-layer" class="trazas-layer" style="display:none">
+  <rect x="20" y="230" width="560" height="55" fill="#ecfdf5" rx="6" stroke="#10b981" stroke-width="1"/>
+  <text x="300" y="248" text-anchor="middle" font-size="10" fill="#10b981" font-weight="600">Trazas:</text>
+  <text x="300" y="263" text-anchor="middle" font-size="9" fill="#64748b">Th = donde r corta PH (z=0) → Th' está en LT | Tv = donde r corta PV (y=0) → Tv está en LT</text>
+</g>
 <!-- Recta r' (alzado) -->
 <line x1="100" y1="200" x2="500" y2="80" stroke="#2563eb" stroke-width="2.5"/>
 <text x="510" y="85" font-size="11" fill="#2563eb">r'</text>
@@ -134,73 +145,164 @@ En planta, Tv está sobre la LT. En alzado, Tv' está en la recta r'.
 <line x1="100" y1="100" x2="500" y2="220" stroke="#f97316" stroke-width="2.5"/>
 <text x="510" y="225" font-size="11" fill="#f97316">r</text>
 <!-- Th -->
-<circle cx="350" cy="150" r="5" fill="#10b981"/>
+<circle cx="350" cy="150" r="7" fill="#10b981" style="cursor:pointer" onclick="toggleLayer('trazas-layer')"/>
 <text x="360" y="145" font-size="11" font-weight="bold" fill="#10b981">Th</text>
 <text x="360" y="160" font-size="9" fill="#64748b">z=0</text>
 <!-- Tv -->
-<circle cx="300" cy="150" r="5" fill="#a855f7"/>
+<circle cx="300" cy="150" r="7" fill="#a855f7" style="cursor:pointer" onclick="toggleLayer('posicion-layer')"/>
 <text x="310" y="145" font-size="11" font-weight="bold" fill="#a855f7">Tv</text>
 <text x="310" y="160" font-size="9" fill="#64748b">y=0</text>
-<!-- Leyenda -->
-<rect x="20" y="240" width="560" height="45" fill="#ecfdf5" rx="6"/>
-<text x="300" y="260" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">Th: donde r corta PH (z=0) | Tv: donde r corta PV (y=0)</text>
-<text x="300" y="278" text-anchor="middle" font-size="10" fill="#64748b">r' = alzado | r = planta | LT = línea de tierra</text>
 </svg>
+<p style="margin-top:.8rem;font-size:.9rem;color:var(--gris)">
+  <strong>👆 Interactúa:</strong>
+  <button class="interactive" style="background:var(--azul);color:#fff;border:none;padding:.4rem 1rem;border-radius:6px;cursor:pointer;font-size:.85rem;margin:.3rem" onclick="toggleLayer('trazas-layer')">📍 Ver info de trazas</button>
+  <button class="interactive" style="background:var(--azul);color:#fff;border:none;padding:.4rem 1rem;border-radius:6px;cursor:pointer;font-size:.85rem;margin:.3rem" onclick="toggleLayer('posicion-layer')">📐 Ver posiciones de la recta</button>
+</p>
 </div>
 </section>
 
 <section class="chapter">
-<h2 class="chapter-title">📝 Ejercicios</h2>
+<h2 class="chapter-title">3️⃣ Paso a paso: construir la recta en el diedrico</h2>
+<div class="interactive">
+<h3>🎬 Ejemplo visual: recta r definida por A(20,15,25) y B(80,35,10)</h3>
+
+<div class="step-indicator">
+  <div class="step-dot active" id="sd1" onclick="showStep(1)">1</div>
+  <div class="step-dot" id="sd2" onclick="showStep(2)">2</div>
+  <div class="step-dot" id="sd3" onclick="showStep(3)">3</div>
+  <div class="step-dot" id="sd4" onclick="showStep(4)">4</div>
+</div>
+
+<div id="step-content">
+<div class="box box-teoria" id="step1">
+<strong>📏 Paso 1 — Mira: dibuja dos puntos A y B</strong>
+Una recta se define por dos puntos. Primero dibujamos A y B en alzado y planta.
+<div class="svg-container" style="margin:.8rem 0">
+<svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="400" height="160" fill="#eff6ff" rx="8"/>
+<line x1="30" y1="80" x2="370" y2="80" stroke="#333" stroke-width="2"/>
+<text x="200" y="75" text-anchor="middle" font-size="12" fill="#333" font-weight="600">LT</text>
+<circle cx="120" cy="30" r="6" fill="#2563eb"/><text x="130" y="35" font-size="11" fill="#2563eb" font-weight="600">A'</text>
+<circle cx="120" cy="130" r="6" fill="#f97316"/><text x="130" y="145" font-size="11" fill="#f97316" font-weight="600">A</text>
+<circle cx="280" cy="50" r="6" fill="#2563eb"/><text x="290" y="55" font-size="11" fill="#2563eb" font-weight="600">B'</text>
+<circle cx="280" cy="110" r="6" fill="#f97316"/><text x="290" y="125" font-size="11" fill="#f97316" font-weight="600">B</text>
+</svg>
+</div>
+</div>
+
+<div class="box box-teoria" id="step2" style="display:none">
+<strong>📏 Paso 2 — Fíjate: une A' con B' (r') y A con B (r)</strong>
+En alzado, une A' con B' → esa es r'. En planta, une A con B → esa es r.
+<div class="svg-container" style="margin:.8rem 0">
+<svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="400" height="160" fill="#fff7ed" rx="8"/>
+<line x1="30" y1="80" x2="370" y2="80" stroke="#333" stroke-width="2"/>
+<text x="200" y="75" text-anchor="middle" font-size="12" fill="#333" font-weight="600">LT</text>
+<circle cx="120" cy="30" r="6" fill="#2563eb"/><circle cx="280" cy="50" r="6" fill="#2563eb"/>
+<line x1="120" y1="30" x2="280" y2="50" stroke="#2563eb" stroke-width="2.5"/>
+<text x="200" y="40" font-size="10" fill="#2563eb" font-weight="600">r'</text>
+<circle cx="120" cy="130" r="6" fill="#f97316"/><circle cx="280" cy="110" r="6" fill="#f97316"/>
+<line x1="120" y1="130" x2="280" y2="110" stroke="#f97316" stroke-width="2.5"/>
+<text x="200" y="125" font-size="10" fill="#f97316" font-weight="600">r</text>
+</svg>
+</div>
+</div>
+
+<div class="box box-teoria" id="step3" style="display:none">
+<strong>📏 Paso 3 — Ahora ves: encuentra las trazas</strong>
+Th: donde r corta PH (z=0). En alzado, Th' está en la LT. Tv: donde r corta PV (y=0).
+<div class="svg-container" style="margin:.8rem 0">
+<svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="400" height="160" fill="#ecfdf5" rx="8"/>
+<line x1="30" y1="80" x2="370" y2="80" stroke="#333" stroke-width="2"/>
+<text x="200" y="75" text-anchor="middle" font-size="12" fill="#333" font-weight="600">LT</text>
+<line x1="80" y1="100" x2="320" y2="40" stroke="#2563eb" stroke-width="2.5"/>
+<line x1="80" y1="60" x2="320" y2="120" stroke="#f97316" stroke-width="2.5"/>
+<circle cx="200" cy="80" r="6" fill="#10b981"/><text x="210" y="75" font-size="11" fill="#10b981" font-weight="600">Th</text>
+<circle cx="170" cy="80" r="6" fill="#a855f7"/><text x="180" y="75" font-size="11" fill="#a855f7" font-weight="600">Tv</text>
+</svg>
+</div>
+</div>
+
+<div class="box box-teoria" id="step4" style="display:none">
+<strong>📏 Paso 4 — ¡Tú prueba! Haz clic en Th o Tv para ver info</strong>
+Clic en Th → info de traza horizontal. Clic en Tv → info de traza vertical.
+<div class="svg-container" style="margin:.8rem 0">
+<svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="400" height="160" fill="#faf5ff" rx="8"/>
+<line x1="30" y1="80" x2="370" y2="80" stroke="#333" stroke-width="2"/>
+<text x="200" y="75" text-anchor="middle" font-size="12" fill="#333" font-weight="600">LT</text>
+<line x1="80" y1="100" x2="320" y2="40" stroke="#2563eb" stroke-width="2.5"/>
+<line x1="80" y1="60" x2="320" y2="120" stroke="#f97316" stroke-width="2.5"/>
+<circle cx="200" cy="80" r="8" fill="#10b981" style="cursor:pointer" onclick="this.setAttribute('r','12')"/><text x="210" y="75" font-size="11" fill="#10b981" font-weight="600">Th → clic</text>
+<circle cx="170" cy="80" r="8" fill="#a855f7" style="cursor:pointer" onclick="this.setAttribute('r','12')"/><text x="180" y="75" font-size="11" fill="#a855f7" font-weight="600">Tv → clic</text>
+</svg>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="chapter">
 <div class="exercises">
 
 <div class="exercise">
-<p>📐 Ejercicio 1: ¿Cuántas proyecciones tiene una recta?</p>
+<p>📐 Ejercicio 1 (Quiz): ¿Cuántas proyecciones tiene una recta?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">1</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">2</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">3</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">4</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">3</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">4</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 2: ¿Qué es la traza horizontal (Th)?</p>
+<p>📐 Ejercicio 2 (V/F visual): ¿Esta recta tiene Th y Tv correctas?</p>
+<div class="comparison" style="margin:.5rem 0">
+<div class="comparison-side" style="padding:.8rem">
+<svg viewBox="0 0 120 80" width="100"><line x1="10" y1="40" x2="110" y2="40" stroke="#333" stroke-width="1.5"/><line x1="20" y1="60" x2="100" y2="20" stroke="#2563eb" stroke-width="1.5"/><circle cx="60" cy="40" r="4" fill="#10b981"/><text x="60" y="55" text-anchor="middle" font-size="7" fill="#10b981">Th</text></svg>
+<p style="font-size:.85rem;margin-top:.3rem"><strong>Correcto:</strong> Th' en LT</p>
+</div>
+<div class="comparison-side" style="padding:.8rem">
+<svg viewBox="0 0 120 80" width="100"><line x1="10" y1="40" x2="110" y2="40" stroke="#333" stroke-width="1.5"/><line x1="20" y1="60" x2="100" y2="20" stroke="#2563eb" stroke-width="1.5"/><circle cx="50" cy="30" r="4" fill="#ef4444"/><text x="50" y="55" text-anchor="middle" font-size="7" fill="#ef4444">✗</text></svg>
+<p style="font-size:.85rem;margin-top:.3rem"><strong>Incorrecto:</strong> Th' no en LT</p>
+</div>
+</div>
+<p>¿Cuál es correcto?</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Donde la recta corta el PH</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Donde la recta corta el PV</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Donde la recta corta la LT</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">El punto medio de la recta</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">La izquierda (Th' en LT)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">La derecha (Th' fuera de LT)</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 3: Una recta horizontal tiene r'...</p>
+<p>📐 Ejercicio 3 (Completar): La traza horizontal Th tiene z = ___. La traza vertical Tv tiene y = ___.</p>
+<input type="text" id="ex3a" placeholder="1ª (número)" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:80px">
+<input type="text" id="ex3b" placeholder="2ª (número)" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:80px">
+<button onclick="checkFillIn()">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 4 (Ordenar pasos): ¿En qué orden se encuentran las trazas?</p>
+<p style="font-weight:400;font-size:.9rem">① Extender r' hasta LT → Th' ② Extender r hasta LT → Tv ③ Trazar recta r' y r</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkOrden(this, '3-1-2')">③→①→②</button>
+<button class="quiz-btn" onclick="checkOrden(this, '1-2-3')">①→②→③</button>
+<button class="quiz-btn" onclick="checkOrden(this, '3-2-1')">③→②→①</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 5 (Quiz): Una recta horizontal tiene r'...</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Paralela a la LT</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Perpendicular a la LT</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Oblicua a la LT</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Es un punto</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Perpendicular a la LT</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Oblicua a la LT</button>
 </div>
-<p class="feedback"></p>
-</div>
-
-<div class="exercise">
-<p>📐 Ejercicio 4: ¿Cuántas trazas tiene una recta oblicua?</p>
-<div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false)">0</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">1</button>
-<button class="quiz-btn" onclick="checkAnswer(this, true)">2</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">3</button>
-</div>
-<p class="feedback"></p>
-</div>
-
-<div class="exercise">
-<p>📐 Ejercicio 5: ¿Qué coordenada es 0 en la traza horizontal?</p>
-<input type="text" id="ex5" placeholder="x, y o z" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
-<button onclick="checkExercise('ex5', 'z', this)">Comprobar</button>
 <p class="feedback"></p>
 </div>
 
@@ -212,6 +314,20 @@ En planta, Tv está sobre la LT. En alzado, Tv' está en la recta r'.
 <div class="box box-error">
 <strong>⚠️ Error clásico</strong>
 Confundir Th con Tv. Th = traza horizontal = corta el PH → z = 0. Tv = traza vertical = corta el PV → y = 0. ¡Recuerda: Th = horizontal = z=0, Tv = vertical = y=0!
+</div>
+
+<div class="box box-success" style="margin:1rem 0">
+<strong>✅ Error corregido con SVG</strong>
+<div class="comparison" style="margin:.5rem 0">
+<div class="comparison-side" style="padding:.8rem">
+<svg viewBox="0 0 140 90" width="120"><line x1="10" y1="45" x2="130" y2="45" stroke="#333" stroke-width="1.5"/><line x1="20" y1="70" x2="120" y2="20" stroke="#2563eb" stroke-width="1.5"/><circle cx="70" cy="45" r="5" fill="#10b981"/><text x="70" y="38" text-anchor="middle" font-size="7" fill="#10b981">Th</text></svg>
+<p style="font-size:.8rem;color:var(--verde)">✅ Th' sobre LT (correcto)</p>
+</div>
+<div class="comparison-side" style="padding:.8rem">
+<svg viewBox="0 0 140 90" width="120"><line x1="10" y1="45" x2="130" y2="45" stroke="#333" stroke-width="1.5"/><line x1="20" y1="70" x2="120" y2="20" stroke="#2563eb" stroke-width="1.5"/><circle cx="55" cy="35" r="5" fill="#ef4444"/><text x="55" y="28" text-anchor="middle" font-size="7" fill="#ef4444">✗</text></svg>
+<p style="font-size:.8rem;color:var(--rojo)">❌ Th' fuera de LT (error común)</p>
+</div>
+</div>
 </div>
 
 <div class="box box-idea">
@@ -240,6 +356,34 @@ La recta es el segundo elemento del diédrico. Con puntos y rectas, podemos cons
 </main>
 <footer class="footer">Hecho con ❤️ por David Antizar</footer>
 <script>
+function toggleLayer(id) {
+  var el = document.getElementById(id);
+  if(el) {
+    if(el.style.display === 'none') {
+      el.style.display = 'block';
+    } else {
+      el.style.display = 'none';
+    }
+  }
+}
+
+function showStep(n) {
+  for(var i = 1; i <= 4; i++) {
+    var step = document.getElementById('step' + i);
+    var dot = document.getElementById('sd' + i);
+    if(step) step.style.display = (i === n) ? 'block' : 'none';
+    if(dot) {
+      if(i === n) {
+        dot.classList.add('active');
+        dot.style.background = 'var(--azul)';
+      } else {
+        dot.classList.remove('active');
+        dot.style.background = '#94a3b8';
+      }
+    }
+  }
+}
+
 function checkAnswer(btn, correct) {
   var parent = btn.parentElement;
   parent.querySelectorAll('button').forEach(function(b) {
@@ -278,6 +422,36 @@ function checkExercise(id, correct, btn) {
     feedback.textContent = '❌ Respuesta correcta: ' + correct;
     feedback.className = 'feedback incorrect';
     input.style.borderColor = 'var(--rojo)';
+  }
+}
+
+function checkFillIn() {
+  var a = document.getElementById('ex3a').value.trim();
+  var b = document.getElementById('ex3b').value.trim();
+  var feedback = document.getElementById('ex3b').parentElement.nextElementSibling;
+  if(a === '0' && b === '0') {
+    feedback.textContent = '✅ ¡Correcto! Th: z=0, Tv: y=0';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ Respuesta: Th z=0, Tv y=0';
+    feedback.className = 'feedback incorrect';
+  }
+}
+
+function checkOrden(btn, answer) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) {
+    b.disabled = true; b.classList.remove('correct','wrong');
+  });
+  var feedback = parent.nextElementSibling;
+  if(answer === '3-1-2') {
+    btn.classList.add('correct');
+    feedback.textContent = '✅ ¡Correcto! Primero trazas r\' y r, luego extender r\' a LT (Th) y r a LT (Tv).';
+    feedback.className = 'feedback correct';
+  } else {
+    btn.classList.add('wrong');
+    feedback.textContent = '❌ Orden correcto: ③→①→② (trazar → Th\' → Tv)';
+    feedback.className = 'feedback incorrect';
   }
 }
 

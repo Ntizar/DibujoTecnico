@@ -118,9 +118,8 @@ Planta debajo de la LT, alzado encima de la LT
 <h2 class="chapter-title">2️⃣ Visualiza el punto en el diedrico</h2>
 <div class="svg-container">
 <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
-<!-- Fondo -->
 <rect x="0" y="0" width="600" height="300" fill="#f8fafc" rx="8"/>
-<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Punto A en el sistema diédrico</text>
+<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Punto A en el sistema diédrico — haz clic en los elementos</text>
 <!-- LT -->
 <line x1="50" y1="150" x2="550" y2="150" stroke="#333" stroke-width="2"/>
 <text x="560" y="154" font-size="11" fill="#333">LT</text>
@@ -128,82 +127,196 @@ Planta debajo de la LT, alzado encima de la LT
 <text x="50" y="140" font-size="10" fill="#2563eb">PV</text>
 <!-- PH -->
 <text x="50" y="170" font-size="10" fill="#f97316">PH</text>
+<!-- Capa coordenadas (oculta por defecto, clic para mostrar) -->
+<g id="coord-layer" class="coord-layer" style="display:none">
+  <line x1="300" y1="150" x2="200" y2="150" stroke="#2563eb" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="230" y="145" font-size="10" fill="#2563eb">x = 30mm</text>
+  <line x1="300" y1="150" x2="300" y2="130" stroke="#f97316" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="305" y="125" font-size="10" fill="#f97316">y = 20mm</text>
+  <line x1="300" y1="150" x2="300" y2="100" stroke="#a855f7" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="305" y="95" font-size="10" fill="#a855f7">z = 25mm</text>
+</g>
+<!-- Capa cuadrantes (oculta por defecto, clic para mostrar) -->
+<g id="cuadrante-layer" class="cuadrante-layer" style="display:none">
+  <rect x="80" y="20" width="100" height="125" fill="none" stroke="#10b981" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="130" y="15" text-anchor="middle" font-size="9" fill="#10b981" font-weight="bold">1º Q</text>
+  <rect x="80" y="155" width="100" height="125" fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="130" y="150" text-anchor="middle" font-size="9" fill="#64748b">4º Q</text>
+  <rect x="420" y="20" width="100" height="125" fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="470" y="15" text-anchor="middle" font-size="9" fill="#64748b">2º Q</text>
+  <rect x="420" y="155" width="100" height="125" fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="470" y="150" text-anchor="middle" font-size="9" fill="#64748b">3º Q</text>
+</g>
 <!-- Punto A' -->
 <line x1="300" y1="150" x2="300" y2="80" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3"/>
-<circle cx="300" cy="80" r="5" fill="#2563eb"/>
+<circle cx="300" cy="80" r="5" fill="#2563eb" style="cursor:pointer" onclick="toggleLayer('coord-layer')"/>
 <text x="310" y="85" font-size="12" font-weight="bold" fill="#2563eb">A'(x, z)</text>
 <text x="340" y="75" font-size="9" fill="#64748b">Alzado</text>
 <!-- Punto A -->
 <line x1="300" y1="150" x2="300" y2="200" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3"/>
-<circle cx="300" cy="200" r="5" fill="#f97316"/>
+<circle cx="300" cy="200" r="5" fill="#f97316" style="cursor:pointer" onclick="toggleLayer('cuadrante-layer')"/>
 <text x="310" y="205" font-size="12" font-weight="bold" fill="#f97316">A(x, y)</text>
 <text x="340" y="195" font-size="9" fill="#64748b">Planta</text>
 <!-- Línea de unión -->
 <line x1="300" y1="80" x2="300" y2="200" stroke="#a855f7" stroke-width="2"/>
 <text x="310" y="145" font-size="10" fill="#a855f7">Línea de unión</text>
-<!-- Flechas -->
-<line x1="300" y1="150" x2="300" y2="80" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrow)"/>
-<line x1="300" y1="150" x2="300" y2="200" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrow)"/>
-<!-- Cuadrantes -->
+<!-- Cuadrantes info -->
 <rect x="20" y="230" width="560" height="55" fill="#eff6ff" rx="6" stroke="#2563eb" stroke-width="1"/>
 <text x="300" y="250" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600">1º cuadrante (Europa): planta abajo, alzado arriba</text>
 <text x="300" y="268" text-anchor="middle" font-size="10" fill="#64748b">A' = (x, z) arriba de LT | A = (x, y) debajo de LT | Línea de unión perpendicular a LT</text>
 </svg>
+<p style="margin-top:.8rem;font-size:.9rem;color:var(--gris)">
+  <strong>👆 Interactúa:</strong>
+  <button class="interactive" style="background:var(--azul);color:#fff;border:none;padding:.4rem 1rem;border-radius:6px;cursor:pointer;font-size:.85rem;margin:.3rem" onclick="toggleLayer('coord-layer')">📍 Ver coordenadas (x,y,z)</button>
+  <button class="interactive" style="background:var(--azul);color:#fff;border:none;padding:.4rem 1rem;border-radius:6px;cursor:pointer;font-size:.85rem;margin:.3rem" onclick="toggleLayer('cuadrante-layer')">🌍 Ver cuadrantes</button>
+</p>
 </div>
 </section>
 
 <section class="chapter">
-<h2 class="chapter-title">📝 Ejercicios</h2>
+<h2 class="chapter-title">3️⃣ Paso a paso: construir el punto en el diedrico</h2>
+<div class="interactive">
+<h3>🎬 Ejemplo visual: punto A(30, 20, 25)</h3>
+
+<div class="step-indicator">
+  <div class="step-dot active" id="sd1" onclick="showStep(1)">1</div>
+  <div class="step-dot" id="sd2" onclick="showStep(2)">2</div>
+  <div class="step-dot" id="sd3" onclick="showStep(3)">3</div>
+  <div class="step-dot" id="sd4" onclick="showStep(4)">4</div>
+</div>
+
+<div id="step-content">
+<div class="box box-teoria" id="step1">
+<strong>📍 Paso 1 — Mira: dibuja la LT</strong>
+La Línea de Tierra (LT) es el eje horizontal. Sobre ella se apoya todo el diedrico.
+<div class="svg-container" style="margin:.8rem 0">
+<svg viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="400" height="120" fill="#eff6ff" rx="8"/>
+<line x1="30" y1="60" x2="370" y2="60" stroke="#333" stroke-width="2"/>
+<text x="200" y="55" text-anchor="middle" font-size="12" fill="#333" font-weight="600">Línea de Tierra (LT)</text>
+<text x="200" y="80" text-anchor="middle" font-size="10" fill="#64748b">Arriba = PV (plano vertical) | Abajo = PH (plano horizontal)</text>
+</svg>
+</div>
+</div>
+
+<div class="box box-teoria" id="step2" style="display:none">
+<strong>📍 Paso 2 — Fíjate: marca la coordenada x</strong>
+Desde la izquierda, mide 30mm a la derecha. Traza una línea vertical perpendicular a la LT.
+<div class="svg-container" style="margin:.8rem 0">
+<svg viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="400" height="120" fill="#fff7ed" rx="8"/>
+<line x1="30" y1="60" x2="370" y2="60" stroke="#333" stroke-width="2"/>
+<text x="200" y="55" text-anchor="middle" font-size="12" fill="#333" font-weight="600">LT</text>
+<line x1="130" y1="10" x2="130" y2="110" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="130" y="105" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="600">x = 30</text>
+<line x1="30" y1="60" x2="130" y2="60" stroke="#2563eb" stroke-width="1"/>
+<text x="70" y="55" text-anchor="middle" font-size="11" fill="#2563eb">30mm</text>
+</svg>
+</div>
+</div>
+
+<div class="box box-teoria" id="step3" style="display:none">
+<strong>📍 Paso 3 — Ahora ves: coloca A' y A</strong>
+Sube 25mm (z=25) para A' (alzado). Baja 20mm (y=20) para A (planta).
+<div class="svg-container" style="margin:.8rem 0">
+<svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="400" height="180" fill="#ecfdf5" rx="8"/>
+<line x1="30" y1="90" x2="370" y2="90" stroke="#333" stroke-width="2"/>
+<text x="200" y="85" text-anchor="middle" font-size="12" fill="#333" font-weight="600">LT</text>
+<line x1="130" y1="10" x2="130" y2="170" stroke="#94a3b8" stroke-width="1" stroke-dasharray="5,3"/>
+<circle cx="130" cy="40" r="6" fill="#2563eb"/>
+<text x="145" y="45" font-size="12" font-weight="bold" fill="#2563eb">A'</text>
+<text x="145" y="35" font-size="9" fill="#64748b">alzado (z=25)</text>
+<circle cx="130" cy="140" r="6" fill="#f97316"/>
+<text x="145" y="145" font-size="12" font-weight="bold" fill="#f97316">A</text>
+<text x="145" y="135" font-size="9" fill="#64748b">planta (y=20)</text>
+<line x1="130" y1="40" x2="130" y2="140" stroke="#a855f7" stroke-width="2"/>
+<text x="130" y="95" text-anchor="middle" font-size="9" fill="#a855f7">línea de unión</text>
+</svg>
+</div>
+</div>
+
+<div class="box box-teoria" id="step4" style="display:none">
+<strong>📍 Paso 4 — ¡Tú prueba! Haz clic en A' para ver las coordenadas</strong>
+A'(x=30, z=25) → arriba de la LT. A(x=30, y=20) → debajo de la LT.
+<div class="svg-container" style="margin:.8rem 0">
+<svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="400" height="180" fill="#faf5ff" rx="8"/>
+<line x1="30" y1="90" x2="370" y2="90" stroke="#333" stroke-width="2"/>
+<text x="200" y="85" text-anchor="middle" font-size="12" fill="#333" font-weight="600">LT</text>
+<line x1="130" y1="10" x2="130" y2="170" stroke="#94a3b8" stroke-width="1" stroke-dasharray="5,3"/>
+<circle cx="130" cy="40" r="8" fill="#2563eb" style="cursor:pointer" onclick="this.setAttribute('r','12');this.setAttribute('fill','#f97316')"/>
+<text x="145" y="45" font-size="12" font-weight="bold" fill="#2563eb">A' ← ¡clic!</text>
+<circle cx="130" cy="140" r="8" fill="#f97316" style="cursor:pointer" onclick="this.setAttribute('r','12');this.setAttribute('fill','#2563eb')"/>
+<text x="145" y="145" font-size="12" font-weight="bold" fill="#f97316">A ← ¡clic!</text>
+<line x1="130" y1="40" x2="130" y2="140" stroke="#a855f7" stroke-width="2"/>
+</svg>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="chapter">
 <div class="exercises">
 
 <div class="exercise">
-<p>📐 Ejercicio 1: ¿Cuántas proyecciones tiene un punto?</p>
+<p>📐 Ejercicio 1 (Quiz): ¿Cuántas proyecciones tiene un punto?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">1</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">2</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">3</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">4</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">3</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">4</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 2: ¿Dónde va la planta del punto?</p>
+<p>📐 Ejercicio 2 (V/F visual): ¿Esta representación del punto es correcta?</p>
+<div class="comparison" style="margin:.5rem 0">
+<div class="comparison-side" style="padding:.8rem">
+<svg viewBox="0 0 120 80" width="100"><line x1="10" y1="40" x2="110" y2="40" stroke="#333" stroke-width="1.5"/><circle cx="60" cy="20" r="4" fill="#2563eb"/><circle cx="60" cy="60" r="4" fill="#f97316"/><line x1="60" y1="20" x2="60" y2="60" stroke="#a855f7" stroke-width="1"/></svg>
+<p style="font-size:.85rem;margin-top:.3rem"><strong>Correcto:</strong> A' arriba, A abajo</p>
+</div>
+<div class="comparison-side" style="padding:.8rem">
+<svg viewBox="0 0 120 80" width="100"><line x1="10" y1="40" x2="110" y2="40" stroke="#333" stroke-width="1.5"/><circle cx="60" cy="20" r="4" fill="#2563eb"/><circle cx="70" cy="25" r="4" fill="#f97316"/><line x1="60" y1="20" x2="70" y2="25" stroke="#a855f7" stroke-width="1" stroke-dasharray="2,2"/></svg>
+<p style="font-size:.85rem;margin-top:.3rem"><strong>Incorrecto:</strong> A y A' no en la misma vertical</p>
+</div>
+</div>
+<p>¿Cuál es la representación correcta?</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Debajo de la LT</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Encima de la LT</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Sobre la LT</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">No importa</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">La izquierda (misma vertical)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">La derecha (desalineada)</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 3: ¿Cómo es la línea de unión respecto a la LT?</p>
+<p>📐 Ejercicio 3 (Completar): A' tiene coordenadas (x, ___) y A tiene (x, ___).</p>
+<input type="text" id="ex3a" placeholder="1ª coordenada" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
+<input type="text" id="ex3b" placeholder="2ª coordenada" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
+<button onclick="checkFillIn()">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 4 (Ordenar pasos): ¿En qué orden se construye un punto?</p>
+<p style="font-weight:400;font-size:.9rem">Arrastra al orden correcto: ① Colocar A y A' ② Dibujar LT ③ Trazar línea de unión</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Perpendicular</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Paralela</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Oblicua</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">No tiene relación</button>
+<button class="quiz-btn" onclick="checkOrden(this, '2-1-3')">②→①→③</button>
+<button class="quiz-btn" onclick="checkOrden(this, '2-3-1')">②→③→①</button>
+<button class="quiz-btn" onclick="checkOrden(this, '1-2-3')">①→②→③</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 4: ¿En qué cuadrante se usa Europa?</p>
+<p>📐 Ejercicio 5 (Quiz): Un punto A(30, 20, 25) tiene su alzado a ___ mm de la LT.</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">1º</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">2º</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">3º</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">4º</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">20</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">25</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">30</button>
 </div>
-<p class="feedback"></p>
-</div>
-
-<div class="exercise">
-<p>📐 Ejercicio 5: Un punto A(30, 20, 25) tiene su alzado a...</p>
-<input type="text" id="ex5" placeholder="mm arriba de la LT" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
-<button onclick="checkExercise('ex5', '25', this)">Comprobar</button>
 <p class="feedback"></p>
 </div>
 
@@ -215,6 +328,20 @@ Planta debajo de la LT, alzado encima de la LT
 <div class="box box-error">
 <strong>⚠️ Error clásico</strong>
 Confundir alzado con planta. A' (con apóstrofo) es el ALZADO → arriba de la LT. A (sin apóstrofo) es la PLANTA → debajo de la LT. ¡Recuerda: A' = arriba, A = abajo!
+</div>
+
+<div class="box box-success" style="margin:1rem 0">
+<strong>✅ Error corregido con SVG</strong>
+<div class="comparison" style="margin:.5rem 0">
+<div class="comparison-side" style="padding:.8rem">
+<svg viewBox="0 0 140 90" width="120"><line x1="10" y1="45" x2="130" y2="45" stroke="#333" stroke-width="1.5"/><circle cx="70" cy="20" r="5" fill="#2563eb"/><circle cx="70" cy="70" r="5" fill="#f97316"/><line x1="70" y1="20" x2="70" y2="70" stroke="#a855f7" stroke-width="2"/><text x="70" y="15" text-anchor="middle" font-size="8" fill="#2563eb">A'</text><text x="70" y="82" text-anchor="middle" font-size="8" fill="#f97316">A</text></svg>
+<p style="font-size:.8rem;color:var(--verde)">✅ A' y A en la misma vertical</p>
+</div>
+<div class="comparison-side" style="padding:.8rem">
+<svg viewBox="0 0 140 90" width="120"><line x1="10" y1="45" x2="130" y2="45" stroke="#333" stroke-width="1.5"/><circle cx="50" cy="20" r="5" fill="#2563eb"/><circle cx="90" cy="70" r="5" fill="#f97316"/><line x1="50" y1="20" x2="90" y2="70" stroke="#ef4444" stroke-width="2" stroke-dasharray="3,2"/><text x="70" y="15" text-anchor="middle" font-size="8" fill="#ef4444">✗</text></svg>
+<p style="font-size:.8rem;color:var(--rojo)">❌ A' y A desalineados (error común)</p>
+</div>
+</div>
 </div>
 
 <div class="box box-idea">
@@ -243,6 +370,34 @@ El punto es el elemento más básico del diédrico. A partir del punto, construi
 </main>
 <footer class="footer">Hecho con ❤️ por David Antizar</footer>
 <script>
+function toggleLayer(id) {
+  var el = document.getElementById(id);
+  if(el) {
+    if(el.style.display === 'none') {
+      el.style.display = 'block';
+    } else {
+      el.style.display = 'none';
+    }
+  }
+}
+
+function showStep(n) {
+  for(var i = 1; i <= 4; i++) {
+    var step = document.getElementById('step' + i);
+    var dot = document.getElementById('sd' + i);
+    if(step) step.style.display = (i === n) ? 'block' : 'none';
+    if(dot) {
+      if(i === n) {
+        dot.classList.add('active');
+        dot.style.background = 'var(--azul)';
+      } else {
+        dot.classList.remove('active');
+        dot.style.background = '#94a3b8';
+      }
+    }
+  }
+}
+
 function checkAnswer(btn, correct) {
   var parent = btn.parentElement;
   parent.querySelectorAll('button').forEach(function(b) {
@@ -281,6 +436,36 @@ function checkExercise(id, correct, btn) {
     feedback.textContent = '❌ Respuesta correcta: ' + correct;
     feedback.className = 'feedback incorrect';
     input.style.borderColor = 'var(--rojo)';
+  }
+}
+
+function checkFillIn() {
+  var a = document.getElementById('ex3a').value.trim().toLowerCase();
+  var b = document.getElementById('ex3b').value.trim().toLowerCase();
+  var feedback = document.getElementById('ex3b').parentElement.nextElementSibling;
+  if((a === 'z' || a === 'z,') && (b === 'y' || b === 'y,')) {
+    feedback.textContent = '✅ ¡Correcto! A\'(x, z) y A(x, y)';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ Respuesta: A\'(x, z) y A(x, y)';
+    feedback.className = 'feedback incorrect';
+  }
+}
+
+function checkOrden(btn, answer) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) {
+    b.disabled = true; b.classList.remove('correct','wrong');
+  });
+  var feedback = parent.nextElementSibling;
+  if(answer === '2-1-3') {
+    btn.classList.add('correct');
+    feedback.textContent = '✅ ¡Correcto! Primero la LT, luego colocas A y A\', y finalmente la línea de unión.';
+    feedback.className = 'feedback correct';
+  } else {
+    btn.classList.add('wrong');
+    feedback.textContent = '❌ Orden correcto: ②→①→③ (LT → puntos → línea de unión)';
+    feedback.className = 'feedback incorrect';
   }
 }
 

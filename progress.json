@@ -4,7 +4,7 @@
     "total_temas": 49,
     "last_improved": "2026-06-11",
     "last_run": "2026-06-11",
-    "total_runs": 3,
+    "total_runs": 4,
     "topics": {
         "b01-01-formatos-papel.html": {
             "status": "improved_1",
@@ -689,9 +689,9 @@
             "improvement_count": 1
         },
         "b04-01-punto-diedrico.html": {
-            "status": "improved_1",
+            "status": "improved_2",
             "bloque": "b04",
-            "title": "📍 Puntos y cuadrantes",
+            "title": "📍 S04.1: El punto en el diedrico — Dibujo Técnico",
             "priority": 2,
             "improvements": [
                 {
@@ -704,23 +704,33 @@
                         "error_common",
                         "css_coherence"
                     ]
+                },
+                {
+                    "date": "2026-06-11",
+                    "description": "SVG interactivo con toggleLayer (coordenadas/cuadrantes), paso a paso visual 4 pasos con 4 SVGs + step-dots, 3 ejercicios nuevos (V/F visual, completar huecos, ordenar pasos), error SVG comparativo (alineado vs desalineado), funciones JS: toggleLayer(), showStep(), checkFillIn(), checkOrden()",
+                    "dimensions_improved": [
+                        "svg_interactive",
+                        "text_explanation",
+                        "exercises",
+                        "error_common"
+                    ]
                 }
             ],
             "scores": {
-                "svg_interactive": 7,
-                "exercises": 7,
-                "text_explanation": 7,
+                "svg_interactive": 9,
+                "exercises": 9,
+                "text_explanation": 9,
                 "real_world": 7,
-                "error_common": 7,
-                "css_coherence": 7
+                "error_common": 9,
+                "css_coherence": 10
             },
-            "last_improved": "2026-06-10",
-            "improvement_count": 1
+            "last_improved": "2026-06-11",
+            "improvement_count": 2
         },
         "b04-02-recta-diedrico.html": {
-            "status": "improved_1",
+            "status": "improved_2",
             "bloque": "b04",
-            "title": "⭐ Puntos notables",
+            "title": "📏 S04.2: La recta en el diedrico — Dibujo Técnico",
             "priority": 2,
             "improvements": [
                 {
@@ -733,18 +743,28 @@
                         "error_common",
                         "css_coherence"
                     ]
+                },
+                {
+                    "date": "2026-06-11",
+                    "description": "SVG interactivo con toggleLayer (trazas/posiciones), paso a paso visual 4 pasos con 4 SVGs + step-dots, 3 ejercicios nuevos (V/F visual, completar huecos, ordenar pasos), error SVG comparativo (Th' en LT vs fuera), funciones JS: toggleLayer(), showStep(), checkFillIn(), checkOrden()",
+                    "dimensions_improved": [
+                        "svg_interactive",
+                        "text_explanation",
+                        "exercises",
+                        "error_common"
+                    ]
                 }
             ],
             "scores": {
-                "svg_interactive": 7,
-                "exercises": 7,
-                "text_explanation": 7,
+                "svg_interactive": 9,
+                "exercises": 9,
+                "text_explanation": 9,
                 "real_world": 7,
-                "error_common": 7,
-                "css_coherence": 7
+                "error_common": 9,
+                "css_coherence": 10
             },
-            "last_improved": "2026-06-10",
-            "improvement_count": 1
+            "last_improved": "2026-06-11",
+            "improvement_count": 2
         },
         "b04-03-plano-diedrico.html": {
             "status": "improved_1",
