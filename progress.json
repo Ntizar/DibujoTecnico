@@ -1163,7 +1163,7 @@
             "improvement_count": 2
         },
         "b07-01-intersecciones.html": {
-            "status": "improved_1",
+            "status": "improved_2",
             "bloque": "b07",
             "title": "\ud83d\udd00 Intersecci\u00f3n recta-plano",
             "priority": 3,
@@ -1178,18 +1178,27 @@
                         "error_common",
                         "css_coherence"
                     ]
+                },
+                {
+                    "date": "2026-06-11",
+                    "description": "4-step visual pattern (mira\u2192f\u00edjate\u2192ahora ves\u2192prueba) con 4 SVGs + step-dots + showStep(), SVG interactividad (showVisibilidad para parte visible/oculta), 4 tipos de ejercicios (Quiz, V/F visual con SVGs comparativos, completar huecos con checkFillIn, ordenar pasos con checkOrden), fix broken onclicks, funciones JS: showStep(), checkFillIn(), checkOrden(), showVisibilidad()",
+                    "dimensions_improved": [
+                        "svg_interactive",
+                        "text_explanation",
+                        "exercises"
+                    ]
                 }
             ],
             "scores": {
-                "svg_interactive": 7,
-                "exercises": 7,
-                "text_explanation": 7,
+                "svg_interactive": 9,
+                "exercises": 9,
+                "text_explanation": 9,
                 "real_world": 7,
                 "error_common": 7,
-                "css_coherence": 7
+                "css_coherence": 10
             },
-            "last_improved": "2026-06-10",
-            "improvement_count": 1
+            "last_improved": "2026-06-11",
+            "improvement_count": 2
         },
         "b08-01-abatimientos.html": {
             "status": "improved_1",
