@@ -108,68 +108,37 @@
    108|
    109|<section class="chapter">
    110|<h2 class="chapter-title">2️⃣ Visualiza la caballera</h2>
-<div class="interactive">
-<h3>🖱️ Haz clic en cada eje para ver su función</h3>
-<div class="svg-container">
-<svg id="caballeraSVG" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
-<!-- Fondo -->
-<rect x="0" y="0" width="600" height="300" fill="#f8fafc" rx="8"/>
-<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Perspectiva caballera: haz clic en los ejes</text>
-<!-- Pieza frontal -->
-<rect x="200" y="80" width="100" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="2" id="caraFrontal"/>
-<text x="250" y="120" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="600">Cara frontal (VM)</text>
-<!-- Profundidad -->
-<line x1="200" y1="80" x2="250" y2="50" stroke="#f97316" stroke-width="2" opacity="0.5"/>
-<line x1="300" y1="80" x2="350" y2="50" stroke="#f97316" stroke-width="2" opacity="0.5"/>
-<line x1="200" y1="150" x2="250" y2="120" stroke="#f97316" stroke-width="2" opacity="0.5"/>
-<line x1="300" y1="150" x2="350" y2="120" stroke="#f97316" stroke-width="2" opacity="0.5"/>
-<!-- Cara posterior -->
-<rect x="250" y="50" width="100" height="70" fill="#fff7ed" stroke="#f97316" stroke-width="1.5" stroke-dasharray="4,2"/>
-<text x="300" y="90" text-anchor="middle" font-size="10" fill="#f97316">45°</text>
-<text x="275" y="40" text-anchor="middle" font-size="10" fill="#f97316">100→50</text>
-<!-- Ejes clickeables (áreas invisibles más grandes para fácil clic) -->
-<line x1="300" y1="150" x2="200" y2="150" stroke="#2563eb" stroke-width="5" id="ejeX" style="cursor:pointer" onclick="toggleEje('X')"/>
-<line x1="300" y1="150" x2="300" y2="80" stroke="#10b981" stroke-width="5" id="ejeZ" style="cursor:pointer" onclick="toggleEje('Z')"/>
-<line x1="300" y1="150" x2="400" y2="100" stroke="#f97316" stroke-width="5" id="ejeY" style="cursor:pointer" onclick="toggleEje('Y')"/>
-<!-- Labels -->
-<text x="185" y="145" font-size="14" font-weight="bold" fill="#2563eb" id="labelX">X</text>
-<text x="310" y="75" font-size="14" font-weight="bold" fill="#10b981" id="labelZ">Z</text>
-<text x="410" y="95" font-size="14" font-weight="bold" fill="#f97316" id="labelY">Y</text>
-<!-- Leyenda -->
-<rect x="20" y="230" width="560" height="55" fill="#ecfdf5" rx="6"/>
-<text x="300" y="250" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">Cara frontal = verdadera magnitud | Profundidad = 45° × 0.5</text>
-<text x="300" y="270" text-anchor="middle" font-size="10" fill="#64748b">Haz clic en los ejes para ver sus propiedades</text>
-</svg>
-</div>
-<div id="ejeInfo" class="box box-teoria" style="margin-top:1rem;min-height:3rem">
-<strong>👆 Info del eje</strong>
-Haz clic en X, Y o Z para ver sus propiedades. ¡Explora cada eje!
-</div>
-</div>
-
-<div class="interactive">
-<h3>📐 Paso a paso: Dibujar una pieza en caballera</h3>
-<p style="margin-bottom:1rem;color:#64748b">Sigue los 4 pasos para dibujar cualquier pieza en perspectiva caballera:</p>
-
-<div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem">
-<button onclick="showPaso(1)">Paso 1: Cara frontal</button>
-<button onclick="showPaso(2)">Paso 2: Profundidad</button>
-<button onclick="showPaso(3)">Paso 3: Cara posterior</button>
-<button onclick="showPaso(4)">Paso 4: Detalles</button>
-<button onclick="resetPaso()">🔄 Reset</button>
-</div>
-
-<div class="svg-container">
-<svg id="pasoSVG" viewBox="0 0 500 250" xmlns="http://www.w3.org/2000/svg">
-<!-- Paso 0: vacío -->
-<text x="250" y="125" text-anchor="middle" font-size="14" fill="#94a3b8">Pulsa un paso para comenzar</text>
-</svg>
-</div>
-<div id="pasoInfo" class="box box-teoria" style="margin-top:1rem">
-<strong>📖 Paso</strong>
-Selecciona un paso arriba para ver la explicación.
-</div>
-</div>
+   111|<div class="svg-container">
+   112|<svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+   113|<!-- Fondo -->
+   114|<rect x="0" y="0" width="600" height="300" fill="#f8fafc" rx="8"/>
+   115|<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Perspectiva caballera: cara frontal en VM</text>
+   116|<!-- Ejes -->
+   117|<line x1="300" y1="150" x2="200" y2="150" stroke="#2563eb" stroke-width="3"/>
+   118|<text x="185" y="145" font-size="12" font-weight="bold" fill="#2563eb">X</text>
+   119|<line x1="300" y1="150" x2="300" y2="80" stroke="#10b981" stroke-width="3"/>
+   120|<text x="310" y="75" font-size="12" font-weight="bold" fill="#10b981">Z</text>
+   121|<line x1="300" y1="150" x2="400" y2="100" stroke="#f97316" stroke-width="3"/>
+   122|<text x="410" y="95" font-size="12" font-weight="bold" fill="#f97316">Y</text>
+   123|<!-- Pieza frontal -->
+   124|<rect x="200" y="80" width="100" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+   125|<text x="250" y="120" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="600">Cara frontal (VM)</text>
+   126|<!-- Profundidad -->
+   127|<line x1="200" y1="80" x2="250" y2="50" stroke="#f97316" stroke-width="2"/>
+   128|<line x1="300" y1="80" x2="350" y2="50" stroke="#f97316" stroke-width="2"/>
+   129|<line x1="200" y1="150" x2="250" y2="120" stroke="#f97316" stroke-width="2"/>
+   130|<line x1="300" y1="150" x2="350" y2="120" stroke="#f97316" stroke-width="2"/>
+   131|<!-- Cara posterior -->
+   132|<rect x="250" y="50" width="100" height="70" fill="#fff7ed" stroke="#f97316" stroke-width="1.5" stroke-dasharray="4,2"/>
+   133|<text x="300" y="90" text-anchor="middle" font-size="10" fill="#f97316">45°</text>
+   134|<!-- Reducción -->
+   135|<text x="275" y="40" text-anchor="middle" font-size="10" fill="#f97316">100→50</text>
+   136|<!-- Leyenda -->
+   137|<rect x="20" y="230" width="560" height="55" fill="#ecfdf5" rx="6"/>
+   138|<text x="300" y="250" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">Cara frontal = verdadera magnitud | Profundidad = 45° × 0.5</text>
+   139|<text x="300" y="270" text-anchor="middle" font-size="10" fill="#64748b">Z: vertical | X: horizontal | Y: 45° oblicuo | Reducción Y: 0.5</text>
+   140|</svg>
+   141|</div>
    142|</section>
    143|
    144|<section class="chapter">
@@ -262,123 +231,54 @@ Selecciona un paso arriba para ver la explicación.
    227|
    228|</main>
    229|<footer class="footer">Hecho con ❤️ por David Antizar</footer>
-<script>
-// Toggle eje interactivo
-var ejesActivos = {};
-function toggleEje(eje) {
-  ejesActivos[eje] = !ejesActivos[eje];
-  var line = document.getElementById('eje' + eje);
-  var label = document.getElementById('label' + eje);
-  var info = document.getElementById('ejeInfo');
-  if(ejesActivos[eje]) {
-    line.setAttribute('stroke-width', '8');
-    line.setAttribute('stroke', '#f97316');
-    label.setAttribute('font-size', '18');
-  } else {
-    var colors = {X:'#2563eb', Z:'#10b981', Y:'#f97316'};
-    line.setAttribute('stroke-width', '5');
-    line.setAttribute('stroke', colors[eje]);
-    label.setAttribute('font-size', '14');
-  }
-  var datos = {
-    X: {nombre:'Eje X', desc:'Horizontal, sin reducción. Representa el ancho de la pieza. En caballera va en verdadera magnitud.', color:'var(--azul)'},
-    Z: {nombre:'Eje Z', desc:'Vertical, sin reducción. Representa la altura. Siempre vertical, igual que en ortogonal.', color:'var(--verde)'},
-    Y: {nombre:'Eje Y', desc:'Oblicuo a 45°, reducción 0.5 (normal) o 1 (simplificada). Representa la profundidad. ¡El eje que diferencia la caballera!', color:'var(--naranja)'}
-  };
-  var d = datos[eje];
-  var activo = ejesActivos[eje] ? ' ✅ ACTIVO' : '';
-  info.innerHTML = '<strong style="color:' + d.color + '">' + d.nombre + activo + '</strong><br>' + d.desc;
-  info.className = 'box box-teoria';
-  if(ejesActivos[eje]) info.className = 'box box-success';
-}
-
-// Paso a paso visual (4 pasos)
-var pasoActual = 0;
-function showPaso(n) {
-  pasoActual = n;
-  var svg = document.getElementById('pasoSVG');
-  var info = document.getElementById('pasoInfo');
-  var pasos = {
-    1: {
-      svg: '<rect x="100" y="60" width="120" height="80" fill="#eff6ff" stroke="#2563eb" stroke-width="3" rx="4"/><text x="160" y="105" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600">Cara frontal en VM</text><text x="160" y="160" text-anchor="middle" font-size="10" fill="#64748b">120×80 — tamaño real</text><text x="50" y="40" font-size="12" fill="#2563eb" font-weight="bold">Paso 1</text>',
-      title: '👀 MIRA',
-      desc: 'Dibuja la cara frontal de la pieza en tamaño real (verdadera magnitud). Esta es la cara que mira directamente al observador. En caballera, esta cara NO se deforma: un círculo sigue siendo círculo, un rectángulo sigue siendo rectángulo.'
-    },
-    2: {
-      svg: '<rect x="100" y="60" width="120" height="80" fill="#eff6ff" stroke="#2563eb" stroke-width="3" rx="4"/><line x1="100" y1="60" x2="60" y2="35" stroke="#f97316" stroke-width="2" stroke-dasharray="3,2"/><line x1="220" y1="60" x2="260" y2="35" stroke="#f97316" stroke-width="2" stroke-dasharray="3,2"/><line x1="100" y1="140" x2="60" y2="115" stroke="#f97316" stroke-width="2" stroke-dasharray="3,2"/><line x1="220" y1="140" x2="260" y2="115" stroke="#f97316" stroke-width="2" stroke-dasharray="3,2"/><text x="160" y="105" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600">Cara frontal</text><text x="30" y="30" font-size="10" fill="#f97316">45°</text><text x="160" y="175" text-anchor="middle" font-size="10" fill="#64748b">Profundidad a 45°</text><text x="50" y="40" font-size="12" fill="#2563eb" font-weight="bold">Paso 2</text>',
-      title: '🔍 FÍJATE',
-      desc: 'Desde las esquinas de la cara frontal, traza líneas a 45° hacia atrás. Estas líneas representan la profundidad. El ángulo de 45° es FUNDAMENTAL en caballera — si lo cambias, ya no es caballera.'
-    },
-    3: {
-      svg: '<rect x="100" y="60" width="120" height="80" fill="#eff6ff" stroke="#2563eb" stroke-width="3" rx="4"/><line x1="100" y1="60" x2="60" y2="35" stroke="#f97316" stroke-width="2"/><line x1="220" y1="60" x2="260" y2="35" stroke="#f97316" stroke-width="2"/><line x1="100" y1="140" x2="60" y2="115" stroke="#f97316" stroke-width="2"/><line x1="220" y1="140" x2="260" y2="115" stroke="#f97316" stroke-width="2"/><rect x="60" y="35" width="120" height="80" fill="#fff7ed" stroke="#f97316" stroke-width="2" stroke-dasharray="4,2" rx="4"/><text x="160" y="105" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600">Frontal</text><text x="120" y="80" text-anchor="middle" font-size="10" fill="#f97316">Posterior</text><text x="160" y="175" text-anchor="middle" font-size="10" fill="#64748b">Cara posterior (líneas ocultas)</text><text x="50" y="40" font-size="12" fill="#2563eb" font-weight="bold">Paso 3</text>',
-      title: '👁️ AHORA VES',
-      desc: 'Conecta las esquinas posteriores con líneas. La cara posterior va con líneas discontinuas (ocultas) si es interior, o continuas si es visible. Recuerda: la profundidad se REDUCE a la mitad (×0.5). Si la pieza mide 100mm de fondo, dibujas 50mm.'
-    },
-    4: {
-      svg: '<rect x="100" y="60" width="120" height="80" fill="#eff6ff" stroke="#2563eb" stroke-width="3" rx="4"/><line x1="100" y1="60" x2="60" y2="35" stroke="#f97316" stroke-width="2"/><line x1="220" y1="60" x2="260" y2="35" stroke="#f97316" stroke-width="2"/><line x1="100" y1="140" x2="60" y2="115" stroke="#f97316" stroke-width="2"/><line x1="220" y1="140" x2="260" y2="115" stroke="#f97316" stroke-width="2"/><rect x="60" y="35" width="120" height="80" fill="#fff7ed" stroke="#f97316" stroke-width="2" stroke-dasharray="4,2" rx="4"/><circle cx="160" cy="100" r="15" fill="none" stroke="#a855f7" stroke-width="2"/><text x="160" y="105" text-anchor="middle" font-size="8" fill="#a855f7">Ø</text><text x="160" y="105" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600">Frontal</text><text x="120" y="80" text-anchor="middle" font-size="10" fill="#f97316">Posterior</text><text x="160" y="175" text-anchor="middle" font-size="10" fill="#64748b">Círculo en frontal = círculo real</text><text x="50" y="40" font-size="12" fill="#2563eb" font-weight="bold">Paso 4</text>',
-      title: '✏️ AHORA PRUEBA',
-      desc: 'Añade detalles: agujeros, chaflanes, ranuras. Los círculos en la cara frontal se dibujan como círculos (VM). Los círculos en la cara lateral se dibujan como elipses. ¡Tu pieza está completa!'
-    }
-  };
-  var p = pasos[n];
-  svg.innerHTML = p.svg;
-  info.innerHTML = '<strong style="color:var(--verde)">' + p.title + '</strong><br>' + p.desc;
-  info.className = 'box box-success';
-}
-function resetPaso() {
-  pasoActual = 0;
-  document.getElementById('pasoSVG').innerHTML = '<text x="250" y="125" text-anchor="middle" font-size="14" fill="#94a3b8">Pulsa un paso para comenzar</text>';
-  document.getElementById('pasoInfo').innerHTML = '<strong>📖 Paso</strong><br>Selecciona un paso arriba para ver la explicación.';
-  document.getElementById('pasoInfo').className = 'box box-teoria';
-}
-
-function checkAnswer(btn, correct) {
-  var parent = btn.parentElement;
-  parent.querySelectorAll('button').forEach(function(b) {
-    b.disabled = true; b.classList.remove('correct','wrong');
-  });
-  btn.classList.add(correct ? 'correct' : 'wrong');
-  var feedback = parent.nextElementSibling;
-  if(feedback && feedback.classList.contains('feedback')) {
-    if(correct) {
-      feedback.textContent = '✅ ¡Correcto! ¡Muy bien!';
-      feedback.className = 'feedback correct';
-    } else {
-      feedback.textContent = '❌ ¡Intenta de nuevo!';
-      feedback.className = 'feedback incorrect';
-      setTimeout(function() {
-        parent.querySelectorAll('button').forEach(function(b) {
-          b.disabled = false; b.classList.remove('correct','wrong');
-        });
-        feedback.textContent = '';
-        feedback.className = 'feedback';
-      }, 1500);
-    }
-  }
-}
-
-function checkExercise(id, correct, btn) {
-  var input = document.getElementById(id);
-  var feedback = input.parentElement.nextElementSibling;
-  var userVal = input.value.trim().replace(',', '.');
-  var correctVal = correct.toString().replace(',', '.');
-  if(userVal === correctVal) {
-    feedback.textContent = '✅ ¡Correcto! ' + correct;
-    feedback.className = 'feedback correct';
-    input.style.borderColor = 'var(--verde)';
-  } else {
-    feedback.textContent = '❌ Respuesta correcta: ' + correct;
-    feedback.className = 'feedback incorrect';
-    input.style.borderColor = 'var(--rojo)';
-  }
-}
-
-window.onscroll = function(){
-  var h = document.documentElement;
-  var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
-  document.getElementById('progress').style.width = p+'%';
-};
-</script>
+   230|<script>
+   231|function checkAnswer(btn, correct) {
+   232|  var parent = btn.parentElement;
+   233|  parent.querySelectorAll('button').forEach(function(b) {
+   234|    b.disabled = true; b.classList.remove('correct','wrong');
+   235|  });
+   236|  btn.classList.add(correct ? 'correct' : 'wrong');
+   237|  var feedback = parent.nextElementSibling;
+   238|  if(feedback && feedback.classList.contains('feedback')) {
+   239|    if(correct) {
+   240|      feedback.textContent = '✅ ¡Correcto! ¡Muy bien!';
+   241|      feedback.className = 'feedback correct';
+   242|    } else {
+   243|      feedback.textContent = '❌ ¡Intenta de nuevo!';
+   244|      feedback.className = 'feedback incorrect';
+   245|      setTimeout(function() {
+   246|        parent.querySelectorAll('button').forEach(function(b) {
+   247|          b.disabled = false; b.classList.remove('correct','wrong');
+   248|        });
+   249|        feedback.textContent = '';
+   250|        feedback.className = 'feedback';
+   251|      }, 1500);
+   252|    }
+   253|  }
+   254|}
+   255|
+   256|function checkExercise(id, correct, btn) {
+   257|  var input = document.getElementById(id);
+   258|  var feedback = input.parentElement.nextElementSibling;
+   259|  var userVal = input.value.trim().replace(',', '.');
+   260|  var correctVal = correct.toString().replace(',', '.');
+   261|  if(userVal === correctVal) {
+   262|    feedback.textContent = '✅ ¡Correcto! ' + correct;
+   263|    feedback.className = 'feedback correct';
+   264|    input.style.borderColor = 'var(--verde)';
+   265|  } else {
+   266|    feedback.textContent = '❌ Respuesta correcta: ' + correct;
+   267|    feedback.className = 'feedback incorrect';
+   268|    input.style.borderColor = 'var(--rojo)';
+   269|  }
+   270|}
+   271|
+   272|window.onscroll = function(){
+   273|  var h = document.documentElement;
+   274|  var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
+   275|  document.getElementById('progress').style.width = p+'%';
+   276|};
+   277|</script>
    278|</body>
    279|</html>
    280|
