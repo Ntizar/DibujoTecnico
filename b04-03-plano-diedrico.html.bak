@@ -62,9 +62,6 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .stack-item:hover{border-color:var(--azul);transform:translateX(4px)}
 .stack-item.active{border-color:var(--azul);background:var(--azul-claro)}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
-.feedback { margin-top: 0.5rem; font-weight: 600; padding: 0.5rem; border-radius: 6px; }
-.feedback.correct { background: var(--verde-claro); color: #065f46; }
-.feedback.incorrect { background: var(--rojo-claro); color: #991b1b; }
 </style>
 </head>
 <body>
@@ -121,141 +118,36 @@ Se ve como una línea desde cualquier vista lateral.
 
 <section class="chapter">
 <h2 class="chapter-title">2️⃣ Visualiza el plano y sus trazas</h2>
-<div class="interactive">
-<h3>🎬 Haz clic en cada elemento para ver su nombre y función</h3>
 <div class="svg-container">
-<svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
 <!-- Fondo -->
-<rect x="0" y="0" width="600" height="320" fill="#f8fafc" rx="8"/>
-<text x="300" y="22" text-anchor="middle" font-size="13" fill="#64748b" font-weight="600">👆 Clic en LT, α₁, α₂, horizontal, máxima pendiente</text>
-
-<!-- Info panel -->
-<rect x="10" y="270" width="580" height="40" fill="#eff6ff" rx="8" stroke="#2563eb" stroke-width="1.5" id="plano-info-panel"/>
-<text x="300" y="295" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600" id="plano-info-text">Selecciona un elemento del plano</text>
-
-<!-- LT (clickable) -->
-<line x1="50" y1="150" x2="550" y2="150" stroke="#333" stroke-width="2" style="cursor:pointer" onclick="togglePlanoElement('lt')"/>
+<rect x="0" y="0" width="600" height="300" fill="#f8fafc" rx="8"/>
+<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Plano α por sus trazas α₁ y α₂</text>
+<!-- LT -->
+<line x1="50" y1="150" x2="550" y2="150" stroke="#333" stroke-width="2"/>
 <text x="560" y="154" font-size="11" fill="#333">LT</text>
-
-<!-- α₁ (clickable) -->
-<line id="alpha1-line" x1="100" y1="220" x2="500" y2="150" stroke="#2563eb" stroke-width="2.5" style="cursor:pointer" onclick="togglePlanoElement('alpha1')"/>
+<!-- α₁ -->
+<line x1="100" y1="220" x2="500" y2="150" stroke="#2563eb" stroke-width="2.5"/>
 <text x="510" y="165" font-size="11" fill="#2563eb">α₁</text>
-
-<!-- α₂ (clickable) -->
-<line id="alpha2-line" x1="100" y1="80" x2="500" y2="150" stroke="#f97316" stroke-width="2.5" style="cursor:pointer" onclick="togglePlanoElement('alpha2')"/>
+<!-- α₂ -->
+<line x1="100" y1="80" x2="500" y2="150" stroke="#f97316" stroke-width="2.5"/>
 <text x="510" y="145" font-size="11" fill="#f97316">α₂</text>
-
 <!-- Punto de corte -->
 <circle cx="500" cy="150" r="5" fill="#333"/>
-
-<!-- Recta horizontal (clickable) -->
-<g id="h-line-group" style="cursor:pointer" onclick="togglePlanoElement('horizontal')">
-<line x1="200" y1="120" x2="400" y2="120" stroke="#10b981" stroke-width="2" stroke-dasharray="4,2"/>
-<text x="410" y="125" font-size="10" fill="#10b981">Horizontal</text>
-</g>
-
-<!-- Máxima pendiente (clickable) -->
-<g id="mp-line-group" style="cursor:pointer" onclick="togglePlanoElement('maxpend')">
-<line x1="300" y1="150" x2="250" y2="200" stroke="#a855f7" stroke-width="2" stroke-dasharray="4,2"/>
+<text x="510" y="155" font-size="10" fill="#333">Punto de fuga</text>
+<!-- Recta horizontal -->
+<line x1="200" y1="120" x2="400" y2="120" stroke="#10b981" stroke-width="1.5" stroke-dasharray="4,2"/>
+<text x="410" y="125" font-size="10" fill="#10b981">Horizontal del plano</text>
+<!-- Máxima pendiente -->
+<line x1="300" y1="150" x2="250" y2="200" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="4,2"/>
 <text x="220" y="215" font-size="10" fill="#a855f7">Máx. pendiente</text>
-</g>
-
-<!-- Capas adicionales (hidden) -->
-<g id="plano-surface" style="display:none">
-<polygon points="100,220 500,150 500,80 100,80" fill="rgba(37,99,235,0.05)" stroke="#2563eb" stroke-width="0.5" stroke-dasharray="2,2"/>
-<text x="300" y="160" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="600">Plano α</text>
-</g>
-
-<g id="3d-view" style="display:none">
-<!-- Mini 3D: caja con plano cortando -->
-<rect x="350" y="20" width="100" height="80" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" rx="4"/>
-<text x="400" y="15" text-anchor="middle" font-size="8" fill="#64748b">Vista 3D</text>
-<line x1="360" y1="30" x2="440" y2="30" stroke="#333" stroke-width="1"/>
-<line x1="360" y1="30" x2="360" y2="90" stroke="#333" stroke-width="1"/>
-<line x1="440" y1="30" x2="440" y2="90" stroke="#333" stroke-width="1"/>
-<line x1="360" y1="90" x2="440" y2="90" stroke="#333" stroke-width="1"/>
-<!-- Plano cortando -->
-<polygon points="360,50 440,70 440,90 360,90" fill="rgba(37,99,235,0.15)" stroke="#2563eb" stroke-width="1"/>
-<text x="400" y="82" text-anchor="middle" font-size="7" fill="#2563eb">α</text>
-</g>
+<!-- Leyenda -->
+<rect x="20" y="240" width="560" height="45" fill="#ecfdf5" rx="6"/>
+<text x="300" y="260" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">α₁: traza horizontal | α₂: traza vertical | Se cortan en la LT</text>
+<text x="300" y="278" text-anchor="middle" font-size="10" fill="#64748b">Horizontal del plano: alzado ∥ α₁ | Máx. pendiente: planta ⊥ α₁</text>
 </svg>
-</div>
 </div>
 </section>
-
-
-<div class="interactive">
-<h3>🎬 Paso a paso: cómo representar un plano por sus trazas</h3>
-
-<div class="step-indicator">
-<div class="step-dot active" id="sd1" onclick="showStep(1)" style="background:var(--azul)">1</div>
-<div class="step-dot" id="sd2" onclick="showStep(2)" style="background:#94a3b8">2</div>
-<div class="step-dot" id="sd3" onclick="showStep(3)" style="background:#94a3b8">3</div>
-<div class="step-dot" id="sd4" onclick="showStep(4)" style="background:#94a3b8">4</div>
-</div>
-
-<div id="step-content">
-<div class="box box-teoria" id="step1">
-<strong>📍 Paso 1 — Mira: Dibuja la Línea de Tierra (LT)</strong>
-La LT es la referencia. Todo plano se define respecto a ella. Es la línea horizontal que separa el PH del PV.
-<div class="svg-container">
-<svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg">
-<line x1="30" y1="40" x2="270" y2="40" stroke="#333" stroke-width="2.5"/>
-<text x="150" y="30" text-anchor="middle" font-size="10" fill="#64748b">Línea de Tierra (LT)</text>
-<text x="280" y="44" font-size="9" fill="#333">LT</text>
-<text x="30" y="65" font-size="8" fill="#2563eb">PH (plano horizontal)</text>
-<text x="250" y="22" font-size="8" fill="#f97316">PV (plano vertical)</text>
-</svg>
-</div>
-</div>
-
-<div class="box box-teoria" id="step2" style="display:none">
-<strong>📍 Paso 2 — Fíjate: Dibuja α₁ (traza horizontal)</strong>
-α₁ es la intersección del plano con el PH. Se dibuja como una línea que corta la LT.
-<div class="svg-container">
-<svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg">
-<line x1="30" y1="40" x2="270" y2="40" stroke="#333" stroke-width="2"/>
-<line x1="50" y1="65" x2="250" y2="40" stroke="#2563eb" stroke-width="2.5"/>
-<text x="260" y="55" font-size="9" fill="#2563eb">α₁</text>
-<text x="150" y="75" text-anchor="middle" font-size="9" fill="#64748b">α₁ corta la LT</text>
-</svg>
-</div>
-</div>
-
-<div class="box box-teoria" id="step3" style="display:none">
-<strong>📍 Paso 3 — Ahora ves: Dibuja α₂ (traza vertical)</strong>
-α₂ es la intersección del plano con el PV. También corta la LT, en el mismo punto que α₁.
-<div class="svg-container">
-<svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg">
-<line x1="30" y1="40" x2="270" y2="40" stroke="#333" stroke-width="2"/>
-<line x1="50" y1="65" x2="250" y2="40" stroke="#2563eb" stroke-width="2"/>
-<text x="260" y="55" font-size="9" fill="#2563eb">α₁</text>
-<line x1="50" y1="15" x2="250" y2="40" stroke="#f97316" stroke-width="2"/>
-<text x="260" y="35" font-size="9" fill="#f97316">α₂</text>
-<circle cx="250" cy="40" r="3" fill="#333"/>
-<text x="150" y="75" text-anchor="middle" font-size="9" fill="#64748b">α₁ y α₂ se cortan en la LT</text>
-</svg>
-</div>
-</div>
-
-<div class="box box-teoria" id="step4" style="display:none">
-<strong>📍 Paso 4 — ¡Tú prueba! Añade rectas notables</strong>
-Añade la horizontal del plano (∥ α₁ en alzado) y la máxima pendiente (⊥ α₁ en planta).
-<div class="svg-container">
-<svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg">
-<line x1="30" y1="40" x2="270" y2="40" stroke="#333" stroke-width="2"/>
-<line x1="50" y1="65" x2="250" y2="40" stroke="#2563eb" stroke-width="1.5"/>
-<line x1="50" y1="15" x2="250" y2="40" stroke="#f97316" stroke-width="1.5"/>
-<line x1="100" y1="30" x2="200" y2="30" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3,2"/>
-<text x="210" y="33" font-size="8" fill="#10b981">Horizontal</text>
-<line x1="150" y1="40" x2="120" y2="60" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="3,2"/>
-<text x="105" y="72" font-size="8" fill="#a855f7">Máx. pend.</text>
-<text x="150" y="78" text-anchor="middle" font-size="8" fill="#64748b">¡Completo! Plano con rectas notables</text>
-</svg>
-</div>
-</div>
-</div>
-</div>
 
 <section class="chapter">
 <h2 class="chapter-title">📝 Ejercicios</h2>
@@ -266,8 +158,8 @@ Añade la horizontal del plano (∥ α₁ en alzado) y la máxima pendiente (⊥
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">1</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">2</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)")3</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)")4</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">3</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">4</button>
 </div>
 <p class="feedback"></p>
 </div>
@@ -276,9 +168,9 @@ Añade la horizontal del plano (∥ α₁ en alzado) y la máxima pendiente (⊥
 <p>📐 Ejercicio 2: ¿Qué es α₁?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">La traza horizontal (con PH)</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)")La traza vertical (con PV)</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)")La línea de tierra</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)")La horizontal del plano</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">La traza vertical (con PV)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">La línea de tierra</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">La horizontal del plano</button>
 </div>
 <p class="feedback"></p>
 </div>
@@ -287,9 +179,9 @@ Añade la horizontal del plano (∥ α₁ en alzado) y la máxima pendiente (⊥
 <p>📐 Ejercicio 3: Un plano horizontal tiene α₂...</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Paralela a la LT</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)")Perpendicular a la LT</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)")Oblicua a la LT</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)")No tiene α₂</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">Perpendicular a la LT</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">Oblicua a la LT</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">No tiene α₂</button>
 </div>
 <p class="feedback"></p>
 </div>
@@ -298,9 +190,9 @@ Añade la horizontal del plano (∥ α₁ en alzado) y la máxima pendiente (⊥
 <p>📐 Ejercicio 4: La máxima pendiente tiene la planta...</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Perpendicular a α₁</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)")Paralela a α₁</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)")Perpendicular a α₂</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)")Paralela a α₂</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">Paralela a α₁</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">Perpendicular a α₂</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">Paralela a α₂</button>
 </div>
 <p class="feedback"></p>
 </div>
@@ -349,96 +241,6 @@ El plano es el elemento más importante del diédrico. Todo punto y recta perten
 </main>
 <footer class="footer">Hecho con ❤️ por David Antizar</footer>
 <script>
-// SVG interactividad: toggle elementos del plano
-var activePlano = null;
-function togglePlanoElement(type) {
-  // Reset colores
-  document.getElementById('alpha1-line').setAttribute('stroke-width', '2.5');
-  document.getElementById('alpha2-line').setAttribute('stroke-width', '2.5');
-  document.getElementById('h-line-group').querySelector('line').setAttribute('stroke-width', '2');
-  document.getElementById('mp-line-group').querySelector('line').setAttribute('stroke-width', '2');
-
-  if (activePlano === type) {
-    activePlano = null;
-    document.getElementById('plano-info-text').textContent = 'Selecciona un elemento del plano';
-    document.getElementById('plano-surface').style.display = 'none';
-    document.getElementById('3d-view').style.display = 'none';
-    return;
-  }
-  activePlano = type;
-
-  // Ocultar capas
-  document.getElementById('plano-surface').style.display = 'none';
-  document.getElementById('3d-view').style.display = 'none';
-
-  var info = document.getElementById('plano-info-text');
-  if (type === 'lt') {
-    info.textContent = '📍 LT: Línea de Tierra — Referencia entre PH y PV. Las trazas se cortan aquí.';
-  } else if (type === 'alpha1') {
-    document.getElementById('alpha1-line').setAttribute('stroke-width', '4');
-    info.textContent = '📍 α₁: Traza horizontal — Intersección del plano con el PH. Se ve en planta.';
-    document.getElementById('plano-surface').style.display = 'block';
-  } else if (type === 'alpha2') {
-    document.getElementById('alpha2-line').setAttribute('stroke-width', '4');
-    info.textContent = '📍 α₂: Traza vertical — Intersección del plano con el PV. Se ve en alzado.';
-    document.getElementById('3d-view').style.display = 'block';
-  } else if (type === 'horizontal') {
-    document.getElementById('h-line-group').querySelector('line').setAttribute('stroke-width', '3');
-    info.textContent = '📍 Horizontal del plano: ∥ al PH. En alzado es paralela a α₁.';
-  } else if (type === 'maxpend') {
-    document.getElementById('mp-line-group').querySelector('line').setAttribute('stroke-width', '3');
-    info.textContent = '📍 Máxima pendiente: ⊥ a las horizontales. En planta es perpendicular a α₁.';
-  }
-}
-
-// Paso a paso visual
-function showStep(n) {
-  for(var i = 1; i <= 4; i++) {
-    var step = document.getElementById('step' + i);
-    var dot = document.getElementById('sd' + i);
-    if(step) step.style.display = (i === n) ? 'block' : 'none';
-    if(dot) {
-      if(i === n) {
-        dot.classList.add('active');
-        dot.style.background = 'var(--azul)';
-      } else {
-        dot.classList.remove('active');
-        dot.style.background = '#94a3b8';
-      }
-    }
-  }
-}
-
-// Completar huecos
-function checkFillIn() {
-  var a = document.getElementById('ex3a').value.trim().toLowerCase();
-  var b = document.getElementById('ex3b').value.trim().toLowerCase();
-  var c = document.getElementById('ex3c').value.trim().toLowerCase();
-  var fb = document.querySelector('.exercises .exercise:nth-child(3) .feedback');
-  var answers = {
-    a: ['ph', 'plano horizontal', 'horizontal'],
-    b: ['pv', 'plano vertical', 'vertical'],
-    c: ['paralela', 'paralelo']
-  };
-  if (answers.a.includes(a) && answers.b.includes(b) && answers.c.includes(c)) {
-    if(fb) { fb.textContent = '✅ ¡Perfecto! α₁ con PH, α₂ con PV, plano horizontal α₂ ∥ LT.'; fb.className = 'feedback correct'; }
-  } else {
-    if(fb) { fb.textContent = '❌ Respuesta: PH, PV, paralela.'; fb.className = 'feedback incorrect'; }
-  }
-}
-
-// Ordenar pasos
-function checkOrden(btn, answer) {
-  var fb = btn.parentElement.nextElementSibling;
-  if (answer === '1-2-3') {
-    fb.textContent = '✅ ¡Correcto! Primero la LT (referencia), luego α₁ (traza horizontal), finalmente α₂ (traza vertical).';
-    fb.className = 'feedback correct';
-  } else {
-    fb.textContent = '❌ Incorrecto. Orden: ① LT → ② α₁ → ③ α₂.';
-    fb.className = 'feedback incorrect';
-  }
-}
-
 function checkAnswer(btn, correct) {
   var parent = btn.parentElement;
   parent.querySelectorAll('button').forEach(function(b) {
