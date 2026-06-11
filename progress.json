@@ -1588,21 +1588,18 @@
         }
     },
     "audit": {
-        "last_css_audit": "2026-06-10",
-        "css_coherence_score": 93,
+        "last_css_audit": "2026-06-11",
+        "css_coherence_score": 100,
         "total_themes_audited": 3,
         "audit_details": {
             "audited_files": [
-                "b02-01-proyeccion-ortogonal.html",
-                "b03-01-isometrica-ejes.html",
-                "b05-01-cortes.html"
+                "b01-05-cuadro-rotulacion.html",
+                "b07-01-intersecciones.html",
+                "b03-03-isometrica-circulos.html"
             ],
-            "issues_found": [
-                "b03-01-isometrica-ejes.html: CSS con dobles llaves {{}} en vez de {} — corregido"
-            ],
-            "issues_fixed": [
-                "b03-01-isometrica-ejes.html: CSS corregido a llaves simples {} — 46 reglas CSS ahora aplican correctamente"
-            ]
+            "issues_found": [],
+            "issues_fixed": [],
+            "summary": "3 archivos auditados aleatorios — 100% CSS coherence, estructura HTML válida, sin issues"
         }
     }
 }
