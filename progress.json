@@ -1795,9 +1795,9 @@
     "random_sample": 3,
     "all_passed": true,
     "sampled_files": [
-      "b01-05-cuadro-rotulacion.html",
-      "b06-02-metodos-acotacion.html",
-      "b03-03-isometrica-circulos.html"
+      "b01-03-escalas.html",
+      "b01-02-tipos-linea.html",
+      "b02-07-representacion-piezas.html"
     ]
   }
 }
