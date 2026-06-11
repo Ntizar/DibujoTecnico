@@ -121,52 +121,34 @@ Eje mayor vertical (cara XZ)
 </div>
 </section>
 
-<!-- ELIPSE INTERACTIVA -->
 <section class="chapter">
-<h2 class="chapter-title">⭕ Explora la elipse isométrica</h2>
-<div class="interactive">
-<h3>👆 Haz clic en los botones para ver las elipses en cada cara</h3>
+<h2 class="chapter-title">2️⃣ Visualiza las elipses isométricas</h2>
 <div class="svg-container">
-<svg viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg" id="elipseSVG">
-<rect x="0" y="0" width="500" height="300" fill="#f8fafc" rx="8"/>
-<text x="250" y="25" text-anchor="middle" font-size="13" fill="#64748b" font-weight="600">Elipse Isométrica — Clic en cada cara</text>
-
-<!-- Cara XY (horizontal) - elipse horizontal -->
-<g id="caraXY" onclick="showElipse('xy')" style="cursor:pointer">
-<rect x="30" y="50" width="140" height="130" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" rx="6" opacity="0.8"/>
-<ellipse cx="100" cy="115" rx="55" ry="30" fill="none" stroke="#2563eb" stroke-width="2.5"/>
-<line x1="45" y1="115" x2="155" y2="115" stroke="#f97316" stroke-width="2" stroke-dasharray="4,3"/>
-<text x="100" y="160" text-anchor="middle" font-size="10" fill="#f97316" font-weight="600">Eje mayor (30°)</text>
-<text x="100" y="45" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600">Cara XY</text>
-<text x="100" y="195" text-anchor="middle" font-size="9" fill="#64748b">Clic para ver detalle</text>
-</g>
-
-<!-- Cara XZ (frontal) - elipse vertical -->
-<g id="caraXZ" onclick="showElipse('xz')" style="cursor:pointer">
-<rect x="180" y="50" width="140" height="130" fill="#fff7ed" stroke="#f97316" stroke-width="1.5" rx="6" opacity="0.8"/>
-<ellipse cx="250" cy="115" rx="30" ry="55" fill="none" stroke="#f97316" stroke-width="2.5"/>
-<line x1="250" y1="60" x2="250" y2="170" stroke="#2563eb" stroke-width="2"/>
-<text x="265" y="115" text-anchor="start" font-size="10" fill="#2563eb" font-weight="600">Vertical</text>
-<text x="250" y="45" text-anchor="middle" font-size="11" fill="#f97316" font-weight="600">Cara XZ</text>
-<text x="250" y="195" text-anchor="middle" font-size="9" fill="#64748b">Clic para ver detalle</text>
-</g>
-
-<!-- Cara YZ (lateral) - elipse inclinada -->
-<g id="caraYZ" onclick="showElipse('yz')" style="cursor:pointer">
-<rect x="330" y="50" width="140" height="130" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5" rx="6" opacity="0.8"/>
-<ellipse cx="400" cy="115" rx="55" ry="30" fill="none" stroke="#10b981" stroke-width="2.5" transform="rotate(-30,400,115)"/>
-<line x1="350" y1="115" x2="450" y2="115" stroke="#a855f7" stroke-width="2" stroke-dasharray="4,3" transform="rotate(-30,400,115)"/>
-<text x="400" y="45" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">Cara YZ</text>
-<text x="400" y="195" text-anchor="middle" font-size="9" fill="#64748b">Clic para ver detalle</text>
-</g>
-
-<!-- Panel de información -->
-<rect x="30" y="210" width="440" height="70" fill="#faf5ff" stroke="#a855f7" stroke-width="1.5" rx="8"/>
-<text x="250" y="235" text-anchor="middle" font-size="12" fill="#a855f7" font-weight="600" id="elipseInfo">👆 Haz clic en una cara para ver la elipse</text>
-<text x="250" y="255" text-anchor="middle" font-size="10" fill="#64748b" id="elipseDetail">XY: 1.22×D × 0.7×D | XZ: eje mayor vertical | YZ: 150°</text>
-<text x="250" y="275" text-anchor="middle" font-size="10" fill="#64748b" id="elipseMethod">Método de 4 centros: 4 arcos de circunferencia aproximan la elipse</text>
+<svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+<!-- Fondo -->
+<rect x="0" y="0" width="600" height="300" fill="#f8fafc" rx="8"/>
+<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Elipses en las 3 caras</text>
+<!-- Cara XY (horizontal) -->
+<text x="100" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">Cara XY</text>
+<ellipse cx="100" cy="100" rx="40" ry="25" fill="none" stroke="#2563eb" stroke-width="2"/>
+<line x1="60" y1="100" x2="140" y2="100" stroke="#f97316" stroke-width="1.5" stroke-dasharray="3,3"/>
+<text x="100" y="120" text-anchor="middle" font-size="9" fill="#f97316">Eje mayor 30°</text>
+<!-- Cara XZ (frontal) -->
+<text x="300" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#f97316">Cara XZ</text>
+<ellipse cx="300" cy="100" rx="25" ry="40" fill="none" stroke="#f97316" stroke-width="2"/>
+<line x1="300" y1="60" x2="300" y2="140" stroke="#2563eb" stroke-width="1.5"/>
+<text x="310" y="75" font-size="9" fill="#2563eb">Vertical</text>
+<!-- Cara YZ (lateral) -->
+<text x="500" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#10b981">Cara YZ</text>
+<ellipse cx="500" cy="100" rx="40" ry="25" fill="none" stroke="#10b981" stroke-width="2" transform="rotate(-30,500,100)"/>
+<text x="500" y="120" text-anchor="middle" font-size="9" fill="#10b981">150°</text>
+<!-- Dimensiones -->
+<rect x="20" y="160" width="560" height="120" fill="#eff6ff" rx="8" stroke="#2563eb" stroke-width="1"/>
+<text x="300" y="185" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="600">Dimensiones de la elipse (isométrica reducida)</text>
+<text x="300" y="205" text-anchor="middle" font-size="11" fill="#333">Eje mayor = 1.22 × D (diámetro del círculo)</text>
+<text x="300" y="225" text-anchor="middle" font-size="11" fill="#333">Eje menor = 0.7 × D</text>
+<text x="300" y="250" text-anchor="middle" font-size="11" fill="#f97316" font-weight="600">Método de 4 centros: aproximar con 4 arcos de circunferencia</text>
 </svg>
-</div>
 </div>
 </section>
 
@@ -190,8 +172,8 @@ Eje mayor vertical (cara XZ)
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Vertical</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Horizontal</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">A 30°</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">A 45°</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">A 30°</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">A 45°</button>
 </div>
 <p class="feedback"></p>
 </div>
@@ -213,7 +195,7 @@ Eje mayor vertical (cara XZ)
 <button class="quiz-btn" onclick="checkAnswer(this, false)">2</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">3</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">4</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">6</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false">6</button>
 </div>
 <p class="feedback"></p>
 </div>
@@ -241,40 +223,6 @@ Los círculos en isométrica son las elipses. Los cilindros, taladros y agujeros
 </div>
 
 <div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: dibujo de tuercas y arandelas</strong>Una tuerca hexagonal tiene círculos en planta y en isométrica se ven como elipses. El dibujante técnico usa el método de los 8 puntos para dibujar la elipse aproximada. Si dibujara círculos en vez de elipses, el operario de CNC no sabría las cotas reales del agujero y la pieza saldría defectuosa.</div>
-
-<!-- PASO A PASO VISUAL — Patrón 4 pasos -->
-<div class="interactive" style="margin:1.5rem 0">
-<h3>🎬 Paso a paso: Dibujar una elipse con 4 centros</h3>
-<div class="step-indicator">
-<div class="step-dot active" id="sd-e1"></div>
-<div class="step-dot" id="sd-e2"></div>
-<div class="step-dot" id="sd-e3"></div>
-<div class="step-dot" id="sd-e4"></div>
-</div>
-<div style="text-align:center;margin:1rem 0">
-<button onclick="showElipsePaso(1)">Paso 1: Mira</button>
-<button onclick="showElipsePaso(2)">Paso 2: Fíjate</button>
-<button onclick="showElipsePaso(3)">Paso 3: Ahora ves</button>
-<button onclick="showElipsePaso(4)">Paso 4: Tú prueba</button>
-</div>
-<div class="svg-container" id="elipse-paso-container">
-<svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
-<rect x="0" y="0" width="500" height="200" fill="#eff6ff" rx="8"/>
-<text x="250" y="25" text-anchor="middle" font-size="13" fill="#2563eb" font-weight="600">Paso 1: Mira — Elipse en cara XZ (eje mayor vertical)</text>
-<ellipse cx="250" cy="100" rx="35" ry="55" fill="none" stroke="#2563eb" stroke-width="2.5"/>
-<line x1="250" y1="45" x2="250" y2="155" stroke="#f97316" stroke-width="2"/>
-<text x="260" y="100" font-size="10" fill="#f97316" font-weight="600">Eje mayor</text>
-<line x1="215" y1="100" x2="285" y2="100" stroke="#10b981" stroke-width="2"/>
-<text x="250" y="125" text-anchor="middle" font-size="9" fill="#10b981">Eje menor</text>
-<text x="250" y="185" text-anchor="middle" font-size="10" fill="#64748b">Cara XZ: eje mayor siempre vertical</text>
-</svg>
-</div>
-</div>
-
-<div class="box box-success">
-<strong>🏆 ¡Dominado!</strong>
-Las elipses isométricas son la clave para dibujar cilindros, taladros y agujeros en perspectiva. Cada círculo que ves en un plano técnico se convierte en elipse — ¡y ahora sabes exactamente cómo dibujarla!
-</div>
 
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
@@ -319,50 +267,6 @@ function checkAnswer(btn, correct) {
         feedback.className = 'feedback';
       }, 1500);
     }
-  }
-}
-
-// Elipse interactiva
-function showElipse(cara) {
-  var info = {
-    xy: '🔵 Cara XY (horizontal): Eje mayor a 30° de la horizontal, eje menor perpendicular. Dimensiones: 1.22×D × 0.7×D.',
-    xz: '🔵 Cara XZ (frontal): Eje mayor VERTICAL, eje menor horizontal. Dimensiones: 0.7×D × 1.22×D.',
-    yz: '🔵 Cara YZ (lateral): Eje mayor a 150° de la horizontal. Dimensiones: 1.22×D × 0.7×D.'
-  };
-  document.getElementById('elipseInfo').textContent = info[cara] || '';
-  // Highlight
-  ['caraXY','caraXZ','caraYZ'].forEach(function(id){
-    var el = document.getElementById(id);
-    if(el) el.style.opacity = cara === (id === 'caraXY' ? 'xy' : id === 'caraXZ' ? 'xz' : 'yz') ? '1' : '0.4';
-  });
-}
-
-var elipsePasoData = {
-  1: {
-    bg: '#eff6ff', title: 'Paso 1: Mira — Elipse en cara XZ (eje mayor vertical)',
-    svg: '<ellipse cx="250" cy="100" rx="35" ry="55" fill="none" stroke="#2563eb" stroke-width="2.5"/><line x1="250" y1="45" x2="250" y2="155" stroke="#f97316" stroke-width="2"/><text x="260" y="100" font-size="10" fill="#f97316" font-weight="600">Eje mayor</text><line x1="215" y1="100" x2="285" y2="100" stroke="#10b981" stroke-width="2"/><text x="250" y="125" text-anchor="middle" font-size="9" fill="#10b981">Eje menor</text><text x="250" y="185" text-anchor="middle" font-size="10" fill="#64748b">Cara XZ: eje mayor siempre vertical</text>'
-  },
-  2: {
-    bg: '#fff7ed', title: 'Paso 2: Fíjate — Elipse en cara XY (eje mayor a 30°)',
-    svg: '<ellipse cx="250" cy="100" rx="55" ry="30" fill="none" stroke="#f97316" stroke-width="2.5"/><line x1="195" y1="100" x2="305" y2="100" stroke="#2563eb" stroke-width="2" stroke-dasharray="4,3"/><text x="250" y="125" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="600">Eje mayor a 30°</text><text x="250" y="185" text-anchor="middle" font-size="10" fill="#64748b">Cara XY: horizontal, inclinada 30°</text>'
-  },
-  3: {
-    bg: '#ecfdf5', title: 'Paso 3: Ahora ves — Método de 4 centros',
-    svg: '<ellipse cx="250" cy="100" rx="55" ry="30" fill="none" stroke="#10b981" stroke-width="2.5"/><circle cx="250" cy="70" r="3" fill="#f97316"/><text x="250" y="65" text-anchor="middle" font-size="9" fill="#f97316">C1</text><circle cx="250" cy="130" r="3" fill="#f97316"/><text x="250" y="145" text-anchor="middle" font-size="9" fill="#f97316">C2</text><circle cx="200" cy="100" r="3" fill="#2563eb"/><text x="190" y="100" text-anchor="end" font-size="9" fill="#2563eb">C3</text><circle cx="300" cy="100" r="3" fill="#2563eb"/><text x="310" y="100" text-anchor="start" font-size="9" fill="#2563eb">C4</text><text x="250" y="185" text-anchor="middle" font-size="10" fill="#64748b">4 centros: 2 mayores + 2 menores</text>'
-  },
-  4: {
-    bg: '#faf5ff', title: 'Paso 4: Tú prueba — Elipse completa con arcos',
-    svg: '<ellipse cx="250" cy="100" rx="55" ry="30" fill="#ede9fe" stroke="#a855f7" stroke-width="3"/><path d="M 195 100 A 55 30 0 0 1 305 100" fill="none" stroke="#a855f7" stroke-width="2" stroke-dasharray="5,3"/><path d="M 305 100 A 55 30 0 0 1 195 100" fill="none" stroke="#a855f7" stroke-width="2" stroke-dasharray="5,3"/><text x="250" y="105" text-anchor="middle" font-size="12" fill="#a855f7" font-weight="bold">Elipse ✓</text><text x="250" y="185" text-anchor="middle" font-size="10" fill="#64748b">4 arcos de circunferencia aproximan la elipse</text>'
-  }
-};
-
-function showElipsePaso(n) {
-  var d = elipsePasoData[n];
-  var container = document.getElementById('elipse-paso-container');
-  container.innerHTML = '<svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="500" height="200" fill="'+d.bg+'" rx="8"/><text x="250" y="25" text-anchor="middle" font-size="13" fill="#2563eb" font-weight="600">'+d.title+'</text>'+d.svg+'</svg>';
-  for(var i=1;i<=4;i++){
-    var dot = document.getElementById('sd-e'+i);
-    if(dot) dot.classList.toggle('active', i===n);
   }
 }
 
