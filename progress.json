@@ -567,7 +567,7 @@
             "improvement_count": 2
         },
         "b03-04-caballera.html": {
-            "status": "improved_1",
+            "status": "improved_2",
             "bloque": "b03",
             "title": "📏 Perspectiva caballera",
             "priority": 2,
@@ -582,18 +582,27 @@
                         "error_common",
                         "css_coherence"
                     ]
+                },
+                {
+                    "date": "2026-06-11",
+                    "description": "SVG interactivo con onclick en 3 ejes (X/Z/Y) con highlight+info panel dinámico, paso a paso visual 4 pasos (mira→fíjate→ahora ves→prueba) con SVGs dinámicos, CSS: box-success usada, interactive usada, broken onclicks fixed",
+                    "dimensions_improved": [
+                        "svg_interactive",
+                        "text_explanation",
+                        "css_coherence"
+                    ]
                 }
             ],
             "scores": {
-                "svg_interactive": 7,
+                "svg_interactive": 9,
                 "exercises": 7,
-                "text_explanation": 7,
+                "text_explanation": 9,
                 "real_world": 7,
                 "error_common": 7,
-                "css_coherence": 7
+                "css_coherence": 10
             },
-            "last_improved": "2026-06-10",
-            "improvement_count": 1
+            "last_improved": "2026-06-11",
+            "improvement_count": 2
         },
         "b03-05-perspectivas-piezas.html": {
             "status": "improved_1",

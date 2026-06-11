@@ -107,63 +107,31 @@
    107|
    108|<section class="chapter">
    109|<h2 class="chapter-title">2️⃣ Visualiza la dimétrica</h2>
-<div class="interactive">
-<h3>🖱️ Haz clic en cada eje para ver su función</h3>
-<div class="svg-container">
-<svg id="dimetricaSVG" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
-<!-- Fondo -->
-<rect x="0" y="0" width="600" height="300" fill="#f8fafc" rx="8"/>
-<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Dimétrica: haz clic en los ejes</text>
-<!-- Pieza -->
-<rect x="150" y="80" width="150" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="2" id="caraDimetrica"/>
-<line x1="150" y1="80" x2="200" y2="50" stroke="#f97316" stroke-width="2" opacity="0.5"/>
-<line x1="300" y1="80" x2="350" y2="50" stroke="#f97316" stroke-width="2" opacity="0.5"/>
-<line x1="150" y1="150" x2="200" y2="120" stroke="#f97316" stroke-width="2" opacity="0.5"/>
-<line x1="300" y1="150" x2="350" y2="120" stroke="#f97316" stroke-width="2" opacity="0.5"/>
-<rect x="200" y="50" width="150" height="70" fill="#fff7ed" stroke="#f97316" stroke-width="1.5" stroke-dasharray="4,2"/>
-<!-- Ejes clickeables -->
-<line x1="300" y1="150" x2="150" y2="155" stroke="#2563eb" stroke-width="5" id="ejeD1" style="cursor:pointer" onclick="toggleEjeD('E1')"/>
-<line x1="300" y1="150" x2="450" y2="105" stroke="#f97316" stroke-width="5" id="ejeD2" style="cursor:pointer" onclick="toggleEjeD('E2')"/>
-<line x1="300" y1="150" x2="300" y2="80" stroke="#10b981" stroke-width="5" id="ejeD3" style="cursor:pointer" onclick="toggleEjeD('E3')"/>
-<!-- Labels -->
-<text x="130" y="155" font-size="14" font-weight="bold" fill="#2563eb" id="labelD1">Eje 1 (7°)</text>
-<text x="460" y="100" font-size="14" font-weight="bold" fill="#f97316" id="labelD2">Eje 2 (42°)</text>
-<text x="310" y="75" font-size="14" font-weight="bold" fill="#10b981" id="labelD3">Eje 3</text>
-<!-- Comparativa -->
-<rect x="20" y="220" width="560" height="65" fill="#faf5ff" rx="6"/>
-<text x="300" y="240" text-anchor="middle" font-size="11" fill="#a855f7" font-weight="600">Comparativa de perspectivas:</text>
-<text x="300" y="258" text-anchor="middle" font-size="10" fill="#333">Isométrica: 3 ejes iguales (120°) | Dimétrica: 2 ejes iguales (7°, 42°) | Caballera: 2 ejes en VM (45°)</text>
-<text x="300" y="276" text-anchor="middle" font-size="10" fill="#64748b">Haz clic en los ejes para ver sus propiedades</text>
-</svg>
-</div>
-<div id="ejeInfoD" class="box box-teoria" style="margin-top:1rem;min-height:3rem">
-<strong>👆 Info del eje</strong>
-Haz clic en Eje 1, Eje 2 o Eje 3 para ver sus propiedades.
-</div>
-</div>
-
-<div class="interactive">
-<h3>📐 Paso a paso: Dibujar en dimétrica</h3>
-<p style="margin-bottom:1rem;color:#64748b">Sigue los 4 pasos para dibujar cualquier pieza en perspectiva dimétrica:</p>
-
-<div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem">
-<button onclick="showDimPaso(1)">Paso 1: Ejes</button>
-<button onclick="showDimPaso(2)">Paso 2: Cara frontal</button>
-<button onclick="showDimPaso(3)">Paso 3: Profundidad</button>
-<button onclick="showDimPaso(4)">Paso 4: Detalles</button>
-<button onclick="resetDimPaso()">🔄 Reset</button>
-</div>
-
-<div class="svg-container">
-<svg id="dimPasoSVG" viewBox="0 0 500 250" xmlns="http://www.w3.org/2000/svg">
-<text x="250" y="125" text-anchor="middle" font-size="14" fill="#94a3b8">Pulsa un paso para comenzar</text>
-</svg>
-</div>
-<div id="dimPasoInfo" class="box box-teoria" style="margin-top:1rem">
-<strong>📖 Paso</strong>
-Selecciona un paso arriba para ver la explicación.
-</div>
-</div>
+   110|<div class="svg-container">
+   111|<svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+   112|<!-- Fondo -->
+   113|<rect x="0" y="0" width="600" height="300" fill="#f8fafc" rx="8"/>
+   114|<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Dimétrica: 2 ejes iguales, 1 diferente</text>
+   115|<!-- Ejes -->
+   116|<line x1="300" y1="150" x2="150" y2="155" stroke="#2563eb" stroke-width="3"/>
+   117|<text x="130" y="155" font-size="12" font-weight="bold" fill="#2563eb">Eje 1 (7°)</text>
+   118|<line x1="300" y1="150" x2="450" y2="105" stroke="#f97316" stroke-width="3"/>
+   119|<text x="460" y="100" font-size="12" font-weight="bold" fill="#f97316">Eje 2 (42°)</text>
+   120|<line x1="300" y1="150" x2="300" y2="80" stroke="#10b981" stroke-width="3"/>
+   121|<text x="310" y="75" font-size="12" font-weight="bold" fill="#10b981">Eje 3</text>
+   122|<!-- Pieza -->
+   123|<rect x="150" y="80" width="150" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+   124|<line x1="150" y1="80" x2="200" y2="50" stroke="#f97316" stroke-width="2"/>
+   125|<line x1="300" y1="80" x2="350" y2="50" stroke="#f97316" stroke-width="2"/>
+   126|<rect x="200" y="50" width="150" height="70" fill="#fff7ed" stroke="#f97316" stroke-width="1.5" stroke-dasharray="4,2"/>
+   127|<!-- Comparativa -->
+   128|<rect x="20" y="200" width="560" height="85" fill="#faf5ff" rx="6"/>
+   129|<text x="300" y="220" text-anchor="middle" font-size="11" fill="#a855f7" font-weight="600">Comparativa de perspectivas:</text>
+   130|<text x="300" y="238" text-anchor="middle" font-size="10" fill="#333">Isométrica: 3 ejes iguales (120°) | Dimétrica: 2 ejes iguales (7°, 42°) | Caballera: 2 ejes en VM (45°)</text>
+   131|<text x="300" y="256" text-anchor="middle" font-size="10" fill="#333">Isométrica: más común | Dimétrica: menos común, para piezas con una dimensión dominante</text>
+   132|<text x="300" y="274" text-anchor="middle" font-size="10" fill="#64748b">Reducciones típicas: 1,1,0.5 o 1,1,0.75</text>
+   133|</svg>
+   134|</div>
    135|</section>
    136|
    137|<section class="chapter">
@@ -255,122 +223,54 @@ Selecciona un paso arriba para ver la explicación.
    219|
    220|</main>
    221|<footer class="footer">Hecho con ❤️ por David Antizar</footer>
-<script>
-// Toggle eje dimétrica interactivo
-var ejesActivosD = {};
-function toggleEjeD(eje) {
-  ejesActivosD[eje] = !ejesActivosD[eje];
-  var ids = {E1:'ejeD1', E2:'ejeD2', E3:'ejeD3'};
-  var labels = {E1:'labelD1', E2:'labelD2', E3:'labelD3'};
-  var line = document.getElementById(ids[eje]);
-  var label = document.getElementById(labels[eje]);
-  var info = document.getElementById('ejeInfoD');
-  if(ejesActivosD[eje]) {
-    line.setAttribute('stroke-width', '8');
-    line.setAttribute('stroke', '#f97316');
-    label.setAttribute('font-size', '16');
-  } else {
-    var colors = {E1:'#2563eb', E2:'#f97316', E3:'#10b981'};
-    line.setAttribute('stroke-width', '5');
-    line.setAttribute('stroke', colors[eje]);
-    label.setAttribute('font-size', '14');
-  }
-  var datos = {
-    E1: {nombre:'Eje 1 (7°)', desc:'Primer eje principal. Ángulo de 7° respecto a horizontal. Va a escala real (reducción 1).', color:'var(--azul)'},
-    E2: {nombre:'Eje 2 (42°)', desc:'Segundo eje principal. Ángulo de 42° respecto a horizontal. Va a escala real (reducción 1).', color:'var(--naranja)'},
-    E3: {nombre:'Eje 3 (vertical)', desc:'Tercer eje. Vertical. Va con reducción 0.5 o 0.75. Es el eje que diferencia la dimétrica de la isométrica.', color:'var(--verde)'}
-  };
-  var d = datos[eje];
-  var activo = ejesActivosD[eje] ? ' ✅ ACTIVO' : '';
-  info.innerHTML = '<strong style="color:' + d.color + '">' + d.nombre + activo + '</strong><br>' + d.desc;
-  info.className = 'box box-teoria';
-  if(ejesActivosD[eje]) info.className = 'box box-success';
-}
-
-// Paso a paso dimétrica
-function showDimPaso(n) {
-  var svg = document.getElementById('dimPasoSVG');
-  var info = document.getElementById('dimPasoInfo');
-  var pasos = {
-    1: {
-      svg: '<line x1="250" y1="180" x2="100" y2="185" stroke="#2563eb" stroke-width="3"/><text x="80" y="180" font-size="11" fill="#2563eb" font-weight="bold">7°</text><line x1="250" y1="180" x2="400" y2="130" stroke="#f97316" stroke-width="3"/><text x="410" y="125" font-size="11" fill="#f97316" font-weight="bold">42°</text><line x1="250" y1="180" x2="250" y2="100" stroke="#10b981" stroke-width="3"/><text x="260" y="95" font-size="11" fill="#10b981" font-weight="bold">Vertical</text><text x="250" y="210" text-anchor="middle" font-size="11" fill="#64748b">Dibuja los 3 ejes: dos a 7°/42° + uno vertical</text><text x="50" y="40" font-size="12" fill="#2563eb" font-weight="bold">Paso 1</text>',
-      title: '👀 MIRA',
-      desc: 'Dibuja los 3 ejes de la dimétrica: dos ejes principales a 7° y 42° respecto a horizontal, y un eje vertical. Los dos primeros van a escala real, el tercero con reducción.'
-    },
-    2: {
-      svg: '<rect x="120" y="80" width="120" height="80" fill="#eff6ff" stroke="#2563eb" stroke-width="3" rx="4"/><text x="180" y="125" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600">Cara frontal</text><text x="180" y="185" text-anchor="middle" font-size="10" fill="#64748b">Ejes 1 y 3 — tamaño real</text><text x="50" y="40" font-size="12" fill="#2563eb" font-weight="bold">Paso 2</text>',
-      title: '🔍 FÍJATE',
-      desc: 'Dibuja la cara frontal usando los ejes 1 y 3 (los dos a escala real). Esta cara va en verdadera magnitud, como en caballera. Un rectángulo se dibuja como rectángulo, un círculo como círculo.'
-    },
-    3: {
-      svg: '<rect x="120" y="80" width="120" height="80" fill="#eff6ff" stroke="#2563eb" stroke-width="3" rx="4"/><line x1="120" y1="80" x2="170" y2="50" stroke="#f97316" stroke-width="2"/><line x1="240" y1="80" x2="290" y2="50" stroke="#f97316" stroke-width="2"/><line x1="120" y1="160" x2="170" y2="130" stroke="#f97316" stroke-width="2"/><line x1="240" y1="160" x2="290" y2="130" stroke="#f97316" stroke-width="2"/><rect x="170" y="50" width="120" height="80" fill="#fff7ed" stroke="#f97316" stroke-width="2" stroke-dasharray="4,2" rx="4"/><text x="180" y="125" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600">Frontal</text><text x="230" y="95" text-anchor="middle" font-size="10" fill="#f97316">Posterior</text><text x="180" y="190" text-anchor="middle" font-size="10" fill="#64748b">Profundidad × 0.5 (o × 0.75)</text><text x="50" y="40" font-size="12" fill="#2563eb" font-weight="bold">Paso 3</text>',
-      title: '👁️ AHORA VES',
-      desc: 'Desde las esquinas de la cara frontal, traza líneas paralelas al eje 2 (42°). La profundidad se reduce a 0.5 (o 0.75). La cara posterior se dibuja con líneas discontinuas si es interior.'
-    },
-    4: {
-      svg: '<rect x="120" y="80" width="120" height="80" fill="#eff6ff" stroke="#2563eb" stroke-width="3" rx="4"/><line x1="120" y1="80" x2="170" y2="50" stroke="#f97316" stroke-width="2"/><line x1="240" y1="80" x2="290" y2="50" stroke="#f97316" stroke-width="2"/><line x1="120" y1="160" x2="170" y2="130" stroke="#f97316" stroke-width="2"/><line x1="240" y1="160" x2="290" y2="130" stroke="#f97316" stroke-width="2"/><rect x="170" y="50" width="120" height="80" fill="#fff7ed" stroke="#f97316" stroke-width="2" stroke-dasharray="4,2" rx="4"/><circle cx="180" cy="120" r="18" fill="none" stroke="#a855f7" stroke-width="2"/><text x="180" y="125" text-anchor="middle" font-size="9" fill="#a855f7">Ø</text><text x="180" y="190" text-anchor="middle" font-size="10" fill="#64748b">Círculo en cara frontal = círculo real</text><text x="50" y="40" font-size="12" fill="#2563eb" font-weight="bold">Paso 4</text>',
-      title: '✏️ AHORA PRUEBA',
-      desc: 'Añade detalles: agujeros (círculos en frontal, elipses en lateral), chaflanes, ranuras. Los círculos en la cara frontal se dibujan como círculos (VM). ¡Tu pieza dimétrica está completa!'
-    }
-  };
-  var p = pasos[n];
-  svg.innerHTML = p.svg;
-  info.innerHTML = '<strong style="color:var(--verde)">' + p.title + '</strong><br>' + p.desc;
-  info.className = 'box box-success';
-}
-function resetDimPaso() {
-  document.getElementById('dimPasoSVG').innerHTML = '<text x="250" y="125" text-anchor="middle" font-size="14" fill="#94a3b8">Pulsa un paso para comenzar</text>';
-  document.getElementById('dimPasoInfo').innerHTML = '<strong>📖 Paso</strong><br>Selecciona un paso arriba para ver la explicación.';
-  document.getElementById('dimPasoInfo').className = 'box box-teoria';
-}
-
-function checkAnswer(btn, correct) {
-  var parent = btn.parentElement;
-  parent.querySelectorAll('button').forEach(function(b) {
-    b.disabled = true; b.classList.remove('correct','wrong');
-  });
-  btn.classList.add(correct ? 'correct' : 'wrong');
-  var feedback = parent.nextElementSibling;
-  if(feedback && feedback.classList.contains('feedback')) {
-    if(correct) {
-      feedback.textContent = '✅ ¡Correcto! ¡Muy bien!';
-      feedback.className = 'feedback correct';
-    } else {
-      feedback.textContent = '❌ ¡Intenta de nuevo!';
-      feedback.className = 'feedback incorrect';
-      setTimeout(function() {
-        parent.querySelectorAll('button').forEach(function(b) {
-          b.disabled = false; b.classList.remove('correct','wrong');
-        });
-        feedback.textContent = '';
-        feedback.className = 'feedback';
-      }, 1500);
-    }
-  }
-}
-
-function checkExercise(id, correct, btn) {
-  var input = document.getElementById(id);
-  var feedback = input.parentElement.nextElementSibling;
-  var userVal = input.value.trim().replace(',', '.');
-  var correctVal = correct.toString().replace(',', '.');
-  if(userVal === correctVal) {
-    feedback.textContent = '✅ ¡Correcto! ' + correct;
-    feedback.className = 'feedback correct';
-    input.style.borderColor = 'var(--verde)';
-  } else {
-    feedback.textContent = '❌ Respuesta correcta: ' + correct;
-    feedback.className = 'feedback incorrect';
-    input.style.borderColor = 'var(--rojo)';
-  }
-}
-
-window.onscroll = function(){
-  var h = document.documentElement;
-  var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
-  document.getElementById('progress').style.width = p+'%';
-};
-</script>
+   222|<script>
+   223|function checkAnswer(btn, correct) {
+   224|  var parent = btn.parentElement;
+   225|  parent.querySelectorAll('button').forEach(function(b) {
+   226|    b.disabled = true; b.classList.remove('correct','wrong');
+   227|  });
+   228|  btn.classList.add(correct ? 'correct' : 'wrong');
+   229|  var feedback = parent.nextElementSibling;
+   230|  if(feedback && feedback.classList.contains('feedback')) {
+   231|    if(correct) {
+   232|      feedback.textContent = '✅ ¡Correcto! ¡Muy bien!';
+   233|      feedback.className = 'feedback correct';
+   234|    } else {
+   235|      feedback.textContent = '❌ ¡Intenta de nuevo!';
+   236|      feedback.className = 'feedback incorrect';
+   237|      setTimeout(function() {
+   238|        parent.querySelectorAll('button').forEach(function(b) {
+   239|          b.disabled = false; b.classList.remove('correct','wrong');
+   240|        });
+   241|        feedback.textContent = '';
+   242|        feedback.className = 'feedback';
+   243|      }, 1500);
+   244|    }
+   245|  }
+   246|}
+   247|
+   248|function checkExercise(id, correct, btn) {
+   249|  var input = document.getElementById(id);
+   250|  var feedback = input.parentElement.nextElementSibling;
+   251|  var userVal = input.value.trim().replace(',', '.');
+   252|  var correctVal = correct.toString().replace(',', '.');
+   253|  if(userVal === correctVal) {
+   254|    feedback.textContent = '✅ ¡Correcto! ' + correct;
+   255|    feedback.className = 'feedback correct';
+   256|    input.style.borderColor = 'var(--verde)';
+   257|  } else {
+   258|    feedback.textContent = '❌ Respuesta correcta: ' + correct;
+   259|    feedback.className = 'feedback incorrect';
+   260|    input.style.borderColor = 'var(--rojo)';
+   261|  }
+   262|}
+   263|
+   264|window.onscroll = function(){
+   265|  var h = document.documentElement;
+   266|  var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
+   267|  document.getElementById('progress').style.width = p+'%';
+   268|};
+   269|</script>
    270|</body>
    271|</html>
    272|
