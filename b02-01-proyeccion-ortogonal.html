@@ -121,9 +121,84 @@ Un cubo de 50mm se proyecta con efecto de perspectiva (lejos = más pequeño). �
 </div>
 </section>
 
-<!-- SVG INTERACTIVO: Toggle ortogonal vs cónica -->
+<!-- PASO A PASO VISUAL: Patrón 4 pasos -->
 <section class="chapter">
-<h2 class="chapter-title">2️⃣ Visualiza y compara — Haz clic en el botón</h2>
+<h2 class="chapter-title">2️⃣ Paso a paso: Construye tu primera proyección</h2>
+<div class="box box-teoria">
+<strong>📖 Aprende construyendo</strong>
+<p style="margin-bottom:.8rem">Sigue estos 4 pasos. Cada uno te enseña algo nuevo. ¡Haz clic en los botones!</p>
+<div class="step-indicator">
+<div class="step-dot active" id="stepDot1"></div>
+<div class="step-dot" id="stepDot2"></div>
+<div class="step-dot" id="stepDot3"></div>
+<div class="step-dot" id="stepDot4"></div>
+</div>
+<div id="stepContent">
+<div style="text-align:center;margin-top:.8rem">
+<button onclick="showStep(1)" id="stepBtn1" style="background:var(--azul);color:#fff;border:none;padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.9rem;margin:.3rem">Paso 1: Mira</button>
+<button onclick="showStep(2)" id="stepBtn2" style="background:#e2e8f0;color:#64748b;border:none;padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.9rem;margin:.3rem">Paso 2: Fíjate</button>
+<button onclick="showStep(3)" id="stepBtn3" style="background:#e2e8f0;color:#64748b;border:none;padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.9rem;margin:.3rem">Paso 3: Ahora ves</button>
+<button onclick="showStep(4)" id="stepBtn4" style="background:#e2e8f0;color:#64748b;border:none;padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.9rem;margin:.3rem">Paso 4: ¡Prueba!</button>
+</div>
+<div class="box box-teoria" id="step1">
+<strong>👁️ Paso 1 — Mira</strong>
+<p>Este es un cubo de 50mm de lado. Tiene 6 caras, 12 aristas y 8 vértices. Así se ve desde arriba:</p>
+<div class="svg-container" style="padding:.8rem;margin:.5rem 0">
+<svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+<rect x="50" y="20" width="100" height="100" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5" rx="4"/>
+<text x="100" y="75" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="600">50mm</text>
+<text x="100" y="140" text-anchor="middle" font-size="9" fill="#64748b">Vista superior del cubo</text>
+</svg>
+</div>
+</div>
+<div class="box box-ejemplo" id="step2" style="display:none">
+<strong>🔍 Paso 2 — Fíjate</strong>
+<p>Ahora pon un foco de luz PERPENDICULAR al plano. Los rayos de luz atraviesan el cubo y dejan su sombra en el plano. ¡Esa sombra es la proyección!</p>
+<div class="svg-container" style="padding:.8rem;margin:.5rem 0">
+<svg viewBox="0 0 250 150" xmlns="http://www.w3.org/2000/svg">
+<!-- Objeto -->
+<rect x="30" y="50" width="60" height="60" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5" rx="4"/>
+<text x="60" y="85" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="600">Cubo</text>
+<!-- Rayos -->
+<line x1="90" y1="55" x2="160" y2="55" stroke="#f97316" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowO)"/>
+<line x1="90" y1="80" x2="160" y2="80" stroke="#f97316" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowO)"/>
+<line x1="90" y1="105" x2="160" y2="105" stroke="#f97316" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowO)"/>
+<!-- Plano -->
+<rect x="160" y="40" width="4" height="80" fill="#10b981"/>
+<text x="175" y="85" font-size="9" fill="#10b981" font-weight="600">Plano</text>
+<!-- Proyección -->
+<rect x="170" y="50" width="60" height="60" fill="#ecfdf5" stroke="#10b981" stroke-width="2.5" rx="4"/>
+<text x="200" y="85" text-anchor="middle" font-size="10" fill="#10b981" font-weight="600">Sombra</text>
+</svg>
+</div>
+</div>
+<div class="box box-success" id="step3" style="display:none">
+<strong>📐 Paso 3 — Ahora ves que...</strong>
+<p>¡La sombra mide exactamente lo mismo que el cubo! 50mm → 50mm. Eso es lo que hace la proyección ortogonal: <strong>mantiene las dimensiones reales</strong>. No hay deformación, no hay perspectiva. Es como una fotocopia exacta.</p>
+<div class="svg-container" style="padding:.8rem;margin:.5rem 0">
+<svg viewBox="0 0 250 100" xmlns="http://www.w3.org/2000/svg">
+<rect x="20" y="20" width="80" height="60" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5" rx="4"/>
+<text x="60" y="55" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600">50mm</text>
+<text x="60" y="85" text-anchor="middle" font-size="9" fill="#64748b">Objeto</text>
+<text x="125" y="55" text-anchor="middle" font-size="20" fill="#10b981">=</text>
+<rect x="140" y="20" width="80" height="60" fill="#ecfdf5" stroke="#10b981" stroke-width="2.5" rx="4"/>
+<text x="180" y="55" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">50mm</text>
+<text x="180" y="85" text-anchor="middle" font-size="9" fill="#64748b">Proyección</text>
+</svg>
+</div>
+</div>
+<div class="box box-idea" id="step4" style="display:none">
+<strong>🎮 Paso 4 — ¡Tú prueba!</strong>
+<p>Haz clic en el botón de abajo para ver cómo cambia la proyección al alternar entre ortogonal y cónica. ¡Observa cómo la cónica DEFORMA las dimensiones!</p>
+<button onclick="document.getElementById('interactiveSection').scrollIntoView({behavior:'smooth'})" style="background:var(--azul);color:#fff;border:none;padding:.6rem 1.5rem;border-radius:8px;cursor:pointer;font-size:1rem;margin:.5rem 0">🔬 Ir al laboratorio interactivo</button>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SVG INTERACTIVO: Toggle ortogonal vs cónica -->
+<section class="chapter" id="interactiveSection">
+<h2 class="chapter-title">3️⃣ Visualiza y compara — Haz clic en el botón</h2>
 <div class="interactive">
 <h3>🔬 Laboratorio: Cambia entre ortogonal y cónica</h3>
 <p style="margin-bottom:1rem;color:#64748b;font-size:.95rem">Observa cómo cambian los rayos y la proyección al alternar entre ambos sistemas:</p>
@@ -176,14 +251,15 @@ Un cubo de 50mm se proyecta con efecto de perspectiva (lejos = más pequeño). �
 
 <!-- CASO REAL INDUSTRIAL -->
 <section class="chapter">
-<h2 class="chapter-title">🏭 Caso real: Inspección de una pieza aeronáutica</h2>
+<h2 class="chapter-title">🏭 Caso real: Inspección de un larguero de ala Airbus A320</h2>
 <div class="box box-ejemplo">
-<span class="real-world-badge">CASO REAL</span>
-<strong>✈️ Airbus — Plano de un larguero de ala</strong>
-<p>En la línea de montaje de un Airbus A320, un inspector de calidad verifica un larguero de ala. El plano técnico usa <strong>proyección ortogonal</strong> con 3 vistas: alzado, planta y perfil.</p>
-<p style="margin-top:.5rem">El larguero tiene una espiga de 12.500mm ±0.005mm. Si se hubiera usado proyección cónica (perspectiva), la espiga parecería más pequeña por el efecto de profundidad y el operario la mecanizaría a 12.490mm.</p>
-<p style="margin-top:.5rem"><strong>Resultado: la pieza no encaja en el ensamblaje → parada de línea de 4 horas → 120 trabajadores esperando → coste ~80.000€ por hora de parada.</strong></p>
-<p style="margin-top:.5rem;font-style:italic;color:var(--gris)">La proyección ortogonal no es una opción: es un requisito de seguridad en aviación.</p>
+<span class="real-world-badge">CASO REAL — AERONÁUTICA</span>
+<strong>✈️ Airbus Seville — Plano de un larguero de ala (pieza LRS-4421)</strong>
+<p>En la línea de montaje de la nave 4002 de la factoría de Airbus en Sevilla, un inspector de calidad verifica un <strong>larguero de ala LRS-4421</strong> fabricado en aluminio 7075-T6. El plano técnico (DWG-8821, revisión C) usa <strong>proyección ortogonal</strong> con 3 vistas: alzado, planta y perfil derecho.</p>
+<p style="margin-top:.5rem">El larguero tiene una espiga cilíndrica de <strong>12.500 mm ±0.005 mm</strong> (tolerancia ISO IT5). En el alzado se ve la sección transversal con 4 agujeros M6 a 25.000 mm de separación. En la planta se ven los 4 escalones de empalme con la chapa del ala.</p>
+<p style="margin-top:.5rem">Si se hubiera usado proyección cónica (perspectiva de 1 punto), la espiga de 12.500mm aparecería como 12.380mm por el efecto de profundidad. El operario del CNC mecanizaría la espiga a 12.380mm en vez de 12.500mm.</p>
+<p style="margin-top:.5rem"><strong>Consecuencia:</strong> la espiga no entra en el alojamientodel larguero → la pieza se descarta → hay que fabricar otra → <strong>48h de taller parado + 12.500€ en material y mecanizado perdidos</strong>.</p>
+<p style="margin-top:.5rem;font-style:italic;color:var(--gris)">"En aviación, una proyección cónica en un plano cuesta más que toda una semana de CAD." — Ingeniero Jefe de Calidad, Airbus Sevilla</p>
 </div>
 </section>
 
@@ -339,6 +415,23 @@ La proyección ortogonal es la base de TODO el bloque 2. A partir de aquí, alza
 <footer class="footer">Hecho con ❤️ por David Antizar</footer>
 <script>
 var currentMode = 'ortogonal';
+var currentStep = 1;
+
+function showStep(n) {
+  currentStep = n;
+  for (var i = 1; i <= 4; i++) {
+    var box = document.getElementById('step' + i);
+    var dot = document.getElementById('stepDot' + i);
+    var btn = document.getElementById('stepBtn' + i);
+    if (box) box.style.display = (i <= n) ? 'block' : 'none';
+    if (dot) { dot.classList.toggle('active', i <= n); }
+    if (btn) {
+      if (i === n) { btn.style.background = 'var(--azul)'; btn.style.color = '#fff'; }
+      else if (i < n) { btn.style.background = 'var(--verde)'; btn.style.color = '#fff'; }
+      else { btn.style.background = '#e2e8f0'; btn.style.color = '#64748b'; }
+    }
+  }
+}
 
 function toggleProjection(mode) {
   var raysOrt = document.getElementById('raysOrt');

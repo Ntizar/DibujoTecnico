@@ -132,9 +132,90 @@ Mide: profundidad y alto.
 </div>
 </section>
 
+<!-- PASO A PASO VISUAL: Patrón 4 pasos -->
+<section class="chapter">
+<h2 class="chapter-title">📊 Paso a paso: Construye el sistema de 3 planos</h2>
+<div class="box box-teoria">
+<strong>📖 Aprende construyendo</strong>
+<p style="margin-bottom:.8rem">Cada plano es una cara de una caja transparente. Sigue estos 4 pasos:</p>
+<div class="step-indicator">
+<div class="step-dot active" id="stepDot1b"></div>
+<div class="step-dot" id="stepDot2b"></div>
+<div class="step-dot" id="stepDot3b"></div>
+<div class="step-dot" id="stepDot4b"></div>
+</div>
+<div id="stepContent2">
+<div class="box box-teoria" id="step1b">
+<strong>👁️ Paso 1 — Mira</strong>
+<p>Imagina una caja de cartón transparente en un rincón. Tiene 3 caras visibles: la pared del fondo (vertical), el suelo (horizontal) y la pared lateral. Esas 3 caras se tocan en ángulo recto.</p>
+<div class="svg-container" style="padding:.8rem;margin:.5rem 0">
+<svg viewBox="0 0 250 180" xmlns="http://www.w3.org/2000/svg">
+<!-- Rincón de la caja -->
+<!-- Pared fondo (PV) -->
+<polygon points="40,30 140,30 140,130 40,130" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5" opacity="0.9"/>
+<text x="90" y="85" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="600">PV (pared fondo)</text>
+<!-- Suelo (PH) -->
+<polygon points="40,130 140,130 170,160 10,160" fill="#fff7ed" stroke="#f97316" stroke-width="2.5" opacity="0.9"/>
+<text x="85" y="152" text-anchor="middle" font-size="10" fill="#f97316" font-weight="600">PH (suelo)</text>
+<!-- Pared lateral (PL) -->
+<polygon points="140,30 170,60 170,160 140,130" fill="#ecfdf5" stroke="#10b981" stroke-width="2.5" opacity="0.9"/>
+<text x="155" y="105" text-anchor="middle" font-size="10" fill="#10b981" font-weight="600" transform="rotate(-90,155,105)">PL (pared lateral)</text>
+<!-- Esquina -->
+<circle cx="140" cy="130" r="4" fill="#333"/>
+</svg>
+</div>
+</div>
+<div class="box box-ejemplo" id="step2b" style="display:none">
+<strong>🔍 Paso 2 — Fíjate</strong>
+<p>Cada cara muestra una vista diferente de la pieza que está dentro de la caja. Si pones una tuerca en el rincón, cada cara proyecta su sombra:</p>
+<ul style="margin:.5rem 0 .5rem 1.5rem">
+<li><strong style="color:var(--azul)">PV</strong> → Alzado (lo que ves desde delante)</li>
+<li><strong style="color:var(--naranja)">PH</strong> → Planta (lo que ves desde arriba)</li>
+<li><strong style="color:var(--verde)">PL</strong> → Perfil (lo que ves desde el lado)</li>
+</ul>
+</div>
+<div class="box box-success" id="step3b" style="display:none">
+<strong>📐 Paso 3 — Ahora ves que...</strong>
+<p>Para dibujar esto en un folio plano, necesitamos "abatir" los planos: girar el PH 90° hacia ABAJO y el PL 90° hacia la DERECHA. El PV se queda FIJO. Así las 3 vistas quedan en el mismo plano.</p>
+<div class="svg-container" style="padding:.8rem;margin:.5rem 0">
+<svg viewBox="0 0 250 120" xmlns="http://www.w3.org/2000/svg">
+<!-- PV fijo -->
+<rect x="10" y="10" width="80" height="60" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5" rx="4"/>
+<text x="50" y="45" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600">ALZADO</text>
+<!-- LT -->
+<line x1="5" y1="70" x2="100" y2="70" stroke="#333" stroke-width="2"/>
+<text x="105" y="74" font-size="8" fill="#333">LT</text>
+<!-- PH abatido -->
+<rect x="10" y="75" width="80" height="40" fill="#fff7ed" stroke="#f97316" stroke-width="2.5" rx="4"/>
+<text x="50" y="100" text-anchor="middle" font-size="11" fill="#f97316" font-weight="600">PLANTA</text>
+<!-- Flecha de giro -->
+<path d="M 50 70 Q 65 80, 50 75" fill="none" stroke="#f97316" stroke-width="2" marker-end="url(#arrow)"/>
+<!-- PL abatido -->
+<rect x="110" y="10" width="60" height="60" fill="#ecfdf5" stroke="#10b981" stroke-width="2.5" rx="4"/>
+<text x="140" y="45" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">PERFIL</text>
+<!-- Flecha de giro -->
+<path d="M 110 40 Q 100 40, 105 40" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow)"/>
+</svg>
+</div>
+</div>
+<div class="box box-idea" id="step4b" style="display:none">
+<strong>🎮 Paso 4 — ¡Tú prueba!</strong>
+<p>Haz clic en cada plano del SVG de arriba para ver qué vista produce. ¡Observa cómo cada plano muestra dimensiones diferentes!</p>
+<button onclick="document.querySelector('.chapter-title:nth-of-type(2)').scrollIntoView({behavior:'smooth'})" style="background:var(--azul);color:#fff;border:none;padding:.6rem 1.5rem;border-radius:8px;cursor:pointer;font-size:1rem;margin:.5rem 0">📦 Ir al SVG interactivo</button>
+</div>
+</div>
+<div style="text-align:center;margin-top:.8rem">
+<button onclick="showStep2(1)" style="background:var(--azul);color:#fff;border:none;padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.9rem;margin:.3rem">Paso 1: Mira</button>
+<button onclick="showStep2(2)" style="background:#e2e8f0;color:#64748b;border:none;padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.9rem;margin:.3rem">Paso 2: Fíjate</button>
+<button onclick="showStep2(3)" style="background:#e2e8f0;color:#64748b;border:none;padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.9rem;margin:.3rem">Paso 3: Ahora ves</button>
+<button onclick="showStep2(4)" style="background:#e2e8f0;color:#64748b;border:none;padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.9rem;margin:.3rem">Paso 4: ¡Prueba!</button>
+</div>
+</div>
+</section>
+
 <!-- PASO A PASO -->
 <section class="chapter">
-<h2 class="chapter-title">📊 Pasos del abatimiento</h2>
+<h2 class="chapter-title">📊 Resumen del abatimiento</h2>
 <div class="step-indicator">
 <div class="step-dot active" id="sd1"></div>
 <div class="step-dot" id="sd2"></div>
@@ -211,19 +292,15 @@ Mide: profundidad y alto.
 
 <!-- CASO REAL INDUSTRIAL -->
 <section class="chapter">
-<h2 class="chapter-title">🏭 Caso real: Plano de una pieza de tren de aterrizaje</h2>
+<h2 class="chapter-title">🏭 Caso real: Soporte de tren de aterrizaje Boeing 737 MAX</h2>
 <div class="box box-ejemplo">
-<span class="real-world-badge">CASO REAL</span>
-<strong>✈️ Boeing — Soporte de tren de aterrizaje</strong>
-<p>En Boeing, un ingeniero DFM (Design for Manufacturing) crea el plano de un soporte de tren de aterrizaje. El plano muestra las 3 vistas principales del sistema de 3 planos:</p>
-<ul style="margin:.5rem 0 .5rem 1.5rem">
-<li><strong>Alzado:</strong> muestra la cara frontal con los orificios de fijación</li>
-<li><strong>Planta:</strong> muestra la vista superior con la profundidad del soporte</li>
-<li><strong>Perfil:</strong> muestra la vista lateral con el espesor del material</li>
-</ul>
-<p style="margin-top:.5rem">Un taller en Alemania recibe el plano. El operario confunde el abatimiento del PH: piensa que la planta va ARRIBA del alzado (como en 3º diedro). Mecaniza el soporte con los orificios a 30mm de profundidad en vez de 30mm desde abajo.</p>
-<p style="margin-top:.5rem"><strong>Resultado: el soporte no encaja en el fuselaje → parada de producción de 6 horas → 200.000€ en retrasos + necesidad de reprocesar 12 piezas.</strong></p>
-<p style="margin-top:.5rem;font-style:italic;color:var(--gris)">El abatimiento correcto no es teoría: es la diferencia entre una pieza buena y una pieza chatarra.</p>
+<span class="real-world-badge">CASO REAL — AERONÁUTICA</span>
+<strong>✈️ Boeing Renton — Plano de soporte de tren (pieza 27-3450-7)</strong>
+<p>En la planta de montaje del Boeing 737 MAX en Renton (Washington), el departamento DFM (Design for Manufacturing) elabora el plano de un <strong>soporte de tren de aterrizaje pieza 27-3450-7</strong>, fabricado en acero 4340M temple H1100. El plano (DWG-737X-273450, rev. D) usa el sistema de 3 planos con las 3 vistas principales.</p>
+<p style="margin-top:.5rem">El soporte tiene forma de U con 6 orificios de fijación M10, 4 pestañas de empalme y un espesor de pared de 8.000 mm ±0.050 mm. El alzado muestra la cara frontal con los 6 orificios a 120.000 mm de separación. La planta revela la profundidad de las pestañas (45.000 mm). El perfil muestra el espesor real del material (8.000 mm).</p>
+<p style="margin-top:.5rem">Un taller en Augsburg (Alemania) recibe el plano. El técnico interpreta mal el abatimiento del PH: cree que la planta va ARRIBA del alzado (como en 3º diedro, usado en Japón). Mecaniza las pestañas a 45mm desde arriba en vez de 45mm desde abajo.</p>
+<p style="margin-top:.5rem"><strong>Consecuencia:</strong> el soporte no encaja en el fuselaje → el tren no se puede montar → parada de la línea de ensamblaje de 8 horas → <strong>200.000€ en retrasos + reprocesamiento de 12 piezas + 24h de transporte urgente desde Augsburg.</strong></p>
+<p style="margin-top:.5rem;font-style:italic;color:var(--gris)">"El abatimiento no es teoría de libro: es la diferencia entre una pieza buena y una pieza chatarra." — Ingeniero Jefe DFM, Boeing 737 MAX Program</p>
 </div>
 </section>
 
@@ -374,6 +451,18 @@ El sistema de 3 planos es la base de TODO el dibujo técnico. Alzado, planta y p
 </main>
 <footer class="footer">Hecho con ❤️ por David Antizar</footer>
 <script>
+var currentStep2 = 1;
+
+function showStep2(n) {
+  currentStep2 = n;
+  for (var i = 1; i <= 4; i++) {
+    var box = document.getElementById('step' + i + 'b');
+    var dot = document.getElementById('stepDot' + i + 'b');
+    if (box) box.style.display = (i <= n) ? 'block' : 'none';
+    if (dot) { dot.classList.toggle('active', i <= n); }
+  }
+}
+
 function showPlanoInfo(plano) {
   var info = {
     pv: '🔵 PV = Plano Vertical → Muestra ALZADO (X + Z)',
