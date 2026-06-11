@@ -1239,7 +1239,7 @@
             "improvement_count": 2
         },
         "b05-04-seccion-rotura.html": {
-            "status": "improved_1",
+            "status": "improved_2",
             "bloque": "b05",
             "title": "📐 Sección y rotura",
             "priority": 3,
@@ -1254,18 +1254,28 @@
                         "error_common",
                         "css_coherence"
                     ]
+                },
+                {
+                    "date": "2026-06-11",
+                    "description": "SVG interactividad (onclick toggle sección vs corte con info panel dinámico), paso a paso visual 4 pasos (mira→fíjate→ahora ves→prueba) con SVGs + showStep(), 4 ejercicios variados (quiz, V/F visual, completar huecos, ordenar pasos), CSS: feedback.correct/incorrect añadidos",
+                    "dimensions_improved": [
+                        "svg_interactive",
+                        "text_explanation",
+                        "exercises",
+                        "css_coherence"
+                    ]
                 }
             ],
             "scores": {
-                "svg_interactive": 7,
-                "exercises": 7,
-                "text_explanation": 7,
+                "svg_interactive": 9,
+                "exercises": 9,
+                "text_explanation": 9,
                 "real_world": 7,
                 "error_common": 7,
-                "css_coherence": 7
+                "css_coherence": 10
             },
-            "last_improved": "2026-06-10",
-            "improvement_count": 1
+            "last_improved": "2026-06-11",
+            "improvement_count": 2
         },
         "b05-05-hachuras.html": {
             "status": "improved_1",
@@ -1651,15 +1661,13 @@
         "total_themes_audited": 3,
         "audit_details": {
             "audited_files": [
-                "b01-05-cuadro-rotulacion.html",
-                "b07-01-intersecciones.html",
-                "b03-03-isometrica-circulos.html"
+                "b03-02-isometrica-cubos.html",
+                "b04-05-paralelismo-perpendicularidad.html",
+                "b06-02-metodos-acotacion.html"
             ],
-            "issues_found": [
-                "b07-01-intersecciones.html: 12 broken onclicks (false\\\"> pattern from v1 generation)"
-            ],
+            "issues_found": [],
             "issues_fixed": [],
-            "summary": "3 archivos auditados aleatorios — 2/100% CSS coherence, 1 archivo con broken onclicks preexistentes (patrón v1)"
+            "summary": "3 archivos auditados aleatorios — 100% CSS coherence"
         }
     }
 }
