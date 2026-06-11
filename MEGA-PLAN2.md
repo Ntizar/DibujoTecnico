@@ -1,39 +1,45 @@
-# 📐 MEGA-PLAN 2: Mejora Continua — Dibujo Técnico
+# 📐 MEGA-PLAN 2 v2: Mejora Continua — Dibujo Técnico
 
 ## Filosofía
 
-**No se trata de añadir más SVG. Se trata de que cada dibujo enseñe mejor.**
+**Cada tema debe enseñar visualmente. Si no se puede ver, no se ha entendido.**
 
 Un tema mejorado de dibujo técnico debe lograr que el alumno:
-1. **Vea el concepto** (no solo lo lea, que lo vea dibujado)
-2. **Interactúe con el dibujo** (clic, arrastrar, mostrar/ocultar)
+1. **Vea el concepto** (SVG interactivo que se pueda tocar)
+2. **Interactúe con el dibujo** (clic, hover, toggle, animación)
 3. **Sepa por qué se dibuja así** (caso real de taller/industria)
-4. **No se líe** (errores comunes visuales, no abstractos)
-5. **Pueda practicar** (ejercicios de identificación, no solo teoría)
+4. **No se líe** (errores comunes con SVG comparativo)
+5. **Pueda practicar** (ejercicios variados, no repetitivos)
 
 ---
 
-## ❌ Lo que NO se debe hacer
+## 🚫 PROHIBIDO (Quality Gates)
 
-- Añadir SVG decorativos que no explican nada
-- Copiar la misma estructura de ejercicios en todos los temas
-- Poner texto sin dibujo que lo acompañe
-- Ejercicios de "dibuja tú" sin guía paso a paso
-- Ignorar los errores visuales típicos (trazos mal, confusión de diedros)
+| Regla | Consecuencia |
+|-------|-------------|
+| HTML sin `</html>` | ❌ Revertir cambio |
+| SVG sin interacción | ❌ No cuenta como mejora |
+| Enlaces internos rotos | ❌ Revertir cambio |
+| CSS sin clases del template | ❌ Revertir cambio |
+| Título duplicado en otro archivo | ❌ Revertir cambio |
+| Ejercicios del mismo tipo seguidos | ❌ No cuenta como mejora |
+| Más de 3 ejercicios nuevos por tema | ❌ Calidad > cantidad |
+
+---
 
 ## ✅ Lo que SÍ se debe hacer
 
 ### 1. SVG interactivos que enseñen
 
-Cada SVG debe tener **al menos una** de estas interacciones:
+Cada SVG debe tener **al menos una** interacción real:
 
-| Tipo | Cómo se hace | Para qué sirve |
-|------|-------------|----------------|
-| **Clic para mostrar/ocultar** | `onclick="toggleLayer(this)"` | Mostrar partes ocultas, trazos auxiliares |
-| **Hover con info** | `onmouseover="showInfo(event)"` | Identificar elementos del dibujo |
-| **Animación simple** | CSS `@keyframes` + `animation` | Mostrar el proceso de construcción |
-| **Arrastrar** | `mousedown/mousemove/mouseup` | Colocar vistas, alinear proyecciones |
-| **Comparación** | Dos SVG lado a lado con botón toggle | Antes/después, correcto/incorrecto |
+| Tipo | Implementación | Para qué |
+|------|---------------|----------|
+| **Clic toggle** | `onclick="this.classList.toggle('active')"` | Mostrar/ocultar capas |
+| **Hover info** | `onmouseover="showInfo(event,'texto')"` | Identificar elementos |
+| **Animación CSS** | `@keyframes` + `animation` | Proceso de construcción |
+| **Paso a paso** | `onclick="showStep(n)"` con step-dots | Secuencia didáctica |
+| **Comparación** | Dos SVG con botón toggle | Correcto vs incorrecto |
 
 **Regla de oro:** Si el SVG no se puede tocar, no está bien.
 
@@ -46,8 +52,8 @@ Cada concepto debe seguir este patrón VISUAL:
 ┌─────────────────────────────────────┐
 │ Paso 1: Mira este dibujo           │ ← SVG simple
 │ Paso 2: Fíjate en...               │ ← SVG con anotación
-│ Paso 3: Ahora ves que...            │ ← SVG con elemento destacado
-│ Paso 4: Tú pruebalo                 │ ← SVG interactivo
+│ Paso 3: Ahora ves que...           │ ← SVG con elemento destacado
+│ Paso 4: Tú pruebalo                │ ← SVG interactivo
 └─────────────────────────────────────┘
 ```
 
@@ -62,7 +68,7 @@ Cada concepto debe seguir este patrón VISUAL:
 | **Caso real** | "Este plano de taller tiene un error, encuéntralo" | Contexto industrial |
 | **Quiz visual** | 4 SVG, elige el correcto | Repaso rápido |
 
-**Regla: Si añades un ejercicio, debe ser visualmente diferente al anterior.**
+**Regla:** Cada ejercicio debe ser de tipo DIFERENTE al anterior.
 
 ### 4. Casos reales que enganchen
 
@@ -72,67 +78,60 @@ Cada concepto debe seguir este patrón VISUAL:
 | "Los cortes muestran el interior" | "Esta es una válvula de agua cortada. Ves el conducto interno por donde pasa el agua." |
 | "La acotación es importante" | "Si este agujero está mal acotado, la pieza no encaja y hay que fabricarla otra vez. 200€ perdidos." |
 
-### 5. CSS coherente entre todos los HTML
+### 5. CSS coherente — 100% template base
 
-**Problema detectado:** Todos los HTML de DT usan el mismo CSS inline, pero puede haber deriva (temas viejos sin ciertas clases, temas nuevos con CSS extra).
-
-**Solución:** Cada mejora debe:
-1. Verificar que el CSS del tema coincide con el template base (el del MEGA-PLAN.md)
-2. Si falta alguna clase (`.box-problema`, `.toggle-btn`, `.feedback`), añadirla
-3. Si sobra CSS que no se usa, quitarlo
-4. Mantener las mismas variables CSS (`--azul`, `--naraja`, etc.)
+**REGLAS ESTRICTAS:**
+- El CSS debe ser IDÉNTICO al template base del skill `educational-html-nightly`
+- NO añadir CSS extra (si hace falta, es que falta una clase en el template)
+- NO quitar clases del template
+- Verificar con `grep` que todas las clases existen
 
 ---
 
-## 📋 Criterios de calidad por tema
+## 📋 Criterios de calidad (v2)
 
 ### Puntuación (0-10 por dimensión)
 
-| Dimensión | 0-3 (Malo) | 4-6 (Aceptable) | 7-10 (Excelente) |
-|-----------|------------|-----------------|------------------|
-| **SVG** | Decorativo, sin interacción | 1-2 interacciones básicas | 3+ interacciones, animación, arrastre |
-| **Ejercicios** | Solo teoría, sin práctica | 3-4 ejercicios básicos | 5-8 variados (identificar, completar, V/F, quiz) |
-| **Texto** | Muro de palabras sin dibujo | Texto con 1-2 SVG de apoyo | Explicación paso a paso VISUAL |
-| **Real** | Genérico | 1 caso real | 2+ casos con contexto industrial |
-| **Error** | Sin error común | 1 error mencionado | Error visual con SVG de comparación |
-| **CSS** | Clases faltantes o extra | Coherente con template | Idéntico al template base |
+| Dimensión | 0-3 (Malo) | 4-6 (Aceptable) | 7-8 (Bueno) | 9-10 (Excelente) |
+|-----------|------------|-----------------|-------------|------------------|
+| **SVG** | Decorativo, sin interacción | 1 interacción básica | 2+ interacciones | 3+ con animación/arrastre |
+| **Ejercicios** | Solo teoría | 2-3 básicos | 4-5 variados | 6+ con 4+ tipos |
+| **Texto** | Muro de palabras | Estructura básica | 4 pasos visuales | Paso a paso con SVG |
+| **Real** | Genérico | 1 caso | 2 casos con contexto | 3+ con datos reales |
+| **Error** | Sin error | 1 error mencionado | Error con SVG texto | Error con SVG comparativo |
+| **CSS** | Faltan 5+ clases | Faltan 2-4 | Falta 1 clase | 100% template |
 
-### Score mínimo para pasar a "mejorado": **5 en todas las dimensiones**
+### Score mínimo para pasar: **7 en todas las dimensiones**
 
 ---
 
-## 🔄 Flujo del Cron Nocturno (22:00 - 00:00)
+## 🔄 Flujo del Cron (v2 — Cada 15 minutos)
 
 ```
-CADA NOCH:
-1. Leer progress.json
-2. Seleccionar 3-5 temas (prioridad + menos mejorados)
-3. Para CADA tema:
-   a. Leer HTML actual
-   b. ANALIZAR qué falta (no asumir)
-   c. MEJORAR 2-3 dimensiones concretas:
-      - ¿Falta SVG interactivo? → Añadir 1 con clic/hover
-      - ¿Faltan ejercicios? → Añadir 2-3 tipos diferentes
-      - ¿Falta explicación visual? → Añadir 1 paso a paso
-      - ¿Faltan casos reales? → Añadir 1-2 industriales
-      - ¿Falta error común? → Añadir 1 con SVG comparativo
-      - ¿CSS incoherente? → Arreglar para que coincida con template
-   d. VERIFICAR que el HTML no está roto
-   e. ACTUALIZAR progress.json
-   f. GIT commit
-4. Al final: auto-auditoría de CSS coherence
-   - Leer 3-5 HTMLs aleatorios
-   - Comparar sus CSS con el template base
-   - Si hay deriva, anotar para la próxima nocha
-5. Resumen de la sesión
+CADA 15 MIN:
+1. Leer INVENTARIO.md (fuente de verdad)
+2. Leer progress.json
+3. SELECCIONAR 2-3 temas:
+   - Prioridad: menos mejorados → scores más bajos → bloque básico
+   - EXCLUIR los ya mejorados hoy
+   - EXCLUIR temas "broken"
+4. Para CADA tema:
+   a. BACKUP: cp tema.html tema.html.bak
+   b. Leer HTML actual
+   c. ANALIZAR qué falta
+   d. MEJORAR 2-3 dimensiones
+   e. QUALITY GATES:
+      - HTML válido (DOCTYPE, html, head, body)
+      - SVG funcionales (onclick existe)
+      - Enlaces internos existen
+      - CSS coherence 100%
+      - Sin títulos duplicados
+   f. Si FALLA → restaurar backup, pasar al siguiente
+   g. Si OK → progress.json + git commit
+   h. Eliminar backup
+5. Auto-auditoría CSS (3 HTMLs aleatorios)
+6. Resumen
 ```
-
-### Criterios de selección de temas
-
-1. **Prioridad 1:** Temas con `improvement_count = 0` (nunca mejorados)
-2. **Prioridad 2:** Temas con scores más bajos
-3. **Prioridad 3:** Temas de bloques básicos primero (B01 > B02 > B03 > ...)
-4. **Nunca repetir** el mismo tema en la misma nocha
 
 ---
 
@@ -146,15 +145,17 @@ CADA NOCH:
 | Casos reales | 1-2 industriales |
 | Errores comunes | 1 con SVG comparativo |
 | CSS coherence | 100% con template base |
+| HTML válido | 100% (quality gates) |
+| Enlaces internos | 0 rotos |
 
 ---
 
 ## 🎯 Resumen
 
-**Antes:** "Tema creado = tema terminado"
-**Ahora:** "Cada nocha, 3-5 temas mejoran en algo visual, pedagógico o de coherence"
+**v1:** "Mejorar 4-6 temas por noche, sin control de calidad"
+**v2:** "Mejorar 2-3 temas CADA 15 MINUTOS, con quality gates estrictos"
 
-La cantidad de temas mejorados por nocha importa menos que la calidad de cada mejora. Un SVG interactivo bien hecho vale más que 10 ejercicios repetitivos.
+Cada tema pasa por quality gates antes de commit. Si falla, se revierte. Calidad > cantidad.
 
 ---
 
