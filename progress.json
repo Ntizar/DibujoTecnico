@@ -4,7 +4,7 @@
     "total_temas": 49,
     "last_improved": "2026-06-11",
     "last_run": "2026-06-11",
-    "total_runs": 2,
+    "total_runs": 3,
     "topics": {
         "b01-01-formatos-papel.html": {
             "status": "improved_1",
@@ -327,18 +327,26 @@
                     "dimensions_improved": [
                         "css_coherence"
                     ]
+                },
+                {
+                    "date": "2026-06-11",
+                    "description": "Paso a paso visual 4 pasos (mira→fíjate→ahora ves→prueba) con SVGs interactivos + botones showStep() + step-dots, 3 ejercicios nuevos de tipos diferentes (V/F visual, completar huecos, ordenar pasos), funciones JS: showStep(), checkOrden(), checkFillIn()",
+                    "dimensions_improved": [
+                        "text_explanation",
+                        "exercises"
+                    ]
                 }
             ],
             "scores": {
                 "svg_interactive": 7,
-                "exercises": 7,
-                "text_explanation": 7,
+                "exercises": 9,
+                "text_explanation": 9,
                 "real_world": 7,
                 "error_common": 7,
                 "css_coherence": 10
             },
-            "last_improved": "2026-06-10",
-            "improvement_count": 2
+            "last_improved": "2026-06-11",
+            "improvement_count": 3
         },
         "b02-06-1o-3o-diedro.html": {
             "status": "improved_1",
@@ -605,7 +613,7 @@
             "improvement_count": 2
         },
         "b03-05-perspectivas-piezas.html": {
-            "status": "improved_1",
+            "status": "improved_2",
             "bloque": "b03",
             "title": "🔩 Caballera: piezas con cilindros",
             "priority": 2,
@@ -620,18 +628,27 @@
                         "error_common",
                         "css_coherence"
                     ]
+                },
+                {
+                    "date": "2026-06-11",
+                    "description": "SVG interactivo con onclick en 3 ejes (E1/E2/E3) con highlight+info panel, paso a paso visual 4 pasos (mira→fíjate→ahora ves→prueba) con SVGs dinámicos, CSS: box-success usada, interactive usada, broken onclicks fixed",
+                    "dimensions_improved": [
+                        "svg_interactive",
+                        "text_explanation",
+                        "css_coherence"
+                    ]
                 }
             ],
             "scores": {
-                "svg_interactive": 7,
+                "svg_interactive": 9,
                 "exercises": 7,
-                "text_explanation": 7,
+                "text_explanation": 9,
                 "real_world": 7,
                 "error_common": 7,
-                "css_coherence": 7
+                "css_coherence": 10
             },
-            "last_improved": "2026-06-10",
-            "improvement_count": 1
+            "last_improved": "2026-06-11",
+            "improvement_count": 2
         },
         "b03-06-perspectivas-resumen.html": {
             "status": "improved_1",
