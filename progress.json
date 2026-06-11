@@ -3,8 +3,8 @@
   "autor": "David Antizar",
   "total_temas": 49,
   "last_improved": "2026-06-11",
-  "last_run": "2026-06-11 22:46:00 UTC",
-  "total_runs": 9,
+  "last_run": "2026-06-11 22:56:00 UTC",
+  "total_runs": 10,
   "topics": {
     "b01-01-formatos-papel.html": {
       "status": "improved_1",
@@ -1509,7 +1509,7 @@
       "improvement_count": 2
     },
     "b06-04-reglas-acotacion.html": {
-      "status": "improved_1",
+      "status": "improved_2",
       "bloque": "b06",
       "title": "📐 Reglas de acotación ISO 129",
       "priority": 3,
@@ -1524,18 +1524,28 @@
             "error_common",
             "css_coherence"
           ]
+        },
+        {
+          "date": "2026-06-11",
+          "description": "SVG interactividad (onclick toggle en 6 reglas con toggleRule), 4-step visual pattern (mira→fíjate→ahora ves→prueba) con 4 SVGs + showStep(), 4 ejercicios variados (quiz, V/F visual con SVGs comparativos, completar huecos con checkFillIn, ordenar pasos con checkOrden), CSS: feedback.correct/.incorrect, clickable, step-indicator/step-dot añadidos, broken onclicks fixados",
+          "dimensions_improved": [
+            "svg_interactive",
+            "text_explanation",
+            "exercises",
+            "css_coherence"
+          ]
         }
       ],
       "scores": {
-        "svg_interactive": 7,
-        "exercises": 7,
-        "text_explanation": 7,
+        "svg_interactive": 9,
+        "exercises": 9,
+        "text_explanation": 9,
         "real_world": 7,
         "error_common": 7,
-        "css_coherence": 7
+        "css_coherence": 10
       },
-      "last_improved": "2026-06-10",
-      "improvement_count": 1
+      "last_improved": "2026-06-11",
+      "improvement_count": 2
     },
     "b06-05-acotacion-piezas-complejas.html": {
       "status": "improved_1",
@@ -1567,7 +1577,7 @@
       "improvement_count": 1
     },
     "b07-02-interseccion-plano-plano.html": {
-      "status": "improved_1",
+      "status": "improved_2",
       "bloque": "b07",
       "title": "🔀 Intersección plano-plano",
       "priority": 3,
@@ -1582,18 +1592,28 @@
             "error_common",
             "css_coherence"
           ]
+        },
+        {
+          "date": "2026-06-11",
+          "description": "SVG interactividad (onclick toggle en casos con toggleCase/toggleSubCase), 4-step visual pattern (mira→fíjate→ahora ves→prueba) con 4 SVGs + showStep(), 4 ejercicios variados (quiz, V/F visual con SVGs comparativos, completar huecos con checkFillIn, ordenar pasos con checkOrden), CSS: feedback.correct/.incorrect, clickable, step-indicator/step-dot, comparison/comparison-side añadidos",
+          "dimensions_improved": [
+            "svg_interactive",
+            "text_explanation",
+            "exercises",
+            "css_coherence"
+          ]
         }
       ],
       "scores": {
-        "svg_interactive": 7,
-        "exercises": 7,
-        "text_explanation": 7,
+        "svg_interactive": 9,
+        "exercises": 9,
+        "text_explanation": 9,
         "real_world": 7,
         "error_common": 7,
-        "css_coherence": 7
+        "css_coherence": 10
       },
-      "last_improved": "2026-06-10",
-      "improvement_count": 1
+      "last_improved": "2026-06-11",
+      "improvement_count": 2
     },
     "b07-03-interseccion-recta-recta.html": {
       "status": "improved_1",

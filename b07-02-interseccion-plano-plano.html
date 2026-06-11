@@ -51,6 +51,19 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .nav a:hover{background:var(--azul-claro)}
 .nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+
+.feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
+.feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
+.clickable{cursor:pointer;transition:all .2s}
+.clickable:hover{filter:brightness(1.2);stroke-width:3}
+.step-indicator{display:flex;gap:.5rem;justify-content:center;margin:1rem 0}
+.step-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:#fff;transition:all .3s;cursor:pointer}
+.step-dot:hover{transform:scale(1.2)}
+.step-dot.active{box-shadow:0 0 0 4px rgba(37,99,235,.3)}
+.comparison{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0}
+.comparison-side{background:#f8fafc;border-radius:12px;padding:1.5rem;border:2px solid #e2e8f0;text-align:center;transition:all .3s}
+.comparison-side:hover{border-color:var(--azul);box-shadow:0 4px 12px rgba(37,99,235,.1)}
+.real-world-badge{display:inline-block;background:linear-gradient(135deg,var(--naranja),#ea580c);color:#fff;padding:.3rem .8rem;border-radius:20px;font-size:.8rem;font-weight:700;margin-bottom:.8rem}
 </style>
 </head>
 <body>
@@ -125,132 +138,90 @@ La recta es perpendicular a LT.
 </div>
 </section>
 
-<section class="chapter">
-<h2 class="chapter-title">2️⃣ Visualiza la intersección plano-plano</h2>
+
+<div class="interactive">
+<h3>🎬 Ejemplo visual: ¿Cómo se encuentra la intersección de dos planos?</h3>
+<div class="step-indicator">
+<div class="step-dot active" id="sd1" onclick="showStep(1)" style="background:var(--azul)">1</div>
+<div class="step-dot" id="sd2" onclick="showStep(2)" style="background:#94a3b8">2</div>
+<div class="step-dot" id="sd3" onclick="showStep(3)" style="background:#94a3b8">3</div>
+<div class="step-dot" id="sd4" onclick="showStep(4)" style="background:#94a3b8">4</div>
+</div>
+<div id="step-content">
+<div class="box box-teoria" id="step1">
+<strong>📍 Paso 1 — Mira: dos planos α y β</strong>
+Dos planos cualesquiera en el sistema diédrico. Sus trazas se cortan en la LT. ¿Se cortan entre sí?
 <div class="svg-container">
-<svg viewBox="0 0 700 520" xmlns="http://www.w3.org/2000/svg">
-<!-- Fondo -->
-<rect x="0" y="0" width="700" height="520" fill="#f8fafc" rx="8"/>
-<text x="350" y="22" text-anchor="middle" font-size="14" fill="#2563eb" font-weight="700">Intersección Plano-Plano</text>
-
-<!-- ===== MÉTODO GENERAL ===== -->
-<text x="175" y="50" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="700">Método General</text>
-
-<!-- Línea de tierra -->
-<line x1="30" y1="80" x2="320" y2="80" stroke="#1e293b" stroke-width="2"/>
-<text x="310" y="76" font-size="9" fill="#1e293b" font-weight="600">LT</text>
-
-<!-- Plano α (trazas) -->
-<line x1="30" y1="120" x2="320" y2="60" stroke="#2563eb" stroke-width="2"/>
-<text x="310" y="58" font-size="9" fill="#2563eb" font-weight="600">α₂</text>
-<line x1="30" y1="100" x2="320" y2="100" stroke="#2563eb" stroke-width="1.5"/>
-<text x="310" y="115" font-size="9" fill="#2563eb" font-weight="600">α₁</text>
-
-<!-- Plano β (trazas) -->
-<line x1="30" y1="160" x2="320" y2="70" stroke="#f97316" stroke-width="2"/>
-<text x="310" y="68" font-size="9" fill="#f97316" font-weight="600">β₂</text>
-<line x1="30" y1="130" x2="320" y2="130" stroke="#f97316" stroke-width="1.5"/>
-<text x="310" y="145" font-size="9" fill="#f97316" font-weight="600">β₁</text>
-
-<!-- Plano auxiliar γ -->
-<line x1="30" y1="150" x2="320" y2="150" stroke="#10b981" stroke-width="1" stroke-dasharray="5,3"/>
-<text x="330" y="153" font-size="8" fill="#10b981">γ</text>
-
-<!-- Intersecciones con γ -->
-<circle cx="150" cy="150" r="3" fill="#a855f7"/>
-<text x="155" y="145" font-size="8" fill="#a855f7" font-weight="600">r₁</text>
-<circle cx="200" cy="150" r="3" fill="#a855f7"/>
-<text x="205" y="145" font-size="8" fill="#a855f7" font-weight="600">r₂</text>
-
-<!-- Punto A -->
-<circle cx="175" cy="150" r="4" fill="#ef4444"/>
-<text x="175" y="168" text-anchor="middle" font-size="10" fill="#ef4444" font-weight="700">A</text>
-
-<!-- Plano auxiliar δ -->
-<line x1="30" y1="175" x2="320" y2="175" stroke="#10b981" stroke-width="1" stroke-dasharray="5,3"/>
-<text x="330" y="178" font-size="8" fill="#10b981">δ</text>
-
-<!-- Punto B -->
-<circle cx="160" cy="175" r="4" fill="#ef4444"/>
-<text x="160" y="193" text-anchor="middle" font-size="10" fill="#ef4444" font-weight="700">B</text>
-
-<!-- Recta de intersección -->
-<line x1="168" y1="150" x2="168" y2="175" stroke="#ef4444" stroke-width="2"/>
-<text x="185" y="165" font-size="9" fill="#ef4444" font-weight="600">r = AB</text>
-
-<!-- ===== CASOS PARTICULARES ===== -->
-<text x="525" y="50" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="700">Casos Particulares</text>
-
-<!-- Caso 1: Paralelos -->
-<rect x="370" y="60" width="310" height="80" fill="#fef2f2" rx="4" stroke="#ef4444" stroke-width="1"/>
-<text x="525" y="78" text-anchor="middle" font-size="10" fill="#ef4444" font-weight="600">❌ Planos paralelos</text>
-<line x1="390" y1="95" x2="660" y2="75" stroke="#2563eb" stroke-width="1.5"/>
-<text x="665" y="78" font-size="8" fill="#2563eb">α</text>
-<line x1="390" y1="120" x2="660" y2="100" stroke="#f97316" stroke-width="1.5"/>
-<text x="665" y="103" font-size="8" fill="#f97316">β</text>
-<text x="525" y="138" text-anchor="middle" font-size="9" fill="#ef4444">No se cortan</text>
-
-<!-- Caso 2: De canto -->
-<rect x="370" y="150" width="310" height="80" fill="#ecfdf5" rx="4" stroke="#10b981" stroke-width="1"/>
-<text x="525" y="168" text-anchor="middle" font-size="10" fill="#10b981" font-weight="600">✅ Dos planos de canto</text>
-<!-- LT -->
-<line x1="390" y1="190" x2="660" y2="190" stroke="#1e293b" stroke-width="1.5"/>
-<!-- α de canto -->
-<line x1="420" y1="170" x2="630" y2="190" stroke="#2563eb" stroke-width="2"/>
-<text x="635" y="193" font-size="8" fill="#2563eb">α</text>
-<!-- β de canto -->
-<line x1="450" y1="170" x2="630" y2="190" stroke="#f97316" stroke-width="2"/>
-<text x="635" y="175" font-size="8" fill="#f97316">β</text>
-<circle cx="630" cy="190" r="3" fill="#ef4444"/>
-<text x="638" y="193" font-size="8" fill="#ef4444" font-weight="600">Th</text>
-<text x="525" y="228" text-anchor="middle" font-size="9" fill="#10b981">Intersección directa</text>
-
-<!-- Caso 3: Horizontal + Frontal -->
-<rect x="370" y="245" width="310" height="80" fill="#ecfdf5" rx="4" stroke="#10b981" stroke-width="1"/>
-<text x="525" y="263" text-anchor="middle" font-size="10" fill="#10b981" font-weight="600">✅ Horizontal + Frontal</text>
-<!-- LT -->
-<line x1="390" y1="285" x2="660" y2="285" stroke="#1e293b" stroke-width="1.5"/>
-<!-- Plano horizontal -->
-<line x1="390" y1="275" x2="660" y2="275" stroke="#2563eb" stroke-width="1"/>
-<text x="665" y="278" font-size="8" fill="#2563eb">α (horiz.)</text>
-<!-- Plano frontal -->
-<line x1="525" y1="265" x2="525" y2="310" stroke="#f97316" stroke-width="2"/>
-<text x="530" y="320" font-size="8" fill="#f97316">β (frontal)</text>
-<text x="525" y="330" text-anchor="middle" font-size="9" fill="#10b981">Recta de perfil</text>
-
-<!-- ===== PASOS RESUMEN ===== -->
-<rect x="30" y="220" width="320" height="270" fill="#fff" stroke="#e2e8f0" stroke-width="1" rx="6"/>
-<text x="190" y="245" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="700">Pasos del Método General</text>
-<line x1="40" y1="252" x2="340" y2="252" stroke="#e2e8f0" stroke-width="0.5"/>
-<text x="50" y="272" font-size="11" fill="#2563eb" font-weight="700">1.</text>
-<text x="70" y="272" font-size="10" fill="#1e293b">Tomar plano auxiliar γ</text>
-<text x="50" y="292" font-size="11" fill="#2563eb" font-weight="700">2.</text>
-<text x="70" y="292" font-size="10" fill="#1e293b">r₁ = α ∩ γ, r₂ = β ∩ γ</text>
-<text x="50" y="312" font-size="11" fill="#2563eb" font-weight="700">3.</text>
-<text x="70" y="312" font-size="10" fill="#1e293b">A = r₁ ∩ r₂ (1er punto)</text>
-<text x="50" y="332" font-size="11" fill="#2563eb" font-weight="700">4.</text>
-<text x="70" y="332" font-size="10" fill="#1e293b">Repetir con δ → B (2º punto)</text>
-<text x="50" y="352" font-size="11" fill="#2563eb" font-weight="700">5.</text>
-<text x="70" y="352" font-size="10" fill="#1e293b">Recta r = AB</text>
-<text x="50" y="372" font-size="11" fill="#2563eb" font-weight="700">6.</text>
-<text x="70" y="372" font-size="10" fill="#1e293b">Determinar visibilidad</text>
-
-<!-- Visibilidad -->
-<rect x="40" y="390" width="290" height="90" fill="#f1f5f9" rx="4"/>
-<text x="185" y="410" text-anchor="middle" font-size="10" fill="#64748b" font-weight="600">Puntos cruzados para visibilidad:</text>
-<text x="50" y="430" font-size="9" fill="#1e293b">• Cruzados horizontales: misma planta, distinta alzado</text>
-<text x="50" y="448" font-size="9" fill="#1e293b">• Cruzados verticales: misma alzado, distinta planta</text>
-<text x="50" y="466" font-size="9" fill="#1e293b">• El que tenga mayor coordenada domina</text>
+<svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+<line x1="20" y1="80" x2="380" y2="80" stroke="#1e293b" stroke-width="2"/>
+<text x="370" y="76" font-size="9" fill="#1e293b" font-weight="600">LT</text>
+<line x1="20" y1="110" x2="380" y2="50" stroke="#2563eb" stroke-width="2"/>
+<text x="370" y="48" font-size="9" fill="#2563eb" font-weight="600">α</text>
+<line x1="20" y1="130" x2="380" y2="40" stroke="#f97316" stroke-width="2"/>
+<text x="370" y="38" font-size="9" fill="#f97316" font-weight="600">β</text>
+<text x="200" y="145" text-anchor="middle" font-size="10" fill="#64748b">¿Dónde se cortan?</text>
 </svg>
 </div>
-</section>
-
+</div>
+<div class="box box-teoria" id="step2" style="display:none">
+<strong>📍 Paso 2 — Fíjate: plano auxiliar γ</strong>
+Un plano horizontal γ corta a ambos. Donde γ intersecta α es la recta r₁, donde intersecta β es r₂.
+<div class="svg-container">
+<svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+<line x1="20" y1="80" x2="380" y2="80" stroke="#1e293b" stroke-width="2"/>
+<line x1="20" y1="110" x2="380" y2="50" stroke="#2563eb" stroke-width="2"/>
+<text x="370" y="48" font-size="9" fill="#2563eb" font-weight="600">α</text>
+<line x1="20" y1="130" x2="380" y2="40" stroke="#f97316" stroke-width="2"/>
+<text x="370" y="38" font-size="9" fill="#f97316" font-weight="600">β</text>
+<line x1="20" y1="120" x2="380" y2="120" stroke="#10b981" stroke-width="1" stroke-dasharray="5,3"/>
+<text x="385" y="123" font-size="8" fill="#10b981">γ</text>
+<circle cx="180" cy="120" r="3" fill="#a855f7"/>
+<text x="185" y="115" font-size="8" fill="#a855f7">r₁</text>
+<circle cx="250" cy="120" r="3" fill="#a855f7"/>
+<text x="255" y="115" font-size="8" fill="#a855f7">r₂</text>
+</svg>
+</div>
+</div>
+<div class="box box-teoria" id="step3" style="display:none">
+<strong>📍 Paso 3 — Ahora ves: punto A = r₁ ∩ r₂</strong>
+El punto donde r₁ y r₂ se cruzan está en AMBOS planos. Es el primer punto de la intersección.
+<div class="svg-container">
+<svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+<line x1="20" y1="80" x2="380" y2="80" stroke="#1e293b" stroke-width="2"/>
+<line x1="20" y1="110" x2="380" y2="50" stroke="#2563eb" stroke-width="2"/>
+<line x1="20" y1="130" x2="380" y2="40" stroke="#f97316" stroke-width="2"/>
+<line x1="20" y1="120" x2="380" y2="120" stroke="#10b981" stroke-width="1" stroke-dasharray="5,3"/>
+<circle cx="210" cy="120" r="6" fill="#ef4444"/>
+<text x="210" y="140" text-anchor="middle" font-size="12" fill="#ef4444" font-weight="700">A</text>
+<text x="200" y="30" text-anchor="middle" font-size="10" fill="#10b981">Punto A en ambos planos</text>
+</svg>
+</div>
+</div>
+<div class="box box-teoria" id="step4" style="display:none">
+<strong>📍 Paso 4 — ¡Tú prueba! Encuentra la recta de intersección</strong>
+Con el punto B ya calculado (con otro plano auxiliar δ), une A con B. ¿Qué forma tiene la recta?
+<div class="svg-container">
+<svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+<line x1="20" y1="80" x2="380" y2="80" stroke="#1e293b" stroke-width="2"/>
+<line x1="20" y1="110" x2="380" y2="50" stroke="#2563eb" stroke-width="2"/>
+<line x1="20" y1="130" x2="380" y2="40" stroke="#f97316" stroke-width="2"/>
+<circle cx="180" cy="115" r="5" fill="#ef4444"/>
+<text x="180" y="135" text-anchor="middle" font-size="10" fill="#ef4444" font-weight="700">A</text>
+<circle cx="240" cy="125" r="5" fill="#ef4444"/>
+<text x="240" y="145" text-anchor="middle" font-size="10" fill="#ef4444" font-weight="700">B</text>
+<line x1="180" y1="115" x2="240" y2="125" stroke="#ef4444" stroke-width="3"/>
+<text x="210" y="108" text-anchor="middle" font-size="11" fill="#ef4444" font-weight="600">r = AB</text>
+</svg>
+</div>
+</div>
+</div>
+</div>
 <section class="chapter">
 <h2 class="chapter-title">📝 Ejercicios</h2>
 <div class="exercises">
 
 <div class="exercise">
-<p>📐 Ejercicio 1: ¿Cuántos puntos se necesitan para definir la recta de intersección de dos planos?</p>
+<p>📐 Ejercicio 1 (Quiz): ¿Cuántos puntos se necesitan para definir la recta de intersección de dos planos?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">1</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">2</button>
@@ -261,52 +232,52 @@ La recta es perpendicular a LT.
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 2: ¿Qué tipo de plano auxiliar se usa en el método general?</p>
+<p>📐 Ejercicio 2 (V/F visual): ¿Estos dos planos se cortan?</p>
+<div class="comparison" style="margin:.5rem 0">
+<div class="comparison-side" style="padding:.8rem">
+<svg viewBox="0 0 120 80" width="100">
+<line x1="10" y1="70" x2="110" y2="70" stroke="#1e293b" stroke-width="1"/>
+<line x1="10" y1="55" x2="110" y2="30" stroke="#2563eb" stroke-width="1.5"/>
+<line x1="10" y1="65" x2="110" y2="40" stroke="#f97316" stroke-width="1.5"/>
+</svg>
+<p style="font-size:.8rem"><strong>Secantes:</strong> Se cortan</p>
+</div>
+<div class="comparison-side" style="padding:.8rem">
+<svg viewBox="0 0 120 80" width="100">
+<line x1="10" y1="70" x2="110" y2="70" stroke="#1e293b" stroke-width="1"/>
+<line x1="10" y1="50" x2="110" y2="30" stroke="#2563eb" stroke-width="1.5"/>
+<line x1="10" y1="60" x2="110" y2="40" stroke="#f97316" stroke-width="1.5"/>
+</svg>
+<p style="font-size:.8rem"><strong>Paralelos:</strong> No se cortan</p>
+</div>
+</div>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Un plano paralelo a LT</button>
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Un plano que corte a ambos planos</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Un plano perpendicular a los dos</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Cualquier plano</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">La izquierda (se cortan)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">La derecha (no se cortan)</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 3: Si dos planos son paralelos a LT, ¿qué ocurre?</p>
-<div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Se cortan en un punto</button>
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Son paralelos entre sí (no se cortan)</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Se cortan en una recta vertical</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Forman un ángulo de 90°</button>
-</div>
+<p>📐 Ejercicio 3 (Completar): Para hallar la intersección se necesitan ___ puntos comunes. Se usan planos ___ para encontrarlos.</p>
+<input type="text" id="ex3a" placeholder="1ª respuesta" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
+<input type="text" id="ex3b" placeholder="2ª respuesta" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
+<button onclick="checkFillIn(['2','dos','auxiliares'])">Comprobar</button>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 4: ¿Qué es un punto cruzado horizontal?</p>
+<p>📐 Ejercicio 4 (Ordenar): ¿En qué orden se aplica el método general?</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Misma proyección en planta, distinta en alzado</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Misma proyección en alzado, distinta en planta</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Iguales en ambas proyecciones</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Puntos en la LT</button>
-</div>
-<p class="feedback"></p>
-</div>
-
-<div class="exercise">
-<p>📐 Ejercicio 5: ¿Qué tipo de recta es la intersección de un plano horizontal y uno frontal?</p>
-<div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Horizontal</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Frontal</button>
-<button class="quiz-btn" onclick="checkAnswer(this, true)">De perfil</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Oblicua</button>
+<button class="quiz-btn" onclick="checkOrden(this, '1-2-3-4')">① Plano γ → ② Hallar r₁ y r₂ → ③ Punto A → ④ Repetir con δ</button>
+<button class="quiz-btn" onclick="checkOrden(this, '4-3-2-1')">④ Repetir → ③ Punto A → ② Hallar rectas → ① Plano γ</button>
+<button class="quiz-btn" onclick="checkOrden(this, '2-1-4-3')">② Hallar rectas → ① Plano γ → ④ Repetir → ③ Punto A</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 </div>
 </section>
-
 <div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ SIN CÁLCULO</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><polygon points="30,110 100,40 100,110" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><polygon points="100,40 170,110 100,110" fill="#fff7ed" stroke="#f97316" stroke-width="2"/><line x1="100" y1="40" x2="100" y2="110" stroke="#ef4444" stroke-width="2" stroke-dasharray="3,2"/><text x="100" y="130" text-anchor="middle" font-size="9" fill="#ef4444">Línea vertical ❌</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ CON CÁLCULO</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><polygon points="30,110 120,30 120,110" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><polygon points="120,30 170,110 120,110" fill="#fff7ed" stroke="#f97316" stroke-width="2"/><line x1="120" y1="30" x2="120" y2="110" stroke="#10b981" stroke-width="2"/><text x="100" y="130" text-anchor="middle" font-size="9" fill="#10b981">Línea correcta ✓</text></svg></div></div>
 
 <div class="box box-error">
@@ -403,6 +374,74 @@ window.onscroll = function(){
   var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
   document.getElementById('progress').style.width = p+'%';
 };
+
+function checkFillIn(correctAnswers) {
+  var exercise = this.parentElement;
+  var inputs = exercise.querySelectorAll('input[type="text"]');
+  var feedback = exercise.querySelector('.feedback');
+  var allCorrect = true;
+  inputs.forEach(function(input, i) {
+    var val = input.value.trim().toLowerCase();
+    if(correctAnswers[i] && val !== correctAnswers[i].toLowerCase()) {
+      allCorrect = false;
+    }
+  });
+  if(allCorrect && inputs.length > 0) {
+    feedback.textContent = '✅ ¡Correcto! Se necesitan 2 puntos comunes y se usan planos auxiliares.';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ Respuesta correcta: 2 puntos, planos auxiliares.';
+    feedback.className = 'feedback incorrect';
+  }
+}
+
+function checkOrden(btn, answer) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) { b.disabled = true; b.classList.remove('correct','wrong'); });
+  btn.classList.add(answer === '1-2-3-4' ? 'correct' : 'wrong');
+  var feedback = parent.nextElementSibling;
+  if(answer === '1-2-3-4') {
+    feedback.textContent = '✅ ¡Correcto! Primero γ, luego r₁ y r₂, después punto A, y repetir con δ.';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ El orden correcto es: ① Plano γ → ② Hallar r₁ y r₂ → ③ Punto A → ④ Repetir con δ.';
+    feedback.className = 'feedback incorrect';
+  }
+}
+
+function toggleCase(el, id) {
+  var overlay = document.getElementById(id);
+  if(overlay.style.display === 'none') {
+    overlay.style.display = 'block';
+    el.style.filter = 'brightness(1.1)';
+  } else {
+    overlay.style.display = 'none';
+    el.style.filter = '';
+  }
+}
+
+function toggleSubCase(el, id) {
+  var overlay = document.getElementById(id);
+  if(overlay.style.display === 'none') {
+    overlay.style.display = 'block';
+    el.style.strokeWidth = '3';
+  } else {
+    overlay.style.display = 'none';
+    el.style.strokeWidth = '1';
+  }
+}
+
+function showStep(n) {
+  for(var i = 1; i <= 4; i++) {
+    var step = document.getElementById('step' + i);
+    var dot = document.getElementById('sd' + i);
+    if(step) step.style.display = (i === n) ? 'block' : 'none';
+    if(dot) {
+      if(i === n) { dot.classList.add('active'); dot.style.background = 'var(--azul)'; }
+      else { dot.classList.remove('active'); dot.style.background = '#94a3b8'; }
+    }
+  }
+}
 </script>
 </body>
 </html>
