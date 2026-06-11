@@ -132,54 +132,79 @@ Plano proyectante vertical → recta de corte → punto I
 <h2 class="chapter-title">📝 Ejercicios</h2>
 <div class="exercises">
 
+<!-- Ejercicio 1: Quiz -->
 <div class="exercise">
-<p>📐 Ejercicio 1: ¿Qué se necesita para encontrar la intersección?</p>
+<p>📐 Ejercicio 1 (Quiz): ¿Qué se necesita para encontrar la intersección?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Un plano proyectante que contenga a la recta</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Una regla</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Un compás</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">No se puede encontrar</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Una regla</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Un compás</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">No se puede encontrar</button>
 </div>
 <p class="feedback"></p>
 </div>
 
+<!-- Ejercicio 2: V/F Visual con SVG comparativo -->
 <div class="exercise">
-<p>📐 Ejercicio 2: ¿Qué es la recta de corte?</p>
+<p>📐 Ejercicio 2 (V/F visual): ¿Esta visibilidad es correcta?</p>
+<div class="comparison" style="margin:.5rem 0">
+  <div class="comparison-side" style="padding:.8rem">
+    <svg viewBox="0 0 120 80" width="100">
+      <line x1="10" y1="40" x2="110" y2="40" stroke="#1e293b" stroke-width="2"/>
+      <!-- Recta: parte visible continua, parte oculta punteada -->
+      <line x1="60" y1="15" x2="100" y2="15" stroke="#10b981" stroke-width="3"/>
+      <text x="80" y="12" font-size="7" fill="#10b981">visible</text>
+      <line x1="20" y1="65" x2="60" y2="40" stroke="#ef4444" stroke-width="3" stroke-dasharray="4,3"/>
+      <text x="30" y="75" font-size="7" fill="#ef4444">oculta</text>
+    </svg>
+    <p style="font-size:.8rem;margin-top:.3rem"><strong>Imagen A</strong></p>
+  </div>
+  <div class="comparison-side" style="padding:.8rem">
+    <svg viewBox="0 0 120 80" width="100">
+      <line x1="10" y1="40" x2="110" y2="40" stroke="#1e293b" stroke-width="2"/>
+      <!-- Error: ambas partes continuas -->
+      <line x1="20" y1="15" x2="100" y2="15" stroke="#10b981" stroke-width="3"/>
+      <line x1="20" y1="65" x2="60" y2="40" stroke="#ef4444" stroke-width="3"/>
+    </svg>
+    <p style="font-size:.8rem;margin-top:.3rem"><strong>Imagen B</strong></p>
+  </div>
+</div>
+<p style="font-size:.9rem;color:var(--gris);margin:.3rem 0">La parte de la recta delante del plano es visible (continua). ¿Cuál es correcta?</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">La intersección entre el plano proyectante y el plano dado</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">La recta original</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">La LT</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">La recta de referencia</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">La imagen A</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">La imagen B</button>
 </div>
 <p class="feedback"></p>
 </div>
 
+<!-- Ejercicio 3: Completar huecos -->
 <div class="exercise">
-<p>📐 Ejercicio 3: ¿Cómo se representa la parte oculta de la recta?</p>
+<p>📐 Ejercicio 3 (Completar): El método del plano proyectante tiene 3 pasos: primero se traza el <input type="text" id="ex3a" placeholder="1ª palabra" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:140px">, luego la <input type="text" id="ex3b" placeholder="2ª palabra" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:140px">, y por último el punto I.</p>
+<button onclick="checkFillIn(['proyectante','recta de corte','recta'])">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+<!-- Ejercicio 4: Ordenar pasos -->
+<div class="exercise">
+<p>📐 Ejercicio 4 (Ordenar): ¿Cuál es el orden correcto del método?</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Línea discontinua (punteada)</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Línea continua</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">No se representa</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Línea de puntos</button>
+<button class="quiz-btn" onclick="checkOrden(this, '1-2-3')">①→②→③</button>
+<button class="quiz-btn" onclick="checkOrden(this, '2-1-3')">②→①→③</button>
+<button class="quiz-btn" onclick="checkOrden(this, '1-2-3')">①→②→③</button>
 </div>
 <p class="feedback"></p>
+<p style="font-size:.85rem;color:var(--gris);margin-top:.3rem">Pistas: ① Encontrar recta de corte · ② Trazar plano proyectante · ③ Punto donde r corta a i</p>
 </div>
 
+<!-- Ejercicio 5: Quiz -->
 <div class="exercise">
-<p>📐 Ejercicio 4: ¿Cuántos pasos tiene el método del plano proyectante?</p>
+<p>📐 Ejercicio 5 (Quiz): ¿Qué indica el punto I?</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false">1</button>
-<button class="quiz-btn" onclick="checkAnswer(this, true)">3</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">2</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">4</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">El punto de intersección entre recta y plano</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">La traza del plano</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">El origen de coordenadas</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">La proyección del punto</button>
 </div>
-<p class="feedback"></p>
-</div>
-
-<div class="exercise">
-<p>📐 Ejercicio 5: ¿Qué indica el punto I?</p>
-<input type="text" id="ex5" placeholder="Intersección" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
-<button onclick="checkExercise('ex5', 'interseccion', this)">Comprobar</button>
 <p class="feedback"></p>
 </div>
 
@@ -200,7 +225,111 @@ La intersección es fundamental para cortes y secciones. Todo lo que viene despu
 
 <div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: unión de conductos HVAC</strong>Un conducto de aire acondicionado rectangular se cruza con uno circular. La línea de intersección entre ambos es compleja y debe dibujarse con precisión para que la soldadura sea estanca. El dibujante usa el diedrico para calcular cada punto de intersección.</div>
 
-<div class="summary">
+<div class="interactive">
+  <h3>🎬 Ejemplo visual: Método del plano proyectante</h3>
+
+  <div class="step-indicator">
+    <div class="step-dot active" id="sd1" onclick="showStep(1)" style="background:var(--azul)">1</div>
+    <div class="step-dot" id="sd2" onclick="showStep(2)" style="background:#94a3b8">2</div>
+    <div class="step-dot" id="sd3" onclick="showStep(3)" style="background:#94a3b8">3</div>
+    <div class="step-dot" id="sd4" onclick="showStep(4)" style="background:#94a3b8">4</div>
+  </div>
+
+  <div id="step-content">
+    <div class="box box-teoria" id="step1">
+      <strong>📍 Paso 1 — Mira: la recta y el plano</strong>
+      Tenemos una recta r que atraviesa un plano α. El objetivo es encontrar el punto exacto donde se cortan.
+      <div class="svg-container">
+        <svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+          <line x1="20" y1="75" x2="380" y2="75" stroke="#1e293b" stroke-width="2"/>
+          <text x="370" y="70" text-anchor="end" font-size="10" fill="#64748b">LT</text>
+          <!-- Plano α: trazas -->
+          <line x1="40" y1="130" x2="200" y2="75" stroke="#a855f7" stroke-width="2.5"/>
+          <text x="100" y="125" text-anchor="middle" font-size="10" fill="#a855f7" font-weight="600">α₁</text>
+          <line x1="200" y1="75" x2="360" y2="20" stroke="#a855f7" stroke-width="2.5"/>
+          <text x="310" y="35" text-anchor="middle" font-size="10" fill="#a855f7" font-weight="600">α₂</text>
+          <!-- Recta r -->
+          <line x1="60" y1="120" x2="340" y2="30" stroke="#ef4444" stroke-width="2.5"/>
+          <text x="350" y="28" font-size="10" fill="#ef4444" font-weight="600">r</text>
+          <!-- Proyecciones -->
+          <line x1="60" y1="120" x2="340" y2="75" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="4,2"/>
+          <text x="200" y="115" text-anchor="middle" font-size="9" fill="#2563eb">r</text>
+          <line x1="60" y1="30" x2="340" y2="75" stroke="#f97316" stroke-width="1.5" stroke-dasharray="4,2"/>
+          <text x="200" y="55" text-anchor="middle" font-size="9" fill="#f97316">r'</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="box box-teoria" id="step2" style="display:none">
+      <strong>📍 Paso 2 — Fíjate: plano proyectante vertical</strong>
+      Trazamos un plano β perpendicular al plano vertical que contenga a la recta r. Su traza vertical β₂ coincide con r'.
+      <div class="svg-container">
+        <svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+          <line x1="20" y1="75" x2="380" y2="75" stroke="#1e293b" stroke-width="2"/>
+          <text x="370" y="70" text-anchor="end" font-size="10" fill="#64748b">LT</text>
+          <!-- Plano α -->
+          <line x1="40" y1="130" x2="200" y2="75" stroke="#a855f7" stroke-width="2"/>
+          <line x1="200" y1="75" x2="360" y2="20" stroke="#a855f7" stroke-width="2"/>
+          <!-- Recta r -->
+          <line x1="60" y1="120" x2="340" y2="30" stroke="#ef4444" stroke-width="2.5"/>
+          <!-- Plano proyectante β (vertical) -->
+          <line x1="60" y1="120" x2="340" y2="75" stroke="#10b981" stroke-width="3" stroke-dasharray="8,3"/>
+          <text x="200" y="140" text-anchor="middle" font-size="10" fill="#10b981" font-weight="600">β₂ = r' (plano proyectante)</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="box box-teoria" id="step3" style="display:none">
+      <strong>📍 Paso 3 — Ahora ves: recta de corte i</strong>
+      La intersección entre β y α es la recta de corte i. Sus proyecciones se obtienen cortando las trazas de α con las de β.
+      <div class="svg-container">
+        <svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+          <line x1="20" y1="75" x2="380" y2="75" stroke="#1e293b" stroke-width="2"/>
+          <text x="370" y="70" text-anchor="end" font-size="10" fill="#64748b">LT</text>
+          <!-- Plano α -->
+          <line x1="40" y1="130" x2="200" y2="75" stroke="#a855f7" stroke-width="2"/>
+          <line x1="200" y1="75" x2="360" y2="20" stroke="#a855f7" stroke-width="2"/>
+          <!-- Recta r -->
+          <line x1="60" y1="120" x2="340" y2="30" stroke="#ef4444" stroke-width="2"/>
+          <!-- Recta de corte i -->
+          <line x1="120" y1="100" x2="280" y2="55" stroke="#10b981" stroke-width="3"/>
+          <text x="290" y="50" font-size="10" fill="#10b981" font-weight="600">i</text>
+          <!-- Punto I -->
+          <circle cx="220" cy="82" r="6" fill="#a855f7"/>
+          <text x="232" y="78" font-size="11" fill="#a855f7" font-weight="600">I</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="box box-teoria" id="step4" style="display:none">
+      <strong>📍 Paso 4 — ¡Tú prueba! Identifica la visibilidad</strong>
+      El punto I divide la recta en dos partes. ¿Cuál se ve y cuál no? Haz click en la parte que crees que es visible.
+      <div class="svg-container">
+        <svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+          <line x1="20" y1="75" x2="380" y2="75" stroke="#1e293b" stroke-width="2"/>
+          <text x="370" y="70" text-anchor="end" font-size="10" fill="#64748b">LT</text>
+          <!-- Plano α -->
+          <line x1="40" y1="130" x2="200" y2="75" stroke="#a855f7" stroke-width="2"/>
+          <line x1="200" y1="75" x2="360" y2="20" stroke="#a855f7" stroke-width="2"/>
+          <!-- Recta r completa -->
+          <line x1="60" y1="120" x2="340" y2="30" stroke="#ef4444" stroke-width="2.5"/>
+          <!-- Punto I -->
+          <circle cx="220" cy="82" r="6" fill="#a855f7"/>
+          <text x="232" y="78" font-size="11" fill="#a855f7" font-weight="600">I</text>
+          <!-- Parte visible (clickable) -->
+          <line x1="220" y1="82" x2="340" y2="30" stroke="#10b981" stroke-width="4" class="clickable" onclick="showVisibilidad(this, true)"/>
+          <text x="340" y="25" font-size="9" fill="#10b981">¿visible?</text>
+          <!-- Parte oculta (clickable) -->
+          <line x1="60" y1="120" x2="220" y2="82" stroke="#ef4444" stroke-width="4" stroke-dasharray="6,3" class="clickable" onclick="showVisibilidad(this, false)"/>
+          <text x="60" y="135" font-size="9" fill="#ef4444">¿oculta?</text>
+        </svg>
+      </div>
+      <p id="vis-result" style="text-align:center;color:var(--azul);font-weight:600;margin-top:.5rem">👆 Click en la parte que crees visible</p>
+    </div>
+  </div>
+</div>
+
+
 <h3>📋 Resumen de lo aprendido</h3>
 <ul>
 <li>Plano proyectante → recta de corte → punto I</li>
@@ -257,6 +386,77 @@ function checkExercise(id, correct, btn) {
     feedback.className = 'feedback incorrect';
     input.style.borderColor = 'var(--rojo)';
   }
+}
+
+function checkFillIn(correctAnswers) {
+  var exercise = event.target.parentElement;
+  var inputs = exercise.querySelectorAll('input[type="text"]');
+  var allCorrect = true;
+  inputs.forEach(function(input) {
+    var val = input.value.trim().toLowerCase();
+    var answers = correctAnswers.filter(function(a) { return a.toLowerCase() === val; });
+    if(answers.length > 0) {
+      input.style.borderColor = 'var(--verde)';
+    } else {
+      input.style.borderColor = 'var(--rojo)';
+      allCorrect = false;
+    }
+  });
+  var feedback = inputs[inputs.length - 1].parentElement.nextElementSibling;
+  if(allCorrect) {
+    feedback.textContent = '✅ ¡Correcto! Plano proyectante → recta de corte → punto I.';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ Respuestas: proyectante, recta de corte.';
+    feedback.className = 'feedback incorrect';
+  }
+}
+
+function checkOrden(btn, answer) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) {
+    b.disabled = true; b.classList.remove('correct','wrong');
+  });
+  btn.classList.add(answer === '1-2-3' ? 'correct' : 'wrong');
+  var feedback = parent.nextElementSibling;
+  if(answer === '1-2-3') {
+    feedback.textContent = '✅ ¡Correcto! Primero el plano proyectante (②), luego la recta de corte (①), y finalmente el punto I (③).';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ El orden correcto es: ②→①→③. Primero se traza el plano proyectante.';
+    feedback.className = 'feedback incorrect';
+  }
+}
+
+function showStep(n) {
+  for(var i = 1; i <= 4; i++) {
+    var step = document.getElementById('step' + i);
+    var dot = document.getElementById('sd' + i);
+    if(step) step.style.display = (i === n) ? 'block' : 'none';
+    if(dot) {
+      if(i === n) {
+        dot.classList.add('active');
+        dot.style.background = 'var(--azul)';
+      } else {
+        dot.classList.remove('active');
+        dot.style.background = '#94a3b8';
+      }
+    }
+  }
+}
+
+function showVisibilidad(el, isCorrect) {
+  var result = document.getElementById('vis-result');
+  if(result) {
+    if(isCorrect) {
+      result.textContent = '✅ ¡Correcto! La parte delante del plano es visible.';
+      result.style.color = 'var(--verde)';
+    } else {
+      result.textContent = '❌ Esa parte está detrás del plano, no es visible.';
+      result.style.color = 'var(--rojo)';
+    }
+  }
+  el.style.strokeWidth = '5';
 }
 
 window.onscroll = function(){
