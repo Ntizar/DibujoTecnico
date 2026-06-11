@@ -51,6 +51,17 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .nav a:hover{background:var(--azul-claro)}
 .nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+.feedback { margin-top: 0.5rem; font-weight: 600; padding: 0.5rem; border-radius: 6px; }
+.feedback.correct { background: var(--verde-claro); color: #065f46; border: 1px solid var(--verde); }
+.feedback.incorrect { background: var(--rojo-claro); color: #991b1b; border: 1px solid var(--rojo); }
+.comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+.comparison-side { background: #f8fafc; border-radius: 12px; padding: 1.5rem; border: 2px solid #e2e8f0; text-align: center; transition: all .3s; }
+.comparison-side:hover { border-color: var(--azul); box-shadow: 0 4px 12px rgba(37,99,235,.1); }
+.real-world-badge { display: inline-block; background: linear-gradient(135deg, var(--naranja), #ea580c); color: #fff; padding: .3rem .8rem; border-radius: 20px; font-size: .8rem; font-weight: 700; margin-bottom: .8rem; }
+.step-indicator { display: flex; gap: .5rem; justify-content: center; margin: 1rem 0; }
+.step-dot { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .85rem; color: #fff; transition: all .3s; cursor: pointer; }
+.step-dot:hover { transform: scale(1.2); }
+.step-dot.active { box-shadow: 0 0 0 4px rgba(37,99,235,.3); }
 </style>
 </head>
 <body>
@@ -109,7 +120,97 @@ Acero: rayado a 45° derecha. Aluminio: rayado a 45° izquierda. Así se disting
 </section>
 
 <section class="chapter">
-<h2 class="chapter-title">2️⃣ Visualiza los patrones de hachura</h2>
+<h2 class="chapter-title">2️⃣ Visualiza los patrones de hachura paso a paso</h2>
+<div class="interactive">
+<h3>🎬 Ejemplo visual: hachura de acero en una pieza cortada</h3>
+<div class="step-indicator">
+<div class="step-dot active" id="sd1" onclick="showStep(1)" style="background:var(--azul)">1</div>
+<div class="step-dot" id="sd2" onclick="showStep(2)" style="background:#94a3b8">2</div>
+<div class="step-dot" id="sd3" onclick="showStep(3)" style="background:#94a3b8">3</div>
+<div class="step-dot" id="sd4" onclick="showStep(4)" style="background:#94a3b8">4</div>
+</div>
+<div id="step-content">
+<div class="box box-teoria" id="step1">
+<strong>📍 Paso 1 — Mira: la pieza sin cortar</strong>
+Esta pieza de acero tiene un agujero central. Sin corte, no podemos ver el interior.
+<div class="svg-container">
+<svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="400" height="160" fill="#f8fafc" rx="8"/>
+<rect x="80" y="30" width="240" height="100" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="4"/>
+<circle cx="200" cy="80" r="25" fill="#f8fafc" stroke="#2563eb" stroke-width="1.5"/>
+<text x="200" y="155" text-anchor="middle" font-size="10" fill="#64748b">Pieza con agujero — sin corte</text>
+</svg>
+</div>
+</div>
+<div class="box box-teoria" id="step2" style="display:none">
+<strong>📍 Paso 2 — Fíjate: el plano de corte</strong>
+Cortamos con un plano paralelo al agujero. El plano de corte se indica con líneas de trazo y punto.
+<div class="svg-container">
+<svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="400" height="160" fill="#f8fafc" rx="8"/>
+<rect x="80" y="30" width="240" height="100" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="4"/>
+<circle cx="200" cy="80" r="25" fill="#f8fafc" stroke="#2563eb" stroke-width="1.5"/>
+<!-- Plano de corte -->
+<line x1="200" y1="10" x2="200" y2="150" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="8,4,2,4"/>
+<text x="210" y="20" font-size="9" fill="#a855f7">Plano de corte</text>
+</svg>
+</div>
+</div>
+<div class="box box-teoria" id="step3" style="display:none">
+<strong>📍 Paso 3 — Ahora ves: la sección con hachura</strong>
+Al retirar la parte delantera, vemos la sección con hachura de acero: líneas a 45° finas y paralelas.
+<div class="svg-container">
+<svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="400" height="160" fill="#f8fafc" rx="8"/>
+<!-- Pieza cortada con hachura -->
+<rect x="80" y="30" width="120" height="100" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="4"/>
+<!-- Hachura acero -->
+<line x1="82" y1="32" x2="100" y2="130" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="92" y1="32" x2="110" y2="130" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="102" y1="32" x2="120" y2="130" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="112" y1="32" x2="130" y2="130" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="122" y1="32" x2="140" y2="130" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="132" y1="32" x2="150" y2="130" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="142" y1="32" x2="160" y2="130" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="152" y1="32" x2="170" y2="130" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="162" y1="32" x2="180" y2="130" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="172" y1="32" x2="190" y2="130" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="182" y1="32" x2="200" y2="130" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="192" y1="32" x2="210" y2="130" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="202" y1="32" x2="220" y2="130" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="212" y1="32" x2="230" y2="130" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="222" y1="32" x2="240" y2="130" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="232" y1="32" x2="250" y2="130" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="242" y1="32" x2="260" y2="130" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="252" y1="32" x2="270" y2="130" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="262" y1="32" x2="280" y2="130" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="272" y1="32" x2="290" y2="130" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="282" y1="32" x2="300" y2="130" stroke="#2563eb" stroke-width="0.5"/>
+<!-- Agujero sin hachura -->
+<circle cx="200" cy="80" r="25" fill="#f8fafc" stroke="#2563eb" stroke-width="1.5"/>
+<text x="200" y="155" text-anchor="middle" font-size="10" fill="#10b981">✓ Hachura de acero a 45°</text>
+</svg>
+</div>
+</div>
+<div class="box box-teoria" id="step4" style="display:none">
+<strong>📍 Paso 4 — ¡Tú prueba! Cambia el material</strong>
+Si la pieza fuera de aluminio, la hachura sería más separada. Si fuera plástico, cuadrícula. ¡Haz clic para ver!
+<div class="svg-container">
+<svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="400" height="160" fill="#ecfdf5" rx="8"/>
+<text x="200" y="40" text-anchor="middle" font-size="12" fill="#10b981" font-weight="bold">👆 Haz clic para cambiar material</text>
+<text x="200" y="65" text-anchor="middle" font-size="10" fill="#64748b">Acero: 45° | Aluminio: separada | Plástico: cuadrícula</text>
+<rect x="100" y="80" width="60" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="1"/>
+<rect x="180" y="80" width="60" height="50" fill="#fff7ed" stroke="#f97316" stroke-width="1"/>
+<rect x="260" y="80" width="60" height="50" fill="#faf5ff" stroke="#a855f7" stroke-width="1"/>
+<text x="130" y="145" text-anchor="middle" font-size="8" fill="#2563eb">Acero</text>
+<text x="210" y="145" text-anchor="middle" font-size="8" fill="#f97316">Aluminio</text>
+<text x="290" y="145" text-anchor="middle" font-size="8" fill="#a855f7">Plástico</text>
+</svg>
+</div>
+</div>
+</div>
+</div>
 <div class="svg-container">
 <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
 <!-- Fondo -->
@@ -228,7 +329,7 @@ Si el plano de corte es longitudinal a la nervadura, NO se raya. Si es transvers
 <div class="exercises">
 
 <div class="exercise">
-<p>📐 Ejercicio 1: ¿A qué inclinación se dibujan las hachuras estándar?</p>
+<p>📐 Ejercicio 1 (Quiz): ¿A qué inclinación se dibujan las hachuras estándar?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">45°</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">30°</button>
@@ -239,51 +340,51 @@ Si el plano de corte es longitudinal a la nervadura, NO se raya. Si es transvers
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 2: ¿Qué separación deben tener las líneas de hachura?</p>
+<p>📐 Ejercicio 2 (V/F visual): ¿Cuál tiene la hachura correcta?</p>
+<div class="comparison" style="margin:.5rem 0">
+<div class="comparison-side" style="padding:.5rem">
+<svg viewBox="0 0 120 80" width="100"><rect x="10" y="10" width="100" height="60" fill="#eff6ff" stroke="#2563eb" stroke-width="1"/><line x1="12" y1="12" x2="22" y2="70" stroke="#2563eb" stroke-width="0.5"/><line x1="22" y1="12" x2="32" y2="70" stroke="#2563eb" stroke-width="0.5"/><line x1="32" y1="12" x2="42" y2="70" stroke="#2563eb" stroke-width="0.5"/><line x1="42" y1="12" x2="52" y2="70" stroke="#2563eb" stroke-width="0.5"/><line x1="52" y1="12" x2="62" y2="70" stroke="#2563eb" stroke-width="0.5"/><line x1="62" y1="12" x2="72" y2="70" stroke="#2563eb" stroke-width="0.5"/><line x1="72" y1="12" x2="82" y2="70" stroke="#2563eb" stroke-width="0.5"/><line x1="82" y1="12" x2="92" y2="70" stroke="#2563eb" stroke-width="0.5"/><line x1="92" y1="12" x2="102" y2="70" stroke="#2563eb" stroke-width="0.5"/><line x1="102" y1="12" x2="112" y2="70" stroke="#2563eb" stroke-width="0.5"/><text x="60" y="78" text-anchor="middle" font-size="7" fill="#10b981">✓ 45° uniforme</text></svg>
+<p style="font-size:.8rem"><strong>Correcto:</strong> 45° uniforme</p>
+</div>
+<div class="comparison-side" style="padding:.5rem">
+<svg viewBox="0 0 120 80" width="100"><rect x="10" y="10" width="100" height="60" fill="#eff6ff" stroke="#2563eb" stroke-width="1"/><line x1="12" y1="12" x2="112" y2="70" stroke="#ef4444" stroke-width="0.5"/><line x1="12" y1="20" x2="112" y2="70" stroke="#ef4444" stroke-width="0.5"/><text x="60" y="78" text-anchor="middle" font-size="7" fill="#ef4444">✗ Irregular</text></svg>
+<p style="font-size:.8rem"><strong>Incorrecto:</strong> Separación irregular</p>
+</div>
+</div>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">1 a 3 mm</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">5 a 10 mm</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">0.1 a 0.5 mm</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">No importa</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">La izquierda (verde)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">La derecha (roja)</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 3: ¿Qué material se representa con cuadrícula?</p>
-<div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Plástico / Goma</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Acero</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Madera</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Aluminio</button>
-</div>
-<p class="feedback"></p>
+<p>📐 Ejercicio 3 (Completar): Las hachuras de acero se dibujan a ___° con separación de ___ mm.</p>
+<input type="text" id="fillA" placeholder="Inclinación" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:80px">
+<input type="text" id="fillB" placeholder="Separación" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:80px">
+<button onclick="checkFillIn()">Comprobar</button>
+<p class="feedback" id="fillFeedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 4: ¿Qué elemento NO se raya en corte longitudinal?</p>
+<p>📐 Ejercicio 4 (Ordenar): ¿En qué orden se aplica la hachura correctamente?</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Nervaduras y refuerzos</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Paredes gruesas</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Bases de apoyo</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Bridas</button>
+<button class="quiz-btn" onclick="checkOrden(this, '1-2-3')">① Dibujar contorno ② Trazar líneas a 45° ③ Verificar separación</button>
+<button class="quiz-btn" onclick="checkOrden(this, '3-2-1')">③ Verificar ② Trazar ① Contorno</button>
+<button class="quiz-btn" onclick="checkOrden(this, '2-1-3')">② Trazar ① Contorno ③ Verificar</button>
 </div>
-<p class="feedback"></p>
-</div>
-
-<div class="exercise">
-<p>📐 Ejercicio 5: ¿Cómo se representan piezas de pared muy delgada en sección?</p>
-<input type="text" id="ex5" placeholder="Respuesta" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:250px">
-<button onclick="checkExercise('ex5', 'ennegrecidas', this)">Comprobar</button>
 <p class="feedback"></p>
 </div>
 
 </div>
 </section>
 
+<div class="comparison"</div>
+</section>
+
 <div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ MISMA HACHURA</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="50" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="1"/><line x1="40" y1="30" x2="90" y2="100" stroke="#2563eb" stroke-width="0.5"/><rect x="110" y="30" width="50" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="1"/><line x1="110" y1="30" x2="160" y2="100" stroke="#2563eb" stroke-width="0.5"/><text x="100" y="120" text-anchor="middle" font-size="9" fill="#ef4444">Mismo material = confusión</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ HACHURAS DIFERENTES</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="50" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="1"/><line x1="40" y1="30" x2="90" y2="100" stroke="#2563eb" stroke-width="0.5"/><rect x="110" y="30" width="50" height="70" fill="#fff7ed" stroke="#f97316" stroke-width="1"/><text x="100" y="120" text-anchor="middle" font-size="9" fill="#10b981">Materiales distintos ✓</text></svg></div></div>
 
-<div class="box box-error>
+<div class="box box-error"
 <strong>⚠️ Error clásico</strong>
 Dibujar hachuras que atraviesan el texto de las cotas. ¡INCORRECTO! Las hachuras deben interrumpirse para dejar espacio a las cifras y notas. Tampoco deben salirse del contorno de la pieza.
 </div>
@@ -362,6 +463,57 @@ window.onscroll = function(){
   var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
   document.getElementById('progress').style.width = p+'%';
 };
+
+function showStep(n) {
+  for(var i = 1; i <= 4; i++) {
+    var step = document.getElementById('step' + i);
+    var dot = document.getElementById('sd' + i);
+    if(step) step.style.display = (i === n) ? 'block' : 'none';
+    if(dot) {
+      if(i === n) {
+        dot.classList.add('active');
+        dot.style.background = 'var(--azul)';
+      } else {
+        dot.classList.remove('active');
+        dot.style.background = '#94a3b8';
+      }
+    }
+  }
+}
+
+function checkOrden(btn, answer) {
+  var text = btn.textContent.trim();
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) { b.disabled = true; b.classList.remove('correct','wrong'); });
+  var feedback = parent.nextElementSibling;
+  if(text.includes('45') && text.includes('separación')) {
+    btn.classList.add('correct');
+    feedback.textContent = '✅ ¡Correcto! 45° de inclinación, separación 1-3mm uniforme.';
+    feedback.className = 'feedback correct';
+  } else {
+    btn.classList.add('wrong');
+    feedback.textContent = '❌ Orden: 1) Inclinación 45° → 2) Separación 1-3mm → 3) Dirección consistente.';
+    feedback.className = 'feedback incorrect';
+    setTimeout(function() {
+      parent.querySelectorAll('button').forEach(function(b) { b.disabled = false; b.classList.remove('correct','wrong'); });
+      feedback.textContent = '';
+      feedback.className = 'feedback';
+    }, 2000);
+  }
+}
+
+function checkFillIn() {
+  var a = document.getElementById('fillA').value.trim().toLowerCase();
+  var b = document.getElementById('fillB').value.trim().toLowerCase();
+  var feedback = document.getElementById('fillFeedback');
+  if((a === '45' || a === 'cuarenta y cinco') && (b === '1' || b === '3' || b === '1-3' || b === '1 a 3')) {
+    feedback.textContent = '✅ ¡Correcto! Inclinación 45°, separación 1-3 mm.';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ Respuesta: Inclinación 45°, separación 1-3 mm.';
+    feedback.className = 'feedback incorrect';
+  }
+}
 </script>
 </body>
 </html>

@@ -62,6 +62,9 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .stack-item:hover{border-color:var(--azul);transform:translateX(4px)}
 .stack-item.active{border-color:var(--azul);background:var(--azul-claro)}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+.feedback { margin-top: 0.5rem; font-weight: 600; padding: 0.5rem; border-radius: 6px; }
+.feedback.correct { background: var(--verde-claro); color: #065f46; border: 1px solid var(--verde); }
+.feedback.incorrect { background: var(--rojo-claro); color: #991b1b; border: 1px solid var(--rojo); }
 </style>
 </head>
 <body>
@@ -119,7 +122,79 @@ Para obtener VM de un plano oblicuo:<br>
 </section>
 
 <section class="chapter">
-<h2 class="chapter-title">2️⃣ Visualiza el cambio de plano</h2>
+<h2 class="chapter-title">2️⃣ Visualiza el cambio de plano paso a paso</h2>
+<div class="interactive">
+<h3>🎬 Ejemplo visual: cambio de plano vertical para obtener VM</h3>
+<div class="step-indicator">
+<div class="step-dot active" id="sd1" onclick="showStep(1)" style="background:var(--azul)">1</div>
+<div class="step-dot" id="sd2" onclick="showStep(2)" style="background:#94a3b8">2</div>
+<div class="step-dot" id="sd3" onclick="showStep(3)" style="background:#94a3b8">3</div>
+<div class="step-dot" id="sd4" onclick="showStep(4)" style="background:#94a3b8">4</div>
+</div>
+<div id="step-content">
+<div class="box box-teoria" id="step1">
+<strong>📍 Paso 1 — Mira: el sistema original</strong>
+Tenemos una recta oblicua r con proyecciones r' (alzado) y r (planta). Ni una ni otra muestra la longitud real.
+<div class="svg-container">
+<svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="400" height="160" fill="#f8fafc" rx="8"/>
+<line x1="20" y1="80" x2="380" y2="80" stroke="#333" stroke-width="1.5"/>
+<text x="390" y="84" font-size="10" fill="#333">LT</text>
+<line x1="80" y1="130" x2="320" y2="50" stroke="#2563eb" stroke-width="2.5"/>
+<text x="330" y="48" font-size="11" fill="#2563eb" font-weight="bold">r'</text>
+<line x1="80" y1="50" x2="320" y2="130" stroke="#f97316" stroke-width="2.5"/>
+<text x="330" y="135" font-size="11" fill="#f97316" font-weight="bold">r</text>
+<text x="200" y="155" text-anchor="middle" font-size="10" fill="#ef4444">⚠️ Ninguna proyección es VM</text>
+</svg>
+</div>
+</div>
+<div class="box box-teoria" id="step2" style="display:none">
+<strong>📍 Paso 2 — Fíjate: nuevo PV' paralelo a r</strong>
+Colocamos una nueva línea de tierra LT' PARALELA a la proyección horizontal r. Esto hace que el nuevo PV' sea paralelo a la recta.
+<div class="svg-container">
+<svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="400" height="160" fill="#f8fafc" rx="8"/>
+<line x1="20" y1="80" x2="380" y2="80" stroke="#333" stroke-width="1.5"/>
+<text x="390" y="84" font-size="10" fill="#333">LT</text>
+<line x1="80" y1="50" x2="320" y2="130" stroke="#f97316" stroke-width="2.5"/>
+<text x="330" y="135" font-size="11" fill="#f97316" font-weight="bold">r</text>
+<!-- Nueva LT' paralela a r -->
+<line x1="60" y1="45" x2="340" y2="135" stroke="#a855f7" stroke-width="2" stroke-dasharray="6,3"/>
+<text x="350" y="130" font-size="10" fill="#a855f7" font-weight="bold">LT' ∥ r</text>
+</svg>
+</div>
+</div>
+<div class="box box-teoria" id="step3" style="display:none">
+<strong>📍 Paso 3 — Ahora ves: la nueva proyección en VM</strong>
+La nueva proyección r'' sobre el nuevo plano PV' muestra la verdadera magnitud. ¡La recta se ve en su longitud real!
+<div class="svg-container">
+<svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="400" height="160" fill="#f8fafc" rx="8"/>
+<line x1="20" y1="80" x2="380" y2="80" stroke="#333" stroke-width="1.5"/>
+<text x="390" y="84" font-size="10" fill="#333">LT</text>
+<!-- Nueva proyección en VM -->
+<line x1="80" y1="80" x2="320" y2="80" stroke="#10b981" stroke-width="3"/>
+<text x="330" y="84" font-size="11" fill="#10b981" font-weight="bold">r'' (VM)</text>
+<text x="200" y="130" text-anchor="middle" font-size="11" fill="#10b981" font-weight="bold">✓ VM obtenida con cambio de plano</text>
+<text x="200" y="150" text-anchor="middle" font-size="9" fill="#64748b">PV' ∥ r → r'' = longitud real</text>
+</svg>
+</div>
+</div>
+<div class="box box-teoria" id="step4" style="display:none">
+<strong>📍 Paso 4 — ¡Tú prueba! Cambia de plano</strong>
+Recuerda: 1er cambio → PV' ∥ r → VM en alzado. 2do cambio → PH' ⊥ r' → la recta se ve como punto.
+<div class="svg-container">
+<svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="400" height="160" fill="#ecfdf5" rx="8"/>
+<text x="200" y="40" text-anchor="middle" font-size="12" fill="#10b981" font-weight="bold">🔁 2 cambios para ver la recta como punto</text>
+<text x="200" y="65" text-anchor="middle" font-size="10" fill="#64748b">1º: PV' ∥ r → VM | 2º: PH' ⊥ r' → punto</text>
+<circle cx="200" cy="100" r="15" fill="none" stroke="#a855f7" stroke-width="2"/>
+<text x="200" y="105" text-anchor="middle" font-size="10" fill="#a855f7">P</text>
+</svg>
+</div>
+</div>
+</div>
+</div>
 <div class="svg-container">
 <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
 <!-- Fondo -->
@@ -153,7 +228,7 @@ Para obtener VM de un plano oblicuo:<br>
 <div class="exercises">
 
 <div class="exercise">
-<p>📐 Ejercicio 1: ¿Cuántos planos se cambian en un cambio de plano?</p>
+<p>📐 Ejercicio 1 (Quiz): ¿Cuántos planos se cambian en un cambio de plano?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">0</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">1</button>
@@ -164,44 +239,46 @@ Para obtener VM de un plano oblicuo:<br>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 2: El nuevo plano debe ser...</p>
+<p>📐 Ejercicio 2 (V/F visual): ¿Cuál es el cambio de plano correcto?</p>
+<div class="comparison" style="margin:.5rem 0">
+<div class="comparison-side" style="padding:.5rem">
+<svg viewBox="0 0 120 80" width="100"><line x1="20" y1="60" x2="100" y2="60" stroke="#333" stroke-width="1.5"/><line x1="20" y1="55" x2="100" y2="55" stroke="#10b981" stroke-width="2"/><text x="60" y="45" text-anchor="middle" font-size="8" fill="#10b981">∥ recta</text><text x="60" y="75" text-anchor="middle" font-size="8" fill="#10b981">✓ VM</text></svg>
+<p style="font-size:.8rem"><strong>Correcto:</strong> LT' ∥ recta</p>
+</div>
+<div class="comparison-side" style="padding:.5rem">
+<svg viewBox="0 0 120 80" width="100"><line x1="20" y1="60" x2="100" y2="60" stroke="#333" stroke-width="1.5"/><line x1="60" y1="20" x2="60" y2="70" stroke="#ef4444" stroke-width="2"/><text x="60" y="45" text-anchor="middle" font-size="8" fill="#ef4444">⊥ recta</text><text x="60" y="75" text-anchor="middle" font-size="8" fill="#ef4444">✗ No es VM</text></svg>
+<p style="font-size:.8rem"><strong>Incorrecto:</strong> LT' ⊥ recta</p>
+</div>
+</div>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Paralelo al elemento</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Perpendicular al elemento</button>
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Paralelo o perpendicular al elemento</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">En cualquier posición</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">La izquierda (verde)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">La derecha (roja)</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 3: ¿Cuántos cambios se necesitan para ver una recta como punto?</p>
-<div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false)">1</button>
-<button class="quiz-btn" onclick="checkAnswer(this, true)">2</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">3</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">4</button>
-</div>
-<p class="feedback"></p>
+<p>📐 Ejercicio 3 (Completar): Para obtener VM, la nueva LT' debe ser __________ a la proyección de la recta. Con 2 cambios se obtiene la recta como __________.</p>
+<input type="text" id="fillA" placeholder="1ª palabra" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:140px">
+<input type="text" id="fillB" placeholder="2ª palabra" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:140px">
+<button onclick="checkFillIn()">Comprobar</button>
+<p class="feedback" id="fillFeedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 4: Verdadero o Falso — El cambio de plano modifica la pieza</p>
+<p>📐 Ejercicio 4 (Ordenar): ¿En qué orden se hacen los cambios de plano para ver una recta como punto?</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Verdadero</button>
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Falso</button>
+<button class="quiz-btn" onclick="checkOrden(this, '1-2')">① PV' ∥ r → VM ② PH' ⊥ r' → punto</button>
+<button class="quiz-btn" onclick="checkOrden(this, '2-1')">① PH' ⊥ r' → punto ② PV' ∥ r → VM</button>
+<button class="quiz-btn" onclick="checkOrden(this, '1-1')">① PV' ⊥ r ② PH' ∥ r'</button>
 </div>
 <p class="feedback"></p>
 </div>
 
-<div class="exercise">
-<p>📐 Ejercicio 5: ¿Qué se obtiene con un cambio de plano?</p>
-<input type="text" id="ex5" placeholder="VM o..." style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
-<button onclick="checkExercise('ex5', 'vm', this)">Comprobar</button>
-<p class="feedback"></p>
 </div>
+</section>
 
-</div>
+<div class="comparison"</div>
 </section>
 
 <div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ PLANO PERPENDICULAR</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="50" y1="110" x2="150" y2="40" stroke="#333" stroke-width="2"/><line x1="100" y1="110" x2="100" y2="30" stroke="#ef4444" stroke-width="2"/><text x="100" y="130" text-anchor="middle" font-size="9" fill="#ef4444">Nuevo PV ⊥ → línea punto</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ PLANO PARALELO</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="50" y1="110" x2="150" y2="40" stroke="#333" stroke-width="2"/><line x1="30" y1="110" x2="170" y2="110" stroke="#10b981" stroke-width="2"/><text x="100" y="130" text-anchor="middle" font-size="9" fill="#10b981">Nuevo PV ∥ → línea en VM ✓</text></svg></div></div>
@@ -283,6 +360,57 @@ window.onscroll = function(){
   var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
   document.getElementById('progress').style.width = p+'%';
 };
+
+function showStep(n) {
+  for(var i = 1; i <= 4; i++) {
+    var step = document.getElementById('step' + i);
+    var dot = document.getElementById('sd' + i);
+    if(step) step.style.display = (i === n) ? 'block' : 'none';
+    if(dot) {
+      if(i === n) {
+        dot.classList.add('active');
+        dot.style.background = 'var(--azul)';
+      } else {
+        dot.classList.remove('active');
+        dot.style.background = '#94a3b8';
+      }
+    }
+  }
+}
+
+function checkOrden(btn, answer) {
+  var text = btn.textContent.trim();
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) { b.disabled = true; b.classList.remove('correct','wrong'); });
+  var feedback = parent.nextElementSibling;
+  if(text.includes('1') && text.includes('2') && text.includes('3')) {
+    btn.classList.add('correct');
+    feedback.textContent = '✅ ¡Correcto! Primero identificas la recta, luego cambias de plano, finalmente mides.';
+    feedback.className = 'feedback correct';
+  } else {
+    btn.classList.add('wrong');
+    feedback.textContent = '❌ Orden: 1) Analizar recta → 2) Colocar LT' → 3) Obtener nueva proyección.';
+    feedback.className = 'feedback incorrect';
+    setTimeout(function() {
+      parent.querySelectorAll('button').forEach(function(b) { b.disabled = false; b.classList.remove('correct','wrong'); });
+      feedback.textContent = '';
+      feedback.className = 'feedback';
+    }, 2000);
+  }
+}
+
+function checkFillIn() {
+  var a = document.getElementById('fillA').value.trim().toLowerCase();
+  var b = document.getElementById('fillB').value.trim().toLowerCase();
+  var feedback = document.getElementById('fillFeedback');
+  if((a === 'paralela' || a === 'paralelo') && (b === 'vm' || b === 'verdadera')) {
+    feedback.textContent = '✅ ¡Correcto! LT' paralela a la proyección → nueva proyección en VM.';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ Respuesta: LT' debe ser PARALELA a la proyección. Se obtiene la VM.';
+    feedback.className = 'feedback incorrect';
+  }
+}
 </script>
 </body>
 </html>

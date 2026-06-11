@@ -62,6 +62,9 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .stack-item:hover{border-color:var(--azul);transform:translateX(4px)}
 .stack-item.active{border-color:var(--azul);background:var(--azul-claro)}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+.feedback { margin-top: 0.5rem; font-weight: 600; padding: 0.5rem; border-radius: 6px; }
+.feedback.correct { background: var(--verde-claro); color: #065f46; border: 1px solid var(--verde); }
+.feedback.incorrect { background: var(--rojo-claro); color: #991b1b; border: 1px solid var(--rojo); }
 </style>
 </head>
 <body>
@@ -116,7 +119,84 @@ Entonces la planta r muestra la VM.
 </section>
 
 <section class="chapter">
-<h2 class="chapter-title">2️⃣ Visualiza la VM</h2>
+<h2 class="chapter-title">2️⃣ Visualiza la VM paso a paso</h2>
+<div class="interactive">
+<h3>🎬 Ejemplo visual: encontrar la VM de una recta oblicua</h3>
+<div class="step-indicator">
+<div class="step-dot active" id="sd1" onclick="showStep(1)" style="background:var(--azul)">1</div>
+<div class="step-dot" id="sd2" onclick="showStep(2)" style="background:#94a3b8">2</div>
+<div class="step-dot" id="sd3" onclick="showStep(3)" style="background:#94a3b8">3</div>
+<div class="step-dot" id="sd4" onclick="showStep(4)" style="background:#94a3b8">4</div>
+</div>
+<div id="step-content">
+<div class="box box-teoria" id="step1">
+<strong>📍 Paso 1 — Mira: la recta oblicua</strong>
+Esta recta r no es paralela a ningún plano de proyección. Ni en alzado ni en planta se ve su longitud real.
+<div class="svg-container">
+<svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg" onclick="this.querySelector('.vm-line').classList.toggle('vm-active')">
+<rect x="0" y="0" width="400" height="160" fill="#f8fafc" rx="8"/>
+<line x1="20" y1="80" x2="380" y2="80" stroke="#333" stroke-width="1.5"/>
+<text x="390" y="84" font-size="10" fill="#333">LT</text>
+<line x1="80" y1="130" x2="320" y2="50" stroke="#2563eb" stroke-width="2.5" id="r-prime"/>
+<text x="330" y="48" font-size="11" fill="#2563eb" font-weight="bold">r'</text>
+<line x1="80" y1="50" x2="320" y2="130" stroke="#f97316" stroke-width="2.5" id="r"/>
+<text x="330" y="135" font-size="11" fill="#f97316" font-weight="bold">r</text>
+<text x="200" y="155" text-anchor="middle" font-size="10" fill="#ef4444">⚠️ No es VM — recta oblicua</text>
+</svg>
+</div>
+</div>
+<div class="box box-teoria" id="step2" style="display:none">
+<strong>📍 Paso 2 — Fíjate: gira la recta</strong>
+Giramos la recta alrededor de un eje perpendicular al PH. La proyección horizontal r gira hasta quedar paralela a LT.
+<div class="svg-container">
+<svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="400" height="160" fill="#f8fafc" rx="8"/>
+<line x1="20" y1="80" x2="380" y2="80" stroke="#333" stroke-width="1.5"/>
+<text x="390" y="84" font-size="10" fill="#333">LT</text>
+<!-- Eje de giro -->
+<circle cx="100" cy="80" r="4" fill="#a855f7"/>
+<text x="85" y="70" font-size="9" fill="#a855f7">Eje</text>
+<!-- Flecha de giro -->
+<path d="M 200 120 Q 220 100 240 110" fill="none" stroke="#a855f7" stroke-width="1.5" marker-end="url(#arrow)"/>
+<defs><marker id="arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#a855f7"/></marker></defs>
+<text x="210" y="140" font-size="10" fill="#a855f7">Giro → r' ∥ LT</text>
+</svg>
+</div>
+</div>
+<div class="box box-teoria" id="step3" style="display:none">
+<strong>📍 Paso 3 — Ahora ves: la recta paralela</strong>
+Cuando r' es paralela a LT, la proyección horizontal r muestra la VERDADERA MAGNITUD. ¡Ya podemos medir!
+<div class="svg-container">
+<svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="400" height="160" fill="#f8fafc" rx="8"/>
+<line x1="20" y1="80" x2="380" y2="80" stroke="#333" stroke-width="1.5"/>
+<text x="390" y="84" font-size="10" fill="#333">LT</text>
+<!-- Recta en VM -->
+<line x1="80" y1="80" x2="320" y2="80" class="vm-line" stroke="#10b981" stroke-width="3"/>
+<text x="330" y="84" font-size="11" fill="#10b981" font-weight="bold">r' (VM)</text>
+<!-- Cotas de VM -->
+<line x1="80" y1="100" x2="80" y2="130" stroke="#10b981" stroke-width="1"/>
+<line x1="320" y1="100" x2="320" y2="130" stroke="#10b981" stroke-width="1"/>
+<line x1="80" y1="130" x2="320" y2="130" stroke="#10b981" stroke-width="1"/>
+<text x="200" y="148" text-anchor="middle" font-size="11" fill="#10b981" font-weight="bold">VM = 240 unidades</text>
+</svg>
+</div>
+</div>
+<div class="box box-teoria" id="step4" style="display:none">
+<strong>📍 Paso 4 — ¡Tú prueba! Haz clic en el SVG anterior</strong>
+Pulsa en el SVG del paso 1 para ver cómo la recta gira. La clase vm-active cambia el color a verde cuando está en VM.
+<div class="svg-container">
+<svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="400" height="160" fill="#ecfdf5" rx="8"/>
+<text x="200" y="40" text-anchor="middle" font-size="12" fill="#10b981" font-weight="bold">👆 Haz clic en el SVG del paso 1</text>
+<text x="200" y="65" text-anchor="middle" font-size="10" fill="#64748b">El SVG es interactivo — clic para toggle</text>
+<line x1="100" y1="100" x2="300" y2="100" stroke="#10b981" stroke-width="2" stroke-dasharray="8,4"/>
+<text x="200" y="130" text-anchor="middle" font-size="10" fill="#10b981">La VM aparece cuando la recta ∥ al plano</text>
+</svg>
+</div>
+</div>
+</div>
+</div>
 <div class="svg-container">
 <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
 <!-- Fondo -->
@@ -147,55 +227,57 @@ Entonces la planta r muestra la VM.
 <div class="exercises">
 
 <div class="exercise">
-<p>📐 Ejercicio 1: ¿Cuándo está una recta en VM?</p>
+<p>📐 Ejercicio 1 (Quiz): ¿Cuándo está una recta en VM?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Cuando es paralela al plano de proyección</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Cuando es perpendicular al plano</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Cuando está en el plano</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Siempre</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Cuando está en el plano</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Siempre</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 2: Una recta horizontal tiene la VM en...</p>
+<p>📐 Ejercicio 2 (V/F visual): ¿Cuál representa correctamente la VM?</p>
+<div class="comparison" style="margin:.5rem 0">
+<div class="comparison-side" style="padding:.5rem">
+<svg viewBox="0 0 120 80" width="100"><line x1="20" y1="40" x2="100" y2="40" stroke="#10b981" stroke-width="2.5"/><text x="60" y="30" text-anchor="middle" font-size="8" fill="#10b981">∥ al plano</text><text x="60" y="65" text-anchor="middle" font-size="8" fill="#10b981">VM ✓</text></svg>
+<p style="font-size:.8rem"><strong>Correcto:</strong> Recta paralela al plano</p>
+</div>
+<div class="comparison-side" style="padding:.5rem">
+<svg viewBox="0 0 120 80" width="100"><line x1="30" y1="60" x2="90" y2="20" stroke="#ef4444" stroke-width="2.5"/><text x="60" y="30" text-anchor="middle" font-size="8" fill="#ef4444">↗️ Oblicua</text><text x="60" y="75" text-anchor="middle" font-size="8" fill="#ef4444">No es VM</text></svg>
+<p style="font-size:.8rem"><strong>Incorrecto:</strong> Recta oblicua</p>
+</div>
+</div>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Planta</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Alzado</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Perfil</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">No tiene VM</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">La izquierda (verde)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">La derecha (roja)</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 3: ¿Qué método se usa para una recta oblicua?</p>
+<p>📐 Ejercicio 3 (Completar): Para obtener VM de una recta oblicua, la recta girada debe quedar __________ al plano. Se usa __________ o cambio de plano.</p>
+<input type="text" id="fillA" placeholder="1ª palabra" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:140px">
+<input type="text" id="fillB" placeholder="2ª palabra" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:140px">
+<button onclick="checkFillIn()">Comprobar</button>
+<p class="feedback" id="fillFeedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 4 (Ordenar): ¿En qué orden se encuentra la VM de una recta oblicua?</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Giros o cambio de plano</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">No se puede</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Solo medición directa</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Escala</button>
+<button class="quiz-btn" onclick="checkOrden(this, '1-2-3')">① Identificar recta → ② Girar → ③ Medir</button>
+<button class="quiz-btn" onclick="checkOrden(this, '3-2-1')">③ Medir → ② Girar → ① Identificar</button>
+<button class="quiz-btn" onclick="checkOrden(this, '2-1-3')">② Girar → ① Identificar → ③ Medir</button>
 </div>
 <p class="feedback"></p>
 </div>
 
-<div class="exercise">
-<p>📐 Ejercicio 4: Verdadero o Falso — Una recta frontal tiene la VM en alzado.</p>
-<div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Verdadero</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Falso</button>
 </div>
-<p class="feedback"></p>
-</div>
+</section>
 
-<div class="exercise">
-<p>📐 Ejercicio 5: ¿Cuántos métodos principales existen para encontrar VM?</p>
-<input type="text" id="ex5" placeholder="Número" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
-<button onclick="checkExercise('ex5', '2', this)">Comprobar</button>
-<p class="feedback"></p>
-</div>
-
-</div>
+<div class="comparison"</div>
 </section>
 
 <div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ MEDIDA ACORTADA</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="50" y1="110" x2="150" y2="40" stroke="#ef4444" stroke-width="3"/><text x="100" y="80" text-anchor="middle" font-size="9" fill="#ef4444">Acortada en alzado</text><text x="100" y="130" text-anchor="middle" font-size="9" fill="#ef4444">No es la VM</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ VERDADERA MAGNITUD</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="30" y1="70" x2="170" y2="70" stroke="#10b981" stroke-width="3"/><text x="100" y="60" text-anchor="middle" font-size="9" fill="#10b981">VM = longitud real</text><text x="100" y="130" text-anchor="middle" font-size="9" fill="#10b981">Cambio de plano paralelo ✓</text></svg></div></div>
@@ -277,6 +359,58 @@ window.onscroll = function(){
   var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
   document.getElementById('progress').style.width = p+'%';
 };
+
+function showStep(n) {
+  for(var i = 1; i <= 4; i++) {
+    var step = document.getElementById('step' + i);
+    var dot = document.getElementById('sd' + i);
+    if(step) step.style.display = (i === n) ? 'block' : 'none';
+    if(dot) {
+      if(i === n) {
+        dot.classList.add('active');
+        dot.style.background = 'var(--azul)';
+      } else {
+        dot.classList.remove('active');
+        dot.style.background = '#94a3b8';
+      }
+    }
+  }
+}
+
+function checkOrden(btn, answer) {
+  var correct = '1-2-3';
+  var text = btn.textContent.trim();
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) { b.disabled = true; b.classList.remove('correct','wrong'); });
+  var feedback = parent.nextElementSibling;
+  if(text === correct || text.includes('1') && text.includes('2') && text.includes('3')) {
+    btn.classList.add('correct');
+    feedback.textContent = '✅ ¡Correcto! El orden es: 1) Identificar recta → 2) Girar → 3) Medir VM';
+    feedback.className = 'feedback correct';
+  } else {
+    btn.classList.add('wrong');
+    feedback.textContent = '❌ Orden correcto: 1→2→3. Primero identificas la recta oblicua, luego giras hasta que sea paralela, y finalmente mides.';
+    feedback.className = 'feedback incorrect';
+    setTimeout(function() {
+      parent.querySelectorAll('button').forEach(function(b) { b.disabled = false; b.classList.remove('correct','wrong'); });
+      feedback.textContent = '';
+      feedback.className = 'feedback';
+    }, 2000);
+  }
+}
+
+function checkFillIn() {
+  var a = document.getElementById('fillA').value.trim().toLowerCase();
+  var b = document.getElementById('fillB').value.trim().toLowerCase();
+  var feedback = document.getElementById('fillFeedback');
+  if((a === 'paralela' || a === 'paralelo') && (b === 'giro' || b === 'cambio')) {
+    feedback.textContent = '✅ ¡Correcto! La recta debe ser paralela al plano, y se usa giro o cambio de plano.';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ Respuesta: La recta debe ser PARALELA al plano. Se usa GIRO o CAMBIO DE PLANO.';
+    feedback.className = 'feedback incorrect';
+  }
+}
 </script>
 </body>
 </html>

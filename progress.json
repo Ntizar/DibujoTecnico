@@ -1,5 +1,5 @@
 {
-    "curso": "Dibujo T\u00e9cnico Completo",
+    "curso": "Dibujo Técnico Completo",
     "autor": "David Antizar",
     "total_temas": 49,
     "last_improved": "2026-06-11",
@@ -9,7 +9,7 @@
         "b01-01-formatos-papel.html": {
             "status": "improved_1",
             "bloque": "b01",
-            "title": "\ud83d\udcc4 Formatos de papel ISO 216",
+            "title": "📄 Formatos de papel ISO 216",
             "priority": 1,
             "improvements": [
                 {
@@ -37,7 +37,7 @@
         "b01-02-tipos-linea.html": {
             "status": "improved_1",
             "bloque": "b01",
-            "title": "\ud83d\udcd0 Tipos de l\u00ednea ISO 128",
+            "title": "📐 Tipos de línea ISO 128",
             "priority": 1,
             "improvements": [
                 {
@@ -65,7 +65,7 @@
         "b01-03-escalas.html": {
             "status": "improved_1",
             "bloque": "b01",
-            "title": "\ud83d\udd0d Escalas ISO 5455",
+            "title": "🔍 Escalas ISO 5455",
             "priority": 1,
             "improvements": [
                 {
@@ -93,7 +93,7 @@
         "b01-04-rotulacion.html": {
             "status": "improved_1",
             "bloque": "b01",
-            "title": "\u270d\ufe0f Rotulaci\u00f3n UNE",
+            "title": "✍️ Rotulación UNE",
             "priority": 1,
             "improvements": [
                 {
@@ -121,12 +121,12 @@
         "b01-05-cuadro-rotulacion.html": {
             "status": "improved_1",
             "bloque": "b01",
-            "title": "\ud83d\udccb Cuadro de rotulaci\u00f3n y pie de plano",
+            "title": "📋 Cuadro de rotulación y pie de plano",
             "priority": 1,
             "improvements": [
                 {
                     "date": "2026-06-10",
-                    "description": "SVG interactividad (click en campos, hover), caso real industrial (cig\u00fce\u00f1al), error visual SVG comparativo (correcto/incorrecto ubicaci\u00f3n), ejercicios variados (completar, V/F, ordenar), CSS template base completo",
+                    "description": "SVG interactividad (click en campos, hover), caso real industrial (cigüeñal), error visual SVG comparativo (correcto/incorrecto ubicación), ejercicios variados (completar, V/F, ordenar), CSS template base completo",
                     "dimensions_improved": [
                         "svg_interactive",
                         "real_world",
@@ -150,12 +150,12 @@
         "b02-01-proyeccion-ortogonal.html": {
             "status": "improved_2",
             "bloque": "b02",
-            "title": "\ud83d\udc41\ufe0f Proyecci\u00f3n ortogonal",
+            "title": "👁️ Proyección ortogonal",
             "priority": 1,
             "improvements": [
                 {
                     "date": "2026-06-10",
-                    "description": "SVG interactivo con toggle ortogonal/c\u00f3nica, caso real industrial (Airbus larguero), error visual SVG comparativo (ortogonal vs c\u00f3nica), ejercicios variados (completar, V/F, ordenar), CSS template base completo",
+                    "description": "SVG interactivo con toggle ortogonal/cónica, caso real industrial (Airbus larguero), error visual SVG comparativo (ortogonal vs cónica), ejercicios variados (completar, V/F, ordenar), CSS template base completo",
                     "dimensions_improved": [
                         "svg_interactive",
                         "real_world",
@@ -166,7 +166,7 @@
                 },
                 {
                     "date": "2026-06-11",
-                    "description": "Paso a paso visual 4 pasos (mira\u2192f\u00edjate\u2192ahora ves\u2192prueba) con SVGs + caso real aeron\u00e1utico con datos espec\u00edficos (pieza LRS-4421, DWG-8821, aluminio 7075-T6)",
+                    "description": "Paso a paso visual 4 pasos (mira→fíjate→ahora ves→prueba) con SVGs + caso real aeronáutico con datos específicos (pieza LRS-4421, DWG-8821, aluminio 7075-T6)",
                     "dimensions_improved": [
                         "text_explanation",
                         "real_world"
@@ -187,7 +187,7 @@
         "b02-02-sistema-3-planos.html": {
             "status": "improved_2",
             "bloque": "b02",
-            "title": "\ud83d\udce6 Sistema de 3 planos",
+            "title": "📦 Sistema de 3 planos",
             "priority": 1,
             "improvements": [
                 {
@@ -203,7 +203,7 @@
                 },
                 {
                     "date": "2026-06-11",
-                    "description": "Paso a paso visual 4 pasos (mira\u2192f\u00edjate\u2192ahora ves\u2192prueba) con SVGs de caja 3D + abatimiento + caso real Boeing 737 MAX con datos espec\u00edficos (pieza 27-3450-7, acero 4340M)",
+                    "description": "Paso a paso visual 4 pasos (mira→fíjate→ahora ves→prueba) con SVGs de caja 3D + abatimiento + caso real Boeing 737 MAX con datos específicos (pieza 27-3450-7, acero 4340M)",
                     "dimensions_improved": [
                         "text_explanation",
                         "real_world"
@@ -224,7 +224,7 @@
         "b02-03-vistas-principales.html": {
             "status": "improved_3",
             "bloque": "b02",
-            "title": "\ud83d\udc40 Vistas principales",
+            "title": "👀 Vistas principales",
             "priority": 1,
             "improvements": [
                 {
@@ -247,7 +247,7 @@
                 },
                 {
                     "date": "2026-06-11",
-                    "description": "Paso a paso visual 4 pasos (mira\u2192f\u00edjate\u2192ahora ves\u2192prueba) con 4 SVGs interactivos + botones showPaso(), 2 ejercicios nuevos (V/F visual + ordenar pasos), CSS: box-success usada, interactive usada, broken onclick fixed",
+                    "description": "Paso a paso visual 4 pasos (mira→fíjate→ahora ves→prueba) con 4 SVGs interactivos + botones showPaso(), 2 ejercicios nuevos (V/F visual + ordenar pasos), CSS: box-success usada, interactive usada, broken onclick fixed",
                     "dimensions_improved": [
                         "text_explanation",
                         "exercises",
@@ -269,12 +269,12 @@
         "b02-04-correspondencia-vistas.html": {
             "status": "improved_1",
             "bloque": "b02",
-            "title": "\ud83d\udd17 Correspondencia entre vistas",
+            "title": "🔗 Correspondencia entre vistas",
             "priority": 1,
             "improvements": [
                 {
                     "date": "2026-06-10",
-                    "description": "CSS template base, SVG interactividad (click/hover en l\u00edneas de correspondencia), paso a paso visual, caso real industrial (bridas), error visual comparativo (X vs Z)",
+                    "description": "CSS template base, SVG interactividad (click/hover en líneas de correspondencia), paso a paso visual, caso real industrial (bridas), error visual comparativo (X vs Z)",
                     "dimensions_improved": [
                         "svg_interactive",
                         "text_explanation",
@@ -285,7 +285,7 @@
                 },
                 {
                     "date": "2026-06-10",
-                    "description": "Segunda pasada: SVG paso a paso interactivo (3 pasos clickeables X/Z/Y), funci\u00f3n showPaso() con step-dots animados, CSS step-indicator/step-dot verificados",
+                    "description": "Segunda pasada: SVG paso a paso interactivo (3 pasos clickeables X/Z/Y), función showPaso() con step-dots animados, CSS step-indicator/step-dot verificados",
                     "dimensions_improved": [
                         "svg_interactive",
                         "text_explanation",
@@ -307,7 +307,7 @@
         "b02-05-abatimiento-ph.html": {
             "status": "improved_1",
             "bloque": "b02",
-            "title": "\ud83d\udd04 Abatimiento del PH",
+            "title": "🔄 Abatimiento del PH",
             "priority": 1,
             "improvements": [
                 {
@@ -330,7 +330,7 @@
                 },
                 {
                     "date": "2026-06-11",
-                    "description": "Paso a paso visual 4 pasos (mira\u2192f\u00edjate\u2192ahora ves\u2192prueba) con SVGs interactivos + botones showStep() + step-dots, 3 ejercicios nuevos de tipos diferentes (V/F visual, completar huecos, ordenar pasos), funciones JS: showStep(), checkOrden(), checkFillIn()",
+                    "description": "Paso a paso visual 4 pasos (mira→fíjate→ahora ves→prueba) con SVGs interactivos + botones showStep() + step-dots, 3 ejercicios nuevos de tipos diferentes (V/F visual, completar huecos, ordenar pasos), funciones JS: showStep(), checkOrden(), checkFillIn()",
                     "dimensions_improved": [
                         "text_explanation",
                         "exercises"
@@ -351,7 +351,7 @@
         "b02-06-1o-3o-diedro.html": {
             "status": "improved_1",
             "bloque": "b02",
-            "title": "\ud83c\udf0d 1\u00ba diedro vs 3\u00ba diedro",
+            "title": "🌍 1º diedro vs 3º diedro",
             "priority": 1,
             "improvements": [
                 {
@@ -374,7 +374,7 @@
                 },
                 {
                     "date": "2026-06-11",
-                    "description": "SVG interactividad (onclick en piezas diedro con toggle diedro-layer), 4-step visual pattern (mira\u2192f\u00edjate\u2192ahora ves\u2192prueba) con 3 SVGs + toggleDiedroView(), 3 ejercicios nuevos (V/F visual, completar huecos, ordenar pasos), 2 broken onclicks fixados, funciones JS: toggleDiedro(), toggleDiedroView(), checkOrden(), checkFillIn()",
+                    "description": "SVG interactividad (onclick en piezas diedro con toggle diedro-layer), 4-step visual pattern (mira→fíjate→ahora ves→prueba) con 3 SVGs + toggleDiedroView(), 3 ejercicios nuevos (V/F visual, completar huecos, ordenar pasos), 2 broken onclicks fixados, funciones JS: toggleDiedro(), toggleDiedroView(), checkOrden(), checkFillIn()",
                     "dimensions_improved": [
                         "svg_interactive",
                         "text_explanation",
@@ -396,7 +396,7 @@
         "b02-07-representacion-piezas.html": {
             "status": "improved_1",
             "bloque": "b02",
-            "title": "\ud83d\udd27 Representaci\u00f3n de piezas",
+            "title": "🔧 Representación de piezas",
             "priority": 1,
             "improvements": [
                 {
@@ -432,7 +432,7 @@
         "b02-08-vista-auxiliar-parcial.html": {
             "status": "improved_1",
             "bloque": "b02",
-            "title": "\ud83d\udd0e Vista auxiliar y parcial",
+            "title": "🔎 Vista auxiliar y parcial",
             "priority": 1,
             "improvements": [
                 {
@@ -448,7 +448,7 @@
                 },
                 {
                     "date": "2026-06-10",
-                    "description": "Segunda pasada: SVG paso a paso interactivo (3 pasos: auxiliar/parcial/comparaci\u00f3n), step-dots animados, showAuxPaso(), 3 broken onclicks fixados, CSS step-indicator/step-dot verificados",
+                    "description": "Segunda pasada: SVG paso a paso interactivo (3 pasos: auxiliar/parcial/comparación), step-dots animados, showAuxPaso(), 3 broken onclicks fixados, CSS step-indicator/step-dot verificados",
                     "dimensions_improved": [
                         "svg_interactive",
                         "text_explanation",
@@ -470,7 +470,7 @@
         "b03-01-isometrica-ejes.html": {
             "status": "improved_2",
             "bloque": "b03",
-            "title": "\ud83d\udcd0 Perspectiva isom\u00e9trica: ejes",
+            "title": "📐 Perspectiva isométrica: ejes",
             "priority": 2,
             "improvements": [
                 {
@@ -486,7 +486,7 @@
                 },
                 {
                     "date": "2026-06-10",
-                    "description": "SVG interactivo con onmouseover/onclick en ejes (highlight+info panel), explicaci\u00f3n visual paso a paso 4 pasos con SVG, error com\u00fan comparativo SVG (ortogonal 90\u00b0 vs isom\u00e9trico 120\u00b0), 3 ejercicios nuevos (completar, identificar error, ordenar pasos), CSS classes: step-indicator, step-dot, step-connector, feedback, comparison",
+                    "description": "SVG interactivo con onmouseover/onclick en ejes (highlight+info panel), explicación visual paso a paso 4 pasos con SVG, error común comparativo SVG (ortogonal 90° vs isométrico 120°), 3 ejercicios nuevos (completar, identificar error, ordenar pasos), CSS classes: step-indicator, step-dot, step-connector, feedback, comparison",
                     "dimensions_improved": [
                         "svg_interactive",
                         "text_explanation",
@@ -510,7 +510,7 @@
         "b03-02-isometrica-cubos.html": {
             "status": "improved_2",
             "bloque": "b03",
-            "title": "\ud83e\uddca Isom\u00e9trica: cubos y prismas",
+            "title": "🧊 Isométrica: cubos y prismas",
             "priority": 2,
             "improvements": [
                 {
@@ -526,7 +526,7 @@
                 },
                 {
                     "date": "2026-06-11",
-                    "description": "SVG interactivo con onclick en caras (toggle highlight+info), botones toggle ejes/aristas ocultas/reset, paso a paso visual 4 pasos (mira\u2192f\u00edjate\u2192ahora ves\u2192prueba) con SVGs din\u00e1micos, CSS: box-success usada, interactive usada, broken onclicks fixed",
+                    "description": "SVG interactivo con onclick en caras (toggle highlight+info), botones toggle ejes/aristas ocultas/reset, paso a paso visual 4 pasos (mira→fíjate→ahora ves→prueba) con SVGs dinámicos, CSS: box-success usada, interactive usada, broken onclicks fixed",
                     "dimensions_improved": [
                         "svg_interactive",
                         "text_explanation",
@@ -548,7 +548,7 @@
         "b03-03-isometrica-circulos.html": {
             "status": "improved_2",
             "bloque": "b03",
-            "title": "\u2b55 Isom\u00e9trica: c\u00edrculos y elipses",
+            "title": "⭕ Isométrica: círculos y elipses",
             "priority": 2,
             "improvements": [
                 {
@@ -564,7 +564,7 @@
                 },
                 {
                     "date": "2026-06-11",
-                    "description": "SVG interactivo con onclick en 3 caras (XY/XZ/YZ) con highlight+info panel, paso a paso visual 4 pasos (mira\u2192f\u00edjate\u2192ahora ves\u2192prueba) con SVGs din\u00e1micos del m\u00e9todo de 4 centros, CSS: box-success usada, interactive usada, broken onclicks fixed",
+                    "description": "SVG interactivo con onclick en 3 caras (XY/XZ/YZ) con highlight+info panel, paso a paso visual 4 pasos (mira→fíjate→ahora ves→prueba) con SVGs dinámicos del método de 4 centros, CSS: box-success usada, interactive usada, broken onclicks fixed",
                     "dimensions_improved": [
                         "svg_interactive",
                         "text_explanation",
@@ -586,7 +586,7 @@
         "b03-04-caballera.html": {
             "status": "improved_2",
             "bloque": "b03",
-            "title": "\ud83d\udccf Perspectiva caballera",
+            "title": "📏 Perspectiva caballera",
             "priority": 2,
             "improvements": [
                 {
@@ -602,7 +602,7 @@
                 },
                 {
                     "date": "2026-06-11",
-                    "description": "SVG interactivo con onclick en 3 ejes (X/Z/Y) con highlight+info panel din\u00e1mico, paso a paso visual 4 pasos (mira\u2192f\u00edjate\u2192ahora ves\u2192prueba) con SVGs din\u00e1micos, CSS: box-success usada, interactive usada, broken onclicks fixed",
+                    "description": "SVG interactivo con onclick en 3 ejes (X/Z/Y) con highlight+info panel dinámico, paso a paso visual 4 pasos (mira→fíjate→ahora ves→prueba) con SVGs dinámicos, CSS: box-success usada, interactive usada, broken onclicks fixed",
                     "dimensions_improved": [
                         "svg_interactive",
                         "text_explanation",
@@ -624,7 +624,7 @@
         "b03-05-perspectivas-piezas.html": {
             "status": "improved_2",
             "bloque": "b03",
-            "title": "\ud83d\udd29 Caballera: piezas con cilindros",
+            "title": "🔩 Caballera: piezas con cilindros",
             "priority": 2,
             "improvements": [
                 {
@@ -640,7 +640,7 @@
                 },
                 {
                     "date": "2026-06-11",
-                    "description": "SVG interactivo con onclick en 3 ejes (E1/E2/E3) con highlight+info panel, paso a paso visual 4 pasos (mira\u2192f\u00edjate\u2192ahora ves\u2192prueba) con SVGs din\u00e1micos, CSS: box-success usada, interactive usada, broken onclicks fixed",
+                    "description": "SVG interactivo con onclick en 3 ejes (E1/E2/E3) con highlight+info panel, paso a paso visual 4 pasos (mira→fíjate→ahora ves→prueba) con SVGs dinámicos, CSS: box-success usada, interactive usada, broken onclicks fixed",
                     "dimensions_improved": [
                         "svg_interactive",
                         "text_explanation",
@@ -662,7 +662,7 @@
         "b03-06-perspectivas-resumen.html": {
             "status": "improved_2",
             "bloque": "b03",
-            "title": "\ud83d\udcca Dim\u00e9trica y monom\u00e9trica",
+            "title": "📊 Dimétrica y monométrica",
             "priority": 2,
             "improvements": [
                 {
@@ -678,7 +678,7 @@
                 },
                 {
                     "date": "2026-06-11",
-                    "description": "SVG interactividad (onclick toggle en 4 perspectivas con info panel din\u00e1mico), paso a paso visual 4 pasos (mira\u2192f\u00edjate\u2192ahora ves\u2192prueba) con 4 SVGs + showStep(), 4 ejercicios variados (quiz, V/F visual, completar huecos, ordenar pasos), broken onclicks fixados, CSS: feedback.correct/incorrect a\u00f1adidos",
+                    "description": "SVG interactividad (onclick toggle en 4 perspectivas con info panel dinámico), paso a paso visual 4 pasos (mira→fíjate→ahora ves→prueba) con 4 SVGs + showStep(), 4 ejercicios variados (quiz, V/F visual, completar huecos, ordenar pasos), broken onclicks fixados, CSS: feedback.correct/incorrect añadidos",
                     "dimensions_improved": [
                         "svg_interactive",
                         "text_explanation",
@@ -701,7 +701,7 @@
         "b04-01-punto-diedrico.html": {
             "status": "improved_2",
             "bloque": "b04",
-            "title": "\ud83d\udccd S04.1: El punto en el diedrico \u2014 Dibujo T\u00e9cnico",
+            "title": "📍 S04.1: El punto en el diedrico — Dibujo Técnico",
             "priority": 2,
             "improvements": [
                 {
@@ -740,7 +740,7 @@
         "b04-02-recta-diedrico.html": {
             "status": "improved_2",
             "bloque": "b04",
-            "title": "\ud83d\udccf S04.2: La recta en el diedrico \u2014 Dibujo T\u00e9cnico",
+            "title": "📏 S04.2: La recta en el diedrico — Dibujo Técnico",
             "priority": 2,
             "improvements": [
                 {
@@ -779,7 +779,7 @@
         "b04-03-plano-diedrico.html": {
             "status": "improved_2",
             "bloque": "b04",
-            "title": "\ud83d\udccf Recta: trazas y posiciones",
+            "title": "📏 Recta: trazas y posiciones",
             "priority": 2,
             "improvements": [
                 {
@@ -795,7 +795,7 @@
                 },
                 {
                     "date": "2026-06-11",
-                    "description": "SVG interactividad (onclick toggle en LT/\u03b1\u2081/\u03b1\u2082/horizontal/m\u00e1x.pendiente con info panel), paso a paso visual 4 pasos (mira\u2192f\u00edjate\u2192ahora ves\u2192prueba) con SVGs + showStep(), 4 ejercicios variados (quiz, V/F visual, completar huecos, ordenar pasos), broken onclicks fixados, CSS: feedback.correct/incorrect a\u00f1adidos",
+                    "description": "SVG interactividad (onclick toggle en LT/α₁/α₂/horizontal/máx.pendiente con info panel), paso a paso visual 4 pasos (mira→fíjate→ahora ves→prueba) con SVGs + showStep(), 4 ejercicios variados (quiz, V/F visual, completar huecos, ordenar pasos), broken onclicks fixados, CSS: feedback.correct/incorrect añadidos",
                     "dimensions_improved": [
                         "svg_interactive",
                         "text_explanation",
@@ -818,7 +818,7 @@
         "b04-04-pertenencia.html": {
             "status": "improved_2",
             "bloque": "b04",
-            "title": "\ud83d\udcd0 Recta: verdadera magnitud",
+            "title": "📐 Recta: verdadera magnitud",
             "priority": 2,
             "improvements": [
                 {
@@ -834,7 +834,7 @@
                 },
                 {
                     "date": "2026-06-11",
-                    "description": "SVG interactividad (onclick toggle en puntos y rectas con togglePoint/toggleLayer), paso a paso visual 4 pasos (mira\u2192f\u00edjate\u2192ahora ves\u2192prueba) con 4 SVGs + step-dots + showStep(), 4 ejercicios variados (quiz, V/F visual con SVGs comparativos, completar huecos con checkFillIn, ordenar pasos con checkOrden), broken onclicks fixados, funciones JS: togglePoint(), toggleLayer(), showStep(), checkFillIn(), checkOrden()",
+                    "description": "SVG interactividad (onclick toggle en puntos y rectas con togglePoint/toggleLayer), paso a paso visual 4 pasos (mira→fíjate→ahora ves→prueba) con 4 SVGs + step-dots + showStep(), 4 ejercicios variados (quiz, V/F visual con SVGs comparativos, completar huecos con checkFillIn, ordenar pasos con checkOrden), broken onclicks fixados, funciones JS: togglePoint(), toggleLayer(), showStep(), checkFillIn(), checkOrden()",
                     "dimensions_improved": [
                         "svg_interactive",
                         "text_explanation",
@@ -856,7 +856,7 @@
         "b04-05-paralelismo-perpendicularidad.html": {
             "status": "improved_2",
             "bloque": "b04",
-            "title": "\ud83d\udcd0 Plano: trazas y posiciones",
+            "title": "📐 Plano: trazas y posiciones",
             "priority": 2,
             "improvements": [
                 {
@@ -872,7 +872,7 @@
                 },
                 {
                     "date": "2026-06-11",
-                    "description": "SVG interactividad (onclick toggle en l\u00edneas paralelas/perpendiculares con toggleLayer/togglePoint), paso a paso visual 4 pasos (mira\u2192f\u00edjate\u2192ahora ves\u2192prueba) con 4 SVGs + step-dots + showStep(), 4 ejercicios variados (quiz, V/F visual con SVGs comparativos, completar huecos con checkFillIn, ordenar pasos con checkOrden), funciones JS: togglePoint(), toggleLayer(), showStep(), checkFillIn(), checkOrden()",
+                    "description": "SVG interactividad (onclick toggle en líneas paralelas/perpendiculares con toggleLayer/togglePoint), paso a paso visual 4 pasos (mira→fíjate→ahora ves→prueba) con 4 SVGs + step-dots + showStep(), 4 ejercicios variados (quiz, V/F visual con SVGs comparativos, completar huecos con checkFillIn, ordenar pasos con checkOrden), funciones JS: togglePoint(), toggleLayer(), showStep(), checkFillIn(), checkOrden()",
                     "dimensions_improved": [
                         "svg_interactive",
                         "text_explanation",
@@ -892,9 +892,9 @@
             "improvement_count": 2
         },
         "b04-06-vm.html": {
-            "status": "improved_1",
+            "status": "improved_2",
             "bloque": "b04",
-            "title": "\u2197\ufe0f Rectas notables del plano",
+            "title": "↗️ Rectas notables del plano",
             "priority": 2,
             "improvements": [
                 {
@@ -907,23 +907,33 @@
                         "error_common",
                         "css_coherence"
                     ]
+                },
+                {
+                    "date": "2026-06-11",
+                    "description": "4-step visual pattern (mira→fíjate→ahora ves→prueba) con 4 SVGs + step-dots + showStep(), 4 ejercicios variados (quiz, V/F visual con SVGs comparativos, completar huecos con checkFillIn, ordenar pasos con checkOrden), CSS: .feedback.correct/.incorrect añadidos, broken onclicks fixados, funciones JS: showStep(), checkFillIn(), checkOrden()",
+                    "dimensions_improved": [
+                        "text_explanation",
+                        "svg_interactive",
+                        "exercises",
+                        "css_coherence"
+                    ]
                 }
             ],
             "scores": {
-                "svg_interactive": 7,
-                "exercises": 7,
-                "text_explanation": 7,
+                "svg_interactive": 9,
+                "exercises": 9,
+                "text_explanation": 9,
                 "real_world": 7,
                 "error_common": 7,
-                "css_coherence": 7
+                "css_coherence": 10
             },
-            "last_improved": "2026-06-10",
-            "improvement_count": 1
+            "last_improved": "2026-06-11",
+            "improvement_count": 2
         },
         "b04-07-cambio-plano.html": {
-            "status": "improved_1",
+            "status": "improved_2",
             "bloque": "b04",
-            "title": "\ud83d\udd17 Pertenencia: punto en recta/plano",
+            "title": "🔗 Pertenencia: punto en recta/plano",
             "priority": 2,
             "improvements": [
                 {
@@ -936,23 +946,33 @@
                         "error_common",
                         "css_coherence"
                     ]
+                },
+                {
+                    "date": "2026-06-11",
+                    "description": "4-step visual pattern (mira→fíjate→ahora ves→prueba) con 4 SVGs + step-dots + showStep(), 4 ejercicios variados (quiz, V/F visual con SVGs comparativos, completar huecos con checkFillIn, ordenar pasos con checkOrden), CSS: .feedback.correct/.incorrect añadidos, broken onclicks fixados, funciones JS: showStep(), checkFillIn(), checkOrden()",
+                    "dimensions_improved": [
+                        "text_explanation",
+                        "svg_interactive",
+                        "exercises",
+                        "css_coherence"
+                    ]
                 }
             ],
             "scores": {
-                "svg_interactive": 7,
-                "exercises": 7,
-                "text_explanation": 7,
+                "svg_interactive": 9,
+                "exercises": 9,
+                "text_explanation": 9,
                 "real_world": 7,
                 "error_common": 7,
-                "css_coherence": 7
+                "css_coherence": 10
             },
-            "last_improved": "2026-06-10",
-            "improvement_count": 1
+            "last_improved": "2026-06-11",
+            "improvement_count": 2
         },
         "b04-08-giro.html": {
             "status": "improved_1",
             "bloque": "b04",
-            "title": "\u2194\ufe0f Paralelismo",
+            "title": "↔️ Paralelismo",
             "priority": 2,
             "improvements": [
                 {
@@ -981,7 +1001,7 @@
         "b04-09-resumen-diedrico.html": {
             "status": "improved_1",
             "bloque": "b04",
-            "title": "\u22a5 Perpendicularidad recta-plano",
+            "title": "⊥ Perpendicularidad recta-plano",
             "priority": 2,
             "improvements": [
                 {
@@ -1010,7 +1030,7 @@
         "b05-01-cortes.html": {
             "status": "improved_2",
             "bloque": "b05",
-            "title": "\u2702\ufe0f Corte total",
+            "title": "✂️ Corte total",
             "priority": 3,
             "improvements": [
                 {
@@ -1026,7 +1046,7 @@
                 },
                 {
                     "date": "2026-06-10",
-                    "description": "SVG interactivo con onclick/onmouseover para explorar corte total (3 zonas clicables + toggle mostrar/ocultar), explicaci\u00f3n visual paso a paso 4 pasos con mini-SVGs, 3 ejercicios nuevos (V/F, identificar error visual, asociar materiales), CSS: step-indicator, step-dot, feedback.correct/incorrect, comparison-side, toggle-btn, box-problema, real-world-badge, correcci\u00f3n de bugs HTML (atributos onclick sin cerrar comillas)",
+                    "description": "SVG interactivo con onclick/onmouseover para explorar corte total (3 zonas clicables + toggle mostrar/ocultar), explicación visual paso a paso 4 pasos con mini-SVGs, 3 ejercicios nuevos (V/F, identificar error visual, asociar materiales), CSS: step-indicator, step-dot, feedback.correct/incorrect, comparison-side, toggle-btn, box-problema, real-world-badge, corrección de bugs HTML (atributos onclick sin cerrar comillas)",
                     "dimensions_improved": [
                         "svg_interactive",
                         "text_explanation",
@@ -1049,7 +1069,7 @@
         "b05-02-corte-tipos.html": {
             "status": "improved_2",
             "bloque": "b05",
-            "title": "\ud83d\udd2a Corte parcial y semicorte",
+            "title": "🔪 Corte parcial y semicorte",
             "priority": 3,
             "improvements": [
                 {
@@ -1065,7 +1085,7 @@
                 },
                 {
                     "date": "2026-06-11",
-                    "description": "4-step visual pattern (mira\u2192f\u00edjate\u2192ahora ves\u2192prueba) con SVGs interactivos + botones showStep(), SVG interactividad (onclick toggle en capas), 4 tipos de ejercicios (quiz, V/F visual, completar huecos, ordenar pasos), funciones JS: toggleLayer(), showStep(), checkFillIn(), checkOrden()",
+                    "description": "4-step visual pattern (mira→fíjate→ahora ves→prueba) con SVGs interactivos + botones showStep(), SVG interactividad (onclick toggle en capas), 4 tipos de ejercicios (quiz, V/F visual, completar huecos, ordenar pasos), funciones JS: toggleLayer(), showStep(), checkFillIn(), checkOrden()",
                     "dimensions_improved": [
                         "text_explanation",
                         "svg_interactive",
@@ -1087,7 +1107,7 @@
         "b06-01-acotacion.html": {
             "status": "improved_1",
             "bloque": "b06",
-            "title": "\ud83d\udcd0 Elementos de la cota",
+            "title": "📐 Elementos de la cota",
             "priority": 3,
             "improvements": [
                 {
@@ -1116,7 +1136,7 @@
         "b07-01-intersecciones.html": {
             "status": "improved_1",
             "bloque": "b07",
-            "title": "\ud83d\udd00 Intersecci\u00f3n recta-plano",
+            "title": "🔀 Intersección recta-plano",
             "priority": 3,
             "improvements": [
                 {
@@ -1145,7 +1165,7 @@
         "b08-01-abatimientos.html": {
             "status": "improved_1",
             "bloque": "b08",
-            "title": "\ud83d\udd04 Concepto de abatimiento",
+            "title": "🔄 Concepto de abatimiento",
             "priority": 4,
             "improvements": [
                 {
@@ -1161,7 +1181,7 @@
                 },
                 {
                     "date": "2026-06-10",
-                    "description": "Segunda pasada: SVG paso a paso interactivo (3 pasos: antes/despu\u00e9s/comparaci\u00f3n), step-dots animados, showAbatPaso(), 3 broken onclicks fixados, CSS step-indicator/step-dot verificados",
+                    "description": "Segunda pasada: SVG paso a paso interactivo (3 pasos: antes/después/comparación), step-dots animados, showAbatPaso(), 3 broken onclicks fixados, CSS step-indicator/step-dot verificados",
                     "dimensions_improved": [
                         "svg_interactive",
                         "text_explanation",
@@ -1183,7 +1203,7 @@
         "b09-01-planos-conjunto.html": {
             "status": "improved_1",
             "bloque": "b09",
-            "title": "\ud83c\udfd7\ufe0f Plano de conjunto",
+            "title": "🏗️ Plano de conjunto",
             "priority": 4,
             "improvements": [
                 {
@@ -1221,7 +1241,7 @@
         "b05-03-corte-escalonado.html": {
             "status": "improved_2",
             "bloque": "b05",
-            "title": "\ud83d\udd2a Corte escalonado",
+            "title": "🔪 Corte escalonado",
             "priority": 3,
             "improvements": [
                 {
@@ -1237,7 +1257,7 @@
                 },
                 {
                     "date": "2026-06-11",
-                    "description": "4-step visual pattern (mira\u2192f\u00edjate\u2192ahora ves\u2192prueba) con SVGs interactivos + botones showStep(), SVG interactividad (onclick toggle en zigzag y corte A-A), 4 tipos de ejercicios (quiz, V/F visual, completar huecos, ordenar pasos), funciones JS: toggleZigzag(), toggleCorteAA(), showStep(), checkFillIn(), checkOrden()",
+                    "description": "4-step visual pattern (mira→fíjate→ahora ves→prueba) con SVGs interactivos + botones showStep(), SVG interactividad (onclick toggle en zigzag y corte A-A), 4 tipos de ejercicios (quiz, V/F visual, completar huecos, ordenar pasos), funciones JS: toggleZigzag(), toggleCorteAA(), showStep(), checkFillIn(), checkOrden()",
                     "dimensions_improved": [
                         "text_explanation",
                         "svg_interactive",
@@ -1259,7 +1279,7 @@
         "b05-04-seccion-rotura.html": {
             "status": "improved_2",
             "bloque": "b05",
-            "title": "\ud83d\udcd0 Secci\u00f3n y rotura",
+            "title": "📐 Sección y rotura",
             "priority": 3,
             "improvements": [
                 {
@@ -1275,7 +1295,7 @@
                 },
                 {
                     "date": "2026-06-11",
-                    "description": "SVG interactividad (onclick toggle secci\u00f3n vs corte con info panel din\u00e1mico), paso a paso visual 4 pasos (mira\u2192f\u00edjate\u2192ahora ves\u2192prueba) con SVGs + showStep(), 4 ejercicios variados (quiz, V/F visual, completar huecos, ordenar pasos), CSS: feedback.correct/incorrect a\u00f1adidos",
+                    "description": "SVG interactividad (onclick toggle sección vs corte con info panel dinámico), paso a paso visual 4 pasos (mira→fíjate→ahora ves→prueba) con SVGs + showStep(), 4 ejercicios variados (quiz, V/F visual, completar huecos, ordenar pasos), CSS: feedback.correct/incorrect añadidos",
                     "dimensions_improved": [
                         "svg_interactive",
                         "text_explanation",
@@ -1296,9 +1316,9 @@
             "improvement_count": 2
         },
         "b05-05-hachuras.html": {
-            "status": "improved_1",
+            "status": "improved_2",
             "bloque": "b05",
-            "title": "\u270f\ufe0f Hachuras y rayado",
+            "title": "✏️ Hachuras y rayado",
             "priority": 3,
             "improvements": [
                 {
@@ -1311,23 +1331,33 @@
                         "error_common",
                         "css_coherence"
                     ]
+                },
+                {
+                    "date": "2026-06-11",
+                    "description": "4-step visual pattern (mira→fíjate→ahora ves→prueba) con 4 SVGs + step-dots + showStep(), 4 ejercicios variados (quiz, V/F visual con SVGs comparativos, completar huecos con checkFillIn, ordenar pasos con checkOrden), CSS: .feedback.correct/.incorrect añadidos, broken box-error class fixed, broken onclicks fixados, funciones JS: showStep(), checkFillIn(), checkOrden()",
+                    "dimensions_improved": [
+                        "text_explanation",
+                        "svg_interactive",
+                        "exercises",
+                        "css_coherence"
+                    ]
                 }
             ],
             "scores": {
-                "svg_interactive": 7,
-                "exercises": 7,
-                "text_explanation": 7,
+                "svg_interactive": 9,
+                "exercises": 9,
+                "text_explanation": 9,
                 "real_world": 7,
                 "error_common": 7,
-                "css_coherence": 7
+                "css_coherence": 10
             },
-            "last_improved": "2026-06-10",
-            "improvement_count": 1
+            "last_improved": "2026-06-11",
+            "improvement_count": 2
         },
         "b05-06-ejercicios-cortes.html": {
             "status": "improved_1",
             "bloque": "b05",
-            "title": "\ud83d\udcdd Ejercicios: cortes y secciones",
+            "title": "📝 Ejercicios: cortes y secciones",
             "priority": 3,
             "improvements": [
                 {
@@ -1356,7 +1386,7 @@
         "b06-02-metodos-acotacion.html": {
             "status": "improved_1",
             "bloque": "b06",
-            "title": "\ud83d\udcd0 M\u00e9todos de acotaci\u00f3n",
+            "title": "📐 Métodos de acotación",
             "priority": 3,
             "improvements": [
                 {
@@ -1385,7 +1415,7 @@
         "b06-03-acotacion-coordenadas.html": {
             "status": "improved_1",
             "bloque": "b06",
-            "title": "\ud83d\udcd0 Acotaci\u00f3n por coordenadas",
+            "title": "📐 Acotación por coordenadas",
             "priority": 3,
             "improvements": [
                 {
@@ -1414,7 +1444,7 @@
         "b06-04-reglas-acotacion.html": {
             "status": "improved_1",
             "bloque": "b06",
-            "title": "\ud83d\udcd0 Reglas de acotaci\u00f3n ISO 129",
+            "title": "📐 Reglas de acotación ISO 129",
             "priority": 3,
             "improvements": [
                 {
@@ -1443,7 +1473,7 @@
         "b06-05-acotacion-piezas-complejas.html": {
             "status": "improved_1",
             "bloque": "b06",
-            "title": "\ud83d\udcd0 Acotaci\u00f3n en piezas complejas",
+            "title": "📐 Acotación en piezas complejas",
             "priority": 3,
             "improvements": [
                 {
@@ -1472,7 +1502,7 @@
         "b07-02-interseccion-plano-plano.html": {
             "status": "improved_1",
             "bloque": "b07",
-            "title": "\ud83d\udd00 Intersecci\u00f3n plano-plano",
+            "title": "🔀 Intersección plano-plano",
             "priority": 3,
             "improvements": [
                 {
@@ -1501,7 +1531,7 @@
         "b07-03-interseccion-recta-recta.html": {
             "status": "improved_1",
             "bloque": "b07",
-            "title": "\ud83d\udd00 Intersecci\u00f3n recta-recta",
+            "title": "🔀 Intersección recta-recta",
             "priority": 3,
             "improvements": [
                 {
@@ -1530,7 +1560,7 @@
         "b07-04-verdadera-magnitud.html": {
             "status": "improved_1",
             "bloque": "b07",
-            "title": "\u2197\ufe0f Verdadera magnitud",
+            "title": "↗️ Verdadera magnitud",
             "priority": 3,
             "improvements": [
                 {
@@ -1559,7 +1589,7 @@
         "b08-02-abatimiento-ph.html": {
             "status": "improved_1",
             "bloque": "b08",
-            "title": "\ud83d\udd04 Abatimiento sobre PH",
+            "title": "🔄 Abatimiento sobre PH",
             "priority": 4,
             "improvements": [
                 {
@@ -1588,7 +1618,7 @@
         "b08-03-giros.html": {
             "status": "improved_1",
             "bloque": "b08",
-            "title": "\ud83d\udd04 Giros en sistema di\u00e9drico",
+            "title": "🔄 Giros en sistema diédrico",
             "priority": 4,
             "improvements": [
                 {
@@ -1617,7 +1647,7 @@
         "b09-02-lista-piezas.html": {
             "status": "improved_1",
             "bloque": "b09",
-            "title": "\ud83d\udccb Lista de piezas",
+            "title": "📋 Lista de piezas",
             "priority": 4,
             "improvements": [
                 {
@@ -1646,7 +1676,7 @@
         "b09-03-despiece.html": {
             "status": "improved_1",
             "bloque": "b09",
-            "title": "\ud83d\udd27 Planos de despiece",
+            "title": "🔧 Planos de despiece",
             "priority": 4,
             "improvements": [
                 {
@@ -1679,13 +1709,13 @@
         "total_themes_audited": 3,
         "audit_details": {
             "audited_files": [
-                "b03-02-isometrica-cubos.html",
-                "b04-05-paralelismo-perpendicularidad.html",
-                "b06-02-metodos-acotacion.html"
+                "b08-02-abatimiento-ph.html",
+                "b01-02-tipos-linea.html",
+                "b06-04-reglas-acotacion.html"
             ],
             "issues_found": [],
             "issues_fixed": [],
-            "summary": "3 archivos auditados aleatorios \u2014 100% CSS coherence"
+            "summary": "3 archivos auditados aleatorios — 100% CSS coherence"
         }
     }
 }
