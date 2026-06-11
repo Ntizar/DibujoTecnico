@@ -55,18 +55,23 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .comparison-side:hover{border-color:var(--azul);box-shadow:0 4px 12px rgba(37,99,235,.1)}
 .real-world-badge{display:inline-block;background:linear-gradient(135deg,var(--naranja),#ea580c);color:#fff;padding:.3rem .8rem;border-radius:20px;font-size:.8rem;font-weight:700;margin-bottom:.8rem}
 .step-indicator{display:flex;gap:.5rem;justify-content:center;margin:1rem 0}
-.step-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:#fff;transition:all .3s;cursor:pointer}
+.step-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:#fff;transition:all .3s;cursor:pointer;background:#94a3b8}
 .step-dot:hover{transform:scale(1.2)}
-.step-dot.active{box-shadow:0 0 0 4px rgba(37,99,235,.3)}
+.step-dot.active{box-shadow:0 0 0 4px rgba(37,99,235,.3);background:var(--azul)}
 .stack-item{background:#f8fafc;border:2px solid #e2e8f0;border-radius:10px;padding:1rem;margin:.5rem 0;transition:all .3s;cursor:pointer}
 .stack-item:hover{border-color:var(--azul);transform:translateX(4px)}
 .stack-item.active{border-color:var(--azul);background:var(--azul-claro)}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
 .feedback{margin-top:.5rem;font-weight:600;min-height:1.5rem}
-.feedback.correct{color:#065f46}
-.feedback.incorrect{color:#991b1b}
+.feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
+.feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
 input[type="text"]{padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px}
 input[type="text"]:focus{outline:none;border-color:var(--azul)}
+.giro-layer{transition:opacity .4s ease}
+.giro-layer.hidden{opacity:.15;pointer-events:none}
+.giro-layer.highlight{stroke-width:3;stroke:var(--naranja)}
+.clickable{cursor:pointer}
+.clickable:hover{opacity:.8}
 </style>
 </head>
 <body>
@@ -121,66 +126,136 @@ Dado un punto A(a,a') y un eje vertical e(e,e') que pasa por O(o,o'):<br>
 </section>
 
 <section class="chapter">
-<h2 class="chapter-title">2️⃣ Giro de una recta</h2>
-<div class="box box-teoria">
-<strong>📖 Teoría</strong>
-<strong>🔹 Giro de recta alrededor de eje vertical:</strong><br>
-• Se elige un eje vertical e que pase por un punto conveniente<br>
-• Se gira cada punto de la recta el mismo ángulo<br>
-• En la práctica, basta con girar dos puntos de la recta<br>
-• La nueva recta r₁ se obtiene uniendo los puntos girados<br><br>
-<strong>🔹 Para obtener VM de una recta oblicua:</strong><br>
-• Se gira la recta hasta dejarla paralela al PV (frontal)<br>
-• En esa posición, la proyección vertical r₁' muestra la VM<br>
-• El ángulo de giro necesario es el que forma r con la LT en proyección horizontal<br><br>
-<strong>🔹 Para obtener VM de una recta oblicua (eje horizontal):</strong><br>
-• Se gira la recta hasta dejarla paralela al PH (horizontal)<br>
-• En esa posición, la proyección horizontal r₁ muestra la VM
+<h2 class="chapter-title">2️⃣ Paso a paso: Giro de una recta</h2>
+<div class="interactive">
+<h3>🎬 Ejemplo visual: Cómo girar una recta para ver su VM</h3>
+
+<div class="step-indicator">
+<div class="step-dot active" id="sd1" onclick="showStep(1)">1</div>
+<div class="step-dot" id="sd2" onclick="showStep(2)">2</div>
+<div class="step-dot" id="sd3" onclick="showStep(3)">3</div>
+<div class="step-dot" id="sd4" onclick="showStep(4)">4</div>
 </div>
 
+<div id="step-content">
+<div class="box box-teoria" id="step1">
+<strong>📍 Paso 1 — Mira: La recta original</strong>
+Esta es una recta oblicua r(A,B). Ni su proyección horizontal ni su vertical muestran la verdadera magnitud.
 <div class="svg-container">
-<svg viewBox="0 0 600 350" xmlns="http://www.w3.org/2000/svg">
-<!-- Fondo -->
-<rect x="0" y="0" width="600" height="350" fill="#f8fafc" rx="8"/>
-<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Giro de una recta alrededor de un eje vertical</text>
-<!-- LT -->
-<line x1="40" y1="180" x2="560" y2="180" stroke="#333" stroke-width="2"/>
-<text x="570" y="184" font-size="11" fill="#333">LT</text>
-<!-- Eje vertical e (punto en PH, línea en PV) -->
-<circle cx="200" cy="180" r="3" fill="#a855f7"/>
-<text x="195" y="170" font-size="11" fill="#a855f7">e</text>
-<line x1="200" y1="180" x2="200" y2="40" stroke="#a855f7" stroke-width="2" stroke-dasharray="4,3"/>
-<text x="205" y="55" font-size="11" fill="#a855f7">e'</text>
-<!-- Recta original r (oblicua) -->
-<line x1="80" y1="220" x2="350" y2="120" stroke="#2563eb" stroke-width="2"/>
-<text x="360" y="125" font-size="11" fill="#2563eb">r'</text>
-<line x1="80" y1="140" x2="350" y2="240" stroke="#f97316" stroke-width="2"/>
-<text x="360" y="245" font-size="11" fill="#f97316">r</text>
-<!-- Arco de giro (proyección horizontal) -->
-<path d="M 350 240 A 150 150 0 0 1 500 180" fill="none" stroke="#10b981" stroke-width="1.5" stroke-dasharray="4,3"/>
-<!-- Recta girada r₁ (paralela a LT → VM en PV) -->
-<line x1="80" y1="140" x2="500" y2="180" stroke="#10b981" stroke-width="2.5"/>
-<text x="510" y="184" font-size="11" fill="#10b981">r₁</text>
-<line x1="80" y1="220" x2="500" y2="180" stroke="#10b981" stroke-width="2.5"/>
-<text x="510" y="175" font-size="11" fill="#10b981">r₁' (VM)</text>
-<!-- Ángulo de giro -->
-<path d="M 340 235 A 10 10 0 0 1 345 225" fill="none" stroke="#ef4444" stroke-width="1.5"/>
-<text x="355" y="230" font-size="10" fill="#ef4444">θ</text>
-<!-- Leyenda -->
-<rect x="20" y="310" width="560" height="30" fill="#ecfdf5" rx="6"/>
-<text x="300" y="330" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">Al girar r hasta hacerla paralela a LT, r₁' muestra la VM de la recta</text>
+<svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="400" height="200" fill="#f8fafc" rx="8"/>
+<line x1="30" y1="120" x2="370" y2="120" stroke="#333" stroke-width="2"/>
+<text x="378" y="124" font-size="11" fill="#333">LT</text>
+<text x="200" y="20" text-anchor="middle" font-size="13" fill="#64748b" font-weight="600">Recta oblicua r(A,B)</text>
+<!-- Proyección horizontal -->
+<line x1="60" y1="70" x2="280" y2="160" stroke="#2563eb" stroke-width="2.5"/>
+<text x="285" y="165" font-size="11" fill="#2563eb">r</text>
+<!-- Proyección vertical -->
+<line x1="60" y1="160" x2="280" y2="50" stroke="#f97316" stroke-width="2.5"/>
+<text x="285" y="48" font-size="11" fill="#f97316">r'</text>
+<!-- Puntos A y B -->
+<circle cx="60" cy="70" r="4" fill="#2563eb"/>
+<text x="45" y="65" font-size="11" fill="#2563eb" font-weight="700">A</text>
+<circle cx="280" cy="160" r="4" fill="#2563eb"/>
+<text x="285" y="175" font-size="11" fill="#2563eb" font-weight="700">B</text>
+<circle cx="60" cy="160" r="4" fill="#f97316"/>
+<text x="45" y="175" font-size="11" fill="#f97316" font-weight="700">A'</text>
+<circle cx="280" cy="50" r="4" fill="#f97316"/>
+<text x="285" y="45" font-size="11" fill="#f97316" font-weight="700">B'</text>
 </svg>
 </div>
+<p style="margin-top:.5rem">La recta está inclinada respecto a ambos planos → <strong>no se ve en VM</strong> en ninguna proyección.</p>
+</div>
 
-<div class="box box-ejemplo">
-<strong>🔍 Ejemplo: Giro de recta paso a paso</strong>
-Recta oblicua r(A,B) con A(20,30,10) y B(50,10,40):<br>
-1. Elegimos eje vertical e que pase por A (no movemos A)<br>
-2. Medimos la distancia en PH desde e hasta B: d = √((50-20)² + (10-30)²) = √(900+400) = √1300 ≈ 36.06<br>
-3. Giramos B en PH hasta que AB sea paralela a LT (horizontal en PH)<br>
-4. La nueva proyección horizontal b₁ está a la misma distancia del eje<br>
-5. En PV, b₁' se desplaza horizontalmente manteniendo cota z=40<br>
-6. Unimos a' con b₁' → r₁' muestra la VM de la recta
+<div class="box box-teoria" id="step2" style="display:none">
+<strong>📍 Paso 2 — Fíjate: El eje de giro</strong>
+Elegimos un eje vertical e que pase por A. Así A no se mueve y simplificamos el trabajo.
+<div class="svg-container">
+<svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="400" height="200" fill="#f8fafc" rx="8"/>
+<line x1="30" y1="120" x2="370" y2="120" stroke="#333" stroke-width="2"/>
+<text x="378" y="124" font-size="11" fill="#333">LT</text>
+<text x="200" y="20" text-anchor="middle" font-size="13" fill="#64748b" font-weight="600">Eje vertical e por A</text>
+<!-- Eje vertical -->
+<circle cx="60" cy="120" r="3" fill="#a855f7"/>
+<text x="48" y="110" font-size="11" fill="#a855f7" font-weight="700">e</text>
+<line x1="60" y1="120" x2="60" y2="30" stroke="#a855f7" stroke-width="2" stroke-dasharray="4,3"/>
+<text x="65" y="38" font-size="11" fill="#a855f7" font-weight="700">e'</text>
+<!-- Recta original -->
+<line x1="60" y1="70" x2="280" y2="160" stroke="#2563eb" stroke-width="2.5"/>
+<text x="285" y="165" font-size="11" fill="#2563eb">r</text>
+<line x1="60" y1="160" x2="280" y2="50" stroke="#f97316" stroke-width="2.5"/>
+<text x="285" y="48" font-size="11" fill="#f97316">r'</text>
+<!-- Radio de giro -->
+<line x1="60" y1="120" x2="280" y2="160" stroke="#10b981" stroke-width="1.5" stroke-dasharray="4,3"/>
+<text x="180" y="148" font-size="10" fill="#10b981">radio = distancia e→B en PH</text>
+</svg>
+</div>
+<p style="margin-top:.5rem">El eje pasa por A → A se queda quieto. Solo giramos B.</p>
+</div>
+
+<div class="box box-teoria" id="step3" style="display:none">
+<strong>📍 Paso 3 — Ahora ves: El arco de giro</strong>
+B gira en PH describiendo un arco de circunferencia. El radio es la distancia e→B medida en PH.
+<div class="svg-container">
+<svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="400" height="200" fill="#f8fafc" rx="8"/>
+<line x1="30" y1="120" x2="370" y2="120" stroke="#333" stroke-width="2"/>
+<text x="378" y="124" font-size="11" fill="#333">LT</text>
+<text x="200" y="20" text-anchor="middle" font-size="13" fill="#64748b" font-weight="600">Arco de giro de B</text>
+<!-- Eje -->
+<circle cx="60" cy="120" r="3" fill="#a855f7"/>
+<text x="48" y="110" font-size="11" fill="#a855f7">e</text>
+<!-- Arco de giro -->
+<path d="M 280 160 A 220 44 0 0 0 280 120" fill="none" stroke="#10b981" stroke-width="2.5" stroke-dasharray="6,4"/>
+<text x="200" y="100" font-size="11" fill="#10b981" font-weight="600">Arco de giro</text>
+<!-- Recta original -->
+<line x1="60" y1="70" x2="280" y2="160" stroke="#2563eb" stroke-width="2" opacity=".5"/>
+<!-- Recta girada (paralela a LT) -->
+<line x1="60" y1="70" x2="280" y2="120" stroke="#10b981" stroke-width="2.5"/>
+<text x="288" y="124" font-size="11" fill="#10b981" font-weight="700">r₁ (paralela a LT)</text>
+<!-- Punto B original y girado -->
+<circle cx="280" cy="160" r="4" fill="#2563eb" opacity=".5"/>
+<text x="285" y="175" font-size="10" fill="#2563eb" opacity=".5">B</text>
+<circle cx="280" cy="120" r="5" fill="#10b981"/>
+<text x="288" y="115" font-size="11" fill="#10b981" font-weight="700">B₁</text>
+</svg>
+</div>
+<p style="margin-top:.5rem">B₁ está a la misma distancia del eje que B. La recta r₁ es paralela a LT.</p>
+</div>
+
+<div class="box box-teoria" id="step4" style="display:none">
+<strong>📍 Paso 4 — ¡Tú prueba! Click para ver la VM</strong>
+Pulsa el botón para ver cómo la recta girada muestra la verdadera magnitud en PV.
+<div class="svg-container">
+<svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="400" height="200" fill="#f8fafc" rx="8"/>
+<line x1="30" y1="120" x2="370" y2="120" stroke="#333" stroke-width="2"/>
+<text x="378" y="124" font-size="11" fill="#333">LT</text>
+<text x="200" y="20" text-anchor="middle" font-size="13" fill="#64748b" font-weight="600">Resultado: VM visible en PV</text>
+<!-- Eje -->
+<circle cx="60" cy="120" r="3" fill="#a855f7"/>
+<text x="48" y="110" font-size="11" fill="#a855f7">e</text>
+<!-- Recta original (apagada) -->
+<g class="giro-layer" id="original-layer">
+<line x1="60" y1="70" x2="280" y2="160" stroke="#2563eb" stroke-width="2" opacity=".3"/>
+<line x1="60" y1="160" x2="280" y2="50" stroke="#f97316" stroke-width="2" opacity=".3"/>
+</g>
+<!-- Recta girada (VM) -->
+<g class="giro-layer" id="girada-layer">
+<line x1="60" y1="70" x2="280" y2="120" stroke="#10b981" stroke-width="3"/>
+<text x="288" y="115" font-size="12" fill="#10b981" font-weight="700">r₁' = VM ✓</text>
+<line x1="60" y1="70" x2="280" y2="120" stroke="#10b981" stroke-width="1.5" opacity=".3"/>
+</g>
+<!-- Cota VM -->
+<line x1="60" y1="70" x2="280" y2="120" stroke="#f97316" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="150" y="90" font-size="11" fill="#f97316" font-weight="700">VM = 235.7 mm</text>
+</svg>
+</div>
+<button onclick="toggleGiro()" style="margin-top:.8rem;background:var(--verde);color:#fff;border:none;padding:.6rem 1.5rem;border-radius:8px;cursor:pointer;font-size:1rem;font-weight:600">🔄 Mostrar/Ocultar recta original</button>
+<p style="margin-top:.5rem">La recta original (azul) y la girada (verde) se comparan. Pulsa el botón para alternar.</p>
+</div>
+</div>
 </div>
 </section>
 
@@ -235,18 +310,66 @@ Plano oblicuo α(α₁,α₂):<br>
 Para elegir el eje de giro, busca un punto que pertenezca al elemento que quieres girar. Así ese punto no se mueve y reduces el trabajo. Por ejemplo, para girar una recta, elige el eje pasando por uno de sus extremos.
 </div>
 
-<div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ SIN GIRO</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><ellipse cx="100" cy="70" rx="60" ry="20" fill="none" stroke="#ef4444" stroke-width="2"/><text x="100" y="75" text-anchor="middle" font-size="9" fill="#ef4444">Elipse = deformada</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ CON GIRO</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><circle cx="100" cy="70" r="30" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="100" y="75" text-anchor="middle" font-size="9" fill="#2563eb">Círculo = forma real ✓</text></svg></div></div>
+<div class="comparison" style="margin:1.5rem 0">
+<div class="comparison-side">
+<strong style="color:var(--rojo)">❌ GIRO INCORRECTO</strong>
+<div class="svg-container" style="margin:.5rem 0;padding:1rem">
+<svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+<line x1="20" y1="60" x2="180" y2="60" stroke="#333" stroke-width="1.5"/>
+<circle cx="50" cy="60" r="3" fill="#a855f7"/>
+<text x="35" y="55" font-size="9" fill="#a855f7">e</text>
+<!-- Punto A original -->
+<circle cx="50" cy="30" r="4" fill="#2563eb"/>
+<text x="55" y="28" font-size="9" fill="#2563eb">A</text>
+<!-- Giro ERRÓNEO: cota cambiada -->
+<circle cx="150" cy="20" r="4" fill="#ef4444"/>
+<text x="155" y="18" font-size="9" fill="#ef4444">A₁ ✗</text>
+<!-- Arco incorrecto -->
+<path d="M 50 30 A 100 10 0 0 1 150 20" fill="none" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="3,3"/>
+<text x="90" y="15" font-size="8" fill="#ef4444">z cambió ✗</text>
+</svg>
+</div>
+<p style="font-size:.85rem">La cota z cambió → giro incorrecto</p>
+</div>
+<div class="comparison-side">
+<strong style="color:var(--verde)">✅ GIRO CORRECTO</strong>
+<div class="svg-container" style="margin:.5rem 0;padding:1rem">
+<svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+<line x1="20" y1="60" x2="180" y2="60" stroke="#333" stroke-width="1.5"/>
+<circle cx="50" cy="60" r="3" fill="#a855f7"/>
+<text x="35" y="55" font-size="9" fill="#a855f7">e</text>
+<!-- Punto A original -->
+<circle cx="50" cy="30" r="4" fill="#2563eb"/>
+<text x="55" y="28" font-size="9" fill="#2563eb">A</text>
+<!-- Giro CORRECTO: misma cota -->
+<circle cx="150" cy="30" r="4" fill="#10b981"/>
+<text x="155" y="28" font-size="9" fill="#10b981">A₁ ✓</text>
+<!-- Arco correcto -->
+<path d="M 50 30 A 100 30 0 0 1 150 30" fill="none" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3,3"/>
+<text x="90" y="25" font-size="8" fill="#10b981">z = misma ✓</text>
+</svg>
+</div>
+<p style="font-size:.85rem">La cota z se mantiene → giro correcto</p>
+</div>
+</div>
 
 <div class="box box-error">
 <strong>⚠️ Error clásico</strong>
 Olvidar que al girar un punto alrededor de un eje vertical, la cota z NO cambia. La proyección vertical se desplaza horizontalmente, nunca verticalmente. Si mueves la cota, el giro es incorrecto.
 </div>
 
-<div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ SIN GIRO</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><ellipse cx="100" cy="70" rx="60" ry="20" fill="none" stroke="#ef4444" stroke-width="2"/><text x="100" y="75" text-anchor="middle" font-size="9" fill="#ef4444">Elipse = deformada</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ CON GIRO</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><circle cx="100" cy="70" r="30" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="100" y="75" text-anchor="middle" font-size="9" fill="#2563eb">Círculo = forma real ✓</text></svg></div></div>
-
 <div class="box box-error">
-<strong>⚠️ Error clásico 2</strong>
+<strong>⚠️ Error común 2: Radio de giro</strong>
 Confundir el radio de giro. El radio es la distancia en VERDADERA MAGNITUD desde el punto al eje, medida en el plano de proyección perpendicular al eje. Para eje vertical, se mide en PH. Para eje horizontal, se mide en PV.
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">🏭 Caso real industrial</h2>
+<div class="box box-success">
+<span class="real-world-badge">🏭 CASO REAL</span>
+<strong>Rebaje en eje de transmisión — Fábrica de motores (SEAT Martorell)</strong>
+Un rebaje cilíndrico en un eje de transmisión se encuentra en una posición oblicua que impide acotar su diámetro y longitud directamente. El operario gira el eje con un eje de giro vertical que pasa por el extremo del rebaje. Al girar el eje hasta que el rebaje quede paralelo al PV, el rebaje se ve en verdadera forma y se acota fácilmente: diámetro Ø24mm, longitud 35mm. La posición original se indica con línea discontinua gris. Sin el giro, el operario tendría que calcular trigonométricamente las dimensiones reales.
 </div>
 </section>
 
@@ -255,7 +378,7 @@ Confundir el radio de giro. El radio es la distancia en VERDADERA MAGNITUD desde
 <div class="exercises">
 
 <div class="exercise">
-<p>📐 Ejercicio 1: ¿Alrededor de qué tipo de eje se gira en un giro en sistema diédrico?</p>
+<p>📐 Ejercicio 1 (Quiz): ¿Alrededor de qué tipo de eje se gira en un giro en sistema diédrico?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Eje oblicuo</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Eje perpendicular a un plano de proyección</button>
@@ -266,18 +389,59 @@ Confundir el radio de giro. El radio es la distancia en VERDADERA MAGNITUD desde
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 2: Si giramos un punto alrededor de un eje vertical, ¿qué coordenada NO cambia?</p>
+<p>📐 Ejercicio 2 (V/F visual): ¿Cuál de estas representaciones de un giro es correcta?</p>
+<div class="comparison" style="margin:.5rem 0">
+<div class="comparison-side" style="padding:.8rem">
+<svg viewBox="0 0 120 80" width="100" xmlns="http://www.w3.org/2000/svg">
+<line x1="10" y1="40" x2="110" y2="40" stroke="#333" stroke-width="1.5"/>
+<circle cx="30" cy="40" r="2" fill="#a855f7"/>
+<circle cx="30" cy="20" r="3" fill="#2563eb"/>
+<circle cx="90" cy="20" r="3" fill="#10b981"/>
+<path d="M 30 20 A 60 20 0 0 1 90 20" fill="none" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3,3"/>
+<text x="55" y="15" font-size="7" fill="#10b981">z = cte</text>
+</svg>
+<p style="font-size:.8rem"><strong>Correcto:</strong> Misma cota z</p>
+</div>
+<div class="comparison-side" style="padding:.8rem">
+<svg viewBox="0 0 120 80" width="100" xmlns="http://www.w3.org/2000/svg">
+<line x1="10" y1="40" x2="110" y2="40" stroke="#333" stroke-width="1.5"/>
+<circle cx="30" cy="40" r="2" fill="#a855f7"/>
+<circle cx="30" cy="20" r="3" fill="#2563eb"/>
+<circle cx="90" cy="10" r="3" fill="#ef4444"/>
+<path d="M 30 20 A 60 10 0 0 1 90 10" fill="none" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="3,3"/>
+<text x="55" y="8" font-size="7" fill="#ef4444">z cambió ✗</text>
+</svg>
+<p style="font-size:.8rem"><strong>Incorrecto:</strong> Cota z cambiada</p>
+</div>
+</div>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false)">La x (alejamiento)</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">La y (distancia al PV)</button>
-<button class="quiz-btn" onclick="checkAnswer(this, true)">La z (cota)</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Todas cambian</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">La izquierda (correcto)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">La derecha (incorrecto)</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 3: ¿Cuántos puntos de una recta hay que girar como mínimo para obtener la recta girada?</p>
+<p>📐 Ejercicio 3 (Completar): Si giramos un punto alrededor de un eje vertical, la proyección horizontal gira en __________ y la proyección vertical se desplaza __________.</p>
+<input type="text" id="ex3a" placeholder="1ª respuesta" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:150px">
+<input type="text" id="ex3b" placeholder="2ª respuesta" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
+<button onclick="checkFillIn(['circunferencia','horizontalmente','horizontalmente','circunferencia'])">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 4 (Ordenar): ¿En qué orden se gira una recta para obtener su VM?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkOrden(this, '2-1-4-3')">②→①→④→③</button>
+<button class="quiz-btn" onclick="checkOrden(this, '1-2-3-4')">①→②→③→④</button>
+<button class="quiz-btn" onclick="checkOrden(this, '1-2-4-3')">①→②→④→③</button>
+<button class="quiz-btn" onclick="checkOrden(this, '2-4-1-3')">②→④→①→③</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 5 (Quiz): ¿Cuántos puntos de una recta hay que girar como mínimo para obtener la recta girada?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">0</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">2</button>
@@ -287,26 +451,8 @@ Confundir el radio de giro. El radio es la distancia en VERDADERA MAGNITUD desde
 <p class="feedback"></p>
 </div>
 
-<div class="exercise">
-<p>📐 Ejercicio 4: Verdadero o Falso — El giro conserva las distancias y los ángulos</p>
-<div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Verdadero</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Falso</button>
-</div>
-<p class="feedback"></p>
-</div>
-
-<div class="exercise">
-<p>📐 Ejercicio 5: ¿Cómo se llama la distancia desde un punto hasta el eje de giro?</p>
-<input type="text" id="ex5" placeholder="Escribe tu respuesta...">
-<button onclick="checkExercise('ex5', 'radio de giro', this)">Comprobar</button>
-<p class="feedback"></p>
-</div>
-
 </div>
 </section>
-
-<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: rebaje en eje rotado</strong>Un rebaje en un eje se encuentra en una posición incómoda para acotar. Se gira el eje para que el rebaje quede paralelo al PV. En la posición girada, el rebaje se ve en verdadera forma y se acota fácilmente. Luego se indica la posición original con una línea discontinua.</div>
 
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
@@ -368,6 +514,81 @@ function checkExercise(id, correct, btn) {
     feedback.textContent = '❌ Respuesta correcta: ' + correct;
     feedback.className = 'feedback incorrect';
     input.style.borderColor = 'var(--rojo)';
+  }
+}
+
+function checkFillIn(correctAnswers) {
+  var inputs = document.querySelectorAll('.exercise .feedback');
+  var currentExercise = inputs.length > 0 ? inputs[inputs.length - 1].parentElement : null;
+  if (!currentExercise) return;
+  var inputEls = currentExercise.querySelectorAll('input[type="text"]');
+  var allCorrect = true;
+  for (var i = 0; i < inputEls.length; i++) {
+    var val = inputEls[i].value.trim().toLowerCase();
+    if (correctAnswers.indexOf(val) === -1) {
+      allCorrect = false;
+      inputEls[i].style.borderColor = 'var(--rojo)';
+    } else {
+      inputEls[i].style.borderColor = 'var(--verde)';
+    }
+  }
+  var feedback = currentExercise.querySelector('.feedback');
+  if (feedback) {
+    if (allCorrect) {
+      feedback.textContent = '✅ ¡Correcto! ¡Perfecto!';
+      feedback.className = 'feedback correct';
+    } else {
+      feedback.textContent = '❌ Revisa tus respuestas. Pista: las palabras clave están en la teoría.';
+      feedback.className = 'feedback incorrect';
+    }
+  }
+}
+
+function checkOrden(btn, answer) {
+  var parent = btn.parentElement;
+  var feedback = parent.nextElementSibling;
+  var correctAnswer = '1-2-4-3';
+  parent.querySelectorAll('button').forEach(function(b) {
+    b.disabled = true; b.classList.remove('correct','wrong');
+  });
+  if(answer === correctAnswer) {
+    btn.classList.add('correct');
+    if(feedback) {
+      feedback.textContent = '✅ ¡Correcto! Orden: 1) Elegir eje por un punto → 2) Medir radio en PH → 3) Girar hasta paralela a LT → 4) Leer VM en PV';
+      feedback.className = 'feedback correct';
+    }
+  } else {
+    btn.classList.add('wrong');
+    if(feedback) {
+      feedback.textContent = '❌ Incorrecto. El orden correcto es: 1-2-4-3';
+      feedback.className = 'feedback incorrect';
+    }
+  }
+}
+
+function showStep(n) {
+  for(var i = 1; i <= 4; i++) {
+    var step = document.getElementById('step' + i);
+    var dot = document.getElementById('sd' + i);
+    if(step) step.style.display = (i === n) ? 'block' : 'none';
+    if(dot) {
+      if(i === n) {
+        dot.classList.add('active');
+        dot.style.background = 'var(--azul)';
+      } else {
+        dot.classList.remove('active');
+        dot.style.background = '#94a3b8';
+      }
+    }
+  }
+}
+
+function toggleGiro() {
+  var orig = document.getElementById('original-layer');
+  var gira = document.getElementById('girada-layer');
+  if(orig && gira) {
+    orig.classList.toggle('hidden');
+    gira.classList.toggle('hidden');
   }
 }
 
