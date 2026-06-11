@@ -3,8 +3,8 @@
   "autor": "David Antizar",
   "total_temas": 49,
   "last_improved": "2026-06-11",
-  "last_run": "2026-06-11",
-  "total_runs": 7,
+  "last_run": "2026-06-11 22:45:53 UTC",
+  "total_runs": 8,
   "topics": {
     "b01-01-formatos-papel.html": {
       "status": "improved_1",
@@ -1751,18 +1751,13 @@
     }
   },
   "audit": {
-    "last_css_audit": "2026-06-11",
-    "css_coherence_score": 100,
-    "total_themes_audited": 3,
-    "audit_details": {
-      "audited_files": [
-        "b05-05-hachuras.html",
-        "index.html",
-        "b02-05-abatimiento-ph.html"
-      ],
-      "issues_found": [],
-      "issues_fixed": [],
-      "summary": "3 archivos auditados aleatorios — 3/3 con 100% CSS coherence"
-    }
+    "last_run": "2026-06-11",
+    "random_sample": 3,
+    "all_passed": true,
+    "sampled_files": [
+      "b01-05-cuadro-rotulacion.html",
+      "b06-02-metodos-acotacion.html",
+      "b03-03-isometrica-circulos.html"
+    ]
   }
 }
