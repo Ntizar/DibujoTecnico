@@ -50,7 +50,11 @@
     50|.nav a{color:var(--azul);text-decoration:none;font-weight:600;padding:.5rem 1rem;border-radius:6px}
     51|.nav a:hover{background:var(--azul-claro)}
     52|.nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
-    53|.footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+    53|.step-indicator{display:flex;gap:.5rem;justify-content:center;margin:1rem 0}
+.step-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:#fff;transition:all .3s;cursor:pointer}
+.step-dot:hover{transform:scale(1.2)}
+.step-dot.active{box-shadow:0 0 0 4px rgba(37,99,235,.3)}
+.footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
     54|</style>
     55|</head>
     56|<body>
@@ -149,60 +153,68 @@
    149|<section class="chapter">
    150|<h2 class="chapter-title">📝 Ejercicios</h2>
    151|<div class="exercises">
-   152|
-   153|<div class="exercise">
-   154|<p>📐 Ejercicio 1: ¿Cuántos tipos de cortes principales existen?</p>
-   155|<div class="quiz-options">
-   156|<button class="quiz-btn" onclick="checkAnswer(this, false)">2</button>
-   157|<button class="quiz-btn" onclick="checkAnswer(this, true)">4</button>
-   158|<button class="quiz-btn" onclick="checkAnswer(this, false">3</button>
-   159|<button class="quiz-btn" onclick="checkAnswer(this, false">5</button>
-   160|</div>
-   161|<p class="feedback"></p>
-   162|</div>
-   163|
-   164|<div class="exercise">
-   165|<p>📐 Ejercicio 2: ¿Qué tipo de corte muestra mitad cortada y mitad vista?</p>
-   166|<div class="quiz-options">
-   167|<button class="quiz-btn" onclick="checkAnswer(this, false)">Total</button>
-   168|<button class="quiz-btn" onclick="checkAnswer(this, true)">Semicorte</button>
-   169|<button class="quiz-btn" onclick="checkAnswer(this, false">Parcial</button>
-   170|<button class="quiz-btn" onclick="checkAnswer(this, false">Escalonado</button>
-   171|</div>
-   172|<p class="feedback"></p>
-   173|</div>
-   174|
-   175|<div class="exercise">
-   176|<p>📐 Ejercicio 3: ¿Qué línea separa el semicorte?</p>
-   177|<div class="quiz-options">
-   178|<button class="quiz-btn" onclick="checkAnswer(this, false)">Línea continua</button>
-   179|<button class="quiz-btn" onclick="checkAnswer(this, true)">Línea de centro</button>
-   180|<button class="quiz-btn" onclick="checkAnswer(this, false">Línea ondulada</button>
-   181|<button class="quiz-btn" onclick="checkAnswer(this, false">Línea de corte</button>
-   182|</div>
-   183|<p class="feedback"></p>
-   184|</div>
-   185|
-   186|<div class="exercise">
-   187|<p>📐 Ejercicio 4: ¿Cuándo se usa el corte escalonado?</p>
-   188|<div class="quiz-options">
-   189|<button class="quiz-btn" onclick="checkAnswer(this, false">Siempre</button>
-   190|<button class="quiz-btn" onclick="checkAnswer(this, true)">Cuando hay detalles en diferentes profundidades</button>
-   191|<button class="quiz-btn" onclick="checkAnswer(this, false">Solo en piezas simétricas</button>
-   192|<button class="quiz-btn" onclick="checkAnswer(this, false">Solo en piezas pequeñas</button>
-   193|</div>
-   194|<p class="feedback"></p>
-   195|</div>
-   196|
-   197|<div class="exercise">
-   198|<p>📐 Ejercicio 5: ¿Cómo se marca el límite del corte parcial?</p>
-   199|<input type="text" id="ex5" placeholder="Tipo de línea" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
-   200|<button onclick="checkExercise('ex5', 'ondulada', this)">Comprobar</button>
-   201|<p class="feedback"></p>
-   202|</div>
-   203|
-   204|</div>
-   205|</section>
+
+<div class="exercise">
+<p>📐 Ejercicio 1 (Quiz): ¿Qué tipo de corte atraviesa toda la pieza?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Parcial</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Total</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Escalonado</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Sección</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 2 (V/F visual): ¿Esta representación de semicorte es correcta?</p>
+<div class="comparison" style="margin:.5rem 0">
+<div class="comparison-side" style="padding:.6rem">
+<svg viewBox="0 0 100 60" width="90"><rect x="10" y="10" width="80" height="40" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/><line x1="50" y1="10" x2="50" y2="50" stroke="#10b981" stroke-width="1" stroke-dasharray="5,3"/><rect x="10" y="10" width="40" height="40" fill="#ecfdf5" stroke="none"/></svg>
+<p style="font-size:.75rem"><strong>Correcto:</strong> mitad cortada (izq), mitad vista (der)</p>
+</div>
+<div class="comparison-side" style="padding:.6rem">
+<svg viewBox="0 0 100 60" width="90"><rect x="10" y="10" width="80" height="40" fill="#fef2f2" stroke="#ef4444" stroke-width="1.5"/><line x1="50" y1="10" x2="50" y2="50" stroke="#94a3b8" stroke-width="1.5"/><rect x="10" y="10" width="40" height="40" fill="#fef2f2" stroke="none"/><rect x="50" y="10" width="40" height="40" fill="#fef2f2" stroke="none"/></svg>
+<p style="font-size:.75rem"><strong>Incorrecto:</strong> todo cortado = no es semicorte</p>
+</div>
+</div>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">La izquierda es correcta</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">La derecha es correcta</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 3 (Completar): El corte parcial se marca con una línea ___. El semicorte se separa con una línea de ___.</p>
+<input type="text" id="ex3a" placeholder="1ª respuesta" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
+<input type="text" id="ex3b" placeholder="2ª respuesta" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
+<button onclick="checkFillIn()" style="padding:.5rem 1.2rem;background:var(--azul);color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.95rem;margin:.3rem">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 4 (Ordenar): ¿En qué orden se representa un corte total?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkOrden(this, '2-1-3')">① Vista exterior → ② Plano de corte → ③ Resultado con rayado</button>
+<button class="quiz-btn" onclick="checkOrden(this, '1-3-2')">① Plano de corte → ② Vista exterior → ③ Resultado con rayado</button>
+<button class="quiz-btn" onclick="checkOrden(this, '3-2-1')">① Resultado con rayado → ② Plano de corte → ③ Vista exterior</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 5 (Quiz): ¿Qué tipo de corte se usa para piezas con agujeros desalineados?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Total</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Parcial</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Escalonado</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Sección</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+</div>
+</section>
    206|
    207|<div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ CORTE DEMASIADO</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/><text x="100" y="70" text-anchor="middle" font-size="9" fill="#ef4444">Corte total innecesario</text><text x="100" y="120" text-anchor="middle" font-size="9" fill="#ef4444">Se ve todo = redundante</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ CORTE JUSTO</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><rect x="40" y="30" width="60" height="70" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/><text x="100" y="70" text-anchor="middle" font-size="9" fill="#2563eb">Corte parcial ✓</text><text x="100" y="120" text-anchor="middle" font-size="9" fill="#10b981">Solo lo necesario</text></svg></div></div>
 
@@ -238,6 +250,43 @@
    234|</main>
    235|<footer class="footer">Hecho con ❤️ por David Antizar</footer>
    236|<script>
+// Fill-in exercise checker
+function checkFillIn() {
+  var a = document.getElementById('ex3a').value.trim().toLowerCase();
+  var b = document.getElementById('ex3b').value.trim().toLowerCase();
+  var feedback = document.getElementById('ex3a').parentElement.nextElementSibling;
+  var aOk = a.includes('ondulada') || a.includes('ondula');
+  var bOk = b.includes('centro');
+  if (aOk && bOk) {
+    feedback.textContent = '✅ ¡Perfecto! Corte parcial = línea ondulada, Semicorte = línea de centro';
+    feedback.className = 'feedback correct';
+  } else {
+    var parts = [];
+    if (!aOk) parts.push('1ª: ondulada');
+    if (!bOk) parts.push('2ª: centro');
+    feedback.textContent = '❌ Respuestas: ' + parts.join(', ');
+    feedback.className = 'feedback incorrect';
+  }
+}
+
+// Ordenar exercise checker
+function checkOrden(btn, answer) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) { b.disabled = true; b.classList.remove('correct','wrong'); });
+  if (answer === '2-1-3') {
+    btn.classList.add('correct');
+    var feedback = parent.nextElementSibling;
+    feedback.textContent = '✅ ¡Correcto! Primero la vista exterior, luego el plano de corte, y finalmente el resultado con rayado.';
+    feedback.className = 'feedback correct';
+  } else {
+    btn.classList.add('wrong');
+    var feedback = parent.nextElementSibling;
+    feedback.textContent = '❌ Orden correcto: ① Vista exterior → ② Plano de corte → ③ Resultado con rayado';
+    feedback.className = 'feedback incorrect';
+  }
+}
+
+
    237|function checkAnswer(btn, correct) {
    238|  var parent = btn.parentElement;
    239|  parent.querySelectorAll('button').forEach(function(b) {

@@ -61,6 +61,10 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .stack-item{background:#f8fafc;border:2px solid #e2e8f0;border-radius:10px;padding:1rem;margin:.5rem 0;transition:all .3s;cursor:pointer}
 .stack-item:hover{border-color:var(--azul);transform:translateX(4px)}
 .stack-item.active{border-color:var(--azul);background:var(--azul-claro)}
+.step-indicator{display:flex;gap:.5rem;justify-content:center;margin:1rem 0}
+.step-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:#fff;transition:all .3s;cursor:pointer}
+.step-dot:hover{transform:scale(1.2)}
+.step-dot.active{box-shadow:0 0 0 4px rgba(37,99,235,.3)}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
 </style>
 </head>
@@ -124,7 +128,7 @@ El corte escalonado permite ver todas las nervaduras en un solo dibujo, aunque e
 <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
 <!-- Fondo -->
 <rect x="0" y="0" width="600" height="300" fill="#f8fafc" rx="8"/>
-<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Corte escalonado — planos paralelos unidos por escalones</text>
+<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Corte escalonado — haz clic en los planos para resaltar</text>
 <!-- Pieza vista frontal -->
 <text x="150" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">VISTA FRONTAL</text>
 <rect x="50" y="70" width="200" height="120" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
@@ -134,19 +138,22 @@ El corte escalonado permite ver todas las nervaduras en un solo dibujo, aunque e
 <!-- Agujero inferior -->
 <circle cx="200" cy="150" r="15" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,2"/>
 <text x="200" y="155" text-anchor="middle" font-size="8" fill="#94a3b8">agujero 2</text>
-<!-- Línea de corte escalonado -->
-<line x1="60" y1="70" x2="60" y2="100" stroke="#ef4444" stroke-width="2.5"/>
-<line x1="60" y1="100" x2="100" y2="100" stroke="#ef4444" stroke-width="2.5"/>
-<line x1="100" y1="100" x2="100" y2="150" stroke="#ef4444" stroke-width="2.5"/>
-<line x1="100" y1="150" x2="200" y2="150" stroke="#ef4444" stroke-width="2.5"/>
-<line x1="200" y1="150" x2="200" y2="190" stroke="#ef4444" stroke-width="2.5"/>
-<line x1="200" y1="190" x2="240" y2="190" stroke="#ef4444" stroke-width="2.5"/>
+<!-- Línea de corte escalonado — clickeable -->
+<g id="zigzag-line" onclick="toggleZigzag()" style="cursor:pointer">
+<line x1="60" y1="70" x2="60" y2="100" stroke="#ef4444" stroke-width="2.5" class="zig-seg"/>
+<line x1="60" y1="100" x2="100" y2="100" stroke="#ef4444" stroke-width="2.5" class="zig-seg"/>
+<line x1="100" y1="100" x2="100" y2="150" stroke="#ef4444" stroke-width="2.5" class="zig-seg"/>
+<line x1="100" y1="150" x2="200" y2="150" stroke="#ef4444" stroke-width="2.5" class="zig-seg"/>
+<line x1="200" y1="150" x2="200" y2="190" stroke="#ef4444" stroke-width="2.5" class="zig-seg"/>
+<line x1="200" y1="190" x2="240" y2="190" stroke="#ef4444" stroke-width="2.5" class="zig-seg"/>
+</g>
 <!-- Flechas -->
 <polygon points="60,70 55,80 65,80" fill="#ef4444"/>
 <polygon points="240,190 230,185 230,195" fill="#ef4444"/>
 <text x="50" y="65" text-anchor="end" font-size="10" fill="#ef4444" font-weight="bold">A</text>
 <text x="250" y="205" text-anchor="start" font-size="10" fill="#ef4444" font-weight="bold">A</text>
 <!-- Vista en corte A-A -->
+<g id="corte-aa" onclick="toggleCorteAA()" style="cursor:pointer">
 <text x="450" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#10b981">CORTE A-A</text>
 <rect x="350" y="70" width="200" height="120" fill="#eff6ff" stroke="#10b981" stroke-width="2"/>
 <!-- Rayado uniforme -->
@@ -175,10 +182,11 @@ El corte escalonado permite ver todas las nervaduras en un solo dibujo, aunque e
 <!-- Agujero 2 en corte -->
 <rect x="480" y="135" width="30" height="30" fill="#fff7ed" stroke="#10b981" stroke-width="1.5"/>
 <text x="495" y="153" text-anchor="middle" font-size="8" fill="#10b981">agujero 2</text>
+</g>
 <!-- Leyenda -->
 <rect x="20" y="240" width="560" height="50" fill="#ecfdf5" rx="6"/>
 <text x="300" y="258" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">La línea de corte en zigzag une varios planos paralelos | Rayado uniforme en toda la sección</text>
-<text x="300" y="278" text-anchor="middle" font-size="10" fill="#64748b">Los cambios de dirección son siempre de 90° | Se identifican con letras mayúsculas (A-A)</text>
+<text x="300" y="278" text-anchor="middle" font-size="10" fill="#64748b">Haz clic en el zigzag o en el corte A-A para resaltar</text>
 </svg>
 </div>
 </section>
@@ -212,58 +220,155 @@ Resultado: los tres agujeros aparecen en la misma vista de corte.
 </div>
 </section>
 
+<div class="interactive">
+  <h3>🎬 Ejemplo visual: de la pieza al corte escalonado</h3>
+  <div class="step-indicator">
+    <div class="step-dot active" id="sd1" onclick="showStep(1)">1</div>
+    <div class="step-dot" id="sd2" onclick="showStep(2)">2</div>
+    <div class="step-dot" id="sd3" onclick="showStep(3)">3</div>
+    <div class="step-dot" id="sd4" onclick="showStep(4)">4</div>
+  </div>
+  <div id="step-content">
+    <div class="box box-teoria" id="step1">
+      <strong>📍 Paso 1 — Mira: una pieza con agujeros desalineados</strong>
+      Esta es una brida de fundición con 3 agujeros de paso a diferentes alturas. Un corte simple no podría capturarlos todos.
+      <div class="svg-container" style="margin:.8rem 0;padding:.8rem">
+        <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+          <rect x="30" y="10" width="140" height="80" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="4"/>
+          <circle cx="60" cy="30" r="8" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,2"/>
+          <circle cx="100" cy="55" r="8" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,2"/>
+          <circle cx="140" cy="75" r="8" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,2"/>
+          <text x="60" y="95" text-anchor="middle" font-size="7" fill="#94a3b8">agujero 1</text>
+          <text x="100" y="95" text-anchor="middle" font-size="7" fill="#94a3b8">agujero 2</text>
+          <text x="140" y="95" text-anchor="middle" font-size="7" fill="#94a3b8">agujero 3</text>
+        </svg>
+      </div>
+    </div>
+    <div class="box box-teoria" id="step2" style="display:none">
+      <strong>📍 Paso 2 — Fíjate: el zigzag conecta los 3 planos</strong>
+      La línea de corte roja baja, avanza, baja, avanza... formando una escalera. Cada tramo vertical pasa por un agujero.
+      <div class="svg-container" style="margin:.8rem 0;padding:.8rem">
+        <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+          <rect x="30" y="10" width="140" height="80" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="4"/>
+          <circle cx="60" cy="30" r="8" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+          <circle cx="100" cy="55" r="8" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+          <circle cx="140" cy="75" r="8" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+          <!-- Zigzag rojo -->
+          <polyline points="40,10 40,30 80,30 80,55 120,55 120,75 160,75 160,90" fill="none" stroke="#ef4444" stroke-width="2.5"/>
+          <text x="30" y="5" font-size="7" fill="#ef4444" font-weight="bold">A</text>
+        </svg>
+      </div>
+    </div>
+    <div class="box box-teoria" id="step3" style="display:none">
+      <strong>📍 Paso 3 — Ahora ves: los 3 agujeros en una sola vista</strong>
+      Al hacer el corte A-A, los 3 agujeros aparecen en la misma vista con rayado uniforme. ¡Sin necesidad de 3 cortes distintos!
+      <div class="svg-container" style="margin:.8rem 0;padding:.8rem">
+        <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="10" width="160" height="80" fill="#eff6ff" stroke="#10b981" stroke-width="2" rx="4"/>
+          <!-- Rayado -->
+          <line x1="25" y1="15" x2="35" y2="85" stroke="#f97316" stroke-width="0.5"/>
+          <line x1="35" y1="15" x2="45" y2="85" stroke="#f97316" stroke-width="0.5"/>
+          <line x1="45" y1="15" x2="55" y2="85" stroke="#f97316" stroke-width="0.5"/>
+          <line x1="55" y1="15" x2="65" y2="85" stroke="#f97316" stroke-width="0.5"/>
+          <line x1="65" y1="15" x2="75" y2="85" stroke="#f97316" stroke-width="0.5"/>
+          <line x1="75" y1="15" x2="85" y2="85" stroke="#f97316" stroke-width="0.5"/>
+          <line x1="85" y1="15" x2="95" y2="85" stroke="#f97316" stroke-width="0.5"/>
+          <line x1="95" y1="15" x2="105" y2="85" stroke="#f97316" stroke-width="0.5"/>
+          <line x1="105" y1="15" x2="115" y2="85" stroke="#f97316" stroke-width="0.5"/>
+          <line x1="115" y1="15" x2="125" y2="85" stroke="#f97316" stroke-width="0.5"/>
+          <line x1="125" y1="15" x2="135" y2="85" stroke="#f97316" stroke-width="0.5"/>
+          <line x1="135" y1="15" x2="145" y2="85" stroke="#f97316" stroke-width="0.5"/>
+          <line x1="145" y1="15" x2="155" y2="85" stroke="#f97316" stroke-width="0.5"/>
+          <!-- Agujeros -->
+          <rect x="50" y="20" width="20" height="20" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
+          <rect x="90" y="45" width="20" height="20" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
+          <rect x="130" y="65" width="20" height="20" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
+          <text x="100" y="98" text-anchor="middle" font-size="8" fill="#10b981" font-weight="bold">CORTE A-A — los 3 agujeros visibles</text>
+        </svg>
+      </div>
+    </div>
+    <div class="box box-teoria" id="step4" style="display:none">
+      <strong>📍 Paso 4 — ¡Tú prueba! Haz clic en el SVG de arriba</strong>
+      Haz clic en la línea zigzag para resaltar los planos de corte, y en el corte A-A para ver el rayado. ¡Así se construye un corte escalonado!
+      <div class="svg-container" style="margin:.8rem 0;padding:.8rem">
+        <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="15" width="50" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+          <text x="35" y="95" text-anchor="middle" font-size="7" fill="#64748b">Vista frontal</text>
+          <rect x="75" y="15" width="50" height="70" fill="#fff7ed" stroke="#f97316" stroke-width="1.5"/>
+          <polyline points="85,15 85,35 115,35 115,60 145,60 145,85" fill="none" stroke="#ef4444" stroke-width="2"/>
+          <text x="100" y="95" text-anchor="middle" font-size="7" fill="#64748b">Zigzag</text>
+          <rect x="140" y="15" width="50" height="70" fill="#eff6ff" stroke="#10b981" stroke-width="1.5"/>
+          <line x1="145" y1="20" x2="155" y2="80" stroke="#f97316" stroke-width="0.5"/>
+          <line x1="155" y1="20" x2="165" y2="80" stroke="#f97316" stroke-width="0.5"/>
+          <line x1="165" y1="20" x2="175" y2="80" stroke="#f97316" stroke-width="0.5"/>
+          <line x1="175" y1="20" x2="185" y2="80" stroke="#f97316" stroke-width="0.5"/>
+          <text x="165" y="95" text-anchor="middle" font-size="7" fill="#64748b">Corte A-A</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+
 <section class="chapter">
 <h2 class="chapter-title">📝 Ejercicios</h2>
 <div class="exercises">
 
 <div class="exercise">
-<p>📐 Ejercicio 1: ¿Qué ángulo forman los cambios de dirección en un corte escalonado?</p>
+<p>📐 Ejercicio 1 (Quiz): ¿Cuántos planos de corte como mínimo tiene un corte escalonado?</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">90°</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">45°</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">60°</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Cualquier ángulo</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">1</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">2 o más</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">3 exactamente</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Ninguno</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 2: ¿Cómo debe ser el rayado en un corte escalonado?</p>
+<p>📐 Ejercicio 2 (V/F visual): ¿Este corte escalonado está bien representado?</p>
+<div class="comparison" style="margin:.5rem 0">
+<div class="comparison-side" style="padding:.6rem">
+<svg viewBox="0 0 100 60" width="90"><rect x="10" y="5" width="80" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/><polyline points="15,5 15,20 35,20 35,35 55,35 55,50 75,50" fill="none" stroke="#ef4444" stroke-width="2"/><text x="50" y="58" text-anchor="middle" font-size="6" fill="#10b981">✓ Zigzag correcto</text></svg>
+<p style="font-size:.75rem"><strong>Correcto:</strong> zigzag con 90°</p>
+</div>
+<div class="comparison-side" style="padding:.6rem">
+<svg viewBox="0 0 100 60" width="90"><rect x="10" y="5" width="80" height="50" fill="#fef2f2" stroke="#ef4444" stroke-width="1.5"/><polyline points="15,5 15,20 35,20 35,35 55,35 55,50 75,50" fill="none" stroke="#ef4444" stroke-width="2"/><line x1="15" y1="20" x2="35" y2="35" stroke="#ef4444" stroke-width="1" stroke-dasharray="2,2"/><text x="50" y="58" text-anchor="middle" font-size="6" fill="#ef4444">✗ Diagonal</text></svg>
+<p style="font-size:.75rem"><strong>Incorrecto:</strong> diagonal entre escalones = error</p>
+</div>
+</div>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Uniforme en toda la sección</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Diferente en cada tramo</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Solo en los escalones</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">No se usa rayado</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">La izquierda es correcta</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">La derecha es correcta</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 3: ¿Qué NO se debe dibujar en la vista de corte escalonado?</p>
+<p>📐 Ejercicio 3 (Completar): Los cambios de dirección en un corte escalonado son de ___ grados. El rayado debe ser ___ en toda la sección.</p>
+<input type="text" id="ex3a" placeholder="1ª respuesta" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:100px">
+<input type="text" id="ex3b" placeholder="2ª respuesta" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:100px">
+<button onclick="checkFillIn()" style="padding:.5rem 1.2rem;background:var(--azul);color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.95rem;margin:.3rem">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 4 (Ordenar): ¿En qué orden se hace un corte escalonado?</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Las aristas de los escalones</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Los agujeros internos</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">El rayado</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Las paredes de la pieza</button>
+<button class="quiz-btn" onclick="checkOrden(this, '1-3-2-4')">① Identificar agujeros → ② Trazar zigzag → ③ Dibujar corte A-A → ④ Aplicar rayado uniforme</button>
+<button class="quiz-btn" onclick="checkOrden(this, '2-1-4-3')">② Trazar zigzag → ① Identificar agujeros → ④ Aplicar rayado → ③ Dibujar corte</button>
+<button class="quiz-btn" onclick="checkOrden(this, '4-3-1-2')">④ Aplicar rayado → ③ Dibujar corte → ① Identificar agujeros → ② Trazar zigzag</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 4: ¿Cuándo se usa un corte escalonado?</p>
+<p>📐 Ejercicio 5 (Quiz): ¿Qué se representa con rayado en un corte escalonado?</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Siempre que se hace un corte</button>
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Cuando hay detalles a diferentes profundidades</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Solo en piezas simétricas</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Nunca se usa</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Solo los escalones</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">La zona cortada completa</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Solo los agujeros</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Las flechas de dirección</button>
 </div>
-<p class="feedback"></p>
-</div>
-
-<div class="exercise">
-<p>📐 Ejercicio 5: ¿Con qué letras se identifica un corte escalonado?</p>
-<input type="text" id="ex5" placeholder="Ejemplo: A-A" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
-<button onclick="checkExercise('ex5', 'a-a', this)">Comprobar</button>
 <p class="feedback"></p>
 </div>
 
@@ -304,6 +409,89 @@ El corte escalonado es una evolución del corte total. Mientras el corte total u
 </main>
 <footer class="footer">Hecho con ❤️ por David Antizar</footer>
 <script>
+// SVG interactivity: toggle zigzag highlight
+var zigzagActive = false;
+function toggleZigzag() {
+  var segs = document.querySelectorAll('.zig-seg');
+  zigzagActive = !zigzagActive;
+  segs.forEach(function(s) {
+    if (zigzagActive) {
+      s.setAttribute('stroke-width', '4');
+      s.setAttribute('stroke', '#a855f7');
+    } else {
+      s.setAttribute('stroke-width', '2.5');
+      s.setAttribute('stroke', '#ef4444');
+    }
+  });
+}
+
+// Toggle corte AA highlight
+var corteActive = false;
+function toggleCorteAA() {
+  corteActive = !corteActive;
+  var corteGroup = document.getElementById('corte-aa');
+  if (!corteGroup) return;
+  if (corteActive) {
+    corteGroup.style.opacity = '0.6';
+  } else {
+    corteGroup.style.opacity = '1';
+  }
+}
+
+// 4-step visual pattern
+function showStep(n) {
+  for(var i = 1; i <= 4; i++) {
+    var step = document.getElementById('step' + i);
+    var dot = document.getElementById('sd' + i);
+    if(step) step.style.display = (i === n) ? 'block' : 'none';
+    if(dot) {
+      if(i === n) {
+        dot.classList.add('active');
+        dot.style.background = 'var(--azul)';
+      } else {
+        dot.classList.remove('active');
+        dot.style.background = '#94a3b8';
+      }
+    }
+  }
+}
+
+// Fill-in exercise checker
+function checkFillIn() {
+  var a = document.getElementById('ex3a').value.trim();
+  var b = document.getElementById('ex3b').value.trim().toLowerCase();
+  var feedback = document.getElementById('ex3a').parentElement.nextElementSibling;
+  var aOk = a === '90' || a === '90°';
+  var bOk = b.includes('uniforme') || b.includes('igual');
+  if (aOk && bOk) {
+    feedback.textContent = '✅ ¡Perfecto! 90° de cambio y rayado uniforme en toda la sección.';
+    feedback.className = 'feedback correct';
+  } else {
+    var parts = [];
+    if (!aOk) parts.push('1ª: 90');
+    if (!bOk) parts.push('2ª: uniforme');
+    feedback.textContent = '❌ Respuestas: ' + parts.join(', ');
+    feedback.className = 'feedback incorrect';
+  }
+}
+
+// Ordenar exercise checker
+function checkOrden(btn, answer) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) { b.disabled = true; b.classList.remove('correct','wrong'); });
+  if (answer === '1-3-2-4') {
+    btn.classList.add('correct');
+    var feedback = parent.nextElementSibling;
+    feedback.textContent = '✅ ¡Correcto! Primero identificar agujeros, luego trazar zigzag, después dibujar corte y aplicar rayado.';
+    feedback.className = 'feedback correct';
+  } else {
+    btn.classList.add('wrong');
+    var feedback = parent.nextElementSibling;
+    feedback.textContent = '❌ Orden correcto: ① Identificar agujeros → ② Trazar zigzag → ③ Dibujar corte A-A → ④ Aplicar rayado uniforme';
+    feedback.className = 'feedback incorrect';
+  }
+}
+
 function checkAnswer(btn, correct) {
   var parent = btn.parentElement;
   parent.querySelectorAll('button').forEach(function(b) {
