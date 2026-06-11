@@ -50,12 +50,31 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .nav a{color:var(--azul);text-decoration:none;font-weight:600;padding:.5rem 1rem;border-radius:6px}
 .nav a:hover{background:var(--azul-claro)}
 .nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
+.comparison{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0}
+.comparison-side{background:#f8fafc;border-radius:12px;padding:1.5rem;border:2px solid #e2e8f0;text-align:center;transition:all .3s}
+.comparison-side:hover{border-color:var(--azul);box-shadow:0 4px 12px rgba(37,99,235,.1)}
+.real-world-badge{display:inline-block;background:linear-gradient(135deg,var(--naranja),#ea580c);color:#fff;padding:.3rem .8rem;border-radius:20px;font-size:.8rem;font-weight:700;margin-bottom:.8rem}
+.step-indicator{display:flex;gap:.5rem;justify-content:center;margin:1rem 0}
+.step-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:#fff;transition:all .3s;cursor:pointer;background:#94a3b8}
+.step-dot:hover{transform:scale(1.2)}
+.step-dot.active{box-shadow:0 0 0 4px rgba(37,99,235,.3);background:var(--azul)}
+.stack-item{background:#f8fafc;border:2px solid #e2e8f0;border-radius:10px;padding:1rem;margin:.5rem 0;transition:all .3s;cursor:pointer}
+.stack-item:hover{border-color:var(--azul);transform:translateX(4px)}
+.stack-item.active{border-color:var(--azul);background:var(--azul-claro)}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+.feedback{margin-top:.5rem;font-weight:600;min-height:1.5rem}
+.feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
+.feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
+input[type="text"]{padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px}
+input[type="text"]:focus{outline:none;border-color:var(--azul)}
+.clickable{cursor:pointer;transition:all .2s}
+.clickable:hover{opacity:.7;filter:brightness(1.1)}
+.highlight-el{stroke-width:3;stroke:var(--naranja)}
 </style>
 </head>
 <body>
 <header class="header">
-<h1>📏 S06.1-5: Acotación completa</h1>
+<h1>📏 S06.1-5: Acotación</h1>
 <p>Dibujo Técnico — Acotación UNE</p>
 <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
 </header>
@@ -69,10 +88,10 @@ Acotar es poner las medidas en el dibujo. Sin cotas, el dibujo no sirve para fab
 </div>
 <p>En esta sesión aprenderás a:</p>
 <ul style="margin:.8rem 0 1rem 1.5rem">
-<li>Saber qué es acotar</li>
-<li>Las normas de la acotación UNE</li>
-<li>Colocar cotas correctamente</li>
-<li>Evitar errores típicos</li>
+<li>Saber qué es acotar y por qué es fundamental</li>
+<li>Identificar los 5 elementos de una cota</li>
+<li>Colocar cotas correctamente según la norma UNE</li>
+<li>Evitar los errores más comunes</li>
 </ul>
 </section>
 
@@ -80,63 +99,192 @@ Acotar es poner las medidas en el dibujo. Sin cotas, el dibujo no sirve para fab
 <h2 class="chapter-title">1️⃣ Elementos de la cota</h2>
 <div class="box box-teoria">
 <strong>📖 Teoría</strong>
-<strong>🔹 Elementos de una cota:</strong><br>
-• Línea de cota: la línea donde va el número<br>
-• Líneas de referencia: las que van desde la pieza<br>
-• Líneas de ayuda: las que se extienden desde la pieza<br>
-• La cifra: el número con la medida<br>
-• Las flechas: indican el extremo de la cota<br><br>
+<strong>🔹 Los 5 elementos de una cota:</strong><br>
+• <strong>Línea de cota:</strong> la línea donde va el número, paralela a la parte acotada<br>
+• <strong>Líneas de ayuda (o de referencia):</strong> las que se extienden desde la pieza hasta la línea de cota<br>
+• <strong>Cifra:</strong> el número con la medida, SIEMPRE en horizontal<br>
+• <strong>Flechas:</strong> indican el extremo de la cota, apuntan hacia la línea de cota<br>
+• <strong>Simbología:</strong> ⌀ para diámetros, R para radios, ⊔ para profundidad<br><br>
 <strong>🔹 Reglas de la acotación:</strong><br>
 • Cifra siempre en horizontal (se lee de izquierda a derecha)<br>
 • Flechas siempre apuntando hacia la línea de cota<br>
 • No cortar líneas de cota con otras líneas<br>
-• Acotar en vistas donde se ve la verdadera magnitud
-</div>
-<div class="box box-ejemplo">
-<strong>🔍 Ejemplo 1</strong>
-Cota de longitud:<br>
-Línea de ceta ∥ al objeto | Cifra encima | Flechas en los extremos
-</div>
-<div class="box box-ejemplo">
-<strong>🔍 Ejemplo 2</strong>
-Cota de diámetro:<br>
-⌀50 | Línea de ceta diagonal | Flechas dentro o fuera
+• Acotar en vistas donde se ve la verdadera magnitud<br>
+• Una sola vez cada dimensión (no repetir)
 </div>
 </section>
 
 <section class="chapter">
-<h2 class="chapter-title">2️⃣ Visualiza la acotación</h2>
+<h2 class="chapter-title">2️⃣ Paso a paso: Identificar los elementos</h2>
+<div class="interactive">
+<h3>🎬 Ejemplo visual: Los 5 elementos de la cota</h3>
+
+<div class="step-indicator">
+<div class="step-dot active" id="sd1" onclick="showStep(1)">1</div>
+<div class="step-dot" id="sd2" onclick="showStep(2)">2</div>
+<div class="step-dot" id="sd3" onclick="showStep(3)">3</div>
+<div class="step-dot" id="sd4" onclick="showStep(4)">4</div>
+</div>
+
+<div id="step-content">
+<div class="box box-teoria" id="step1">
+<strong>📍 Paso 1 — Mira: La pieza sin cotas</strong>
+Esta es una pieza rectangular. Sin cotas, no sabes cuánto medir.
 <div class="svg-container">
-<svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
-<!-- Fondo -->
-<rect x="0" y="0" width="600" height="300" fill="#f8fafc" rx="8"/>
-<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Elementos de la cota</text>
-<!-- Pieza -->
-<rect x="200" y="60" width="200" height="100" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
-<text x="300" y="115" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="600">Pieza</text>
-<!-- Líneas de ayuda -->
-<line x1="200" y1="60" x2="200" y2="40" stroke="#94a3b8" stroke-width="1"/>
-<line x1="400" y1="60" x2="400" y2="40" stroke="#94a3b8" stroke-width="1"/>
-<!-- Línea de cota -->
-<line x1="200" y1="35" x2="400" y2="35" stroke="#2563eb" stroke-width="1.5"/>
-<!-- Flechas -->
-<polygon points="200,35 210,32 210,38" fill="#2563eb"/>
-<polygon points="400,35 390,32 390,38" fill="#2563eb"/>
-<!-- Cifra -->
-<text x="300" y="30" text-anchor="middle" font-size="14" fill="#2563eb" font-weight="600">150</text>
-<!-- Etiquetas -->
-<text x="300" y="190" text-anchor="middle" font-size="11" fill="#64748b">Línea de cota | Flechas | Cifra | Líneas de ayuda</text>
-<line x1="250" y1="195" x2="250" y2="210" stroke="#94a3b8" stroke-width="1"/>
-<line x1="300" y1="195" x2="300" y2="210" stroke="#94a3b8" stroke-width="1"/>
-<line x1="350" y1="195" x2="350" y2="210" stroke="#94a3b8" stroke-width="1"/>
-<text x="250" y="225" text-anchor="middle" font-size="10" fill="#94a3b8">Línea</text>
-<text x="300" y="225" text-anchor="middle" font-size="10" fill="#94a3b8">Cifra</text>
-<text x="350" y="225" text-anchor="middle" font-size="10" fill="#94a3b8">Flechas</text>
-<!-- Leyenda -->
-<rect x="20" y="240" width="560" height="50" fill="#ecfdf5" rx="6"/>
-<text x="300" y="260" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">Cifra siempre horizontal | Flechas apuntando hacia la línea | No cortar líneas</text>
-<text x="300" y="278" text-anchor="middle" font-size="10" fill="#64748b">Acotar en vistas donde se ve la verdadera magnitud</text>
+<svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="400" height="200" fill="#f8fafc" rx="8"/>
+<text x="200" y="25" text-anchor="middle" font-size="13" fill="#64748b" font-weight="600">Pieza sin cotas</text>
+<rect x="120" y="60" width="160" height="80" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="200" y="108" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="600">? × ?</text>
+<text x="200" y="170" text-anchor="middle" font-size="11" fill="#ef4444">❌ No se puede fabricar</text>
 </svg>
+</div>
+<p style="margin-top:.5rem">Sin cotas, el operario no sabe las dimensiones → pieza defectuosa.</p>
+</div>
+
+<div class="box box-teoria" id="step2" style="display:none">
+<strong>📍 Paso 2 — Fíjate: La línea de cota y las flechas</strong>
+La línea de cota va paralela a la dimensión. Las flechas marcan los extremos.
+<div class="svg-container">
+<svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="400" height="200" fill="#f8fafc" rx="8"/>
+<text x="200" y="25" text-anchor="middle" font-size="13" fill="#64748b" font-weight="600">Línea de cota + flechas</text>
+<!-- Pieza -->
+<rect x="120" y="80" width="160" height="60" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<!-- Líneas de ayuda -->
+<line x1="120" y1="80" x2="120" y2="55" stroke="#94a3b8" stroke-width="1"/>
+<line x1="280" y1="80" x2="280" y2="55" stroke="#94a3b8" stroke-width="1"/>
+<!-- Línea de cota -->
+<line x1="120" y1="50" x2="280" y2="50" stroke="#2563eb" stroke-width="2"/>
+<!-- Flechas -->
+<polygon points="120,50 130,46 130,54" fill="#2563eb"/>
+<polygon points="280,50 270,46 270,54" fill="#2563eb"/>
+<!-- Etiquetas -->
+<text x="200" y="40" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="700">← Línea de cota →</text>
+<text x="105" y="50" font-size="9" fill="#2563eb">flecha</text>
+<text x="295" y="50" font-size="9" fill="#2563eb">flecha →</text>
+</svg>
+</div>
+<p style="margin-top:.5rem">La línea de cota es paralela a la dimensión. Las flechas apuntan hacia la pieza.</p>
+</div>
+
+<div class="box box-teoria" id="step3" style="display:none">
+<strong>📍 Paso 3 — Ahora ves: La cifra SIEMPRE horizontal</strong>
+Aunque la línea de cota sea vertical, la cifra siempre se lee de izquierda a derecha.
+<div class="svg-container">
+<svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="400" height="200" fill="#f8fafc" rx="8"/>
+<text x="200" y="25" text-anchor="middle" font-size="13" fill="#64748b" font-weight="600">Cifra horizontal aunque la cota sea vertical</text>
+<!-- Pieza -->
+<rect x="160" y="50" width="80" height="100" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<!-- Cota vertical -->
+<line x1="145" y1="50" x2="145" y2="150" stroke="#2563eb" stroke-width="1.5"/>
+<!-- Flechas verticales -->
+<polygon points="145,50 141,60 149,60" fill="#2563eb"/>
+<polygon points="145,150 141,140 149,140" fill="#2563eb"/>
+<!-- Líneas de ayuda verticales -->
+<line x1="160" y1="50" x2="135" y2="50" stroke="#94a3b8" stroke-width="1"/>
+<line x1="160" y1="150" x2="135" y2="150" stroke="#94a3b8" stroke-width="1"/>
+<!-- Cifra HORIZONTAL -->
+<text x="130" y="104" text-anchor="end" font-size="14" fill="#2563eb" font-weight="700">100</text>
+<!-- Nota -->
+<text x="200" y="185" text-anchor="middle" font-size="10" fill="#10b981" font-weight="600">✓ La cifra 100 se lee horizontalmente</text>
+</svg>
+</div>
+<p style="margin-top:.5rem">La cifra va SIEMPRE en horizontal. Es la regla más importante de la acotación.</p>
+</div>
+
+<div class="box box-teoria" id="step4" style="display:none">
+<strong>📍 Paso 4 — ¡Tú prueba! Haz click en los elementos</strong>
+Haz click en cada elemento del SVG para identificarlo.
+<div class="svg-container">
+<svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="400" height="200" fill="#f8fafc" rx="8"/>
+<text x="200" y="25" text-anchor="middle" font-size="13" fill="#64748b" font-weight="600">Haz click para identificar</text>
+<!-- Pieza -->
+<rect x="140" y="70" width="120" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<!-- Líneas de ayuda -->
+<line x1="140" y1="70" x2="140" y2="45" stroke="#94a3b8" stroke-width="1" class="clickable" onclick="identifyElement(this,'linea-ayuda')"/>
+<line x1="260" y1="70" x2="260" y2="45" stroke="#94a3b8" stroke-width="1" class="clickable" onclick="identifyElement(this,'linea-ayuda')"/>
+<!-- Línea de cota -->
+<line x1="140" y1="40" x2="260" y2="40" stroke="#2563eb" stroke-width="2" class="clickable" onclick="identifyElement(this,'linea-cota')"/>
+<!-- Flechas -->
+<polygon points="140,40 150,36 150,44" fill="#2563eb" class="clickable" onclick="identifyElement(this,'flecha')"/>
+<polygon points="260,40 250,36 250,44" fill="#2563eb" class="clickable" onclick="identifyElement(this,'flecha')"/>
+<!-- Cifra -->
+<text x="200" y="35" text-anchor="middle" font-size="14" fill="#2563eb" font-weight="700" class="clickable" onclick="identifyElement(this,'cifra')">150</text>
+<!-- Resultado -->
+<text x="200" y="180" text-anchor="middle" font-size="12" fill="#10b981" font-weight="600" id="element-result">👆 Haz click en un elemento</text>
+</svg>
+</div>
+<button onclick="resetIdentify()" style="margin-top:.8rem;background:var(--naranja);color:#fff;border:none;padding:.6rem 1.5rem;border-radius:8px;cursor:pointer;font-size:1rem;font-weight:600">🔄 Reiniciar</button>
+</div>
+</div>
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">3️⃣ Tipos de cotas</h2>
+<div class="box box-teoria">
+<strong>📖 Teoría</strong>
+<strong>🔹 Cotas lineales:</strong><br>
+• Miden distancias entre dos puntos<br>
+• La cifra va encima de la línea de cota<br>
+• Ejemplo: longitud, ancho, altura<br><br>
+<strong>🔹 Cotas angulares:</strong><br>
+• Miden el ángulo entre dos líneas<br>
+• La cifra va dentro o fuera del arco<br>
+• Ejemplo: ángulo de chaflán<br><br>
+<strong>🔹 Cotas radiales y diametrales:</strong><br>
+• ⌀ para diámetros (círculos completos)<br>
+• R para radios (arcos)<br>
+• La cifra va sobre la línea de cota con el símbolo correspondiente
+</div>
+
+<div class="comparison" style="margin:1.5rem 0">
+<div class="comparison-side">
+<strong style="color:var(--rojo)">❌ CIFRA EN DIAGONAL</strong>
+<div class="svg-container" style="margin:.5rem 0;padding:1rem">
+<svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+<line x1="30" y1="90" x2="170" y2="90" stroke="#333" stroke-width="1.5"/>
+<line x1="30" y1="90" x2="170" y2="50" stroke="#2563eb" stroke-width="1.5"/>
+<text x="100" y="62" text-anchor="middle" font-size="12" fill="#ef4444" font-weight="700" transform="rotate(-15, 100, 62)">150</text>
+<text x="100" y="110" text-anchor="middle" font-size="8" fill="#ef4444">❌ Cifra en diagonal</text>
+</svg>
+</div>
+<p style="font-size:.85rem">La cifra debe ser horizontal</p>
+</div>
+<div class="comparison-side">
+<strong style="color:var(--verde)">✅ CIFRA HORIZONTAL</strong>
+<div class="svg-container" style="margin:.5rem 0;padding:1rem">
+<svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+<line x1="30" y1="90" x2="170" y2="90" stroke="#333" stroke-width="1.5"/>
+<line x1="30" y1="90" x2="170" y2="50" stroke="#2563eb" stroke-width="1.5"/>
+<text x="100" y="62" text-anchor="middle" font-size="12" fill="#10b981" font-weight="700">150</text>
+<text x="100" y="110" text-anchor="middle" font-size="8" fill="#10b981">✓ Cifra horizontal</text>
+</svg>
+</div>
+<p style="font-size:.85rem">La cifra SIEMPRE horizontal</p>
+</div>
+</div>
+
+<div class="box box-error">
+<strong>⚠️ Error clásico</strong>
+Poner la cifra de la cota en diagonal. ¡NO! La cifra SIEMPRE va en horizontal, se lee de izquierda a derecha, incluso si la línea de cota es vertical.
+</div>
+
+<div class="box box-error">
+<strong>⚠️ Error común 2: Repetir cotas</strong>
+Acotar la misma dimensión en dos vistas diferentes. Cada dimensión se acota UNA SOLA VEZ, en la vista donde se ve mejor.
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">🏭 Caso real industrial</h2>
+<div class="box box-success">
+<span class="real-world-badge">🏭 CASO REAL</span>
+<strong>Acotación de una brida de tubería — Planta化工 (Repsol Torrelavega)</strong>
+Una brida de tubería DN200 (diámetro nominal 200mm) debe acotarse con precisión para que el operario de taller pueda mecanizarla. Se acota: diámetro exterior ⌀340mm, diámetro interior ⌀220mm, número de taladros 8×⌀22mm distribuidos en circunferencia de ⌀290mm, espesor 19mm. La acotación se reparte entre alzado (diámetros) y planta (distribución de taladros). Si se repite alguna cota o se pone la cifra en diagonal, el operario interpreta mal la medida y la brida no encaja → 3.000€ de material perdido.
 </div>
 </section>
 
@@ -145,83 +293,93 @@ Cota de diámetro:<br>
 <div class="exercises">
 
 <div class="exercise">
-<p>📐 Ejercicio 1: ¿Cuántos elementos tiene una cota?</p>
+<p>📐 Ejercicio 1 (Quiz): ¿Cuántos elementos tiene una cota completa?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">2</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">5</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">3</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">4</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">3</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">4</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 2: ¿En qué posición va la cifra de la cota?</p>
+<p>📐 Ejercicio 2 (V/F visual): ¿Cuál de estas cotas está correctamente acotada?</p>
+<div class="comparison" style="margin:.5rem 0">
+<div class="comparison-side" style="padding:.8rem">
+<svg viewBox="0 0 120 80" width="100" xmlns="http://www.w3.org/2000/svg">
+<line x1="10" y1="60" x2="110" y2="60" stroke="#333" stroke-width="1.5"/>
+<line x1="10" y1="60" x2="110" y2="20" stroke="#2563eb" stroke-width="1.5"/>
+<text x="60" y="40" text-anchor="middle" font-size="10" fill="#10b981" font-weight="700">50</text>
+<text x="60" y="75" text-anchor="middle" font-size="7" fill="#10b981">✓ Horizontal</text>
+</svg>
+<p style="font-size:.8rem"><strong>Correcto:</strong> Cifra horizontal</p>
+</div>
+<div class="comparison-side" style="padding:.8rem">
+<svg viewBox="0 0 120 80" width="100" xmlns="http://www.w3.org/2000/svg">
+<line x1="10" y1="60" x2="110" y2="60" stroke="#333" stroke-width="1.5"/>
+<line x1="10" y1="60" x2="110" y2="20" stroke="#2563eb" stroke-width="1.5"/>
+<text x="60" y="40" text-anchor="middle" font-size="10" fill="#ef4444" font-weight="700" transform="rotate(-18, 60, 40)">50</text>
+<text x="60" y="75" text-anchor="middle" font-size="7" fill="#ef4444">✗ Diagonal</text>
+</svg>
+<p style="font-size:.8rem"><strong>Incorrecto:</strong> Cifra en diagonal</p>
+</div>
+</div>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Siempre en horizontal</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Siempre en vertical</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">En diagonal</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">No importa</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">La izquierda (correcto)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">La derecha (incorrecto)</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 3: ¿Dónde se debe acotar?</p>
+<p>📐 Ejercicio 3 (Completar): La cifra de la cota siempre va en posición __________. Las flechas apuntan hacia la __________.</p>
+<input type="text" id="ex3a" placeholder="1ª respuesta" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:150px">
+<input type="text" id="ex3b" placeholder="2ª respuesta" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
+<button onclick="checkFillIn(['horizontal','horizontalmente','linea de cota','línea de cota','linea de cota','línea de cota'])">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 4 (Ordenar): ¿En qué orden se coloca una cota?</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">En vistas donde se ve la VM</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">En cualquier vista</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Solo en alzado</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Solo en planta</button>
+<button class="quiz-btn" onclick="checkOrden(this, '1-3-2-4')">①→③→②→④</button>
+<button class="quiz-btn" onclick="checkOrden(this, '1-2-3-4')">①→②→③→④</button>
+<button class="quiz-btn" onclick="checkOrden(this, '2-1-4-3')">②→①→④→③</button>
+<button class="quiz-btn" onclick="checkOrden(this, '1-3-4-2')">①→③→④→②</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 4: ¿Qué indican las flechas?</p>
+<p>📐 Ejercicio 5 (Quiz): ¿Cuántas líneas de ayuda se necesitan como mínimo para acotar una dimensión lineal?</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">El extremo de la cota</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">El material</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">La escala</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">La orientación</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">1</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">2</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">3</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">4</button>
 </div>
-<p class="feedback"></p>
-</div>
-
-<div class="exercise">
-<p>📐 Ejercicio 5: ¿Cuántas líneas de ayuda se necesitan para una cota?</p>
-<input type="text" id="ex5" placeholder="Número" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
-<button onclick="checkExercise('ex5', '2', this)">Comprobar</button>
 <p class="feedback"></p>
 </div>
 
 </div>
 </section>
 
-<div class="box box-error">
-<strong>⚠️ Error clásico</strong>
-Poner la cifra de la cota en diagonal. ¡NO! La cifra SIEMPRE va en horizontal, se lee de izquierda a derecha, incluso si la línea de ceta es vertical.
-</div>
-
-<div class="box box-idea">
-<strong>🔗 Conexión</strong>
-La acotación es esencial para fabricar piezas. Sin cotas correctas, el dibujo no sirve. Es como una receta sin cantidades.
-</div>
-
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
 <ul>
-<li>5 elementos: línea de cota, líneas de referencia, cifra, flechas, líneas de ayuda</li>
-<li>Cifra siempre en horizontal</li>
+<li>5 elementos: línea de cota, líneas de ayuda, cifra, flechas, simbología</li>
+<li>Cifra siempre en horizontal (regla de oro)</li>
 <li>Flechas apuntando hacia la línea de cota</li>
-<li>Acotar en vistas con VM</li>
-<li>¡Ya dominas la acotación! 🎉</li>
+<li>Acotar en vistas con VM, una sola vez</li>
+<li>No repetir cotas en distintas vistas</li>
+<li>¡Ya dominas los elementos de la acotación! 🎉</li>
 </ul>
 </div>
 
 <div class="nav">
 <a href="b05-02-corte-tipos.html">← Anterior</a>
-<a href="b07-01-intersecciones.html">Siguiente → Bloque 7: Intersecciones</a>
+<a href="b06-02-metodos-acotacion.html">Siguiente →</a>
 </div>
 
 </main>
@@ -266,6 +424,88 @@ function checkExercise(id, correct, btn) {
     feedback.className = 'feedback incorrect';
     input.style.borderColor = 'var(--rojo)';
   }
+}
+
+function checkFillIn(correctAnswers) {
+  var currentExercise = document.querySelector('.exercise .feedback:last-of-type');
+  if (!currentExercise) return;
+  var parent = currentExercise.parentElement;
+  var inputEls = parent.querySelectorAll('input[type="text"]');
+  var allCorrect = true;
+  for (var i = 0; i < inputEls.length; i++) {
+    var val = inputEls[i].value.trim().toLowerCase();
+    if (correctAnswers.indexOf(val) === -1) {
+      allCorrect = false;
+      inputEls[i].style.borderColor = 'var(--rojo)';
+    } else {
+      inputEls[i].style.borderColor = 'var(--verde)';
+    }
+  }
+  if (allCorrect) {
+    currentExercise.textContent = '✅ ¡Correcto! ¡Perfecto!';
+    currentExercise.className = 'feedback correct';
+  } else {
+    currentExercise.textContent = '❌ Revisa tus respuestas. Pista: las palabras clave están en la teoría.';
+    currentExercise.className = 'feedback incorrect';
+  }
+}
+
+function checkOrden(btn, answer) {
+  var parent = btn.parentElement;
+  var feedback = parent.nextElementSibling;
+  var correctAnswer = '1-2-3-4';
+  parent.querySelectorAll('button').forEach(function(b) {
+    b.disabled = true; b.classList.remove('correct','wrong');
+  });
+  if(answer === correctAnswer) {
+    btn.classList.add('correct');
+    if(feedback) {
+      feedback.textContent = '✅ ¡Correcto! Orden: 1) Dibujar líneas de ayuda → 2) Dibujar línea de cota → 3) Colocar flechas → 4) Escribir cifra';
+      feedback.className = 'feedback correct';
+    }
+  } else {
+    btn.classList.add('wrong');
+    if(feedback) {
+      feedback.textContent = '❌ Incorrecto. El orden correcto es: 1-2-3-4';
+      feedback.className = 'feedback incorrect';
+    }
+  }
+}
+
+function showStep(n) {
+  for(var i = 1; i <= 4; i++) {
+    var step = document.getElementById('step' + i);
+    var dot = document.getElementById('sd' + i);
+    if(step) step.style.display = (i === n) ? 'block' : 'none';
+    if(dot) {
+      if(i === n) {
+        dot.classList.add('active');
+        dot.style.background = 'var(--azul)';
+      } else {
+        dot.classList.remove('active');
+        dot.style.background = '#94a3b8';
+      }
+    }
+  }
+}
+
+function identifyElement(el, elementName) {
+  var names = {
+    'linea-ayuda': '📏 Línea de ayuda: conecta la pieza con la línea de cota',
+    'linea-cota': '📐 Línea de cota: donde se escribe la medida',
+    'flecha': '➡️ Flecha: marca el extremo de la cota',
+    'cifra': '🔢 Cifra: la medida numérica (siempre horizontal)'
+  };
+  var result = document.getElementById('element-result');
+  if(result) {
+    result.textContent = names[elementName] || 'Elemento desconocido';
+    result.style.fill = '#2563eb';
+  }
+}
+
+function resetIdentify() {
+  var result = document.getElementById('element-result');
+  if(result) result.textContent = '👆 Haz click en un elemento';
 }
 
 window.onscroll = function(){

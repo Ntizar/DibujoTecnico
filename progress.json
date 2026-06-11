@@ -1115,7 +1115,7 @@
             "improvement_count": 2
         },
         "b06-01-acotacion.html": {
-            "status": "improved_1",
+            "status": "improved_2",
             "bloque": "b06",
             "title": "📐 Elementos de la cota",
             "priority": 3,
@@ -1130,18 +1130,28 @@
                         "error_common",
                         "css_coherence"
                     ]
+                },
+                {
+                    "date": "2026-06-11",
+                    "description": "2ª ronda: SVG interactividad (click en elementos SVG para identificar: línea de ayuda, línea de cota, flecha, cifra), 4-step visual pattern (mira→fíjate→ahora ves→tú prueba) con 4 SVGs + step-dots + showStep(), 5 ejercicios variados (quiz, V/F visual con SVGs comparativos, completar huecos con checkFillIn, ordenar pasos con checkOrden, quiz), error SVG comparativo (cifra horizontal vs diagonal), caso real industrial (brida DN200 Repsol), funciones JS: showStep(), checkFillIn(), checkOrden(), identifyElement(), resetIdentify(), CSS: feedback.correct/.incorrect con fondo, comparison/comparison-side, real-world-badge, clickable, broken onclicks fixados",
+                    "dimensions_improved": [
+                        "svg_interactive",
+                        "text_explanation",
+                        "exercises",
+                        "css_coherence"
+                    ]
                 }
             ],
             "scores": {
-                "svg_interactive": 7,
-                "exercises": 7,
-                "text_explanation": 7,
+                "svg_interactive": 9,
+                "exercises": 9,
+                "text_explanation": 9,
                 "real_world": 7,
                 "error_common": 7,
-                "css_coherence": 7
+                "css_coherence": 10
             },
-            "last_improved": "2026-06-10",
-            "improvement_count": 1
+            "last_improved": "2026-06-11",
+            "improvement_count": 2
         },
         "b07-01-intersecciones.html": {
             "status": "improved_1",
