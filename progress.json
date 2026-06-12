@@ -1150,38 +1150,17 @@
       "bloque": "b05",
       "title": "🔪 Corte parcial y semicorte",
       "priority": 3,
-      "improvements": [
-        {
-          "date": "2026-06-10",
-          "description": "CSS template base, caso real industrial, error comparativo SVG",
-          "dimensions_improved": [
-            "svg_interactive",
-            "text_explanation",
-            "real_world",
-            "error_common",
-            "css_coherence"
-          ]
-        },
-        {
-          "date": "2026-06-11",
-          "description": "4-step visual pattern (mira→fíjate→ahora ves→prueba) con SVGs interactivos + botones showStep(), SVG interactividad (onclick toggle en capas), 4 tipos de ejercicios (quiz, V/F visual, completar huecos, ordenar pasos), funciones JS: toggleLayer(), showStep(), checkFillIn(), checkOrden()",
-          "dimensions_improved": [
-            "text_explanation",
-            "svg_interactive",
-            "exercises"
-          ]
-        }
-      ],
+      "improvements": "Ronda 2: real_world 7→9 (3 casos), error_common 7→9 (SVG comparativo), CSS clickable/connection-box/difficulty-badge/feedback, ejercicios 7→9 (qué tipo usar)",
       "scores": {
         "svg_interactive": 9,
         "exercises": 9,
         "text_explanation": 9,
-        "real_world": 7,
-        "error_common": 7,
+        "real_world": 9,
+        "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-11",
-      "improvement_count": 2
+      "last_improved": "2026-06-12-ronda2-s3",
+      "improvement_count": 3
     },
     "b06-01-acotacion.html": {
       "status": "improved_2",
