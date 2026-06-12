@@ -59,6 +59,19 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .scale-calculator{background:#fff;border:2px solid var(--azul);border-radius:12px;padding:1.5rem;margin:1rem 0}
 .scale-calculator input{padding:.5rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:100px}
 .scale-result{margin-top:.8rem;padding:.8rem;border-radius:6px;font-weight:600;min-height:2rem}
+.clickable{cursor:pointer;transition:transform .15s,box-shadow .15s}
+.clickable:hover{transform:scale(1.02);box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.connection-box{background:linear-gradient(135deg,var(--pura-claro),#f0f4ff);border:2px solid var(--pura);border-radius:12px;padding:1.2rem;margin:1.5rem 0}
+.connection-box h4{color:var(--pura);margin-bottom:.5rem;font-size:1rem}
+.difficulty-badge{display:inline-block;padding:.15rem .5rem;border-radius:8px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.difficulty-badge.easy{background:#d1fae5;color:#065f46}
+.difficulty-badge.medium{background:#fef3c7;color:#92400e}
+.difficulty-badge.hard{background:#fee2e2;color:#991b1b}
+.step-indicator{display:flex;justify-content:center;gap:.5rem;margin:1rem 0}
+.step-dot{width:12px;height:12px;border-radius:50%;background:#e2e8f0;transition:all .3s}
+.step-dot.active{background:var(--azul);transform:scale(1.3)}
+.feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
+.feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
 </style>
 </head>
 <body>
@@ -86,37 +99,102 @@ La escala es la relación entre lo que se dibuja y lo que es real. Pero la regla
 
 <section class="chapter">
 <h2 class="chapter-title">1️⃣ Tipos de escala</h2>
-<div class="box box-teoria">
-<strong>📖 Teoría</strong>
-La norma ISO 5455 define tres tipos de escala:<br><br>
-<strong>🔹 Escala natural (1:1)</strong><br>
-Lo dibujado = lo real. Un tornillo de 10mm se dibuja de 10mm.<br><br>
-<strong>🔹 Escala de ampliación</strong><br>
-Lo dibujado > lo real. Se usa para piezas pequeñas.<br>
-Valores: 2:1, 5:1, 10:1, 20:1, 50:1, 100:1<br>
-Ejemplo: 2:1 → 2mm en plano = 1mm real<br><br>
-<strong>🔹 Escala de reducción</strong><br>
-Lo dibujado < lo real. Se usa para piezas grandes.<br>
-Valores: 1:2, 1:5, 1:10, 1:20, 1:50, 1:100, 1:200, 1:500, 1:1000<br>
-Ejemplo: 1:10 → 1mm en plano = 10mm real
+
+<!-- 4-STEP VISUAL PATTERN -->
+<div class="step-indicator" id="stepIndicator">
+<div class="step-dot active" data-step="1"></div>
+<div class="step-dot" data-step="2"></div>
+<div class="step-dot" data-step="3"></div>
+<div class="step-dot" data-step="4"></div>
 </div>
-<div class="box box-ejemplo">
-<strong>🔍 Ejemplo 1</strong>
-Escala 2:1 (ampliación)<br>
-Pieza real: 5mm → Plano: 10mm<br>
-Se usa para piezas pequeñas como tornillos o engranajes.
+
+<div class="interactive">
+<h3>👀 Mira → Fíjate → Ahora ves → Prueba</h3>
+
+<!-- PASO 1: Mira -->
+<div class="box box-teoria" id="paso1">
+<strong>👀 Paso 1 — Mira: ¿Qué es una escala?</strong>
+<p>Una escala es la <strong>relación matemática</strong> entre la medida en el plano y la medida real. Es como un zoom: puedes acercar (ampliación) o alejar (reducción).</p>
 </div>
-<div class="box box-ejemplo">
-<strong>🔍 Ejemplo 2</strong>
-Escala 1:10 (reducción)<br>
-Pieza real: 100mm → Plano: 10mm<br>
-Se usa para piezas grandes como una máquina.
+
+<!-- PASO 2: Fíjate -->
+<div class="box box-ejemplo" id="paso2" style="display:none">
+<strong>🔍 Paso 2 — Fíjate: Los 3 tipos</strong>
+<div class="svg-container" style="margin:.5rem 0;padding:.8rem">
+<svg viewBox="0 0 500 180" xmlns="http://www.w3.org/2000/svg">
+<!-- AMPLIACIÓN -->
+<rect x="10" y="10" width="150" height="160" rx="8" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+<text x="85" y="30" text-anchor="middle" font-size="11" font-weight="bold" fill="#10b981">AMPLIACIÓN</text>
+<!-- Pieza real pequeña -->
+<rect x="30" y="45" width="20" height="20" fill="#d1fae5" stroke="#10b981" stroke-width="1.5" rx="2"/>
+<text x="40" y="59" text-anchor="middle" font-size="7" fill="#10b981">1mm</text>
+<!-- Flecha -->
+<line x1="55" y1="55" x2="80" y2="55" stroke="#64748b" stroke-width="1"/>
+<!-- Pieza ampliada -->
+<rect x="85" y="40" width="50" height="50" fill="#ecfdf5" stroke="#10b981" stroke-width="2" rx="3"/>
+<text x="110" y="68" text-anchor="middle" font-size="8" fill="#10b981" font-weight="bold">2mm</text>
+<text x="85" y="110" text-anchor="middle" font-size="9" fill="#10b981">2:1, 5:1, 10:1</text>
+<text x="85" y="125" text-anchor="middle" font-size="8" fill="#64748b">piezas pequeñas</text>
+<text x="85" y="145" text-anchor="middle" font-size="14">🔬</text>
+
+<!-- NATURAL -->
+<rect x="175" y="10" width="150" height="160" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="250" y="30" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">NATURAL</text>
+<rect x="210" y="45" width="30" height="30" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" rx="2"/>
+<text x="225" y="64" text-anchor="middle" font-size="8" fill="#2563eb">10mm</text>
+<line x1="245" y1="60" x2="260" y2="60" stroke="#64748b" stroke-width="1"/>
+<rect x="265" y="45" width="30" height="30" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="2"/>
+<text x="280" y="64" text-anchor="middle" font-size="8" fill="#2563eb">10mm</text>
+<text x="250" y="110" text-anchor="middle" font-size="9" fill="#2563eb">1:1</text>
+<text x="250" y="125" text-anchor="middle" font-size="8" fill="#64748b">igual tamaño</text>
+<text x="250" y="145" text-anchor="middle" font-size="14">📐</text>
+
+<!-- REDUCCIÓN -->
+<rect x="340" y="10" width="150" height="160" rx="8" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+<text x="415" y="30" text-anchor="middle" font-size="11" font-weight="bold" fill="#f97316">REDUCCIÓN</text>
+<rect x="370" y="45" width="40" height="40" fill="#fed7aa" stroke="#f97316" stroke-width="1.5" rx="2"/>
+<text x="390" y="69" text-anchor="middle" font-size="7" fill="#f97316">100mm</text>
+<line x1="415" y1="65" x2="435" y2="65" stroke="#64748b" stroke-width="1"/>
+<rect x="440" y="55" width="20" height="20" fill="#fff7ed" stroke="#f97316" stroke-width="2" rx="2"/>
+<text x="450" y="69" text-anchor="middle" font-size="7" fill="#f97316">1mm</text>
+<text x="415" y="110" text-anchor="middle" font-size="9" fill="#f97316">1:2, 1:5, 1:10</text>
+<text x="415" y="125" text-anchor="middle" font-size="8" fill="#64748b">piezas grandes</text>
+<text x="415" y="145" text-anchor="middle" font-size="14">🔭</text>
+</svg>
 </div>
-<div class="box box-ejemplo">
-<strong>🔍 Ejemplo 3</strong>
-Escala 1:1 (natural)<br>
-Pieza real: 50mm → Plano: 50mm<br>
-Se usa cuando el tamaño lo permite.
+</div>
+
+<!-- PASO 3: Ahora ves -->
+<div class="box box-idea" id="paso3" style="display:none">
+<strong>💡 Paso 3 — Ahora ves: La fórmula mágica</strong>
+<p><code>Escala = Plano / Real</code></p>
+<p>Si un avión de 30m lo dibujas a 1:100 → en plano mide <strong>3000/100 = 30 cm</strong>. Pero la cota SIEMPRE pone <strong>30 m</strong>.</p>
+<div class="box box-teoria" style="margin:.5rem 0">
+<strong>🧮 Truco rápido</strong>
+• <strong>Ampliación</strong>: primer número mayor → 2:1, 10:1 → piezas diminutas<br>
+• <strong>Reducción</strong>: segundo número mayor → 1:10, 1:100 → piezas enormes<br>
+• <strong>Natural</strong>: iguales → 1:1 → ya cabía en el papel
+</div>
+</div>
+
+<!-- PASO 4: Prueba -->
+<div class="box box-success" id="paso4" style="display:none">
+<strong>🎯 Paso 4 — Prueba: ¿Lo has pillado?</strong>
+<p>Si una turbina de <strong>2 metros</strong> la dibujas a escala <strong>1:50</strong>, ¿cuánto mide en el plano?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">100 mm</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">40 mm</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">200 mm</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">400 mm</button>
+</div>
+<p class="feedback"></p>
+<p style="font-size:.85rem;color:var(--gris);margin-top:.5rem">Pista: 2m = 2000mm. Dividimos entre 50.</p>
+</div>
+
+<button onclick="showStep(1)" style="margin-top:.5rem">1️⃣ Mira</button>
+<button onclick="showStep(2)">2️⃣ Fíjate</button>
+<button onclick="showStep(3)">3️⃣ Ahora ves</button>
+<button onclick="showStep(4)">4️⃣ Prueba</button>
 </div>
 </section>
 
@@ -178,16 +256,42 @@ Se usa cuando el tamaño lo permite.
 </div>
 </section>
 
-<!-- CASO REAL INDUSTRIAL -->
+<!-- CASO REAL 1: Ingeniería civil -->
 <section class="chapter">
-<h2 class="chapter-title">🏭 Caso real: Plano de un puente</h2>
+<h2 class="chapter-title">🏗️ Casos reales en la industria</h2>
+
 <div class="box box-ejemplo">
 <span class="real-world-badge">CASO REAL</span>
-<strong>🌉 Ingeniería civil — Plano de un apoyo de puente</strong>
-<p>Un ingeniero civil diseña el apoyo de un puente sobre un río. La pieza de acero (una placa base) mide <strong>2.400 × 1.200 × 150 mm</strong> — pesa más de 3 toneladas.</p>
-<p style="margin-top:.5rem">No cabe en un A0. El ingeniero la dibuja a escala <strong>1:20</strong> en un A1 (594 × 841 mm). En el plano, la placa mide solo 120 × 60 mm. Pero la cota SIEMPRE pone <strong>2400 × 1200 mm</strong>.</p>
-<p style="margin-top:.5rem">Si el operario de soldadura lee la cota como 120 × 60 mm (lo que ve en el plano) en vez de 2400 × 1200 mm (lo que dice la cota), <strong>la placa no llega a los pernos de anclaje → el puente no se fija → colapso estructural. Coste: vidas humanas.</strong></p>
-<p style="margin-top:.5rem;font-style:italic;color:var(--rojo)">La escala es una herramienta de representación, NO de medición. La cota SIEMPRE manda.</p>
+<span class="difficulty-badge hard">Ingeniería</span>
+<strong>🌉 Apoyo de puente — AEMET / Infraestructuras</strong>
+<p>Un ingeniero civil diseña el apoyo de un puente sobre un río. La placa base mide <strong>2.400 × 1.200 × 150 mm</strong> — pesa más de 3 toneladas.</p>
+<p style="margin-top:.5rem">No cabe en un A0. Se dibuja a escala <strong>1:20</strong> en A1. En el plano: 120 × 60 mm. Pero la cota SIEMPRE: <strong>2400 × 1200 mm</strong>.</p>
+<p style="margin-top:.5rem;font-style:italic;color:var(--rojo)">Si el soldador lee 120 en vez de 2400 → la placa no llega a los pernos → colapso. Coste: vidas humanas.</p>
+</div>
+
+<div class="box box-teoria">
+<span class="real-world-badge">CASO REAL</span>
+<span class="difficulty-badge hard">Aeronáutica</span>
+<strong>✈️ Ala de avión — Airbus A320</strong>
+<p>El ala de un Airbus A320 tiene <strong>35,8 metros</strong> de envergadura. Para el plano de fabricación se usa escala <strong>1:10</strong> en secciones críticas. Cada elemento pequeño (un tornillo de 5mm) se amplifica a <strong>2:1</strong> en el plano de detalle.</p>
+<p style="margin-top:.5rem">La norma <strong>ARP1152</strong> exige que TODAS las cotas sean a tamaño real. Un error de escala en un plano de ala puede costar <strong>millones de euros</strong> en piezas defectuosas.</p>
+</div>
+
+<div class="box box-ejemplo">
+<span class="real-world-badge">CASO REAL</span>
+<span class="difficulty-badge medium">Arquitectura</span>
+<strong>🏠 Plano de vivienda — Colegio Oficial de Arquitectos</strong>
+<p>Un piso de <strong>85 m²</strong> se dibuja a escala <strong>1:100</strong>. En el plano A1 (594 × 841 mm), el piso mide 850 × 567 mm. Las paredes de 24 cm se dibujan de 2,4 mm.</p>
+<p style="margin-top:.5rem">El arquitecto usa <strong>1:50</strong> para baños y cocinas (detalles), y <strong>1:200</strong> para la planta general. Cada escala tiene un uso específico: la cota siempre es el tamaño real del elemento constructivo.</p>
+</div>
+</section>
+
+<!-- CONEXIÓN -->
+<section class="chapter">
+<div class="connection-box">
+<h4>🔗 Conexión con otros temas</h4>
+<p>La escala es el puente entre la <strong>normalización</strong> (B01) y la <strong>representación de piezas</strong> (B02). Sin escalas correctas, los planos de conjunto (B09) serían imposibles de leer.</p>
+<p style="margin-top:.5rem"><span class="real-world-badge">Dato curioso</span> El plano más grande jamás fabricado fue el de la planta nuclear de Chernóbil: <strong>escala 1:500</strong>, en rollos de 100 metros.</p>
 </div>
 </section>
 
@@ -258,7 +362,7 @@ Cotar según lo que se ve en el plano. Si una pieza mide 100mm y la dibujas a es
 <div class="exercises">
 
 <div class="exercise">
-<p>📐 Ejercicio 1: ¿Qué escala usarías para dibujar un tornillo de 3mm?</p>
+<p><span class="difficulty-badge easy">Fácil</span> 📐 Ejercicio 1: ¿Qué escala usarías para dibujar un tornillo de 3mm?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">1:2 (reducción)</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">2:1 (ampliación)</button>
@@ -268,7 +372,7 @@ Cotar según lo que se ve en el plano. Si una pieza mide 100mm y la dibujas a es
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 2: Si una pieza mide 200mm y la dibujas a escala 1:10, ¿cuánto mide en el plano?</p>
+<p><span class="difficulty-badge easy">Fácil</span> 📐 Ejercicio 2: Si una pieza mide 200mm y la dibujas a escala 1:10, ¿cuánto mide en el plano?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">2000 mm</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">200 mm</button>
@@ -279,7 +383,7 @@ Cotar según lo que se ve en el plano. Si una pieza mide 100mm y la dibujas a es
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 3: ¿Cuál de estos es un valor de escala de ampliación?</p>
+<p><span class="difficulty-badge easy">Fácil</span> 📐 Ejercicio 3: ¿Cuál de estos es un valor de escala de ampliación?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">1:5</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">5:1</button>
@@ -290,7 +394,7 @@ Cotar según lo que se ve en el plano. Si una pieza mide 100mm y la dibujas a es
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 4: Verdadero o Falso — En escala 2:1, 2mm en el plano equivalen a 1mm en la realidad.</p>
+<p><span class="difficulty-badge medium">Medio</span> 📐 Ejercicio 4: Verdadero o Falso — En escala 2:1, 2mm en el plano equivalen a 1mm en la realidad.</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Verdadero</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Falso</button>
@@ -299,15 +403,14 @@ Cotar según lo que se ve en el plano. Si una pieza mide 100mm y la dibujas a es
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 5: Una pieza de 50mm se dibuja a escala 1:5. ¿Cuánto mide en el plano?</p>
+<p><span class="difficulty-badge medium">Medio</span> 📐 Ejercicio 5: Una pieza de 50mm se dibuja a escala 1:5. ¿Cuánto mide en el plano?</p>
 <input type="text" id="ex5" placeholder="Tu respuesta en mm" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
-<button onclick="checkExercise('ex5', '10', this)">Comprobar</button>
+<button onclick="checkFillIn('ex5', ['10'])">Comprobar</button>
 <p class="feedback"></p>
 </div>
 
-<!-- NUEVO: Ejercicio de caso real -->
 <div class="exercise">
-<p>🏭 Ejercicio 6 (caso real): Un puente tiene un apoyo de 2400 mm de largo. Se dibuja a escala 1:20. ¿Cuánto mide en el plano?</p>
+<p><span class="difficulty-badge medium">Medio</span> 🏭 Ejercicio 6 (caso real): Un puente tiene un apoyo de 2400 mm de largo. Se dibuja a escala 1:20. ¿Cuánto mide en el plano?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">240 mm</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">120 mm</button>
@@ -317,9 +420,8 @@ Cotar según lo que se ve en el plano. Si una pieza mide 100mm y la dibujas a es
 <p class="feedback"></p>
 </div>
 
-<!-- NUEVO: Ejercicio de regla de oro -->
 <div class="exercise">
-<p>🏷️ Ejercicio 7 (regla de oro): En el plano del puente del ejercicio anterior, ¿qué cota debe aparecer?</p>
+<p><span class="difficulty-badge hard">Difícil</span> 🏷️ Ejercicio 7 (regla de oro): En el plano del puente del ejercicio anterior, ¿qué cota debe aparecer?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">120 mm — lo que se ve en el plano</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">2400 mm — el tamaño real de la pieza</button>
@@ -329,13 +431,48 @@ Cotar según lo que se ve en el plano. Si una pieza mide 100mm y la dibujas a es
 <p class="feedback"></p>
 </div>
 
+<div class="exercise">
+<p><span class="difficulty-badge hard">Difícil</span> 🧩 Ejercicio 8 (completar): Si una pieza de <input type="number" id="ex8a" style="width:80px;padding:.3rem;border:2px solid #e2e8f0;border-radius:4px"> mm se dibuja a escala 1:50 y en el plano mide <input type="number" id="ex8b" style="width:80px;padding:.3rem;border:2px solid #e2e8f0;border-radius:4px"> mm, ¿cuál es la medida real?</p>
+<p style="font-size:.85rem;color:var(--gris)">Pista: Plano × escala = Real. Introduce ambas medidas.</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">La suma de ambas</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">plano × 50</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">plano ÷ 50</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">50 ÷ plano</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p><span class="difficulty-badge hard">Difícil</span> 📊 Ejercicio 9 (ordenar): Ordena estas escalas de menor a mayor (de lo más reducido a lo más ampliado):</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkOrden(this, false)">1:100</button>
+<button class="quiz-btn" onclick="checkOrden(this, false)">1:5</button>
+<button class="quiz-btn" onclick="checkOrden(this, false)">1:1</button>
+<button class="quiz-btn" onclick="checkOrden(this, false)">2:1</button>
+<button class="quiz-btn" onclick="checkOrden(this, true)">1:100</button>
+<button class="quiz-btn" onclick="checkOrden(this, false)">1:5</button>
+<button class="quiz-btn" onclick="checkOrden(this, false)">1:1</button>
+<button class="quiz-btn" onclick="checkOrden(this, false)">2:1</button>
+</div>
+<p class="feedback"></p>
+<p style="font-size:.85rem;color:var(--gris)">Pista: 1:100 = lo más pequeño, 2:1 = lo más grande</p>
+</div>
+
+<div class="exercise">
+<p><span class="difficulty-badge hard">Difícil</span> 🧮 Ejercicio 10 (VF visual): Observa la pieza: mide 200mm en realidad y 4mm en plano. ¿Qué escala es?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">1:2 — reducción</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">1:50 — reducción</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">1:50 — reducción</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">50:1 — ampliación</button>
+</div>
+<p class="feedback"></p>
+<p style="font-size:.85rem;color:var(--gris)">4/200 = 1/50 → escala de reducción 1:50</p>
+</div>
+
 </div>
 </section>
-
-<div class="box box-idea">
-<strong>🔗 Conexión</strong>
-La escala 1:100 es la más usada en planos de arquitectura. Un edificio de 10 metros se dibuja de 10 cm. ¡Y la cota siempre pone 10 m, no 10 cm!
-</div>
 
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
@@ -441,6 +578,53 @@ function checkExercise(id, correct, btn) {
     feedback.textContent = '❌ Respuesta correcta: ' + correct + ' mm';
     feedback.className = 'feedback incorrect';
     input.style.borderColor = 'var(--rojo)';
+  }
+}
+
+// 4-step visual pattern
+function showStep(step) {
+  for (var i = 1; i <= 4; i++) {
+    var el = document.getElementById('paso' + i);
+    if (el) el.style.display = (i === step) ? 'block' : 'none';
+  }
+  var dots = document.querySelectorAll('.step-dot');
+  dots.forEach(function(d) { d.classList.remove('active'); });
+  var activeDot = document.querySelector('.step-dot[data-step="' + step + '"]');
+  if (activeDot) activeDot.classList.add('active');
+}
+
+function checkFillIn(inputId, correctAnswers) {
+  var input = document.getElementById(inputId);
+  var feedback = input.parentElement.querySelector('.feedback');
+  var val = input.value.trim().toLowerCase();
+  if (correctAnswers.some(function(a) { return a.toLowerCase() === val; })) {
+    feedback.textContent = '✅ ¡Correcto!';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ Respuesta: ' + correctAnswers[0];
+    feedback.className = 'feedback incorrect';
+  }
+}
+
+function checkOrden(btn, correctPos) {
+  var exercise = btn.closest('.exercise');
+  var allBtns = exercise.querySelectorAll('.quiz-btn');
+  allBtns.forEach(function(b) { b.disabled = true; b.classList.remove('correct','wrong'); });
+  btn.classList.add(correctPos ? 'correct' : 'wrong');
+  var feedback = exercise.querySelector('.feedback');
+  if (feedback) {
+    if (correctPos) {
+      feedback.textContent = '✅ ¡Orden correcto!';
+      feedback.className = 'feedback correct';
+    } else {
+      feedback.textContent = '❌ No es ese. Prueba otro.';
+      feedback.className = 'feedback incorrect';
+      setTimeout(function() {
+        allBtns.forEach(function(b) { b.disabled = false; b.classList.remove('correct','wrong'); });
+        feedback.textContent = '';
+        feedback.className = 'feedback';
+      }, 1500);
+    }
   }
 }
 
