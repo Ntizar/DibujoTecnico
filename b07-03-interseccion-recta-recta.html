@@ -62,6 +62,14 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .stack-item:hover{border-color:var(--azul);transform:translateX(4px)}
 .stack-item.active{border-color:var(--azul);background:var(--azul-claro)}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+.clickable{cursor:pointer;transition:all .2s;outline:none}
+.clickable:hover{filter:brightness(1.1);transform:scale(1.02)}
+.clickable:active{transform:scale(0.98)}
+.connection-box{background:linear-gradient(135deg,var(--pura-claro),#f3e8ff);border:2px solid var(--pura);border-radius:12px;padding:1.2rem;margin:1.5rem 0}
+.connection-box h4{color:var(--pura);margin-bottom:.5rem}
+.difficulty-badge{display:inline-block;background:linear-gradient(135deg,var(--pura),#7c3aed);color:#fff;padding:.2rem .6rem;border-radius:12px;font-size:.7rem;font-weight:700;margin-left:.5rem}
+.feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block;font-weight:600}
+.feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block;font-weight:600}
 </style>
 </head>
 <body>
@@ -133,178 +141,294 @@ Si Y₁ > Y₂ → r₁ domina en planta (r₁ tapa a r₂).
 
 <section class="chapter">
 <h2 class="chapter-title">2️⃣ Visualiza la intersección recta-recta</h2>
+
+<!-- Step indicator -->
+<div class="step-indicator" id="pasoIndicador">
+<div class="step-dot active" style="background:var(--azul)" onclick="showPaso(0)">1</div>
+<div class="step-dot" style="background:var(--gris)" onclick="showPaso(1)">2</div>
+<div class="step-dot" style="background:var(--gris)" onclick="showPaso(2)">3</div>
+<div class="step-dot" style="background:var(--gris)" onclick="showPaso(3)">4</div>
+</div>
+
+<div class="interactive" id="pasoInfo">
+<h3 id="pasoTitulo">🔍 Mira: rectas que se cortan</h3>
+<p id="pasoTexto" style="margin:.5rem 0 1rem;color:#64748b">Haz clic en los botones para ver cada caso. La clave está en verificar que I' e I estén en la misma vertical.</p>
+</div>
+
 <div class="svg-container">
-<svg viewBox="0 0 700 520" xmlns="http://www.w3.org/2000/svg">
-<!-- Fondo -->
+<svg id="interseccionSvg" viewBox="0 0 700 520" xmlns="http://www.w3.org/2000/svg">
+<!-- ===== PASO 0: Se cortan ===== -->
+<g id="paso0">
 <rect x="0" y="0" width="700" height="520" fill="#f8fafc" rx="8"/>
-<text x="350" y="22" text-anchor="middle" font-size="14" fill="#2563eb" font-weight="700">Intersección Recta-Recta</text>
-
-<!-- ===== CASO 1: SE CORTAN ===== -->
-<text x="175" y="50" text-anchor="middle" font-size="11" fill="#10b981" font-weight="700">✅ Se cortan</text>
+<text x="350" y="22" text-anchor="middle" font-size="14" fill="#10b981" font-weight="700">✅ CASO 1: Rectas que se cortan</text>
 <!-- Alzado -->
-<text x="100" y="72" font-size="9" fill="#64748b" font-weight="600">Alzado</text>
-<line x1="30" y1="80" x2="220" y2="80" stroke="#1e293b" stroke-width="1.5"/>
-<text x="225" y="84" font-size="8" fill="#1e293b">LT</text>
-<line x1="50" y1="60" x2="180" y2="100" stroke="#2563eb" stroke-width="2"/>
-<text x="185" y="105" font-size="8" fill="#2563eb">r₁'</text>
-<line x1="50" y1="100" x2="180" y2="60" stroke="#f97316" stroke-width="2"/>
-<text x="185" y="58" font-size="8" fill="#f97316">r₂'</text>
-<!-- Punto I' -->
-<circle cx="115" cy="80" r="4" fill="#ef4444"/>
-<text x="122" y="75" font-size="9" fill="#ef4444" font-weight="700">I'</text>
+<text x="120" y="50" text-anchor="middle" font-size="11" fill="#64748b" font-weight="600">Alzado</text>
+<line x1="30" y1="60" x2="210" y2="60" stroke="#1e293b" stroke-width="1.5"/>
+<text x="215" y="64" font-size="8" fill="#1e293b">LT</text>
+<line x1="50" y1="40" x2="180" y2="80" stroke="#2563eb" stroke-width="2.5" class="clickable" onclick="highlightRecta('r1')"/>
+<text x="185" y="85" font-size="8" fill="#2563eb">r₁'</text>
+<line x1="50" y1="80" x2="180" y2="40" stroke="#f97316" stroke-width="2.5" class="clickable" onclick="highlightRecta('r2')"/>
+<text x="185" y="38" font-size="8" fill="#f97316">r₂'</text>
+<circle cx="115" cy="60" r="5" fill="#ef4444"/>
+<text x="125" y="55" font-size="10" fill="#ef4444" font-weight="700">I'</text>
 <!-- Planta -->
-<text x="100" y="142" font-size="9" fill="#64748b" font-weight="600">Planta</text>
-<line x1="30" y1="150" x2="220" y2="150" stroke="#1e293b" stroke-width="1.5"/>
-<line x1="50" y1="170" x2="180" y2="210" stroke="#2563eb" stroke-width="2"/>
-<text x="185" y="215" font-size="8" fill="#2563eb">r₁</text>
-<line x1="50" y1="210" x2="180" y2="170" stroke="#f97316" stroke-width="2"/>
-<text x="185" y="168" font-size="8" fill="#f97316">r₂</text>
-<!-- Punto I -->
-<circle cx="115" cy="180" r="4" fill="#ef4444"/>
-<text x="122" y="195" font-size="9" fill="#ef4444" font-weight="700">I</text>
+<text x="120" y="120" text-anchor="middle" font-size="11" fill="#64748b" font-weight="600">Planta</text>
+<line x1="30" y1="130" x2="210" y2="130" stroke="#1e293b" stroke-width="1.5"/>
+<line x1="50" y1="150" x2="180" y2="190" stroke="#2563eb" stroke-width="2.5"/>
+<text x="185" y="195" font-size="8" fill="#2563eb">r₁</text>
+<line x1="50" y1="190" x2="180" y2="150" stroke="#f97316" stroke-width="2.5"/>
+<text x="185" y="148" font-size="8" fill="#f97316">r₂</text>
+<circle cx="115" cy="170" r="5" fill="#ef4444"/>
+<text x="125" y="185" font-size="10" fill="#ef4444" font-weight="700">I</text>
 <!-- Línea de referencia -->
-<line x1="115" y1="84" x2="115" y2="176" stroke="#ef4444" stroke-width="0.5" stroke-dasharray="4,2"/>
-<text x="122" y="135" font-size="8" fill="#ef4444">misma vertical ✓</text>
+<line x1="115" y1="64" x2="115" y2="166" stroke="#10b981" stroke-width="2" stroke-dasharray="6,3"/>
+<text x="125" y="120" font-size="9" fill="#10b981" font-weight="700">misma vertical ✓</text>
+<!-- Resultado -->
+<rect x="300" y="40" width="370" height="140" fill="#ecfdf5" stroke="#10b981" stroke-width="2" rx="8"/>
+<text x="485" y="65" text-anchor="middle" font-size="12" fill="#10b981" font-weight="700">✅ SE CORTAN</text>
+<text x="320" y="85" font-size="10" fill="#1e293b">• I' = r₁' ∩ r₂' en alzado</text>
+<text x="320" y="102" font-size="10" fill="#1e293b">• I = r₁ ∩ r₂ en planta</text>
+<text x="320" y="119" font-size="10" fill="#1e293b">• I' e I en la misma vertical</text>
+<text x="320" y="136" font-size="10" fill="#1e293b">• → Las rectas se cortan en I</text>
+<text x="320" y="160" font-size="10" fill="#10b981" font-weight="600">Punto de corte: I(X,Y,Z)</text>
+<!-- Regla -->
+<rect x="300" y="195" width="370" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="1" rx="6"/>
+<text x="485" y="215" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="600">Regla: I' e I deben estar en la misma vertical</text>
+<text x="485" y="232" text-anchor="middle" font-size="9" fill="#64748b">Si NO están en la misma vertical → rectas que se cruzan</text>
+</g>
 
-<!-- Separador -->
-<line x1="250" y1="50" x2="250" y2="230" stroke="#e2e8f0" stroke-width="1"/>
-
-<!-- ===== CASO 2: SE CRUZAN ===== -->
-<text x="475" y="50" text-anchor="middle" font-size="11" fill="#ef4444" font-weight="700">❌ Se cruzan</text>
+<!-- ===== PASO 1: Se cruzan (cruzados horizontales) ===== -->
+<g id="paso1" style="display:none">
+<rect x="0" y="0" width="700" height="520" fill="#f8fafc" rx="8"/>
+<text x="350" y="22" text-anchor="middle" font-size="14" fill="#ef4444" font-weight="700">❌ CASO 2: Rectas que se cruzan (cruzados horizontales)</text>
 <!-- Alzado -->
-<text x="400" y="72" font-size="9" fill="#64748b" font-weight="600">Alzado</text>
-<line x1="300" y1="80" x2="500" y2="80" stroke="#1e293b" stroke-width="1.5"/>
-<text x="505" y="84" font-size="8" fill="#1e293b">LT</text>
-<line x1="320" y1="60" x2="460" y2="100" stroke="#2563eb" stroke-width="2"/>
-<text x="465" y="105" font-size="8" fill="#2563eb">r₁'</text>
-<line x1="320" y1="100" x2="460" y2="60" stroke="#f97316" stroke-width="2"/>
-<text x="465" y="58" font-size="8" fill="#f97316">r₂'</text>
-<!-- Puntos cruzados -->
-<circle cx="390" cy="80" r="4" fill="#a855f7"/>
-<text x="370" y="75" font-size="8" fill="#a855f7" font-weight="600">P'</text>
+<text x="120" y="50" text-anchor="middle" font-size="11" fill="#64748b" font-weight="600">Alzado</text>
+<line x1="30" y1="60" x2="210" y2="60" stroke="#1e293b" stroke-width="1.5"/>
+<line x1="50" y1="40" x2="180" y2="80" stroke="#2563eb" stroke-width="2.5"/>
+<text x="185" y="85" font-size="8" fill="#2563eb">r₁'</text>
+<line x1="50" y1="80" x2="180" y2="40" stroke="#f97316" stroke-width="2.5"/>
+<text x="185" y="38" font-size="8" fill="#f97316">r₂'</text>
+<circle cx="115" cy="60" r="5" fill="#a855f7"/>
+<text x="125" y="55" font-size="10" fill="#a855f7" font-weight="600">P'</text>
 <!-- Planta -->
-<text x="400" y="142" font-size="9" fill="#64748b" font-weight="600">Planta</text>
-<line x1="300" y1="150" x2="500" y2="150" stroke="#1e293b" stroke-width="1.5"/>
-<line x1="320" y1="170" x2="460" y2="210" stroke="#2563eb" stroke-width="2"/>
-<text x="465" y="215" font-size="8" fill="#2563eb">r₁</text>
-<line x1="340" y1="170" x2="480" y2="210" stroke="#f97316" stroke-width="2"/>
-<text x="485" y="215" font-size="8" fill="#f97316">r₂</text>
-<!-- Los puntos NO coinciden -->
-<circle cx="390" cy="185" r="3" fill="#2563eb"/>
-<text x="370" y="188" font-size="8" fill="#2563eb">r₁</text>
-<circle cx="410" cy="185" r="3" fill="#f97316"/>
-<text x="415" y="188" font-size="8" fill="#f97316">r₂</text>
-<!-- No misma vertical -->
-<line x1="390" y1="84" x2="390" y2="176" stroke="#ef4444" stroke-width="0.5" stroke-dasharray="4,2"/>
-<text x="390" y="135" text-anchor="middle" font-size="8" fill="#ef4444">NO misma vertical ✗</text>
+<text x="120" y="120" text-anchor="middle" font-size="11" fill="#64748b" font-weight="600">Planta</text>
+<line x1="30" y1="130" x2="210" y2="130" stroke="#1e293b" stroke-width="1.5"/>
+<line x1="50" y1="150" x2="180" y2="190" stroke="#2563eb" stroke-width="2.5"/>
+<text x="185" y="195" font-size="8" fill="#2563eb">r₁</text>
+<line x1="90" y1="150" x2="220" y2="190" stroke="#f97316" stroke-width="2.5"/>
+<text x="225" y="195" font-size="8" fill="#f97316">r₂</text>
+<circle cx="115" cy="170" r="4" fill="#2563eb"/>
+<text x="100" y="175" font-size="8" fill="#2563eb">P₁</text>
+<circle cx="155" cy="170" r="4" fill="#f97316"/>
+<text x="160" y="175" font-size="8" fill="#f97316">P₂</text>
+<!-- NO misma vertical -->
+<line x1="115" y1="64" x2="115" y2="166" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4,3"/>
+<text x="125" y="120" font-size="9" fill="#ef4444" font-weight="700">NO misma vertical ✗</text>
+<!-- Resultado -->
+<rect x="300" y="40" width="370" height="140" fill="#fef2f2" stroke="#ef4444" stroke-width="2" rx="8"/>
+<text x="485" y="65" text-anchor="middle" font-size="12" fill="#ef4444" font-weight="700">❌ SE CRUZAN</text>
+<text x="320" y="85" font-size="10" fill="#1e293b">• P' = r₁' ∩ r₂' en alzado</text>
+<text x="320" y="102" font-size="10" fill="#1e293b">• P₁ ≠ P₂ en planta (distintos)</text>
+<text x="320" y="119" font-size="10" fill="#1e293b">• P' NO está en la misma vertical</text>
+<text x="320" y="136" font-size="10" fill="#1e293b">→ Cruzados horizontales</text>
+<text x="320" y="160" font-size="10" fill="#a855f7" font-weight="600">Z mayor domina en alzado</text>
+<!-- Regla -->
+<rect x="300" y="195" width="370" height="50" fill="#fff7ed" stroke="#f97316" stroke-width="1" rx="6"/>
+<text x="485" y="215" text-anchor="middle" font-size="10" fill="#f97316" font-weight="600">Cruzados horizontales: misma proyección en alzado</text>
+<text x="485" y="232" text-anchor="middle" font-size="9" fill="#64748b">El que tenga mayor Z domina (está más arriba)</text>
+</g>
 
-<!-- ===== PUNTOS CRUZADOS ===== -->
-<text x="350" y="270" text-anchor="middle" font-size="13" fill="#2563eb" font-weight="700">Puntos Cruzados</text>
+<!-- ===== PASO 2: Cruzados verticales ===== -->
+<g id="paso2" style="display:none">
+<rect x="0" y="0" width="700" height="520" fill="#f8fafc" rx="8"/>
+<text x="350" y="22" text-anchor="middle" font-size="14" fill="#ef4444" font-weight="700">❌ CASO 3: Rectas que se cruzan (cruzados verticales)</text>
+<!-- Alzado -->
+<text x="120" y="50" text-anchor="middle" font-size="11" fill="#64748b" font-weight="600">Alzado</text>
+<line x1="30" y1="60" x2="210" y2="60" stroke="#1e293b" stroke-width="1.5"/>
+<line x1="50" y1="40" x2="180" y2="80" stroke="#2563eb" stroke-width="2.5"/>
+<text x="185" y="85" font-size="8" fill="#2563eb">r₁'</text>
+<line x1="90" y1="40" x2="220" y2="80" stroke="#f97316" stroke-width="2.5"/>
+<text x="225" y="85" font-size="8" fill="#f97316">r₂'</text>
+<circle cx="115" cy="170" r="4" fill="#2563eb"/>
+<circle cx="155" cy="170" r="4" fill="#f97316"/>
+<!-- Planta -->
+<text x="120" y="120" text-anchor="middle" font-size="11" fill="#64748b" font-weight="600">Planta</text>
+<line x1="30" y1="130" x2="210" y2="130" stroke="#1e293b" stroke-width="1.5"/>
+<line x1="50" y1="150" x2="180" y2="190" stroke="#2563eb" stroke-width="2.5"/>
+<text x="185" y="195" font-size="8" fill="#2563eb">r₁</text>
+<line x1="50" y1="190" x2="180" y2="150" stroke="#f97316" stroke-width="2.5"/>
+<text x="185" y="148" font-size="8" fill="#f97316">r₂</text>
+<circle cx="115" cy="170" r="5" fill="#a855f7"/>
+<text x="125" y="185" font-size="10" fill="#a855f7" font-weight="600">Q</text>
+<!-- NO misma vertical en alzado -->
+<line x1="115" y1="64" x2="115" y2="166" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4,3"/>
+<text x="125" y="120" font-size="9" fill="#ef4444" font-weight="700">NO misma vertical ✗</text>
+<!-- Resultado -->
+<rect x="300" y="40" width="370" height="140" fill="#fef2f2" stroke="#ef4444" stroke-width="2" rx="8"/>
+<text x="485" y="65" text-anchor="middle" font-size="12" fill="#ef4444" font-weight="700">❌ SE CRUZAN</text>
+<text x="320" y="85" font-size="10" fill="#1e293b">• Q = r₁ ∩ r₂ en planta</text>
+<text x="320" y="102" font-size="10" fill="#1e293b">• Q' NO está en la misma vertical en alzado</text>
+<text x="320" y="119" font-size="10" fill="#1e293b">→ Cruzados verticales</text>
+<text x="320" y="136" font-size="10" fill="#1e293b">• Misma proyección en planta, distinta en alzado</text>
+<text x="320" y="160" font-size="10" fill="#a855f7" font-weight="600">Y mayor domina en planta</text>
+<!-- Regla -->
+<rect x="300" y="195" width="370" height="50" fill="#fff7ed" stroke="#f97316" stroke-width="1" rx="6"/>
+<text x="485" y="215" text-anchor="middle" font-size="10" fill="#f97316" font-weight="600">Cruzados verticales: misma proyección en planta</text>
+<text x="485" y="232" text-anchor="middle" font-size="9" fill="#64748b">El que tenga mayor Y domina (está más cerca del observador)</text>
+</g>
 
-<!-- Cruzados horizontales -->
-<rect x="20" y="280" width="320" height="140" fill="#fff" stroke="#e2e8f0" stroke-width="1" rx="6"/>
-<text x="180" y="302" text-anchor="middle" font-size="11" fill="#a855f7" font-weight="700">Cruzados Horizontales</text>
-<!-- Alzado: mismo punto -->
-<text x="40" y="320" font-size="9" fill="#64748b">Alzado (mismo punto P')</text>
-<line x1="40" y1="330" x2="320" y2="330" stroke="#1e293b" stroke-width="1"/>
-<line x1="60" y1="310" x2="280" y2="350" stroke="#2563eb" stroke-width="1.5"/>
-<line x1="60" y1="350" x2="280" y2="310" stroke="#f97316" stroke-width="1.5"/>
-<circle cx="170" cy="330" r="4" fill="#a855f7"/>
-<text x="178" y="325" font-size="9" fill="#a855f7" font-weight="600">P'</text>
-<!-- Planta: distintos -->
-<text x="40" y="370" font-size="9" fill="#64748b">Planta (distintos)</text>
-<line x1="40" y1="380" x2="320" y2="380" stroke="#1e293b" stroke-width="1"/>
-<line x1="60" y1="395" x2="280" y2="435" stroke="#2563eb" stroke-width="1.5"/>
-<line x1="100" y1="395" x2="320" y2="435" stroke="#f97316" stroke-width="1.5"/>
-<circle cx="170" cy="410" r="3" fill="#2563eb"/>
-<circle cx="210" cy="410" r="3" fill="#f97316"/>
-<text x="185" y="450" text-anchor="middle" font-size="9" fill="#a855f7">Z mayor domina en alzado</text>
-
-<!-- Cruzados verticales -->
-<rect x="360" y="280" width="320" height="140" fill="#fff" stroke="#e2e8f0" stroke-width="1" rx="6"/>
-<text x="520" y="302" text-anchor="middle" font-size="11" fill="#a855f7" font-weight="700">Cruzados Verticales</text>
-<!-- Alzado: distintos -->
-<text x="380" y="320" font-size="9" fill="#64748b">Alzado (distintos)</text>
-<line x1="380" y1="330" x2="660" y2="330" stroke="#1e293b" stroke-width="1"/>
-<line x1="400" y1="310" x2="620" y2="350" stroke="#2563eb" stroke-width="1.5"/>
-<line x1="440" y1="310" x2="660" y2="350" stroke="#f97316" stroke-width="1.5"/>
-<circle cx="510" cy="325" r="3" fill="#2563eb"/>
-<circle cx="540" cy="325" r="3" fill="#f97316"/>
-<!-- Planta: mismo punto -->
-<text x="380" y="370" font-size="9" fill="#64748b">Planta (mismo punto Q)</text>
-<line x1="380" y1="380" x2="660" y2="380" stroke="#1e293b" stroke-width="1"/>
-<line x1="400" y1="395" x2="620" y2="435" stroke="#2563eb" stroke-width="1.5"/>
-<line x1="400" y1="435" x2="620" y2="395" stroke="#f97316" stroke-width="1.5"/>
-<circle cx="510" cy="415" r="4" fill="#a855f7"/>
-<text x="518" y="410" font-size="9" fill="#a855f7" font-weight="600">Q</text>
-<text x="520" y="450" text-anchor="middle" font-size="9" fill="#a855f7">Y mayor domina en planta</text>
-
-<!-- RESUMEN -->
-<rect x="20" y="440" width="660" height="65" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1" rx="6"/>
-<text x="350" y="460" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="700">Resumen: ¿Se cortan o se cruzan?</text>
-<text x="50" y="480" font-size="10" fill="#1e293b">1. Proyectar intersección en alzado (I') y planta (I)</text>
-<text x="50" y="500" font-size="10" fill="#1e293b">2. ¿Están en la misma vertical? → Sí = se cortan | No = se cruzan</text>
-<text x="450" y="480" font-size="10" fill="#1e293b">3. Si se cruzan: usar puntos cruzados para visibilidad</text>
-<text x="450" y="500" font-size="10" fill="#1e293b">4. Cruz. horiz. → Z mayor domina | Cruz. vert. → Y mayor domina</text>
+<!-- ===== PASO 3: Resumen comparativo ===== -->
+<g id="paso3" style="display:none">
+<rect x="0" y="0" width="700" height="520" fill="#f8fafc" rx="8"/>
+<text x="350" y="22" text-anchor="middle" font-size="14" fill="#2563eb" font-weight="700">📊 Resumen: ¿Se cortan o se cruzan?</text>
+<!-- Tabla comparativa -->
+<rect x="30" y="40" width="640" height="200" fill="#fff" stroke="#e2e8f0" stroke-width="2" rx="8"/>
+<text x="350" y="65" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="700">Tabla de decisión</text>
+<line x1="40" y1="75" x2="660" y2="75" stroke="#e2e8f0" stroke-width="1"/>
+<!-- Headers -->
+<rect x="40" y="80" width="140" height="25" fill="#eff6ff" rx="4"/>
+<text x="110" y="97" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="600">Criterio</text>
+<rect x="180" y="80" width="240" height="25" fill="#ecfdf5" rx="4"/>
+<text x="300" y="97" text-anchor="middle" font-size="10" fill="#10b981" font-weight="600">✅ Se cortan</text>
+<rect x="420" y="80" width="240" height="25" fill="#fef2f2" rx="4"/>
+<text x="540" y="97" text-anchor="middle" font-size="10" fill="#ef4444" font-weight="600">❌ Se cruzan</text>
+<!-- Row 1 -->
+<rect x="40" y="107" width="140" height="30" fill="#f8fafc"/>
+<text x="110" y="127" text-anchor="middle" font-size="9" fill="#1e293b">Alzado: r₁'∩r₂' = I'</text>
+<rect x="180" y="107" width="240" height="30" fill="#ecfdf5"/>
+<text x="300" y="127" text-anchor="middle" font-size="9" fill="#1e293b">I' existe</text>
+<rect x="420" y="107" width="240" height="30" fill="#ecfdf5"/>
+<text x="540" y="127" text-anchor="middle" font-size="9" fill="#1e293b">P' existe (cruzados)</text>
+<!-- Row 2 -->
+<rect x="40" y="139" width="140" height="30" fill="#f8fafc"/>
+<text x="110" y="156" text-anchor="middle" font-size="9" fill="#1e293b">Planta: r₁∩r₂ = I</text>
+<rect x="180" y="139" width="240" height="30" fill="#ecfdf5"/>
+<text x="300" y="156" text-anchor="middle" font-size="9" fill="#1e293b">I existe</text>
+<rect x="420" y="139" width="240" height="30" fill="#ecfdf5"/>
+<text x="540" y="156" text-anchor="middle" font-size="9" fill="#1e293b">P₁ ≠ P₂ (distintos)</text>
+<!-- Row 3 -->
+<rect x="40" y="171" width="140" height="30" fill="#f8fafc"/>
+<text x="110" y="188" text-anchor="middle" font-size="9" fill="#1e293b">¿Misma vertical?</text>
+<rect x="180" y="171" width="240" height="30" fill="#ecfdf5"/>
+<text x="300" y="188" text-anchor="middle" font-size="9" fill="#10b981" font-weight="600">✅ SÍ</text>
+<rect x="420" y="171" width="240" height="30" fill="#fef2f2"/>
+<text x="540" y="188" text-anchor="middle" font-size="9" fill="#ef4444" font-weight="600">❌ NO</text>
+<!-- Row 4 -->
+<rect x="40" y="203" width="140" height="30" fill="#f8fafc"/>
+<text x="110" y="220" text-anchor="middle" font-size="9" fill="#1e293b">Tipo de puntos</text>
+<rect x="180" y="203" width="240" height="30" fill="#ecfdf5"/>
+<text x="300" y="220" text-anchor="middle" font-size="9" fill="#1e293b">Punto de corte real</text>
+<rect x="420" y="203" width="240" height="30" fill="#fef2f2"/>
+<text x="540" y="220" text-anchor="middle" font-size="9" fill="#1e293b">Horiz. (Z) o Vert. (Y)</text>
+<!-- Algoritmo -->
+<rect x="30" y="255" width="640" height="120" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1" rx="6"/>
+<text x="350" y="278" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="700">Algoritmo paso a paso</text>
+<text x="50" y="298" font-size="10" fill="#1e293b">1. Proyectar intersección en alzado (I' o P')</text>
+<text x="50" y="315" font-size="10" fill="#1e293b">2. Proyectar en planta y verificar si está en la misma vertical</text>
+<text x="50" y="332" font-size="10" fill="#1e293b">3. Si SÍ → se cortan en I. Si NO → se cruzan, usar puntos cruzados</text>
+<text x="50" y="349" font-size="10" fill="#1e293b">4. Cruz. horizontales → Z mayor domina | Cruz. verticales → Y mayor domina</text>
+<!-- Visibilidad -->
+<rect x="30" y="390" width="310" height="110" fill="#fff7ed" stroke="#f97316" stroke-width="1" rx="6"/>
+<text x="185" y="412" text-anchor="middle" font-size="10" fill="#f97316" font-weight="600">Visibilidad en cruzados</text>
+<text x="45" y="432" font-size="9" fill="#1e293b">• Cruz. horizontales: comparar Z</text>
+<text x="45" y="447" font-size="9" fill="#1e293b">  Mayor Z = domina en alzado</text>
+<text x="45" y="462" font-size="9" fill="#1e293b">• Cruz. verticales: comparar Y</text>
+<text x="45" y="477" font-size="9" fill="#1e293b">  Mayor Y = domina en planta</text>
+<rect x="360" y="390" width="310" height="110" fill="#eff6ff" stroke="#2563eb" stroke-width="1" rx="6"/>
+<text x="515" y="412" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="600">Ejemplo numérico</text>
+<text x="375" y="432" font-size="9" fill="#1e293b">r₁: P'(115,60) → planta: r₁(115,170)</text>
+<text x="375" y="447" font-size="9" fill="#1e293b">r₂: P'(115,60) → planta: r₂(155,170)</text>
+<text x="375" y="462" font-size="9" fill="#1e293b">Z₁=80 > Z₂=50 → r₁ domina en alzado</text>
+<text x="375" y="477" font-size="9" fill="#1e293b">Y₁=30 > Y₂=20 → r₁ domina en planta</text>
+</g>
 </svg>
+</div>
+
+<!-- Botones de control SVG -->
+<div style="display:flex;gap:.5rem;justify-content:center;margin:1rem 0;flex-wrap:wrap">
+<button class="quiz-btn" onclick="showPaso(0)" style="font-size:.85rem">✅ Se cortan</button>
+<button class="quiz-btn" onclick="showPaso(1)" style="font-size:.85rem">❌ Cruz. horizontales</button>
+<button class="quiz-btn" onclick="showPaso(2)" style="font-size:.85rem">❌ Cruz. verticales</button>
+<button class="quiz-btn" onclick="showPaso(3)" style="font-size:.85rem">📊 Resumen</button>
 </div>
 </section>
 
 <section class="chapter">
 <h2 class="chapter-title">📝 Ejercicios</h2>
 <div class="exercises">
+<h3>📝 Ejercicios interactivos</h3>
 
 <div class="exercise">
-<p>📐 Ejercicio 1: ¿Cuándo se cortan dos rectas en diédrico?</p>
+<p>📐 Ejercicio 1 (Quiz): Si I' = r₁' ∩ r₂' en alzado y I = r₁ ∩ r₂ en planta, y I' e I están en la misma vertical, entonces...</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Cuando sus proyecciones se cruzan en cualquier lugar</button>
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Cuando I' e I están en la misma vertical</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Cuando son paralelas</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Cuando se cruzan en alzado</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Las rectas se cortan en el punto I</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Las rectas se cruzan</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Las rectas son paralelas</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">No se puede determinar</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 2: ¿Qué son los puntos cruzados horizontales?</p>
+<p>📐 Ejercicio 2 (V/F): En rectas cruzadas horizontales, la intersección de proyecciones en alzado (P') está en la misma vertical que las intersecciones en planta.</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Misma proyección en alzado, distinta en planta</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Misma proyección en planta, distinta en alzado</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Iguales en ambas proyecciones</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Puntos en la LT</button>
+<button class="quiz-btn" onclick="checkVF(this, false)">Verdadero</button>
+<button class="quiz-btn" onclick="checkVF(this, true)">Falso</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 3: En cruzados horizontales, ¿qué coordina determina cuál recta domina?</p>
+<p>📐 Ejercicio 3 (V/F): En rectas cruzadas verticales, la intersección de proyecciones en planta (Q) está en la misma vertical que las intersecciones en alzado.</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Y (profundidad)</button>
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Z (altura)</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">X (longitud)</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">No importa</button>
+<button class="quiz-btn" onclick="checkVF(this, false)">Verdadero</button>
+<button class="quiz-btn" onclick="checkVF(this, true)">Falso</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 4: ¿Qué tipo de puntos cruzados se usan para determinar visibilidad en planta?</p>
+<p>📐 Ejercicio 4 (Completar): En cruzados horizontales, la coordenada que determina cuál recta domina en alzado es la ___ .</p>
+<input type="text" placeholder="Escribe la coordenada..." style="padding:.4rem;border:1px solid var(--gris);border-radius:4px;width:200px"/>
+<button class="quiz-btn" onclick="checkFillIn(['z','altura','z (altura)'])()" style="margin-left:.5rem">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 5 (Completar): En cruzados verticales, la coordenada que determina cuál recta domina en planta es la ___ .</p>
+<input type="text" placeholder="Escribe la coordenada..." style="padding:.4rem;border:1px solid var(--gris);border-radius:4px;width:200px"/>
+<button class="quiz-btn" onclick="checkFillIn(['y','profundidad','y (profundidad)'])()" style="margin-left:.5rem">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 6 (Ordenar): Ordena los pasos para determinar si dos rectas se cortan o se cruzan:</p>
+<div style="display:flex;flex-direction:column;gap:.4rem;margin:.5rem 0">
+<div class="orden-item clickable" style="padding:.5rem .8rem;border:2px solid var(--gris);border-radius:6px;background:#fff;cursor:pointer" onclick="selectOrden(this,3)" data-correct="3">3. Comparar coordenadas para visibilidad</div>
+<div class="orden-item clickable" style="padding:.5rem .8rem;border:2px solid var(--gris);border-radius:6px;background:#fff;cursor:pointer" onclick="selectOrden(this,1)" data-correct="1">1. Proyectar intersección en alzado</div>
+<div class="orden-item clickable" style="padding:.5rem .8rem;border:2px solid var(--gris);border-radius:6px;background:#fff;cursor:pointer" onclick="selectOrden(this,4)" data-correct="4">4. Determinar tipo de cruzados</div>
+<div class="orden-item clickable" style="padding:.5rem .8rem;border:2px solid var(--gris);border-radius:6px;background:#fff;cursor:pointer" onclick="selectOrden(this,2)" data-correct="2">2. Verificar si está en la misma vertical en planta</div>
+</div>
+<button class="quiz-btn" onclick="checkOrden(this)">Comprobar orden</button>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 7 (V/F): Si dos rectas se cruzan, sus proyecciones nunca se intersectan en ninguna vista.</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Cruzados horizontales</button>
+<button class="quiz-btn" onclick="checkVF(this, false)">Verdadero</button>
+<button class="quiz-btn" onclick="checkVF(this, true)">Falso</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 8 (Quiz): ¿Qué tipo de puntos cruzados se usan para determinar visibilidad en planta?</p>
+<div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Cruzados verticales</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Cruzados horizontales</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">No se usa puntos cruzados</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Cruzados en LT</button>
-</div>
-<p class="feedback"></p>
-</div>
-
-<div class="exercise">
-<p>📐 Ejercicio 5: Si r₁' ∩ r₂' = P' en alzado, pero en planta las rectas no se intersectan en la vertical de P', entonces...</p>
-<div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Las rectas se cortan en P'</button>
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Las rectas se cruzan (no se cortan)</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Las rectas son paralelas</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Las rectas son perpendiculares</button>
 </div>
 <p class="feedback"></p>
 </div>
@@ -312,19 +436,23 @@ Si Y₁ > Y₂ → r₁ domina en planta (r₁ tapa a r₂).
 </div>
 </section>
 
-<div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ RECTAS PARALELAS</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="40" y1="50" x2="160" y2="50" stroke="#ef4444" stroke-width="2"/><line x1="40" y1="90" x2="160" y2="90" stroke="#ef4444" stroke-width="2"/><text x="100" y="120" text-anchor="middle" font-size="9" fill="#ef4444">No se cruzan ❌</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ RECTAS SE CRUZAN</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="40" y1="110" x2="160" y2="30" stroke="#2563eb" stroke-width="2"/><line x1="40" y1="30" x2="160" y2="110" stroke="#2563eb" stroke-width="2"/><circle cx="100" cy="70" r="6" fill="#10b981"/><text x="100" y="120" text-anchor="middle" font-size="9" fill="#10b981">Punto intersección ✓</text></svg></div></div>
+<div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ ERROR: NO misma vertical</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="40" y1="50" x2="160" y2="50" stroke="#1e293b" stroke-width="1"/><line x1="50" y1="30" x2="150" y2="70" stroke="#2563eb" stroke-width="2"/><line x1="50" y1="70" x2="150" y2="30" stroke="#f97316" stroke-width="2"/><circle cx="100" cy="50" r="4" fill="#a855f7"/><text x="100" y="45" text-anchor="middle" font-size="7" fill="#a855f7">P'</text><line x1="100" y1="54" x2="100" y2="100" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,2"/><text x="100" y="115" text-anchor="middle" font-size="8" fill="#ef4444">✗ NO misma vertical</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ CORRECTO: Misma vertical</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="40" y1="50" x2="160" y2="50" stroke="#1e293b" stroke-width="1"/><line x1="50" y1="30" x2="150" y2="70" stroke="#2563eb" stroke-width="2"/><line x1="50" y1="70" x2="150" y2="30" stroke="#f97316" stroke-width="2"/><circle cx="100" cy="50" r="4" fill="#10b981"/><text x="100" y="45" text-anchor="middle" font-size="7" fill="#10b981">I'</text><line x1="100" y1="54" x2="100" y2="100" stroke="#10b981" stroke-width="1" stroke-dasharray="3,2"/><circle cx="100" cy="100" r="4" fill="#10b981"/><text x="100" y="115" text-anchor="middle" font-size="8" fill="#10b981">✓ Misma vertical</text></svg></div></div>
 
 <div class="box box-error">
 <strong>⚠️ Error clásico</strong>
-Confundir rectas que se cruzan con rectas que se cortan. Solo porque las proyecciones se intersectan en alzado NO significa que las rectas se cortan. Hay que verificar que la intersección esté en la MISMA vertical en planta también.
+Confundir rectas que se cruzan con rectas que se cortan. Solo porque las proyecciones se intersectan en alzado NO significa que las rectas se cortan. Hay que verificar que la intersección esté en la MISMA vertical en planta también. <strong>Regla mnemotécnica:</strong> "Si I' e I no están en la misma vertical, las rectas se cruzan."
 </div>
 
-<div class="box box-idea">
+<div class="box connection-box">
 <strong>🔗 Conexión</strong>
-Con la intersección recta-recta dominada, en el siguiente tema aprenderás a encontrar la verdadera magnitud de segmentos, algo esencial para medir distancias reales en el sistema diédrico.
+Con la intersección recta-recta dominada, en el siguiente tema aprenderás a encontrar la verdadera magnitud de segmentos, esencial para medir distancias reales en el sistema diédrico.
 </div>
 
-<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: unión de vigas de acero</strong>En una estructura metálica, dos vigas se cruzan en ángulo. La intersección entre las dos rectas (ejes de las vigas) determina el punto de soldadura. El calculista usa el diedrico para encontrar el punto exacto de intersección y dimensionar la unión correctamente.</div>
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏗️ INGENIERÍA</span><strong>Unión de vigas en estructuras metálicas:</strong> En puentes y naves industriales, las vigas de acero se cruzan en ángulo. El intersector entre dos vigas (rectas en el espacio) determina el punto exacto de soldadura. Un error en la determinación del punto de intersección provoca uniones defectuosas que comprometen la estabilidad estructural. <em>Norma EN 1090 exige tolerancia &lt; 1mm en uniones soldadas.</em></div>
+
+<div class="box box-teoria" style="margin:.5rem 0"><span class="real-world-badge">🎨 ARQUITECTURA</span><strong>Diseño de escaleras helicoidales:</strong> Las barandillas de escaleras en espiral son rectas que se cruzan en el espacio. El arquitecto debe calcular los puntos de cruce para soldar los peldaños correctamente. Un error de cálculo puede provocar escalones de altura desigual.</div>
+
+<div class="box box-teoria" style="margin:.5rem 0"><span class="real-world-badge">🔧 MECÁNICA</span><strong>Engranajes cónicos (Kegelrad):</strong> En un diferencial de automóvil, los ejes de las ruedas son rectas que se cruzan. El ángulo de cruce determina la relación de transmisión. Los puntos cruzados se usan para calcular la visibilidad de los dientes del engranaje.</div>
 
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
@@ -345,6 +473,112 @@ Con la intersección recta-recta dominada, en el siguiente tema aprenderás a en
 </main>
 <footer class="footer">Hecho con ❤️ por David Antizar</footer>
 <script>
+function showPaso(n) {
+  for (var i = 0; i < 4; i++) {
+    var g = document.getElementById('paso' + i);
+    if (g) g.style.display = i === n ? '' : 'none';
+  }
+  var dots = document.querySelectorAll('#pasoIndicador .step-dot');
+  dots.forEach(function(d, i) {
+    d.style.background = i === n ? 'var(--azul)' : 'var(--gris)';
+  });
+  var titulos = ['🔍 Mira: rectas que se cortan', '❌ Cruzados horizontales', '❌ Cruzados verticales', '📊 Resumen: ¿Se cortan o se cruzan?'];
+  var textos = [
+    'Haz clic en los botones para ver cada caso. La clave está en verificar que I\' e I estén en la misma vertical.',
+    'P\' = r₁\' ∩ r₂\' en alzado, pero en planta P₁ ≠ P₂. El que tenga mayor Z domina en alzado.',
+    'Q = r₁ ∩ r₂ en planta, pero Q\' NO está en la misma vertical en alzado. El que tenga mayor Y domina en planta.',
+    'Resumen completo: compara criterios de decisión entre se cortan y se cruzan.'
+  ];
+  document.getElementById('pasoTitulo').textContent = titulos[n];
+  document.getElementById('pasoTexto').textContent = textos[n];
+}
+
+function highlightRecta(r) {
+  var rects = document.querySelectorAll('#interseccionSvg .clickable');
+  rects.forEach(function(el) {
+    el.style.opacity = '0.4';
+  });
+  if (r === 'r1') {
+    document.querySelectorAll('#interseccionSvg line[stroke="#2563eb"]').forEach(function(l) {
+      l.style.opacity = '1'; l.style.strokeWidth = '3.5';
+    });
+  } else {
+    document.querySelectorAll('#interseccionSvg line[stroke="#f97316"]').forEach(function(l) {
+      l.style.opacity = '1'; l.style.strokeWidth = '3.5';
+    });
+  }
+}
+
+function checkVF(btn, correct) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) {
+    b.disabled = true; b.classList.remove('correct','wrong');
+  });
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  var feedback = parent.nextElementSibling;
+  if(feedback && feedback.classList.contains('feedback')) {
+    if(correct) {
+      feedback.textContent = '✅ ¡Correcto!';
+      feedback.className = 'feedback correct';
+    } else {
+      feedback.textContent = '❌ Incorrecto, prueba otra vez.';
+      feedback.className = 'feedback incorrect';
+    }
+  }
+}
+
+function checkFillIn(correctAnswers) {
+  return function(btn) {
+    var exercise = btn.closest('.exercise');
+    var input = exercise.querySelector('input[type="text"]');
+    if (!input) return;
+    var val = input.value.trim().toLowerCase();
+    var matched = correctAnswers.some(function(a) { return a.toLowerCase() === val; });
+    var feedback = exercise.querySelector('.feedback');
+    if (feedback) {
+      if (matched) {
+        feedback.textContent = '✅ ¡Correcto!';
+        feedback.className = 'feedback correct';
+      } else {
+        feedback.textContent = '❌ Respuesta no válida. Intenta de nuevo.';
+        feedback.className = 'feedback incorrect';
+      }
+    }
+  };
+}
+
+function selectOrden(btn, pos) {
+  var exercise = btn.closest('.exercise');
+  exercise.querySelectorAll('.orden-item').forEach(function(item) {
+    item.style.borderColor = 'var(--gris)';
+    item.style.background = '#fff';
+  });
+  btn.style.borderColor = 'var(--azul)';
+  btn.style.background = '#eff6ff';
+  btn.setAttribute('data-pos', pos);
+}
+
+function checkOrden(btn) {
+  var exercise = btn.closest('.exercise');
+  var items = exercise.querySelectorAll('.orden-item');
+  var correct = true;
+  items.forEach(function(item) {
+    var pos = parseInt(item.getAttribute('data-pos'));
+    var expected = parseInt(item.getAttribute('data-correct'));
+    if (pos !== expected) correct = false;
+  });
+  var feedback = exercise.querySelector('.feedback');
+  if (feedback) {
+    if (correct) {
+      feedback.textContent = '✅ ¡Orden correcto!';
+      feedback.className = 'feedback correct';
+    } else {
+      feedback.textContent = '❌ Orden incorrecto. Revisa el orden de los pasos.';
+      feedback.className = 'feedback incorrect';
+    }
+  }
+}
+
 function checkAnswer(btn, correct) {
   var parent = btn.parentElement;
   parent.querySelectorAll('button').forEach(function(b) {
