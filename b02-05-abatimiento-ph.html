@@ -71,6 +71,13 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .abatimiento-layer:hover{filter:brightness(1.1)}
 .abatimiento-layer.active{stroke-width:3;filter:drop-shadow(0 0 8px rgba(37,99,235,.5))}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+.clickable{cursor:pointer;transition:all .2s}.clickable:hover{transform:scale(1.02);box-shadow:0 4px 12px rgba(37,99,235,.15)}
+.connection-box{background:var(--pura-claro);border:2px solid var(--pura);border-radius:12px;padding:1.2rem 1.5rem;margin:1.5rem 0;border-left:4px solid var(--pura)}
+.connection-box strong{color:var(--pura)}
+.difficulty-badge{display:inline-block;padding:.15rem .5rem;border-radius:10px;font-size:.7rem;font-weight:700;margin-left:.5rem}
+.difficulty-badge.easy{background:#dcfce7;color:#166534}
+.difficulty-badge.medium{background:#fef3c7;color:#92400e}
+.difficulty-badge.hard{background:#fce7f3;color:#9d174d}
 </style>
 </head>
 <body>
@@ -173,6 +180,7 @@ Todo lo que está en el PH gira alrededor de la LT
 <text x="300" y="328" text-anchor="middle" font-size="10" fill="#64748b">Alzado arriba | Planta debajo | ¡Todo en el mismo plano!</text>
 </svg>
 </div>
+</section>
 
 <section class="chapter">
 <h2 class="chapter-title">🎬 Paso a paso: Abatimiento del PH</h2>
@@ -264,7 +272,6 @@ Todo lo que está en el PH gira alrededor de la LT
 <div class="step-dot"></div>
 </div>
 </div>
-</section>
 </section>
 
 <section class="chapter">
@@ -371,6 +378,47 @@ Todo lo que está en el PH gira alrededor de la LT
 <button onclick="checkOrden()">Comprobar orden</button>
 <p class="feedback"></p>
 </div>
+
+<div class="exercise">
+<p>📐 Ejercicio 9 (VF Visual): <span class="difficulty-badge easy">Fácil</span> — ¿Hacia dónde gira el PH al abatir?</p>
+<div class="svg-container clickable" style="cursor:pointer" onclick="checkVFVisual(this, true)">
+<svg viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg" width="100%">
+<!-- Opción A: hacia abajo -->
+<rect x="10" y="10" width="180" height="100" fill="#fff" rx="8" stroke="#e2e8f0" stroke-width="2" class="clickable" onclick="event.stopPropagation();checkVFAnswer(this, true)"/>
+<text x="100" y="25" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600">Opción A</text>
+<!-- LT -->
+<line x1="30" y1="50" x2="170" y2="50" stroke="#334155" stroke-width="2"/>
+<text x="100" y="45" text-anchor="middle" font-size="8" fill="#334155">LT</text>
+<!-- Alzado arriba -->
+<rect x="50" y="20" width="40" height="25" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="70" y="37" text-anchor="middle" font-size="7" fill="#2563eb">Alzado</text>
+<!-- Planta abajo -->
+<rect x="50" y="50" width="40" height="25" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
+<text x="70" y="66" text-anchor="middle" font-size="7" fill="#10b981">Planta</text>
+<!-- Flecha curva hacia abajo -->
+<path d="M 110,35 Q 130,35 130,65" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrowGreen)"/>
+<defs><marker id="arrowGreen" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto"><polygon points="0 0, 6 3, 0 6" fill="#10b981"/></marker></defs>
+<text x="100" y="95" text-anchor="middle" font-size="9" fill="#10b981" font-weight="600">✓ Correcto</text>
+<!-- Opción B: hacia arriba -->
+<rect x="210" y="10" width="180" height="100" fill="#fff" rx="8" stroke="#e2e8f0" stroke-width="2" class="clickable" onclick="event.stopPropagation();checkVFAnswer(this, false)"/>
+<text x="300" y="25" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600">Opción B</text>
+<!-- LT -->
+<line x1="230" y1="50" x2="370" y2="50" stroke="#334155" stroke-width="2"/>
+<text x="300" y="45" text-anchor="middle" font-size="8" fill="#334155">LT</text>
+<!-- Alzado arriba -->
+<rect x="250" y="20" width="40" height="25" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="270" y="37" text-anchor="middle" font-size="7" fill="#2563eb">Alzado</text>
+<!-- Planta arriba (incorrecto) -->
+<rect x="250" y="-5" width="40" height="25" fill="#fef2f2" stroke="#ef4444" stroke-width="1.5"/>
+<text x="270" y="13" text-anchor="middle" font-size="7" fill="#ef4444">Planta</text>
+<!-- Flecha curva hacia arriba -->
+<path d="M 310,35 Q 330,35 330,5" fill="none" stroke="#ef4444" stroke-width="2" marker-end="url(#arrowRed2)"/>
+<defs><marker id="arrowRed2" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto"><polygon points="0 0, 6 3, 0 6" fill="#ef4444"/></marker></defs>
+<text x="300" y="95" text-anchor="middle" font-size="9" fill="#ef4444" font-weight="600">✗ Incorrecto</text>
+</svg>
+</div>
+<p class="feedback"></p>
+</div>
 </div>
 </section>
 
@@ -404,19 +452,73 @@ Todo lo que está en el PH gira alrededor de la LT
 </div>
 
 <div class="box box-error">
-<strong>⚠️ Error clásico</strong>
+<strong>⚠️ Error común</strong>
 Girar el PH hacia ARRIBA. ¡NUNCA! El PH gira 90° hacia ABAJO. Si lo giras hacia arriba, la planta quedaría ENCIMA del alzado, que es el sistema americano (3º diedro), no el europeo (1º diedro).
 </div>
 
-<div class="box box-idea">
+<div class="box box-ejemplo" style="margin:1.5rem 0">
+<strong>🔍 Error visual comparativo</strong>
+<div class="svg-container clickable" style="margin:1rem 0" onclick="togglePHError()">
+<svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" id="phErrorSvg">
+<!-- Error: PH arriba -->
+<rect x="10" y="10" width="280" height="180" fill="#fef2f2" rx="8" stroke="#ef4444" stroke-width="2"/>
+<text x="150" y="30" text-anchor="middle" font-size="13" fill="#ef4444" font-weight="700">❌ ERROR: PH hacia ARRIBA</text>
+<!-- LT -->
+<line x1="50" y1="100" x2="230" y2="100" stroke="#334155" stroke-width="2"/>
+<text x="235" y="104" font-size="9" fill="#334155">LT</text>
+<!-- Alzado (arriba de LT) -->
+<rect x="80" y="50" width="60" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="110" y="78" text-anchor="middle" font-size="8" fill="#2563eb">Alzado</text>
+<!-- Planta (ENCIMA de LT — incorrecto) -->
+<rect x="80" y="10" width="60" height="40" fill="#fef2f2" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,2"/>
+<text x="110" y="35" text-anchor="middle" font-size="8" fill="#ef4444">Planta ❌</text>
+<!-- Flecha roja arriba -->
+<path d="M 110,50 L 110,55" stroke="#ef4444" stroke-width="2" marker-end="url(#arrowRed)"/>
+<defs><marker id="arrowRed" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto"><polygon points="0 0, 6 3, 0 6" fill="#ef4444"/></marker></defs>
+<text x="150" y="30" font-size="9" fill="#ef4444">Planta sobre alzado = 3º diedro</text>
+<text x="150" y="165" text-anchor="middle" font-size="10" fill="#ef4444">❌ Sistema americano (incorrecto en Europa)</text>
+
+<!-- Correcto: PH abajo -->
+<rect x="310" y="10" width="280" height="180" fill="#ecfdf5" rx="8" stroke="#10b981" stroke-width="2"/>
+<text x="450" y="30" text-anchor="middle" font-size="13" fill="#10b981" font-weight="700">✅ CORRECTO: PH hacia ABAJO</text>
+<!-- LT -->
+<line x1="350" y1="100" x2="530" y2="100" stroke="#334155" stroke-width="2"/>
+<text x="535" y="104" font-size="9" fill="#334155">LT</text>
+<!-- Alzado (arriba de LT) -->
+<rect x="380" y="50" width="60" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="410" y="78" text-anchor="middle" font-size="8" fill="#2563eb">Alzado</text>
+<!-- Planta (DEBAJO de LT — correcto) -->
+<rect x="380" y="100" width="60" height="40" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+<text x="410" y="124" text-anchor="middle" font-size="8" fill="#10b981">Planta ✓</text>
+<!-- Flecha verde abajo -->
+<path d="M 410,100 L 410,105" stroke="#10b981" stroke-width="2"/>
+<text x="450" y="165" text-anchor="middle" font-size="10" fill="#10b981">✅ Sistema europeo (correcto)</text>
+</svg>
+</div>
+<small>👆 Click para alternar el resaltado</small>
+</div>
+
+<div class="connection-box">
 <strong>🔗 Conexión</strong>
-El abatimiento es el paso que convierte un sistema 3D en un dibujo 2D. Sin él, no podríamos representar las vistas en un papel. ¡Es como abrir una caja de cartón!
+El abatimiento es el paso que convierte un sistema 3D en un dibujo 2D. Sin él, no podríamos representar las vistas en un papel. <strong>Conecta con:</strong> <a href="b02-01-proyeccion-ortogonal.html">proyección ortogonal</a> (base del sistema), <a href="b02-03-vistas-principales.html">vistas principales</a> (alzado, planta, perfil), y <a href="b02-06-1o-3o-diedro.html">1º vs 3º diedro</a> (el error clásico es confundirlos).
 </div>
 
 <div class="box box-teoria" style="margin:1.5rem 0">
 <span class="real-world-badge">🏭 CASO REAL</span>
 <strong>Caso industrial: abatimiento en planos de fundición</strong>
 Cuando una fundición entrega una pieza compleja (como una cabeza de biela de motor), el plano debe mostrar el alzado y la planta abatida. El operario lee el plano sin tener que imaginar el sistema 3D: el abatimiento le dice exactamente dónde va cada vista. Sin abatimiento, cada taller interpretaría los planos a su manera — y las piezas no encajarían.
+</div>
+
+<div class="box box-teoria" style="margin:1.5rem 0">
+<span class="real-world-badge">🚗 AUTOMOCIÓN</span>
+<strong>Caso automoción: bloque de motor con canalizaciones internas</strong>
+Un bloque de motor tiene conductos de refrigerante internos en planos oblicuos. Para que el fabricante de moldes pueda crearlos, los planos muestran las secciones abatidas. El ingeniero de moldes lee las dimensiones reales directamente del plano abatido, sin necesidad de reconstruir mentalmente el modelo 3D. Esto reduce errores de fabricación en un 80%.
+</div>
+
+<div class="box box-teoria" style="margin:1.5rem 0">
+<span class="real-world-badge">🏥 MEDICAL</span>
+<strong>Caso médico: implante personalizado de cadera</strong>
+Un implante de cadera se fabrica a medida para cada paciente. El plano del implante muestra las superficies articulares abatidas para que el ingeniero pueda verificar las dimensiones reales de la cabeza femoral y el cuello. Sin abatimiento, las curvaturas se verían deformadas y el implante no encajaría en el hueso del paciente.
 </div>
 
 <div class="summary">
@@ -598,6 +700,50 @@ function checkFillIn() {
     feedback.textContent = '❌ Pista: grados = ___, estado del PV = ___, posición = ___';
     feedback.className = 'feedback incorrect';
   }
+}
+
+// VF Visual exercise for PH abatimiento
+function checkVFAnswer(el, correct) {
+  var exercise = el.closest('.exercise');
+  if (!exercise) return;
+  var feedback = exercise.querySelector('.feedback');
+  var svg = el.closest('.svg-container');
+  svg.querySelectorAll('.clickable').forEach(function(opt) {
+    opt.style.borderColor = '#e2e8f0';
+    opt.style.background = '#fff';
+  });
+  if (correct) {
+    el.style.borderColor = 'var(--verde)';
+    el.style.background = 'var(--verde-claro)';
+    feedback.textContent = '✅ ¡Correcto! El PH gira 90° hacia ABAJO. La planta queda debajo del alzado.';
+    feedback.className = 'feedback correct';
+  } else {
+    el.style.borderColor = 'var(--rojo)';
+    el.style.background = 'var(--rojo-claro)';
+    feedback.textContent = '❌ Incorrecto. Girar el PH hacia arriba es el sistema americano (3º diedro), no el europeo.';
+    feedback.className = 'feedback incorrect';
+  }
+}
+
+function checkVFVisual(container, correct) {
+  var exercise = container.closest('.exercise');
+  if (exercise) {
+    var feedback = exercise.querySelector('.feedback');
+    feedback.textContent = '👆 Haz click en una de las dos opciones (A o B) para responder';
+    feedback.className = 'feedback incorrect';
+  }
+}
+
+// Toggle PH error visual
+var phErrorExpanded = false;
+function togglePHError() {
+  phErrorExpanded = !phErrorExpanded;
+  var svg = document.getElementById('phErrorSvg');
+  if (!svg) return;
+  var errorTexts = svg.querySelectorAll('text[fill="#ef4444"]');
+  var correctTexts = svg.querySelectorAll('text[fill="#10b981"]');
+  errorTexts.forEach(function(t) { t.style.fontWeight = phErrorExpanded ? '900' : '700'; });
+  correctTexts.forEach(function(t) { t.style.fontWeight = phErrorExpanded ? '900' : '700'; });
 }
 </script>
 </body>

@@ -279,7 +279,7 @@
       "status": "improved"
     },
     "b02-05-abatimiento-ph.html": {
-      "status": "improved_1",
+      "status": "improved_2",
       "bloque": "b02",
       "title": "🔄 Abatimiento del PH",
       "priority": 1,
@@ -309,18 +309,29 @@
             "text_explanation",
             "exercises"
           ]
+        },
+        {
+          "date": "2026-06-12",
+          "description": "Ronda 2: CSS clickable/connection-box/difficulty-badge, 3 real-world cases (automoción+medical), error SVG comparativo (PH arriba vs abajo), 9 ejercicios con VF visual, connection-box, fix section/div balance pre-existente",
+          "dimensions_improved": [
+            "svg_interactive",
+            "exercises",
+            "real_world",
+            "error_common",
+            "css_coherence"
+          ]
         }
       ],
       "scores": {
-        "svg_interactive": 7,
+        "svg_interactive": 9,
         "exercises": 9,
         "text_explanation": 9,
-        "real_world": 7,
-        "error_common": 7,
+        "real_world": 9,
+        "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-11",
-      "improvement_count": 3
+      "last_improved": "2026-06-12-ronda2-s1",
+      "improvement_count": 4
     },
     "b02-06-1o-3o-diedro.html": {
       "status": "improved_1",
