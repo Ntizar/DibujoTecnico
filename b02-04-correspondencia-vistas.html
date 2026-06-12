@@ -71,6 +71,13 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .vista-corr{transition:all .3s;cursor:pointer}
 .vista-corr:hover{filter:brightness(1.1);stroke-width:3}
 .vista-corr.active{stroke-width:3;filter:drop-shadow(0 0 8px rgba(37,99,235,.5))}
+
+/* Ronda 2: clases adicionales */
+.clickable{cursor:pointer;transition:transform .15s,box-shadow .15s}.clickable:hover{transform:scale(1.02);box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.connection-box{background:linear-gradient(135deg,var(--pura-claro),#f0f4ff);border:2px solid var(--pura);border-radius:12px;padding:1.2rem;margin:1.5rem 0}.connection-box h4{color:var(--pura);margin-bottom:.5rem;font-size:1rem}
+.difficulty-badge{display:inline-block;padding:.15rem .5rem;border-radius:8px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px}.difficulty-badge.easy{background:#d1fae5;color:#065f46}.difficulty-badge.medium{background:#fef3c7;color:#92400e}.difficulty-badge.hard{background:#fee2e2;color:#991b1b}
+.feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block;font-weight:600}
+.feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block;font-weight:600}
 </style>
 </head>
 <body>
@@ -248,6 +255,19 @@ Si la planta mide 80mm de profundidad → el perfil también mide 80mm de profun
 </div>
 </section>
 
+<!-- CASO REAL 2 -->
+<section class="chapter">
+<h2 class="chapter-title">🏗️ Caso real: Plano de una pieza mecánica CNC</h2>
+<div class="box box-ejemplo">
+<span class="real-world-badge">CASO REAL</span>
+<strong>🔧 Mecanizado de precisión en taller CNC</strong>
+<p>En un taller de mecanizado en Zaragoza, se fabrican piezas para la industria aeronáutica. El operario recibe un plano con 3 vistas y debe verificar que las correspondencias entre vistas son correctas antes de programar la máquina CNC.</p>
+<p style="margin-top:.5rem">Si confunde la dimensión X con la Z al transportar cotas, la pieza tendrá 15mm de más en altura → no encaja en el ensamblaje → se desecha la pieza de titanio (valor: 2.500€) → retraso de 48h en la producción.</p>
+<p style="margin-top:.5rem"><strong>Consecuencia: 2.500€ en material perdido + 48h de máquina parada + retraso en entrega al cliente aeronáutico.</strong></p>
+<p style="margin-top:.5rem;font-style:italic;color:var(--gris)">En la industria real, una sola dimensión mal transportada puede costar miles de euros en piezas defectuosas.</p>
+</div>
+</section>
+
 <!-- ERROR COMÚN VISUAL -->
 <section class="chapter">
 <h2 class="chapter-title">⚠️ Error visual: Confundir X con Z</h2>
@@ -295,6 +315,51 @@ Confundir qué dimensión comparten las vistas. Alzado y Planta comparten X (anc
 </svg>
 </div>
 <p style="font-size:.85rem;color:var(--rojo);margin-top:.5rem">¡Z NO se transporta entre Alzado y Planta!</p>
+</div>
+</div>
+</section>
+
+<!-- ERROR COMÚN 2: Confundir Y con Z -->
+<section class="chapter">
+<h2 class="chapter-title">⚠️ Error visual: Confundir Y con Z</h2>
+<div class="box box-error">
+<strong>⚠️ Error frecuente</strong>
+Confundir la profundidad (Y) con la altura (Z) al transportar cotas entre Planta y Perfil. Es el error más común en estudiantes que empiezan con el sistema diédrico.
+</div>
+
+<div class="comparison">
+<div class="comparison-side correct-side">
+<h4>✅ Correcto — Y (profundidad) con línea de 45°</h4>
+<div class="svg-container" style="margin:0;padding:1rem">
+<svg viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg">
+<rect x="20" y="20" width="80" height="60" fill="#fff7ed" stroke="#f97316" stroke-width="2.5" rx="4"/>
+<text x="60" y="55" text-anchor="middle" font-size="10" fill="#f97316" font-weight="600">PLANTA</text>
+<rect x="180" y="100" width="80" height="60" fill="#faf5ff" stroke="#a855f7" stroke-width="2.5" rx="4"/>
+<text x="220" y="135" text-anchor="middle" font-size="10" fill="#a855f7" font-weight="600">PERFIL</text>
+<line x1="100" y1="50" x2="180" y2="130" stroke="#10b981" stroke-width="2.5" stroke-dasharray="5,3"/>
+<text x="140" y="85" text-anchor="middle" font-size="12" fill="#10b981" font-weight="bold">Y = 45°</text>
+<circle cx="260" cy="30" r="12" fill="#10b981"/>
+<text x="260" y="35" text-anchor="middle" font-size="16" fill="#fff">✓</text>
+</svg>
+</div>
+<p style="font-size:.85rem;color:var(--verde);margin-top:.5rem">Y se transporta con línea de 45°</p>
+</div>
+
+<div class="comparison-side wrong-side">
+<h4>❌ Incorrecto — Confundir con Z (horizontal)</h4>
+<div class="svg-container" style="margin:0;padding:1rem">
+<svg viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg">
+<rect x="20" y="20" width="80" height="60" fill="#fff7ed" stroke="#f97316" stroke-width="2.5" rx="4"/>
+<text x="60" y="55" text-anchor="middle" font-size="10" fill="#f97316" font-weight="600">PLANTA</text>
+<rect x="180" y="20" width="80" height="60" fill="#faf5ff" stroke="#a855f7" stroke-width="2.5" rx="4"/>
+<text x="220" y="55" text-anchor="middle" font-size="10" fill="#a855f7" font-weight="600">PERFIL</text>
+<line x1="100" y1="50" x2="180" y2="50" stroke="#a855f7" stroke-width="2.5" stroke-dasharray="3,3"/>
+<text x="140" y="44" text-anchor="middle" font-size="12" fill="#a855f7" font-weight="bold">Z ❌</text>
+<circle cx="260" cy="30" r="12" fill="#ef4444"/>
+<text x="260" y="35" text-anchor="middle" font-size="16" fill="#fff">✗</text>
+</svg>
+</div>
+<p style="font-size:.85rem;color:var(--rojo);margin-top:.5rem">¡Z NO se transporta entre Planta y Perfil!</p>
 </div>
 </div>
 </section>
@@ -354,6 +419,61 @@ Confundir qué dimensión comparten las vistas. Alzado y Planta comparten X (anc
 <p class="feedback"></p>
 </div>
 
+</div>
+
+
+<!-- EJERCICIO 6: V/F Visual -->
+<div class="exercise">
+<p>📐 Ejercicio 6 (V/F visual): ¿Cuál de estas representaciones muestra correctamente el transporte de Y?</p>
+<div class="comparison" style="margin:.5rem 0">
+<div class="comparison-side" style="padding:.8rem">
+<svg viewBox="0 0 120 80" width="100">
+<rect x="10" y="10" width="45" height="35" fill="#fff7ed" stroke="#f97316" stroke-width="2" rx="3"/>
+<text x="32" y="32" text-anchor="middle" font-size="7" fill="#f97316">PLANTA</text>
+<rect x="65" y="35" width="45" height="35" fill="#faf5ff" stroke="#a855f7" stroke-width="2" rx="3"/>
+<text x="87" y="57" text-anchor="middle" font-size="7" fill="#a855f7">PERFIL</text>
+<line x1="55" y1="27" x2="65" y2="52" stroke="#10b981" stroke-width="2" stroke-dasharray="3,2"/>
+<text x="60" y="40" font-size="7" fill="#10b981">45°</text>
+</svg>
+<p style="font-size:.75rem"><strong>Correcto:</strong> Línea de 45°</p>
+</div>
+<div class="comparison-side" style="padding:.8rem">
+<svg viewBox="0 0 120 80" width="100">
+<rect x="10" y="10" width="45" height="35" fill="#fff7ed" stroke="#f97316" stroke-width="2" rx="3"/>
+<text x="32" y="32" text-anchor="middle" font-size="7" fill="#f97316">PLANTA</text>
+<rect x="65" y="10" width="45" height="35" fill="#faf5ff" stroke="#a855f7" stroke-width="2" rx="3"/>
+<text x="87" y="32" text-anchor="middle" font-size="7" fill="#a855f7">PERFIL</text>
+<line x1="55" y1="27" x2="65" y2="27" stroke="#a855f7" stroke-width="2" stroke-dasharray="3,2"/>
+<text x="60" y="23" font-size="7" fill="#a855f7">Z ❌</text>
+</svg>
+<p style="font-size:.75rem"><strong>Incorrecto:</strong> Línea horizontal</p>
+</div>
+</div>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">La izquierda (45°)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">La derecha (horizontal)</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<!-- EJERCICIO 7: Completar huecos -->
+<div class="exercise">
+<p>📐 Ejercicio 7 (Completar): Alzado y Planta comparten la dimensión ___. Alzado y Perfil comparten la dimensión ___.</p>
+<input type="text" id="ex7a" placeholder="1ª dimensión" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
+<input type="text" id="ex7b" placeholder="2ª dimensión" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
+<button onclick="checkFillIn(['x','ancho','X','Ancho'],['z','altura','Z','Altura'])">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+<!-- EJERCICIO 8: Ordenar pasos -->
+<div class="exercise">
+<p>📐 Ejercicio 8 (Ordenar): ¿En qué orden se transportan las dimensiones?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkOrden(this, '1-2-3')">① X vertical → ② Z horizontal → ③ Y 45°</button>
+<button class="quiz-btn" onclick="checkOrden(this, '3-2-1')">① Y 45° → ② Z horizontal → ③ X vertical</button>
+<button class="quiz-btn" onclick="checkOrden(this, '2-1-3')">① Z horizontal → ② X vertical → ③ Y 45°</button>
+</div>
+<p class="feedback"></p>
 </div>
 </section>
 
@@ -468,6 +588,41 @@ window.onscroll = function(){
   var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
   document.getElementById('progress').style.width = p+'%';
 };
+
+function checkOrden(btn, answer) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) { b.disabled = true; b.classList.remove('correct','wrong'); });
+  btn.classList.add('correct');
+  var feedback = parent.nextElementSibling;
+  if(feedback && feedback.classList.contains('feedback')) {
+    feedback.textContent = '✅ ¡Correcto! X (ancho) → vertical, Z (altura) → horizontal, Y (profundidad) → 45°';
+    feedback.className = 'feedback correct';
+  }
+  setTimeout(function() {
+    parent.querySelectorAll('button').forEach(function(b) { b.disabled = false; b.classList.remove('correct','wrong'); });
+    if(feedback) { feedback.textContent = ''; feedback.className = 'feedback'; }
+  }, 3000);
+}
+
+function checkFillIn(correctAnswers) {
+  var exercise = event.target.closest('.exercise');
+  var inputs = exercise.querySelectorAll('input[type="text"]');
+  var feedback = exercise.querySelector('.feedback');
+  var allCorrect = true;
+  for (var i = 0; i < inputs.length; i++) {
+    var val = inputs[i].value.trim().toLowerCase();
+    if (!correctAnswers.some(function(a) { return a.toLowerCase() === val; })) {
+      allCorrect = false;
+    }
+  }
+  if (allCorrect) {
+    feedback.textContent = '✅ ¡Correcto! Las dimensiones se transportan correctamente.';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ Revisa: Alzado-Planta = X (ancho), Alzado-Perfil = Z (altura)';
+    feedback.className = 'feedback incorrect';
+  }
+}
 </script>
 </body>
 </html>

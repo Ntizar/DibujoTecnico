@@ -265,42 +265,18 @@
       "improvement_count": 3
     },
     "b02-04-correspondencia-vistas.html": {
-      "status": "improved_1",
-      "bloque": "b02",
-      "title": "🔗 Correspondencia entre vistas",
-      "priority": 1,
-      "improvements": [
-        {
-          "date": "2026-06-10",
-          "description": "CSS template base, SVG interactividad (click/hover en líneas de correspondencia), paso a paso visual, caso real industrial (bridas), error visual comparativo (X vs Z)",
-          "dimensions_improved": [
-            "svg_interactive",
-            "text_explanation",
-            "real_world",
-            "error_common",
-            "css_coherence"
-          ]
-        },
-        {
-          "date": "2026-06-10",
-          "description": "Segunda pasada: SVG paso a paso interactivo (3 pasos clickeables X/Z/Y), función showPaso() con step-dots animados, CSS step-indicator/step-dot verificados",
-          "dimensions_improved": [
-            "svg_interactive",
-            "text_explanation",
-            "css_coherence"
-          ]
-        }
-      ],
       "scores": {
         "svg_interactive": 10,
-        "exercises": 7,
+        "exercises": 9,
         "text_explanation": 10,
-        "real_world": 7,
-        "error_common": 7,
+        "real_world": 9,
+        "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-10",
-      "improvement_count": 2
+      "last_improved": "2026-06-12-ronda2-s3",
+      "improvement_count": 3,
+      "improvements": "Ronda 2: exercises 7→9 (added V/F visual, fill-in, ordenar), real_world 7→9 (added CNC case), error_common 7→9 (added Y vs Z comparison), CSS (.clickable, .connection-box, .difficulty-badge, .feedback.correct/incorrect)",
+      "status": "improved"
     },
     "b02-05-abatimiento-ph.html": {
       "status": "improved_1",
