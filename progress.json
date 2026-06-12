@@ -1344,42 +1344,18 @@
       "improvement_count": 2
     },
     "b09-01-planos-conjunto.html": {
-      "status": "improved_1",
-      "bloque": "b09",
-      "title": "🏗️ Plano de conjunto",
-      "priority": 4,
-      "improvements": [
-        {
-          "date": "2026-06-10",
-          "description": "CSS template base, caso real industrial, error comparativo SVG",
-          "dimensions_improved": [
-            "svg_interactive",
-            "text_explanation",
-            "real_world",
-            "error_common",
-            "css_coherence"
-          ]
-        },
-        {
-          "date": "2026-06-10",
-          "description": "Segunda pasada: SVG paso a paso interactivo (3 pasos: conjunto/lista/cotas), step-dots animados, showPCPaso(), bug margin:180 fixado, 3 broken onclicks fixados, CSS verificado",
-          "dimensions_improved": [
-            "svg_interactive",
-            "text_explanation",
-            "css_coherence"
-          ]
-        }
-      ],
       "scores": {
         "svg_interactive": 10,
-        "exercises": 7,
+        "exercises": 9,
         "text_explanation": 10,
-        "real_world": 7,
-        "error_common": 7,
+        "real_world": 9,
+        "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-10",
-      "improvement_count": 2
+      "last_improved": "2026-06-12-ronda2-s3",
+      "improvement_count": 3,
+      "improvements": "Ronda 2: fixed 9 broken onclicks, CSS (.clickable, .connection-box, .difficulty-badge, .feedback.correct/incorrect), exercises 7→9 (added fill-in + ordenar), real_world 7→9 (added bicicleta case), error_common 7→9 (added lista incompleta comparison)",
+      "status": "improved"
     },
     "b05-03-corte-escalonado.html": {
       "scores": {

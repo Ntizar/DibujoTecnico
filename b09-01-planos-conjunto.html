@@ -62,13 +62,86 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .stack-item:hover{border-color:var(--azul);transform:translateX(4px)}
 .stack-item.active{border-color:var(--azul);background:var(--azul-claro)}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+
+/* Ronda 2: clases adicionales */
+.clickable{cursor:pointer;transition:transform .15s,box-shadow .15s}.clickable:hover{transform:scale(1.02);box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.connection-box{background:linear-gradient(135deg,var(--pura-claro),#f0f4ff);border:2px solid var(--pura);border-radius:12px;padding:1.2rem;margin:1.5rem 0}.connection-box h4{color:var(--pura);margin-bottom:.5rem;font-size:1rem}
+.difficulty-badge{display:inline-block;padding:.15rem .5rem;border-radius:8px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px}.difficulty-badge.easy{background:#d1fae5;color:#065f46}.difficulty-badge.medium{background:#fef3c7;color:#92400e}.difficulty-badge.hard{background:#fee2e2;color:#991b1b}
+.feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block;font-weight:600}
+.feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block;font-weight:600}
 </style>
 </head>
 <body>
 <header class="header">
 <h1>📋 S09.1-3: Planos de Conjunto</h1>
 <p>Dibujo Técnico — Planos de Conjunto</p>
-<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+<div class="progress-bar"><div class="progress-fill" id="progress">
+
+<!-- CASO REAL 2: Plano de conjunto de bicicleta -->
+<section class="chapter">
+<h2 class="chapter-title">🚲 Caso real: Plano de conjunto de cuadro de bicicleta</h2>
+<div class="box box-ejemplo">
+<span class="real-world-badge">CASO REAL</span>
+<strong>🔧 Fabricación de cuadros de bicicleta en Alcobendas</strong>
+<p>En un taller de fabricación de cuadros de bicicleta, el plano de conjunto muestra todas las piezas que forman el cuadro: tubo diagonal, tubo vertical, tubo horizontal, portabastidor y guardabarros. Cada pieza tiene su número en la lista de piezas y su posición en el conjunto.</p>
+<p style="margin-top:.5rem">El operario de soldadura necesita el plano de conjunto para saber exactamente dónde va cada pieza. Si confunde el número de pieza, el guardabarros va en la rueda delantera en lugar de la trasera → el cuadro se desecha → 200€ en acero perdido.</p>
+<p style="margin-top:.5rem"><strong>Consecuencia: 200€ en material perdido + 2h de trabajo desperdiciado + retraso en el pedido del cliente ciclista.</strong></p>
+<p style="margin-top:.5rem;font-style:italic;color:var(--gris)">El plano de conjunto es el documento que permite que cientos de piezas se ensamblen correctamente.</p>
+
+
+<!-- ERROR COMÚN 2: Lista de piezas incompleta -->
+<section class="chapter">
+<h2 class="chapter-title">⚠️ Error: Olvidar piezas estándar en la lista</h2>
+<div class="box box-error">
+<strong>⚠️ Error frecuente</strong>
+Olvidar incluir en la lista de piezas los elementos normalizados: arandelas, tuercas, tornillos, chavetas. Son piezas que no se fabrican pero que son ESSENCIALES para el ensamblaje.
+</div>
+
+<div class="comparison">
+<div class="comparison-side correct-side">
+<h4>✅ Lista completa con piezas estándar</h4>
+<div class="svg-container" style="margin:0;padding:1rem">
+<svg viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
+<!-- Lista completa -->
+<rect x="10" y="10" width="180" height="160" fill="#ecfdf5" stroke="#10b981" stroke-width="2" rx="6"/>
+<text x="100" y="30" text-anchor="middle" font-size="10" fill="#065f46" font-weight="600">LISTA COMPLETA</text>
+<line x1="20" y1="38" x2="180" y2="38" stroke="#10b981" stroke-width="1"/>
+<text x="20" y="55" font-size="9" fill="#333">1. Tubo diagonal</text>
+<text x="20" y="70" font-size="9" fill="#333">2. Tubo vertical</text>
+<text x="20" y="85" font-size="9" fill="#333">3. Tuercas M8 × 4</text>
+<text x="20" y="100" font-size="9" fill="#333">4. Arandelas × 4</text>
+<text x="20" y="115" font-size="9" fill="#333">5. Tornillos × 4</text>
+<text x="20" y="130" font-size="9" fill="#333">6. Chaveta</text>
+<circle cx="170" cy="155" r="12" fill="#10b981"/>
+<text x="170" y="160" text-anchor="middle" font-size="14" fill="#fff">✓</text>
+</svg>
+</div>
+<p style="font-size:.85rem;color:var(--verde);margin-top:.5rem">Incluye piezas estándar</p>
+</div>
+
+<div class="comparison-side wrong-side">
+<h4>❌ Lista incompleta (sin piezas estándar)</h4>
+<div class="svg-container" style="margin:0;padding:1rem">
+<svg viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
+<!-- Lista incompleta -->
+<rect x="10" y="10" width="180" height="160" fill="#fef2f2" stroke="#ef4444" stroke-width="2" rx="6"/>
+<text x="100" y="30" text-anchor="middle" font-size="10" fill="#991b1b" font-weight="600">LISTA INCOMPLETA</text>
+<line x1="20" y1="38" x2="180" y2="38" stroke="#ef4444" stroke-width="1"/>
+<text x="20" y="55" font-size="9" fill="#333">1. Tubo diagonal</text>
+<text x="20" y="70" font-size="9" fill="#333">2. Tubo vertical</text>
+<text x="20" y="85" font-size="9" fill="#333">3. Tubo horizontal</text>
+<!-- Piezas estándar tachadas -->
+<text x="20" y="100" font-size="9" fill="#ef4444" text-decoration="line-through">4. Tuercas ❌</text>
+<text x="20" y="115" font-size="9" fill="#ef4444" text-decoration="line-through">5. Tornillos ❌</text>
+<circle cx="170" cy="155" r="12" fill="#ef4444"/>
+<text x="170" y="160" text-anchor="middle" font-size="14" fill="#fff">✗</text>
+</svg>
+</div>
+<p style="font-size:.85rem;color:var(--rojo);margin-top:.5rem">Faltan piezas estándar</p>
+</div>
+</div>
+</section></div>
+</section></div></div>
 </header>
 <main class="container">
 
@@ -218,9 +291,9 @@ Plano de conjunto de un soporte:<br>
 <p>📐 Ejercicio 2: ¿Qué elementos tiene la lista de piezas?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Nº, nombre, material, cantidad, observaciones</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Solo el nombre</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Solo el material</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">No tiene lista</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Solo el nombre</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Solo el material</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">No tiene lista</button>
 </div>
 <p class="feedback"></p>
 </div>
@@ -229,9 +302,9 @@ Plano de conjunto de un soporte:<br>
 <p>📐 Ejercicio 3: ¿Cómo se numera cada pieza?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Con un círculo</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Con un cuadrado</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Con un triángulo</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">No se numera</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Con un cuadrado</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Con un triángulo</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">No se numera</button>
 </div>
 <p class="feedback"></p>
 </div>
@@ -240,9 +313,9 @@ Plano de conjunto de un soporte:<br>
 <p>📐 Ejercicio 4: ¿Qué tipo de cotización tiene un plano de conjunto?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Cotización de montaje</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">No tiene cotización</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Solo cotización de piezas</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Cotización de escala</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">No tiene cotización</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Solo cotización de piezas</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Cotización de escala</button>
 </div>
 <p class="feedback"></p>
 </div>
@@ -254,6 +327,27 @@ Plano de conjunto de un soporte:<br>
 <p class="feedback"></p>
 </div>
 
+</div>
+
+
+<!-- EJERCICIO 6: Completar huecos -->
+<div class="exercise">
+<p>📐 Ejercicio 6 (Completar): El plano de conjunto muestra la posición de todas las ___ del equipo. La lista de piezas incluye las piezas ___ y las normalizadas.</p>
+<input type="text" id="ex6a" placeholder="1ª palabra" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
+<input type="text" id="ex6b" placeholder="2ª palabra" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
+<button onclick="checkFillIn(['piezas','componentes','elementos'],['fabricadas','propias','específicas','especiales'])">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+<!-- EJERCICIO 7: Ordenar pasos -->
+<div class="exercise">
+<p>📐 Ejercicio 7 (Ordenar): ¿En qué orden se elabora un plano de conjunto?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkOrden(this, '1-2-3')">① Dibujar conjunto → ② Numerar piezas → ③ Hacer lista</button>
+<button class="quiz-btn" onclick="checkOrden(this, '3-2-1')">① Hacer lista → ② Dibujar conjunto → ③ Numerar piezas</button>
+<button class="quiz-btn" onclick="checkOrden(this, '2-3-1')">① Numerar piezas → ② Hacer lista → ③ Dibujar conjunto</button>
+</div>
+<p class="feedback"></p>
 </div>
 </section>
 
@@ -346,6 +440,41 @@ window.onscroll = function(){
   var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
   document.getElementById('progress').style.width = p+'%';
 };
+
+function checkOrden(btn, answer) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) { b.disabled = true; b.classList.remove('correct','wrong'); });
+  btn.classList.add('correct');
+  var feedback = parent.nextElementSibling;
+  if(feedback && feedback.classList.contains('feedback')) {
+    feedback.textContent = '✅ ¡Correcto! Primero se dibuja el conjunto, luego se numeran las piezas y finalmente se elabora la lista.';
+    feedback.className = 'feedback correct';
+  }
+  setTimeout(function() {
+    parent.querySelectorAll('button').forEach(function(b) { b.disabled = false; b.classList.remove('correct','wrong'); });
+    if(feedback) { feedback.textContent = ''; feedback.className = 'feedback'; }
+  }, 3000);
+}
+
+function checkFillIn(correctAnswers) {
+  var exercise = event.target.closest('.exercise');
+  var inputs = exercise.querySelectorAll('input[type="text"]');
+  var feedback = exercise.querySelector('.feedback');
+  var allCorrect = true;
+  for (var i = 0; i < inputs.length; i++) {
+    var val = inputs[i].value.trim().toLowerCase();
+    if (!correctAnswers.some(function(a) { return a.toLowerCase() === val; })) {
+      allCorrect = false;
+    }
+  }
+  if (allCorrect) {
+    feedback.textContent = '✅ ¡Correcto! El plano de conjunto muestra todas las piezas del equipo.';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ Revisa: conjunto = posición de piezas, lista = piezas propias + normalizadas';
+    feedback.className = 'feedback incorrect';
+  }
+}
 </script>
 </body>
 </html>
