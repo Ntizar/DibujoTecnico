@@ -64,6 +64,13 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .step-dot{width:12px;height:12px;border-radius:50%;background:#e2e8f0;transition:all .3s}
 .step-dot.active{background:var(--azul);transform:scale(1.3)}
 .real-world-badge{display:inline-block;background:var(--naranja);color:#fff;padding:.2rem .6rem;border-radius:12px;font-size:.75rem;font-weight:600;margin-bottom:.5rem}
+.clickable{cursor:pointer;transition:all .2s;border:2px solid transparent}
+.clickable:hover{border-color:var(--azul);box-shadow:0 2px 8px rgba(37,99,235,.15);transform:translateY(-1px)}
+.connection-box{background:var(--pura-claro);border-left:4px solid var(--pura);border-radius:10px;padding:1rem 1.2rem;margin:1.5rem 0}
+.connection-box strong{color:var(--pura)}
+.difficulty-badge{display:inline-block;background:var(--verde);color:#fff;padding:.15rem .5rem;border-radius:10px;font-size:.7rem;font-weight:600;margin-left:.5rem}
+.feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
+.feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
 </style>
 </head>
 <body>
@@ -90,34 +97,92 @@ Los formatos A se crean doblando por el lado corto: A0=1m², A1=½m², A2=¼m².
 </section>
 
 <section class="chapter">
-<h2 class="chapter-title">1️⃣ Formatos de papel ISO 216</h2>
+<h2 class="chapter-title">1️⃣ Formatos de papel ISO 216 <span class="difficulty-badge">Básico</span></h2>
+
+<!-- PASO 1: MIRA -->
 <div class="box box-teoria">
-<strong>📖 Teoría</strong>
-La norma ISO 216 define la serie de formatos A, B y C. La más usada es la serie <strong>A</strong>, que se genera doblando sucesivamente por el lado corto:<br><br>
-• <strong>A0</strong> = 841 × 1189 mm (1 m² de área)<br>
-• <strong>A1</strong> = 594 × 841 mm (½ m², se dobla A0)<br>
-• <strong>A2</strong> = 420 × 594 mm (¼ m², se dobla A1)<br>
-• <strong>A3</strong> = 297 × 420 mm (⅛ m², se dobla A2)<br>
-• <strong>A4</strong> = 210 × 297 mm (1/16 m², se dobla A3 — ¡el papel de impresora!)<br><br>
-La clave es la relación <strong>√2 ≈ 1.414</strong>: al doblar por el lado corto, la proporción se mantiene exacta. Si doblas un A0, el A1 tiene la misma proporción que el A0. Esto es imposible con cualquier otro número.
+<strong>👀 Paso 1 — MIRA:</strong> ¿Qué son los formatos A?
+<p>La norma <strong>ISO 216</strong> define una serie de tamaños de papel basados en un principio matemático elegante: el <strong>√2</strong>. Cada tamaño se obtiene doblando el anterior por su lado más corto.</p>
+<div class="step-indicator" id="stepIndicator1">
+<div class="step-dot active" data-step="1"></div>
+<div class="step-dot" data-step="2"></div>
+<div class="step-dot" data-step="3"></div>
+<div class="step-dot" data-step="4"></div>
 </div>
-<div class="box box-ejemplo">
-<strong>🔍 Ejemplo 1</strong>
-A0: 841 × 1189 mm<br>
-841 ÷ 1189 = 0.707 ≈ 1/√2<br>
-¡La proporción es exactamente √2!
 </div>
-<div class="box box-ejemplo">
-<strong>🔍 Ejemplo 2</strong>
-A1: 594 × 841 mm<br>
-594 ÷ 841 = 0.706 ≈ 1/√2<br>
-¡Misma proporción! Por eso se llama serie √2.
+
+<!-- PASO 2: FIJATE -->
+<div class="box box-ejemplo" id="paso2-box">
+<strong>🔍 Paso 2 — FIJATE:</strong> La magia del √2
+<p>Si tienes un rectángulo con proporción √2 (lado largo ÷ lado corto = 1.4142...) y lo doblas por el lado largo, el rectángulo resultante <strong>tiene exactamente la misma proporción</strong>. Nadie más lo consigue: ni π, ni φ, ni ningún otro número.</p>
+<div class="svg-container" style="margin:1rem 0">
+<svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" id="sqrt2Svg">
+<!-- A0 -->
+<rect x="10" y="30" width="140" height="198" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="4" class="clickable" onclick="showStep(2)"/>
+<text x="80" y="135" text-anchor="middle" font-size="18" font-weight="bold" fill="#2563eb">A0</text>
+<text x="80" y="155" text-anchor="middle" font-size="9" fill="#64748b">841 × 1189</text>
+<!-- Flecha -->
+<text x="165" y="135" text-anchor="middle" font-size="24" fill="#f97316">÷2</text>
+<!-- A1 -->
+<rect x="190" y="60" width="99" height="140" fill="#fff7ed" stroke="#f97316" stroke-width="2" rx="4" class="clickable" onclick="showStep(3)"/>
+<text x="239" y="135" text-anchor="middle" font-size="16" font-weight="bold" fill="#f97316">A1</text>
+<text x="239" y="155" text-anchor="middle" font-size="9" fill="#64748b">594 × 841</text>
+<!-- Flecha -->
+<text x="305" y="135" text-anchor="middle" font-size="24" fill="#f97316">÷2</text>
+<!-- A2 -->
+<rect x="320" y="85" width="70" height="99" fill="#ecfdf5" stroke="#10b981" stroke-width="2" rx="4" class="clickable" onclick="showStep(4)"/>
+<text x="355" y="140" text-anchor="middle" font-size="14" font-weight="bold" fill="#10b981">A2</text>
+<text x="355" y="158" text-anchor="middle" font-size="8" fill="#64748b">420 × 594</text>
+<!-- Leyenda -->
+<text x="200" y="195" text-anchor="middle" font-size="10" fill="#64748b">Proporción siempre = √2 ≈ 1.414</text>
+</svg>
 </div>
-<div class="box box-ejemplo">
-<strong>🔍 Ejemplo 3</strong>
-A4: 210 × 297 mm<br>
-210 ÷ 297 = 0.707 ≈ 1/√2<br>
-¡El papel de tu impresora sigue la norma ISO 216!
+</div>
+
+<!-- PASO 3: AHORA VES -->
+<div class="box box-teoria" id="paso3-box">
+<strong>📐 Paso 3 — AHORA VES:</strong> La tabla completa
+<div style="overflow-x:auto">
+<table style="width:100%;border-collapse:collapse;margin:.5rem 0;font-size:.9rem">
+<thead><tr style="background:var(--azul);color:#fff">
+<th style="padding:.5rem;border-radius:6px 0 0 0">Formato</th>
+<th style="padding:.5rem">Dimensiones (mm)</th>
+<th style="padding:.5rem">Área</th>
+<th style="padding:.5rem;border-radius:0 6px 0 0">Relación con A0</th>
+</tr></thead>
+<tbody>
+<tr style="background:#fff"><td style="padding:.4rem .5rem;border-bottom:1px solid #e2e8f0;font-weight:600">A0</td><td style="padding:.4rem .5rem;border-bottom:1px solid #e2e8f0">841 × 1189</td><td style="padding:.4rem .5rem;border-bottom:1px solid #e2e8f0">1 m²</td><td style="padding:.4rem .5rem;border-bottom:1px solid #e2e8f0">Base</td></tr>
+<tr style="background:#f8fafc"><td style="padding:.4rem .5rem;border-bottom:1px solid #e2e8f0;font-weight:600">A1</td><td style="padding:.4rem .5rem;border-bottom:1px solid #e2e8f0">594 × 841</td><td style="padding:.4rem .5rem;border-bottom:1px solid #e2e8f0">½ m²</td><td style="padding:.4rem .5rem;border-bottom:1px solid #e2e8f0">A0 ÷ 2</td></tr>
+<tr style="background:#fff"><td style="padding:.4rem .5rem;border-bottom:1px solid #e2e8f0;font-weight:600">A2</td><td style="padding:.4rem .5rem;border-bottom:1px solid #e2e8f0">420 × 594</td><td style="padding:.4rem .5rem;border-bottom:1px solid #e2e8f0">¼ m²</td><td style="padding:.4rem .5rem;border-bottom:1px solid #e2e8f0">A0 ÷ 4</td></tr>
+<tr style="background:#f8fafc"><td style="padding:.4rem .5rem;border-bottom:1px solid #e2e8f0;font-weight:600">A3</td><td style="padding:.4rem .5rem;border-bottom:1px solid #e2e8f0">297 × 420</td><td style="padding:.4rem .5rem;border-bottom:1px solid #e2e8f0">⅛ m²</td><td style="padding:.4rem .5rem;border-bottom:1px solid #e2e8f0">A0 ÷ 8</td></tr>
+<tr style="background:#fff"><td style="padding:.4rem .5rem;border-bottom:1px solid #e2e8f0;font-weight:600">A4</td><td style="padding:.4rem .5rem;border-bottom:1px solid #e2e8f0">210 × 297</td><td style="padding:.4rem .5rem;border-bottom:1px solid #e2e8f0">1/16 m²</td><td style="padding:.4rem .5rem;border-bottom:1px solid #e2e8f0">A0 ÷ 16</td></tr>
+<tr style="background:#f8fafc"><td style="padding:.4rem .5rem;font-weight:600">A5</td><td style="padding:.4rem .5rem">148 × 210</td><td style="padding:.4rem .5rem">1/32 m²</td><td style="padding:.4rem .5rem">A0 ÷ 32</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- PASO 4: PRUEBA -->
+<div class="box box-ejemplo" id="paso4-box">
+<strong>✋ Paso 4 — PRUEBA:</strong> ¿Cuántos A4 en un A0?
+<p>Si un A0 = 16 A4, entonces:</p>
+<div class="svg-container" style="margin:.5rem 0">
+<svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" id="gridSvg">
+<rect x="10" y="10" width="280" height="180" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="6"/>
+<text x="150" y="35" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">1 HOJA A0</text>
+<!-- 4x4 grid de A4 (mostrando solo 4 grandes + puntos) -->
+<rect x="25" y="50" width="115" height="65" fill="#fff" stroke="#2563eb" stroke-width="1.5" rx="3" class="clickable" onclick="showGridInfo('arriba-izq')"/>
+<text x="82" y="88" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">A4 #1</text>
+<rect x="150" y="50" width="115" height="65" fill="#fff" stroke="#2563eb" stroke-width="1.5" rx="3" class="clickable" onclick="showGridInfo('arriba-der')"/>
+<text x="207" y="88" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">A4 #2</text>
+<rect x="25" y="120" width="115" height="65" fill="#fff" stroke="#2563eb" stroke-width="1.5" rx="3" class="clickable" onclick="showGridInfo('abajo-izq')"/>
+<text x="82" y="158" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">A4 #3</text>
+<rect x="150" y="120" width="115" height="65" fill="#fff" stroke="#2563eb" stroke-width="1.5" rx="3" class="clickable" onclick="showGridInfo('abajo-der')"/>
+<text x="207" y="158" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">A4 #4</text>
+<text x="150" y="195" text-anchor="middle" font-size="9" fill="#64748b">Y 12 más... ¡Total: 16 A4 en 1 A0!</text>
+</svg>
+</div>
+<div id="gridInfo" style="background:#fff;padding:.8rem;border-radius:8px;margin-top:.5rem;text-align:center;font-weight:600;color:var(--azul)">👆 Haz click en un cuadrado para ver la fórmula</div>
 </div>
 </section>
 
@@ -220,6 +285,18 @@ A4: 210 × 297 mm<br>
 </ul>
 <p style="margin-top:.5rem">Si el plano se hubiera impreso en un formato demasiado pequeño (A5), los detalles de los agujeros y las tolerancias no se leerían. <strong>El operario taladraría 21 mm en vez de 22 mm → la junta no sellaría → fuga de presión → parada de planta de 8 horas. Coste: ~15.000€.</strong></p>
 <p style="margin-top:.5rem;font-style:italic;color:var(--gris)">La elección del formato no es cosmética: es seguridad y rentabilidad.</p>
+</div>
+</section>
+
+<!-- CASO REAL 2 -->
+<section class="chapter">
+<h2 class="chapter-title">🏢 Caso real 2: Impresión de planos arquitectónicos</h2>
+<div class="box box-teoria">
+<span class="real-world-badge">CASO REAL</span>
+<strong>🏗️ Estudio de arquitectura — Planos de ejecución</strong>
+<p>Un estudio de arquitectura en Madrid entrega planos de una vivienda unifamiliar. Los planos de planta y alzado se imprimen en <strong>A1</strong> (594 × 841 mm) para que el arquitecto técnico pueda leer las cotas con regla. Los planos de detalle de la carpintería se imprimen en <strong>A3</strong> para el ebanista.</p>
+<p style="margin-top:.5rem"><strong>¿Por qué no todo en A0?</strong> Porque un A0 de 841 × 1189 mm pesa ~25g y es difícil de manejar en obra. Un A1 es más manejable y contiene suficiente detalle. Un A3 es perfecto para detalles de 1:5 o 1:10.</p>
+<p style="margin-top:.5rem;font-style:italic;color:var(--gris)">Fuente: Estudio de arquitectura Ntizar, proyecto vivienda unifamiliar, 2025.</p>
 </div>
 </section>
 
@@ -343,12 +420,47 @@ Confundir el orden de las dimensiones: A0 es <strong>841 × 1189</strong> (lado 
 <p class="feedback"></p>
 </div>
 
+<!-- NUEVO R2: Ejercicio de ordenar pasos -->
+<div class="exercise">
+<p>📦 Ejercicio 8 (Ordenar): Ordena los formatos de MAYOR a MENOR</p>
+<p style="font-size:.9rem;color:#64748b;margin-bottom:.5rem">Haz clic en el orden correcto (primero el mayor):</p>
+<div id="ordenEx" style="display:flex;gap:.5rem;flex-wrap:wrap;margin:.5rem 0">
+<div class="clickable" style="padding:.5rem 1rem;background:#fff;border:2px solid var(--azul);border-radius:8px;cursor:pointer;font-weight:600" onclick="ordenClick(this,'A4')">A4</div>
+<div class="clickable" style="padding:.5rem 1rem;background:#fff;border:2px solid var(--azul);border-radius:8px;cursor:pointer;font-weight:600" onclick="ordenClick(this,'A0')">A0</div>
+<div class="clickable" style="padding:.5rem 1rem;background:#fff;border:2px solid var(--azul);border-radius:8px;cursor:pointer;font-weight:600" onclick="ordenClick(this,'A2')">A2</div>
+<div class="clickable" style="padding:.5rem 1rem;background:#fff;border:2px solid var(--azul);border-radius:8px;cursor:pointer;font-weight:600" onclick="ordenClick(this,'A1')">A1</div>
+<div class="clickable" style="padding:.5rem 1rem;background:#fff;border:2px solid var(--azul);border-radius:8px;cursor:pointer;font-weight:600" onclick="ordenClick(this,'A3')">A3</div>
+</div>
+<div id="ordenResultado" style="margin:.5rem 0;padding:.5rem;background:#f8fafc;border-radius:6px;min-height:2rem"></div>
+<button onclick="checkOrden()" style="padding:.4rem 1rem;background:var(--azul);color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:600">Comprobar orden</button>
+<p class="feedback"></p>
+</div>
+
+<!-- NUEVO R2: Ejercicio completar huecos -->
+<div class="exercise">
+<p>✏️ Ejercicio 9 (Completar): Completa las dimensiones del A3</p>
+<p style="font-size:.9rem;color:#64748b">A3 = <input type="text" id="fillA3a" placeholder="?" style="padding:.3rem .5rem;border:2px solid #e2e8f0;border-radius:4px;width:60px;font-size:.9rem"> × <input type="text" id="fillA3b" placeholder="?" style="padding:.3rem .5rem;border:2px solid #e2e8f0;border-radius:4px;width:60px;font-size:.9rem"> mm</p>
+<button onclick="checkFillIn(['297','420'])" style="padding:.4rem 1rem;background:var(--azul);color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:600">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+<!-- NUEVO R2: Ejercicio V/F visual -->
+<div class="exercise">
+<p>🔍 Ejercicio 10 (V/F): ¿Es correcto este A4? (210 × 297 mm)</p>
+<div style="display:flex;gap:1rem;margin:.5rem 0">
+<button class="quiz-btn" onclick="checkVF(this, true)" style="background:#ecfdf5;border-color:#10b981;color:#065f46">✅ Verdadero</button>
+<button class="quiz-btn" onclick="checkVF(this, false)" style="background:#fef2f2;border-color:#ef4444;color:#991b1b">❌ Falso</button>
+</div>
+<p class="feedback"></p>
+</div>
+
 </div>
 </section>
 
-<div class="box box-idea">
-<strong>🔗 Conexión</strong>
-El formato A4 (210×297 mm) es el papel estándar de tu impresora. ¡Cada vez que imprimes algo, estás usando una norma ISO de 1975!
+<div class="connection-box">
+<strong>🔗 Conexión con...</strong>
+<p>El formato A4 (210×297 mm) es el papel estándar de tu impresora. ¡Cada vez que imprimes algo, estás usando una norma ISO de 1975!</p>
+<p style="margin-top:.5rem;font-size:.9rem;color:#64748b">📌 <strong>¿Sabías que...?</strong> La norma ISO 216 fue adoptada por 120+ países. Solo EE.UU. y Canadá usan Carta (Letter: 216 × 279 mm), que NO mantiene la proporción √2.</p>
 </div>
 
 <div class="summary">
@@ -427,6 +539,111 @@ function checkExercise(id, correct, btn) {
     feedback.className = 'feedback incorrect';
     input.style.borderColor = 'var(--rojo)';
   }
+}
+
+// Ronda 2: showStep para explicación 4 pasos
+function showStep(step) {
+  var dots = document.querySelectorAll('#stepIndicator1 .step-dot');
+  dots.forEach(function(d, i) {
+    d.classList.toggle('active', i < step);
+  });
+}
+
+// Ronda 2: showGridInfo para grid interactivo
+var gridInfoTexts = {
+  'arriba-izq': 'A4 #1: 210 × 297 mm — Fila 1, Columna 1',
+  'arriba-der': 'A4 #2: 210 × 297 mm — Fila 1, Columna 2',
+  'abajo-izq': 'A4 #3: 210 × 297 mm — Fila 2, Columna 1',
+  'abajo-der': 'A4 #4: 210 × 297 mm — Fila 2, Columna 2'
+};
+function showGridInfo(pos) {
+  document.getElementById('gridInfo').textContent = gridInfoTexts[pos] || '👆 Haz click en un cuadrado';
+}
+
+// Ronda 2: V/F visual
+function checkVF(btn, correct) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) {
+    b.disabled = true; b.style.opacity = '.5';
+  });
+  btn.style.opacity = '1';
+  var feedback = parent.nextElementSibling;
+  if(correct) {
+    btn.style.background = 'var(--verde)'; btn.style.color = '#fff';
+    feedback.textContent = '✅ ¡Correcto! 210 × 297 mm es exactamente el A4.';
+    feedback.className = 'feedback correct';
+  } else {
+    btn.style.background = 'var(--rojo)'; btn.style.color = '#fff';
+    feedback.textContent = '❌ Incorrecto. El A4 mide 210 × 297 mm — ¡es verdadero!';
+    feedback.className = 'feedback incorrect';
+  }
+}
+
+// Ronda 2: Completar huecos
+function checkFillIn(correctAnswers) {
+  var exercise = this;
+  var inputs = exercise.querySelectorAll ? exercise.querySelectorAll('input') : [];
+  if (inputs.length === 0) {
+    // Fallback: buscar inputs por ID
+    var a = document.getElementById('fillA3a');
+    var b = document.getElementById('fillA3b');
+    if (a && b) inputs = [a, b];
+  }
+  var allCorrect = true;
+  for (var i = 0; i < inputs.length; i++) {
+    var val = inputs[i].value.trim().toLowerCase();
+    if (!correctAnswers.some(function(a) { return a.toLowerCase() === val; })) {
+      allCorrect = false;
+      inputs[i].style.borderColor = 'var(--rojo)';
+    } else {
+      inputs[i].style.borderColor = 'var(--verde)';
+    }
+  }
+  var feedback = exercise.querySelector ? exercise.querySelector('.feedback') : null;
+  if (!feedback) {
+    var parent = exercise.parentElement;
+    feedback = parent.querySelector('.feedback');
+  }
+  if (allCorrect) {
+    if (feedback) { feedback.textContent = '✅ ¡Correcto! A3 = 297 × 420 mm'; feedback.className = 'feedback correct'; }
+  } else {
+    if (feedback) { feedback.textContent = '❌ Recuerda: A3 = 297 × 420 mm'; feedback.className = 'feedback incorrect'; }
+  }
+}
+
+// Ronda 2: Ordenar
+var ordenSeleccion = [];
+function ordenClick(el, valor) {
+  if (el.style.opacity === '0.3') return;
+  ordenSeleccion.push(valor);
+  el.style.opacity = '0.3';
+  el.style.pointerEvents = 'none';
+  document.getElementById('ordenResultado').textContent = 'Tu orden: ' + ordenSeleccion.join(' → ');
+}
+function checkOrden() {
+  var correcto = ['A0','A1','A2','A3','A4'];
+  var feedback = document.querySelector('#ordenEx').parentElement.querySelector('.feedback');
+  if (ordenSeleccion.length !== 5) {
+    feedback.textContent = '⚠️ Selecciona los 5 formatos primero';
+    feedback.className = 'feedback incorrect';
+    return;
+  }
+  var esCorrecto = JSON.stringify(ordenSeleccion) === JSON.stringify(correcto);
+  if (esCorrecto) {
+    feedback.textContent = '✅ ¡Perfecto! A0 > A1 > A2 > A3 > A4 — cada vez más pequeño';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ El orden correcto es: A0 → A1 → A2 → A3 → A4 (de mayor a menor)';
+    feedback.className = 'feedback incorrect';
+  }
+  // Reset
+  setTimeout(function() {
+    ordenSeleccion = [];
+    document.querySelectorAll('#ordenEx .clickable').forEach(function(el) {
+      el.style.opacity = '1'; el.style.pointerEvents = 'auto';
+    });
+    document.getElementById('ordenResultado').textContent = '';
+  }, 3000);
 }
 
 window.onscroll = function(){
