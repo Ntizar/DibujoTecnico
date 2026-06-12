@@ -676,38 +676,17 @@
       "bloque": "b03",
       "title": "🔩 Caballera: piezas con cilindros",
       "priority": 2,
-      "improvements": [
-        {
-          "date": "2026-06-10",
-          "description": "CSS template base, caso real industrial, error comparativo SVG",
-          "dimensions_improved": [
-            "svg_interactive",
-            "text_explanation",
-            "real_world",
-            "error_common",
-            "css_coherence"
-          ]
-        },
-        {
-          "date": "2026-06-11",
-          "description": "SVG interactivo con onclick en 3 ejes (E1/E2/E3) con highlight+info panel, paso a paso visual 4 pasos (mira→fíjate→ahora ves→prueba) con SVGs dinámicos, CSS: box-success usada, interactive usada, broken onclicks fixed",
-          "dimensions_improved": [
-            "svg_interactive",
-            "text_explanation",
-            "css_coherence"
-          ]
-        }
-      ],
+      "improvements": "Ronda 2: exercises 7→9 (6 tipos, ordenar+reducción), real_world 7→9 (3 casos), error_common 7→9 (SVG comparativo), CSS clickable/connection-box/difficulty-badge, fix broken onclicks",
       "scores": {
         "svg_interactive": 9,
-        "exercises": 7,
+        "exercises": 9,
         "text_explanation": 9,
-        "real_world": 7,
-        "error_common": 7,
+        "real_world": 9,
+        "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-11",
-      "improvement_count": 2
+      "last_improved": "2026-06-12-ronda2-s3",
+      "improvement_count": 3
     },
     "b03-06-perspectivas-resumen.html": {
       "status": "improved_2",
