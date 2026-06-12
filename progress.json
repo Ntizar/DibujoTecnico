@@ -810,39 +810,17 @@
       "bloque": "b04",
       "title": "📏 Recta: trazas y posiciones",
       "priority": 2,
-      "improvements": [
-        {
-          "date": "2026-06-10",
-          "description": "CSS template base, caso real industrial, error comparativo SVG",
-          "dimensions_improved": [
-            "svg_interactive",
-            "text_explanation",
-            "real_world",
-            "error_common",
-            "css_coherence"
-          ]
-        },
-        {
-          "date": "2026-06-11",
-          "description": "SVG interactividad (onclick toggle en LT/α₁/α₂/horizontal/máx.pendiente con info panel), paso a paso visual 4 pasos (mira→fíjate→ahora ves→prueba) con SVGs + showStep(), 4 ejercicios variados (quiz, V/F visual, completar huecos, ordenar pasos), broken onclicks fixados, CSS: feedback.correct/incorrect añadidos",
-          "dimensions_improved": [
-            "svg_interactive",
-            "text_explanation",
-            "exercises",
-            "css_coherence"
-          ]
-        }
-      ],
+      "improvements": "Ronda 2: real_world 7→9 (3 casos), error_common 7→9 (SVG comparativo), CSS clickable/connection-box/difficulty-badge, ejercicios 7→9 (ordenar+VF+completar), fix broken onclicks",
       "scores": {
         "svg_interactive": 9,
         "exercises": 9,
         "text_explanation": 9,
-        "real_world": 7,
-        "error_common": 7,
+        "real_world": 9,
+        "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-11",
-      "improvement_count": 2
+      "last_improved": "2026-06-12-ronda2-s3",
+      "improvement_count": 3
     },
     "b04-04-pertenencia.html": {
       "status": "improved_2",
