@@ -71,6 +71,18 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .vista-box{transition:all .3s;cursor:pointer}
 .vista-box:hover{filter:brightness(1.1);stroke-width:3}
 .vista-box.active{stroke-width:3;filter:drop-shadow(0 0 8px rgba(37,99,235,.5))}
+
+/* Ronda 2: clases faltantes */
+.clickable{cursor:pointer;transition:transform .15s,box-shadow .15s}
+.clickable:hover{transform:scale(1.02);box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.connection-box{background:linear-gradient(135deg,var(--pura-claro),#f0f4ff);border:2px solid var(--pura);border-radius:12px;padding:1.2rem;margin:1.5rem 0}
+.connection-box h4{color:var(--pura);margin-bottom:.5rem;font-size:1rem}
+.difficulty-badge{display:inline-block;padding:.15rem .5rem;border-radius:8px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.difficulty-badge.easy{background:#d1fae5;color:#065f46}
+.difficulty-badge.medium{background:#fef3c7;color:#92400e}
+.difficulty-badge.hard{background:#fee2e2;color:#991b1b}
+.feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
+.feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
 </style>
 </head>
 <body>
@@ -386,6 +398,57 @@ Poner la planta ENCIMA del alzado. En el 1º diedro (norma europea), la planta v
 </div>
 </section>
 
+
+<!-- ERROR 2: Perfil izquierdo vs derecho -->
+<section class="chapter">
+<h2 class="chapter-title">⚠️ Error 2: Perfil izquierdo vs derecho</h2>
+<div class="box box-error">
+<strong>⚠️ Error frecuente</strong>
+Dibujar el perfil izquierdo en vez del perfil derecho (o viceversa). En el 1º diedro, el perfil se dibuja DESDE EL LADO DERECHO de la pieza, a la DERECHA del alzado.
+</div>
+
+<div class="comparison">
+<div class="comparison-side correct-side">
+<h4>✅ Correcto — Perfil derecho (1º diedro)</h4>
+<div class="svg-container" style="margin:0;padding:1rem">
+<svg viewBox="0 0 250 170" xmlns="http://www.w3.org/2000/svg">
+<!-- Pieza L simple -->
+<polygon points="60,40 140,40 140,140 60,140" fill="#faf5ff" stroke="#a855f7" stroke-width="2.5"/>
+<text x="100" y="95" text-anchor="middle" font-size="10" fill="#a855f7" font-weight="600">Pieza</text>
+<!-- Flecha observación desde derecha -->
+<line x1="160" y1="90" x2="200" y2="90" stroke="#a855f7" stroke-width="2.5" marker-end="url(#arrow)"/>
+<text x="180" y="82" text-anchor="middle" font-size="9" fill="#a855f7">Observa →</text>
+<!-- Perfil derecho -->
+<rect x="205" y="50" width="30" height="100" fill="#faf5ff" stroke="#a855f7" stroke-width="2.5" rx="4"/>
+<text x="220" y="105" text-anchor="middle" font-size="8" fill="#a855f7" font-weight="600">PERFIL</text>
+<circle cx="240" cy="30" r="10" fill="#10b981"/>
+<text x="240" y="34" text-anchor="middle" font-size="12" fill="#fff">✓</text>
+</svg>
+</div>
+<p style="font-size:.85rem;color:var(--verde);margin-top:.5rem">Perfil derecho = norma europea (1º diedro)</p>
+</div>
+
+<div class="comparison-side wrong-side">
+<h4>❌ Incorrecto — Perfil izquierdo</h4>
+<div class="svg-container" style="margin:0;padding:1rem">
+<svg viewBox="0 0 250 170" xmlns="http://www.w3.org/2000/svg">
+<!-- Pieza L simple -->
+<polygon points="60,40 140,40 140,140 60,140" fill="#faf5ff" stroke="#a855f7" stroke-width="2.5"/>
+<text x="100" y="95" text-anchor="middle" font-size="10" fill="#a855f7" font-weight="600">Pieza</text>
+<!-- Flecha observación desde izquierda -->
+<line x1="50" y1="90" x2="10" y2="90" stroke="#ef4444" stroke-width="2.5" marker-end="url(#arrow)"/>
+<text x="30" y="82" text-anchor="middle" font-size="9" fill="#ef4444">← Observa</text>
+<!-- Perfil izquierdo -->
+<rect x="15" y="50" width="30" height="100" fill="#fef2f2" stroke="#ef4444" stroke-width="2.5" rx="4"/>
+<text x="30" y="105" text-anchor="middle" font-size="8" fill="#ef4444" font-weight="600">PERFIL</text>
+<circle cx="220" cy="30" r="10" fill="#ef4444"/>
+<text x="220" y="34" text-anchor="middle" font-size="12" fill="#fff">✗</text>
+</svg>
+</div>
+<p style="font-size:.85rem;color:var(--rojo);margin-top:.5rem">¡Perfil izquierdo = error! Se observa desde la derecha</p>
+</div>
+</div>
+</section>
 <section class="chapter">
 <h2 class="chapter-title">📝 Ejercicios</h2>
 <div class="exercises">
@@ -460,6 +523,35 @@ Poner la planta ENCIMA del alzado. En el 1º diedro (norma europea), la planta v
 <p class="feedback" id="order-feedback"></p>
 </div>
 
+
+<div class="exercise">
+<p><span class="difficulty-badge medium">Medio</span> 🧩 Ejercicio 8 (completar): El Alzado muestra las dimensiones _____ y _____.</p>
+<input type="text" id="ex8a" placeholder="Dim 1" style="padding:.3rem;width:70px;border:2px solid #e2e8f0;border-radius:4px">
+<input type="text" id="ex8b" placeholder="Dim 2" style="padding:.3rem;width:70px;border:2px solid #e2e8f0;border-radius:4px">
+<button onclick="checkFillIn('ex8a', ['x','ancho'])">Comprobar</button>
+<p class="feedback"></p>
+<p style="font-size:.8rem;color:var(--gris)">Introduce X o ancho para la primera dimensión, Z o alto para la segunda</p>
+</div>
+
+<div class="exercise">
+<p><span class="difficulty-badge easy">Fácil</span> ✅❌ Ejercicio 9 (VF visual): El perfil se dibuja DESDE el lado izquierdo de la pieza.</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Verdadero</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Falso — se dibuja desde el lado DERECHO</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p><span class="difficulty-badge hard">Difícil</span> 🏭 Ejercicio 10 (caso real): Un ingeniero en Japón recibe un plano europeo de una biela. ¿Qué error cometerá al interpretar las vistas?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Ninguno — las vistas son universales</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Pondrá la planta ARRIBA del alzado (3º diedro japonés)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Pondrá el perfil a la izquierda en vez de a la derecha</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Confundirá alzado con perfil</button>
+</div>
+<p class="feedback"></p>
+</div>
 </div>
 </section>
 
@@ -476,6 +568,13 @@ Poner la planta ENCIMA del alzado. En el 1º diedro (Europa), la planta va DEBAJ
 <div class="box box-idea">
 <strong>🔗 Conexión</strong>
 Las vistas principales son la base de todo plano técnico. Cuando veas un plano con 3 vistas, sabrás que son alzado (frente), planta (arriba) y perfil (lado).
+</div>
+
+
+<div class="connection-box">
+<h4>🔗 Conexión con otros temas</h4>
+<p>Las vistas principales son la base de TODO plano técnico. Se conectan directamente con <strong>sistema de 3 planos</strong> (B02-02), <strong>correspondencia entre vistas</strong> (B02-04) y <strong>cortes y secciones</strong> (B05). Sin entender las vistas principales, no se puede interpretar ningún plano.</p>
+<p style="margin-top:.5rem"><span class="real-world-badge">Dato</span> Las normas ISO 128 y ISO 5456 estandarizan las vistas principales a nivel mundial. Un plano con vistas principales correctas puede ser leído por un fabricante en cualquier país del mundo.</p>
 </div>
 
 <div class="summary">

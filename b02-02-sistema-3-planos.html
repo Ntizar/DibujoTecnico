@@ -242,64 +242,25 @@ Mide: profundidad y alto.
 <!-- SVG INTERACTIVO -->
 <section class="chapter">
 <h2 class="chapter-title">2️⃣ Haz clic en cada plano para ver sus vistas</h2>
+<div class="box box-teoria">
+<strong>🎮 Interactúa</strong>
+<p>Haz clic en los botones para ver cómo se transforma el sistema 3D en 2D. Cada botón muestra un estado diferente del abatimiento.</p>
+</div>
 <div class="svg-container">
-<svg viewBox="0 0 600 350" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#f97316"/></marker>
-</defs>
-<!-- Fondo -->
-<rect x="0" y="0" width="600" height="350" fill="#f8fafc" rx="8"/>
-<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Sistema de 3 planos — Haz clic en cada plano</text>
-<!-- 3D -->
-<text x="150" y="55" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">En 3D</text>
-<!-- PV (vertical) - clickeable -->
-<polygon class="plano-zone" data-plano="pv" x="50" y="80" width="100" height="120" fill="#eff6ff" stroke="#2563eb" stroke-width="2" onclick="showPlanoInfo('pv')" onmouseover="this.setAttribute('fill','#dbeafe')" onmouseout="this.setAttribute('fill','#eff6ff')"/>
-<text x="100" y="145" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600">PV</text>
-<text x="100" y="160" text-anchor="middle" font-size="9" fill="#64748b">(Alzado)</text>
-<!-- PH (horizontal) - clickeable -->
-<polygon class="plano-zone" data-plano="ph" x="50" y="200" width="100" height="50" fill="#fff7ed" stroke="#f97316" stroke-width="2" onclick="showPlanoInfo('ph')" onmouseover="this.setAttribute('fill','#ffedd5')" onmouseout="this.setAttribute('fill','#fff7ed')"/>
-<text x="100" y="230" text-anchor="middle" font-size="11" fill="#f97316" font-weight="600">PH</text>
-<text x="100" y="245" text-anchor="middle" font-size="9" fill="#64748b">(Planta)</text>
-<!-- PL (lateral) - clickeable -->
-<polygon class="plano-zone" data-plano="pl" x="150" y="80" width="50" height="120" fill="#ecfdf5" stroke="#10b981" stroke-width="2" onclick="showPlanoInfo('pl')" onmouseover="this.setAttribute('fill','#d1fae5')" onmouseout="this.setAttribute('fill','#ecfdf5')"/>
-<text x="175" y="140" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">PL</text>
-<text x="175" y="155" text-anchor="middle" font-size="9" fill="#64748b">(Perfil)</text>
-<!-- Pieza -->
-<rect x="75" y="110" width="40" height="40" fill="#faf5ff" stroke="#a855f7" stroke-width="1.5"/>
-<text x="95" y="135" text-anchor="middle" font-size="8" fill="#a855f7">Pieza</text>
-<!-- Flecha -->
-<text x="300" y="145" text-anchor="middle" font-size="24" fill="#94a3b8">→</text>
-<!-- 2D Abatido -->
-<text x="450" y="55" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">Abatido (2D)</text>
-<!-- PV fijo -->
-<rect x="330" y="70" width="120" height="100" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="4"/>
-<text x="390" y="125" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="600">ALZADO</text>
-<text x="390" y="140" text-anchor="middle" font-size="9" fill="#64748b">(X, Z)</text>
-<!-- Línea de Tierra -->
-<line x1="320" y1="170" x2="460" y2="170" stroke="#333" stroke-width="2"/>
-<text x="470" y="174" font-size="9" fill="#333">LT</text>
-<!-- PH abatido -->
-<rect x="330" y="175" width="120" height="80" fill="#fff7ed" stroke="#f97316" stroke-width="2" rx="4"/>
-<text x="390" y="220" text-anchor="middle" font-size="12" fill="#f97316" font-weight="600">PLANTA</text>
-<text x="390" y="235" text-anchor="middle" font-size="9" fill="#64748b">(X, Y)</text>
-<!-- PL abatido -->
-<rect x="465" y="70" width="80" height="100" fill="#ecfdf5" stroke="#10b981" stroke-width="2" rx="4"/>
-<text x="505" y="125" text-anchor="middle" font-size="12" fill="#10b981" font-weight="600">PERFIL</text>
-<text x="505" y="140" text-anchor="middle" font-size="9" fill="#64748b">(Y, Z)</text>
-<!-- Flechas de giro -->
-<path d="M 390 170 Q 390 185, 390 175" fill="none" stroke="#f97316" stroke-width="2" marker-end="url(#arrow)"/>
-<path d="M 450 120 Q 460 120, 465 120" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow)"/>
-<!-- Leyenda -->
-<rect x="20" y="290" width="560" height="45" fill="#faf5ff" rx="6"/>
-<text x="300" y="310" text-anchor="middle" font-size="11" fill="#a855f7" font-weight="600">PH gira 90° hacia ABAJO | PL gira 90° hacia la DERECHA | PV se queda fijo</text>
-<text x="300" y="328" text-anchor="middle" font-size="10" fill="#64748b">Alzado arriba, Planta abajo, Perfil a la derecha</text>
-<!-- Info panel -->
-<rect x="20" y="260" width="200" height="25" fill="#fff7ed" rx="4" stroke="#f97316" stroke-width="1"/>
-<text x="120" y="277" text-anchor="middle" font-size="10" fill="#f97316" font-weight="600" id="planoInfo">👆 Clic en un plano 3D</text>
+<div style="display:flex;gap:.5rem;justify-content:center;margin-bottom:1rem;flex-wrap:wrap">
+<button class="quiz-btn" onclick="toggleView('3d')" id="btn3d">📦 Vista 3D</button>
+<button class="quiz-btn" onclick="toggleView('abat')" id="btnabat">📐 Vista Abatida</button>
+<button class="quiz-btn" onclick="toggleView('both')" id="btnboth">⬅️➡️ Comparación</button>
+<button class="quiz-btn" onclick="toggleView('error')" id="btnerror">⚠️ Error común</button>
+</div>
+<svg id="sistemaSvg" viewBox="0 0 600 380" xmlns="http://www.w3.org/2000/svg">
+<!-- SVG content injected by JS -->
 </svg>
+<div id="svgInfo" class="box box-idea" style="margin-top:1rem;text-align:center">
+<p>👆 Haz clic en un botón para explorar el sistema de 3 planos</p>
+</div>
 </div>
 </section>
-
 <!-- CASO REAL INDUSTRIAL -->
 <section class="chapter">
 <h2 class="chapter-title">🏭 Caso real: Soporte de tren de aterrizaje Boeing 737 MAX</h2>
@@ -542,6 +503,171 @@ function showPlanoInfo(plano) {
   if(target) target.classList.add('active');
   setTimeout(function(){ if(target) target.classList.remove('active'); }, 2000);
 }
+
+function toggleView(mode) {
+  var svg = document.getElementById('sistemaSvg');
+  var info = document.getElementById('svgInfo');
+  // Reset button styles
+  document.querySelectorAll('#sistemaSvg').length; // no-op
+  var btns = document.querySelectorAll('.interactive button, .svg-container .quiz-btn');
+  
+  if (mode === '3d') {
+    svg.innerHTML = `
+    <rect x="0" y="0" width="600" height="380" fill="#f8fafc" rx="8"/>
+    <text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Sistema de 3 planos — Vista 3D</text>
+    <!-- 3D corner representation -->
+    <text x="150" y="60" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">Vista 3D</text>
+    <!-- PV (vertical wall) -->
+    <polygon points="80,80 220,80 220,220 80,220" fill="#eff6ff" stroke="#2563eb" stroke-width="3" opacity="0.85" class="clickable" onclick="showPlanoInfo('pv')"/>
+    <text x="150" y="155" text-anchor="middle" font-size="14" fill="#2563eb" font-weight="700">PV</text>
+    <text x="150" y="175" text-anchor="middle" font-size="11" fill="#64748b">Alzado (X, Z)</text>
+    <!-- PH (floor) -->
+    <polygon points="80,220 220,220 260,260 40,260" fill="#fff7ed" stroke="#f97316" stroke-width="3" opacity="0.85" class="clickable" onclick="showPlanoInfo('ph')"/>
+    <text x="150" y="248" text-anchor="middle" font-size="13" fill="#f97316" font-weight="700">PH</text>
+    <text x="150" y="262" text-anchor="middle" font-size="10" fill="#64748b">Planta (X, Y)</text>
+    <!-- PL (side wall) -->
+    <polygon points="220,80 260,100 260,260 220,220" fill="#ecfdf5" stroke="#10b981" stroke-width="3" opacity="0.85" class="clickable" onclick="showPlanoInfo('pl')"/>
+    <text x="240" y="175" text-anchor="middle" font-size="13" fill="#10b981" font-weight="700">PL</text>
+    <text x="240" y="195" text-anchor="middle" font-size="10" fill="#64748b">Perfil (Y, Z)</text>
+    <!-- Corner point -->
+    <circle cx="220" cy="220" r="5" fill="#333"/>
+    <text x="230" y="235" font-size="9" fill="#333">Origen</text>
+    <!-- Piece inside -->
+    <rect x="120" y="140" width="40" height="40" fill="#faf5ff" stroke="#a855f7" stroke-width="2"/>
+    <text x="140" y="165" text-anchor="middle" font-size="9" fill="#a855f7" font-weight="600">Pieza</text>
+    <!-- Dimension arrows -->
+    <line x1="80" y1="275" x2="220" y2="275" stroke="#333" stroke-width="1" marker-end="url(#arrow)"/>
+    <text x="150" y="290" text-size="10" fill="#333">X (ancho)</text>
+    <!-- Legend -->
+    <rect x="350" y="80" width="220" height="180" fill="#fff" rx="8" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="460" y="105" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">📋 Dimensiones</text>
+    <line x1="370" y1="115" x2="560" y2="115" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="370" y="135" font-size="11" fill="#2563eb">🔵 PV → Alzado → X, Z</text>
+    <text x="370" y="155" font-size="11" fill="#f97316">🟠 PH → Planta → X, Y</text>
+    <text x="370" y="175" font-size="11" fill="#10b981">🟢 PL → Perfil → Y, Z</text>
+    <line x1="370" y1="190" x2="560" y2="190" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="370" y="210" font-size="10" fill="#64748b">Clic en cada plano para info</text>
+    <text x="370" y="230" font-size="10" fill="#64748b">Clic en botón "Abatida" para ver</text>
+    <text x="370" y="250" font-size="10" fill="#64748b">el sistema en 2D plano</text>
+    `;
+    info.innerHTML = '<p>🔵 <strong>PV</strong> (azul) = pared del fondo → Alzado. <strong>PH</strong> (naranja) = suelo → Planta. <strong>PL</strong> (verde) = pared lateral → Perfil. Haz clic en cada plano.</p>';
+  } else if (mode === 'abat') {
+    svg.innerHTML = `
+    <rect x="0" y="0" width="600" height="380" fill="#f8fafc" rx="8"/>
+    <text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Sistema de 3 planos — Vista Abatida (2D)</text>
+    <!-- PV fijo -->
+    <rect x="60" y="50" width="180" height="140" fill="#eff6ff" stroke="#2563eb" stroke-width="3" rx="6"/>
+    <text x="150" y="120" text-anchor="middle" font-size="16" fill="#2563eb" font-weight="700">ALZADO</text>
+    <text x="150" y="140" text-anchor="middle" font-size="11" fill="#64748b">(X, Z)</text>
+    <!-- LT -->
+    <line x1="40" y1="190" x2="300" y2="190" stroke="#333" stroke-width="3"/>
+    <text x="310" y="195" font-size="11" fill="#333" font-weight="600">LT</text>
+    <!-- PH abatido -->
+    <rect x="60" y="195" width="180" height="120" fill="#fff7ed" stroke="#f97316" stroke-width="3" rx="6"/>
+    <text x="150" y="260" text-anchor="middle" font-size="16" fill="#f97316" font-weight="700">PLANTA</text>
+    <text x="150" y="280" text-anchor="middle" font-size="11" fill="#64748b">(X, Y)</text>
+    <!-- Arrow: PH gira abajo -->
+    <path d="M 150 190 Q 180 210, 150 200" fill="none" stroke="#f97316" stroke-width="3" marker-end="url(#arrow)"/>
+    <text x="190" y="215" font-size="10" fill="#f97316" font-weight="600">90° ↓</text>
+    <!-- PL abatido -->
+    <rect x="320" y="50" width="140" height="140" fill="#ecfdf5" stroke="#10b981" stroke-width="3" rx="6"/>
+    <text x="390" y="120" text-anchor="middle" font-size="16" fill="#10b981" font-weight="700">PERFIL</text>
+    <text x="390" y="140" text-anchor="middle" font-size="11" fill="#64748b">(Y, Z)</text>
+    <!-- Arrow: PL gira derecha -->
+    <path d="M 320 120 Q 300 120, 310 120" fill="none" stroke="#10b981" stroke-width="3" marker-end="url(#arrow)"/>
+    <text x="270" y="115" font-size="10" fill="#10b981" font-weight="600">90° →</text>
+    <!-- Correspondence lines -->
+    <line x1="100" y1="190" x2="100" y2="195" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3"/>
+    <line x1="200" y1="190" x2="200" y2="195" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3"/>
+    <text x="100" y="185" text-anchor="middle" font-size="8" fill="#94a3b8">X</text>
+    <text x="200" y="185" text-anchor="middle" font-size="8" fill="#94a3b8">X</text>
+    <!-- Legend -->
+    <rect x="480" y="50" width="100" height="140" fill="#faf5ff" rx="8" stroke="#a855f7" stroke-width="1"/>
+    <text x="530" y="75" text-anchor="middle" font-size="11" font-weight="bold" fill="#a855f7">Reglas</text>
+    <line x1="490" y1="85" x2="570" y2="85" stroke="#e2e8f0"/>
+    <text x="490" y="105" font-size="10" fill="#333">PV = FIJO</text>
+    <text x="490" y="125" font-size="10" fill="#333">PH ↓ 90°</text>
+    <text x="490" y="145" font-size="10" fill="#333">PL → 90°</text>
+    <line x1="490" y1="155" x2="570" y2="155" stroke="#e2e8f0"/>
+    <text x="490" y="175" font-size="10" fill="#64748b">Alzado arriba</text>
+    <text x="490" y="190" font-size="10" fill="#64748b">Planta abajo</text>
+    <text x="490" y="205" font-size="10" fill="#64748b">Perfil a la der.</text>
+    `;
+    info.innerHTML = '<p>📐 En la vista abatida: <strong>PV fijo</strong> arriba, <strong>PH abatido</strong> abajo (giró 90°), <strong>PL abatido</strong> a la derecha (giró 90°). Alzado-Planta comparten X (ancho), Alzado-Perfil comparten Z (altura).</p>';
+  } else if (mode === 'both') {
+    svg.innerHTML = `
+    <rect x="0" y="0" width="600" height="380" fill="#f8fafc" rx="8"/>
+    <text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Comparación: 3D vs Abatido</text>
+    <!-- LEFT: 3D -->
+    <text x="150" y="55" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">3D Original</text>
+    <polygon points="60,80 180,80 180,200 60,200" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5" opacity="0.8"/>
+    <text x="120" y="145" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="700">PV</text>
+    <polygon points="60,200 180,200 210,230 30,230" fill="#fff7ed" stroke="#f97316" stroke-width="2.5" opacity="0.8"/>
+    <text x="120" y="222" text-anchor="middle" font-size="11" fill="#f97316" font-weight="700">PH</text>
+    <polygon points="180,80 210,100 210,230 180,200" fill="#ecfdf5" stroke="#10b981" stroke-width="2.5" opacity="0.8"/>
+    <text x="195" y="160" text-anchor="middle" font-size="11" fill="#10b981" font-weight="700">PL</text>
+    <circle cx="180" cy="200" r="4" fill="#333"/>
+    <!-- Arrow -->
+    <text x="260" y="155" text-anchor="middle" font-size="24" fill="#94a3b8">→</text>
+    <!-- RIGHT: Abatido -->
+    <text x="450" y="55" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">Abatido (2D)</text>
+    <rect x="330" y="70" width="140" height="100" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5" rx="4"/>
+    <text x="400" y="125" text-anchor="middle" font-size="13" fill="#2563eb" font-weight="700">ALZADO</text>
+    <line x1="320" y1="170" x2="500" y2="170" stroke="#333" stroke-width="2"/>
+    <text x="505" y="174" font-size="9" fill="#333">LT</text>
+    <rect x="330" y="175" width="140" height="80" fill="#fff7ed" stroke="#f97316" stroke-width="2.5" rx="4"/>
+    <text x="400" y="220" text-anchor="middle" font-size="13" fill="#f97316" font-weight="700">PLANTA</text>
+    <rect x="480" y="70" width="80" height="100" fill="#ecfdf5" stroke="#10b981" stroke-width="2.5" rx="4"/>
+    <text x="520" y="125" text-anchor="middle" font-size="13" fill="#10b981" font-weight="700">PERFIL</text>
+    <!-- Arrows de giro -->
+    <path d="M 400 170 Q 420 185, 400 178" fill="none" stroke="#f97316" stroke-width="2"/>
+    <path d="M 470 120 Q 478 120, 480 120" fill="none" stroke="#10b981" stroke-width="2"/>
+    <!-- Key -->
+    <rect x="50" y="290" width="500" height="60" fill="#fff" rx="8" stroke="#e2e8f0"/>
+    <text x="300" y="315" text-anchor="middle" font-size="11" font-weight="600" fill="#333">🔑 PH gira 90° ABAJO | PL gira 90° DERECHA | PV FIJO</text>
+    <text x="300" y="335" text-anchor="middle" font-size="10" fill="#64748b">Alzado arriba · Planta abajo · Perfil a la derecha</text>
+    `;
+    info.innerHTML = '<p>⬅️➡️ <strong>Izquierda:</strong> Vista 3D con los 3 planos en el rincón. <strong>Derecha:</strong> Sistema abatido en 2D. Observa cómo PH queda DEBAJO y PL a la DERECHA del PV.</p>';
+  } else if (mode === 'error') {
+    svg.innerHTML = `
+    <rect x="0" y="0" width="600" height="380" fill="#f8fafc" rx="8"/>
+    <text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Error común: PH girado en dirección incorrecta</text>
+    <!-- CORRECT -->
+    <text x="150" y="55" text-anchor="middle" font-size="13" font-weight="bold" fill="#10b981">✅ Correcto (1º diedro)</text>
+    <rect x="40" y="70" width="120" height="80" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5" rx="4"/>
+    <text x="100" y="115" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="700">ALZADO</text>
+    <line x1="30" y1="150" x2="170" y2="150" stroke="#333" stroke-width="2"/>
+    <text x="175" y="154" font-size="9" fill="#333">LT</text>
+    <rect x="40" y="155" width="120" height="60" fill="#fff7ed" stroke="#f97316" stroke-width="2.5" rx="4"/>
+    <text x="100" y="192" text-anchor="middle" font-size="12" fill="#f97316" font-weight="700">PLANTA</text>
+    <path d="M 100 150 Q 120 165, 100 158" fill="none" stroke="#f97316" stroke-width="2.5"/>
+    <text x="100" y="230" text-anchor="middle" font-size="10" fill="#10b981" font-weight="600">PH → ABAJO ✓</text>
+    <!-- WRONG -->
+    <text x="450" y="55" text-anchor="middle" font-size="13" font-weight="bold" fill="#ef4444">❌ Incorrecto</text>
+    <rect x="360" y="70" width="120" height="80" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5" rx="4"/>
+    <text x="420" y="115" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="700">ALZADO</text>
+    <line x1="350" y1="150" x2="490" y2="150" stroke="#333" stroke-width="2"/>
+    <text x="495" y="154" font-size="9" fill="#333">LT</text>
+    <rect x="360" y="10" width="120" height="60" fill="#fef2f2" stroke="#ef4444" stroke-width="2.5" rx="4"/>
+    <text x="420" y="47" text-anchor="middle" font-size="12" fill="#ef4444" font-weight="700">PLANTA</text>
+    <path d="M 420 150 Q 400 135, 420 142" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="4,3"/>
+    <text x="420" y="230" text-anchor="middle" font-size="10" fill="#ef4444" font-weight="600">PH → ARRIBA ✗</text>
+    <!-- Warning -->
+    <rect x="100" y="260" width="400" height="80" fill="#fef2f2" rx="8" stroke="#ef4444" stroke-width="2"/>
+    <text x="300" y="290" text-anchor="middle" font-size="12" font-weight="700" fill="#ef4444">⚠️ Si el PH gira hacia ARRIBA, estás usando el 3º diedro (Japón/EE.UU.)</text>
+    <text x="300" y="315" text-anchor="middle" font-size="11" fill="#64748b">En Europa se usa el 1º diedro: PH ABAJO, PL a la DERECHA</text>
+    <text x="300" y="335" text-anchor="middle" font-size="10" fill="#64748b">Un error de abatimiento puede costar 200.000€ en la industria aeronáutica</text>
+    `;
+    info.innerHTML = '<p>⚠️ <strong>El error más frecuente:</strong> girar el PH hacia ARRIBA en vez de ABAJO. En el 1º diedro (Europa), PH siempre va DEBAJO del alzado. En el 3º diedro (Japón, EE.UU.), va ARRIBA. Confundirlos causa errores de fabricación de miles de euros.</p>';
+  }
+  
+  // Update button styles
+  var allBtns = document.querySelectorAll('.svg-container .quiz-btn');
+  allBtns.forEach(function(b) { b.style.background = '#e2e8f0'; b.style.color = '#64748b'; });
+  var activeBtn = document.getElementById('btn' + mode);
+  if (activeBtn) { activeBtn.style.background = 'var(--azul)'; activeBtn.style.color = '#fff'; }
+}
+
 
 function checkAnswer(btn, correct) {
   var parent = btn.parentElement;

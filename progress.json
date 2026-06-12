@@ -209,18 +209,18 @@
         }
       ],
       "scores": {
-        "svg_interactive": 7,
-        "exercises": 7,
+        "svg_interactive": 9,
+        "exercises": 9,
         "text_explanation": 9,
         "real_world": 9,
-        "error_common": 7,
+        "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-11",
-      "improvement_count": 3
+      "last_improved": "2026-06-12-ronda2-s2",
+      "improvement_count": 4
     },
     "b02-03-vistas-principales.html": {
-      "status": "improved_3",
+      "status": "improved_2",
       "bloque": "b02",
       "title": "👀 Vistas principales",
       "priority": 1,
@@ -254,15 +254,15 @@
         }
       ],
       "scores": {
-        "svg_interactive": 7,
+        "svg_interactive": 9,
         "exercises": 9,
         "text_explanation": 9,
-        "real_world": 7,
-        "error_common": 7,
+        "real_world": 9,
+        "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-11",
-      "improvement_count": 3
+      "last_improved": "2026-06-12-ronda2-s2",
+      "improvement_count": 4
     },
     "b02-04-correspondencia-vistas.html": {
       "scores": {
