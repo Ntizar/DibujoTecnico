@@ -62,6 +62,15 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .stack-item:hover{border-color:var(--azul);transform:translateX(4px)}
 .stack-item.active{border-color:var(--azul);background:var(--azul-claro)}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+.clickable{cursor:pointer;transition:all .2s}.clickable:hover{transform:scale(1.02);box-shadow:0 4px 12px rgba(37,99,235,.15)}
+.connection-box{background:var(--pura-claro);border:2px solid var(--pura);border-radius:12px;padding:1.2rem 1.5rem;margin:1.5rem 0;border-left:4px solid var(--pura)}
+.connection-box strong{color:var(--pura)}
+.difficulty-badge{display:inline-block;padding:.15rem .5rem;border-radius:10px;font-size:.7rem;font-weight:700;margin-left:.5rem}
+.difficulty-badge.easy{background:#dcfce7;color:#166534}
+.difficulty-badge.medium{background:#fef3c7;color:#92400e}
+.difficulty-badge.hard{background:#fce7f3;color:#9d174d}
+.feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
+.feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
 </style>
 </head>
 <body>
@@ -204,9 +213,9 @@ Abatir 4 vértices → unir → cuadrado en VM
 <p>📐 Ejercicio 2: ¿Alrededor de qué gira el punto al abatir?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">La traza del plano</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">La LT</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">El origen</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">No gira</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)"La LT</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)"El origen</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)"No gira</button>
 </div>
 <p class="feedback"></p>
 </div>
@@ -214,10 +223,10 @@ Abatir 4 vértices → unir → cuadrado en VM
 <div class="exercise">
 <p>📐 Ejercicio 3: ¿Cuántos puntos se necesitan para abatir una recta?</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false">1</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)"1</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">2</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">3</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">4</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)"3</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)"4</button>
 </div>
 <p class="feedback"></p>
 </div>
@@ -226,9 +235,9 @@ Abatir 4 vértices → unir → cuadrado en VM
 <p>📐 Ejercicio 4: ¿Qué se obtiene al abatir un triángulo?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">El triángulo en VM</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Un punto</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Una recta</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false">Nada</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)"Un punto</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)"Una recta</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)"Nada</button>
 </div>
 <p class="feedback"></p>
 </div>
@@ -240,22 +249,115 @@ Abatir 4 vértices → unir → cuadrado en VM
 <p class="feedback"></p>
 </div>
 
+<div class="exercise">
+<p>📐 Ejercicio 6 (Ordenar): <span class="difficulty-badge easy">Fácil</span> — Ordena los pasos del abatimiento de un punto</p>
+<p style="font-size:.9rem;color:#64748b;margin-bottom:.8rem">Haz click en los pasos en el orden correcto:</p>
+<div id="ordenar1" style="display:flex;flex-direction:column;gap:.5rem">
+<div class="stack-item" data-pos="3" onclick="selectOrden(this,'ordenar1')">Trazar el arco de giro desde el punto hasta la traza</div>
+<div class="stack-item" data-pos="1" onclick="selectOrden(this,'ordenar1')">Identificar la traza del plano α₁</div>
+<div class="stack-item" data-pos="2" onclick="selectOrden(this,'ordenar1')">Localizar el punto en alzado y planta</div>
+<div class="stack-item" data-pos="4" onclick="selectOrden(this,'ordenar1')">Marcar el punto abatido en la traza α₁</div>
+</div>
+<button onclick="checkOrden('ordenar1', this)" style="margin-top:.8rem;padding:.5rem 1.2rem;background:var(--azul);color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:600">✅ Comprobar orden</button>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 7 (VF Visual): <span class="difficulty-badge medium">Media</span> — ¿Alrededor de qué gira el punto al abatir?</p>
+<div class="svg-container clickable" style="cursor:pointer" onclick="checkVFVisual(this, true)">
+<svg viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg" width="100%">
+<!-- Opción A: la traza del plano -->
+<rect x="10" y="10" width="180" height="100" fill="#fff" rx="8" stroke="#e2e8f0" stroke-width="2" class="clickable" onclick="event.stopPropagation();checkVFAnswer(this, true)"/>
+<text x="100" y="30" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600">Opción A</text>
+<line x1="30" y1="60" x2="170" y2="60" stroke="#f97316" stroke-width="4"/>
+<text x="100" y="85" text-anchor="middle" font-size="9" fill="#64748b">Traza del plano α₁</text>
+<circle cx="100" cy="60" r="8" fill="none" stroke="#10b981" stroke-width="2"/>
+<text x="100" y="64" text-anchor="middle" font-size="10" fill="#10b981" font-weight="700">✓</text>
+<!-- Opción B: la línea de tierra -->
+<rect x="210" y="10" width="180" height="100" fill="#fff" rx="8" stroke="#e2e8f0" stroke-width="2" class="clickable" onclick="event.stopPropagation();checkVFAnswer(this, false)"/>
+<text x="300" y="30" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600">Opción B</text>
+<line x1="230" y1="60" x2="370" y2="60" stroke="#334155" stroke-width="2"/>
+<text x="300" y="85" text-anchor="middle" font-size="9" fill="#64748b">Línea de tierra (LT)</text>
+<circle cx="300" cy="60" r="8" fill="none" stroke="#ef4444" stroke-width="2"/>
+<text x="300" y="64" text-anchor="middle" font-size="10" fill="#ef4444" font-weight="700">✗</text>
+</svg>
+</div>
+<p class="feedback"></p>
+</div>
+
 </div>
 </section>
 
 <div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ SIN ABATIR</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><polygon points="60,110 140,30 150,30 70,110" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><polygon points="80,100 120,50 125,50 85,100" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/><text x="100" y="130" text-anchor="middle" font-size="9" fill="#ef4444">Forma deformada ❌</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ ABATIDO</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="50" y="50" width="100" height="50" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/><text x="100" y="80" text-anchor="middle" font-size="9" fill="#10b981">Forma real ✓</text></svg></div></div>
 
 <div class="box box-error">
-<strong>⚠️ Error clásico</strong>
-Abatir alrededor de la LT en vez de la traza del plano. ¡NO! El abatimiento se hace alrededor de la TRAZA del plano, no de la LT.
+<strong>⚠️ Error común</strong>
+Abatir alrededor de la LT en vez de la traza del plano. ¡NO! El abatimiento se hace alrededor de la <strong>TRAZA</strong> del plano, no de la LT. Si se abate alrededor de la LT, el resultado es completamente incorrecto.
 </div>
 
-<div class="box box-idea">
+<div class="box box-ejemplo" style="margin:1.5rem 0">
+<strong>🔍 Error visual comparativo</strong>
+<div class="svg-container clickable" style="margin:1rem 0" onclick="toggleAbatError()">
+<svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" id="abatErrorSvg">
+<!-- Error: abatir alrededor de LT -->
+<rect x="10" y="10" width="280" height="180" fill="#fef2f2" rx="8" stroke="#ef4444" stroke-width="2"/>
+<text x="150" y="30" text-anchor="middle" font-size="13" fill="#ef4444" font-weight="700">❌ ERROR: Abatir围绕 LT</text>
+<!-- LT -->
+<line x1="40" y1="100" x2="240" y2="100" stroke="#334155" stroke-width="2"/>
+<text x="245" y="104" font-size="9" fill="#334155">LT</text>
+<!-- Plano oblicuo -->
+<polygon points="80,60 160,60 120,90" fill="none" stroke="#2563eb" stroke-width="2"/>
+<text x="120" y="78" text-anchor="middle" font-size="9" fill="#2563eb">Plano</text>
+<!-- Arco de giro围绕 LT (incorrecto) -->
+<path d="M 120,90 A 40,40 0 0,0 80,100" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,2"/>
+<text x="60" y="120" font-size="8" fill="#ef4444">❌ Giro围绕LT</text>
+<!-- Resultado deformado -->
+<text x="150" y="165" text-anchor="middle" font-size="10" fill="#ef4444">Resultado deformado</text>
+
+<!-- Correcto: abatir alrededor de traza -->
+<rect x="310" y="10" width="280" height="180" fill="#ecfdf5" rx="8" stroke="#10b981" stroke-width="2"/>
+<text x="450" y="30" text-anchor="middle" font-size="13" fill="#10b981" font-weight="700">✅ CORRECTO: Abatir围绕 TRAZA</text>
+<!-- LT -->
+<line x1="340" y1="100" x2="540" y2="100" stroke="#334155" stroke-width="2"/>
+<text x="545" y="104" font-size="9" fill="#334155">LT</text>
+<!-- Traza del plano (α₁) -->
+<line x1="360" y1="90" x2="480" y2="90" stroke="#f97316" stroke-width="3"/>
+<text x="485" y="85" font-size="9" fill="#f97316">α₁ (traza)</text>
+<!-- Plano oblicuo -->
+<polygon points="380,50 460,50 420,90" fill="none" stroke="#2563eb" stroke-width="2"/>
+<text x="420" y="72" text-anchor="middle" font-size="9" fill="#2563eb">Plano</text>
+<!-- Arco de giro围绕 traza (correcto) -->
+<path d="M 420,90 L 420,130" fill="none" stroke="#10b981" stroke-width="2.5"/>
+<text x="440" y="115" font-size="8" fill="#10b981">✓ Giro围绕traza</text>
+<!-- Resultado VM -->
+<text x="450" y="165" text-anchor="middle" font-size="10" fill="#10b981">✓ Resultado en VM</text>
+</svg>
+</div>
+<small>👆 Click para alternar el resaltado</small>
+</div>
+
+<div class="connection-box">
 <strong>🔗 Conexión</strong>
-El abatimiento es la alternativa al giro y al cambio de plano. Los 3 métodos sirven para encontrar VM.
+El abatimiento es la alternativa al <strong>giro</strong> y al <strong>cambio de plano</strong>. Los 3 métodos sirven para encontrar VM. <strong>Conecta con:</strong> <a href="b04-08-giro.html">giro</a> (mismo objetivo: VM), <a href="b04-07-cambio-plano.html">cambio de plano</a> (otro método para VM), y <a href="b08-02-abatimiento-ph.html">abatimiento sobre PH</a> (caso específico).
 </div>
 
-<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: aleta de disipador de calor</strong>Una aleta de aluminio tiene una forma complicada en un plano oblicuo. Para fabricarla, el operario CNC necesita ver la forma real de la aleta. Abate el plano oblicuo sobre el PV y así puede medir las dimensiones reales de la aleta.</div>
+<div class="box box-teoria" style="margin:1.5rem 0">
+<span class="real-world-badge">🏭 CASO REAL</span>
+<strong>Caso industrial: aleta de disipador de calor</strong>
+Una aleta de aluminio tiene una forma complicada en un plano oblicuo. Para fabricarla, el operario CNC necesita ver la forma real de la aleta. Abate el plano oblicuo sobre el PV y así puede medir las dimensiones reales de la aleta.
+</div>
+
+<div class="box box-teoria" style="margin:1.5rem 0">
+<span class="real-world-badge">🏗️ ARQUITECTURA</span>
+<strong>Caso arquitectura: tejado a dos aguas con vertiente inclinada</strong>
+Un tejado a dos aguas tiene cada vertiente en un plano oblicuo. Para calcular la longitud real de la cumbrera y las dimensiones de las tejas, el arquitecto abate cada vertiente sobre el plano horizontal. Sin abatimiento, las longitudes del alzado y planta están deformadas y no se pueden usar para el presupuesto de materiales.
+</div>
+
+<div class="box box-teoria" style="margin:1.5rem 0">
+<span class="real-world-badge">⚙️ MECÁNICA</span>
+<strong>Caso mecánica: placa de base con agujeros en plano oblicuo</strong>
+Una placa de soporte de máquina tiene 4 agujeros de fijación en una cara inclinada a 35°. Para mecanizarla, el operario debe conocer las distancias reales entre agujeros. Abatiendo la placa sobre un plano de proyección paralelo, obtiene las distancias verdaderas y puede programar la fresadora con precisión de ±0.05mm.
+</div>
 
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
@@ -332,6 +434,112 @@ window.onscroll = function(){
   var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
   document.getElementById('progress').style.width = p+'%';
 };
+
+// Ordenar exercise
+var ordenarSelected = {};
+function selectOrden(el, containerId) {
+  var container = document.getElementById(containerId);
+  if (!container) return;
+  if (el.dataset.selected === 'true') {
+    el.dataset.selected = 'false';
+    el.style.borderColor = '#e2e8f0';
+    el.style.background = '#f8fafc';
+  } else {
+    var positions = {};
+    container.querySelectorAll('.stack-item[data-selected="true"]').forEach(function(item) {
+      positions[item.dataset.pos] = item;
+    });
+    var nextPos = 1;
+    while (positions[nextPos]) nextPos++;
+    el.dataset.pos = String(nextPos);
+    el.dataset.selected = 'true';
+    el.style.borderColor = 'var(--azul)';
+    el.style.background = 'var(--azul-claro)';
+  }
+}
+
+function checkOrden(containerId, btn) {
+  var container = document.getElementById(containerId);
+  var items = container.querySelectorAll('.stack-item');
+  if (items.length === 0) return;
+  var selected = container.querySelectorAll('.stack-item[data-selected="true"]');
+  if (selected.length < items.length) {
+    var feedback = btn.parentElement.querySelector('.feedback');
+    if (feedback) {
+      feedback.textContent = '⚠️ Selecciona todos los elementos primero';
+      feedback.className = 'feedback incorrect';
+    }
+    return;
+  }
+  var sorted = Array.from(items).sort(function(a,b) {
+    return parseInt(a.dataset.pos) - parseInt(b.dataset.pos);
+  });
+  var correct = true;
+  for (var i = 0; i < sorted.length; i++) {
+    if (sorted[i].dataset.pos !== String(i+1)) {
+      correct = false;
+      break;
+    }
+  }
+  var feedback = btn.parentElement.querySelector('.feedback');
+  if (correct) {
+    feedback.textContent = '✅ ¡Correcto! 1) Identificar traza → 2) Localizar punto → 3) Trazar arco → 4) Marcar abatido';
+    feedback.className = 'feedback correct';
+    container.querySelectorAll('.stack-item').forEach(function(item) {
+      item.style.borderLeft = '4px solid var(--verde)';
+    });
+  } else {
+    feedback.textContent = '❌ Orden incorrecto. Pista: primero necesitas identificar la traza del plano.';
+    feedback.className = 'feedback incorrect';
+    container.querySelectorAll('.stack-item').forEach(function(item) {
+      item.style.borderLeft = '4px solid var(--rojo)';
+    });
+  }
+}
+
+// VF Visual exercise
+function checkVFAnswer(el, correct) {
+  var exercise = el.closest('.exercise');
+  if (!exercise) return;
+  var feedback = exercise.querySelector('.feedback');
+  var svg = el.closest('.svg-container');
+  svg.querySelectorAll('.clickable').forEach(function(opt) {
+    opt.style.borderColor = '#e2e8f0';
+    opt.style.background = '#fff';
+  });
+  if (correct) {
+    el.style.borderColor = 'var(--verde)';
+    el.style.background = 'var(--verde-claro)';
+    feedback.textContent = '✅ ¡Correcto! El punto gira alrededor de la TRAZA del plano (α₁), no de la LT.';
+    feedback.className = 'feedback correct';
+  } else {
+    el.style.borderColor = 'var(--rojo)';
+    el.style.background = 'var(--rojo-claro)';
+    feedback.textContent = '❌ Incorrecto. La LT es la referencia, pero el abatimiento se hace alrededor de la TRAZA del plano.';
+    feedback.className = 'feedback incorrect';
+  }
+}
+
+function checkVFVisual(container, correct) {
+  var exercise = container.closest('.exercise');
+  if (exercise) {
+    var feedback = exercise.querySelector('.feedback');
+    feedback.textContent = '👆 Haz click en una de las dos opciones (A o B) para responder';
+    feedback.className = 'feedback incorrect';
+  }
+}
+
+// Toggle error visual
+var abatErrorExpanded = false;
+function toggleAbatError() {
+  abatErrorExpanded = !abatErrorExpanded;
+  var svg = document.getElementById('abatErrorSvg');
+  if (!svg) return;
+  var errorTexts = svg.querySelectorAll('text[fill="#ef4444"]');
+  var correctTexts = svg.querySelectorAll('text[fill="#10b981"]');
+  errorTexts.forEach(function(t) { t.style.fontWeight = abatErrorExpanded ? '900' : '700'; });
+  correctTexts.forEach(function(t) { t.style.fontWeight = abatErrorExpanded ? '900' : '700'; });
+}
 </script>
 </body>
 </html>
