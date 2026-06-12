@@ -406,7 +406,7 @@
             "improvement_count": 3
         },
         "b02-07-representacion-piezas.html": {
-            "status": "improved_1",
+            "status": "improved_3",
             "bloque": "b02",
             "title": "🔧 Representación de piezas",
             "priority": 1,
@@ -428,18 +428,30 @@
                     "dimensions_improved": [
                         "css_coherence"
                     ]
+                },
+                {
+                    "date": "2026-06-12",
+                    "description": "Ronda 2: CSS clickable/connection-box/difficulty-badge, explicación 4 pasos con showStep(), quiz interactivo de vistas (4 preguntas), 8 ejercicios (quiz+VF+completar+ordenar), connection-box con dato NASA, SVG reglas de oro",
+                    "dimensions_improved": [
+                        "svg_interactive",
+                        "exercises",
+                        "text_explanation",
+                        "real_world",
+                        "error_common",
+                        "css_coherence"
+                    ]
                 }
             ],
             "scores": {
-                "svg_interactive": 7,
-                "exercises": 7,
-                "text_explanation": 7,
-                "real_world": 7,
-                "error_common": 7,
+                "svg_interactive": 9,
+                "exercises": 9,
+                "text_explanation": 9,
+                "real_world": 9,
+                "error_common": 9,
                 "css_coherence": 10
             },
-            "last_improved": "2026-06-10",
-            "improvement_count": 2
+            "last_improved": "2026-06-12-ronda2-s1",
+            "improvement_count": 3
         },
         "b02-08-vista-auxiliar-parcial.html": {
             "status": "improved_1",

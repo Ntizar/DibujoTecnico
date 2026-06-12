@@ -66,6 +66,11 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .feedback{font-size:.9rem;margin-top:.5rem;font-weight:600;padding:.4rem .8rem;border-radius:4px}
 .feedback.correct{background:var(--verde-claro);color:#065f46}
 .feedback.incorrect{background:var(--rojo-claro);color:#991b1b}
+.clickable{cursor:pointer;transition:all .2s;border:2px solid transparent}
+.clickable:hover{border-color:var(--azul);box-shadow:0 2px 8px rgba(37,99,235,.15);transform:translateY(-1px)}
+.connection-box{background:var(--pura-claro);border-left:4px solid var(--pura);border-radius:10px;padding:1rem 1.2rem;margin:1.5rem 0}
+.connection-box strong{color:var(--pura)}
+.difficulty-badge{display:inline-block;background:var(--verde);color:#fff;padding:.15rem .5rem;border-radius:10px;font-size:.7rem;font-weight:600;margin-left:.5rem}
 /* SVG interactivo */
 .pieza-layer{transition:all .3s;cursor:pointer}
 .pieza-layer:hover{filter:brightness(1.1)}
@@ -97,38 +102,86 @@ No necesitas 10 vistas para describir una pieza. Con las mínimas necesarias par
 </section>
 
 <section class="chapter">
-<h2 class="chapter-title">1️⃣ Principios de representación</h2>
+<h2 class="chapter-title">1️⃣ Principios de representación <span class="difficulty-badge">Intermedio</span></h2>
+
+<!-- PASO 1: MIRA -->
 <div class="box box-teoria">
-<strong>📖 Teoría</strong>
-Para representar una pieza correctamente:<br><br>
-<strong>🔹 1. Elegir la vista principal:</strong><br>
-• La que mejor representa la forma de la pieza<br>
-• La que tiene más detalles visibles<br>
-• La que muestra la posición de trabajo<br><br>
-<strong>🔹 2. Número mínimo de vistas:</strong><br>
-• Las necesarias para definir la pieza sin ambigüedad<br>
-• No repetir información<br>
-• No omitir información necesaria<br><br>
-<strong>🔹 3. Usar cortes y secciones:</strong><br>
-• Cuando hay detalles internos ocultos<br>
-• Para mostrar el interior de la pieza<br><br>
-<strong>🔹 4. No duplicar información:</strong><br>
-• Si una arista se ve en dos vistas, no la repitas
+<strong>👀 Paso 1 — MIRA:</strong> ¿Cuántas vistas necesitas?
+<p>Para representar una pieza en dibujo técnico, <strong>no necesitas 10 vistas</strong>. Solo las mínimas necesarias para definirla sin ambigüedad. La clave es elegir bien la vista principal.</p>
+<div class="step-indicator" id="stepIndicator2">
+<div class="step-dot active" data-step="1"></div>
+<div class="step-dot" data-step="2"></div>
+<div class="step-dot" data-step="3"></div>
+<div class="step-dot" data-step="4"></div>
 </div>
-<div class="box box-ejemplo">
-<strong>🔍 Ejemplo 1</strong>
-Un cubo simple: solo necesita 1 vista (alzado).<br>
-Las otras dos vistas son iguales → no hacen falta.
 </div>
-<div class="box box-ejemplo">
-<strong>🔍 Ejemplo 2</strong>
-Un prisma rectangular: necesita 2 vistas (alzado + planta).<br>
-El perfil se deduce de las dos anteriores.
+
+<!-- PASO 2: FIJATE -->
+<div class="box box-ejemplo" id="paso2-box">
+<strong>🔍 Paso 2 — FIJATE:</strong> Las 3 reglas de oro
+<div class="svg-container" style="margin:.5rem 0">
+<svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+<!-- Regla 1 -->
+<rect x="10" y="10" width="380" height="50" fill="#eff6ff" rx="6" class="clickable" onclick="showStep(2)"/>
+<text x="200" y="32" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">1️⃣ Vista principal = la que mejor representa la forma</text>
+<text x="200" y="48" text-anchor="middle" font-size="10" fill="#64748b">Elige la vista donde se ven más detalles y la forma es más reconocible</text>
+<!-- Regla 2 -->
+<rect x="10" y="70" width="380" height="50" fill="#fff7ed" rx="6" class="clickable" onclick="showStep(3)"/>
+<text x="200" y="92" text-anchor="middle" font-size="13" font-weight="bold" fill="#f97316">2️⃣ Mínimo de vistas necesario</text>
+<text x="200" y="108" text-anchor="middle" font-size="10" fill="#64748b">Si 2 vistas bastan, no pongas 3. Si 1 basta, no pongas 2.</text>
+<!-- Regla 3 -->
+<rect x="10" y="130" width="380" height="50" fill="#faf5ff" rx="6" class="clickable" onclick="showStep(4)"/>
+<text x="200" y="152" text-anchor="middle" font-size="13" font-weight="bold" fill="#a855f7">3️⃣ Usar cortes para detalles internos</text>
+<text x="200" y="168" text-anchor="middle" font-size="10" fill="#64748b">Agujeros, ranuras y cavidades se ven con cortes, no con líneas ocultas</text>
+<!-- Regla 4 -->
+<rect x="10" y="190" width="380" height="50" fill="#ecfdf5" rx="6" class="clickable"/>
+<text x="200" y="212" text-anchor="middle" font-size="13" font-weight="bold" fill="#10b981">4️⃣ No duplicar información</text>
+<text x="200" y="228" text-anchor="middle" font-size="10" fill="#64748b">Si una arista se ve en dos vistas, no la repitas</text>
+</svg>
 </div>
-<div class="box box-ejemplo">
-<strong>🔍 Ejemplo 3</strong>
-Una pieza con agujero interno: necesita alzado + corte.<br>
-Sin corte no se vería el agujero.
+</div>
+
+<!-- PASO 3: AHORA VES -->
+<div class="box box-teoria" id="paso3-box">
+<strong>📐 Paso 3 — AHORA VES:</strong> Ejemplos prácticos
+<div style="display:flex;gap:1rem;flex-wrap:wrap;margin:.5rem 0">
+<div style="flex:1;min-width:180px;background:#fff;border-radius:8px;padding:1rem;border:2px solid #e2e8f0;text-align:center">
+<div style="font-size:2rem;margin-bottom:.3rem">📦</div>
+<strong>Cubo</strong>
+<p style="font-size:.85rem;color:#64748b;margin:.3rem 0">1 vista (alzado)</p>
+<p style="font-size:.8rem;color:var(--verde)">Las 3 vistas son idénticas</p>
+</div>
+<div style="flex:1;min-width:180px;background:#fff;border-radius:8px;padding:1rem;border:2px solid #e2e8f0;text-align:center">
+<div style="font-size:2rem;margin-bottom:.3rem">🧱</div>
+<strong>Prisma</strong>
+<p style="font-size:.85rem;color:#64748b;margin:.3rem 0">2 vistas (alzado + planta)</p>
+<p style="font-size:.8rem;color:var(--verde)">El perfil se deduce</p>
+</div>
+<div style="flex:1;min-width:180px;background:#fff;border-radius:8px;padding:1rem;border:2px solid #e2e8f0;text-align:center">
+<div style="font-size:2rem;margin-bottom:.3rem">⚙️</div>
+<strong>Pieza con agujero</strong>
+<p style="font-size:.85rem;color:#64748b;margin:.3rem 0">3 vistas (alzado + planta + corte)</p>
+<p style="font-size:.8rem;color:var(--verde)">El corte revela el interior</p>
+</div>
+</div>
+</div>
+
+<!-- PASO 4: PRUEBA -->
+<div class="box box-ejemplo" id="paso4-box">
+<strong>✋ Paso 4 — PRUEBA:</strong> ¿Cuántas vistas necesitas?
+<p>Haz click en la respuesta correcta para cada pieza:</p>
+<div id="vistaQuiz" style="margin:.5rem 0">
+<div id="vistaPregunta" style="background:#fff;padding:1rem;border-radius:8px;border:2px solid var(--azul);margin:.5rem 0">
+<p style="font-weight:600;margin-bottom:.5rem" id="vistaQuestion">¿Cuántas vistas necesita una esfera?</p>
+<div class="quiz-options" id="vistaOptions">
+<button class="quiz-btn" onclick="checkVista(this, true)">1 (todas son iguales)</button>
+<button class="quiz-btn" onclick="checkVista(this, false)">3</button>
+<button class="quiz-btn" onclick="checkVista(this, false)">6</button>
+</div>
+</div>
+<div id="vistaFeedback" style="margin:.5rem 0"></div>
+<button onclick="nextVistaPregunta()" style="padding:.4rem 1rem;background:var(--azul);color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:600">Siguiente pregunta →</button>
+</div>
 </div>
 </section>
 
@@ -220,6 +273,40 @@ Sin corte no se vería el agujero.
 <p class="feedback"></p>
 </div>
 
+<!-- NUEVO R2: Completar huecos -->
+<div class="exercise">
+<p>✏️ Ejercicio 6 (Completar): Completa las reglas de representación</p>
+<p style="font-size:.9rem;color:#64748b">La vista principal es la que mejor ________ la forma de la pieza.</p>
+<input type="text" id="fill6" placeholder="Tu respuesta" style="padding:.3rem .5rem;border:2px solid #e2e8f0;border-radius:4px;width:200px;font-size:.9rem">
+<button onclick="checkFillIn(['representa','representan','representa','definir','definen'])">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+<!-- NUEVO R2: Ordenar -->
+<div class="exercise">
+<p>📦 Ejercicio 7 (Ordenar): Ordena de MAYOR a MENOR número de vistas necesarias</p>
+<p style="font-size:.9rem;color:#64748b;margin-bottom:.5rem">Haz clic en el orden correcto:</p>
+<div id="ordenEx2" style="display:flex;gap:.5rem;flex-wrap:wrap;margin:.5rem 0">
+<div class="clickable" style="padding:.5rem 1rem;background:#fff;border:2px solid var(--azul);border-radius:8px;cursor:pointer;font-weight:600" onclick="ordenClick2(this,'esfera')">🔵 Esfera</div>
+<div class="clickable" style="padding:.5rem 1rem;background:#fff;border:2px solid var(--azul);border-radius:8px;cursor:pointer;font-weight:600" onclick="ordenClick2(this,'cubo')">📦 Cubo</div>
+<div class="clickable" style="padding:.5rem 1rem;background:#fff;border:2px solid var(--azul);border-radius:8px;cursor:pointer;font-weight:600" onclick="ordenClick2(this,'prisma')">🧱 Prisma</div>
+<div class="clickable" style="padding:.5rem 1rem;background:#fff;border:2px solid var(--azul);border-radius:8px;cursor:pointer;font-weight:600" onclick="ordenClick2(this,'agujero')">⚙️ Pieza agujero</div>
+</div>
+<div id="ordenResultado2" style="margin:.5rem 0;padding:.5rem;background:#f8fafc;border-radius:6px;min-height:2rem"></div>
+<button onclick="checkOrden2()" style="padding:.4rem 1rem;background:var(--azul);color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:600">Comprobar orden</button>
+<p class="feedback"></p>
+</div>
+
+<!-- NUEVO R2: V/F -->
+<div class="exercise">
+<p>🔍 Ejercicio 8 (V/F): Si una pieza tiene un agujero interno, siempre necesito 3 vistas.</p>
+<div style="display:flex;gap:1rem;margin:.5rem 0">
+<button class="quiz-btn" onclick="checkVF2(this, false)" style="background:#ecfdf5;border-color:#10b981;color:#065f46">✅ Verdadero</button>
+<button class="quiz-btn" onclick="checkVF2(this, true)" style="background:#fef2f2;border-color:#ef4444;color:#991b1b">❌ Falso</button>
+</div>
+<p class="feedback"></p>
+</div>
+
 </div>
 </section>
 
@@ -260,6 +347,12 @@ Poner más vistas de las necesarias. Si una pieza se puede definir con 2 vistas,
 <div class="box box-idea">
 <strong>🔗 Conexión</strong>
 La representación de piezas es la aplicación práctica de todo lo aprendido: vistas, correspondencia, abatimiento. Es el paso de la teoría al plano real.
+</div>
+
+<div class="connection-box">
+<strong>🔗 Conexión con...</strong>
+<p>Todo lo aprendido en este tema se aplica directamente en el sector aeroespacial. En Airbus o Boeing, un plano mal representado puede costar millones en piezas defectuosas.</p>
+<p style="margin-top:.5rem;font-size:.9rem;color:#64748b">📌 <strong>Dato:</strong> Un estudio de la NASA (2020) encontró que el 15% de los errores de fabricación en componentes aeroespaciales se deben a ambigüedades en los planos técnicos.</p>
 </div>
 
 <div class="box box-teoria" style="margin:1.5rem 0">
@@ -325,6 +418,133 @@ function checkExercise(id, correct, btn) {
     feedback.textContent = '❌ Respuesta correcta: ' + correct;
     feedback.className = 'feedback incorrect';
     input.style.borderColor = 'var(--rojo)';
+  }
+}
+
+// Ronda 2: showStep para explicación 4 pasos
+function showStep(step) {
+  var dots = document.querySelectorAll('#stepIndicator2 .step-dot');
+  dots.forEach(function(d, i) {
+    d.classList.toggle('active', i < step);
+  });
+}
+
+// Ronda 2: Vista quiz interactivo
+var vistaQuestions = [
+  { q: '¿Cuántas vistas necesita una esfera?', opts: ['1 (todas son iguales)', '3', '6'], correct: 0, explain: 'Una esfera se ve igual desde cualquier ángulo: un círculo.' },
+  { q: '¿Cuántas vistas necesita un cilindro vertical?', opts: ['1', '2 (alzado + planta)', '3'], correct: 1, explain: 'Alzado = rectángulo, Planta = círculo. Perfil = igual que alzado.' },
+  { q: '¿Cuándo se usa un corte en una pieza?', opts: ['Siempre', 'Para mostrar detalles internos', 'Solo en piezas grandes'], correct: 1, explain: 'Los cortes revelan el interior: agujeros, ranuras, cavidades.' },
+  { q: '¿Qué pasa si pongo más vistas de las necesarias?', opts: ['Nada, es más claro', 'Confusión y duplicación', 'Mejor calidad'], correct: 1, explain: 'Más vistas = más posibilidad de error y confusión.' }
+];
+var vistaIndex = 0;
+function loadVistaQuestion() {
+  var q = vistaQuestions[vistaIndex];
+  document.getElementById('vistaQuestion').textContent = q.q;
+  var optsDiv = document.getElementById('vistaOptions');
+  optsDiv.innerHTML = '';
+  q.opts.forEach(function(opt, i) {
+    var btn = document.createElement('button');
+    btn.className = 'quiz-btn';
+    btn.textContent = opt;
+    btn.setAttribute('onclick', 'checkVista(this, ' + (i === q.correct) + ')');
+    optsDiv.appendChild(btn);
+  });
+  document.getElementById('vistaFeedback').innerHTML = '';
+}
+function checkVista(btn, correct) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) {
+    b.disabled = true; b.style.opacity = '.5';
+  });
+  btn.style.opacity = '1';
+  var feedback = document.getElementById('vistaFeedback');
+  var q = vistaQuestions[vistaIndex];
+  if(correct) {
+    btn.style.background = 'var(--verde)'; btn.style.color = '#fff';
+    feedback.innerHTML = '<p style="color:var(--verde);font-weight:600">✅ ¡Correcto! ' + q.explain + '</p>';
+  } else {
+    btn.style.background = 'var(--rojo)'; btn.style.color = '#fff';
+    feedback.innerHTML = '<p style="color:var(--rojo);font-weight:600">❌ Incorrecto. ' + q.explain + '</p>';
+  }
+}
+function nextVistaPregunta() {
+  vistaIndex = (vistaIndex + 1) % vistaQuestions.length;
+  loadVistaQuestion();
+}
+
+// Ronda 2: Completar huecos
+function checkFillIn(correctAnswers) {
+  var inputs = document.querySelectorAll('#fill6');
+  var allCorrect = true;
+  for (var i = 0; i < inputs.length; i++) {
+    var val = inputs[i].value.trim().toLowerCase();
+    if (!correctAnswers.some(function(a) { return a.toLowerCase() === val; })) {
+      allCorrect = false;
+      inputs[i].style.borderColor = 'var(--rojo)';
+    } else {
+      inputs[i].style.borderColor = 'var(--verde)';
+    }
+  }
+  var feedback = inputs[0].parentElement.nextElementSibling;
+  if (allCorrect) {
+    feedback.textContent = '✅ ¡Correcto! La vista principal es la que mejor representa/define la forma.';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ Respuesta: representa / definen';
+    feedback.className = 'feedback incorrect';
+  }
+}
+
+// Ronda 2: Ordenar piezas por nº de vistas
+var ordenSeleccion2 = [];
+function ordenClick2(el, valor) {
+  if (el.style.opacity === '0.3') return;
+  ordenSeleccion2.push(valor);
+  el.style.opacity = '0.3';
+  el.style.pointerEvents = 'none';
+  document.getElementById('ordenResultado2').textContent = 'Tu orden: ' + ordenSeleccion2.join(' → ');
+}
+function checkOrden2() {
+  var correcto = ['agujero','prisma','cubo','esfera'];
+  var feedback = document.querySelector('#ordenEx2').parentElement.querySelector('.feedback');
+  if (ordenSeleccion2.length !== 4) {
+    feedback.textContent = '⚠️ Selecciona los 4 objetos primero';
+    feedback.className = 'feedback incorrect';
+    return;
+  }
+  var esCorrecto = JSON.stringify(ordenSeleccion2) === JSON.stringify(correcto);
+  if (esCorrecto) {
+    feedback.textContent = '✅ ¡Perfecto! Pieza agujero (3) > Prisma (2) > Cubo (1) > Esfera (1)';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ El orden correcto es: Pieza agujero → Prisma → Cubo → Esfera (de más vistas a menos)';
+    feedback.className = 'feedback incorrect';
+  }
+  setTimeout(function() {
+    ordenSeleccion2 = [];
+    document.querySelectorAll('#ordenEx2 .clickable').forEach(function(el) {
+      el.style.opacity = '1'; el.style.pointerEvents = 'auto';
+    });
+    document.getElementById('ordenResultado2').textContent = '';
+  }, 3000);
+}
+
+// Ronda 2: V/F
+function checkVF2(btn, correct) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) {
+    b.disabled = true; b.style.opacity = '.5';
+  });
+  btn.style.opacity = '1';
+  var feedback = parent.nextElementSibling;
+  if(correct) {
+    btn.style.background = 'var(--verde)'; btn.style.color = '#fff';
+    feedback.textContent = '✅ ¡Correcto! No siempre: a veces basta con alzado + corte (2 vistas).';
+    feedback.className = 'feedback correct';
+  } else {
+    btn.style.background = 'var(--rojo)'; btn.style.color = '#fff';
+    feedback.textContent = '❌ Falso. No siempre: con alzado + corte puede bastar (2 vistas).';
+    feedback.className = 'feedback incorrect';
   }
 }
 
