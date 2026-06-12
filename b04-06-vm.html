@@ -65,6 +65,11 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .feedback { margin-top: 0.5rem; font-weight: 600; padding: 0.5rem; border-radius: 6px; }
 .feedback.correct { background: var(--verde-claro); color: #065f46; border: 1px solid var(--verde); }
 .feedback.incorrect { background: var(--rojo-claro); color: #991b1b; border: 1px solid var(--rojo); }
+.clickable { cursor: pointer; transition: all .2s; border-radius: 8px; padding: .5rem; }
+.clickable:hover { background: var(--azul-claro); box-shadow: 0 2px 8px rgba(37,99,235,.15); }
+.connection-box { background: var(--pura-claro); border: 2px solid var(--pura); border-radius: 12px; padding: 1.2rem; margin: 1.5rem 0; }
+.connection-box h4 { color: var(--pura); margin-bottom: .5rem; }
+.difficulty-badge { display: inline-block; background: var(--naranja); color: #fff; padding: .15rem .5rem; border-radius: 10px; font-size: .7rem; font-weight: 600; margin-left: .5rem; }
 </style>
 </head>
 <body>
@@ -274,17 +279,90 @@ Pulsa en el SVG del paso 1 para ver cómo la recta gira. La clase vm-active camb
 <p class="feedback"></p>
 </div>
 
+<div class="exercise">
+<p>🎯 Ejercicio 5 (Decisión rápida): ¿Esta recta está en VM?</p>
+<div class="svg-container">
+<svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg">
+<rect x="10" y="10" width="280" height="100" fill="#fff" stroke="#e2e8f0" rx="4"/>
+<line x1="30" y1="60" x2="270" y2="60" stroke="#333" stroke-width="1.5"/>
+<text x="275" y="64" font-size="9" fill="#333">LT</text>
+<!-- Recta horizontal (paralela a PH) -->
+<line x1="60" y1="90" x2="240" y2="90" stroke="#10b981" stroke-width="3"/>
+<text x="150" y="110" text-anchor="middle" font-size="10" fill="#10b981" font-weight="600">Recta horizontal → ∥ al PH</text>
+</svg>
 </div>
-</section>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Sí, está en VM (horizontal → VM en planta)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">No, necesita giro</button>
+</div>
+<p class="feedback"></p>
+</div>
 
-<div class="comparison"</div>
+<div class="exercise">
+<p>🖼️ Ejercicio 6 (Identificar en SVG): Haz clic en la recta que está en verdadera magnitud:</p>
+<div class="interactive" style="margin:1rem 0">
+<div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center">
+<div class="clickable" onclick="checkIdentify(this, false)" style="flex:1;min-width:200px;border:2px solid #e2e8f0;border-radius:8px;padding:1rem;text-align:center">
+<svg viewBox="0 0 180 100" width="160">
+<rect x="5" y="5" width="170" height="90" fill="#fff" stroke="#e2e8f0" rx="4"/>
+<line x1="20" y1="50" x2="160" y2="50" stroke="#333" stroke-width="1"/>
+<line x1="40" y1="70" x2="140" y2="30" stroke="#ef4444" stroke-width="2.5"/>
+<text x="90" y="90" text-anchor="middle" font-size="8" fill="#ef4444">Oblicua</text>
+</svg>
+</div>
+<div class="clickable" onclick="checkIdentify(this, true)" style="flex:1;min-width:200px;border:2px solid #e2e8f0;border-radius:8px;padding:1rem;text-align:center">
+<svg viewBox="0 0 180 100" width="160">
+<rect x="5" y="5" width="170" height="90" fill="#fff" stroke="#e2e8f0" rx="4"/>
+<line x1="20" y1="50" x2="160" y2="50" stroke="#333" stroke-width="1"/>
+<line x1="40" y1="50" x2="140" y2="50" stroke="#10b981" stroke-width="2.5"/>
+<text x="90" y="90" text-anchor="middle" font-size="8" fill="#10b981">Paralela → VM</text>
+</svg>
+</div>
+</div>
+<p class="feedback"></p>
+</div>
+</div>
+</div>
 </section>
 
 <div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ MEDIDA ACORTADA</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="50" y1="110" x2="150" y2="40" stroke="#ef4444" stroke-width="3"/><text x="100" y="80" text-anchor="middle" font-size="9" fill="#ef4444">Acortada en alzado</text><text x="100" y="130" text-anchor="middle" font-size="9" fill="#ef4444">No es la VM</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ VERDADERA MAGNITUD</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="30" y1="70" x2="170" y2="70" stroke="#10b981" stroke-width="3"/><text x="100" y="60" text-anchor="middle" font-size="9" fill="#10b981">VM = longitud real</text><text x="100" y="130" text-anchor="middle" font-size="9" fill="#10b981">Cambio de plano paralelo ✓</text></svg></div></div>
 
 <div class="box box-error">
-<strong>⚠️ Error clásico</strong>
-Pensar que cualquier recta se ve en VM directamente. Solo las rectas horizontales (VM en planta) y frontales (VM en alzado) se ven en VM sin procedimientos adicionales. Las oblicuas necesitan giro o cambio de plano.
+<strong>⚠️ Error clásico: confundir VM con proyección acortada</strong>
+<p>El error más común es creer que la proyección en alzado o planta siempre muestra la longitud real. ¡Fíjate en la diferencia!</p>
+<div class="svg-container">
+<svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+<!-- ERROR -->
+<rect x="10" y="10" width="230" height="180" fill="#fef2f2" stroke="#ef4444" stroke-width="2" rx="8"/>
+<text x="125" y="35" text-anchor="middle" font-size="13" fill="#ef4444" font-weight="bold">❌ ERROR: medida acortada</text>
+<!-- LT -->
+<line x1="30" y1="80" x2="230" y2="80" stroke="#333" stroke-width="1.5"/>
+<text x="235" y="84" font-size="8" fill="#333">LT</text>
+<!-- Recta oblicua en alzado (acortada) -->
+<line x1="50" y1="110" x2="200" y2="50" stroke="#ef4444" stroke-width="3"/>
+<text x="125" y="140" text-anchor="middle" font-size="10" fill="#ef4444">r' acortada ≠ longitud real</text>
+<!-- Cota acortada -->
+<line x1="50" y1="150" x2="200" y2="150" stroke="#ef4444" stroke-width="1" marker-end="url(#errArr)"/>
+<text x="125" y="165" text-anchor="middle" font-size="9" fill="#ef4444">Medida en alzado = 150 (falsa)</text>
+<!-- CORRECTO -->
+<rect x="260" y="10" width="230" height="180" fill="#ecfdf5" stroke="#10b981" stroke-width="2" rx="8"/>
+<text x="375" y="35" text-anchor="middle" font-size="13" fill="#10b981" font-weight="bold">✅ CORRECTO: recta paralela al plano</text>
+<!-- LT -->
+<line x1="280" y1="80" x2="470" y2="80" stroke="#333" stroke-width="1.5"/>
+<text x="475" y="84" font-size="8" fill="#333">LT</text>
+<!-- Recta paralela en alzado (VM) -->
+<line x1="290" y1="80" x2="440" y2="80" stroke="#10b981" stroke-width="3"/>
+<text x="375" y="140" text-anchor="middle" font-size="10" fill="#10b981">r' ∥ LT = VERDADERA MAGNITUD</text>
+<!-- Cota VM -->
+<line x1="290" y1="150" x2="440" y2="150" stroke="#10b981" stroke-width="1" marker-end="url(#okArr)"/>
+<text x="375" y="165" text-anchor="middle" font-size="9" fill="#10b981">Medida en alzado = 150 (real ✓)</text>
+<defs>
+<marker id="errArr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#ef4444"/></marker>
+<marker id="okArr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#10b981"/></marker>
+</defs>
+</svg>
+</div>
+<p><strong>Regla mnemotécnica:</strong> "Paralela = Real, Oblicua = Falsa". Si la recta no es paralela al plano, su proyección está acortada.</p>
 </div>
 
 <div class="box box-idea">
@@ -293,6 +371,10 @@ La VM es esencial para acotar piezas correctamente. Sin VM, las cotas no represe
 </div>
 
 <div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: medir la verdadera longitud de una soldadura</strong>Una soldadura inclinada en una unión de acero no se puede medir en alzado ni en planta porque aparece acortada. La verdadera magnitud (VM) se obtiene con un cambio de plano paralelo a la soldadura. El inspector usa esa medida para verificar que la soldadura cumple la longitud especificada.</div>
+
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏗️ CASO REAL</span><strong>Arquitectura: dimensión real de una vigas inclinada</strong>En un tejado a dos aguas, las vigas de la cumbrera son rectas oblicuas. Para saber la longitud real de cada viga (necesaria para comprar el material), el arquitecto usa VM mediante cambio de plano. Si usa la proyección en alzado, la viga aparece más corta de lo que es y le falta material. En el proyecto del Auditorio de Tenerife de Gehry, cada viga inclinada se midió en VM para evitar errores de fabricación.</div>
+
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🚗 CASO REAL</span><strong>Automoción: largueros del chasis</strong>Los largueros del chasis de un coche son barras de acero que unen los ejes delantero y trasero. Muchos de ellos son rectas oblicuas (no horizontales ni frontales). Para verificar que tienen la longitud correcta, el taller de control de calidad usa VM con cambio de plano. Un larguero 2 cm más corto del especificado puede afectar la alineación de las ruedas y el manejo del vehículo.</div>
 
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
@@ -393,6 +475,35 @@ function checkOrden(btn, answer) {
     feedback.className = 'feedback incorrect';
     setTimeout(function() {
       parent.querySelectorAll('button').forEach(function(b) { b.disabled = false; b.classList.remove('correct','wrong'); });
+      feedback.textContent = '';
+      feedback.className = 'feedback';
+    }, 2000);
+  }
+}
+
+function checkIdentify(el, correct) {
+  var parent = el.closest('.interactive');
+  parent.querySelectorAll('.clickable').forEach(function(c) {
+    c.style.pointerEvents = 'none';
+    c.style.opacity = '0.6';
+  });
+  el.style.opacity = '1';
+  el.style.borderColor = correct ? 'var(--verde)' : 'var(--rojo)';
+  el.style.borderWidth = '3px';
+  var feedback = parent.querySelector('.feedback');
+  if (correct) {
+    feedback.textContent = '✅ ¡Correcto! La recta paralela al plano de proyección está en verdadera magnitud.';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ Incorrecto. Esta recta es oblicua, no está en VM.';
+    feedback.className = 'feedback incorrect';
+    setTimeout(function() {
+      parent.querySelectorAll('.clickable').forEach(function(c) {
+        c.style.pointerEvents = 'auto';
+        c.style.opacity = '1';
+        c.style.borderColor = '#e2e8f0';
+        c.style.borderWidth = '2px';
+      });
       feedback.textContent = '';
       feedback.className = 'feedback';
     }, 2000);
