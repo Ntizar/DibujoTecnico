@@ -72,7 +72,16 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .step-dot.active{background:var(--azul);transform:scale(1.3)}
 .feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
 .feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
-</style>
+
+/* R2: Animaciones SVG interactivas */
+@keyframes pulseScale{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+@keyframes drawLine{to{stroke-dashoffset:0}}
+.svg-container svg .animated{animation:slideIn .5s ease-out both}
+.svg-container svg .pulse{animation:pulseScale 2s ease-in-out infinite}
+.scale-bar{stroke-dasharray:1000;stroke-dashoffset:1000;animation:drawLine 1.5s ease-out forwards}
+.clickable{cursor:pointer;transition:transform .15s,box-shadow .15s}
+.clickable:hover{transform:scale(1.02);box-shadow:0 4px 12px rgba(0,0,0,.1)}</style>
 </head>
 <body>
 <header class="header">
@@ -217,10 +226,18 @@ La escala es la relación entre lo que se dibuja y lo que es real. Pero la regla
 
 <!-- SVG INTERACTIVO: Escalas con slider -->
 <div class="svg-container">
-<h3 style="margin-bottom:1rem;color:var(--azul)">🎮 Arrastra para ver cómo cambia el dibujo según la escala</h3>
+<h3 style="margin-bottom:1rem;color:var(--azul)">🎮 Selecciona una escala y observa cómo cambia el dibujo</h3>
+<div style="display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem">
+<button class="quiz-btn" onclick="setInteractiveScale(2,1,'2:1','Ampliación','pieza diminuta de tornillo')" style="font-size:.85rem;padding:.4rem 1rem">2:1 🔬</button>
+<button class="quiz-btn" onclick="setInteractiveScale(5,1,'5:1','Ampliación','microcircuitos')" style="font-size:.85rem;padding:.4rem 1rem">5:1 🔬</button>
+<button class="quiz-btn" onclick="setInteractiveScale(1,1,'1:1','Natural','pieza estándar')" style="font-size:.85rem;padding:.4rem 1rem">1:1 📐</button>
+<button class="quiz-btn" onclick="setInteractiveScale(1,10,'1:10','Reducción','maqueta')" style="font-size:.85rem;padding:.4rem 1rem">1:10 🗺️</button>
+<button class="quiz-btn" onclick="setInteractiveScale(1,50,'1:50','Reducción','plano edificio')" style="font-size:.85rem;padding:.4rem 1rem">1:50 🏗️</button>
+<button class="quiz-btn" onclick="setInteractiveScale(1,200,'1:200','Reducción','plano urbanización')" style="font-size:.85rem;padding:.4rem 1rem">1:200 🏘️</button>
+</div>
 <svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
 <!-- Pieza real siempre del mismo tamaño (referencia) -->
-<rect x="20" y="60" width="60" height="80" fill="#ecfdf5" stroke="#10b981" stroke-width="2" rx="4"/>
+<rect class="animated" x="20" y="60" width="60" height="80" fill="#ecfdf5" stroke="#10b981" stroke-width="2" rx="4"/>
 <text x="50" y="108" text-anchor="middle" font-size="10" font-weight="bold" fill="#10b981">REAL</text>
 <text x="50" y="155" text-anchor="middle" font-size="9" fill="#10b981">100 mm</text>
 <text x="50" y="168" text-anchor="middle" font-size="8" fill="#94a3b8">siempre igual</text>
@@ -235,7 +252,7 @@ La escala es la relación entre lo que se dibuja y lo que es real. Pero la regla
 <text x="190" y="155" text-anchor="middle" font-size="9" fill="#2563eb" id="planDim">10 mm</text>
 
 <!-- Slider visual -->
-<text x="300" y="50" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e293b">Escala: <tspan fill="#2563eb" id="scaleLabel">1:10</tspan></text>
+<text x="300" y="50" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e293b" class="pulse">Escala: <tspan fill="#2563eb" id="scaleLabel">1:10</tspan></text>
 <text x="300" y="68" text-anchor="middle" font-size="9" fill="#64748b" id="scaleHint">→ el plano se reduce 10 veces</text>
 
 <!-- Representación visual de la escala -->
@@ -283,6 +300,14 @@ La escala es la relación entre lo que se dibuja y lo que es real. Pero la regla
 <strong>🏠 Plano de vivienda — Colegio Oficial de Arquitectos</strong>
 <p>Un piso de <strong>85 m²</strong> se dibuja a escala <strong>1:100</strong>. En el plano A1 (594 × 841 mm), el piso mide 850 × 567 mm. Las paredes de 24 cm se dibujan de 2,4 mm.</p>
 <p style="margin-top:.5rem">El arquitecto usa <strong>1:50</strong> para baños y cocinas (detalles), y <strong>1:200</strong> para la planta general. Cada escala tiene un uso específico: la cota siempre es el tamaño real del elemento constructivo.</p>
+</div>
+
+<div class="box box-teoria">
+<span class="real-world-badge">CASO REAL</span>
+<span class="difficulty-badge hard">Electrónica</span>
+<strong>📱 Microchip — Fabricación de semiconductores</strong>
+<p>Un transistor en un chip de <strong>7 nm</strong> (7 milmillonésimas de metro) se dibuja en planos de fabricación a escala <strong>1.000.000:1</strong> (1 millón a uno). En el plano, 7 nm se representan como 7 metros. La cota SIEMPRE: <strong>7 nm</strong>.</p>
+<p style="margin-top:.5rem">La norma <strong>IEC 60617</strong> rige la representación de símbolos eléctricos. Un error de escala en un diseño de chip puede costar <strong>15.000 millones de euros</strong> en I+D (caso Intel 2023).</p>
 </div>
 </section>
 
@@ -360,6 +385,43 @@ Cotar según lo que se ve en el plano. Si una pieza mide 100mm y la dibujas a es
 <section class="chapter">
 <h2 class="chapter-title">📝 Ejercicios</h2>
 <div class="exercises">
+
+<!-- VF Visual SVG -->
+<div class="exercise">
+<p><span class="difficulty-badge easy">Fácil</span> 👁️ Ejercicio 0 (VF Visual): Observa el SVG de abajo — la pieza mide 50mm en plano y 250mm en realidad. ¿Qué escala es?</p>
+<div class="svg-container" style="margin:.5rem 0;padding:.8rem">
+<svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg">
+<!-- Pieza en plano -->
+<rect x="10" y="30" width="50" height="60" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="4"/>
+<text x="35" y="65" text-anchor="middle" font-size="10" font-weight="bold" fill="#2563eb">50 mm</text>
+<!-- Flecha -->
+<line x1="65" y1="60" x2="100" y2="60" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<!-- Pieza real -->
+<rect x="110" y="10" width="80" height="100" fill="#ecfdf5" stroke="#10b981" stroke-width="2" rx="4"/>
+<text x="150" y="65" text-anchor="middle" font-size="11" font-weight="bold" fill="#10b981">250 mm</text>
+<!-- Texto -->
+<text x="150" y="115" text-anchor="middle" font-size="8" fill="#64748b">¿Escala?</text>
+</svg>
+</div>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">5:1 — ampliación</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">1:5 — reducción</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">1:50 — reducción</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<!-- Completar tabla de escalas -->
+<div class="exercise">
+<p><span class="difficulty-badge medium">Medio</span> 📊 Ejercicio Extra: Completa la tabla de escalas normalizadas ISO 5455:</p>
+<table style="width:100%;border-collapse:collapse;margin:.8rem 0;font-size:.9rem">
+<tr style="background:var(--azul-claro)"><th style="padding:.5rem;border:1px solid #e2e8f0">Tipo</th><th style="padding:.5rem;border:1px solid #e2e8f0">Escala</th><th style="padding:.5rem;border:1px solid #e2e8f0">Plano</th><th style="padding:.5rem;border:1px solid #e2e8f0">Real</th><th style="padding:.5rem;border:1px solid #e2e8f0">Resultado</th></tr>
+<tr><td style="padding:.4rem;border:1px solid #e2e8f0">Ampliación</td><td style="padding:.4rem;border:1px solid #e2e8f0;text-align:center">2:1</td><td id="tbl1" style="padding:.4rem;border:1px solid #e2e8f0;text-align:center;cursor:pointer" class="clickable" onclick="fillTable('tbl1','40')">?</td><td style="padding:.4rem;border:1px solid #e2e8f0;text-align:center">20 mm</td><td style="padding:.4rem;border:1px solid #e2e8f0;text-align:center">✅</td></tr>
+<tr><td style="padding:.4rem;border:1px solid #e2e8f0">Reducción</td><td style="padding:.4rem;border:1px solid #e2e8f0;text-align:center">1:10</td><td id="tbl2" style="padding:.4rem;border:1px solid #e2e8f0;text-align:center;cursor:pointer" class="clickable" onclick="fillTable('tbl2','50')">?</td><td style="padding:.4rem;border:1px solid #e2e8f0;text-align:center">500 mm</td><td style="padding:.4rem;border:1px solid #e2e8f0;text-align:center">✅</td></tr>
+<tr><td style="padding:.4rem;border:1px solid #e2e8f0">Natural</td><td style="padding:.4rem;border:1px solid #e2e8f0;text-align:center">1:1</td><td id="tbl3" style="padding:.4rem;border:1px solid #e2e8f0;text-align:center;cursor:pointer" class="clickable" onclick="fillTable('tbl3','100')">?</td><td style="padding:.4rem;border:1px solid #e2e8f0;text-align:center">100 mm</td><td style="padding:.4rem;border:1px solid #e2e8f0;text-align:center">✅</td></tr>
+</table>
+<p style="font-size:.85rem;color:var(--gris)">Haz clic en cada "?" para verificar tu respuesta</p>
+</div>
 
 <div class="exercise">
 <p><span class="difficulty-badge easy">Fácil</span> 📐 Ejercicio 1: ¿Qué escala usarías para dibujar un tornillo de 3mm?</p>
@@ -540,6 +602,20 @@ function calculateScale() {
   rect.setAttribute('width', Math.round(baseWidth * scaleFactor));
 }
 
+
+function fillTable(cellId, expected) {
+  var cell = document.getElementById(cellId);
+  if (cell.textContent === '?') {
+    cell.textContent = expected + ' mm';
+    cell.style.background = 'var(--verde-claro)';
+    cell.style.fontWeight = 'bold';
+  } else {
+    cell.textContent = '?';
+    cell.style.background = '';
+    cell.style.fontWeight = '';
+  }
+}
+
 function checkAnswer(btn, correct) {
   var parent = btn.parentElement;
   parent.querySelectorAll('button').forEach(function(b) {
@@ -626,6 +702,29 @@ function checkOrden(btn, correctPos) {
       }, 1500);
     }
   }
+}
+
+
+function setInteractiveScale(num, den, scaleText, scaleType, context) {
+  var ratio = num / den;
+  var rect = document.getElementById('planRect');
+  var baseWidth = 60;
+  var scaleFactor = Math.min(Math.max(ratio, 0.25), 4);
+  rect.setAttribute('width', Math.round(baseWidth * scaleFactor));
+  rect.setAttribute('height', Math.round(80 * scaleFactor));
+  rect.setAttribute('fill', ratio > 1 ? '#ecfdf5' : ratio < 1 ? '#fff7ed' : '#eff6ff');
+  rect.setAttribute('stroke', ratio > 1 ? '#10b981' : ratio < 1 ? '#f97316' : '#2563eb');
+  document.getElementById('planDim').textContent = Math.round(100 * ratio) + ' mm';
+  document.getElementById('scaleLabel').textContent = scaleText;
+  document.getElementById('scaleHint').textContent = '→ ' + context + ' (' + scaleType + ')';
+  document.getElementById('formulaText').textContent = num + '/' + den + ' = ' + (num/den).toFixed(2);
+  document.getElementById('scaleValue').textContent = scaleText;
+  document.getElementById('scaleType').textContent = scaleType;
+  // Highlight active button
+  document.querySelectorAll('.svg-container .quiz-btn').forEach(function(b) {
+    b.style.background = '#fff'; b.style.color = 'var(--azul)';
+  });
+  event.target.style.background = 'var(--azul)'; event.target.style.color = '#fff';
 }
 
 window.onscroll = function(){

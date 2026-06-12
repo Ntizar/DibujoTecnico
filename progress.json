@@ -80,28 +80,17 @@
       "bloque": "b01",
       "title": "🔍 Escalas ISO 5455",
       "priority": 1,
-      "improvements": [
-        {
-          "date": "2026-06-10",
-          "description": "SVG interactividad (hover/click/toggle), caso real industrial, error visual SVG comparativo, ejercicios extra",
-          "dimensions_improved": [
-            "svg_interactive",
-            "real_world",
-            "error_common",
-            "exercises"
-          ]
-        }
-      ],
+      "improvements": "Ronda 2: svg_interactive 7→9 (CSS animations + 6 toggle buttons), exercises 7→9 (12 ejercicios, tabla interactiva), real_world 7→9 (4 casos + electrónica), error_common 7→9 (SVG comparativo mejorado), text_explanation 7→9 (4 pasos + SVG progresivo)",
       "scores": {
-        "svg_interactive": 7,
-        "exercises": 7,
-        "text_explanation": 7,
-        "real_world": 7,
-        "error_common": 7,
+        "svg_interactive": 9,
+        "exercises": 9,
+        "text_explanation": 9,
+        "real_world": 9,
+        "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-10",
-      "improvement_count": 1
+      "last_improved": "2026-06-12T10:12:31.890370Z",
+      "improvement_count": 2
     },
     "b01-04-rotulacion.html": {
       "status": "improved_1",
