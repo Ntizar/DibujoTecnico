@@ -65,6 +65,11 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .feedback { margin-top: 0.5rem; font-weight: 600; padding: 0.5rem; border-radius: 6px; }
 .feedback.correct { background: var(--verde-claro); color: #065f46; }
 .feedback.incorrect { background: var(--rojo-claro); color: #991b1b; }
+
+.clickable{cursor:pointer;transition:all .2s}.clickable:hover{transform:scale(1.05);box-shadow:0 2px 8px rgba(37,99,235,.15)}
+.connection-box{background:linear-gradient(135deg,#faf5ff,#f3e8ff);border:2px solid #a855f7;border-radius:10px;padding:1rem;margin:1rem 0}
+.connection-box strong{color:#7c3aed}
+.difficulty-badge{display:inline-block;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;padding:.15rem .5rem;border-radius:10px;font-size:.7rem;font-weight:700;margin-left:.5rem;vertical-align:middle}
 </style>
 </head>
 <body>
@@ -338,6 +343,36 @@ Haz clic en la perspectiva adecuada para cada tipo de pieza.
 <p class="feedback"></p>
 </div>
 
+
+<div class="exercise">
+<p>📐 Ejercicio 6 (V/F visual): ¿Esta pieza debe representarse en isométrica o caballera?</p>
+<div class="comparison" style="margin:.5rem 0">
+<div class="comparison-side" style="padding:.8rem">
+<svg viewBox="0 0 120 80" width="100"><rect x="20" y="25" width="80" height="30" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/><circle cx="60" cy="40" r="8" fill="none" stroke="#f97316" stroke-width="1.5"/><text x="60" y="75" text-anchor="middle" font-size="7" fill="#64748b">Pieza con agujeros</text></svg>
+<p style="font-size:.8rem"><strong>¿Isométrica?</strong></p>
+</div>
+<div class="comparison-side" style="padding:.8rem">
+<svg viewBox="0 0 120 80" width="100"><rect x="20" y="25" width="80" height="30" fill="#fff7ed" stroke="#f97316" stroke-width="1.5"/><rect x="45" y="15" width="30" height="20" fill="#fff7ed" stroke="#f97316" stroke-width="1"/><circle cx="60" cy="40" r="6" fill="none" stroke="#f97316" stroke-width="1.5"/><text x="60" y="75" text-anchor="middle" font-size="7" fill="#64748b">Cara frontal VM</text></svg>
+<p style="font-size:.8rem"><strong>¿Caballera?</strong></p>
+</div>
+</div>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Isométrica</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Caballera (tiene agujeros en cara frontal)</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 7 (Completar): La perspectiva isométrica tiene ___ ejes iguales a ___° entre sí. La caballera tiene la cara frontal en ___ y el eje Y a ___°.</p>
+<input type="text" id="ex7a" placeholder="1ª" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:80px">
+<input type="text" id="ex7b" placeholder="2ª" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:80px">
+<input type="text" id="ex7c" placeholder="3ª" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
+<input type="text" id="ex7d" placeholder="4ª" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:60px">
+<button onclick="checkFillIn()">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
 </div>
 </section>
 
@@ -345,7 +380,17 @@ Haz clic en la perspectiva adecuada para cada tipo de pieza.
 
 <div class="box box-error">
 <strong>⚠️ Error común</strong>
-Confundir las perspectivas. Recuerda: isométrica = 3 ejes iguales 120°, caballera = cara frontal VM 45°×0.5, dimétrica = 2 ejes iguales 7°/42°, monométrica = 1 eje perpendicular.
+<strong>Usar la perspectiva equivocada</strong>
+<div class="comparison" style="margin:.8rem 0">
+<div class="comparison-side" style="padding:.8rem">
+<svg viewBox="0 0 120 80" width="100"><text x="60" y="12" text-anchor="middle" font-size="7" fill="#ef4444" font-weight="600">❌ ERROR</text><polygon points="60,20 85,35 85,65 60,80 35,65 35,35" fill="#fef2f2" stroke="#ef4444" stroke-width="1.5"/><text x="60" y="55" text-anchor="middle" font-size="6" fill="#ef4444">Agujero deformado</text></svg>
+<p style="font-size:.75rem">Caballera para pieza con agujeros → la cara frontal se deforma</p>
+</div>
+<div class="comparison-side" style="padding:.8rem">
+<svg viewBox="0 0 120 80" width="100"><text x="60" y="12" text-anchor="middle" font-size="7" fill="#10b981" font-weight="600">✅ CORRECTO</text><polygon points="60,20 85,35 85,65 60,80 35,65 35,35" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/><circle cx="60" cy="50" r="6" fill="none" stroke="#f97316" stroke-width="1"/><text x="60" y="54" text-anchor="middle" font-size="6" fill="#2563eb">Agujero perfecto</text></svg>
+<p style="font-size:.75rem">Isométrica para pieza con agujeros → todas las caras iguales</p>
+</div>
+</div>
 </div>
 
 <div class="box box-idea">
@@ -353,7 +398,11 @@ Confundir las perspectivas. Recuerda: isométrica = 3 ejes iguales 120°, caball
 Has completado el Bloque 3: Perspectivas. Ahora puedes representar cualquier pieza en 3D. El siguiente bloque será el sistema diédrico (punto, recta y plano).
 </div>
 
-<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: instrucciones de montaje</strong>Los manuales de IKEA, Amazon y ferreterías usan perspectivas para guiar el montaje. Isométrica para piezas pequeñas, caballera para arquitectura, monométrica para piezas simples. La clave es elegir la perspectiva que mejor comunique la forma con el mínimo esfuerzo de dibujo.</div>
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: instrucciones de montaje</strong>Los manuales de IKEA, Amazon y ferreterías usan perspectivas para guiar el montaje. Isométrica para piezas pequeñas, caballera para arquitectura, monométrica para piezas simples. La clave es elegir la perspectiva que mejor comunique la forma con el mínimo esfuerzo de dibujo.
+<div class="box box-teoria" style="margin:.8rem 0"><span class="real-world-badge">🏗️ CASO REAL</span><strong>Caso arquitectura: planos de interiores</strong>Los arquitectos usan la perspectiva caballera para mostrar interiores de edificios. La cara frontal (fachada) se dibuja en verdadera magnitud con ventanas y puertas, mientras que la profundidad a 45° da la sensación de espacio. Es el método preferido en presentaciones a clientes porque es intuitiva.</div>
+
+<div class="box box-teoria" style="margin:.8rem 0"><span class="real-world-badge">🎮 CASO REAL</span><strong>Caso videojuegos: renderizado isométrico</strong>Los juegos isométricos como Diablo o StarCraft usan la perspectiva isométrica porque permite ver las tres caras de cada edificio y personaje simultáneamente. Los sprites se dibujan con los 3 ejes a 120°, creando una sensación de profundidad sin necesidad de proyección cónica. Esto permite un renderizado rápido en hardware antiguo.</div>
+</div>
 
 <div class="summary">
 <h3>📋 Resumen del Bloque 3: Perspectivas</h3>

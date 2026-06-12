@@ -65,6 +65,11 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .feedback { margin-top: 0.5rem; font-weight: 600; padding: 0.5rem; border-radius: 6px; }
 .feedback.correct { background: var(--verde-claro); color: #065f46; }
 .feedback.incorrect { background: var(--rojo-claro); color: #991b1b; }
+
+.clickable{cursor:pointer;transition:all .2s}.clickable:hover{transform:scale(1.05);box-shadow:0 2px 8px rgba(37,99,235,.15)}
+.connection-box{background:linear-gradient(135deg,#faf5ff,#f3e8ff);border:2px solid #a855f7;border-radius:10px;padding:1rem;margin:1rem 0}
+.connection-box strong{color:#7c3aed}
+.difficulty-badge{display:inline-block;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;padding:.15rem .5rem;border-radius:10px;font-size:.7rem;font-weight:700;margin-left:.5rem;vertical-align:middle}
 </style>
 </head>
 <body>
@@ -362,14 +367,42 @@ Para un eje largo, añade una rotura en forma de "S" en el centro.
 <p class="feedback"></p>
 </div>
 
+
+<div class="exercise">
+<p>📐 Ejercicio 5 (V/F): ¿Es correcto representar una sección sin rayado (hachuras)?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Sí, el rayado es opcional</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">No, el rayado es obligatorio para identificar la sección</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 6 (Completar): La sección muestra solo la ___ cortada. La rotura sirve para ___ piezas largas. La cota indica la ___ real.</p>
+<input type="text" id="ex6a" placeholder="1ª" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
+<input type="text" id="ex6b" placeholder="2ª" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
+<input type="text" id="ex6c" placeholder="3ª" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
+<button onclick="checkFillIn()">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
 </div>
 </section>
 
 <div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ EJE COMPLETO</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="10" y="60" width="180" height="20" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/><text x="100" y="75" text-anchor="middle" font-size="9" fill="#ef4444">500mm = demasiado largo</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ CON ROTURA</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="10" y="60" width="70" height="20" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><path d="M 80 60 Q 85 55, 90 65 Q 95 75, 100 60" fill="none" stroke="#2563eb" stroke-width="1.5"/><rect x="100" y="60" width="90" height="20" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="100" y="100" text-anchor="middle" font-size="9" fill="#10b981">Línea de rotura ✓</text></svg></div></div>
 
 <div class="box box-error">
-<strong>⚠️ Error clásico</strong>
-Confundir sección con corte. La sección muestra SOLO la cara cortada (con rayado). El corte muestra la sección + todo lo que hay detrás del plano de corte. ¡No son lo mismo!
+<strong>⚠️ Error clásico: confundir sección con corte</strong>
+<div class="comparison" style="margin:.8rem 0">
+<div class="comparison-side" style="padding:.8rem">
+<svg viewBox="0 0 120 80" width="100"><text x="60" y="12" text-anchor="middle" font-size="7" fill="#ef4444" font-weight="600">❌ SECCIÓN + FONDO</text><rect x="15" y="25" width="90" height="20" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/><rect x="45" y="10" width="30" height="50" fill="#fff7ed" stroke="#f97316" stroke-width="1.5"/><line x1="50" y1="15" x2="60" y2="55" stroke="#f97316" stroke-width=".5"/><line x1="60" y1="15" x2="70" y2="55" stroke="#f97316" stroke-width=".5"/><rect x="45" y="60" width="30" height="15" fill="#ecfdf5" stroke="#10b981" stroke-width="1"/><text x="60" y="72" text-anchor="middle" font-size="6" fill="#10b981">Fondo visible</text></svg>
+<p style="font-size:.75rem">Esto es un CORTE, no una sección</p>
+</div>
+<div class="comparison-side" style="padding:.8rem">
+<svg viewBox="0 0 120 80" width="100"><text x="60" y="12" text-anchor="middle" font-size="7" fill="#10b981" font-weight="600">✅ SOLO SECCIÓN</text><rect x="15" y="25" width="90" height="20" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/><rect x="45" y="10" width="30" height="50" fill="#fff7ed" stroke="#f97316" stroke-width="1.5"/><line x1="50" y1="15" x2="60" y2="55" stroke="#f97316" stroke-width=".5"/><line x1="60" y1="15" x2="70" y2="55" stroke="#f97316" stroke-width=".5"/><text x="60" y="72" text-anchor="middle" font-size="6" fill="#94a3b8">Sin fondo</text></svg>
+<p style="font-size:.75rem">Esto es una SECCIÓN correcta</p>
+</div>
+</div>
 </div>
 
 <div class="box box-idea">
@@ -377,7 +410,11 @@ Confundir sección con corte. La sección muestra SOLO la cara cortada (con raya
 Las secciones son ideales para perfiles estructurales (vigas IPN, UPN, tubos) donde solo interesa la forma de la sección transversal. Las roturas son esenciales en planos de ejes y barras largas para ahorrar espacio.
 </div>
 
-<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: eje largo con ranura</strong>Un eje de transmisión de 500 mm de largo con una ranura de candado de 10 mm. Dibujarlo completo sería innecesario. Se usa una vista con línea de rotura: se muestra la zona de la ranura y se indica que el resto del eje es uniforme. Ahorra espacio en el plano y centra la atención en lo importante.</div>
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: eje largo con ranura</strong>Un eje de transmisión de 500 mm de largo con una ranura de candado de 10 mm. Dibujarlo completo sería innecesario. Se usa una vista con línea de rotura: se muestra la zona de la ranura y se indica que el resto del eje es uniforme. Ahorra espacio en el plano y centra la atención en lo importante.
+<div class="box box-teoria" style="margin:.8rem 0"><span class="real-world-badge">🏗️ CASO REAL</span><strong>Caso ingeniería civil: vigas de acero</strong>Las vigas IPN, IPE y UPN se representan con secciones abatidas sobre la vista longitudinal. En lugar de dibujar la sección aparte, se pone directamente sobre la viga, girada 90°. El ingeniero ve la forma de la viga (alas y alma) sin necesidad de una vista adicional. Esto es estándar en planos de estructuras metálicas según UNE-EN 10034.</div>
+
+<div class="box box-teoria" style="margin:.8rem 0"><span class="real-world-badge">🚗 CASO REAL</span><strong>Caso automoción: biela de motor</strong>Las bielas de los motores se representan con secciones sucesivas: cada sección muestra un diámetro diferente del vástago. En lugar de tres vistas separadas, se usa una sola vista con tres secciones abatidas a diferentes alturas. Esto permite ver todos los diámetros en un solo dibujo, ahorrando espacio en el plano de fabricación.</div>
+</div>
 
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>

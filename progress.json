@@ -720,12 +720,20 @@
         "svg_interactive": 9,
         "exercises": 9,
         "text_explanation": 9,
-        "real_world": 7,
-        "error_common": 7,
+        "real_world": 9,
+        "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-11",
-      "improvement_count": 2
+      "last_improved": "2026-06-12-ronda2-s3",
+      "improvement_count": 3,
+      "last_improvement_deltas": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 2,
+        "error_common": 2,
+        "css_coherence": 0
+      }
     },
     "b04-01-punto-diedrico.html": {
       "status": "improved_2",
@@ -1370,12 +1378,20 @@
         "svg_interactive": 9,
         "exercises": 9,
         "text_explanation": 9,
-        "real_world": 7,
-        "error_common": 7,
+        "real_world": 9,
+        "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-11",
-      "improvement_count": 2
+      "last_improved": "2026-06-12-ronda2-s3",
+      "improvement_count": 3,
+      "last_improvement_deltas": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 2,
+        "error_common": 2,
+        "css_coherence": 0
+      }
     },
     "b05-05-hachuras.html": {
       "status": "improved_2",
@@ -1498,12 +1514,20 @@
         "svg_interactive": 9,
         "exercises": 9,
         "text_explanation": 9,
-        "real_world": 7,
-        "error_common": 7,
+        "real_world": 9,
+        "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-11",
-      "improvement_count": 2
+      "last_improved": "2026-06-12-ronda2-s3",
+      "improvement_count": 3,
+      "last_improvement_deltas": {
+        "svg_interactive": 0,
+        "exercises": 0,
+        "text_explanation": 0,
+        "real_world": 2,
+        "error_common": 2,
+        "css_coherence": 0
+      }
     },
     "b06-03-acotacion-coordenadas.html": {
       "status": "improved_1",
