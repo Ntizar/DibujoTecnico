@@ -62,6 +62,17 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .stack-item:hover{border-color:var(--azul);transform:translateX(4px)}
 .stack-item.active{border-color:var(--azul);background:var(--azul-claro)}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+.clickable{cursor:pointer;transition:all .2s}.clickable:hover{filter:brightness(1.1);transform:scale(1.02)}
+.difficulty-badge{display:inline-block;padding:.2rem .6rem;border-radius:10px;font-size:.7rem;font-weight:700;margin-left:.5rem}
+.difficulty-badge.easy{background:#ecfdf5;color:#065f46}
+.difficulty-badge.medium{background:#fff7ed;color:#9a3412}
+.difficulty-badge.hard{background:#fef2f2;color:#991b1b}
+.feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
+.feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
+.svg-container svg .par-line{transition:all .3s}.svg-container svg .par-line:hover{stroke-width:4;filter:drop-shadow(0 0 4px rgba(37,99,235,.5))}
+.svg-container svg .perp-line{transition:all .3s}.svg-container svg .perp-line:hover{stroke-width:4;filter:drop-shadow(0 0 4px rgba(168,85,247,.5))}
+.connection-box{background:var(--pura-claro);border:2px solid var(--pura);border-radius:12px;padding:1rem;margin:1rem 0}
+.connection-box strong{color:var(--pura)}
 </style>
 </head>
 <body>
@@ -314,17 +325,47 @@ La traza horizontal de α es perpendicular a la traza vertical de β.
 <p class="feedback"></p>
 </div>
 
+
+
+<!-- NUEVO: Ejercicio de completar -->
 <div class="exercise">
-<p>📐 Ejercicio 4 (Ordenar): ¿En qué orden se verifica si una recta es perpendicular a un plano?</p>
+<p>🧩 Ejercicio 5 (completar): Para que dos rectas sean paralelas, sus proyecciones deben ser paralelas en _____ y _____ .</p>
+<input type="text" id="ex5a" placeholder="1ª proyección" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
+<input type="text" id="ex5b" placeholder="2ª proyección" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
+<button onclick="checkFillIn(['vertical','α₂','horizontal','α₁'])" style="padding:.5rem 1.2rem;border-radius:6px;border:none;background:var(--azul);color:#fff;cursor:pointer;font-size:.95rem;margin:.5rem 0">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+<!-- NUEVO: Ejercicio V/F -->
+<div class="exercise">
+<p>✅❌ Ejercicio 6 (V/F): Dos planos son perpendiculares si una traza de uno es perpendicular a la otra traza del otro.</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkOrden(this, '1-2-3')">① Verificar r' ⊥ α₂ → ② Verificar r ⊥ α₁ → ③ Ambas → perpendicular</button>
-<button class="quiz-btn" onclick="checkOrden(this, '2-1-3')">① Verificar r ⊥ α₁ → ② Verificar r' ⊥ α₂ → ③ Ambas → perpendicular</button>
-<button class="quiz-btn" onclick="checkOrden(this, '3-1-2')">① Ambas → ② Verificar r' ⊥ α₂ → ③ Verificar r ⊥ α₁</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Verdadero — α₁ ⊥ β₂ o α₂ ⊥ β₁</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Falso — necesitan ser paralelas</button>
 </div>
 <p class="feedback"></p>
 </div>
 
-</div></div>
+<!-- NUEVO: Ejercicio de completar -->
+<div class="exercise">
+<p>🧩 Ejercicio 5 (completar): Para que dos rectas sean paralelas, sus proyecciones deben ser paralelas en _____ y _____ .</p>
+<input type="text" id="ex5a" placeholder="1ª proyección" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
+<input type="text" id="ex5b" placeholder="2ª proyección" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
+<button onclick="checkFillIn(['vertical','α₂','horizontal','α₁'])" style="padding:.5rem 1.2rem;border-radius:6px;border:none;background:var(--azul);color:#fff;cursor:pointer;font-size:.95rem;margin:.5rem 0">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+<!-- NUEVO: Ejercicio V/F -->
+<div class="exercise">
+<p>✅❌ Ejercicio 6 (V/F): Dos planos son perpendiculares si una traza de uno es perpendicular a la otra traza del otro.</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Verdadero — α₁ ⊥ β₂ o α₂ ⊥ β₁</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Falso — necesitan ser paralelas</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+</div>
 </section>
 
 <div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ NO PERPENDICULARES</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="50" y1="110" x2="150" y2="110" stroke="#333" stroke-width="2"/><line x1="100" y1="30" x2="130" y2="110" stroke="#ef4444" stroke-width="2"/><text x="100" y="75" text-anchor="middle" font-size="9" fill="#ef4444">No 90° ❌</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ PERPENDICULARES</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="50" y1="110" x2="150" y2="110" stroke="#333" stroke-width="2"/><line x1="100" y1="30" x2="100" y2="110" stroke="#10b981" stroke-width="2"/><rect x="100" y="100" width="10" height="10" fill="none" stroke="#10b981" stroke-width="1"/><text x="100" y="130" text-anchor="middle" font-size="9" fill="#10b981">90° ✓</text></svg></div></div>
@@ -339,7 +380,21 @@ Pensar que si una proyección es paralela, las rectas son paralelas. NO: deben s
 El paralelismo y la perpendicularidad son la base de las intersecciones. Sin estos conceptos, no se pueden resolver problemas de rectas que cortan planos o planos que se cortan.
 </div>
 
-<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: guiado de máquina CNC</strong>Los ejes de una fresadora CNC deben ser perfectamente paralelos y perpendiculares entre sí. Si el eje X no es perpendicular al eje Y, las piezas mecanizadas tendrán errores de forma. El diedrico permite verificar estas relaciones geométricas en los planos de nivelación.</div>
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: guiado de máquina CNC</strong>
+
+<div class="box box-teoria">
+<span class="real-world-badge">CASO REAL — INGENIERÍA CIVIL</span>
+<strong>🌉 Puente de Alamillo, Sevilla — Santiago Calatrava</strong>
+<p>El puente atirantado del Alamillo tiene un pilón de 142m de altura inclinado 38° respecto a la vertical. Cada cable de acero debe colocarse con tolerancia de ±2mm en su punto de anclaje. Los planos de fabricación usan paralelismo y perpendicularidad para verificar que cada cable sigue la dirección exacta.</p>
+<p style="margin-top:.5rem">Si un cable se ancla 5mm fuera de posición, la fuerza se distribuye mal → el cable trabaja a 120% de su carga nominal → riesgo de fatiga del material. En puentes, esto se traduce en inspecciones costosas y cierres parciales.</p>
+</div>
+
+<div class="box box-teoria">
+<span class="real-world-badge">CASO REAL — FABRICACIÓN AERONÁUTICA</span>
+<strong>✈️ Montaje de fuselaje Boeing 787 — Alineación de secciones</strong>
+<p>El fuselaje del Boeing 787 se construye en secciones que se unen con anillos. Cada sección debe ser perfectamente perpendicular al eje longitudinal del avión. Si una sección está torcida 0.5°, las juntas entre secciones no encajan → hay que rectificar → 24h de retraso en la línea de montaje.</p>
+<p style="margin-top:.5rem">Los planos de fabricación indican las tolerancias de perpendicularidad: α₁ ⊥ α₂ con tolerancia de ±0.1°. Se verifica con instrumentos de medición óptica basados en proyección ortogonal.</p>
+</div>Los ejes de una fresadora CNC deben ser perfectamente paralelos y perpendiculares entre sí. Si el eje X no es perpendicular al eje Y, las piezas mecanizadas tendrán errores de forma. El diedrico permite verificar estas relaciones geométricas en los planos de nivelación.</div>
 
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>

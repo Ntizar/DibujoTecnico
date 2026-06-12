@@ -153,15 +153,34 @@
         }
       ],
       "scores": {
-        "svg_interactive": 7,
-        "exercises": 7,
-        "text_explanation": 9,
+        "svg_interactive": 9,
+        "exercises": 9,
+        "text_explanation": 8,
         "real_world": 9,
-        "error_common": 7,
+        "error_common": 8,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-11",
-      "improvement_count": 2
+      "last_improved": "2026-06-12-ronda2-s2",
+      "improvement_count": 3,
+      "improvement_history": [
+        {
+          "round": "ronda2-s2",
+          "timestamp": "2026-06-12T10:28:22.635885+00:00",
+          "dimensions_improved": [
+            "svg_interactive:7→9",
+            "exercises:7→9",
+            "error_common:7→8"
+          ],
+          "new_scores": {
+            "svg_interactive": 9,
+            "exercises": 9,
+            "text_explanation": 8,
+            "real_world": 9,
+            "error_common": 8,
+            "css_coherence": 10
+          }
+        }
+      ]
     },
     "b02-02-sistema-3-planos.html": {
       "status": "improved_2",
@@ -603,15 +622,34 @@
         }
       ],
       "scores": {
-        "svg_interactive": 9,
-        "exercises": 7,
-        "text_explanation": 9,
-        "real_world": 7,
-        "error_common": 7,
+        "svg_interactive": 8,
+        "exercises": 9,
+        "text_explanation": 8,
+        "real_world": 9,
+        "error_common": 8,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-11",
-      "improvement_count": 2
+      "last_improved": "2026-06-12-ronda2-s2",
+      "improvement_count": 3,
+      "improvement_history": [
+        {
+          "round": "ronda2-s2",
+          "timestamp": "2026-06-12T10:28:22.636019+00:00",
+          "dimensions_improved": [
+            "exercises:7→9",
+            "real_world:7→9",
+            "error_common:7→8"
+          ],
+          "new_scores": {
+            "svg_interactive": 8,
+            "exercises": 9,
+            "text_explanation": 8,
+            "real_world": 9,
+            "error_common": 8,
+            "css_coherence": 10
+          }
+        }
+      ]
     },
     "b03-05-perspectivas-piezas.html": {
       "status": "improved_2",
@@ -874,15 +912,34 @@
         }
       ],
       "scores": {
-        "svg_interactive": 9,
+        "svg_interactive": 8,
         "exercises": 9,
-        "text_explanation": 9,
-        "real_world": 7,
-        "error_common": 7,
-        "css_coherence": 7
+        "text_explanation": 8,
+        "real_world": 9,
+        "error_common": 8,
+        "css_coherence": 10
       },
-      "last_improved": "2026-06-11",
-      "improvement_count": 2
+      "last_improved": "2026-06-12-ronda2-s2",
+      "improvement_count": 3,
+      "improvement_history": [
+        {
+          "round": "ronda2-s2",
+          "timestamp": "2026-06-12T10:28:22.636004+00:00",
+          "dimensions_improved": [
+            "real_world:7→9",
+            "error_common:7→8",
+            "css_coherence:7→10"
+          ],
+          "new_scores": {
+            "svg_interactive": 8,
+            "exercises": 9,
+            "text_explanation": 8,
+            "real_world": 9,
+            "error_common": 8,
+            "css_coherence": 10
+          }
+        }
+      ]
     },
     "b04-06-vm.html": {
       "status": "improved_2",

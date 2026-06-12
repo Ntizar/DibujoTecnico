@@ -70,6 +70,15 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .proj-box{transition:all .3s;cursor:pointer}
 .proj-box:hover{filter:brightness(1.1)}
 .proj-box.active{stroke-width:3;filter:drop-shadow(0 0 8px rgba(37,99,235,.5))}
+.clickable{cursor:pointer;transition:all .2s}.clickable:hover{filter:brightness(1.1);transform:scale(1.02)}
+.connection-box{background:var(--pura-claro);border:2px solid var(--pura);border-radius:12px;padding:1rem;margin:1rem 0}
+.connection-box strong{color:var(--pura)}
+.difficulty-badge{display:inline-block;padding:.2rem .6rem;border-radius:10px;font-size:.7rem;font-weight:700;margin-left:.5rem}
+.difficulty-badge.easy{background:#ecfdf5;color:#065f46}
+.difficulty-badge.medium{background:#fff7ed;color:#9a3412}
+.difficulty-badge.hard{background:#fef2f2;color:#991b1b}
+.feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
+.feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
 </style>
 </head>
 <body>
@@ -369,14 +378,22 @@ Usar proyección cónica (perspectiva) en un plano técnico. En dibujo técnico 
 <p class="feedback"></p>
 </div>
 
+
+<!-- NUEVO: Ejercicio de input numérico -->
+<div class="exercise">
+<p>🔢 Ejercicio 6 (cálculo): Si un objeto mide 200mm en la realidad y se proyecta ortogonalmente, ¿cuánto medirá en el plano?</p>
+<input type="text" id="ex6" placeholder="Tu respuesta en mm" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
+<button onclick="checkFillIn(['200','200 mm','200mm'])" style="padding:.5rem 1.2rem;border-radius:6px;border:none;background:var(--azul);color:#fff;cursor:pointer;font-size:.95rem;margin:.5rem 0">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
 <!-- NUEVO: Ejercicio de ordenar -->
 <div class="exercise">
-<p>🔢 Ejercicio 5 (ordenar): ¿Qué característica define la proyección ortogonal?</p>
+<p>🔢 Ejercicio 7 (ordenar): Ordena los pasos para generar una proyección ortogonal</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Rayos perpendiculares al plano de proyección</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Rayos convergentes en un punto</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Perspectiva con profundidad</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Deformación proporcional</button>
+<button class="quiz-btn" onclick="checkOrden(this, '1-2-3')">① Colocar objeto → ② Dirigir rayos perpendiculares → ③ Capturar sombra en plano</button>
+<button class="quiz-btn" onclick="checkOrden(this, '3-2-1')">① Capturar sombra → ② Dirigir rayos → ③ Colocar objeto</button>
+<button class="quiz-btn" onclick="checkOrden(this, '2-1-3')">① Dirigir rayos → ② Colocar objeto → ③ Capturar sombra</button>
 </div>
 <p class="feedback"></p>
 </div>
@@ -503,6 +520,34 @@ function checkAnswer(btn, correct) {
   }
 }
 
+function checkFillIn(correctAnswers) {
+  var inputs = document.querySelectorAll('input[type="text"]');
+  var results = [];
+  for (var i = 0; i < inputs.length; i++) {
+    var val = inputs[i].value.trim().toLowerCase();
+    var found = false;
+    for (var j = 0; j < correctAnswers.length; j++) {
+      if (val === correctAnswers[j].toLowerCase()) { found = true; break; }
+    }
+    if (!found) {
+      for (var j = 0; j < correctAnswers.length; j++) {
+        if (correctAnswers[j].toLowerCase().includes(val) || val.includes(correctAnswers[j].toLowerCase())) { found = true; break; }
+      }
+    }
+    results.push(found);
+  }
+  var allCorrect = results.every(function(r) { return r; });
+  var exercise = inputs[0].closest('.exercise');
+  var feedback = exercise.querySelector('.feedback');
+  if(allCorrect) {
+    feedback.textContent = '✅ ¡Correcto! En proyección ortogonal, las dimensiones se mantienen exactas.';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ Respuesta: 200mm. En proyección ortogonal, la proyección mide lo mismo que el objeto.';
+    feedback.className = 'feedback incorrect';
+  }
+}
+
 function checkExercise(id, correct, btn) {
   var input = document.getElementById(id);
   var feedback = input.parentElement.nextElementSibling;
@@ -516,6 +561,33 @@ function checkExercise(id, correct, btn) {
     feedback.textContent = '❌ Respuesta correcta: paralelos, perpendiculares';
     feedback.className = 'feedback incorrect';
     input.style.borderColor = 'var(--rojo)';
+  }
+}
+
+window.onscroll = function(){
+  var h = document.documentElement;
+  var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
+  document.getElementById('progress').style.width = p+'%';
+};
+
+function checkOrden(btn, answer) {
+  var parent = btn.parentElement;
+  var feedback = parent.nextElementSibling;
+  if(answer === '1-2-3') {
+    parent.querySelectorAll('button').forEach(function(b) { b.disabled = true; b.classList.remove('correct','wrong'); });
+    btn.classList.add('correct');
+    feedback.textContent = '✅ ¡Correcto! Primero colocas el objeto, luego diriges los rayos perpendiculares y finalmente capturas la sombra.';
+    feedback.className = 'feedback correct';
+  } else {
+    parent.querySelectorAll('button').forEach(function(b) { b.disabled = true; b.classList.remove('correct','wrong'); });
+    btn.classList.add('wrong');
+    feedback.textContent = '❌ El orden correcto es: ① Colocar objeto → ② Dirigir rayos perpendiculares → ③ Capturar sombra en plano.';
+    feedback.className = 'feedback incorrect';
+    setTimeout(function() {
+      parent.querySelectorAll('button').forEach(function(b) { b.disabled = false; b.classList.remove('correct','wrong'); });
+      feedback.textContent = '';
+      feedback.className = 'feedback';
+    }, 2000);
   }
 }
 
