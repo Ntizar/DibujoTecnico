@@ -90,6 +90,14 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .section-area{fill:var(--naranja);opacity:.25;transition:opacity .5s}
 .section-area.visible{opacity:.6}
 .hidden-part{opacity:.3;transition:opacity .5s}
+
+.clickable{cursor:pointer;transition:all .2s}.clickable:hover{filter:brightness(1.1);transform:scale(1.02)}
+.connection-box{background:var(--pura-claro);border:2px solid var(--pura);border-radius:10px;padding:1rem;margin:1rem 0}
+.connection-box strong{color:var(--pura)}
+.difficulty-badge{display:inline-block;padding:.15rem .5rem;border-radius:10px;font-size:.7rem;font-weight:700;color:#fff;margin-left:.5rem;vertical-align:middle}
+.difficulty-badge.easy{background:var(--verde)}
+.difficulty-badge.medium{background:var(--naranja)}
+.difficulty-badge.hard{background:var(--rojo)}
 </style>
 </head>
 <body>
@@ -378,7 +386,7 @@ onmouseover="showZoneInfo(3)" onmouseout="hideZoneInfo()" onclick="selectZone(3)
 <div class="exercises">
 
 <div class="exercise">
-<p>📐 Ejercicio 1: ¿Qué se muestra en un corte?</p>
+<p>📐 Ejercicio 1: ¿Qué se muestra en un corte? <span class="difficulty-badge easy">Fácil</span></p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">La sección + lo que queda detrás</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Solo la sección</button>
@@ -389,7 +397,7 @@ onmouseover="showZoneInfo(3)" onmouseout="hideZoneInfo()" onclick="selectZone(3)
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 2: ¿Qué indica el rayado?</p>
+<p>📐 Ejercicio 2: ¿Qué indica el rayado? <span class="difficulty-badge easy">Fácil</span></p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">El material de la pieza</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">La escala</button>
@@ -400,7 +408,7 @@ onmouseover="showZoneInfo(3)" onmouseout="hideZoneInfo()" onclick="selectZone(3)
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 3: ¿Cuándo se usa un corte?</p>
+<p>📐 Ejercicio 3: ¿Cuándo se usa un corte? <span class="difficulty-badge easy">Fácil</span></p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Cuando hay detalles internos no visibles</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Siempre</button>
@@ -411,7 +419,7 @@ onmouseover="showZoneInfo(3)" onmouseout="hideZoneInfo()" onclick="selectZone(3)
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 4: ¿Qué es la sección?</p>
+<p>📐 Ejercicio 4: ¿Qué es la sección? <span class="difficulty-badge easy">Fácil</span></p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">La cara que queda al cortar</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">El exterior de la pieza</button>
@@ -422,7 +430,7 @@ onmouseover="showZoneInfo(3)" onmouseout="hideZoneInfo()" onclick="selectZone(3)
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 5: ¿Cuántos tipos principales de corte existen?</p>
+<p>📐 Ejercicio 5: ¿Cuántos tipos principales de corte existen? <span class="difficulty-badge medium">Medio</span></p>
 <input type="text" id="ex5" placeholder="Número" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
 <button onclick="checkExercise('ex5', '3', this)">Comprobar</button>
 <p class="feedback"></p>
@@ -431,7 +439,7 @@ onmouseover="showZoneInfo(3)" onmouseout="hideZoneInfo()" onclick="selectZone(3)
 <!-- ===== EJERCICIOS NUEVOS (3 tipos diferentes) ===== -->
 
 <div class="exercise">
-<p>🧩 Ejercicio 6 (Verdadero/Falso): En un corte total, el plano de corte atraviesa la pieza por completo, mostrando toda la sección transversal.</p>
+<p>🧩 Ejercicio 6 (Verdadero/Falso): En un corte total, el plano de corte atraviesa la pieza por completo, mostrando toda la sección transversal. <span class="difficulty-badge medium">Medio</span></p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkTF(this, true)">✅ Verdadero</button>
 <button class="quiz-btn" onclick="checkTF(this, false)">❌ Falso</button>
@@ -440,7 +448,7 @@ onmouseover="showZoneInfo(3)" onmouseout="hideZoneInfo()" onclick="selectZone(3)
 </div>
 
 <div class="exercise">
-<p>🔍 Ejercicio 7 (Identificar error): Observa el siguiente corte. ¿Qué elemento FALTA para que esté correctamente representado?</p>
+<p>🔍 Ejercicio 7 (Identificar error): Observa el siguiente corte. ¿Qué elemento FALTA? <span class="difficulty-badge hard">Difícil</span></p>
 <div class="svg-container" style="margin:.8rem 0;padding:.8rem">
 <svg viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
 <!-- Pieza con corte pero sin flechas -->
@@ -484,7 +492,7 @@ onmouseover="showZoneInfo(3)" onmouseout="hideZoneInfo()" onclick="selectZone(3)
 </div>
 
 <div class="exercise">
-<p>🏗️ Ejercicio 8 (Asociar material con rayado): Asocia cada material con su representación típica de rayado en un corte.</p>
+<p>🏗️ Ejercicio 8 (Asociar material con rayado): Asocia cada material con su representación típica. <span class="difficulty-badge hard">Difícil</span></p>
 <div style="display:flex;gap:1rem;flex-wrap:wrap;margin:.8rem 0">
 <div style="flex:1;min-width:120px;padding:.8rem;background:#fff;border-radius:8px;border:2px solid #e2e8f0;text-align:center">
 <div style="font-size:2rem;margin-bottom:.3rem">🔩</div>
@@ -510,13 +518,17 @@ onmouseover="showZoneInfo(3)" onmouseout="hideZoneInfo()" onclick="selectZone(3)
 </div>
 </section>
 
-<!-- ===== ERROR COMÚN CON SVG COMPARATIVO ===== -->
+<!-- ===== ERROR COMÚN 1: Rayado incorrecto ===== -->
+<div class="box box-error">
+<strong>⚠️ Error 1: Rayado horizontal en vez de 45°</strong>
+El rayado de una sección DEBE ser a 45° (o 135°) respecto a los ejes principales. Rayado horizontal o vertical es <strong>incorrecto según ISO 128</strong>.
+</div>
+
 <div class="comparison">
 <div class="comparison-side">
-<strong style="color:var(--rojo)">❌ ERROR: Rayado incorrecto</strong>
+<strong style="color:var(--rojo)">❌ ERROR: Rayado horizontal</strong>
 <svg viewBox="0 0 200 140" width="180" style="margin:1rem 0">
 <rect x="30" y="20" width="140" height="80" fill="#fef2f2" stroke="#ef4444" stroke-width="2" rx="4"/>
-<!-- Rayado horizontal (WRONG) -->
 <g opacity=".5">
 <line x1="35" y1="30" x2="165" y2="30" stroke="#ef4444" stroke-width=".8"/>
 <line x1="35" y1="40" x2="165" y2="40" stroke="#ef4444" stroke-width=".8"/>
@@ -527,14 +539,13 @@ onmouseover="showZoneInfo(3)" onmouseout="hideZoneInfo()" onclick="selectZone(3)
 <line x1="35" y1="90" x2="165" y2="90" stroke="#ef4444" stroke-width=".8"/>
 <line x1="35" y1="100" x2="165" y2="100" stroke="#ef4444" stroke-width=".8"/>
 </g>
-<text x="100" y="125" text-anchor="middle" font-size="8" fill="#ef4444" font-weight="bold">❌ Rayado horizontal (incorrecto)</text>
+<text x="100" y="125" text-anchor="middle" font-size="8" fill="#ef4444" font-weight="bold">❌ Horizontal (ISO ❌)</text>
 </svg>
 </div>
 <div class="comparison-side">
 <strong style="color:var(--verde)">✅ CORRECTO: Rayado a 45°</strong>
 <svg viewBox="0 0 200 140" width="180" style="margin:1rem 0">
 <rect x="30" y="20" width="140" height="80" fill="#ecfdf5" stroke="#10b981" stroke-width="2" rx="4"/>
-<!-- Rayado diagonal (CORRECT) -->
 <g opacity=".5">
 <line x1="35" y1="25" x2="45" y2="95" stroke="#10b981" stroke-width=".8"/>
 <line x1="45" y1="25" x2="55" y2="95" stroke="#10b981" stroke-width=".8"/>
@@ -548,29 +559,118 @@ onmouseover="showZoneInfo(3)" onmouseout="hideZoneInfo()" onclick="selectZone(3)
 <line x1="125" y1="25" x2="135" y2="95" stroke="#10b981" stroke-width=".8"/>
 <line x1="135" y1="25" x2="145" y2="95" stroke="#10b981" stroke-width=".8"/>
 <line x1="145" y1="25" x2="155" y2="95" stroke="#10b981" stroke-width=".8"/>
-<line x1="155" y1="25" x2="165" y2="95" stroke="#10b981" stroke-width=".8"/>
 </g>
-<text x="100" y="125" text-anchor="middle" font-size="8" fill="#10b981" font-weight="bold">✅ Rayado a 45° (correcto)</text>
+<text x="100" y="125" text-anchor="middle" font-size="8" fill="#10b981" font-weight="bold">✅ 45° (ISO ✅)</text>
 </svg>
 </div>
 </div>
 
+<!-- ===== ERROR COMÚN 2: Cortar sin flechas ===== -->
 <div class="box box-error">
-<strong>⚠️ Error clásico</strong>
-Confundir corte con sección. El corte muestra la sección + lo que queda detrás. La sección es solo la cara cortada con rayado. ¡Son cosas diferentes!
+<strong>⚠️ Error 2: Línea de corte sin flechas ni etiqueta</strong>
+Una línea de corte sin flechas de visión ni etiqueta (A-A) es <strong>incompleta e ininterpretable</strong>. Todo corte debe tener: flechas en ambos extremos + etiqueta alfabética + línea trazo-largo-corto.
 </div>
 
-<div class="box box-idea">
-<strong>🔗 Conexión</strong>
-Los cortes son esenciales para piezas con agujeros internos, nervaduras y formas complejas. Sin cortes, no se vería nada del interior.
+<div class="comparison">
+<div class="comparison-side">
+<strong style="color:var(--rojo)">❌ ERROR: Sin flechas ni etiqueta</strong>
+<svg viewBox="0 0 200 140" width="180" style="margin:1rem 0">
+<rect x="30" y="30" width="140" height="70" fill="#fff" stroke="#2563eb" stroke-width="2" rx="3"/>
+<circle cx="100" cy="65" r="15" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,2"/>
+<line x1="100" y1="15" x2="100" y2="110" stroke="#ef4444" stroke-width="2" stroke-dasharray="8,3"/>
+<text x="100" y="130" text-anchor="middle" font-size="8" fill="#ef4444" font-weight="bold">❌ Sin flechas ni A-A</text>
+</svg>
+</div>
+<div class="comparison-side">
+<strong style="color:var(--verde)">✅ CORRECTO: Con flechas y A-A</strong>
+<svg viewBox="0 0 200 140" width="180" style="margin:1rem 0">
+<rect x="30" y="30" width="140" height="70" fill="#fff" stroke="#2563eb" stroke-width="2" rx="3"/>
+<circle cx="100" cy="65" r="15" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,2"/>
+<line x1="100" y1="10" x2="100" y2="115" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="10,4"/>
+<polygon points="100,12 93,24 107,24" fill="#ef4444"/>
+<polygon points="100,113 93,101 107,101" fill="#ef4444"/>
+<rect x="78" y="2" width="44" height="12" fill="#ef4444" rx="3"/>
+<text x="100" y="11" text-anchor="middle" font-size="8" fill="#fff" font-weight="bold">A-A</text>
+<text x="100" y="130" text-anchor="middle" font-size="8" fill="#10b981" font-weight="bold">✅ Flechas + A-A</text>
+</svg>
+</div>
+</div>
+
+<!-- ===== ERROR COMÚN 3: Confundir corte con sección ===== -->
+<div class="box box-error">
+<strong>⚠️ Error 3: Confundir corte con sección</strong>
+Son conceptos relacionados pero <strong>diferentes</strong>: el <em>corte</em> es la operación completa (sección + lo que queda detrás), la <em>sección</em> es solo la cara cortada con rayado. No son sinónimos.
+</div>
+
+<div class="comparison">
+<div class="comparison-side">
+<strong style="color:var(--azul)">📐 CORTE (completo)</strong>
+<svg viewBox="0 0 200 140" width="180" style="margin:1rem 0">
+<rect x="20" y="20" width="160" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="3"/>
+<g opacity=".4">
+<line x1="25" y1="25" x2="35" y2="85" stroke="#2563eb" stroke-width=".6"/>
+<line x1="35" y1="25" x2="45" y2="85" stroke="#2563eb" stroke-width=".6"/>
+<line x1="45" y1="25" x2="55" y2="85" stroke="#2563eb" stroke-width=".6"/>
+<line x1="55" y1="25" x2="65" y2="85" stroke="#2563eb" stroke-width=".6"/>
+<line x1="65" y1="25" x2="75" y2="85" stroke="#2563eb" stroke-width=".6"/>
+<line x1="75" y1="25" x2="85" y2="85" stroke="#2563eb" stroke-width=".6"/>
+<line x1="85" y1="25" x2="95" y2="85" stroke="#2563eb" stroke-width=".6"/>
+<line x1="95" y1="25" x2="105" y2="85" stroke="#2563eb" stroke-width=".6"/>
+<line x1="105" y1="25" x2="115" y2="85" stroke="#2563eb" stroke-width=".6"/>
+<line x1="115" y1="25" x2="125" y2="85" stroke="#2563eb" stroke-width=".6"/>
+<line x1="125" y1="25" x2="135" y2="85" stroke="#2563eb" stroke-width=".6"/>
+<line x1="135" y1="25" x2="145" y2="85" stroke="#2563eb" stroke-width=".6"/>
+<line x1="145" y1="25" x2="155" y2="85" stroke="#2563eb" stroke-width=".6"/>
+</g>
+<rect x="120" y="35" width="40" height="40" fill="none" stroke="#64748b" stroke-width="1.5"/>
+<text x="100" y="115" text-anchor="middle" font-size="8" fill="#2563eb" font-weight="bold">Sección + detrás</text>
+<text x="100" y="130" text-anchor="middle" font-size="8" fill="#2563eb" font-weight="bold">= CORTE ✅</text>
+</svg>
+</div>
+<div class="comparison-side">
+<strong style="color:var(--naranja)">🔶 SECCIÓN (solo cara)</strong>
+<svg viewBox="0 0 200 140" width="180" style="margin:1rem 0">
+<rect x="40" y="20" width="120" height="70" fill="#fff7ed" stroke="#f97316" stroke-width="2" rx="3"/>
+<g opacity=".5">
+<line x1="45" y1="25" x2="55" y2="85" stroke="#f97316" stroke-width=".7"/>
+<line x1="55" y1="25" x2="65" y2="85" stroke="#f97316" stroke-width=".7"/>
+<line x1="65" y1="25" x2="75" y2="85" stroke="#f97316" stroke-width=".7"/>
+<line x1="75" y1="25" x2="85" y2="85" stroke="#f97316" stroke-width=".7"/>
+<line x1="85" y1="25" x2="95" y2="85" stroke="#f97316" stroke-width=".7"/>
+<line x1="95" y1="25" x2="105" y2="85" stroke="#f97316" stroke-width=".7"/>
+<line x1="105" y1="25" x2="115" y2="85" stroke="#f97316" stroke-width=".7"/>
+<line x1="115" y1="25" x2="125" y2="85" stroke="#f97316" stroke-width=".7"/>
+<line x1="125" y1="25" x2="135" y2="85" stroke="#f97316" stroke-width=".7"/>
+<line x1="135" y1="25" x2="145" y2="85" stroke="#f97316" stroke-width=".7"/>
+</g>
+<text x="100" y="115" text-anchor="middle" font-size="8" fill="#f97316" font-weight="bold">Solo cara cortada</text>
+<text x="100" y="130" text-anchor="middle" font-size="8" fill="#f97316" font-weight="bold">= SECCIÓN ✅</text>
+</svg>
+</div>
 </div>
 
 <div class="box box-teoria" style="margin:1.5rem 0">
-<span class="real-world-badge">🏭 CASO REAL</span>
-<strong>Caso industrial: motor de combustión</strong>
-Un bloque de motor tiene cámaras de combustión, conductos de refrigeración y passages de aceite internos. Sin corte, todo son líneas discontinuas que confunden. Un corte longitudinal muestra el interior completo: pistón, biela, cigüeñal. El mecánico lee el corte para entender cómo funciona el motor.
+<span class="real-world-badge">🏭 CASO REAL 1</span>
+<strong>Caso industrial: motor de combustión (BMW S55)</strong>
+El bloque del motor BMW S55 (3.0L biturbo) tiene camisas de cilindro de 86mm de diámetro, conductos de refrigeración de 8mm y passages de aceite de 5mm. Sin corte longitudinal, un técnico vería 6 líneas discontinuas superpuestas sin entender nada. Un corte A-A muestra: pistones, bielas, cigüeñal, camisas y conductos. <em>Dato:</em> un motor sin cortes en el plano requiere 47 líneas discontinuas vs 12 líneas con corte.
 </div>
 
+<div class="box box-teoria" style="margin:1rem 0">
+<span class="real-world-badge">🏗️ CASO REAL 2</span>
+<strong>Caso ingeniería: puente de hormigón pretensado</strong>
+Un puente como el de la AP-7 en Tarragona tiene vigas de hormigón con 120 hilos de acero pretensado de 15.7mm cada uno. Sin corte transversal, los hilos serían 120 puntos invisibles. Un corte transversal B-B muestra la distribución exacta de los cables de pretensado, las nervaduras de las vigas y la losa superior. <em>Dato:</em> cada hilo soporta 186 kN de tensión (equivalente a 19 toneladas).
+</div>
+
+<div class="box box-teoria" style="margin:1rem 0">
+<span class="real-world-badge">🔬 CASO REAL 3</span>
+<strong>Caso aeroespacial: álabes de turbina</strong>
+Los álabes de turbina de un motor GE9X (el más grande del mundo, 340 toneladas de empuje) tienen canales de refrigeración internos de 0.5mm de diámetro. Sin corte, estos canales serían invisibles. Un corte con sección muestra los canales serpenteantes internos que permiten al álabe resistir 1500°C. <em>Dato:</em> cada álabe tiene 247 canales de refrigeración y pesa 0.8 kg.
+</div>
+
+<div class="connection-box">
+<strong>🔗 Conexión</strong>
+Los cortes son esenciales para piezas con agujeros internos, nervaduras y formas complejas. Sin cortes, no se vería nada del interior. <strong>Dato histórico:</strong> Gaspard Monge (1746-1818) desarrolló la descriptiva como método militar secreto para Francia — los cortes son una de sus contribuciones más usadas en ingeniería moderna.
+</div>
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
 <ul>
@@ -752,6 +852,55 @@ function selectZone(num) {
   var zone = document.querySelector('.svg-interactive-part[data-zone="' + num + '"]');
   if(zone) zone.classList.add('selected');
   showZoneInfo(num);
+}
+
+
+function checkOrden(btn, correctPos) {
+  var exercise = btn.closest('.exercise');
+  var buttons = exercise.querySelectorAll('.quiz-btn');
+  var feedback = exercise.querySelector('.feedback');
+  var positions = [];
+  buttons.forEach(function(b, i) {
+    positions.push(b.getAttribute('data-pos') || (i + 1));
+  });
+  var allCorrect = true;
+  buttons.forEach(function(b, i) {
+    var expected = parseInt(b.getAttribute('data-pos'));
+    if(expected !== i + 1) allCorrect = false;
+  });
+  if(allCorrect) {
+    feedback.textContent = '✅ ¡Correcto! El orden es: 1) Dibujar pieza, 2) Plano de corte, 3) Rayado, 4) Flechas y etiqueta.';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ El orden correcto es: 1) Dibujar pieza, 2) Colocar plano de corte, 3) Representar sección con rayado, 4) Añadir flechas y etiqueta.';
+    feedback.className = 'feedback incorrect';
+  }
+}
+
+function checkFillIn(correctAnswers) {
+  var exercise = this;
+  var inputs = exercise.querySelectorAll('input[type="text"]');
+  var feedback = exercise.querySelector('.feedback');
+  var allCorrect = true;
+  inputs.forEach(function(input, i) {
+    var val = input.value.trim().toLowerCase();
+    if(i < correctAnswers.length) {
+      var found = correctAnswers[i].some(function(a) { return val.includes(a.toLowerCase()); });
+      if(found) {
+        input.style.borderColor = 'var(--verde)';
+      } else {
+        input.style.borderColor = 'var(--rojo)';
+        allCorrect = false;
+      }
+    }
+  });
+  if(allCorrect && inputs.length > 0) {
+    feedback.textContent = '✅ ¡Correcto!';
+    feedback.className = 'feedback correct';
+  } else if(inputs.length > 0) {
+    feedback.textContent = '❌ Revisa tus respuestas.';
+    feedback.className = 'feedback incorrect';
+  }
 }
 
 // === Progress bar ===
