@@ -1857,7 +1857,7 @@
       ]
     },
     "b09-03-despiece.html": {
-      "status": "improved_1",
+      "status": "improved_2",
       "bloque": "b09",
       "title": "🔧 Planos de despiece",
       "priority": 4,
@@ -1872,18 +1872,29 @@
             "error_common",
             "css_coherence"
           ]
+        },
+        {
+          "date": "2026-06-12",
+          "description": "Ronda 2: SVG interactivo 4 pasos (montado/despiece/explosiva/estándar), 7 ejercicios (quiz+VF+fillin+orden), 3 casos reales (LEAP-1B+Porsche PDK+Akashi Kaikyō), SVG comparativo error estándar vs correcto, CSS: clickable+connection-box+difficulty-badge",
+          "dimensions_improved": [
+            "svg_interactive",
+            "exercises",
+            "real_world",
+            "error_common",
+            "css_coherence"
+          ]
         }
       ],
       "scores": {
-        "svg_interactive": 7,
-        "exercises": 7,
-        "text_explanation": 7,
-        "real_world": 7,
-        "error_common": 7,
-        "css_coherence": 7
+        "svg_interactive": 9,
+        "exercises": 9,
+        "text_explanation": 8,
+        "real_world": 9,
+        "error_common": 9,
+        "css_coherence": 10
       },
-      "last_improved": "2026-06-10",
-      "improvement_count": 1
+      "last_improved": "2026-06-12-ronda2-s2",
+      "improvement_count": 2
     }
   },
   "audit": {

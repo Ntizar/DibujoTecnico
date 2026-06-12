@@ -59,8 +59,9 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .step-dot:hover{transform:scale(1.2)}
 .step-dot.active{box-shadow:0 0 0 4px rgba(37,99,235,.3)}
 .stack-item{background:#f8fafc;border:2px solid #e2e8f0;border-radius:10px;padding:1rem;margin:.5rem 0;transition:all .3s;cursor:pointer}
-.stack-item:hover{border-color:var(--azul);transform:translateX(4px)}
+.stack-item:hover{border-color:var(--azul);transform:translateX(4px)}.box[onclick]{cursor:pointer}.box[onclick]:hover{box-shadow:0 4px 12px rgba(37,99,235,.15)}
 .stack-item.active{border-color:var(--azul);background:var(--azul-claro)}
+.clickable{cursor:pointer;transition:all .2s}.clickable:hover{box-shadow:0 4px 12px rgba(37,99,235,.15);transform:translateY(-2px)}.connection-box{background:linear-gradient(135deg,#faf5ff,#f3e8ff);border:2px solid #a855f7;border-radius:12px;padding:1.2rem;margin:1.5rem 0}.connection-box strong{color:#7c3aed}.difficulty-badge{display:inline-block;background:linear-gradient(135deg,#a855f7,#7c3aed);color:#fff;padding:.2rem .6rem;border-radius:12px;font-size:.7rem;font-weight:700;margin-left:.5rem}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
 </style>
 </head>
@@ -157,127 +158,189 @@ Orden: de dentro hacia fuera, de abajo hacia arriba.
 <svg viewBox="0 0 700 520" xmlns="http://www.w3.org/2000/svg">
 <!-- Fondo -->
 <rect x="0" y="0" width="700" height="520" fill="#f8fafc" rx="8"/>
-<text x="350" y="22" text-anchor="middle" font-size="14" fill="#2563eb" font-weight="700">Despiece y Vista Explosiva</text>
+<text x="350" y="22" text-anchor="middle" font-size="14" fill="#2563eb" font-weight="700">Despiece Interactivo — Visualiza cada pieza</text>
 
-<!-- ===== CONJUNTO MONTADO ===== -->
-<text x="130" y="50" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="700">Conjunto Montado</text>
-<!-- Cuerpo -->
-<rect x="30" y="65" width="100" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
-<line x1="30" y1="65" x2="130" y2="135" stroke="#2563eb" stroke-width="0.2"/>
-<text x="80" y="105" text-anchor="middle" font-size="8" fill="#2563eb">Cuerpo</text>
-<!-- Eje -->
-<rect x="55" y="85" width="50" height="10" fill="#fff" stroke="#1e293b" stroke-width="1.5"/>
-<text x="80" y="94" text-anchor="middle" font-size="7" fill="#1e293b">Eje</text>
+<!-- Botones de paso -->
+<g id="stepButtons">
+<rect x="20" y="32" width="130" height="28" fill="#2563eb" rx="6" onclick="showPaso(1)" style="cursor:pointer"/>
+<text x="85" y="50" text-anchor="middle" font-size="10" fill="#fff" font-weight="600">1️⃣ Montado</text>
+<rect x="160" y="32" width="130" height="28" fill="#e2e8f0" rx="6" onclick="showPaso(2)" style="cursor:pointer"/>
+<text x="225" y="50" text-anchor="middle" font-size="10" fill="#1e293b" font-weight="600">2️⃣ Despiece</text>
+<rect x="300" y="32" width="140" height="28" fill="#e2e8f0" rx="6" onclick="showPaso(3)" style="cursor:pointer"/>
+<text x="370" y="50" text-anchor="middle" font-size="10" fill="#1e293b" font-weight="600">3️⃣ Vista Explosiva</text>
+<rect x="450" y="32" width="140" height="28" fill="#e2e8f0" rx="6" onclick="showPaso(4)" style="cursor:pointer"/>
+<text x="520" y="50" text-anchor="middle" font-size="10" fill="#1e293b" font-weight="600">4️⃣ Estándar vs Fabricada</text>
+</g>
+
+<!-- ===== PASO 1: CONJUNTO MONTADO ===== -->
+<g id="paso1">
+<text x="350" y="85" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="700">Conjunto Montado — Reductor de Velocidad</text>
+
+<!-- Cuerpo (base) -->
+<rect x="200" y="100" width="160" height="100" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="4"/>
+<line x1="200" y1="100" x2="360" y2="200" stroke="#2563eb" stroke-width="0.3"/>
+<text x="280" y="158" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600">Cuerpo</text>
+<!-- Eje (dentro) -->
+<rect x="240" y="130" width="80" height="12" fill="#fff" stroke="#1e293b" stroke-width="1.5"/>
+<text x="280" y="140" text-anchor="middle" font-size="8" fill="#1e293b">Eje ⌀20</text>
+<!-- Cojinetes -->
+<rect x="225" y="195" width="25" height="18" fill="#ecfdf5" stroke="#10b981" stroke-width="1"/>
+<text x="237" y="208" text-anchor="middle" font-size="7" fill="#10b981">Coj.</text>
+<rect x="310" y="195" width="25" height="18" fill="#ecfdf5" stroke="#10b981" stroke-width="1"/>
+<text x="322" y="208" text-anchor="middle" font-size="7" fill="#10b981">Coj.</text>
 <!-- Tapa -->
-<rect x="25" y="55" width="110" height="10" fill="#fff7ed" stroke="#f97316" stroke-width="1.5"/>
-<text x="80" y="63" text-anchor="middle" font-size="7" fill="#f97316">Tapa</text>
-<!-- Cojinete -->
-<rect x="45" y="135" width="25" height="15" fill="#ecfdf5" stroke="#10b981" stroke-width="1"/>
-<text x="57" y="146" text-anchor="middle" font-size="6" fill="#10b981">Coj.</text>
-<rect x="90" y="135" width="25" height="15" fill="#ecfdf5" stroke="#10b981" stroke-width="1"/>
-<text x="102" y="146" text-anchor="middle" font-size="6" fill="#10b981">Coj.</text>
+<rect x="195" y="90" width="170" height="12" fill="#fff7ed" stroke="#f97316" stroke-width="1.5"/>
+<text x="280" y="99" text-anchor="middle" font-size="8" fill="#f97316">Tapa</text>
+<!-- Tornillos -->
+<circle cx="210" cy="96" r="3" fill="#64748b"/><circle cx="350" cy="96" r="3" fill="#64748b"/>
+<circle cx="230" cy="96" r="3" fill="#64748b"/><circle cx="330" cy="96" r="3" fill="#64748b"/>
+<text x="280" y="230" text-anchor="middle" font-size="9" fill="#64748b">8 tornillos M6×20</text>
 
-<!-- Flecha -->
-<line x1="160" y1="100" x2="200" y2="100" stroke="#a855f7" stroke-width="1.5"/>
-<polygon points="200,100 195,97 195,103" fill="#a855f7"/>
-<text x="180" y="92" text-anchor="middle" font-size="8" fill="#a855f7">despiece</text>
+<!-- Info lateral -->
+<rect x="400" y="85" width="280" height="150" fill="#eff6ff" rx="8" stroke="#2563eb" stroke-width="1"/>
+<text x="420" y="107" font-size="11" fill="#2563eb" font-weight="700">📋 Datos del conjunto</text>
+<text x="420" y="129" font-size="10" fill="#1e293b">• Reductor de velocidad</text>
+<text x="420" y="149" font-size="10" fill="#1e293b">• Relación: 5:1</text>
+<text x="420" y="169" font-size="10" fill="#1e293b">• Potencia: 2.2 kW</text>
+<text x="420" y="189" font-size="10" fill="#1e293b">• 20 piezas (12 fabricadas + 8 estándar)</text>
+<text x="420" y="215" font-size="10" fill="#10b981" font-weight="600">Vista general del montaje</text>
+</g>
 
-<!-- ===== PIEZAS DESPIECES ===== -->
-<text x="400" y="50" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="700">Piezas del Despiece</text>
+<!-- ===== PASO 2: DESPIECE ===== -->
+<g id="paso2" style="display:none">
+<text x="350" y="85" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="700">Piezas del Despiece — Cada una con sus cotas</text>
 
 <!-- Pieza 1: Eje -->
-<rect x="280" y="60" width="130" height="80" fill="#eff6ff" stroke="#2563eb" stroke-width="1" rx="4"/>
-<text x="345" y="75" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="600">1. Eje principal</text>
-<!-- Representación -->
-<rect x="295" y="85" width="100" height="8" fill="#fff" stroke="#2563eb" stroke-width="1.5"/>
-<text x="345" y="100" text-anchor="middle" font-size="7" fill="#64748b">⌀20h7 × 120</text>
-<text x="345" y="118" text-anchor="middle" font-size="7" fill="#64748b">Ra 1.6</text>
-<text x="345" y="135" text-anchor="middle" font-size="7" fill="#64748b">C45</text>
+<rect x="30" y="100" width="180" height="110" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" rx="6"/>
+<text x="120" y="118" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="600">1. Eje principal</text>
+<rect x="50" y="130" width="140" height="10" fill="#fff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="120" y="148" text-anchor="middle" font-size="8" fill="#64748b">⌀20h7 × 120</text>
+<text x="120" y="162" text-anchor="middle" font-size="8" fill="#64748b">Ra 1.6</text>
+<text x="120" y="176" text-anchor="middle" font-size="8" fill="#64748b">C45 — Temple superficial</text>
+<text x="120" y="195" text-anchor="middle" font-size="8" fill="#10b981">VM: 120mm</text>
 
 <!-- Pieza 2: Cuerpo -->
-<rect x="430" y="60" width="130" height="80" fill="#eff6ff" stroke="#2563eb" stroke-width="1" rx="4"/>
-<text x="495" y="75" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="600">2. Cuerpo</text>
-<!-- Representación -->
-<rect x="445" y="85" width="100" height="40" fill="#eff6ff" stroke="#2563eb" stroke-width="1"/>
-<line x1="445" y1="85" x2="545" y2="125" stroke="#2563eb" stroke-width="0.2"/>
-<text x="495" y="108" text-anchor="middle" font-size="7" fill="#64748b">150×100×80</text>
-<text x="495" y="125" text-anchor="middle" font-size="7" fill="#64748b">Tal. ⌀12 H7</text>
+<rect x="230" y="100" width="180" height="110" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" rx="6"/>
+<text x="320" y="118" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="600">2. Cuerpo</text>
+<rect x="250" y="130" width="140" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="1"/>
+<line x1="250" y1="130" x2="390" y2="180" stroke="#2563eb" stroke-width="0.2"/>
+<text x="320" y="158" text-anchor="middle" font-size="8" fill="#64748b">150×100×80</text>
+<text x="320" y="175" text-anchor="middle" font-size="8" fill="#64748b">Tal. ⌀12 H7 × 2</text>
+<text x="320" y="195" text-anchor="middle" font-size="8" fill="#64748b">GG-25 — Fundición</text>
 
 <!-- Pieza 3: Tapa -->
-<rect x="280" y="155" width="130" height="80" fill="#fff7ed" stroke="#f97316" stroke-width="1" rx="4"/>
-<text x="345" y="170" text-anchor="middle" font-size="9" fill="#f97316" font-weight="600">3. Tapa</text>
-<!-- Representación -->
-<rect x="295" y="180" width="100" height="15" fill="#fff7ed" stroke="#f97316" stroke-width="1"/>
-<text x="345" y="192" text-anchor="middle" font-size="7" fill="#64748b">150×100×10</text>
-<text x="345" y="208" text-anchor="middle" font-size="7" fill="#64748b">Tal. M6×8</text>
+<rect x="430" y="100" width="180" height="110" fill="#fff7ed" stroke="#f97316" stroke-width="1.5" rx="6"/>
+<text x="520" y="118" text-anchor="middle" font-size="10" fill="#f97316" font-weight="600">3. Tapa</text>
+<rect x="450" y="130" width="140" height="15" fill="#fff7ed" stroke="#f97316" stroke-width="1"/>
+<text x="520" y="143" text-anchor="middle" font-size="8" fill="#64748b">150×100×10</text>
+<text x="520" y="160" text-anchor="middle" font-size="8" fill="#64748b">Tal. M6×8 × 8</text>
+<text x="520" y="177" text-anchor="middle" font-size="8" fill="#64748b">AlSi12 — Fundición Al</text>
+<text x="520" y="195" text-anchor="middle" font-size="8" fill="#10b981">Ra 3.2</text>
 
-<!-- Pieza 4: Cojinete (estándar) -->
-<rect x="430" y="155" width="130" height="80" fill="#ecfdf5" stroke="#10b981" stroke-width="1" rx="4"/>
-<text x="495" y="170" text-anchor="middle" font-size="9" fill="#10b981" font-weight="600">4. Cojinete 6205</text>
-<!-- Representación -->
-<rect x="460" y="180" width="70" height="20" fill="#ecfdf5" stroke="#10b981" stroke-width="1"/>
-<line x1="460" y1="180" x2="530" y2="200" stroke="#10b981" stroke-width="0.5"/>
-<line x1="530" y1="180" x2="460" y2="200" stroke="#10b981" stroke-width="0.5"/>
-<text x="495" y="215" text-anchor="middle" font-size="7" fill="#10b981">ISO 15</text>
-<text x="495" y="228" text-anchor="middle" font-size="7" fill="#64748b">NO en despiece</text>
+<!-- Info lateral -->
+<rect x="30" y="230" width="580" height="80" fill="#fff" stroke="#e2e8f0" stroke-width="1" rx="6"/>
+<text x="320" y="250" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="700">📐 Cada pieza en el despiece incluye:</text>
+<text x="50" y="272" font-size="9" fill="#1e293b">✓ Vistas completas (alzado, planta, perfil)</text>
+<text x="250" y="272" font-size="9" fill="#1e293b">✓ Cotas funcionales + auxiliares</text>
+<text x="440" y="272" font-size="9" fill="#1e293b">✓ Tolerancias dimensionales</text>
+<text x="50" y="292" font-size="9" fill="#1e293b">✓ Rugosidad (Ra)</text>
+<text x="250" y="292" font-size="9" fill="#1e293b">✓ Material y tratamiento</text>
+<text x="440" y="292" font-size="9" fill="#1e293b">✓ Cuadro de rotulación</text>
+</g>
 
-<!-- ===== VISTA EXPLOSIVA ===== -->
-<text x="350" y="270" text-anchor="middle" font-size="13" fill="#2563eb" font-weight="700">Vista Explosiva</text>
+<!-- ===== PASO 3: VISTA EXPLOSIVA ===== -->
+<g id="paso3" style="display:none">
+<text x="350" y="85" text-anchor="middle" font-size="12" fill="#a855f7" font-weight="700">Vista Explosiva — Orden de Montaje</text>
 
-<!-- Piezas separadas -->
+<!-- Piezas separadas en orden -->
 <!-- Tapa (arriba) -->
-<rect x="280" y="285" width="140" height="15" fill="#fff7ed" stroke="#f97316" stroke-width="1.5" rx="2"/>
-<text x="350" y="296" text-anchor="middle" font-size="8" fill="#f97316" font-weight="600">3. Tapa</text>
+<rect x="280" y="100" width="140" height="18" fill="#fff7ed" stroke="#f97316" stroke-width="1.5" rx="3"/>
+<text x="350" y="113" text-anchor="middle" font-size="9" fill="#f97316" font-weight="600">3. Tapa</text>
 <!-- Junta -->
-<rect x="300" y="310" width="100" height="8" fill="#ecfdf5" stroke="#10b981" stroke-width="1" rx="2"/>
-<text x="350" y="318" text-anchor="middle" font-size="7" fill="#10b981">Junta</text>
+<rect x="300" y="125" width="100" height="10" fill="#ecfdf5" stroke="#10b981" stroke-width="1" rx="2"/>
+<text x="350" y="133" text-anchor="middle" font-size="7" fill="#10b981">Junta tórica</text>
 <!-- Cuerpo -->
-<rect x="290" y="330" width="120" height="40" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" rx="2"/>
-<text x="350" y="355" text-anchor="middle" font-size="8" fill="#2563eb" font-weight="600">2. Cuerpo</text>
-<!-- Eje (dentro del cuerpo) -->
-<rect x="310" y="340" width="80" height="8" fill="#fff" stroke="#1e293b" stroke-width="1.5"/>
-<text x="350" y="348" text-anchor="middle" font-size="7" fill="#1e293b">1. Eje</text>
+<rect x="270" y="145" width="160" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" rx="3"/>
+<text x="350" y="175" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="600">2. Cuerpo</text>
+<!-- Eje (dentro) -->
+<rect x="300" y="158" width="100" height="10" fill="#fff" stroke="#1e293b" stroke-width="1.5"/>
+<text x="350" y="167" text-anchor="middle" font-size="8" fill="#1e293b">1. Eje ⌀20</text>
 <!-- Cojinetes -->
-<rect x="295" y="375" width="30" height="12" fill="#ecfdf5" stroke="#10b981" stroke-width="1"/>
-<text x="310" y="384" text-anchor="middle" font-size="6" fill="#10b981">Coj.</text>
-<rect x="375" y="375" width="30" height="12" fill="#ecfdf5" stroke="#10b981" stroke-width="1"/>
-<text x="390" y="384" text-anchor="middle" font-size="6" fill="#10b981">Coj.</text>
+<rect x="280" y="200" width="35" height="14" fill="#ecfdf5" stroke="#10b981" stroke-width="1"/>
+<text x="297" y="210" text-anchor="middle" font-size="7" fill="#10b981">Coj.</text>
+<rect x="385" y="200" width="35" height="14" fill="#ecfdf5" stroke="#10b981" stroke-width="1"/>
+<text x="402" y="210" text-anchor="middle" font-size="7" fill="#10b981">Coj.</text>
 
 <!-- Líneas de guía -->
-<line x1="350" y1="300" x2="350" y2="330" stroke="#a855f7" stroke-width="0.5" stroke-dasharray="3,2"/>
-<line x1="350" y1="318" x2="350" y2="330" stroke="#a855f7" stroke-width="0.5" stroke-dasharray="3,2"/>
-<line x1="310" y1="381" x2="330" y2="370" stroke="#a855f7" stroke-width="0.5" stroke-dasharray="3,2"/>
-<line x1="390" y1="381" x2="370" y2="370" stroke="#a855f7" stroke-width="0.5" stroke-dasharray="3,2"/>
+<line x1="350" y1="118" x2="350" y2="145" stroke="#a855f7" stroke-width="0.8" stroke-dasharray="4,2"/>
+<line x1="350" y1="135" x2="350" y2="145" stroke="#a855f7" stroke-width="0.8" stroke-dasharray="4,2"/>
+<line x1="297" y1="214" x2="320" y2="195" stroke="#a855f7" stroke-width="0.8" stroke-dasharray="4,2"/>
+<line x1="402" y1="214" x2="380" y2="195" stroke="#a855f7" stroke-width="0.8" stroke-dasharray="4,2"/>
 
 <!-- Orden de montaje -->
-<rect x="280" y="400" width="140" height="90" fill="#fff" stroke="#e2e8f0" stroke-width="1" rx="4"/>
-<text x="350" y="418" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="700">Orden de montaje</text>
-<text x="290" y="436" font-size="9" fill="#1e293b">1. Cojinetes → cuerpo</text>
-<text x="290" y="452" font-size="9" fill="#1e293b">2. Eje → cojinetes</text>
-<text x="290" y="468" font-size="9" fill="#1e293b">3. Junta → cuerpo</text>
-<text x="290" y="484" font-size="9" fill="#1e293b">4. Tapa → cuerpo</text>
-<text x="290" y="500" font-size="9" fill="#1e293b">5. Tornillos × 8</text>
+<rect x="480" y="100" width="200" height="140" fill="#faf5ff" stroke="#a855f7" stroke-width="1.5" rx="8"/>
+<text x="580" y="120" text-anchor="middle" font-size="10" fill="#a855f7" font-weight="700">Orden de Montaje</text>
+<line x1="495" y1="126" x2="665" y2="126" stroke="#a855f7" stroke-width="0.5"/>
+<text x="495" y="144" font-size="9" fill="#1e293b">1️⃣ Cojinetes → cuerpo</text>
+<text x="495" y="162" font-size="9" fill="#1e293b">2️⃣ Eje → cojinetes</text>
+<text x="495" y="180" font-size="9" fill="#1e293b">3️⃣ Junta tórica → cuerpo</text>
+<text x="495" y="198" font-size="9" fill="#1e293b">4️⃣ Tapa → cuerpo</text>
+<text x="495" y="216" font-size="9" fill="#1e293b">5️⃣ Tornillos M6×20 × 8</text>
+<text x="580" y="238" text-anchor="middle" font-size="8" fill="#64748b">De dentro → fuera</text>
 
-<!-- Flecha -->
-<line x1="440" y1="350" x2="460" y2="350" stroke="#a855f7" stroke-width="1.5"/>
-<polygon points="460,350 455,347 455,353" fill="#a855f7"/>
+<!-- Comparación lado a lado -->
+<rect x="30" y="230" width="430" height="70" fill="#fff" stroke="#e2e8f0" stroke-width="1" rx="6"/>
+<text x="245" y="250" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="700">Regla de oro del despiece</text>
+<text x="50" y="270" font-size="9" fill="#1e293b">• Piezas fabricadas → despiece completo (vistas+cotas+tolerancias)</text>
+<text x="50" y="286" font-size="9" fill="#1e293b">• Piezas estándar → solo en lista de piezas (norma ISO/DIN)</text>
+</g>
 
-<!-- ===== RESUMEN ===== -->
-<rect x="470" y="285" width="210" height="205" fill="#fff" stroke="#e2e8f0" stroke-width="1" rx="6"/>
-<text x="575" y="305" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="700">Despiece vs. Conjunto</text>
-<line x1="480" y1="312" x2="670" y2="312" stroke="#e2e8f0" stroke-width="0.5"/>
-<text x="485" y="330" font-size="9" fill="#2563eb" font-weight="600">DESPIECE</text>
-<text x="485" y="346" font-size="9" fill="#1e293b">• Cada pieza por separado</text>
-<text x="485" y="362" font-size="9" fill="#1e293b">• Vistas + cotas + toler.</text>
-<text x="485" y="378" font-size="9" fill="#1e293b">• Piezas fabricadas</text>
-<text x="485" y="394" font-size="9" fill="#1e293b">• Cuadro de rotulación</text>
-<text x="485" y="410" font-size="9" fill="#1e293b">• Rugosidad + material</text>
-<text x="485" y="432" font-size="9" fill="#f97316" font-weight="600">CONJUNTO</text>
-<text x="485" y="448" font-size="9" fill="#1e293b">• Todas ensambladas</text>
-<text x="485" y="464" font-size="9" fill="#1e293b">• Cotas generales</text>
-<text x="485" y="480" font-size="9" fill="#1e293b">• Lista de piezas</text>
-<text x="485" y="496" font-size="9" fill="#1e293b">• Vista explosiva</text>
-<text x="485" y="512" font-size="9" fill="#1e293b">• Orden de montaje</text>
+<!-- ===== PASO 4: ESTÁNDAR vs FABRICADA ===== -->
+<g id="paso4" style="display:none">
+<text x="350" y="85" text-anchor="middle" font-size="12" fill="#a855f7" font-weight="700">Piezas Fabricadas vs. Estándar</text>
+
+<!-- Columna fabricadas -->
+<rect x="20" y="100" width="320" height="200" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="8"/>
+<text x="180" y="122" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="700">🔧 PIEZAS FABRICADAS</text>
+<line x1="40" y1="130" x2="320" y2="130" stroke="#2563eb" stroke-width="0.5"/>
+<text x="40" y="150" font-size="9" fill="#1e293b">✓ Vistas completas (alzado, planta, perfil)</text>
+<text x="40" y="170" font-size="9" fill="#1e293b">✓ Cotas dimensionales y funcionales</text>
+<text x="40" y="190" font-size="9" fill="#1e293b">✓ Tolerancias dimensionales (h7, H7)</text>
+<text x="40" y="210" font-size="9" fill="#1e293b">✓ Tolerancias geométricas (planitud, coaxialidad)</text>
+<text x="40" y="230" font-size="9" fill="#1e293b">✓ Rugosidad superficial (Ra 1.6, Ra 3.2)</text>
+<text x="40" y="250" font-size="9" fill="#1e293b">✓ Material y tratamiento térmico</text>
+<text x="40" y="270" font-size="9" fill="#1e293b">✓ Cuadro de rotulación</text>
+<text x="180" y="290" text-anchor="middle" font-size="8" fill="#64748b">Ej: Eje, Cuerpo, Tapa</text>
+
+<!-- Columna estándar -->
+<rect x="360" y="100" width="320" height="200" fill="#ecfdf5" stroke="#10b981" stroke-width="2" rx="8"/>
+<text x="520" y="122" text-anchor="middle" font-size="11" fill="#10b981" font-weight="700">📦 PIEZAS ESTÁNDAR</text>
+<line x1="380" y1="130" x2="660" y2="130" stroke="#10b981" stroke-width="0.5"/>
+<text x="380" y="150" font-size="9" fill="#1e293b">✗ NO en despiece (sin vistas ni cotas)</text>
+<text x="380" y="170" font-size="9" fill="#1e293b">✓ Solo en lista de piezas</text>
+<text x="380" y="190" font-size="9" fill="#1e293b">✓ Norma de referencia (ISO, DIN, UNE)</text>
+<text x="380" y="210" font-size="9" fill="#1e293b">✓ Dimensiones normalizadas</text>
+<text x="380" y="230" font-size="9" fill="#1e293b">✓ Proveedor certificado</text>
+<text x="520" y="250" text-anchor="middle" font-size="8" fill="#64748b">Ej: Tornillos, tuercas, cojinetes</text>
+
+<!-- Ejemplos -->
+<rect x="20" y="320" width="660" height="100" fill="#fff" stroke="#e2e8f0" stroke-width="1" rx="6"/>
+<text x="350" y="340" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="700">📊 Ejemplo: Reductor de Velocidad</text>
+<text x="40" y="362" font-size="9" fill="#2563eb" font-weight="600">Fabricadas (12):</text>
+<text x="130" y="362" font-size="9" fill="#1e293b">Eje, Cuerpo, Tapa, Engranaje 1, Engranaje 2, Arandela x2, Cojinete x2, Junta, Brida</text>
+<text x="40" y="382" font-size="9" fill="#10b981" font-weight="600">Estándar (8):</text>
+<text x="110" y="382" font-size="9" fill="#1e293b">Tornillos ISO 4014-M6×20 (8 uds)</text>
+<text x="40" y="402" font-size="9" fill="#10b981" font-weight="600">Estándar (2):</text>
+<text x="110" y="402" font-size="9" fill="#1e293b">Cojinete 6205-2RS (2 uds, ISO 15)</text>
+</g>
+
+<!-- Diferencia despiece vs conjunto -->
+<rect x="20" y="440" width="660" height="70" fill="#fff" stroke="#e2e8f0" stroke-width="1" rx="6"/>
+<text x="350" y="460" text-anchor="middle" font-size="11" fill="#a855f7" font-weight="700">⚡ Despiece vs. Plano de Conjunto</text>
+<text x="50" y="480" font-size="10" fill="#2563eb" font-weight="600">Despiece:</text>
+<text x="110" y="480" font-size="10" fill="#1e293b">Cada pieza por separado con vistas+cotas+tolerancias. Lo que necesita el operario de taller.</text>
+<text x="370" y="480" font-size="10" fill="#f97316" font-weight="600">Conjunto:</text>
+<text x="430" y="480" font-size="10" fill="#1e293b">Todas ensambladas. Cotas generales, vista explosiva, lista de piezas, orden de montaje.</text>
 </svg>
 </div>
 </section>
@@ -287,51 +350,51 @@ Orden: de dentro hacia fuera, de abajo hacia arriba.
 <div class="exercises">
 
 <div class="exercise">
-<p>📐 Ejercicio 1: ¿Qué NO se representa en el despiece?</p>
+<p>📐 Ejercicio 1 (Quiz): ¿Qué tipo de piezas NO se representan en el despiece?</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false)">El eje principal</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">La tapa</button>
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Los tornillos (son estándar)</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">El cuerpo</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Las fabricadas</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Las estándar (tornillos, tuercas)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Las de fundición</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Las de aluminio</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 2: ¿Qué muestra la vista explosiva?</p>
+<p>📐 Ejercicio 2 (V/F): La vista explosiva muestra las piezas separadas en orden de montaje.</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false)">El conjunto montado</button>
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Las piezas separadas en orden de montaje</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Solo las piezas estándar</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Una sección del conjunto</button>
+<button class="quiz-btn" onclick="checkVF(this, true)">Verdadero</button>
+<button class="quiz-btn" onclick="checkVF(this, false)">Falso</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 3: ¿Cuál es el orden correcto de montaje?</p>
-<div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false)">De fuera hacia dentro, de arriba hacia abajo</button>
-<button class="quiz-btn" onclick="checkAnswer(this, true)">De dentro hacia fuera, de abajo hacia arriba</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Aleatorio</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">De arriba hacia abajo, de dentro hacia fuera</button>
-</div>
+<p>📐 Ejercicio 3 (Completar): Las piezas estándar se indican solo en la <input type="text" id="despFill1" placeholder="¿lista o despiece?"> de piezas, no en el despiece.</p>
+<div style="margin-top:.5rem"><button class="quiz-btn" onclick="checkFillIn.call(this, ['lista','listado'])">Comprobar</button></div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 4: ¿Qué información NO necesita una pieza en el despiece?</p>
-<div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Cotas dimensionales</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Tolerancias</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Material</button>
-<button class="quiz-btn" onclick="checkAnswer(this, true)">La lista de piezas completa</button>
+<p>📐 Ejercicio 4 (Ordenar): Ordena el orden de montaje de un reductor:</p>
+<div class="step-indicator" style="margin:.5rem 0">
+<div class="step-dot" style="background:#2563eb">1</div>
+<div class="step-dot" style="background:#e2e8f0">2</div>
+<div class="step-dot" style="background:#e2e8f0">3</div>
+<div class="step-dot" style="background:#e2e8f0">4</div>
+<div class="step-dot" style="background:#e2e8f0">5</div>
 </div>
+<div class="stack-item" data-pos="3" onclick="checkOrden(this, true)">Junta tórica</div>
+<div class="stack-item" data-pos="1" onclick="checkOrden(this, true)">Cojinetes en cuerpo</div>
+<div class="stack-item" data-pos="5" onclick="checkOrden(this, true)">Tornillos × 8</div>
+<div class="stack-item" data-pos="2" onclick="checkOrden(this, true)">Eje en cojinetes</div>
+<div class="stack-item" data-pos="4" onclick="checkOrden(this, true)">Tapa</div>
+<div style="margin-top:.5rem"><button class="quiz-btn" onclick="checkOrden(this, true)">Comprobar orden</button></div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 5: ¿Cómo se representan las piezas adyacentes en un corte de conjunto?</p>
+<p>📐 Ejercicio 5 (Quiz): ¿Cómo se representan las piezas adyacentes en un corte de conjunto?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Con la misma hachura</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Con hachuras de ángulo o separación diferente</button>
@@ -341,22 +404,72 @@ Orden: de dentro hacia fuera, de abajo hacia arriba.
 <p class="feedback"></p>
 </div>
 
+<div class="exercise">
+<p>📐 Ejercicio 6 (Completar): En el despiece, las piezas macizas NO se hachuran <input type="text" id="despFill2" placeholder="¿longitudinal o transversalmente?">.</p>
+<div style="margin-top:.5rem"><button class="quiz-btn" onclick="checkFillIn.call(this, ['longitudinal','longitudinalmente'])">Comprobar</button></div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 7 (V/F): El orden de montaje siempre es de dentro hacia fuera, de abajo hacia arriba.</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkVF(this, true)">Verdadero</button>
+<button class="quiz-btn" onclick="checkVF(this, false)">Falso</button>
+</div>
+<p class="feedback"></p>
+</div>
+
 </div>
 </section>
 
-<div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ SIN LÍNEAS</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="100" y="70" text-anchor="middle" font-size="9" fill="#ef4444">Sin líneas ❌</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ CON LÍNEAS</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><line x1="100" y1="40" x2="140" y2="20" stroke="#2563eb" stroke-width="1"/><text x="100" y="120" text-anchor="middle" font-size="9" fill="#10b981">Con líneas ✓</text></svg></div></div>
+
+
+<div class="comparison" style="margin:1.5rem 0">
+<div class="comparison-side">
+<strong style="color:var(--rojo)">❌ ERROR: Pieza estándar en despiece</strong>
+<svg viewBox="0 0 200 140" width="180" style="margin:1rem 0">
+<rect x="30" y="30" width="140" height="80" fill="#fef2f2" stroke="#ef4444" stroke-width="2" rx="4"/>
+<text x="100" y="55" text-anchor="middle" font-size="9" fill="#ef4444" font-weight="600">Tornillo M6×20</text>
+<line x1="50" y1="65" x2="150" y2="65" stroke="#ef4444" stroke-width="0.5"/>
+<text x="50" y="80" font-size="7" fill="#ef4444">Vista: alzado, planta, perfil</text>
+<text x="50" y="92" font-size="7" fill="#ef4444">Cotas: ⌀6 × 20</text>
+<text x="50" y="104" font-size="7" fill="#ef4444">Tol: ±0.05</text>
+<text x="100" y="125" text-anchor="middle" font-size="9" fill="#ef4444">¡No se representa! ✗</text>
+</svg>
+</div>
+<div class="comparison-side">
+<strong style="color:var(--verde)">✅ CORRECTO: Solo en lista</strong>
+<svg viewBox="0 0 200 140" width="180" style="margin:1rem 0">
+<rect x="30" y="30" width="140" height="80" fill="#ecfdf5" stroke="#10b981" stroke-width="2" rx="4"/>
+<text x="100" y="50" text-anchor="middle" font-size="9" fill="#10b981" font-weight="600">Lista de Piezas</text>
+<line x1="40" y1="58" x2="160" y2="58" stroke="#10b981" stroke-width="0.5"/>
+<text x="45" y="72" font-size="8" fill="#1e293b">Nº | Descripción | Norma | Ctd</text>
+<text x="45" y="86" font-size="8" fill="#1e293b">1  | Tornillo    | ISO   | 8</text>
+<text x="45" y="100" font-size="8" fill="#1e293b">   | M6×20       | 4014  |   </text>
+<text x="100" y="125" text-anchor="middle" font-size="9" fill="#10b981">Solo en lista ✓</text>
+</svg>
+</div>
+</div>
 
 <div class="box box-error">
 <strong>⚠️ Error clásico</strong>
 Representar piezas estándar (tornillos, tuercas, arandelas) en el despiece con todas sus vistas y cotas. Las piezas estándar NO se representan en el despiece: solo se indican en la lista de piezas con su norma correspondiente (ISO, DIN, UNE).
 </div>
 
-<div class="box box-idea">
-<strong>🔗 Conexión</strong>
-¡Has completado el curso de Dibujo Técnico! 49 temas desde la normalización hasta los planos de conjunto. Ahora dominas: formatos, líneas, escalas, vistas, perspectivas, sistema diédrico, cortes, acotación, intersecciones, abatimientos, giros y planos de conjunto.
+<div class="connection-box">
+<strong>🔗 Conexión con otros temas</strong>
+• <strong>Planos de conjunto (B09.1):</strong> el despiece es la contrapartida del plano de conjunto. Mientras el conjunto muestra todo ensamblado, el despiece separa cada pieza.<br>
+• <strong>Lista de piezas (B09.2):</strong> complementa el despiece. Incluye todas las piezas (fabricadas + estándar) con cantidades y normas.<br>
+• <strong>Cortes y secciones:</strong> las piezas del despiece se representan con cortes cuando es necesario mostrar el interior.<br>
+• <strong>Acotación:</strong> cada pieza del despiece tiene su propia cotación completa.<br>
+🎉 <strong>¡Has completado los 49 temas de Dibujo Técnico!</strong>
 </div>
 
-<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: despiece de un motor eléctrico</strong>Un motor eléctrico tiene 20+ piezas. El despiece muestra cada pieza separada con sus líneas de referencia. El operario de taller usa el despiece para verificar que todas las piezas están presentes antes del montaje.</div>
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL 1</span><strong>Caso aeronáutico: despiece de motor LEAP-1B</strong>El motor GE Aviation LEAP-1B tiene más de 3000 piezas. El despiece del rotor de baja presión muestra 42 álabes, el disco central, las anillas de retención y los sistemas de fijación. Cada álabe tiene su propio plano de despiece con tolerancias de ±0.02mm en el perfil aerodinámico. Las piezas estándar (tornillos IN718, arandelas) solo aparecen en la lista de piezas con su norma Boeing B5D6618.</div>
+
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🚗 CASO REAL 2</span><strong>Caso automoción: caja de cambios Porsche 911</strong>La caja de cambios de 7 velocidades PDK tiene 180 piezas en su despiece completo. Cada eje, engranaje y sincronizador tiene su plano individual con cotas, tolerancias h7/H7 y rugosidad Ra 0.8. Los cojinetes SKF y los retenes de aceite son piezas estándar que solo se listan. La vista explosiva del manual de taller muestra el orden de montaje con 47 pasos numerados.</div>
+
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏗️ CASO REAL 3</span><strong>Caso civil: puente colgante de Akashi Kaikyō</strong>El puente más largo del mundo (1991m de luz central) tiene un despiece de más de 50000 piezas. Los anclajes, torres, cables y tablero tienen planos de despiece individuales. Cada perno de alta resistencia (ASTM A325) es estándar; cada placa de unión es fabricada. La vista explosiva del tablero muestra 230 secciones modulares ensambladas en obra.</div>
 
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
@@ -415,6 +528,67 @@ function checkExercise(id, correct, btn) {
     feedback.textContent = '❌ Respuesta correcta: ' + correct;
     feedback.className = 'feedback incorrect';
     input.style.borderColor = 'var(--rojo)';
+  }
+}
+
+function showPaso(n) {
+  for(var i=1;i<=4;i++){
+    var el=document.getElementById('paso'+i);
+    if(el) el.style.display='none';
+  }
+  var paso=document.getElementById('paso'+n);
+  if(paso) paso.style.display='';
+  var buttons=document.querySelectorAll('#stepButtons rect');
+  for(var i=0;i<buttons.length;i++){
+    if(i+1==n){
+      buttons[i].setAttribute('fill','#2563eb');
+      buttons[i].querySelector('text').setAttribute('fill','#fff');
+    } else {
+      buttons[i].setAttribute('fill','#e2e8f0');
+      buttons[i].querySelector('text').setAttribute('fill','#1e293b');
+    }
+  }
+}
+showPaso(1);
+
+function checkFillIn(correctAnswers) {
+  var exercise = this;
+  var input = exercise.querySelector('input[type="text"]');
+  if(!input) return;
+  var val = input.value.trim().toLowerCase();
+  var feedback = exercise.querySelector('.feedback');
+  var found = correctAnswers.some(function(a) { return a.toLowerCase() === val; });
+  if(found) {
+    feedback.textContent = '✅ ¡Correcto! La respuesta es: ' + correctAnswers[0];
+    feedback.className = 'feedback correct';
+    input.style.borderColor = 'var(--verde)';
+  } else {
+    feedback.textContent = '❌ Respuestas válidas: ' + correctAnswers.join(' / ');
+    feedback.className = 'feedback incorrect';
+    input.style.borderColor = 'var(--rojo)';
+  }
+}
+
+function checkOrden(btn, correct) {
+  var exercise = btn.closest('.exercise');
+  var items = exercise.querySelectorAll('.step-item');
+  var allCorrect = true;
+  items.forEach(function(item, idx) {
+    var pos = parseInt(item.getAttribute('data-pos'));
+    if(pos === idx + 1) {
+      item.classList.add('active');
+    } else {
+      item.classList.remove('active');
+      allCorrect = false;
+    }
+  });
+  var feedback = exercise.querySelector('.feedback');
+  if(allCorrect) {
+    feedback.textContent = '✅ ¡Orden correcto! ¡Bien hecho!';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ Orden incorrecto. Inténtalo de nuevo.';
+    feedback.className = 'feedback incorrect';
   }
 }
 
