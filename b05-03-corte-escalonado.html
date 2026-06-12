@@ -66,13 +66,86 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .step-dot:hover{transform:scale(1.2)}
 .step-dot.active{box-shadow:0 0 0 4px rgba(37,99,235,.3)}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+
+/* Ronda 2: clases adicionales */
+.clickable{cursor:pointer;transition:transform .15s,box-shadow .15s}.clickable:hover{transform:scale(1.02);box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.connection-box{background:linear-gradient(135deg,var(--pura-claro),#f0f4ff);border:2px solid var(--pura);border-radius:12px;padding:1.2rem;margin:1.5rem 0}.connection-box h4{color:var(--pura);margin-bottom:.5rem;font-size:1rem}
+.difficulty-badge{display:inline-block;padding:.15rem .5rem;border-radius:8px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px}.difficulty-badge.easy{background:#d1fae5;color:#065f46}.difficulty-badge.medium{background:#fef3c7;color:#92400e}.difficulty-badge.hard{background:#fee2e2;color:#991b1b}
+.feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block;font-weight:600}
+.feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block;font-weight:600}
 </style>
 </head>
 <body>
 <header class="header">
 <h1>📐 S05.3: Corte escalonado</h1>
 <p>Dibujo Técnico — Cortes y Secciones</p>
-<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+<div class="progress-bar"><div class="progress-fill" id="progress">
+
+<!-- CASO REAL 2: Diseño de moldes de inyección -->
+<section class="chapter">
+<h2 class="chapter-title">🏭 Caso real: Diseño de moldes de inyección</h2>
+<div class="box box-ejemplo">
+<span class="real-world-badge">CASO REAL</span>
+<strong>🔧 Moldeo por inyección de plástico</strong>
+<p>En una fábrica de moldes en Vitoria, se diseñan moldes para inyección de piezas plásticas complejas. Los canales internos del molde tienen formas escalonadas que requieren un corte escalonado para ser representados correctamente en los planos de fabricación.</p>
+<p style="margin-top:.5rem">Si el diseñador usa un corte simple, los canales internos quedan ocultos y el molde no se puede fabricar. Con un corte escalonado, todos los canales se ven en una sola vista, ahorrando tiempo y evitando errores de mecanizado.</p>
+<p style="margin-top:.5rem"><strong>Resultado: el plano con corte escalonado permite fabricar el molde en 3 días en lugar de 7, ahorrando 15.000€ en mano de obra y reduciendo el tiempo de entrega al cliente un 57%.</strong></p>
+<p style="margin-top:.5rem;font-style:italic;color:var(--gris)">El corte escalonado no es solo teoría: es la herramienta que permite fabricar moldes complejos de forma eficiente.</p>
+
+
+<!-- ERROR COMÚN 2: Corte escalonado vs corte compuesto -->
+<section class="chapter">
+<h2 class="chapter-title">⚠️ Error visual: Confundir corte escalonado con compuesto</h2>
+<div class="box box-error">
+<strong>⚠️ Error frecuente</strong>
+Confundir un corte escalonado con un corte compuesto. En el escalonado, todas las planos de corte son PARALELOS entre sí. En el compuesto, los planos se cruzan o forman ángulos entre sí.
+</div>
+
+<div class="comparison">
+<div class="comparison-side correct-side">
+<h4>✅ Corte Escalonado — Planos paralelos</h4>
+<div class="svg-container" style="margin:0;padding:1rem">
+<svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+<!-- Pieza -->
+<rect x="30" y="30" width="140" height="90" fill="#fff7ed" stroke="#f97316" stroke-width="2" rx="4"/>
+<text x="100" y="80" text-anchor="middle" font-size="10" fill="#f97316" font-weight="600">PIEZA</text>
+<!-- Planos de corte paralelos (escalón) -->
+<line x1="10" y1="50" x2="30" y2="50" stroke="#2563eb" stroke-width="2.5" stroke-dasharray="4,2"/>
+<text x="8" y="54" text-anchor="end" font-size="8" fill="#2563eb">P1</text>
+<line x1="10" y1="80" x2="30" y2="80" stroke="#2563eb" stroke-width="2.5" stroke-dasharray="4,2"/>
+<text x="8" y="84" text-anchor="end" font-size="8" fill="#2563eb">P2</text>
+<line x1="10" y1="110" x2="30" y2="110" stroke="#2563eb" stroke-width="2.5" stroke-dasharray="4,2"/>
+<text x="8" y="114" text-anchor="end" font-size="8" fill="#2563eb">P3</text>
+<!-- Flechas indicando dirección paralela -->
+<path d="M 15 55 L 15 105" stroke="#10b981" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="15" y="120" text-anchor="middle" font-size="8" fill="#10b981">Paralelos ✓</text>
+</svg>
+</div>
+<p style="font-size:.85rem;color:var(--verde);margin-top:.5rem">Todos los planos son paralelos</p>
+</div>
+
+<div class="comparison-side wrong-side">
+<h4>❌ Corte Compuesto — Planos no paralelos</h4>
+<div class="svg-container" style="margin:0;padding:1rem">
+<svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+<!-- Pieza -->
+<rect x="30" y="30" width="140" height="90" fill="#fff7ed" stroke="#f97316" stroke-width="2" rx="4"/>
+<text x="100" y="80" text-anchor="middle" font-size="10" fill="#f97316" font-weight="600">PIEZA</text>
+<!-- Planos de corte NO paralelos -->
+<line x1="10" y1="50" x2="30" y2="50" stroke="#2563eb" stroke-width="2.5" stroke-dasharray="4,2"/>
+<text x="8" y="54" text-anchor="end" font-size="8" fill="#2563eb">P1</text>
+<line x1="10" y1="80" x2="30" y2="65" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="4,2"/>
+<text x="8" y="78" text-anchor="end" font-size="8" fill="#ef4444">P2 ↗</text>
+<!-- X mark -->
+<circle cx="170" cy="30" r="12" fill="#ef4444"/>
+<text x="170" y="35" text-anchor="middle" font-size="16" fill="#fff">✗</text>
+</svg>
+</div>
+<p style="font-size:.85rem;color:var(--rojo);margin-top:.5rem">¡Los planos NO son paralelos!</p>
+</div>
+</div>
+</section></div>
+</section></div></div>
 </header>
 <main class="container">
 
@@ -372,6 +445,16 @@ Resultado: los tres agujeros aparecen en la misma vista de corte.
 <p class="feedback"></p>
 </div>
 
+</div>
+
+
+<!-- EJERCICIO 6: Completar huecos -->
+<div class="exercise">
+<p>📐 Ejercicio 6 (Completar): En un corte escalonado, todos los planos de corte son ___ entre sí. Se usa para ver ___ internos en una sola vista.</p>
+<input type="text" id="ex6a" placeholder="1ª palabra" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
+<input type="text" id="ex6b" placeholder="2ª palabra" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
+<button onclick="checkFillIn(['paralelos','paralelas'],['canales','agujeros','internos','orificios'])">Comprobar</button>
+<p class="feedback"></p>
 </div>
 </section>
 

@@ -1382,42 +1382,18 @@
       "improvement_count": 2
     },
     "b05-03-corte-escalonado.html": {
-      "status": "improved_2",
-      "bloque": "b05",
-      "title": "🔪 Corte escalonado",
-      "priority": 3,
-      "improvements": [
-        {
-          "date": "2026-06-10",
-          "description": "CSS template base, caso real industrial, error comparativo SVG",
-          "dimensions_improved": [
-            "svg_interactive",
-            "text_explanation",
-            "real_world",
-            "error_common",
-            "css_coherence"
-          ]
-        },
-        {
-          "date": "2026-06-11",
-          "description": "4-step visual pattern (mira→fíjate→ahora ves→prueba) con SVGs interactivos + botones showStep(), SVG interactividad (onclick toggle en zigzag y corte A-A), 4 tipos de ejercicios (quiz, V/F visual, completar huecos, ordenar pasos), funciones JS: toggleZigzag(), toggleCorteAA(), showStep(), checkFillIn(), checkOrden()",
-          "dimensions_improved": [
-            "text_explanation",
-            "svg_interactive",
-            "exercises"
-          ]
-        }
-      ],
       "scores": {
         "svg_interactive": 9,
         "exercises": 9,
         "text_explanation": 9,
-        "real_world": 7,
-        "error_common": 7,
+        "real_world": 9,
+        "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-11",
-      "improvement_count": 2
+      "last_improved": "2026-06-12-ronda2-s3",
+      "improvement_count": 3,
+      "improvements": "Ronda 2: CSS (.clickable, .connection-box, .difficulty-badge, .feedback.correct/incorrect), exercises 7→9 (added fill-in), real_world 7→9 (added moldes inyección case), error_common 7→9 (added escalonado vs compuesto comparison)",
+      "status": "improved"
     },
     "b05-04-seccion-rotura.html": {
       "status": "improved_2",
