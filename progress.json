@@ -3,8 +3,8 @@
   "autor": "David Antizar",
   "total_temas": 49,
   "last_improved": "2026-06-11",
-  "last_run": "2026-06-11 22:56:00 UTC",
-  "total_runs": 10,
+  "last_run": "2026-06-12 12:30:00 UTC",
+  "total_runs": 11,
   "topics": {
     "b01-01-formatos-papel.html": {
       "status": "improved_2",
@@ -365,18 +365,19 @@
             "text_explanation",
             "exercises"
           ]
-        }
+        },
+        "ronda 2: svg 7→9, exercises 7→9 (10 ejercicios, 5 tipos), text 7→9, real_world 7→9 (4 casos), error 7→9 (SVG comparativo), css 10→10"
       ],
       "scores": {
         "svg_interactive": 9,
         "exercises": 9,
         "text_explanation": 9,
-        "real_world": 7,
-        "error_common": 7,
+        "real_world": 9,
+        "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-11",
-      "improvement_count": 3
+      "last_improved": "2026-06-12-ronda2-s2",
+      "improvement_count": 4
     },
     "b02-07-representacion-piezas.html": {
       "status": "improved_3",
