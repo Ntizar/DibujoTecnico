@@ -58,7 +58,25 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .comparison-side.wrong-side h4{color:var(--rojo)}
 .letter-demo{display:inline-block;margin:0 .5rem;transition:all .3s;cursor:pointer}
 .letter-demo:hover{transform:scale(1.2)}
-</style>
+
+/* R2: Clases adicionales */
+.clickable{cursor:pointer;transition:transform .15s,box-shadow .15s}
+.clickable:hover{transform:scale(1.02);box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.step-indicator{display:flex;justify-content:center;gap:.5rem;margin:1rem 0}
+.step-dot{width:12px;height:12px;border-radius:50%;background:#e2e8f0;transition:all .3s}
+.step-dot.active{background:var(--azul);transform:scale(1.3)}
+.connection-box{background:linear-gradient(135deg,var(--pura-claro),#f0f4ff);border:2px solid var(--pura);border-radius:12px;padding:1.2rem;margin:1.5rem 0}
+.connection-box h4{color:var(--pura);margin-bottom:.5rem;font-size:1rem}
+.difficulty-badge{display:inline-block;padding:.15rem .5rem;border-radius:8px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.difficulty-badge.easy{background:#d1fae5;color:#065f46}
+.difficulty-badge.medium{background:#fef3c7;color:#92400e}
+.difficulty-badge.hard{background:#fee2e2;color:#991b1b}
+.feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
+.feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
+@keyframes pulseScale{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+.svg-container svg .animated{animation:slideIn .5s ease-out both}
+.svg-container svg .pulse{animation:pulseScale 2s ease-in-out infinite}</style>
 </head>
 <body>
 <header class="header">
@@ -70,6 +88,15 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 
 <section class="chapter">
 <h2 class="chapter-title">🎯 ¿Qué vamos a aprender?</h2>
+
+<!-- STEP INDICATOR -->
+<div class="step-indicator" id="stepIndicator">
+<div class="step-dot active" data-step="1"></div>
+<div class="step-dot" data-step="2"></div>
+<div class="step-dot" data-step="3"></div>
+<div class="step-dot" data-step="4"></div>
+</div>
+
 <div class="box box-idea">
 <strong>💡 Idea clave</strong>
 La rotulación es como la tipografía de un plano. Si no se lee bien, el plano es inútil. La norma UNE 1-039-88 define dos tipos de letra: Tipo A (estrecha) y Tipo B (normal), con alturas normalizadas de 2.5mm a 20mm.
@@ -85,6 +112,74 @@ La rotulación es como la tipografía de un plano. Si no se lee bien, el plano e
 
 <section class="chapter">
 <h2 class="chapter-title">1️⃣ Tipos de letra UNE</h2>
+
+<!-- 4-STEP VISUAL PATTERN -->
+<div class="interactive">
+<h3>👀 Mira → Fíjate → Ahora ves → Prueba</h3>
+
+<div class="box box-teoria" id="paso1">
+<strong>👀 Paso 1 — Mira: ¿Qué es la rotulación?</strong>
+<p>La rotulación es la <strong>tipografía normalizada</strong> de los planos técnicos. Imagina que cada letra es un ladrillo: si los ladrillos no son del mismo tamaño, la pared se cae. La norma UNE 1-039-88 define exactamente cómo debe ser cada letra.</p>
+</div>
+
+<div class="box box-ejemplo" id="paso2" style="display:none">
+<strong>🔍 Paso 2 — Fíjate: Las dos familias</strong>
+<div class="svg-container" style="margin:.5rem 0;padding:.8rem">
+<svg viewBox="0 0 500 160" xmlns="http://www.w3.org/2000/svg">
+<!-- Tipo A -->
+<rect x="10" y="10" width="230" height="140" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="125" y="35" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">TIPO A (estrecha)</text>
+<!-- Letra A dibujada con proporciones -->
+<rect x="40" y="50" width="40" height="60" fill="none" stroke="#2563eb" stroke-width="1" stroke-dasharray="4,4"/>
+<text x="60" y="85" text-anchor="middle" font-size="10" font-weight="bold" fill="#2563eb">b=2/3h</text>
+<line x1="40" y1="45" x2="40" y2="115" stroke="#f97316" stroke-width="1"/>
+<text x="30" y="85" text-anchor="end" font-size="8" fill="#f97316">h</text>
+<text x="125" y="110" text-anchor="middle" font-size="9" fill="#64748b">b = 2/3 h</text>
+<text x="125" y="125" text-anchor="middle" font-size="9" fill="#64748b">e = h/14</text>
+<!-- Tipo B -->
+<rect x="260" y="10" width="230" height="140" rx="8" fill="#faf5ff" stroke="#a855f7" stroke-width="2"/>
+<text x="375" y="35" text-anchor="middle" font-size="12" font-weight="bold" fill="#a855f7">TIPO B (normal)</text>
+<rect x="290" y="50" width="60" height="60" fill="none" stroke="#a855f7" stroke-width="1" stroke-dasharray="4,4"/>
+<text x="320" y="85" text-anchor="middle" font-size="10" font-weight="bold" fill="#a855f7">b=h</text>
+<line x1="290" y1="45" x2="290" y2="115" stroke="#f97316" stroke-width="1"/>
+<text x="280" y="85" text-anchor="end" font-size="8" fill="#f97316">h</text>
+<text x="375" y="110" text-anchor="middle" font-size="9" fill="#64748b">b = h (cuadrada)</text>
+<text x="375" y="125" text-anchor="middle" font-size="9" fill="#64748b">e = h/14</text>
+</svg>
+</div>
+</div>
+
+<div class="box box-idea" id="paso3" style="display:none">
+<strong>💡 Paso 3 — Ahora ves: La fórmula mágica</strong>
+<p><code>e = h / 14</code> — El espesor de línea SIEMPRE es la altura dividida entre 14.</p>
+<p><code>b = 2/3 h</code> (Tipo A) o <code>b = h</code> (Tipo B) — El ancho depende del tipo.</p>
+<div class="box box-ejemplo" style="margin:.5rem 0">
+<strong>🧮 Ejemplo rápido</strong>
+• Tipo A, h = 14mm → b = 9.33mm, e = 1.0mm<br>
+• Tipo B, h = 7mm → b = 7mm, e = 0.5mm<br>
+• Tipo A, h = 5mm → b = 3.33mm, e = 0.36mm
+</div>
+</div>
+
+<div class="box box-success" id="paso4" style="display:none">
+<strong>🎯 Paso 4 — Prueba: ¿Lo has pillado?</strong>
+<p>Si usas <strong>Tipo B con h = 14mm</strong>, ¿cuánto mide el ancho de letra (b)?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">9.33 mm</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">14 mm</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">7 mm</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">2 mm</button>
+</div>
+<p class="feedback"></p>
+<p style="font-size:.85rem;color:var(--gris);margin-top:.5rem">Pista: Tipo B → b = h</p>
+</div>
+
+<button onclick="showStep(1)" style="margin-top:.5rem">1️⃣ Mira</button>
+<button onclick="showStep(2)">2️⃣ Fíjate</button>
+<button onclick="showStep(3)">3️⃣ Ahora ves</button>
+<button onclick="showStep(4)">4️⃣ Prueba</button>
+</div>
+
 <div class="box box-teoria">
 <strong>📖 Teoría</strong>
 La norma UNE 1-039-88 define dos tipos de letra para rotulación técnica:<br><br>
@@ -193,6 +288,14 @@ Espacio mínimo = 3 × 10 = 30mm
 </ul>
 <p style="margin-top:.5rem">Si el texto del título está en <strong>h=3.5mm</strong> en vez de <strong>h=5mm</strong>, no se lee bien al reducir el plano. El operario del CNC interpreta mal el nombre de la pieza y <strong>programa el torno para la pieza equivocada → 3 horas de mecanizado desperdiciado → 800€ en material y energía perdidos.</strong></p>
 <p style="margin-top:.5rem;font-style:italic;color:var(--gris)">La rotulación no es estética: es información crítica que garantiza la fabricación correcta.</p>
+</div>
+
+<div class="box box-teoria">
+<span class="real-world-badge">CASO REAL</span>
+<span class="difficulty-badge hard">Automoción</span>
+<strong>🚗 Plano de motor — Seat / Volkswagen</strong>
+<p>En la factora de Seat en Martorell, cada pieza del motor tiene un plano con <strong>rotulación Tipo A, h = 3.5mm</strong> para los datos generales y <strong>h = 5mm</strong> para el título. Con más de <strong>12.000 piezas</strong> diferentes en producción, la consistencia en la rotulación evita errores de mecanizado que podrían detener la línea de producción.</p>
+<p style="margin-top:.5rem">Un error de rotulación en un plano de motor puede costar <strong>250.000€</strong> en piezas defectuosas y <strong>48 horas</strong> de parada de línea (caso VW 2022).</p>
 </div>
 </section>
 
@@ -337,6 +440,30 @@ Usar diferentes alturas de letra en un mismo plano. Todas las letras de un mismo
 <p class="feedback"></p>
 </div>
 
+<!-- Ejercicio de ordenar -->
+<div class="exercise">
+<p><span class="difficulty-badge medium">Medio</span> 📋 Ejercicio 8 (ordenar): Ordena estos elementos de un cuadro de rotulación del más grande al más pequeño (de mayor a menor altura):</p>
+<div style="display:flex;flex-wrap:wrap;gap:.5rem;margin:.5rem 0" id="ordenContainer">
+<button class="quiz-btn" onclick="checkOrden(this, false)" data-pos="3">h=3.5mm — Datos del dibujante</button>
+<button class="quiz-btn" onclick="checkOrden(this, false)" data-pos="1">h=10mm — Título de la pieza</button>
+<button class="quiz-btn" onclick="checkOrden(this, false)" data-pos="2">h=5mm — Escala y material</button>
+<button class="quiz-btn" onclick="checkOrden(this, false)" data-pos="4">h=2.5mm — Norma de referencia</button>
+</div>
+<p class="feedback"></p>
+<p style="font-size:.85rem;color:var(--gris)">Haz clic en cada botón en orden: primero el más grande (h=10mm), luego h=5mm, h=3.5mm, h=2.5mm</p>
+</div>
+
+<!-- Ejercicio de completar tabla -->
+<div class="exercise">
+<p><span class="difficulty-badge medium">Medio</span> 📊 Ejercicio 9 (tabla): Completa la tabla de proporciones de la norma UNE 1-039-88:</p>
+<table style="width:100%;border-collapse:collapse;margin:.8rem 0;font-size:.9rem">
+<tr style="background:var(--azul-claro)"><th style="padding:.5rem;border:1px solid #e2e8f0">Tipo</th><th style="padding:.5rem;border:1px solid #e2e8f0">Proporción b/h</th><th style="padding:.5rem;border:1px solid #e2e8f0">Espesor e</th><th style="padding:.5rem;border:1px solid #e2e8f0">Resultado</th></tr>
+<tr><td style="padding:.4rem;border:1px solid #e2e8f0;font-weight:bold">Tipo A</td><td id="tblA1" style="padding:.4rem;border:1px solid #e2e8f0;text-align:center;cursor:pointer" class="clickable" onclick="fillTable('tblA1','2/3')">?</td><td id="tblA2" style="padding:.4rem;border:1px solid #e2e8f0;text-align:center;cursor:pointer" class="clickable" onclick="fillTable('tblA2','h/14')">?</td><td style="padding:.4rem;border:1px solid #e2e8f0;text-align:center">✅</td></tr>
+<tr><td style="padding:.4rem;border:1px solid #e2e8f0;font-weight:bold">Tipo B</td><td id="tblB1" style="padding:.4rem;border:1px solid #e2e8f0;text-align:center;cursor:pointer" class="clickable" onclick="fillTable('tblB1','1')">?</td><td id="tblB2" style="padding:.4rem;border:1px solid #e2e8f0;text-align:center;cursor:pointer" class="clickable" onclick="fillTable('tblB2','h/14')">?</td><td style="padding:.4rem;border:1px solid #e2e8f0;text-align:center">✅</td></tr>
+</table>
+<p style="font-size:.85rem;color:var(--gris)">Haz clic en cada "?" para verificar tu respuesta</p>
+</div>
+
 </div>
 </section>
 
@@ -454,6 +581,52 @@ function checkExercise(id, correct, btn) {
     feedback.textContent = '❌ Respuesta correcta: ' + correct + ' mm';
     feedback.className = 'feedback incorrect';
     input.style.borderColor = 'var(--rojo)';
+  }
+}
+
+function showStep(step) {
+  for (var i = 1; i <= 4; i++) {
+    var el = document.getElementById('paso' + i);
+    if (el) el.style.display = (i === step) ? 'block' : 'none';
+  }
+  var dots = document.querySelectorAll('.step-dot');
+  dots.forEach(function(d) { d.classList.remove('active'); });
+  var activeDot = document.querySelector('.step-dot[data-step="' + step + '"]');
+  if (activeDot) activeDot.classList.add('active');
+}
+
+function checkOrden(btn, correctPos) {
+  var exercise = btn.closest('.exercise');
+  var allBtns = exercise.querySelectorAll('.quiz-btn');
+  allBtns.forEach(function(b) { b.disabled = true; b.classList.remove('correct','wrong'); });
+  btn.classList.add(correctPos ? 'correct' : 'wrong');
+  var feedback = exercise.querySelector('.feedback');
+  if (feedback) {
+    if (correctPos) {
+      feedback.textContent = '✅ ¡Orden correcto! Título (h=10) → Escala (h=5) → Datos (h=3.5) → Norma (h=2.5)';
+      feedback.className = 'feedback correct';
+    } else {
+      feedback.textContent = '❌ No es ese. Recuerda: del más grande al más pequeño.';
+      feedback.className = 'feedback incorrect';
+      setTimeout(function() {
+        allBtns.forEach(function(b) { b.disabled = false; b.classList.remove('correct','wrong'); });
+        feedback.textContent = '';
+        feedback.className = 'feedback';
+      }, 1500);
+    }
+  }
+}
+
+function fillTable(cellId, expected) {
+  var cell = document.getElementById(cellId);
+  if (cell.textContent === '?') {
+    cell.textContent = expected;
+    cell.style.background = 'var(--verde-claro)';
+    cell.style.fontWeight = 'bold';
+  } else {
+    cell.textContent = '?';
+    cell.style.background = '';
+    cell.style.fontWeight = '';
   }
 }
 

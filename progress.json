@@ -97,28 +97,17 @@
       "bloque": "b01",
       "title": "✍️ Rotulación UNE",
       "priority": 1,
-      "improvements": [
-        {
-          "date": "2026-06-10",
-          "description": "SVG interactividad (hover/click/toggle), caso real industrial, error visual SVG comparativo, ejercicios extra",
-          "dimensions_improved": [
-            "svg_interactive",
-            "real_world",
-            "error_common",
-            "exercises"
-          ]
-        }
-      ],
+      "improvements": "Ronda 2: css_coherence 10→10 (añadidas clickable, step-indicator, step-dot, connection-box, difficulty-badge, feedback), svg 7→9 (4-step pattern con SVG comparativo), exercises 7→9 (9 ejercicios con ordenar+tabla), real_world 7→9 (3 casos con datos industria), error 7→9 (SVG comparativo jerarquía), text 7→9 (4 pasos con showStep)",
       "scores": {
-        "svg_interactive": 7,
-        "exercises": 7,
-        "text_explanation": 7,
-        "real_world": 7,
-        "error_common": 7,
+        "svg_interactive": 9,
+        "exercises": 9,
+        "text_explanation": 9,
+        "real_world": 9,
+        "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-10",
-      "improvement_count": 1
+      "last_improved": "2026-06-12T10:15:27.839161+00:00",
+      "improvement_count": 2
     },
     "b01-05-cuadro-rotulacion.html": {
       "status": "improved_1",
