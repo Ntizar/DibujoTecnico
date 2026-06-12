@@ -62,6 +62,16 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .stack-item:hover{border-color:var(--azul);transform:translateX(4px)}
 .stack-item.active{border-color:var(--azul);background:var(--azul-claro)}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+
+.clickable{cursor:pointer;transition:all .2s}.clickable:hover{transform:scale(1.03);box-shadow:0 4px 12px rgba(37,99,235,.15)}
+.connection-box{background:linear-gradient(135deg,#faf5ff,#eff6ff);border:2px solid #a855f7;border-radius:10px;padding:1rem 1.2rem;margin:1rem 0}
+.connection-box strong{color:#7c3aed}.connection-box a{color:#2563eb;text-decoration:underline}
+.difficulty-badge{display:inline-block;padding:.15rem .5rem;border-radius:10px;font-size:.7rem;font-weight:700;margin-left:.5rem;vertical-align:middle}
+.difficulty-badge.easy{background:#dcfce7;color:#166534}
+.difficulty-badge.medium{background:#fef3c7;color:#92400e}
+.difficulty-badge.hard{background:#fee2e2;color:#991b1b}
+.feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
+.feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
 </style>
 </head>
 <body>
@@ -167,11 +177,42 @@ Planta debajo de la LT, alzado encima de la LT
 </svg>
 <p style="margin-top:.8rem;font-size:.9rem;color:var(--gris)">
   <strong>👆 Interactúa:</strong>
-  <button class="interactive" style="background:var(--azul);color:#fff;border:none;padding:.4rem 1rem;border-radius:6px;cursor:pointer;font-size:.85rem;margin:.3rem" onclick="toggleLayer('coord-layer')">📍 Ver coordenadas (x,y,z)</button>
-  <button class="interactive" style="background:var(--azul);color:#fff;border:none;padding:.4rem 1rem;border-radius:6px;cursor:pointer;font-size:.85rem;margin:.3rem" onclick="toggleLayer('cuadrante-layer')">🌍 Ver cuadrantes</button>
+  <button class="quiz-btn" style="font-size:.85rem;padding:.4rem 1rem" onclick="toggleLayer('coord-layer')">📍 Ver coordenadas (x,y,z)</button>
+  <button class="quiz-btn" style="font-size:.85rem;padding:.4rem 1rem" onclick="toggleLayer('cuadrante-layer')">🌍 Ver cuadrantes</button>
 </p>
 </div>
-</section>
+
+<div class="box box-idea" style="margin:1rem 0">
+<strong>🔬 Explora los 4 cuadrantes</strong>
+<p style="font-size:.9rem;margin:.5rem 0">Haz clic en cada cuadrante para ver dónde se sitúan las proyecciones:</p>
+<div class="svg-container" style="margin:.5rem 0">
+<svg viewBox="0 0 500 350" width="100%" xmlns="http://www.w3.org/2000/svg" id="cuadrantesSvg">
+<rect x="0" y="0" width="500" height="350" fill="#f8fafc" rx="8"/>
+<line x1="250" y1="20" x2="250" y2="330" stroke="#333" stroke-width="1.5"/>
+<text x="255" y="15" font-size="10" fill="#333" font-weight="600">PV</text>
+<line x1="20" y1="175" x2="480" y2="175" stroke="#333" stroke-width="2"/>
+<text x="485" y="179" font-size="10" fill="#333">LT</text>
+<rect id="q1rect" x="30" y="30" width="210" height="135" fill="#dcfce7" stroke="#10b981" stroke-width="2" rx="6" class="clickable" onclick="showCuadrante(1)"/>
+<text x="135" y="100" text-anchor="middle" font-size="14" fill="#166534" font-weight="700">1º Cuadrante</text>
+<text x="135" y="120" text-anchor="middle" font-size="10" fill="#166534">planta ↓ | alzado ↑</text>
+<text x="135" y="140" text-anchor="middle" font-size="10" fill="#166534">y&gt;0, z&gt;0 (Europa)</text>
+<rect id="q2rect" x="260" y="30" width="210" height="135" fill="#fef3c7" stroke="#f59e0b" stroke-width="2" rx="6" class="clickable" onclick="showCuadrante(2)"/>
+<text x="365" y="100" text-anchor="middle" font-size="14" fill="#92400e" font-weight="700">2º Cuadrante</text>
+<text x="365" y="120" text-anchor="middle" font-size="10" fill="#92400e">planta ↑ | alzado ↑</text>
+<text x="365" y="140" text-anchor="middle" font-size="10" fill="#92400e">y&gt;0, z&gt;0</text>
+<rect id="q3rect" x="260" y="190" width="210" height="135" fill="#fee2e2" stroke="#ef4444" stroke-width="2" rx="6" class="clickable" onclick="showCuadrante(3)"/>
+<text x="365" y="260" text-anchor="middle" font-size="14" fill="#991b1b" font-weight="700">3º Cuadrante</text>
+<text x="365" y="280" text-anchor="middle" font-size="10" fill="#991b1b">planta ↑ | alzado ↓</text>
+<text x="365" y="300" text-anchor="middle" font-size="10" fill="#991b1b">y&lt;0, z&lt;0</text>
+<rect id="q4rect" x="30" y="190" width="210" height="135" fill="#e0e7ff" stroke="#6366f1" stroke-width="2" rx="6" class="clickable" onclick="showCuadrante(4)"/>
+<text x="135" y="260" text-anchor="middle" font-size="14" fill="#3730a3" font-weight="700">4º Cuadrante</text>
+<text x="135" y="280" text-anchor="middle" font-size="10" fill="#3730a3">planta ↓ | alzado ↓</text>
+<text x="135" y="300" text-anchor="middle" font-size="10" fill="#3730a3">y&lt;0, z&lt;0</text>
+<rect x="30" y="310" width="440" height="30" fill="#fff" stroke="#e2e8f0" rx="4"/>
+<text id="cuadranteInfo" x="250" y="330" text-anchor="middle" font-size="11" fill="#64748b">👆 Haz clic en un cuadrante para ver los detalles</text>
+</svg>
+</div>
+</div>
 
 <section class="chapter">
 <h2 class="chapter-title">3️⃣ Paso a paso: construir el punto en el diedrico</h2>
@@ -320,6 +361,54 @@ A'(x=30, z=25) → arriba de la LT. A(x=30, y=20) → debajo de la LT.
 <p class="feedback"></p>
 </div>
 
+
+<div class="exercise">
+<p>📐 Ejercicio 6 (VF visual): <span class="difficulty-badge easy">Fácil</span> ¿El 1º cuadrante tiene planta debajo y alzado encima de la LT?</p>
+<div class="svg-container" style="margin:.5rem 0">
+<svg viewBox="0 0 300 100" width="280" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="300" height="100" fill="#ecfdf5" rx="6"/>
+<line x1="20" y1="50" x2="280" y2="50" stroke="#333" stroke-width="2"/>
+<text x="150" y="45" text-anchor="middle" font-size="11" fill="#333" font-weight="600">LT</text>
+<circle cx="150" cy="25" r="6" fill="#2563eb"/>
+<text x="160" y="20" font-size="9" fill="#2563eb" font-weight="600">A' (alzado)</text>
+<circle cx="150" cy="75" r="6" fill="#f97316"/>
+<text x="160" y="85" font-size="9" fill="#f97316" font-weight="600">A (planta)</text>
+<line x1="150" y1="25" x2="150" y2="75" stroke="#a855f7" stroke-width="2"/>
+<text x="150" y="95" text-anchor="middle" font-size="9" fill="#10b981" font-weight="600">✅ 1º cuadrante: A' arriba, A abajo</text>
+</svg>
+</div>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Verdadero</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Falso</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 7 (Completar huecos): <span class="difficulty-badge medium">Media</span> En el diedrico, A' se llama ______ y se sitúa ______ de la LT. A se llama ______ y se sitúa ______ de la LT.</p>
+<div style="display:flex;flex-wrap:wrap;gap:.5rem;margin:.5rem 0">
+<input type="text" id="ex7a" placeholder="nombre A'" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.9rem;width:130px">
+<input type="text" id="ex7b" placeholder="posición A'" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.9rem;width:130px">
+<input type="text" id="ex7c" placeholder="nombre A" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.9rem;width:130px">
+<input type="text" id="ex7d" placeholder="posición A" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.9rem;width:130px">
+</div>
+<button onclick="checkFillInPunto()" style="background:var(--azul);color:#fff;border:none;padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.9rem">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 8 (Problema contextual): <span class="difficulty-badge hard">Difícil</span> Un punto P está a 40mm de la LT en alzado y 15mm en planta. ¿En qué cuadrante está?</p>
+<div class="box box-idea" style="margin:.5rem 0">
+<strong>💡 Pista:</strong> Si A' está arriba de la LT (z>0) y A está debajo (y>0), estamos en el 1º cuadrante.
+</div>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">1º cuadrante (z>0, y>0)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">2º cuadrante (z>0, y<0)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">3º cuadrante (z>0, y<0)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">4º cuadrante (z<0, y>0)</button>
+</div>
+<p class="feedback"></p>
+</div>
 </div>
 </section>
 
@@ -349,7 +438,11 @@ Confundir alzado con planta. A' (con apóstrofo) es el ALZADO → arriba de la L
 El punto es el elemento más básico del diédrico. A partir del punto, construiremos rectas, planos y piezas. ¡Es la base de todo!
 </div>
 
-<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: control de calidad dimensional</strong>Un punto en el diedrico es como las coordenadas (X, Y, Z) de una pieza. Cuando un inspector mide una pieza con un CMM (máquina de medición por coordenadas), cada punto medido tiene coordenadas respecto a los planos de referencia. El punto en el diedrico es la base de todo sistema de cotas.</div>
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: control de calidad dimensional</strong>Un punto en el diedrico es como las coordenadas (X, Y, Z) de una pieza. Cuando un inspector mide una pieza con un CMM (máquina de medición por coordenadas), cada punto medido tiene coordenadas respecto a los planos de referencia. El punto en el diedrico es la base de todo sistema de cotas.
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏗️ CASO REAL</span><strong>Caso real: navegación GPS y coordenadas</strong>Los sistemas GPS usan un sistema similar al diedrico. La posición de un satélite se proyecta en dos planos: la latitud (equivalente a la planta) y la altitud (equivalente al alzado). Cada punto en la superficie terrestre tiene coordenadas que se representan como proyecciones perpendiculares, exactamente como A' y A en el diedrico.</div>
+
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🎮 CASO REAL</span><strong>Caso real: videojuegos y modelado 3D</strong>En los videojuegos, cada objeto 3D tiene vértices definidos por coordenadas (x, y, z). El motor gráfico proyecta cada vértice en dos vistas: la vista superior (planta) y la vista frontal (alzado). El punto en el diedrico es la base de todo sistema de coordenadas 3D usado en diseño asistido por ordenador (CAD) y videojuegos.</div>
+</div>
 
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
@@ -366,6 +459,8 @@ El punto es el elemento más básico del diédrico. A partir del punto, construi
 <a href="b03-06-perspectivas-resumen.html">← Anterior</a>
 <a href="b04-02-recta-diedrico.html">Siguiente →</a>
 </div>
+
+</section>
 
 </main>
 <footer class="footer">Hecho con ❤️ por David Antizar</footer>
@@ -467,6 +562,44 @@ function checkOrden(btn, answer) {
     feedback.textContent = '❌ Orden correcto: ②→①→③ (LT → puntos → línea de unión)';
     feedback.className = 'feedback incorrect';
   }
+}
+
+
+function checkFillInPunto() {
+  var a = document.getElementById('ex7a').value.trim().toLowerCase();
+  var b = document.getElementById('ex7b').value.trim().toLowerCase();
+  var c = document.getElementById('ex7c').value.trim().toLowerCase();
+  var d = document.getElementById('ex7d').value.trim().toLowerCase();
+  var feedback = document.getElementById('ex7d').parentElement.querySelector('.feedback');
+  var aOk = ['alzado','alzado','proyeccion vertical','proyeccion_alzado'].some(x => a.includes(x));
+  var bOk = ['arriba','encima','superior'].some(x => b.includes(x));
+  var cOk = ['planta','proyeccion horizontal','proyeccion_horizontal'].some(x => c.includes(x));
+  var dOk = ['abajo','debajo','inferior'].some(x => d.includes(x));
+  if(aOk && bOk && cOk && dOk) {
+    feedback.textContent = '✅ ¡Correcto! A' = alzado (arriba), A = planta (abajo)';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ Respuesta: A' = alzado (arriba), A = planta (abajo)';
+    feedback.className = 'feedback incorrect';
+  }
+}
+function showCuadrante(n) {
+  // Reset all colors
+  document.getElementById('q1rect').setAttribute('fill', '#dcfce7');
+  document.getElementById('q2rect').setAttribute('fill', '#fef3c7');
+  document.getElementById('q3rect').setAttribute('fill', '#fee2e2');
+  document.getElementById('q4rect').setAttribute('fill', '#e0e7ff');
+  
+  var info = document.getElementById('cuadranteInfo');
+  var data = {
+    1: '✅ 1º cuadrante: A' arriba de LT (z>0), A debajo (y>0) — ¡El usado en Europa!',
+    2: '2º cuadrante: A' arriba de LT (z>0), A también arriba (y>0)',
+    3: '3º cuadrante: A' arriba de LT (z>0), A también arriba (y>0) — pero PV y PH invertidos',
+    4: '4º cuadrante: A' debajo de LT (z<0), A también debajo (y<0)'
+  };
+  info.textContent = data[n];
+  // Highlight selected
+  document.getElementById('q' + n + 'rect').setAttribute('fill', '#2563eb');
 }
 
 window.onscroll = function(){

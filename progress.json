@@ -737,7 +737,7 @@
       }
     },
     "b04-01-punto-diedrico.html": {
-      "status": "improved_2",
+      "status": "improved",
       "bloque": "b04",
       "title": "📍 S04.1: El punto en el diedrico — Dibujo Técnico",
       "priority": 2,
@@ -768,12 +768,12 @@
         "svg_interactive": 9,
         "exercises": 9,
         "text_explanation": 9,
-        "real_world": 7,
+        "real_world": 9,
         "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-11",
-      "improvement_count": 2
+      "last_improved": "2026-06-12-ronda2-s3",
+      "improvement_count": 3
     },
     "b04-02-recta-diedrico.html": {
       "status": "improved_2",
