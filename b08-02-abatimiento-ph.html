@@ -159,7 +159,7 @@ Se mide con transportador sobre el papel.
 </div>
 
 <div class="svg-container">
-<svg id="abatimientoSvg" viewBox="0 0 700 520" xmlns="http://www.w3.org/2000/svg"> xmlns="http://www.w3.org/2000/svg">
+<svg id="abatimientoSvg" viewBox="0 0 700 520" xmlns="http://www.w3.org/2000/svg">
 <!-- Fondo -->
 <rect x="0" y="0" width="700" height="520" fill="#f8fafc" rx="8"/>
 <text x="350" y="22" text-anchor="middle" font-size="14" fill="#2563eb" font-weight="700">Abatimiento sobre PH</text>
@@ -366,15 +366,49 @@ Se mide con transportador sobre el papel.
 </div>
 <button class="quiz-btn" onclick="checkOrden('abatOrden', [1,2,3,4])" style="font-size:.85rem">Comprobar orden</button>
 <p class="feedback"></p>
+
+<!-- EJERCICIO DECIDIR OPERACIÓN -->
+<div class="exercise">
+<p>📐 Ejercicio 9 (Decidir operación): Un ingeniero recibe un plano con un triángulo ABC en un plano inclinado α. Necesita saber la longitud REAL del lado AB. ¿Qué debe hacer?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Medir A'B' en alzado directamente</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Abatir el plano α sobre PH y medir A₀B₀</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Hacer un corte por el triángulo</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Girar el triángulo 90° alrededor de α₂</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<!-- EJERCICIO V/F: Confundir α₁ y α₂ -->
+<div class="exercise">
+<p>📐 Ejercicio 10 (V/F): "Para abatir sobre PH, el eje de giro es la traza vertical α₂"</p>
+<div style="display:flex;gap:.5rem;margin:.5rem 0">
+<button class="quiz-btn" onclick="checkVF(this, true)" style="background:#fff;color:var(--texto)">❌ Falso</button>
+<button class="quiz-btn" onclick="checkVF(this, false)" style="background:#fff;color:var(--texto)">✅ Verdadero</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<!-- EJERCICIO COMPLETAR: Regla de distancia -->
+<div class="exercise">
+<p>📐 Ejercicio 11 (Completar): La distancia del punto abatido A₀ a la traza α₁ es igual a la * Z del punto original.</p>
+<input type="text" id="abatFill2" placeholder="Escribe la respuesta" style="padding:.4rem .8rem;border:2px solid var(--azul);border-radius:6px;width:120px;font-size:1rem">
+<button class="quiz-btn" onclick="checkFillIn2(['cota'])" style="font-size:.85rem">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
 </div>
 </div>
 </section>
 
-<div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ PLANTA NO ABATIDA</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="20" y1="70" x2="180" y2="70" stroke="#333" stroke-width="2"/><text x="100" y="65" text-anchor="middle" font-size="9" fill="#333">LT</text><circle cx="100" cy="100" r="8" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/><text x="100" y="120" text-anchor="middle" font-size="9" fill="#ef4444">No abatida ❌</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ PLANTA ABATIDA</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="20" y1="70" x2="180" y2="70" stroke="#333" stroke-width="2"/><text x="100" y="65" text-anchor="middle" font-size="9" fill="#333">LT</text><circle cx="100" cy="40" r="8" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/><text x="100" y="120" text-anchor="middle" font-size="9" fill="#10b981">Abatida ✓</text></svg></div></div>
+<div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ PLANTA NO ABATIDA</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="20" y1="70" x2="180" y2="70" stroke="#333" stroke-width="2"/><text x="100" y="65" text-anchor="middle" font-size="9" fill="#333">LT</text><circle cx="100" cy="100" r="8" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/><text x="100" y="120" text-anchor="middle" font-size="9" fill="#ef4444">No abatida ❌</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ PLANTA ABATIDA</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="20" y1="70" x2="180" y2="70" stroke="#333" stroke-width="2"/><text x="100" y="65" text-anchor="middle" font-size="9" fill="#333">LT</text><circle cx="100" cy="40" r="8" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/><text x="100" y="120" text-anchor="middle" font-size="9" fill="#10b981">Abatida ✓</text></svg></div>
+<div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ ERROR: α₂ como eje de abatimiento</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/><line x1="50" y1="100" x2="150" y2="100" stroke="#ef4444" stroke-width="2"/><text x="100" y="95" text-anchor="middle" font-size="9" fill="#ef4444" font-weight="700">α₂ (vertical)</text><text x="100" y="115" text-anchor="middle" font-size="8" fill="#ef4444">¡α₂ es vertical, no horizontal!</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ CORRECTO: α₁ como eje</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><line x1="50" y1="100" x2="150" y2="100" stroke="#2563eb" stroke-width="2"/><text x="100" y="95" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="700">α₁ (horizontal)</text><text x="100" y="115" text-anchor="middle" font-size="8" fill="#10b981">α₁ = eje de abatimiento ✓</text></svg></div></div>
+
+</div>
 
 <div class="box box-error">
 <strong>⚠️ Error clásico</strong>
-Confundir la traza horizontal (α₁) con la traza vertical (α₂). α₁ es la traza horizontal y es el eje de abatimiento sobre PH. α₂ es la traza vertical y se usa para abatimiento sobre PV. ¡No las confundas!
+Confundir la traza horizontal (α₁) con la traza vertical (α₂). α₁ es la traza horizontal y es el eje de abatimiento sobre PH. α₂ es la traza vertical y se usa para abatimiento sobre PV. ¡No las confundas! <strong>Truco mnemotécnico:</strong> "α₁ → PH → 1ª letra en común (P y P, H y H)" y "α₂ → PV → 2ª letra en común (V y V)".
 </div>
 
 <div class="box box-idea">
@@ -386,7 +420,9 @@ En el siguiente tema aprenderás los giros en sistema diédrico, otra herramient
 
 <div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL 2</span><strong>Caso industrial: pliegue de chapa metálica (DIN 6923)</strong>Para fabricar una caja de chapa de 300×200×150 mm, hay que abatir las caras laterales sobre la base para obtener las longitudes reales de doblado. El ángulo de abatimiento permite calcular la longitud de la chapa plana necesaria (despiece). Error de 1° en abatimiento = 2 mm de error en la caja = pieza rechazada en control calidad.</div>
 
-<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL 3</span><strong>Caso industrial: plano de una ladera (topografía)</strong>Un ingeniero topógrafo necesita medir la pendiente real de una ladera. El terreno forma un plano inclinado α. Abatiendo α sobre el PH, puede medir la distancia real entre dos puntos y el ángulo real de inclinación. Esto es esencial para diseñar carreteras de montaña con pendientes máximas del 12%.</div>
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL 3</span><strong>Caso industrial: plano de una ladera (topografía)</strong>Un ingeniero topógrafo necesita medir la pendiente real de una ladera. El terreno forma un plano inclinado α. Abatiendo α sobre el PH, puede medir la distancia real entre dos puntos y el ángulo real de inclinación. Esto es esencial para diseñar carreteras de montaña con pendientes máximas del 12%.<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL 4</span><strong>Caso industrial: fuselaje de avión (Airbus A320 panel de ala)</strong>El panel de ala de un A320 tiene un refuerzo interno en plano inclinado α. Para inspeccionar los 48 tornillos de fijación (⌀5.5 H7) en verdadera magnitud y verificar la distancia real entre cada tornillo y el borde del panel, se abate el panel sobre el PH. Sin abatimiento, los tornillos se ven deformados en alzado y planta. Con abatimiento, el inspector mide directamente con un comparador: distancia real entre tornillos = 50.00 mm ±0.05 mm. Error en abatimiento = tornillo mal posicionado = fallo estructural en vuelo.</div>
+
+</div>
 
 
 <div class="connection-box">
@@ -473,16 +509,16 @@ function checkVF(btn, correct) {
 
 function showAbatimientoPaso(n) {
   var titulos = [
-    '🔍 Mira: el plano α con sus trazas',
-    '🟠 Fíjate: la horizontal del plano',
-    '🔵 Ahora ves: el abatimiento del punto',
-    '🧪 Prueba: figura abatida en VM'
+    '🔍 PASO 1 — Mira: el plano α con sus DOS trazas (α₁ horizontal, α₂ vertical)',
+    '🟠 PASO 2 — Fíjate: la horizontal h del plano que pasa por A',
+    '🔵 PASO 3 — Ahora ves: el abatimiento del punto A → A₀',
+    '🧪 PASO 4 — Prueba: figura completa abatida en verdadera magnitud'
   ];
   var textos = [
-    'El plano α se define por sus dos trazas: α₁ (horizontal, eje de abatimiento) y α₂ (vertical). El punto A está contenido en α, con su proyección en alzado (A') y planta (A).',
-    'Para abatir A, trazamos una horizontal h del plano que pase por A. En alzado, h' es paralela a la LT. En planta, h es paralela a α₁. Esta horizontal es nuestra referencia para el abatimiento.',
-    'Abatimos h alrededor de α₁ → h₀ queda sobre α₁. Traza la perpendicular desde A' a α₁. La intersección con h₀ es el punto A₀, el punto abatido. La distancia A₀-α₁ = cota Z de A.',
-    'Para figuras completas: abatir cada vértice individualmente (A₀, B₀, C₀). Unir los vértices abatidos → figura en verdadera magnitud. Se pueden medir lados y ángulos reales directamente.'
+    'El plano α se define por sus DOS trazas: α₁ (horizontal, eje de abatimiento) y α₂ (vertical). El punto A está CONTENIDO en α, con su proyección en alzado (A', la cota Z) y planta (A, la profundidad Y). Observa: α₁ es la línea donde el plano "toca" el plano horizontal — por eso es el eje de giro.',
+    'Para abatir A, trazamos una HORIZONTAL h del plano que pase por A. En alzado, h' es paralela a la LT (porque es horizontal). En planta, h es paralela a α₁ (porque está en el plano α). Esta horizontal h es nuestra REFERENCIA: al abatirla, h₀ queda SOBRE α₁, y desde ahí encontramos A₀.',
+    'Abatimos h alrededor de α₁ → h₀ queda SOBRE α₁ (el eje de giro). Ahora traza la PERPENDICULAR desde A' (alzado) hasta α₁. Donde esta perpendicular corta h₀, ahí está A₀, el punto abatido. ¡Regla de oro! La distancia de A₀ a α₁ es EXACTAMENTE la cota Z del punto — la misma distancia que tiene A' desde la LT.',
+    'Para figuras completas: abatir CADA VÉRTICE individualmente (A₀, B₀, C₀) siguiendo los mismos 4 pasos. Una vez abatidos todos los vértices, únelos → obtienes la figura en VERDADERA MAGNITUD. Ahora puedes medir lados y ángulos reales directamente con regla y transportador. ¡Como si el plano estuviera "aplastado" sobre la mesa!'
   ];
   document.getElementById('abatimientoTitulo').textContent = titulos[n];
   document.getElementById('abatimientoTexto').textContent = textos[n];
@@ -506,6 +542,24 @@ function checkFillIn(correctAnswers) {
     input.style.borderColor = 'var(--verde)';
   } else {
     feedback.textContent = '❌ Respuesta correcta: ' + correctAnswers[0];
+    feedback.className = 'feedback incorrect';
+    input.style.borderColor = 'var(--rojo)';
+  }
+}
+
+function checkFillIn2(correctAnswers) {
+  var exercise = this.parentElement;
+  var input = exercise.querySelector('input[type="text"]');
+  var feedback = exercise.querySelector('.feedback');
+  if (!input) return;
+  var val = input.value.trim().toLowerCase();
+  var correct = correctAnswers.some(function(a) { return a.toLowerCase() === val; });
+  if(correct) {
+    feedback.textContent = '✅ ¡Correcto! La distancia A₀-α₁ = cota Z del punto.';
+    feedback.className = 'feedback correct';
+    input.style.borderColor = 'var(--verde)';
+  } else {
+    feedback.textContent = '❌ Respuesta correcta: cota. La distancia del punto abatido a α₁ es la cota Z.';
     feedback.className = 'feedback incorrect';
     input.style.borderColor = 'var(--rojo)';
   }

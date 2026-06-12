@@ -1784,7 +1784,7 @@
       ]
     },
     "b08-02-abatimiento-ph.html": {
-      "status": "improved_1",
+      "status": "improved_2",
       "bloque": "b08",
       "title": "🔄 Abatimiento sobre PH",
       "priority": 4,
@@ -1799,18 +1799,29 @@
             "error_common",
             "css_coherence"
           ]
+        },
+        {
+          "date": "2026-06-12",
+          "description": "Ronda 2: fix duplicate xmlns, 4th case (A320 panel), 2nd error comparison (alpha1 vs alpha2), 3 new exercises, enhanced step texts, error box with mnemonic",
+          "dimensions_improved": [
+            "svg_interactive",
+            "exercises",
+            "text_explanation",
+            "real_world",
+            "error_common"
+          ]
         }
       ],
       "scores": {
-        "svg_interactive": 8,
-        "exercises": 8,
-        "text_explanation": 8,
-        "real_world": 8,
-        "error_common": 8,
-        "css_coherence": 8
+        "svg_interactive": 9,
+        "exercises": 9,
+        "text_explanation": 9,
+        "real_world": 9,
+        "error_common": 9,
+        "css_coherence": 10
       },
-      "last_improved": "2026-06-12-ronda2-s2",
-      "improvement_count": 2,
+      "last_improved": "2026-06-12-ronda2-s1",
+      "improvement_count": 3,
       "improvement_history": [
         {
           "round": "ronda2",
