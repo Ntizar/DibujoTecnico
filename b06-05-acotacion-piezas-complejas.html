@@ -76,6 +76,10 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .svg-pulse{animation:pulse 2s ease-in-out infinite}
 @keyframes slideIn{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:translateX(0)}}
 .slide-in{animation:slideIn .5s ease-out}
+
+/* Ronda 2: estilos adicionales para ejercicios avanzados */
+.operation-card{background:#fff;border:2px solid var(--azul);border-radius:10px;padding:1rem;margin:.8rem 0;cursor:pointer;transition:all .2s}.operation-card:hover{border-color:var(--naranja);background:var(--naranja-claro)}.operation-card.selected{border-color:var(--naranja);background:var(--naranja-claro);box-shadow:0 0 0 3px rgba(249,115,22,.2)}
+.note-table{width:100%;border-collapse:collapse;margin:.5rem 0;font-size:.85rem}.note-table th{background:var(--azul-claro);padding:.4rem;border:1px solid #cbd5e1}.note-table td{padding:.4rem;border:1px solid #cbd5e1}
 </style>
 </head>
 <body>
@@ -413,11 +417,45 @@ Una placa con 6 agujeros ⌀8 en dos filas de 3:<br>
 </table>
 <button class="quiz-btn" onclick="checkCotas()" style="font-size:.85rem">Comprobar cotas</button>
 <p class="feedback"></p>
+
+<!-- EJERCICIO DECIDIR OPERACIÓN DE MECANIZADO -->
+<div class="exercise">
+<p>📐 Ejercicio 10 (Decidir operación): Un operario recibe esta orden: <em>"Fresar 4× C2 en las esquinas de la placa"</em>. ¿Qué debe hacer?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Fresar 4 agujeros de 2 mm en las esquinas</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Fresar chaflanes de 2×45° en las 4 esquinas</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Redondear las 4 esquinas con radio de 2 mm</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Marcar las 4 esquinas con un rotulador de 2 mm</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<!-- EJERCICIO V/F VISUAL: Chaflán vs Radio -->
+<div class="exercise">
+<p>📐 Ejercicio 11 (V/F): "En un plano de mecanizado, si veo 'C3' junto a una esquina, significa que esa esquina tiene un radio de 3 mm"</p>
+<div style="display:flex;gap:.5rem;margin:.5rem 0">
+<button class="quiz-btn" onclick="checkVF(this, true)" style="background:#fff;color:var(--texto)">❌ Falso</button>
+<button class="quiz-btn" onclick="checkVF(this, false)" style="background:#fff;color:var(--texto)">✅ Verdadero</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<!-- EJERCICIO COMPLETAR: Nota de agrupación -->
+<div class="exercise">
+<p>📐 Ejercicio 12 (Completar): Una placa tiene 5 agujeros de 6 mm en parrilla regular. La notación en plano es: «⬜× ⌀6»</p>
+<input type="text" id="fill2" placeholder="?" style="padding:.4rem .8rem;border:2px solid var(--azul);border-radius:6px;width:80px;font-size:1rem">
+<button class="quiz-btn" onclick="checkFillIn2(['5'])" style="font-size:.85rem">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
 </div>
 </div>
 </section>
 
-<div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ ERROR: R en lugar de ⌀</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/><circle cx="100" cy="65" r="20" fill="none" stroke="#ef4444" stroke-width="2"/><text x="100" y="60" text-anchor="middle" font-size="9" fill="#ef4444" font-weight="700">R12</text><text x="100" y="110" text-anchor="middle" font-size="8" fill="#ef4444">¡Es un agujero, no un arco!</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ CORRECTO: ⌀ para diámetros</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><circle cx="100" cy="65" r="20" fill="none" stroke="#2563eb" stroke-width="2"/><line x1="80" y1="65" x2="120" y2="65" stroke="#2563eb" stroke-width="1"/><text x="100" y="60" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="700">⌀12</text><text x="100" y="110" text-anchor="middle" font-size="8" fill="#10b981">Agujero de 12 mm ✓</text></svg></div></div>
+<div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ ERROR: R en lugar de ⌀</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/><circle cx="100" cy="65" r="20" fill="none" stroke="#ef4444" stroke-width="2"/><text x="100" y="60" text-anchor="middle" font-size="9" fill="#ef4444" font-weight="700">R12</text><text x="100" y="110" text-anchor="middle" font-size="8" fill="#ef4444">¡Es un agujero, no un arco!</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ CORRECTO: ⌀ para diámetros</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><circle cx="100" cy="65" r="20" fill="none" stroke="#2563eb" stroke-width="2"/><line x1="80" y1="65" x2="120" y2="65" stroke="#2563eb" stroke-width="1"/><text x="100" y="60" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="700">⌀12</text><text x="100" y="110" text-anchor="middle" font-size="8" fill="#10b981">Agujero de 12 mm ✓</text></svg></div>
+<div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ ERROR: Cota de ángulo con línea recta</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/><polyline points="60,90 100,50 140,90" fill="none" stroke="#ef4444" stroke-width="2"/><line x1="80" y1="55" x2="120" y2="95" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,2"/><text x="100" y="45" text-anchor="middle" font-size="9" fill="#ef4444" font-weight="700">45°</text><text x="100" y="115" text-anchor="middle" font-size="8" fill="#ef4444">¡La cota no puede ser recta!</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ CORRECTO: Cota con arco concéntrico</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><polyline points="60,90 100,50 140,90" fill="none" stroke="#2563eb" stroke-width="2"/><path d="M 75 80 A 25 25 0 0 0 125 80" fill="none" stroke="#10b981" stroke-width="1.5"/><text x="100" y="75" text-anchor="middle" font-size="9" fill="#10b981" font-weight="700">45°</text><text x="100" y="115" text-anchor="middle" font-size="8" fill="#10b981">Arco concéntrico al vértice ✓</text></svg></div></div>
+
+</div>
 
 <div class="box box-error">
 <strong>⚠️ Error clásico</strong>
@@ -438,7 +476,9 @@ En la industria, la acotación de piezas complejas siempre se hace en CAD (Solid
 
 <div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL 2</span><strong>Caso industrial: brida de turbina eólica (Siemens SG 3.6)</strong>Una brida de 600 mm de diámetro con 12 agujeros ⌀22 en círculo de paso 560 mm, chaflanes C3 en bordes, radios R15 en transiciones. Se usa notación de parrilla circular: "12× ⌀22 CL 560" (círculo de paso). La tolerancia de posición de agujeros es ±0.1 mm. Error en acotación = brida que no sella = parada de turbina = pérdida de 15.000€/día.</div>
 
-<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL 3</span><strong>Caso industrial: placa de circuito de refrigeración (Tesla Supercharger v4)</strong>Placa de aluminio 6061-T6 con 24 canales de refrigeración de 2 mm de ancho, 8 agujeros de fijación ⌀4.2 (tolerancia H7), 4 ranuras de alineación 3×8 mm. Se acota con tabla de coordenadas para los 24 canales y notación de grupo "8× ⌀4.2 H7 CL 45". Tolerancia de planitud: 0.05 mm. Sin acotación correcta: fugas de refrigerante = fallo del cargador.</div>
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL 3</span><strong>Caso industrial: placa de circuito de refrigeración (Tesla Supercharger v4)</strong>Placa de aluminio 6061-T6 con 24 canales de refrigeración de 2 mm de ancho, 8 agujeros de fijación ⌀4.2 (tolerancia H7), 4 ranuras de alineación 3×8 mm. Se acota con tabla de coordenadas para los 24 canales y notación de grupo "8× ⌀4.2 H7 CL 45". Tolerancia de planitud: 0.05 mm. Sin acotación correcta: fugas de refrigerante = fallo del cargador.<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL 4</span><strong>Caso industrial: motor de Fórmula 1 (Mercedes M14 E Performance)</strong>La culata del motor M14 tiene 24 válvulas con asientos mecanizados a ±0.01 mm, 8 agujeros de refrigeración ⌀6.5 H7, 4 conductos de aceite con tolerancia H8, y 16 tornillos M6 con profundidad controlada. Se acota con: cotas de forma (145×95×70 mm), cotas de posición (8× ⌀6.5 H7 en parrilla 25×20), cotas de tolerancia geométrica (⏀0.02 para coaxialidad de conductos), y cotas de acabado (Ra 0.8 en asientos de válvula). Cada grupo de cotas corresponde a una operación CNC diferente: fresado 5 ejes para la forma, taladrado CNC para los agujeros, y rectificado para las superficies de sellado. Error en acotación de culata = motor que no sella = destrucción completa a 15.000 RPM.</div>
+
+</div>
 
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
@@ -584,10 +624,10 @@ function showPaso(n) {
   });
   // Update info panel
   var titulos = [
-    '🔍 Mira: la pieza completa con cotas',
-    '🟠 Fíjate: solo radios y arcos',
-    '🔵 Ahora ves: chaflanes y diámetros',
-    '🧪 Prueba: agrupación y tablas'
+    '🔍 PASO 1 — Mira: la pieza completa con TODAS las cotas',
+    '🟠 PASO 2 — Fíjate: solo radios y arcos (R)',
+    '🔵 PASO 3 — Ahora ves: chaflanes (C) y diámetros (⌀)',
+    '🧪 PASO 4 — Prueba: agrupación y tablas de notación'
   ];
   var textos = [
     'Haz clic en los botones de abajo para ver cada tipo de cota por separado. Cada elemento tiene su símbolo y regla específica.',

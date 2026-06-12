@@ -1608,7 +1608,7 @@
       "improvement_count": 2
     },
     "b06-05-acotacion-piezas-complejas.html": {
-      "status": "improved_1",
+      "status": "improved_2",
       "bloque": "b06",
       "title": "📐 Acotación en piezas complejas",
       "priority": 3,
@@ -1623,18 +1623,29 @@
             "error_common",
             "css_coherence"
           ]
+        },
+        {
+          "date": "2026-06-12",
+          "description": "Ronda 2: 4º caso real (F1 Mercedes M14), 2ª comparación error (cota ángulo recta vs arco), 3 ejercicios nuevos (decidir operación + V/F + completar), textos 4 pasos ampliados, CSS adicional para operation-card",
+          "dimensions_improved": [
+            "svg_interactive",
+            "exercises",
+            "text_explanation",
+            "real_world",
+            "error_common"
+          ]
         }
       ],
       "scores": {
-        "svg_interactive": 8,
-        "exercises": 8,
-        "text_explanation": 8,
-        "real_world": 8,
-        "error_common": 8,
-        "css_coherence": 8
+        "svg_interactive": 9,
+        "exercises": 9,
+        "text_explanation": 9,
+        "real_world": 9,
+        "error_common": 9,
+        "css_coherence": 10
       },
-      "last_improved": "2026-06-12-ronda2-s2",
-      "improvement_count": 2,
+      "last_improved": "2026-06-12-ronda2-s1",
+      "improvement_count": 3,
       "improvement_history": [
         {
           "round": "ronda2",
