@@ -869,15 +869,16 @@
         }
       ],
       "scores": {
-        "svg_interactive": 9,
-        "exercises": 9,
+        "svg_interactive": 8,
+        "exercises": 8,
         "text_explanation": 9,
-        "real_world": 7,
-        "error_common": 7,
-        "css_coherence": 7
+        "real_world": 8,
+        "error_common": 8,
+        "css_coherence": 10
       },
-      "last_improved": "2026-06-11",
-      "improvement_count": 2
+      "last_improved": "2026-06-12T09:32:32.791157+00:00",
+      "improvement_count": 3,
+      "last_round": "ronda2-s3"
     },
     "b04-05-paralelismo-perpendicularidad.html": {
       "status": "improved_2",
