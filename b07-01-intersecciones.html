@@ -51,6 +51,25 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .nav a:hover{background:var(--azul-claro)}
 .nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+
+.clickable{cursor:pointer;transition:all .2s}.clickable:hover{transform:scale(1.03);box-shadow:0 4px 12px rgba(37,99,235,.15)}
+.connection-box{background:linear-gradient(135deg,#faf5ff,#eff6ff);border:2px solid #a855f7;border-radius:10px;padding:1rem 1.2rem;margin:1rem 0}
+.connection-box strong{color:#7c3aed}.connection-box a{color:#2563eb;text-decoration:underline}
+.difficulty-badge{display:inline-block;padding:.15rem .5rem;border-radius:10px;font-size:.7rem;font-weight:700;margin-left:.5rem;vertical-align:middle}
+.difficulty-badge.easy{background:#dcfce7;color:#166534}
+.difficulty-badge.medium{background:#fef3c7;color:#92400e}
+.difficulty-badge.hard{background:#fee2e2;color:#991b1b}
+.feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
+.feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
+
+.real-world-badge{display:inline-block;background:linear-gradient(135deg,var(--naranja),#ea580c);color:#fff;padding:.3rem .8rem;border-radius:20px;font-size:.8rem;font-weight:700;margin-bottom:.8rem}
+.step-indicator{display:flex;gap:.5rem;justify-content:center;margin:1rem 0}
+.step-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:#fff;transition:all .3s;cursor:pointer}
+.step-dot:hover{transform:scale(1.2)}
+.step-dot.active{box-shadow:0 0 0 4px rgba(37,99,235,.3)}
+.comparison{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0}
+.comparison-side{background:#f8fafc;border-radius:12px;padding:1.5rem;border:2px solid #e2e8f0;text-align:center;transition:all .3s}
+.comparison-side:hover{border-color:var(--azul);box-shadow:0 4px 12px rgba(37,99,235,.1)}
 </style>
 </head>
 <body>
@@ -87,7 +106,7 @@ La intersección recta-plano es como encontrar el punto donde una aguja atravies
 <strong>🔹 Visibilidad:</strong><br>
 • La parte de la recta que está delante del plano se ve continua<br>
 • La parte de la recta que está detrás del plano se ve discontinua (línea punteada)
-</div>
+
 <div class="box box-ejemplo">
 <strong>🔍 Ejemplo 1</strong>
 Recta oblicua cortando plano α:<br>
@@ -206,6 +225,39 @@ Plano proyectante vertical → recta de corte → punto I
 <button class="quiz-btn" onclick="checkAnswer(this, false)">La proyección del punto</button>
 </div>
 <p class="feedback"></p>
+
+<div class="exercise">
+<p>📐 Ejercicio 6 (VF visual): <span class="difficulty-badge easy">Fácil</span> La recta de corte es la intersección entre el plano proyectante y el plano β.</p>
+<div class="svg-container" style="margin:.5rem 0">
+<svg viewBox="0 0 300 100" width="280" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="300" height="100" fill="#eff6ff" rx="6"/>
+<line x1="20" y1="50" x2="280" y2="50" stroke="#333" stroke-width="2"/>
+<text x="150" y="45" text-anchor="middle" font-size="11" fill="#333" font-weight="600">LT</text>
+<line x1="40" y1="80" x2="200" y2="25" stroke="#a855f7" stroke-width="2"/>
+<text x="210" y="20" font-size="9" fill="#a855f7">β</text>
+<line x1="150" y1="10" x2="150" y2="90" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="4,2"/>
+<text x="155" y="100" font-size="9" fill="#2563eb">proyectante</text>
+<circle cx="150" cy="38" r="4" fill="#f97316"/>
+<text x="160" y="35" font-size="9" fill="#f97316" font-weight="600">recta de corte</text>
+</svg>
+</div>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Verdadero</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Falso</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 7 (Ordenar pasos): <span class="difficulty-badge medium">Media</span> ¿En qué orden se resuelve la intersección recta-plano proyectante?</p>
+<p style="font-weight:400;font-size:.9rem">① Trazar recta de corte ② Proyectar recta r en β ③ Dibujar plano proyectante de r ④ Hallar punto I</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkOrden(this, '3-2-1-4')">③→②→①→④</button>
+<button class="quiz-btn" onclick="checkOrden(this, '3-1-2-4')">③→①→②→④</button>
+<button class="quiz-btn" onclick="checkOrden(this, '2-3-1-4')">②→③→①→④</button>
+</div>
+<p class="feedback"></p>
+</div>
 </div>
 
 </div>
@@ -224,6 +276,10 @@ La intersección es fundamental para cortes y secciones. Todo lo que viene despu
 </div>
 
 <div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: unión de conductos HVAC</strong>Un conducto de aire acondicionado rectangular se cruza con uno circular. La línea de intersección entre ambos es compleja y debe dibujarse con precisión para que la soldadura sea estanca. El dibujante usa el diedrico para calcular cada punto de intersección.</div>
+
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏗️ CASO REAL</span><strong>Caso real: unión de tuberías industriales</strong>En la industria petrolera, las tuberías se cruzan a diferentes ángulos. La línea de intersección entre dos tuberías cilíndricas debe calcularse con precisión para que la soldadura sea estanca. Los soldadores usan planos con proyecciones diédricas para saber exactamente dónde cortar y soldar.</div>
+
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏠 CASO REAL</span><strong>Caso real: arquitectura de cubiertas</strong>Las cubiertas de edificios con formas complejas (como estadios) tienen múltiples planos que se intersectan. El arquitecto calcula las líneas de intersección entre planos para definir los aleros, cumbreras y bajantes. Cada intersección plano-plano genera una recta que debe representarse en las tres vistas.</div>
 
 <div class="interactive">
   <h3>🎬 Ejemplo visual: Método del plano proyectante</h3>
@@ -330,6 +386,7 @@ La intersección es fundamental para cortes y secciones. Todo lo que viene despu
 </div>
 
 
+<div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
 <ul>
 <li>Plano proyectante → recta de corte → punto I</li>
@@ -337,6 +394,7 @@ La intersección es fundamental para cortes y secciones. Todo lo que viene despu
 <li>Visibilidad: continua delante, discontinua detrás</li>
 <li>¡Ya dominas las intersecciones! 🎉</li>
 </ul>
+</div>
 </div>
 
 <div class="nav">

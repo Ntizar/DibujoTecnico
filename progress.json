@@ -1235,7 +1235,7 @@
       ]
     },
     "b07-01-intersecciones.html": {
-      "status": "improved_2",
+      "status": "improved",
       "bloque": "b07",
       "title": "🔀 Intersección recta-plano",
       "priority": 3,
@@ -1265,12 +1265,12 @@
         "svg_interactive": 9,
         "exercises": 9,
         "text_explanation": 9,
-        "real_world": 7,
-        "error_common": 7,
+        "real_world": 9,
+        "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-11",
-      "improvement_count": 2
+      "last_improved": "2026-06-12-ronda2-s3",
+      "improvement_count": 3
     },
     "b08-01-abatimientos.html": {
       "status": "improved_2",
