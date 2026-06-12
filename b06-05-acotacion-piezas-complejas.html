@@ -70,6 +70,12 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .difficulty-badge{display:inline-block;background:linear-gradient(135deg,var(--pura),#7c3aed);color:#fff;padding:.2rem .6rem;border-radius:12px;font-size:.7rem;font-weight:700;margin-left:.5rem}
 .feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block;font-weight:600}
 .feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block;font-weight:600}
+
+.svg-container svg .clickable{cursor:pointer;transition:all .3s}.svg-container svg .clickable:hover{filter:brightness(1.1)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.svg-pulse{animation:pulse 2s ease-in-out infinite}
+@keyframes slideIn{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:translateX(0)}}
+.slide-in{animation:slideIn .5s ease-out}
 </style>
 </head>
 <body>
@@ -298,7 +304,7 @@ Una placa con 6 agujeros ⌀8 en dos filas de 3:<br>
 </div>
 
 <!-- Botones de control SVG -->
-<div style="display:flex;gap:.5rem;justify-content:center;margin:1rem 0;flex-wrap:wrap">
+<div style="display:flex;gap:.5rem;justify-content:center;margin:1rem 0;flex-wrap:wrap" class="clickable">
 <button class="quiz-btn" onclick="showPaso(0)" style="font-size:.85rem">📐 Pieza completa</button>
 <button class="quiz-btn" onclick="showPaso(1)" style="font-size:.85rem">🟠 Radios y arcos</button>
 <button class="quiz-btn" onclick="showPaso(2)" style="font-size:.85rem">🔵 Chaflanes y ⌀</button>
@@ -393,6 +399,19 @@ Una placa con 6 agujeros ⌀8 en dos filas de 3:<br>
 <div class="stack-item" data-pos="4" onclick="selectOrden(this)">④ Escribir ⌀12 junto a la cota</div>
 </div>
 <button class="quiz-btn" onclick="checkOrden('ordenContainer', [1,2,3,4])" style="font-size:.85rem">Comprobar orden</button>
+<p class="feedback"></p>
+</div>
+
+<!-- EJERCICIO TABLA DE SIGNOS DE COTAS -->
+<div class="exercise">
+<p>📐 Ejercicio 9 (Tabla de cotas): Completa la tabla de cotas para esta pieza</p>
+<table style="width:100%;border-collapse:collapse;margin:.5rem 0;font-size:.9rem">
+<tr style="background:var(--azul-claro)"><th style="border:1px solid #cbd5e1;padding:.4rem">Elemento</th><th style="border:1px solid #cbd5e1;padding:.4rem">Símbolo</th><th style="border:1px solid #cbd5e1;padding:.4rem">Valor</th></tr>
+<tr><td style="border:1px solid #cbd5e1;padding:.4rem">Agujero 1</td><td style="border:1px solid #cbd5e1;padding:.4rem">⌀</td><td style="border:1px solid #cbd5e1;padding:.4rem"><input type="text" id="cota1" placeholder="?" style="width:50px;padding:.2rem .4rem;border:2px solid var(--azul);border-radius:4px"></td></tr>
+<tr><td style="border:1px solid #cbd5e1;padding:.4rem">Agujero 2</td><td style="border:1px solid #cbd5e1;padding:.4rem">R</td><td style="border:1px solid #cbd5e1;padding:.4rem"><input type="text" id="cota2" placeholder="?" style="width:50px;padding:.2rem .4rem;border:2px solid var(--naranja);border-radius:4px"></td></tr>
+<tr><td style="border:1px solid #cbd5e1;padding:.4rem">Chaflán</td><td style="border:1px solid #cbd5e1;padding:.4rem">C</td><td style="border:1px solid #cbd5e1;padding:.4rem"><input type="text" id="cota3" placeholder="?" style="width:50px;padding:.2rem .4rem;border:2px solid var(--naranja);border-radius:4px"></td></tr>
+</table>
+<button class="quiz-btn" onclick="checkCotas()" style="font-size:.85rem">Comprobar cotas</button>
 <p class="feedback"></p>
 </div>
 </div>
@@ -578,6 +597,27 @@ function showPaso(n) {
   ];
   document.getElementById('pasoTitulo').textContent = titulos[n];
   document.getElementById('pasoTexto').textContent = textos[n];
+}
+
+function checkCotas() {
+  var c1 = document.getElementById('cota1').value.trim();
+  var c2 = document.getElementById('cota2').value.trim();
+  var c3 = document.getElementById('cota3').value.trim();
+  var feedback = document.querySelector('.exercise:last-of-type .feedback') || document.querySelectorAll('.exercise')[8].querySelector('.feedback');
+  var allCorrect = true;
+  if(c1 === '12' || c1 === '12mm') { document.getElementById('cota1').style.borderColor = 'var(--verde)'; }
+  else { document.getElementById('cota1').style.borderColor = 'var(--rojo)'; allCorrect = false; }
+  if(c2 === '20' || c2 === '20mm') { document.getElementById('cota2').style.borderColor = 'var(--verde)'; }
+  else { document.getElementById('cota2').style.borderColor = 'var(--rojo)'; allCorrect = false; }
+  if(c3 === '2' || c3 === '2mm') { document.getElementById('cota3').style.borderColor = 'var(--verde)'; }
+  else { document.getElementById('cota3').style.borderColor = 'var(--rojo)'; allCorrect = false; }
+  if(allCorrect) {
+    feedback.textContent = '✅ ¡Correcto! ⌀12 para agujeros, R20 para radios, C2 para chaflanes.';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ Revisa: agujero = ⌀12, radio = R20, chaflán = C2.';
+    feedback.className = 'feedback incorrect';
+  }
 }
 window.onscroll = function(){
   var h = document.documentElement;

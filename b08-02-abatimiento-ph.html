@@ -62,6 +62,12 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .stack-item:hover{border-color:var(--azul);transform:translateX(4px)}
 .stack-item.active{border-color:var(--azul);background:var(--azul-claro)}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+.clickable{cursor:pointer;transition:all .2s;outline:none}.clickable:hover{filter:brightness(1.1);transform:scale(1.02)}.clickable:active{transform:scale(0.98)}
+.connection-box{background:linear-gradient(135deg,var(--pura-claro),#f3e8ff);border:2px solid var(--pura);border-radius:12px;padding:1.2rem;margin:1.5rem 0}
+.connection-box h4{color:var(--pura);margin-bottom:.5rem}
+.difficulty-badge{display:inline-block;background:linear-gradient(135deg,var(--pura),#7c3aed);color:#fff;padding:.2rem .6rem;border-radius:12px;font-size:.7rem;font-weight:700;margin-left:.5rem}
+.feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block;font-weight:600}
+.feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block;font-weight:600}
 </style>
 </head>
 <body>
@@ -139,8 +145,21 @@ Se mide con transportador sobre el papel.
 
 <section class="chapter">
 <h2 class="chapter-title">2️⃣ Visualiza el abatimiento sobre PH</h2>
+<!-- Step indicator -->
+<div class="step-indicator" id="abatimientoPaso">
+<div class="step-dot active" style="background:var(--azul)" onclick="showAbatimientoPaso(0)">1</div>
+<div class="step-dot" style="background:var(--gris)" onclick="showAbatimientoPaso(1)">2</div>
+<div class="step-dot" style="background:var(--gris)" onclick="showAbatimientoPaso(2)">3</div>
+<div class="step-dot" style="background:var(--gris)" onclick="showAbatimientoPaso(3)">4</div>
+</div>
+
+<div class="interactive" id="abatimientoInfo">
+<h3 id="abatimientoTitulo">🔍 Mira: el plano α con sus trazas</h3>
+<p id="abatimientoTexto" style="margin:.5rem 0 1rem;color:#64748b">Haz clic en los pasos para ver cómo se abatir el plano sobre PH. Cada paso revela un elemento clave del proceso.</p>
+</div>
+
 <div class="svg-container">
-<svg viewBox="0 0 700 520" xmlns="http://www.w3.org/2000/svg">
+<svg id="abatimientoSvg" viewBox="0 0 700 520" xmlns="http://www.w3.org/2000/svg"> xmlns="http://www.w3.org/2000/svg">
 <!-- Fondo -->
 <rect x="0" y="0" width="700" height="520" fill="#f8fafc" rx="8"/>
 <text x="350" y="22" text-anchor="middle" font-size="14" fill="#2563eb" font-weight="700">Abatimiento sobre PH</text>
@@ -318,6 +337,36 @@ Se mide con transportador sobre el papel.
 <p class="feedback"></p>
 </div>
 
+<!-- EJERCICIO V/F VISUAL -->
+<div class="exercise">
+<p>📐 Ejercicio 6 (V/F): "El eje de abatimiento sobre PH es la traza horizontal α₁"</p>
+<div style="display:flex;gap:.5rem;margin:.5rem 0">
+<button class="quiz-btn" onclick="checkVF(this, true)" style="background:#fff;color:var(--texto)">✅ Verdadero</button>
+<button class="quiz-btn" onclick="checkVF(this, false)" style="background:#fff;color:var(--texto)">❌ Falso</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<!-- EJERCICIO COMPLETAR HUECO -->
+<div class="exercise">
+<p>📐 Ejercicio 7 (Completar): Para abatir un punto se traza una * del plano que pase por él</p>
+<input type="text" id="abatFill1" placeholder="Escribe la respuesta" style="padding:.4rem .8rem;border:2px solid var(--azul);border-radius:6px;width:200px;font-size:1rem">
+<button class="quiz-btn" onclick="checkFillIn(['horizontal','horizontal del plano','horizontal h'])" style="font-size:.85rem">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+<!-- EJERCICIO ORDENAR PASOS -->
+<div class="exercise">
+<p>📐 Ejercicio 8 (Ordenar): Ordena los pasos para abatir un punto A sobre PH</p>
+<div id="abatOrden" style="margin:.5rem 0">
+<div class="stack-item" data-pos="3" onclick="selectOrden(this)">③ Traza perpendicular desde A' a α₁</div>
+<div class="stack-item" data-pos="1" onclick="selectOrden(this)">① Trazar horizontal h por A en α</div>
+<div class="stack-item" data-pos="4" onclick="selectOrden(this)">④ Intersección con h₀ = A₀</div>
+<div class="stack-item" data-pos="2" onclick="selectOrden(this)">② Abatir h → h₀ sobre α₁</div>
+</div>
+<button class="quiz-btn" onclick="checkOrden('abatOrden', [1,2,3,4])" style="font-size:.85rem">Comprobar orden</button>
+<p class="feedback"></p>
+</div>
 </div>
 </section>
 
@@ -335,6 +384,15 @@ En el siguiente tema aprenderás los giros en sistema diédrico, otra herramient
 
 <div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: base de máquina abatida</strong>La base de una máquina tiene un agujero excéntrico en el PH. Para acotar la distancia real del agujero al borde, se abate el PH sobre el PV. La cota se lee directamente en el plano abatido sin necesidad de cálculos.</div>
 
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL 2</span><strong>Caso industrial: pliegue de chapa metálica (DIN 6923)</strong>Para fabricar una caja de chapa de 300×200×150 mm, hay que abatir las caras laterales sobre la base para obtener las longitudes reales de doblado. El ángulo de abatimiento permite calcular la longitud de la chapa plana necesaria (despiece). Error de 1° en abatimiento = 2 mm de error en la caja = pieza rechazada en control calidad.</div>
+
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL 3</span><strong>Caso industrial: plano de una ladera (topografía)</strong>Un ingeniero topógrafo necesita medir la pendiente real de una ladera. El terreno forma un plano inclinado α. Abatiendo α sobre el PH, puede medir la distancia real entre dos puntos y el ángulo real de inclinación. Esto es esencial para diseñar carreteras de montaña con pendientes máximas del 12%.</div>
+
+
+<div class="connection-box">
+<h4>🔗 Conexión con otros bloques</h4>
+<p>¡Has completado el tema de abatimiento sobre PH! Este concepto es fundamental para el resto del bloque de Abatimientos y Giros. En el siguiente tema aprenderás los <strong>giros en sistema diédrico</strong>: otra herramienta para obtener verdadera magnitud. El abatimiento y el giro son complementarios: el abatimiento "aplasta" el plano, el giro "mueve" el objeto dentro del espacio.</p>
+</div>
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
 <ul>
@@ -412,6 +470,75 @@ function checkVF(btn, correct) {
     }
   }
 }
+
+function showAbatimientoPaso(n) {
+  var titulos = [
+    '🔍 Mira: el plano α con sus trazas',
+    '🟠 Fíjate: la horizontal del plano',
+    '🔵 Ahora ves: el abatimiento del punto',
+    '🧪 Prueba: figura abatida en VM'
+  ];
+  var textos = [
+    'El plano α se define por sus dos trazas: α₁ (horizontal, eje de abatimiento) y α₂ (vertical). El punto A está contenido en α, con su proyección en alzado (A') y planta (A).',
+    'Para abatir A, trazamos una horizontal h del plano que pase por A. En alzado, h' es paralela a la LT. En planta, h es paralela a α₁. Esta horizontal es nuestra referencia para el abatimiento.',
+    'Abatimos h alrededor de α₁ → h₀ queda sobre α₁. Traza la perpendicular desde A' a α₁. La intersección con h₀ es el punto A₀, el punto abatido. La distancia A₀-α₁ = cota Z de A.',
+    'Para figuras completas: abatir cada vértice individualmente (A₀, B₀, C₀). Unir los vértices abatidos → figura en verdadera magnitud. Se pueden medir lados y ángulos reales directamente.'
+  ];
+  document.getElementById('abatimientoTitulo').textContent = titulos[n];
+  document.getElementById('abatimientoTexto').textContent = textos[n];
+  var dots = document.querySelectorAll('#abatimientoPaso .step-dot');
+  dots.forEach(function(dot, i) {
+    if(i === n) { dot.style.background = 'var(--azul)'; dot.classList.add('active'); }
+    else { dot.style.background = 'var(--gris)'; dot.classList.remove('active'); }
+  });
+}
+
+function checkFillIn(correctAnswers) {
+  var exercise = this.parentElement;
+  var input = exercise.querySelector('input[type="text"]');
+  var feedback = exercise.querySelector('.feedback');
+  if (!input) return;
+  var val = input.value.trim().toLowerCase();
+  var correct = correctAnswers.some(function(a) { return a.toLowerCase() === val; });
+  if(correct) {
+    feedback.textContent = '✅ ¡Correcto!';
+    feedback.className = 'feedback correct';
+    input.style.borderColor = 'var(--verde)';
+  } else {
+    feedback.textContent = '❌ Respuesta correcta: ' + correctAnswers[0];
+    feedback.className = 'feedback incorrect';
+    input.style.borderColor = 'var(--rojo)';
+  }
+}
+
+var ordenSelection = [];
+function selectOrden(el) {
+  var container = el.parentElement;
+  ordenSelection.push(el);
+  el.style.background = 'var(--azul-claro)';
+  el.style.borderColor = 'var(--azul)';
+  var selected = container.querySelectorAll('.stack-item[style*="background: var(--azul-claro)"]');
+  var items = container.querySelectorAll('.stack-item');
+  items.forEach(function(item) { item.style.marginTop = '0'; });
+  selected.forEach(function(item, i) { item.style.marginTop = (i * 4) + 'px'; });
+}
+
+function checkOrden(containerId, correctOrder) {
+  var container = document.getElementById(containerId);
+  var items = container.querySelectorAll('.stack-item');
+  var userOrder = [];
+  items.forEach(function(item) { userOrder.push(parseInt(item.getAttribute('data-pos'))); });
+  var feedback = container.nextElementSibling;
+  var isCorrect = userOrder.length === correctOrder.length && userOrder.every(function(val, i) { return val === correctOrder[i]; });
+  if(isCorrect) {
+    feedback.textContent = '✅ ¡Correcto!';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ Orden incorrecto. Inténtalo de nuevo.';
+    feedback.className = 'feedback incorrect';
+  }
+}
+
 window.onscroll = function(){
   var h = document.documentElement;
   var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;

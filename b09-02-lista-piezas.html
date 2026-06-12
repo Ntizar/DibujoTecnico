@@ -62,6 +62,12 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .stack-item:hover{border-color:var(--azul);transform:translateX(4px)}
 .stack-item.active{border-color:var(--azul);background:var(--azul-claro)}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+.clickable{cursor:pointer;transition:all .2s;outline:none}.clickable:hover{filter:brightness(1.1);transform:scale(1.02)}.clickable:active{transform:scale(0.98)}
+.connection-box{background:linear-gradient(135deg,var(--pura-claro),#f3e8ff);border:2px solid var(--pura);border-radius:12px;padding:1.2rem;margin:1.5rem 0}
+.connection-box h4{color:var(--pura);margin-bottom:.5rem}
+.difficulty-badge{display:inline-block;background:linear-gradient(135deg,var(--pura),#7c3aed);color:#fff;padding:.2rem .6rem;border-radius:12px;font-size:.7rem;font-weight:700;margin-left:.5rem}
+.feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block;font-weight:600}
+.feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block;font-weight:600}
 </style>
 </head>
 <body>
@@ -142,8 +148,21 @@ En un corte de conjunto con 3 piezas:<br>
 
 <section class="chapter">
 <h2 class="chapter-title">2️⃣ Visualiza la lista de piezas y marcas</h2>
+<!-- Step indicator -->
+<div class="step-indicator" id="listaPiezasPaso">
+<div class="step-dot active" style="background:var(--azul)" onclick="showListaPaso(0)">1</div>
+<div class="step-dot" style="background:var(--gris)" onclick="showListaPaso(1)">2</div>
+<div class="step-dot" style="background:var(--gris)" onclick="showListaPaso(2)">3</div>
+<div class="step-dot" style="background:var(--gris)" onclick="showListaPaso(3)">4</div>
+</div>
+
+<div class="interactive" id="listaPiezasInfo">
+<h3 id="listaPiezasTitulo">🔍 Mira: el conjunto con marcas</h3>
+<p id="listaPiezasTexto" style="margin:.5rem 0 1rem;color:#64748b">Haz clic en los pasos para ver cómo se identifican las piezas en un plano de conjunto. Cada paso revela un elemento clave.</p>
+</div>
+
 <div class="svg-container">
-<svg viewBox="0 0 700 520" xmlns="http://www.w3.org/2000/svg">
+<svg id="listaPiezasSvg" viewBox="0 0 700 520" xmlns="http://www.w3.org/2000/svg">
 <!-- Fondo -->
 <rect x="0" y="0" width="700" height="520" fill="#f8fafc" rx="8"/>
 <text x="350" y="22" text-anchor="middle" font-size="14" fill="#2563eb" font-weight="700">Lista de Piezas y Marcas</text>
@@ -339,6 +358,36 @@ En un corte de conjunto con 3 piezas:<br>
 <p class="feedback"></p>
 </div>
 
+<!-- EJERCICIO V/F VISUAL -->
+<div class="exercise">
+<p>📐 Ejercicio 6 (V/F): "Las piezas estándar se representan con todas las vistas en el plano de despiece"</p>
+<div style="display:flex;gap:.5rem;margin:.5rem 0">
+<button class="quiz-btn" onclick="checkVF(this, false)" style="background:#fff;color:var(--texto)">❌ Falso</button>
+<button class="quiz-btn" onclick="checkVF(this, true)" style="background:#fff;color:var(--texto)">✅ Verdadero</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<!-- EJERCICIO COMPLETAR HUECO -->
+<div class="exercise">
+<p>📐 Ejercicio 7 (Completar): Los tornillos se representan con línea * (exterior) y línea fina (interior)</p>
+<input type="text" id="listaFill1" placeholder="Escribe la respuesta" style="padding:.4rem .8rem;border:2px solid var(--azul);border-radius:6px;width:120px;font-size:1rem">
+<button class="quiz-btn" onclick="checkFillIn(['gruesa','gruesas','grueso','gruesas'])" style="font-size:.85rem">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+<!-- EJERCICIO ORDENAR PASOS -->
+<div class="exercise">
+<p>📐 Ejercicio 8 (Ordenar): Ordena los pasos para crear una marca de pieza</p>
+<div id="listaOrden" style="margin:.5rem 0">
+<div class="stack-item" data-pos="2" onclick="selectOrden(this)">② Trazar línea horizontal con número</div>
+<div class="stack-item" data-pos="1" onclick="selectOrden(this)">① Colocar flecha señalando la pieza</div>
+<div class="stack-item" data-pos="4" onclick="selectOrden(this)">④ Añadir cajetín con descripción (opcional)</div>
+<div class="stack-item" data-pos="3" onclick="selectOrden(this)">③ Unir flecha con línea horizontal</div>
+</div>
+<button class="quiz-btn" onclick="checkOrden('listaOrden', [1,2,3,4])" style="font-size:.85rem">Comprobar orden</button>
+<p class="feedback"></p>
+</div>
 </div>
 </section>
 
@@ -356,6 +405,15 @@ Con la lista de piezas dominada, en el siguiente tema aprenderás los planos de 
 
 <div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: lista de piezas de una bomba</strong>Una bomba centrífuga tiene 12 piezas. La lista de piezas incluye: nº, nombre, material, cantidad, observaciones. El comprador usa la lista para pedir las piezas de repuesto. Si falta una pieza en la lista, no se puede hacer el mantenimiento.</div>
 
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL 2</span><strong>Caso industrial: conjunto de un tren de aterrizaje (Boeing 737)</strong>Un tren de aterrizaje tiene más de 200 piezas. La lista de piezas tiene 200 filas con: nº, marca, descripción, cantidad, material, norma (NAS, MIL-SPEC), tratamiento térmico. Cada tornillo tiene su norma. Error en la lista = pieza que no encaja = retraso de avión = 50.000€/hora de avión parado.</div>
+
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL 3</span><strong>Caso industrial: catálogo de repuestos de bicicleta (Shimano)</strong>Shimano publica listas de piezas para cada grupo de transmisión (105, Ultegra, Dura-Ace). Cada pieza tiene un número de catálogo, descripción, cantidad y código de pedido. El mecánico usa el diagrama explosivo + lista para identificar y pedir cada pieza. Sin lista de piezas = imposible mantener la bicicleta.</div>
+
+
+<div class="connection-box">
+<h4>🔗 Conexión con otros bloques</h4>
+<p>¡Has completado el tema de lista de piezas! Este concepto es la puerta de entrada al bloque de Planos de Conjunto. En el siguiente tema aprenderás los <strong>planos de despiece</strong>: cómo representar individualmente cada pieza del conjunto. La lista de piezas es el índice que acompaña al conjunto y al despiece.</p>
+</div>
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
 <ul>
@@ -433,6 +491,75 @@ function checkVF(btn, correct) {
     }
   }
 }
+
+function showListaPaso(n) {
+  var titulos = [
+    '🔍 Mira: el conjunto con marcas',
+    '🟠 Fíjate: la tabla de lista de piezas',
+    '🔵 Ahora ves: elementos normalizados',
+    '🧪 Prueba: reglas de hachuras'
+  ];
+  var textos = [
+    'En un plano de conjunto, cada pieza se identifica con una marca: flecha + línea horizontal + número. La lista de piezas acompaña al plano con toda la información: descripción, cantidad, material, norma.',
+    'La tabla de lista de piezas tiene columnas: Nº (orden), Marca (código único), Descripción (nombre), Cantidad (unidades), Material, Observaciones (normas, tolerancias).',
+    'Los elementos normalizados (tornillos, rodamientos, chavetas) se representan de forma simplificada. Tornillo: línea gruesa (exterior) + fina (interior). Rodamiento: rectángulo + diagonales.',
+    'Reglas de hachuras: piezas adyacentes = ángulo diferente. Piezas macizas = NO hachurar longitudinalmente. Elementos normalizados = NO hachurar. Piezas del mismo tipo = hachuras idénticas.'
+  ];
+  document.getElementById('listaPiezasTitulo').textContent = titulos[n];
+  document.getElementById('listaPiezasTexto').textContent = textos[n];
+  var dots = document.querySelectorAll('#listaPiezasPaso .step-dot');
+  dots.forEach(function(dot, i) {
+    if(i === n) { dot.style.background = 'var(--azul)'; dot.classList.add('active'); }
+    else { dot.style.background = 'var(--gris)'; dot.classList.remove('active'); }
+  });
+}
+
+function checkFillIn(correctAnswers) {
+  var exercise = this.parentElement;
+  var input = exercise.querySelector('input[type="text"]');
+  var feedback = exercise.querySelector('.feedback');
+  if (!input) return;
+  var val = input.value.trim().toLowerCase();
+  var correct = correctAnswers.some(function(a) { return a.toLowerCase() === val; });
+  if(correct) {
+    feedback.textContent = '✅ ¡Correcto!';
+    feedback.className = 'feedback correct';
+    input.style.borderColor = 'var(--verde)';
+  } else {
+    feedback.textContent = '❌ Respuesta correcta: ' + correctAnswers[0];
+    feedback.className = 'feedback incorrect';
+    input.style.borderColor = 'var(--rojo)';
+  }
+}
+
+var ordenSelection = [];
+function selectOrden(el) {
+  var container = el.parentElement;
+  ordenSelection.push(el);
+  el.style.background = 'var(--azul-claro)';
+  el.style.borderColor = 'var(--azul)';
+  var selected = container.querySelectorAll('.stack-item[style*="background: var(--azul-claro)"]');
+  var items = container.querySelectorAll('.stack-item');
+  items.forEach(function(item) { item.style.marginTop = '0'; });
+  selected.forEach(function(item, i) { item.style.marginTop = (i * 4) + 'px'; });
+}
+
+function checkOrden(containerId, correctOrder) {
+  var container = document.getElementById(containerId);
+  var items = container.querySelectorAll('.stack-item');
+  var userOrder = [];
+  items.forEach(function(item) { userOrder.push(parseInt(item.getAttribute('data-pos'))); });
+  var feedback = container.nextElementSibling;
+  var isCorrect = userOrder.length === correctOrder.length && userOrder.every(function(val, i) { return val === correctOrder[i]; });
+  if(isCorrect) {
+    feedback.textContent = '✅ ¡Correcto!';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ Orden incorrecto. Inténtalo de nuevo.';
+    feedback.className = 'feedback incorrect';
+  }
+}
+
 window.onscroll = function(){
   var h = document.documentElement;
   var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
