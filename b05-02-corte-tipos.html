@@ -54,8 +54,15 @@
 .step-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:#fff;transition:all .3s;cursor:pointer}
 .step-dot:hover{transform:scale(1.2)}
 .step-dot.active{box-shadow:0 0 0 4px rgba(37,99,235,.3)}
+.real-world-badge{display:inline-block;background:var(--naranja);color:#fff;padding:.2rem .6rem;border-radius:12px;font-size:.75rem;font-weight:600}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
-    54|</style>
+    54|
+.clickable{cursor:pointer;transition:all .2s;border:2px solid transparent;border-radius:8px;padding:.5rem}.clickable:hover{border-color:var(--azul);background:var(--azul-claro)}
+.connection-box{background:var(--pura-claro);border:2px solid var(--pura);border-radius:10px;padding:1rem;margin:1.5rem 0}.connection-box strong{color:var(--pura)}
+.difficulty-badge{display:inline-block;background:var(--naranja);color:#fff;padding:.15rem .5rem;border-radius:10px;font-size:.7rem;font-weight:700;margin-left:.5rem;vertical-align:middle}
+.feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
+.feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
+</style>
     55|</head>
     56|<body>
     57|<header class="header">
@@ -216,20 +223,78 @@
 </div>
 </section>
    206|
-   207|<div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ CORTE DEMASIADO</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/><text x="100" y="70" text-anchor="middle" font-size="9" fill="#ef4444">Corte total innecesario</text><text x="100" y="120" text-anchor="middle" font-size="9" fill="#ef4444">Se ve todo = redundante</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ CORTE JUSTO</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><rect x="40" y="30" width="60" height="70" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/><text x="100" y="70" text-anchor="middle" font-size="9" fill="#2563eb">Corte parcial ✓</text><text x="100" y="120" text-anchor="middle" font-size="9" fill="#10b981">Solo lo necesario</text></svg></div></div>
+   207|
+
+<div class="exercise">
+<p>📐 Ejercicio 6: <span class="difficulty-badge">AVANZADO</span> — ¿Qué tipo de corte usar?</p>
+<div style="display:flex;flex-direction:column;gap:.8rem">
+<div style="background:#fff;padding:.8rem;border-radius:8px;border:1px solid #e2e8f0">
+<p style="font-weight:600;margin-bottom:.5rem">🔩 Pieza con 3 agujeros en línea recta alineados</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Corte total</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Semicorte</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Corte escalonado</button>
+</div>
+<p class="feedback"></p>
+</div>
+<div style="background:#fff;padding:.8rem;border-radius:8px;border:1px solid #e2e8f0">
+<p style="font-weight:600;margin-bottom:.5rem">🔩 Pieza con 3 agujeros en diferentes profundidades (no alineados)</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Corte total</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Semicorte</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Corte escalonado</button>
+</div>
+<p class="feedback"></p>
+</div>
+</div>
+</div><div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ CORTE DEMASIADO</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/><text x="100" y="70" text-anchor="middle" font-size="9" fill="#ef4444">Corte total innecesario</text><text x="100" y="120" text-anchor="middle" font-size="9" fill="#ef4444">Se ve todo = redundante</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ CORTE JUSTO</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><rect x="40" y="30" width="60" height="70" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/><text x="100" y="70" text-anchor="middle" font-size="9" fill="#2563eb">Corte parcial ✓</text><text x="100" y="120" text-anchor="middle" font-size="9" fill="#10b981">Solo lo necesario</text></svg></div></div>
 
 <div class="box box-error">
-   208|<strong>⚠️ Error clásico</strong>
-   209|Confundir corte con sección. El corte muestra la pieza cortada (incluye lo que hay detrás). La sección muestra solo la intersección del plano de corte con la pieza.
-   210|</div>
+<strong>⚠️ Error clásico</strong>
+<p>Confundir corte con sección. El corte muestra la pieza cortada (incluye lo que hay detrás). La sección muestra solo la intersección del plano de corte con la pieza.</p>
+<div class="svg-container" style="margin:1rem 0">
+<svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+<!-- Corte: muestra detrás -->
+<rect x="5" y="5" width="240" height="190" fill="#fef2f2" rx="8" stroke="#ef4444" stroke-width="2"/>
+<text x="125" y="25" text-anchor="middle" font-size="12" fill="#ef4444" font-weight="bold">❌ ERROR: cortar y ver detrás</text>
+<rect x="50" y="50" width="150" height="80" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<line x1="125" y1="50" x2="125" y2="130" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,2"/>
+<!-- Lo que hay detrás (incorrecto en sección) -->
+<circle cx="160" cy="90" r="15" fill="#fef2f2" stroke="#ef4444" stroke-width="1.5"/>
+<text x="160" y="145" text-anchor="middle" font-size="8" fill="#ef4444">❌ No se ve detrás</text>
+<text x="125" y="165" text-anchor="middle" font-size="9" fill="#ef4444">Esto es un corte, no una sección</text>
+
+<!-- Sección: solo intersección -->
+<rect x="255" y="5" width="240" height="190" fill="#ecfdf5" rx="8" stroke="#10b981" stroke-width="2"/>
+<text x="375" y="25" text-anchor="middle" font-size="12" fill="#10b981" font-weight="bold">✅ CORRECTO: solo intersección</text>
+<rect x="300" y="50" width="150" height="80" fill="#ecfdf5" stroke="#2563eb" stroke-width="2"/>
+<line x1="375" y1="50" x2="375" y2="130" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,2"/>
+<!-- Solo la sección (rayado) -->
+<rect x="300" y="50" width="75" height="80" fill="url(#hatch)" stroke="none"/>
+<defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="#2563eb" stroke-width="0.5"/></pattern></defs>
+<circle cx="375" cy="90" r="15" fill="url(#hatch)" stroke="#2563eb" stroke-width="1.5"/>
+<text x="375" y="145" text-anchor="middle" font-size="8" fill="#10b981">✅ Solo lo cortado</text>
+<text x="375" y="165" text-anchor="middle" font-size="9" fill="#10b981">Esto es una sección</text>
+</svg>
+</div>
+<p>Regla: <strong>corte = vista cortada + lo que hay detrás</strong> | <strong>sección = solo la superficie cortada con rayado</strong></p>
+</div>
    211|
    212|<div class="box box-idea">
    213|<strong>🔗 Conexión</strong>
    214|Los cortes son esenciales para mostrar interiores de piezas. Sin cortes, no se verían agujeros, cámaras, o elementos internos.
    215|</div>
    216|
-   217|<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: válvula de paso</strong>Una válvula de paso tiene un cuerpo externo simple pero un interior complejo con asiento, obturador y junta tórica. Se usa un corte parcial para mostrar solo la zona de la junta, y un corte total para el resto del cuerpo. Cada tipo de corte responde a una necesidad concreta de representación.</div>
+   217|<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: válvula de paso</strong>Una válvula de paso tiene un cuerpo externo simple pero un interior complejo con asiento, obturador y junta tórica. Se usa un corte parcial para mostrar solo la zona de la junta, y un corte total para el resto del cuerpo. Cada tipo de corte responde a una necesidad concreta de representación.
 
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🔧 CASO REAL 2</span><strong>Ingeniería aeroespacial: álabes de turbina</strong>Los álabes de una turbina de avión tienen canales de refrigeración internos complejos. Se usa un corte escalonado para mostrar todos los canales en una sola vista, "doblando" el plano de corte a través de cada canal. Sin corte escalonado, se necesitarían 3-4 vistas diferentes.</div>
+
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏠 CASO REAL 3</span><strong>Fontanería: válvula de bola</strong>Una válvula de bola tiene un cuerpo exterior cilíndrico con una bola interior. Se usa semicorte para mostrar el exterior (cilindro) y el interior (bola con paso) en la misma vista. El operario de taller puede ver todo sin cambiar de plano de trabajo.</div></div>
+
+<div class="connection-box">
+<strong>🔗 Conexión con hachuras</strong>
+<p>Las hachuras (S05.5) se aplican a las secciones cortadas. Cada tipo de material tiene un patrón de hachura diferente: acero (líneas finas), aluminio (líneas más separadas), plástico (puntos). El tipo de corte determina qué secciones hay que hachurar.</p>
+</div>
 <div class="summary">
    218|<h3>📋 Resumen de lo aprendido</h3>
    219|<ul>
