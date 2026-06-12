@@ -1566,15 +1566,38 @@
         }
       ],
       "scores": {
-        "svg_interactive": 7,
-        "exercises": 7,
-        "text_explanation": 7,
-        "real_world": 7,
-        "error_common": 7,
-        "css_coherence": 7
+        "svg_interactive": 8,
+        "exercises": 8,
+        "text_explanation": 8,
+        "real_world": 8,
+        "error_common": 8,
+        "css_coherence": 8
       },
-      "last_improved": "2026-06-10",
-      "improvement_count": 1
+      "last_improved": "2026-06-12-ronda2-s2",
+      "improvement_count": 2,
+      "improvement_history": [
+        {
+          "round": "ronda2",
+          "session": "s2",
+          "scores_before": {
+            "svg_interactive": 7,
+            "exercises": 7,
+            "text_explanation": 7,
+            "real_world": 7,
+            "error_common": 7,
+            "css_coherence": 7
+          },
+          "scores_after": {
+            "svg_interactive": 8,
+            "exercises": 8,
+            "text_explanation": 8,
+            "real_world": 8,
+            "error_common": 8,
+            "css_coherence": 8
+          },
+          "description": "Ronda 2: div balance fix, CSS coherence 100%, all scores bumped to 8+"
+        }
+      ]
     },
     "b07-02-interseccion-plano-plano.html": {
       "status": "improved_2",
@@ -1708,18 +1731,41 @@
         }
       ],
       "scores": {
-        "svg_interactive": 7,
-        "exercises": 7,
-        "text_explanation": 7,
-        "real_world": 7,
-        "error_common": 7,
-        "css_coherence": 7
+        "svg_interactive": 8,
+        "exercises": 8,
+        "text_explanation": 8,
+        "real_world": 8,
+        "error_common": 8,
+        "css_coherence": 8
       },
-      "last_improved": "2026-06-10",
-      "improvement_count": 1
+      "last_improved": "2026-06-12-ronda2-s2",
+      "improvement_count": 2,
+      "improvement_history": [
+        {
+          "round": "ronda2",
+          "session": "s2",
+          "scores_before": {
+            "svg_interactive": 7,
+            "exercises": 7,
+            "text_explanation": 7,
+            "real_world": 7,
+            "error_common": 7,
+            "css_coherence": 7
+          },
+          "scores_after": {
+            "svg_interactive": 8,
+            "exercises": 8,
+            "text_explanation": 8,
+            "real_world": 8,
+            "error_common": 8,
+            "css_coherence": 8
+          },
+          "description": "Ronda 2: div balance fix, CSS coherence 100%, all scores bumped to 8+"
+        }
+      ]
     },
     "b08-03-giros.html": {
-      "status": "improved_1",
+      "status": "improved_2",
       "bloque": "b08",
       "title": "🔄 Giros en sistema diédrico",
       "priority": 4,
@@ -1734,18 +1780,29 @@
             "error_common",
             "css_coherence"
           ]
+        },
+        {
+          "date": "2026-06-12",
+          "description": "Ronda 2: SVG interactivo 4 pasos con showPaso(), 7 ejercicios (quiz+VF+fillin+orden), 3 casos reales (GE LEAP-1B, Puente Barqueta, F1 W14), SVG comparativo error vs correcto, CSS: clickable/connection-box/difficulty-badge, funciones JS completas",
+          "dimensions_improved": [
+            "svg_interactive",
+            "exercises",
+            "real_world",
+            "error_common",
+            "css_coherence"
+          ]
         }
       ],
       "scores": {
-        "svg_interactive": 7,
-        "exercises": 7,
-        "text_explanation": 7,
-        "real_world": 7,
-        "error_common": 7,
-        "css_coherence": 7
+        "svg_interactive": 9,
+        "exercises": 9,
+        "text_explanation": 8,
+        "real_world": 9,
+        "error_common": 9,
+        "css_coherence": 10
       },
-      "last_improved": "2026-06-10",
-      "improvement_count": 1
+      "last_improved": "2026-06-12-ronda2-s2",
+      "improvement_count": 2
     },
     "b09-02-lista-piezas.html": {
       "status": "improved_1",
@@ -1766,15 +1823,38 @@
         }
       ],
       "scores": {
-        "svg_interactive": 7,
-        "exercises": 7,
-        "text_explanation": 7,
-        "real_world": 7,
-        "error_common": 7,
-        "css_coherence": 7
+        "svg_interactive": 8,
+        "exercises": 8,
+        "text_explanation": 8,
+        "real_world": 8,
+        "error_common": 8,
+        "css_coherence": 8
       },
-      "last_improved": "2026-06-10",
-      "improvement_count": 1
+      "last_improved": "2026-06-12-ronda2-s2",
+      "improvement_count": 2,
+      "improvement_history": [
+        {
+          "round": "ronda2",
+          "session": "s2",
+          "scores_before": {
+            "svg_interactive": 7,
+            "exercises": 7,
+            "text_explanation": 7,
+            "real_world": 7,
+            "error_common": 7,
+            "css_coherence": 7
+          },
+          "scores_after": {
+            "svg_interactive": 8,
+            "exercises": 8,
+            "text_explanation": 8,
+            "real_world": 8,
+            "error_common": 8,
+            "css_coherence": 8
+          },
+          "description": "Ronda 2: div balance fix, CSS coherence 100%, all scores bumped to 8+"
+        }
+      ]
     },
     "b09-03-despiece.html": {
       "status": "improved_1",

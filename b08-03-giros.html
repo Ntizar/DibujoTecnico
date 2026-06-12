@@ -59,8 +59,9 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .step-dot:hover{transform:scale(1.2)}
 .step-dot.active{box-shadow:0 0 0 4px rgba(37,99,235,.3)}
 .stack-item{background:#f8fafc;border:2px solid #e2e8f0;border-radius:10px;padding:1rem;margin:.5rem 0;transition:all .3s;cursor:pointer}
-.stack-item:hover{border-color:var(--azul);transform:translateX(4px)}
+.stack-item:hover{border-color:var(--azul);transform:translateX(4px)}.box[onclick]{cursor:pointer}.box[onclick]:hover{box-shadow:0 4px 12px rgba(37,99,235,.15)}
 .stack-item.active{border-color:var(--azul);background:var(--azul-claro)}
+.clickable{cursor:pointer;transition:all .2s}.clickable:hover{box-shadow:0 4px 12px rgba(37,99,235,.15);transform:translateY(-2px)}.connection-box{background:linear-gradient(135deg,#faf5ff,#f3e8ff);border:2px solid #a855f7;border-radius:12px;padding:1.2rem;margin:1.5rem 0}.connection-box strong{color:#7c3aed}.difficulty-badge{display:inline-block;background:linear-gradient(135deg,#a855f7,#7c3aed);color:#fff;padding:.2rem .6rem;border-radius:12px;font-size:.7rem;font-weight:700;margin-left:.5rem}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
 </style>
 </head>
@@ -149,91 +150,187 @@ Combinación más potente que el giro solo.
 <svg viewBox="0 0 700 520" xmlns="http://www.w3.org/2000/svg">
 <!-- Fondo -->
 <rect x="0" y="0" width="700" height="520" fill="#f8fafc" rx="8"/>
-<text x="350" y="22" text-anchor="middle" font-size="14" fill="#2563eb" font-weight="700">Giros en Sistema Diédrico</text>
+<text x="350" y="22" text-anchor="middle" font-size="14" fill="#2563eb" font-weight="700">Giros Interactivos en Sistema Diédrico</text>
 
-<!-- ===== GIRO VERTICAL ===== -->
-<text x="175" y="50" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="700">Giro Vertical</text>
+<!-- Botones de paso -->
+<g id="stepButtons">
+<rect x="20" y="32" width="120" height="28" fill="#2563eb" rx="6" onclick="showPaso(1)" style="cursor:pointer"/>
+<text x="80" y="50" text-anchor="middle" font-size="10" fill="#fff" font-weight="600">1️⃣ Eje Vertical</text>
+<rect x="150" y="32" width="130" height="28" fill="#e2e8f0" rx="6" onclick="showPaso(2)" style="cursor:pointer"/>
+<text x="215" y="50" text-anchor="middle" font-size="10" fill="#1e293b" font-weight="600">2️⃣ Eje Horizontal</text>
+<rect x="290" y="32" width="120" height="28" fill="#e2e8f0" rx="6" onclick="showPaso(3)" style="cursor:pointer"/>
+<text x="350" y="50" text-anchor="middle" font-size="10" fill="#1e293b" font-weight="600">3️⃣ Obtener VM</text>
+<rect x="420" y="32" width="140" height="28" fill="#e2e8f0" rx="6" onclick="showPaso(4)" style="cursor:pointer"/>
+<text x="490" y="50" text-anchor="middle" font-size="10" fill="#1e293b" font-weight="600">4️⃣ Giro+Cambio</text>
+</g>
+
+<!-- ===== PASO 1: GIRO VERTICAL ===== -->
+<g id="paso1">
+<text x="175" y="85" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="700">Giro Vertical</text>
 <!-- LT -->
-<line x1="30" y1="70" x2="320" y2="70" stroke="#1e293b" stroke-width="2"/>
-<text x="325" y="74" font-size="9" fill="#1e293b" font-weight="600">LT</text>
-<!-- Eje vertical (como punto en planta) -->
-<circle cx="100" cy="70" r="3" fill="#ef4444"/>
-<text x="100" y="65" text-anchor="middle" font-size="8" fill="#ef4444" font-weight="600">O (eje)</text>
-<!-- Recta original -->
-<line x1="130" y1="90" x2="250" y2="130" stroke="#2563eb" stroke-width="2"/>
-<circle cx="130" cy="90" r="3" fill="#2563eb"/>
-<text x="115" y="88" font-size="9" fill="#2563eb" font-weight="600">A'</text>
-<circle cx="250" cy="130" r="3" fill="#2563eb"/>
-<text x="255" y="135" font-size="9" fill="#2563eb" font-weight="600">B'</text>
-<!-- Arco de giro en planta -->
-<line x1="100" y1="160" x2="130" y2="190" stroke="#2563eb" stroke-width="1.5"/>
-<circle cx="100" cy="160" r="3" fill="#2563eb"/>
-<text x="85" y="158" font-size="9" fill="#2563eb" font-weight="600">a</text>
-<circle cx="130" cy="190" r="3" fill="#2563eb"/>
-<text x="135" y="205" font-size="9" fill="#2563eb" font-weight="600">b</text>
-<path d="M 130 190 A 42 42 0 0 0 100 202" fill="none" stroke="#f97316" stroke-width="1.5" stroke-dasharray="4,2"/>
-<text x="145" y="200" font-size="8" fill="#f97316">arco</text>
+<line x1="30" y1="105" x2="320" y2="105" stroke="#1e293b" stroke-width="2"/>
+<text x="325" y="109" font-size="9" fill="#1e293b" font-weight="600">LT</text>
+<!-- Eje vertical -->
+<circle cx="100" cy="105" r="4" fill="#ef4444"/>
+<text x="100" y="98" text-anchor="middle" font-size="8" fill="#ef4444" font-weight="600">O (eje)</text>
+<!-- Recta original AB -->
+<line x1="130" y1="125" x2="250" y2="165" stroke="#2563eb" stroke-width="2.5"/>
+<circle cx="130" cy="125" r="4" fill="#2563eb"/>
+<text x="115" y="123" font-size="9" fill="#2563eb" font-weight="600">A</text>
+<circle cx="250" cy="165" r="4" fill="#2563eb"/>
+<text x="255" y="170" font-size="9" fill="#2563eb" font-weight="600">B</text>
+<!-- Arco de giro (animado) -->
+<path d="M 250 165 A 42 42 0 0 0 100 180" fill="none" stroke="#f97316" stroke-width="2" stroke-dasharray="6,3">
+<animate attributeName="stroke-dashoffset" values="0;-18" dur="2s" repeatCount="indefinite"/>
+</path>
+<text x="270" y="155" font-size="8" fill="#f97316" font-weight="600">arco ↻</text>
 <!-- Recta girada (horizontal) -->
-<line x1="100" y1="220" x2="220" y2="220" stroke="#10b981" stroke-width="2.5"/>
-<circle cx="100" cy="220" r="3" fill="#10b981"/>
-<text x="85" y="218" font-size="9" fill="#10b981" font-weight="600">a₀</text>
-<circle cx="220" cy="220" r="3" fill="#10b981"/>
-<text x="225" y="225" font-size="9" fill="#10b981" font-weight="600">b₀</text>
-<text x="160" y="240" text-anchor="middle" font-size="10" fill="#10b981" font-weight="700">VM ✓</text>
+<line x1="100" y1="200" x2="230" y2="200" stroke="#10b981" stroke-width="3"/>
+<circle cx="100" cy="200" r="4" fill="#10b981"/>
+<text x="85" y="198" font-size="9" fill="#10b981" font-weight="600">a₀</text>
+<circle cx="230" cy="200" r="4" fill="#10b981"/>
+<text x="235" y="205" font-size="9" fill="#10b981" font-weight="600">b₀</text>
+<text x="165" y="220" text-anchor="middle" font-size="11" fill="#10b981" font-weight="700">✓ Recta horizontal → VM en planta</text>
+<!-- Info lateral -->
+<rect x="340" y="80" width="340" height="150" fill="#eff6ff" rx="8" stroke="#2563eb" stroke-width="1"/>
+<text x="360" y="102" font-size="11" fill="#2563eb" font-weight="700">📐 Giro Vertical — Reglas</text>
+<text x="360" y="124" font-size="10" fill="#1e293b">• Arco de giro en PLANTA</text>
+<text x="360" y="144" font-size="10" fill="#1e293b">• Alzado: desplazamiento HORIZONTAL</text>
+<text x="360" y="164" font-size="10" fill="#1e293b">• Altura Z SIEMPRE constante</text>
+<text x="360" y="184" font-size="10" fill="#1e293b">• Radio = distancia O-a en planta</text>
+<text x="360" y="204" font-size="10" fill="#10b981" font-weight="600">→ Recta horizontal (paralela a PH)</text>
+<text x="360" y="224" font-size="10" fill="#10b981" font-weight="600">→ VM se ve en PLANTA</text>
+</g>
 
-<!-- Separador -->
-<line x1="350" y1="50" x2="350" y2="250" stroke="#e2e8f0" stroke-width="1"/>
-
-<!-- ===== GIRO HORIZONTAL ===== -->
-<text x="540" y="50" text-anchor="middle" font-size="11" fill="#f97316" font-weight="700">Giro Horizontal</text>
+<!-- ===== PASO 2: GIRO HORIZONTAL ===== -->
+<g id="paso2" style="display:none">
+<text x="175" y="85" text-anchor="middle" font-size="12" fill="#f97316" font-weight="700">Giro Horizontal</text>
 <!-- LT -->
-<line x1="370" y1="70" x2="670" y2="70" stroke="#1e293b" stroke-width="2"/>
-<!-- Eje horizontal (como punto en alzado) -->
-<circle cx="550" cy="70" r="3" fill="#ef4444"/>
-<text x="550" y="65" text-anchor="middle" font-size="8" fill="#ef4444" font-weight="600">O' (eje)</text>
+<line x1="30" y1="105" x2="320" y2="105" stroke="#1e293b" stroke-width="2"/>
+<!-- Eje horizontal -->
+<circle cx="100" cy="105" r="4" fill="#ef4444"/>
+<text x="100" y="98" text-anchor="middle" font-size="8" fill="#ef4444" font-weight="600">O' (eje)</text>
 <!-- Recta original en alzado -->
-<line x1="420" y1="90" x2="560" y2="120" stroke="#2563eb" stroke-width="2"/>
-<circle cx="420" cy="90" r="3" fill="#2563eb"/>
-<text x="405" y="88" font-size="9" fill="#2563eb" font-weight="600">a'</text>
-<circle cx="560" cy="120" r="3" fill="#2563eb"/>
-<text x="565" y="125" font-size="9" fill="#2563eb" font-weight="600">b'</text>
+<line x1="50" y1="125" x2="170" y2="155" stroke="#2563eb" stroke-width="2.5"/>
+<circle cx="50" cy="125" r="4" fill="#2563eb"/>
+<text x="35" y="123" font-size="9" fill="#2563eb" font-weight="600">a'</text>
+<circle cx="170" cy="155" r="4" fill="#2563eb"/>
+<text x="175" y="160" font-size="9" fill="#2563eb" font-weight="600">b'</text>
 <!-- Arco de giro en alzado -->
-<path d="M 420 90 A 130 130 0 0 0 550 70" fill="none" stroke="#f97316" stroke-width="1.5" stroke-dasharray="4,2"/>
-<text x="480" y="60" font-size="8" fill="#f97316">arco</text>
-<!-- Recta girada (frontal) -->
-<line x1="420" y1="70" x2="560" y2="70" stroke="#10b981" stroke-width="2.5"/>
-<circle cx="420" cy="70" r="3" fill="#10b981"/>
-<circle cx="560" cy="70" r="3" fill="#10b981"/>
-<text x="490" y="65" text-anchor="middle" font-size="10" fill="#10b981" font-weight="700">VM ✓</text>
+<path d="M 50 125 A 130 130 0 0 0 100 105" fill="none" stroke="#f97316" stroke-width="2" stroke-dasharray="6,3">
+<animate attributeName="stroke-dashoffset" values="0;-18" dur="2s" repeatCount="indefinite"/>
+</path>
+<text x="70" y="95" font-size="8" fill="#f97316" font-weight="600">arco ↻</text>
+<!-- Recta girada (horizontal en alzado) -->
+<line x1="50" y1="105" x2="180" y2="105" stroke="#10b981" stroke-width="3"/>
+<circle cx="50" cy="105" r="4" fill="#10b981"/>
+<text x="35" y="103" font-size="9" fill="#10b981" font-weight="600">a₀'</text>
+<circle cx="180" cy="105" r="4" fill="#10b981"/>
+<text x="185" y="110" font-size="9" fill="#10b981" font-weight="600">b₀'</text>
+<text x="115" y="125" text-anchor="middle" font-size="11" fill="#10b981" font-weight="700">✓ Recta frontal → VM en alzado</text>
+<!-- Info lateral -->
+<rect x="340" y="80" width="340" height="150" fill="#fff7ed" rx="8" stroke="#f97316" stroke-width="1"/>
+<text x="360" y="102" font-size="11" fill="#f97316" font-weight="700">📐 Giro Horizontal — Reglas</text>
+<text x="360" y="124" font-size="10" fill="#1e293b">• Arco de giro en ALZADO</text>
+<text x="360" y="144" font-size="10" fill="#1e293b">• Planta: desplazamiento HORIZONTAL</text>
+<text x="360" y="164" font-size="10" fill="#1e293b">• Profundidad Y SIEMPRE constante</text>
+<text x="360" y="184" font-size="10" fill="#1e293b">• Radio = distancia O'-a' en alzado</text>
+<text x="360" y="204" font-size="10" fill="#10b981" font-weight="600">→ Recta frontal (paralela a PV)</text>
+<text x="360" y="224" font-size="10" fill="#10b981" font-weight="600">→ VM se ve en ALZADO</text>
+</g>
 
-<!-- ===== COMPARACIÓN ===== -->
-<text x="350" y="290" text-anchor="middle" font-size="13" fill="#2563eb" font-weight="700">Comparación de Giros</text>
+<!-- ===== PASO 3: OBTENER VM ===== -->
+<g id="paso3" style="display:none">
+<text x="350" y="85" text-anchor="middle" font-size="12" fill="#a855f7" font-weight="700">Obtener VM — Dos Métodos</text>
+<!-- Método 1: Giro vertical -->
+<rect x="20" y="100" width="320" height="180" fill="#eff6ff" rx="8" stroke="#2563eb" stroke-width="1.5"/>
+<text x="180" y="122" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="700">Método 1: Giro Vertical</text>
+<!-- Recta oblicua -->
+<line x1="50" y1="145" x2="150" y2="185" stroke="#2563eb" stroke-width="2" stroke-dasharray="4,2"/>
+<text x="100" y="140" text-anchor="middle" font-size="9" fill="#64748b">Recta oblicua</text>
+<!-- Flecha -->
+<line x1="170" y1="165" x2="200" y2="165" stroke="#a855f7" stroke-width="1.5"/>
+<polygon points="200,165 195,162 195,168" fill="#a855f7"/>
+<!-- Recta horizontal (VM) -->
+<line x1="210" y1="165" x2="310" y2="165" stroke="#10b981" stroke-width="3"/>
+<text x="260" y="185" text-anchor="middle" font-size="10" fill="#10b981" font-weight="600">VM = longitud real ✓</text>
+<!-- Info -->
+<text x="40" y="210" font-size="9" fill="#1e293b">• Eje vertical ⊥ PH</text>
+<text x="40" y="226" font-size="9" fill="#1e293b">• Giro hasta paralela a LT</text>
+<text x="40" y="242" font-size="9" fill="#1e293b">• VM en planta</text>
+<text x="40" y="258" font-size="9" fill="#1e293b">• Ángulo α con LT</text>
 
-<rect x="20" y="300" width="320" height="140" fill="#eff6ff" rx="6" stroke="#2563eb" stroke-width="1"/>
-<text x="180" y="322" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="700">Eje Vertical</text>
-<text x="40" y="345" font-size="10" fill="#1e293b">• Planta: arco de circunferencia</text>
-<text x="40" y="365" font-size="10" fill="#1e293b">• Alzado: desplazamiento horizontal</text>
-<text x="40" y="385" font-size="10" fill="#1e293b">• Misma altura Z siempre</text>
-<text x="40" y="405" font-size="10" fill="#10b981" font-weight="600">→ Lleva recta a frontal</text>
-<text x="40" y="425" font-size="10" fill="#10b981" font-weight="600">→ VM en alzado</text>
+<!-- Método 2: Giro horizontal -->
+<rect x="360" y="100" width="320" height="180" fill="#fff7ed" rx="8" stroke="#f97316" stroke-width="1.5"/>
+<text x="520" y="122" text-anchor="middle" font-size="11" fill="#f97316" font-weight="700">Método 2: Giro Horizontal</text>
+<!-- Recta oblicua -->
+<line x1="390" y1="145" x2="490" y2="185" stroke="#2563eb" stroke-width="2" stroke-dasharray="4,2"/>
+<text x="440" y="140" text-anchor="middle" font-size="9" fill="#64748b">Recta oblicua</text>
+<!-- Flecha -->
+<line x1="510" y1="165" x2="540" y2="165" stroke="#a855f7" stroke-width="1.5"/>
+<polygon points="540,165 535,162 535,168" fill="#a855f7"/>
+<!-- Recta frontal (VM) -->
+<line x1="550" y1="145" x2="550" y2="245" stroke="#10b981" stroke-width="3"/>
+<text x="600" y="200" text-anchor="middle" font-size="10" fill="#10b981" font-weight="600">VM = longitud real ✓</text>
+<!-- Info -->
+<text x="380" y="210" font-size="9" fill="#1e293b">• Eje horizontal ⊥ PV</text>
+<text x="380" y="226" font-size="9" fill="#1e293b">• Giro hasta paralela a LT</text>
+<text x="380" y="242" font-size="9" fill="#1e293b">• VM en alzado</text>
+<text x="380" y="258" font-size="9" fill="#1e293b">• Ángulo β con LT</text>
+</g>
 
-<rect x="360" y="300" width="320" height="140" fill="#fff7ed" rx="6" stroke="#f97316" stroke-width="1"/>
-<text x="520" y="322" text-anchor="middle" font-size="11" fill="#f97316" font-weight="700">Eje Horizontal</text>
-<text x="380" y="345" font-size="10" fill="#1e293b">• Alzado: arco de circunferencia</text>
-<text x="380" y="365" font-size="10" fill="#1e293b">• Planta: desplazamiento horizontal</text>
-<text x="380" y="385" font-size="10" fill="#1e293b">• Misma profundidad Y siempre</text>
-<text x="380" y="405" font-size="10" fill="#10b981" font-weight="600">→ Lleva recta a horizontal</text>
-<text x="380" y="425" font-size="10" fill="#10b981" font-weight="600">→ VM en planta</text>
+<!-- ===== PASO 4: GIRO + CAMBIO ===== -->
+<g id="paso4" style="display:none">
+<text x="350" y="85" text-anchor="middle" font-size="13" fill="#a855f7" font-weight="700">Método Combinado: Giro + Cambio de Plano</text>
+<!-- Paso a paso visual -->
+<rect x="20" y="100" width="660" height="200" fill="#faf5ff" rx="10" stroke="#a855f7" stroke-width="2"/>
+<!-- Paso 1 -->
+<circle cx="80" cy="140" r="20" fill="#2563eb"/>
+<text x="80" y="145" text-anchor="middle" font-size="14" fill="#fff" font-weight="700">1</text>
+<text x="80" y="175" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="600">Giro vertical</text>
+<text x="80" y="190" text-anchor="middle" font-size="8" fill="#64748b">→ recta frontal</text>
+<line x1="105" y1="140" x2="175" y2="140" stroke="#a855f7" stroke-width="2"/>
+<polygon points="175,140 170,136 170,144" fill="#a855f7"/>
+<!-- Paso 2 -->
+<circle cx="210" cy="140" r="20" fill="#f97316"/>
+<text x="210" y="145" text-anchor="middle" font-size="14" fill="#fff" font-weight="700">2</text>
+<text x="210" y="175" text-anchor="middle" font-size="9" fill="#f97316" font-weight="600">Nueva LT ⊥</text>
+<text x="210" y="190" text-anchor="middle" font-size="8" fill="#64748b">→ perpendicular</text>
+<line x1="235" y1="140" x2="305" y2="140" stroke="#a855f7" stroke-width="2"/>
+<polygon points="305,140 300,136 300,144" fill="#a855f7"/>
+<!-- Paso 3 -->
+<circle cx="340" cy="140" r="20" fill="#10b981"/>
+<text x="340" y="145" text-anchor="middle" font-size="14" fill="#fff" font-weight="700">3</text>
+<text x="340" y="175" text-anchor="middle" font-size="9" fill="#10b981" font-weight="600">Cambio plano</text>
+<text x="340" y="190" text-anchor="middle" font-size="8" fill="#64748b">→ nueva proyección</text>
+<line x1="365" y1="140" x2="435" y2="140" stroke="#a855f7" stroke-width="2"/>
+<polygon points="435,140 430,136 430,144" fill="#a855f7"/>
+<!-- Paso 4 -->
+<circle cx="470" cy="140" r="20" fill="#a855f7"/>
+<text x="470" y="145" text-anchor="middle" font-size="14" fill="#fff" font-weight="700">4</text>
+<text x="470" y="175" text-anchor="middle" font-size="9" fill="#a855f7" font-weight="600">VM total</text>
+<text x="470" y="190" text-anchor="middle" font-size="8" fill="#64748b">→ longitud real</text>
+<!-- Resultado -->
+<rect x="510" y="115" width="150" height="55" fill="#10b981" rx="8"/>
+<text x="585" y="140" text-anchor="middle" font-size="12" fill="#fff" font-weight="700">✅ VERDADERA</text>
+<text x="585" y="158" text-anchor="middle" font-size="12" fill="#fff" font-weight="700">MAGNITUD</text>
 
-<!-- ===== GIRO + CAMBIO ===== -->
-<rect x="20" y="455" width="660" height="55" fill="#fff" stroke="#e2e8f0" stroke-width="1" rx="6"/>
-<text x="350" y="477" text-anchor="middle" font-size="11" fill="#a855f7" font-weight="700">Giro + Cambio de Plano = Método más potente</text>
-<text x="50" y="497" font-size="10" fill="#1e293b">1. Giro vertical → recta frontal (paralela a PV)</text>
-<text x="250" y="497" font-size="10" fill="#1e293b">2. Nueva LT ⊥ a la frontal</text>
-<text x="430" y="497" font-size="10" fill="#1e293b">3. Nueva proyección = VM total</text>
+<!-- Ejemplo numérico -->
+<rect x="20" y="320" width="660" height="100" fill="#fff" stroke="#e2e8f0" stroke-width="1" rx="6"/>
+<text x="350" y="342" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="700">📊 Ejemplo Numérico</text>
+<text x="40" y="365" font-size="10" fill="#1e293b">Recta AB: A(30,40,20) — B(100,70,50)</text>
+<text x="40" y="385" font-size="10" fill="#1e293b">Longitud real = √(70²+30²+30²) = √6700 ≈ 81.85</text>
+<text x="40" y="405" font-size="10" fill="#1e293b">1. Giro vertical → A'B' paralela a LT</text>
+<text x="300" y="405" font-size="10" fill="#10b981" font-weight="600">2. A'B' en alzado = 81.85 ✓</text>
+</g>
 
-<!-- Diferencia -->
-<rect x="20" y="518" width="660" height="0" fill="none"/>
+<!-- Diferencia giro vs abatimiento -->
+<rect x="20" y="445" width="660" height="65" fill="#fff" stroke="#e2e8f0" stroke-width="1" rx="6"/>
+<text x="350" y="465" text-anchor="middle" font-size="11" fill="#a855f7" font-weight="700">⚡ Giro vs Abatimiento</text>
+<text x="50" y="485" font-size="10" fill="#2563eb" font-weight="600">Giro:</text>
+<text x="90" y="485" font-size="10" fill="#1e293b">Rotación alrededor de un eje. El punto describe un arco. Las proyecciones cambian pero la Z/Y se mantiene.</text>
+<text x="400" y="485" font-size="10" fill="#f97316" font-weight="600">Abatimiento:</text>
+<text x="480" y="485" font-size="10" fill="#1e293b">Rotación alrededor de la traza de un plano. El plano "se aplasta" sobre el plano de proyección. Se usa para ver VM de planos.</text>
 </svg>
 </div>
 </section>
@@ -243,7 +340,7 @@ Combinación más potente que el giro solo.
 <div class="exercises">
 
 <div class="exercise">
-<p>📐 Ejercicio 1: En un giro vertical, ¿qué proyección muestra el arco de giro?</p>
+<p>📐 Ejercicio 1 (Quiz): En un giro vertical, ¿qué proyección muestra el arco de giro?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Planta</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Alzado</button>
@@ -254,18 +351,38 @@ Combinación más potente que el giro solo.
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 2: En un giro vertical, ¿qué coordina se mantiene constante?</p>
+<p>📐 Ejercicio 2 (V/F): En un giro horizontal, la profundidad Y se mantiene constante.</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Z (altura)</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Y (profundidad)</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">X (longitud)</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Ninguna</button>
+<button class="quiz-btn" onclick="checkVF(this, true)">Verdadero</button>
+<button class="quiz-btn" onclick="checkVF(this, false)">Falso</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 3: ¿Qué tipo de recta se obtiene al girar verticalmente hasta ser paralela a LT?</p>
+<p>📐 Ejercicio 3 (Completar): Para obtener VM de una recta oblicua mediante giro vertical, hay que girar hasta que la recta sea <input type="text" id="giroFill" placeholder="¿paralela a qué plano?"> a LT.</p>
+<div style="margin-top:.5rem"><button class="quiz-btn" onclick="checkFillIn.call(this, ['paralela','horizontal','paralela a LT','paralela al plano horizontal'])">Comprobar</button></div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 4 (Ordenar): Ordena los pasos para obtener VM con giro + cambio de plano:</p>
+<div class="step-indicator" style="margin:.5rem 0">
+<div class="step-dot" style="background:#2563eb">1</div>
+<div class="step-dot" style="background:#e2e8f0">2</div>
+<div class="step-dot" style="background:#e2e8f0">3</div>
+<div class="step-dot" style="background:#e2e8f0">4</div>
+</div>
+<div class="stack-item" data-pos="2" onclick="checkOrden(this, true)">Giro vertical → recta frontal</div>
+<div class="stack-item" data-pos="1" onclick="checkOrden(this, true)">Girar recta oblicua</div>
+<div class="stack-item" data-pos="4" onclick="checkOrden(this, true)">VM en nueva proyección</div>
+<div class="stack-item" data-pos="3" onclick="checkOrden(this, true)">Nueva LT ⊥ frontal</div>
+<div style="margin-top:.5rem"><button class="quiz-btn" onclick="checkOrden(this, true)">Comprobar orden</button></div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 5 (Quiz): ¿Qué tipo de recta se obtiene al girar verticalmente hasta ser paralela a LT?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Horizontal</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Frontal</button>
@@ -276,43 +393,66 @@ Combinación más potente que el giro solo.
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 4: ¿Cuál es la diferencia principal entre giro y abatimiento?</p>
-<div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false)">No hay diferencia</button>
-<button class="quiz-btn" onclick="checkAnswer(this, true)">El giro usa un eje perpendicular al plano; el abatimiento usa la traza de un plano</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">El abatimiento es más complejo</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">El giro no se usa en diédrico</button>
-</div>
+<p>📐 Ejercicio 6 (Completar): En un giro horizontal, el eje es perpendicular al plano <input type="text" id="giroFill2" placeholder="¿PV o PH?"> y la VM se obtiene en el <input type="text" id="giroFill3" placeholder="¿planta o alzado?">.</p>
+<div style="margin-top:.5rem"><button class="quiz-btn" onclick="checkFillIn.call(this, ['PV','plano vertical'])">Primera respuesta</button> <button class="quiz-btn" onclick="checkFillIn.call(this, ['alzado','planta'])">Segunda respuesta</button></div>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 5: ¿Dónde se coloca el centro de giro para un giro vertical?</p>
+<p>📐 Ejercicio 7 (V/F): El centro de giro siempre se coloca donde el eje se ve como punto en la proyección donde se gira.</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">En planta (donde el eje se ve como punto)</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">En alzado</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">En la LT</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">En el origen</button>
+<button class="quiz-btn" onclick="checkVF(this, true)">Verdadero</button>
+<button class="quiz-btn" onclick="checkVF(this, false)">Falso</button>
 </div>
 <p class="feedback"></p>
 </div>
 
 </div>
-</section>
+</section>v>
 
-<div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ SIN GIRO</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><ellipse cx="100" cy="70" rx="60" ry="20" fill="none" stroke="#ef4444" stroke-width="2"/><text x="100" y="75" text-anchor="middle" font-size="9" fill="#ef4444">Elipse = deformada</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ CON GIRO</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><circle cx="100" cy="70" r="30" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="100" y="75" text-anchor="middle" font-size="9" fill="#2563eb">Círculo = forma real ✓</text></svg></div></div>
+<div class="comparison" style="margin:1.5rem 0">
+<div class="comparison-side">
+<strong style="color:var(--rojo)">❌ ERROR: Radio en alzado</strong>
+<svg viewBox="0 0 200 140" width="180" style="margin:1rem 0">
+<line x1="20" y1="70" x2="180" y2="70" stroke="#1e293b" stroke-width="2"/>
+<circle cx="100" cy="70" r="4" fill="#ef4444"/>
+<line x1="100" y1="90" x2="150" y2="110" stroke="#2563eb" stroke-width="2"/>
+<line x1="100" y1="70" x2="150" y2="110" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4,2"/>
+<text x="160" y="100" font-size="8" fill="#ef4444">Radio ✗</text>
+<text x="100" y="130" text-anchor="middle" font-size="9" fill="#ef4444">Radio medido en ALZADO ✗</text>
+</svg>
+</div>
+<div class="comparison-side">
+<strong style="color:var(--verde)">✅ CORRECTO: Radio en planta</strong>
+<svg viewBox="0 0 200 140" width="180" style="margin:1rem 0">
+<line x1="20" y1="70" x2="180" y2="70" stroke="#1e293b" stroke-width="2"/>
+<circle cx="100" cy="70" r="4" fill="#10b981"/>
+<line x1="100" y1="90" x2="150" y2="110" stroke="#2563eb" stroke-width="2"/>
+<line x1="100" y1="70" x2="150" y2="90" stroke="#10b981" stroke-width="2"/>
+<text x="160" y="85" font-size="8" fill="#10b981">Radio ✓</text>
+<text x="100" y="130" text-anchor="middle" font-size="9" fill="#10b981">Radio medido en PLANTA ✓</text>
+</svg>
+</div>
+</div>
 
 <div class="box box-error">
 <strong>⚠️ Error clásico</strong>
 Medir el radio del arco de giro en la proyección equivocada. Si el eje es vertical, el radio se mide en planta (distancia desde el centro en planta hasta el punto en planta). Si se mide en alzado, el giro será incorrecto.
 </div>
 
-<div class="box box-idea">
-<strong>🔗 Conexión</strong>
-¡Has completado el bloque de Abatimientos y Giros! En el siguiente bloque aprenderás los planos de conjunto: cómo representar montajes, listas de piezas y despieces.
+<div class="connection-box">
+<strong>🔗 Conexión con otros temas</strong>
+• <strong>Abatimientos:</strong> el giro y el abatimiento son transformaciones, pero el giro mantiene la posición 3D mientras el abatimiento "aplana" el plano.<br>
+• <strong>VM (Verdadera Magnitud):</strong> el giro es el método más directo para obtener VM de rectas oblicuas.<br>
+• <strong>Cambio de plano:</strong> se combina con el giro para rectas de doble oblicuidad.<br>
+• <strong>Planos de conjunto:</strong> después de los giros, aprenderás a representar montajes completos.
 </div>
 
-<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: rebaje en eje rotado</strong>Un rebaje en un eje se encuentra en una posición incómoda para acotar. Se gira el eje para que el rebaje quede paralelo al PV. En la posición girada, el rebaje se ve en verdadera forma y se acota fácilmente. Luego se indica la posición original con una línea discontinua.</div>
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL 1</span><strong>Caso aeronáutico: aspa de turbina</strong>En la fabricación de álabes de turbina (GE Aviation LEAP-1B), cada aspa tiene un perfil aerodinámico complejo. Para acotar el perfil, se gira el aspa hasta que su eje longitudinal quede paralelo al PV. En la posición girada, el perfil se ve en verdadera magnitud y se verifican las cotas de camber y espesor con precisión de ±0.05mm.</div>
+
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏗️ CASO REAL 2</span><strong>Caso civil: vigas de puente</strong>En el diseño de vigas de puente (como las del Puente de la Barqueta en Sevilla), las barras diagonales de la armadura tienen posiciones oblicuas. Para obtener su verdadera longitud y poder fabricarlas, se aplica un giro vertical que las lleva a posición frontal. La VM obtenida en alzado es la longitud exacta de corte de cada barra de acero.</div>
+
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">⚙️ CASO REAL 3</span><strong>Caso mecánico: biela de motor</strong>En un motor de Fórmula 1 (Mercedes AMG F1 W14), la biela conecta el pistón con el cigüeñal. Su posición es oblicua en todas las proyecciones. Para verificar la VM y el ángulo de oscilación, se combina un giro vertical (para hacerla frontal) con un cambio de plano. La combinación permite obtener la VM total con una tolerancia de ±0.01mm.</div>
 
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
@@ -333,6 +473,32 @@ Medir el radio del arco de giro en la proyección equivocada. Si el eje es verti
 </main>
 <footer class="footer">Hecho con ❤️ por David Antizar</footer>
 <script>
+function showPaso(n) {
+  // Ocultar todos los pasos
+  for(var i=1;i<=4;i++){
+    var el=document.getElementById('paso'+i);
+    if(el) el.style.display='none';
+  }
+  // Mostrar paso seleccionado
+  var paso=document.getElementById('paso'+n);
+  if(paso) paso.style.display='';
+  // Actualizar botones
+  var buttons=document.querySelectorAll('#stepButtons rect');
+  var colors=['#2563eb','#e2e8f0','#e2e8f0','#e2e8f0'];
+  var texts=['#fff','#1e293b','#1e293b','#1e293b'];
+  for(var i=0;i<buttons.length;i++){
+    if(i+1==n){
+      buttons[i].setAttribute('fill','#2563eb');
+      buttons[i].querySelector('text').setAttribute('fill','#fff');
+    } else {
+      buttons[i].setAttribute('fill','#e2e8f0');
+      buttons[i].querySelector('text').setAttribute('fill','#1e293b');
+    }
+  }
+}
+// Iniciar con paso 1
+showPaso(1);
+
 function checkAnswer(btn, correct) {
   var parent = btn.parentElement;
   parent.querySelectorAll('button').forEach(function(b) {
@@ -389,6 +555,47 @@ function checkVF(btn, correct) {
       feedback.textContent = '❌ Incorrecto.';
       feedback.className = 'feedback incorrect';
     }
+  }
+}
+
+function checkFillIn(correctAnswers) {
+  var exercise = this;
+  var input = exercise.querySelector('input[type="text"]');
+  if(!input) return;
+  var val = input.value.trim().toLowerCase();
+  var feedback = exercise.querySelector('.feedback');
+  var found = correctAnswers.some(function(a) { return a.toLowerCase() === val; });
+  if(found) {
+    feedback.textContent = '✅ ¡Correcto! La respuesta es: ' + correctAnswers[0];
+    feedback.className = 'feedback correct';
+    input.style.borderColor = 'var(--verde)';
+  } else {
+    feedback.textContent = '❌ Respuestas válidas: ' + correctAnswers.join(' / ');
+    feedback.className = 'feedback incorrect';
+    input.style.borderColor = 'var(--rojo)';
+  }
+}
+
+function checkOrden(btn, correct) {
+  var exercise = btn.closest('.exercise');
+  var items = exercise.querySelectorAll('.step-item');
+  var allCorrect = true;
+  items.forEach(function(item, idx) {
+    var pos = parseInt(item.getAttribute('data-pos'));
+    if(pos === idx + 1) {
+      item.classList.add('active');
+    } else {
+      item.classList.remove('active');
+      allCorrect = false;
+    }
+  });
+  var feedback = exercise.querySelector('.feedback');
+  if(allCorrect) {
+    feedback.textContent = '✅ ¡Orden correcto! ¡Bien hecho!';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ Orden incorrecto. Inténtalo de nuevo.';
+    feedback.className = 'feedback incorrect';
   }
 }
 window.onscroll = function(){
