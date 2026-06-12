@@ -50,8 +50,15 @@
     50|.nav a{color:var(--azul);text-decoration:none;font-weight:600;padding:.5rem 1rem;border-radius:6px}
     51|.nav a:hover{background:var(--azul-claro)}
     52|.nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
-    53|.footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
-    54|</style>
+    53|.real-world-badge{display:inline-block;background:var(--naranja);color:#fff;padding:.2rem .6rem;border-radius:12px;font-size:.75rem;font-weight:600}
+.footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+    54|
+.clickable{cursor:pointer;transition:all .2s;border:2px solid transparent;border-radius:8px;padding:.5rem}.clickable:hover{border-color:var(--azul);background:var(--azul-claro)}
+.connection-box{background:var(--pura-claro);border:2px solid var(--pura);border-radius:10px;padding:1rem;margin:1.5rem 0}.connection-box strong{color:var(--pura)}
+.difficulty-badge{display:inline-block;background:var(--naranja);color:#fff;padding:.15rem .5rem;border-radius:10px;font-size:.7rem;font-weight:700;margin-left:.5rem;vertical-align:middle}
+.feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
+.feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
+</style>
     55|</head>
     56|<body>
     57|<header class="header">
@@ -175,8 +182,8 @@ Selecciona un paso arriba para ver la explicación.
    143|<div class="quiz-options">
    144|<button class="quiz-btn" onclick="checkAnswer(this, true)">2</button>
    145|<button class="quiz-btn" onclick="checkAnswer(this, false)">3</button>
-   146|<button class="quiz-btn" onclick="checkAnswer(this, false">1</button>
-   147|<button class="quiz-btn" onclick="checkAnswer(this, false">Ninguno</button>
+   146|<button class="quiz-btn" onclick="checkAnswer(this, false)">1</button>
+   147|<button class="quiz-btn" onclick="checkAnswer(this, false)">Ninguno</button>
    148|</div>
    149|<p class="feedback"></p>
    150|</div>
@@ -186,8 +193,8 @@ Selecciona un paso arriba para ver la explicación.
    154|<div class="quiz-options">
    155|<button class="quiz-btn" onclick="checkAnswer(this, false)">30° y 30°</button>
    156|<button class="quiz-btn" onclick="checkAnswer(this, true)">7° y 42°</button>
-   157|<button class="quiz-btn" onclick="checkAnswer(this, false">45° y 45°</button>
-   158|<button class="quiz-btn" onclick="checkAnswer(this, false">15° y 60°</button>
+   157|<button class="quiz-btn" onclick="checkAnswer(this, false)">45° y 45°</button>
+   158|<button class="quiz-btn" onclick="checkAnswer(this, false)">15° y 60°</button>
    159|</div>
    160|<p class="feedback"></p>
    161|</div>
@@ -196,9 +203,9 @@ Selecciona un paso arriba para ver la explicación.
    164|<p>📐 Ejercicio 3: ¿Cuál es la reducción más común en dimétrica?</p>
    165|<div class="quiz-options">
    166|<button class="quiz-btn" onclick="checkAnswer(this, true)">1, 1, 0.5</button>
-   167|<button class="quiz-btn" onclick="checkAnswer(this, false">1, 1, 1</button>
-   168|<button class="quiz-btn" onclick="checkAnswer(this, false">0.82, 0.82, 0.82</button>
-   169|<button class="quiz-btn" onclick="checkAnswer(this, false">0.5, 0.5, 0.5</button>
+   167|<button class="quiz-btn" onclick="checkAnswer(this, false)">1, 1, 1</button>
+   168|<button class="quiz-btn" onclick="checkAnswer(this, false)">0.82, 0.82, 0.82</button>
+   169|<button class="quiz-btn" onclick="checkAnswer(this, false)">0.5, 0.5, 0.5</button>
    170|</div>
    171|<p class="feedback"></p>
    172|</div>
@@ -222,12 +229,85 @@ Selecciona un paso arriba para ver la explicación.
    190|</div>
    191|</section>
    192|
-   193|<div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ DEMASIADA PERSPECTIVA</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="40" width="120" height="60" fill="#fef2f2" stroke="#ef4444" stroke-width="2" rx="10"/><text x="100" y="75" text-anchor="middle" font-size="9" fill="#ef4444">Perspectiva cónica</text><text x="100" y="130" text-anchor="middle" font-size="9" fill="#ef4444">No es técnica</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ ISOMÉTRICA</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><polygon points="100,20 145,46 145,100 100,126 55,100 55,46" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="100" y="80" text-anchor="middle" font-size="9" fill="#10b981">Isométrica ✓</text></svg></div></div>
+   193|
+<div class="exercise">
+<p>📐 Ejercicio 6: <span class="difficulty-badge">INTERMEDIO</span> — Ordena los pasos para dibujar en dimétrica <span class="difficulty-badge">AVANZADO</span></p>
+<p style="font-size:.9rem;color:#64748b;margin-bottom:.8rem">Arrastra los pasos al orden correcto (1-4):</p>
+<div id="ordenDim" style="display:flex;flex-direction:column;gap:.5rem">
+<div class="clickable" style="background:#fff;border:2px solid #e2e8f0;padding:.8rem;border-radius:8px;cursor:grab" onclick="selectOrdenStep(this, 1)">Dibuja la cara frontal en verdadera magnitud</div>
+<div class="clickable" style="background:#fff;border:2px solid #e2e8f0;padding:.8rem;border-radius:8px;cursor:grab" onclick="selectOrdenStep(this, 3)">Añade la profundidad con reducción 0.5</div>
+<div class="clickable" style="background:#fff;border:2px solid #e2e8f0;padding:.8rem;border-radius:8px;cursor:grab" onclick="selectOrdenStep(this, 2)">Traza líneas paralelas al eje 2 (42°)</div>
+<div class="clickable" style="background:#fff;border:2px solid #e2e8f0;padding:.8rem;border-radius:8px;cursor:grab" onclick="selectOrdenStep(this, 4)">Dibuja los 3 ejes (7°, 42°, vertical)</div>
+</div>
+<button onclick="checkOrdenDim()" style="margin-top:.8rem;background:var(--azul);color:#fff;border:none;padding:.5rem 1.5rem;border-radius:6px;cursor:pointer;font-size:.95rem">Comprobar orden</button>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 7: <span class="difficulty-badge">INTERMEDIO</span> — Completar: reducción de la dimétrica</p>
+<p style="font-size:.9rem;color:#64748b;margin-bottom:.8rem">Rellena los huecos con los valores correctos:</p>
+<div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;margin-bottom:.8rem">
+<label style="font-size:.95rem">Eje 1: reducción = <input type="text" id="dimRed1" placeholder="?" style="width:60px;padding:.4rem;border:2px solid #e2e8f0;border-radius:6px;text-align:center"></label>
+<label style="font-size:.95rem">Eje 2: reducción = <input type="text" id="dimRed2" placeholder="?" style="width:60px;padding:.4rem;border:2px solid #e2e8f0;border-radius:6px;text-align:center"></label>
+<label style="font-size:.95rem">Eje 3: reducción = <input type="text" id="dimRed3" placeholder="?" style="width:60px;padding:.4rem;border:2px solid #e2e8f0;border-radius:6px;text-align:center"></label>
+</div>
+<button onclick="checkReduccionDim()" style="background:var(--azul);color:#fff;border:none;padding:.5rem 1.5rem;border-radius:6px;cursor:pointer;font-size:.95rem">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 8: <span class="difficulty-badge">AVANZADO</span> — ¿Qué perspectiva usar?</p>
+<div style="display:flex;flex-direction:column;gap:.8rem">
+<div style="background:#fff;padding:.8rem;border-radius:8px;border:1px solid #e2e8f0">
+<p style="font-weight:600;margin-bottom:.5rem">🏗️ Necesitas dibujar un edificio alto con fachada rectangular</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Isométrica</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Dimétrica</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Caballera</button>
+</div>
+<p class="feedback"></p>
+</div>
+<div style="background:#fff;padding:.8rem;border-radius:8px;border:1px solid #e2e8f0">
+<p style="font-weight:600;margin-bottom:.5rem">🔩 Necesitas dibujar un tornillo cilíndrico estándar</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Isométrica</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Dimétrica</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Caballera</button>
+</div>
+<p class="feedback"></p>
+</div>
+</div>
+</div>
+<div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ DEMASIADA PERSPECTIVA</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="40" width="120" height="60" fill="#fef2f2" stroke="#ef4444" stroke-width="2" rx="10"/><text x="100" y="75" text-anchor="middle" font-size="9" fill="#ef4444">Perspectiva cónica</text><text x="100" y="130" text-anchor="middle" font-size="9" fill="#ef4444">No es técnica</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ ISOMÉTRICA</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><polygon points="100,20 145,46 145,100 100,126 55,100 55,46" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="100" y="80" text-anchor="middle" font-size="9" fill="#10b981">Isométrica ✓</text></svg></div></div>
 
 <div class="box box-error">
-   194|<strong>⚠️ Error común</strong>
-   195|Confundir los ángulos de la dimétrica. Los ángulos típicos son 7° y 42°, NO 30° (isométrica) ni 45° (caballera). ¡Cada perspectiva tiene sus ángulos!
-   196|</div>
+<strong>⚠️ Error común</strong>
+<p>Confundir los ángulos de la dimétrica con los de otras perspectivas. Los ángulos típicos son <strong>7° y 42°</strong>, NO 30° (isométrica) ni 45° (caballera).</p>
+<div class="svg-container" style="margin:1rem 0">
+<svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+<!-- Error: 30° -->
+<rect x="5" y="5" width="240" height="190" fill="#fef2f2" rx="8" stroke="#ef4444" stroke-width="2"/>
+<text x="125" y="25" text-anchor="middle" font-size="12" fill="#ef4444" font-weight="bold">❌ ERROR: 30° y 30° (isométrica)</text>
+<line x1="125" y1="100" x2="60" y2="105" stroke="#ef4444" stroke-width="3"/>
+<line x1="125" y1="100" x2="190" y2="105" stroke="#ef4444" stroke-width="3"/>
+<line x1="125" y1="100" x2="125" y2="50" stroke="#ef4444" stroke-width="3"/>
+<text x="40" y="100" font-size="9" fill="#ef4444">30°</text>
+<text x="200" y="100" font-size="9" fill="#ef4444">30°</text>
+<text x="125" y="170" text-anchor="middle" font-size="9" fill="#ef4444">Ejes iguales → es isométrica, no dimétrica</text>
+
+<!-- Correcto: 7° y 42° -->
+<rect x="255" y="5" width="240" height="190" fill="#ecfdf5" rx="8" stroke="#10b981" stroke-width="2"/>
+<text x="375" y="25" text-anchor="middle" font-size="12" fill="#10b981" font-weight="bold">✅ CORRECTO: 7° y 42° (dimétrica)</text>
+<line x1="375" y1="100" x2="310" y2="105" stroke="#2563eb" stroke-width="3"/>
+<line x1="375" y1="100" x2="440" y2="80" stroke="#f97316" stroke-width="3"/>
+<line x1="375" y1="100" x2="375" y2="50" stroke="#10b981" stroke-width="3"/>
+<text x="290" y="100" font-size="9" fill="#2563eb">7°</text>
+<text x="445" y="75" font-size="9" fill="#f97316">42°</text>
+<text x="375" y="170" text-anchor="middle" font-size="9" fill="#10b981">Dos ejes iguales + uno diferente → dimétrica</text>
+</svg>
+</div>
+<p>Recuerda: <strong>7° y 42°</strong> = dimétrica | <strong>120°</strong> = isométrica | <strong>45°</strong> = caballera</p>
+</div>
    197|
    198|<div class="box box-idea">
    199|<strong>🔗 Conexión</strong>
@@ -235,7 +315,15 @@ Selecciona un paso arriba para ver la explicación.
    201|</div>
    202|
    203|<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: catálogo de productos</strong>Los catálogos de ferretería (tornillos, soportes, bisagras) usan perspectiva isométrica para mostrar las piezas. El cliente puede ver la forma real del producto sin ser dibujante técnico. La elección de isométrica sobre caballera se debe a que los ejes a 120° dan una imagen más equilibrada y simétrica.</div>
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL 2</span><strong>Arquitectura naval: cascos de barcos</strong>Los astilleros usan perspectiva dimétrica para dibujar cascos de barcos. La dimétrica con reducción 1,1,0.5 es ideal porque el casco es mucho más largo que alto. Los dos ejes iguales muestran la eslora y manga, mientras el eje reducido muestra la calado.</div>
 
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🚗 CASO REAL 3</span><strong>Diseño automoción: piezas de motor</strong>Los ingenieros de motor usan dimétrica para representar bloques de motor alargados. Con la reducción 1,1,0.5, la longitud del bloque se muestra a escala real mientras la profundidad (carrera) se reduce. Esto permite ver los cilindros en perspectiva sin distorsionar las dimensiones críticas.</div>
+
+
+<div class="connection-box">
+<strong>🔗 Conexión con otras perspectivas</strong>
+<p>La dimétrica es el punto medio entre isométrica (3 ejes iguales) y caballera (2 ejes en VM, 1 oblicuo). Cuando necesitas más precisión que caballera pero no tanta como isométrica, la dimétrica es tu opción. Piensa en ella como un "ajuste fino" de la perspectiva.</p>
+</div>
 <div class="summary">
    204|<h3>📋 Resumen de lo aprendido</h3>
    205|<ul>
@@ -364,6 +452,59 @@ function checkExercise(id, correct, btn) {
     input.style.borderColor = 'var(--rojo)';
   }
 }
+
+
+// Ordenar pasos dimétrica
+var ordenDimSteps = [];
+function selectOrdenStep(el, pos) {
+  if (el.classList.contains('selected')) {
+    el.classList.remove('selected');
+    el.style.borderColor = '#e2e8f0';
+    el.style.background = '#fff';
+    ordenDimSteps = ordenDimSteps.filter(s => s !== pos);
+  } else {
+    el.classList.add('selected');
+    el.style.borderColor = 'var(--azul)';
+    el.style.background = 'var(--azul-claro)';
+    ordenDimSteps.push(pos);
+  }
+}
+function checkOrdenDim() {
+  var expected = [4, 1, 2, 3]; // Dibuja ejes → cara frontal → trazas → profundidad
+  var feedback = document.querySelector('#ordenDim').nextElementSibling;
+  if (ordenDimSteps.length !== 4) {
+    feedback.textContent = '⚠️ Selecciona los 4 pasos en orden';
+    feedback.className = 'feedback incorrect';
+    return;
+  }
+  var correct = ordenDimSteps.every((v, i) => v === expected[i]);
+  if (correct) {
+    feedback.textContent = '✅ ¡Perfecto! El orden es: 1) Ejes → 2) Cara frontal → 3) Trazas profundidad → 4) Detalles';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ Orden incorrecto. Pista: primero los ejes, luego la cara frontal...';
+    feedback.className = 'feedback incorrect';
+  }
+}
+
+// Completar reducción dimétrica
+function checkReduccionDim() {
+  var r1 = document.getElementById('dimRed1').value.trim().replace(',', '.');
+  var r2 = document.getElementById('dimRed2').value.trim().replace(',', '.');
+  var r3 = document.getElementById('dimRed3').value.trim().replace(',', '.');
+  var feedback = document.getElementById('dimRed3').parentElement.nextElementSibling;
+  if (r1 === '1' && r2 === '1' && (r3 === '0.5' || r3 === '0,5')) {
+    feedback.textContent = '✅ ¡Correcto! 1, 1, 0.5 — dos ejes a escala real, uno a la mitad';
+    feedback.className = 'feedback correct';
+  } else if (r1 === '1' && r2 === '1' && (r3 === '0.75' || r3 === '0,75')) {
+    feedback.textContent = '✅ ¡Correcto! 1, 1, 0.75 — también es válido';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ La reducción dimétrica típica es 1, 1, 0.5 (o 1, 1, 0.75)';
+    feedback.className = 'feedback incorrect';
+  }
+}
+
 
 window.onscroll = function(){
   var h = document.documentElement;
