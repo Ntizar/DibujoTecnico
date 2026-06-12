@@ -65,6 +65,10 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .feedback { margin-top: 0.5rem; font-weight: 600; padding: 0.5rem; border-radius: 6px; }
 .feedback.correct { background: var(--verde-claro); color: #065f46; }
 .feedback.incorrect { background: var(--rojo-claro); color: #991b1b; }
+
+.clickable{cursor:pointer;transition:all .2s;border:2px solid transparent;border-radius:8px;padding:.5rem}.clickable:hover{border-color:var(--azul);background:var(--azul-claro)}
+.connection-box{background:var(--pura-claro);border:2px solid var(--pura);border-radius:10px;padding:1rem;margin:1.5rem 0}.connection-box strong{color:var(--pura)}
+.difficulty-badge{display:inline-block;background:var(--naranja);color:#fff;padding:.15rem .5rem;border-radius:10px;font-size:.7rem;font-weight:700;margin-left:.5rem;vertical-align:middle}
 </style>
 </head>
 <body>
@@ -315,11 +319,75 @@ Añade la horizontal del plano (∥ α₁ en alzado) y la máxima pendiente (⊥
 </div>
 </section>
 
-<div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ PLANO PERPENDICULAR</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="20" y1="70" x2="180" y2="70" stroke="#333" stroke-width="2"/><text x="100" y="65" text-anchor="middle" font-size="9" fill="#333">LT</text><rect x="80" y="20" width="40" height="50" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/><text x="100" y="50" text-anchor="middle" font-size="8" fill="#ef4444">Plano ⊥</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ PLANO OBLICUO</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="20" y1="70" x2="180" y2="70" stroke="#333" stroke-width="2"/><text x="100" y="65" text-anchor="middle" font-size="9" fill="#333">LT</text><polygon points="60,110 140,30 150,30 70,110" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="100" y="75" text-anchor="middle" font-size="8" fill="#2563eb">Plano oblicuo ✓</text></svg></div></div>
+
+
+<div class="exercise">
+<p>📐 Ejercicio 6: <span class="difficulty-badge">INTERMEDIO</span> — Verdadero o Falso visual</p>
+<p style="font-size:.9rem;color:#64748b;margin-bottom:.8rem">Observa el plano y responde:</p>
+<div class="svg-container" style="padding:.8rem">
+<svg viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
+<line x1="40" y1="60" x2="360" y2="60" stroke="#333" stroke-width="2"/>
+<text x="370" y="64" font-size="9" fill="#333">LT</text>
+<line x1="80" y1="95" x2="300" y2="60" stroke="#2563eb" stroke-width="2.5"/>
+<text x="310" y="75" font-size="9" fill="#2563eb">α₁</text>
+<line x1="80" y1="25" x2="300" y2="60" stroke="#f97316" stroke-width="2.5"/>
+<text x="310" y="55" font-size="9" fill="#f97316">α₂</text>
+<text x="190" y="110" text-anchor="middle" font-size="9" fill="#64748b">Plano oblicuo: α₁ y α₂ oblicuas a LT</text>
+</svg>
+</div>
+<p>¿Este plano es <strong>horizontal</strong>?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Verdadero</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Falso</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 7: <span class="difficulty-badge">AVANZADO</span> — Ordena las trazas</p>
+<p style="font-size:.9rem;color:#64748b;margin-bottom:.8rem">Ordena: primero α₁, luego α₂, finalmente la LT</p>
+<div id="ordenPlano" style="display:flex;flex-direction:column;gap:.5rem">
+<div class="clickable" style="background:#fff;border:2px solid #e2e8f0;padding:.8rem;border-radius:8px;cursor:grab" onclick="selectPlanoStep(this, 3)">α₂ — Traza vertical (corta PV)</div>
+<div class="clickable" style="background:#fff;border:2px solid #e2e8f0;padding:.8rem;border-radius:8px;cursor:grab" onclick="selectPlanoStep(this, 1)">LT — Línea de Tierra (referencia)</div>
+<div class="clickable" style="background:#fff;border:2px solid #e2e8f0;padding:.8rem;border-radius:8px;cursor:grab" onclick="selectPlanoStep(this, 2)">α₁ — Traza horizontal (corta PH)</div>
+</div>
+<button onclick="checkOrdenPlano()" style="margin-top:.8rem;background:var(--azul);color:#fff;border:none;padding:.5rem 1.5rem;border-radius:6px;cursor:pointer;font-size:.95rem">Comprobar orden</button>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 8: <span class="difficulty-badge">INTERMEDIO</span> — Completar: posiciones del plano</p>
+<p style="font-size:.9rem;color:#64748b;margin-bottom:.8rem">Un plano <input type="text" id="pos1" placeholder="?" style="width:80px;padding:.4rem;border:2px solid #e2e8f0;border-radius:6px;text-align:center"> tiene α₂ ∥ LT. Un plano <input type="text" id="pos2" placeholder="?" style="width:80px;padding:.4rem;border:2px solid #e2e8f0;border-radius:6px;text-align:center"> tiene α₁ ∥ LT.</p>
+<button onclick="checkPosPlano()" style="background:var(--azul);color:#fff;border:none;padding:.5rem 1.5rem;border-radius:6px;cursor:pointer;font-size:.95rem">Comprobar</button>
+<p class="feedback"></p>
+</div><div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ PLANO PERPENDICULAR</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="20" y1="70" x2="180" y2="70" stroke="#333" stroke-width="2"/><text x="100" y="65" text-anchor="middle" font-size="9" fill="#333">LT</text><rect x="80" y="20" width="40" height="50" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/><text x="100" y="50" text-anchor="middle" font-size="8" fill="#ef4444">Plano ⊥</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ PLANO OBLICUO</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="20" y1="70" x2="180" y2="70" stroke="#333" stroke-width="2"/><text x="100" y="65" text-anchor="middle" font-size="9" fill="#333">LT</text><polygon points="60,110 140,30 150,30 70,110" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="100" y="75" text-anchor="middle" font-size="8" fill="#2563eb">Plano oblicuo ✓</text></svg></div></div>
 
 <div class="box box-error">
 <strong>⚠️ Error clásico</strong>
-Confundir α₁ con α₂. α₁ = traza horizontal = corta el PH. α₂ = traza vertical = corta el PV. ¡Recuerda: α₁ = horizontal = PH, α₂ = vertical = PV!
+<p>Confundir α₁ con α₂. α₁ = traza horizontal = corta el PH. α₂ = traza vertical = corta el PV.</p>
+<div class="svg-container" style="margin:1rem 0">
+<svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+<rect x="5" y="5" width="240" height="190" fill="#fef2f2" rx="8" stroke="#ef4444" stroke-width="2"/>
+<text x="125" y="25" text-anchor="middle" font-size="12" fill="#ef4444" font-weight="bold">❌ ERROR: α₁ y α₂ invertidos</text>
+<line x1="30" y1="100" x2="220" y2="100" stroke="#333" stroke-width="2"/>
+<text x="230" y="104" font-size="9" fill="#333">LT</text>
+<line x1="60" y1="140" x2="200" y2="100" stroke="#10b981" stroke-width="2.5"/>
+<text x="210" y="115" font-size="9" fill="#10b981">α₁ (❌)</text>
+<line x1="60" y1="60" x2="200" y2="100" stroke="#2563eb" stroke-width="2.5"/>
+<text x="210" y="95" font-size="9" fill="#2563eb">α₂ (❌)</text>
+<text x="125" y="175" text-anchor="middle" font-size="9" fill="#ef4444">α₁ debe ser horizontal (PH), α₂ vertical (PV)</text>
+<rect x="255" y="5" width="240" height="190" fill="#ecfdf5" rx="8" stroke="#10b981" stroke-width="2"/>
+<text x="375" y="25" text-anchor="middle" font-size="12" fill="#10b981" font-weight="bold">✅ CORRECTO: α₁ horizontal, α₂ vertical</text>
+<line x1="285" y1="100" x2="475" y2="100" stroke="#333" stroke-width="2"/>
+<text x="485" y="104" font-size="9" fill="#333">LT</text>
+<line x1="315" y1="140" x2="455" y2="100" stroke="#2563eb" stroke-width="2.5"/>
+<text x="465" y="115" font-size="9" fill="#2563eb">α₁ ✓ (PH)</text>
+<line x1="315" y1="60" x2="455" y2="100" stroke="#f97316" stroke-width="2.5"/>
+<text x="465" y="95" font-size="9" fill="#f97316">α₂ ✓ (PV)</text>
+<text x="375" y="175" text-anchor="middle" font-size="9" fill="#10b981">α₁=azul=PH, α₂=naranja=PV</text>
+</svg>
+</div>
+<p>Truco mnemotécnico: <strong>α₁ = 1ª letra = horizontal</strong>, <strong>α₂ = 2ª letra = vertical</strong></p>
 </div>
 
 <div class="box box-idea">
@@ -327,8 +395,16 @@ Confundir α₁ con α₂. α₁ = traza horizontal = corta el PH. α₂ = traza
 El plano es el elemento más importante del diédrico. Todo punto y recta pertenece a un plano. Dominar el plano es clave para cortes, secciones e intersecciones.
 </div>
 
-<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: cara de una pieza mecanizada</strong>Una placa de aluminio con una cara biselada a 45°. El plano muestra el plano del bisel como un triángulo en alzado y como una línea en planta. El operario CNC usa esa representación para programar la fresadora y cortar el bisel con precisión.</div>
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: cara de una pieza mecanizada</strong>Una placa de aluminio con una cara biselada a 45°. El plano muestra el plano del bisel como un triángulo en alzado y como una línea en planta. El operario CNC usa esa representación para programar la fresadora y cortar el bisel con precisión.
 
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏗️ CASO REAL 2</span><strong>Arquitectura: fachada inclinada</strong>Un edificio con fachada a 30° respecto al plano vertical. El arquitecto representa esa fachada como un plano oblicuo en el sistema diédrico. Las trazas del plano definen la inclinación exacta para que el constructor sepa cómo montar el andamio y la estructura.</div>
+
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">⛏️ CASO REAL 3</span><strong>Geología: estratos inclinados</strong>Los geólogos representan capas de roca como planos en el diedrico. Cada estrato tiene sus trazas α₁ y α₂. La orientación de las trazas indica el buzamiento (dirección e inclinación). Esto permite calcular dónde aflorará cada capa en la superficie.</div></div>
+
+<div class="connection-box">
+<strong>🔗 Conexión con cortes y secciones</strong>
+<p>Los cortes y secciones (S05) usan planos cortantes. Cuando un plano α corta una pieza, la sección resultante se rellena con hachuras. Dominar las trazas del plano es el primer paso para entender los cortes: el plano de corte = α con sus trazas α₁ y α₂.</p>
+</div>
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
 <ul>
@@ -479,6 +555,56 @@ function checkExercise(id, correct, btn) {
     input.style.borderColor = 'var(--rojo)';
   }
 }
+
+
+// Ordenar trazas del plano
+var planoSteps = [];
+function selectPlanoStep(el, pos) {
+  if (el.classList.contains('selected')) {
+    el.classList.remove('selected');
+    el.style.borderColor = '#e2e8f0';
+    planoSteps = planoSteps.filter(s => s !== pos);
+  } else {
+    el.classList.add('selected');
+    el.style.borderColor = 'var(--azul)';
+    el.style.background = 'var(--azul-claro)';
+    planoSteps.push(pos);
+  }
+}
+function checkOrdenPlano() {
+  var expected = [3, 1, 2];
+  var feedback = document.getElementById('ordenPlano').nextElementSibling;
+  if (planoSteps.length !== 3) {
+    feedback.textContent = '⚠️ Selecciona los 3 elementos';
+    feedback.className = 'feedback incorrect';
+    return;
+  }
+  var correct = planoSteps.every((v, i) => v === expected[i]);
+  if (correct) {
+    feedback.textContent = '✅ ¡Correcto! Primero la LT, luego α₁, luego α₂.';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ Orden: ① LT → ② α₁ → ③ α₂.';
+    feedback.className = 'feedback incorrect';
+  }
+}
+
+// Completar posiciones del plano
+function checkPosPlano() {
+  var p1 = document.getElementById('pos1').value.trim().toLowerCase();
+  var p2 = document.getElementById('pos2').value.trim().toLowerCase();
+  var fb = document.getElementById('pos2').parentElement.nextElementSibling;
+  var valid1 = ['horizontal', 'plano horizontal'];
+  var valid2 = ['frontal', 'plano frontal'];
+  if (valid1.includes(p1) && valid2.includes(p2)) {
+    fb.textContent = '✅ ¡Correcto! Plano horizontal: α₂ ∥ LT. Plano frontal: α₁ ∥ LT.';
+    fb.className = 'feedback correct';
+  } else {
+    fb.textContent = '❌ Respuesta: horizontal (α₂ ∥ LT), frontal (α₁ ∥ LT).';
+    fb.className = 'feedback incorrect';
+  }
+}
+
 
 window.onscroll = function(){
   var h = document.documentElement;
