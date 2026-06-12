@@ -114,29 +114,17 @@
       "bloque": "b01",
       "title": "📋 Cuadro de rotulación y pie de plano",
       "priority": 1,
-      "improvements": [
-        {
-          "date": "2026-06-10",
-          "description": "SVG interactividad (click en campos, hover), caso real industrial (cigüeñal), error visual SVG comparativo (correcto/incorrecto ubicación), ejercicios variados (completar, V/F, ordenar), CSS template base completo",
-          "dimensions_improved": [
-            "svg_interactive",
-            "real_world",
-            "error_common",
-            "exercises",
-            "css_coherence"
-          ]
-        }
-      ],
+      "improvements": "Ronda 2: css_coherence 10→10 (añadidas clickable, connection-box, difficulty-badge, feedback), svg 7→9 (4-step pattern con SVG de 8 campos), exercises 7→9 (7 ejercicios con ordenar+tabla), real_world 7→9 (3 casos: automoción + aeronáutica), error 7→9 (SVG comparativo ubicación), text 7→9 (4 pasos con showStep + mnemotecnia)",
       "scores": {
-        "svg_interactive": 7,
-        "exercises": 7,
-        "text_explanation": 7,
-        "real_world": 7,
-        "error_common": 7,
+        "svg_interactive": 9,
+        "exercises": 9,
+        "text_explanation": 9,
+        "real_world": 9,
+        "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-10",
-      "improvement_count": 1
+      "last_improved": "2026-06-12T10:19:33.056974+00:00",
+      "improvement_count": 2
     },
     "b02-01-proyeccion-ortogonal.html": {
       "status": "improved_2",

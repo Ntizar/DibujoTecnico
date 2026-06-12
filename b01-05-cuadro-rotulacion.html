@@ -68,7 +68,22 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .rotul-field{cursor:pointer;transition:all .2s}
 .rotul-field:hover{filter:brightness(1.1);stroke-width:3}
 .rotul-field.highlight{stroke:#f97316;stroke-width:3;filter:drop-shadow(0 0 6px rgba(249,115,22,.5))}
-</style>
+
+/* R2: Clases adicionales */
+.clickable{cursor:pointer;transition:transform .15s,box-shadow .15s}
+.clickable:hover{transform:scale(1.02);box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.connection-box{background:linear-gradient(135deg,var(--pura-claro),#f0f4ff);border:2px solid var(--pura);border-radius:12px;padding:1.2rem;margin:1.5rem 0}
+.connection-box h4{color:var(--pura);margin-bottom:.5rem;font-size:1rem}
+.difficulty-badge{display:inline-block;padding:.15rem .5rem;border-radius:8px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.difficulty-badge.easy{background:#d1fae5;color:#065f46}
+.difficulty-badge.medium{background:#fef3c7;color:#92400e}
+.difficulty-badge.hard{background:#fee2e2;color:#991b1b}
+.feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
+.feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
+@keyframes pulseScale{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+.svg-container svg .animated{animation:slideIn .5s ease-out both}
+.svg-container svg .pulse{animation:pulseScale 2s ease-in-out infinite}</style>
 </head>
 <body>
 <header class="header">
@@ -95,6 +110,84 @@ El cuadro de rotulación es como la tarjeta de presentación del dibujo: contien
 
 <section class="chapter">
 <h2 class="chapter-title">1️⃣ El cuadro de rotulación</h2>
+
+<!-- 4-STEP VISUAL PATTERN -->
+<div class="interactive">
+<h3>👀 Mira → Fíjate → Ahora ves → Prueba</h3>
+
+<div class="box box-teoria" id="paso1">
+<strong>👀 Paso 1 — Mira: ¿Qué es el cuadro de rotulación?</strong>
+<p>Es la <strong>tarjeta de identidad</strong> de tu plano. Contiene toda la información necesaria para que cualquier técnico pueda entender qué se está dibujando, quién lo hizo, cuándo y bajo qué norma. Sin él, el plano no tiene valor legal.</p>
+</div>
+
+<div class="box box-ejemplo" id="paso2" style="display:none">
+<strong>🔍 Paso 2 — Fíjate: Los 8 campos obligatorios</strong>
+<div class="svg-container" style="margin:.5rem 0;padding:.8rem">
+<svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+<!-- Título -->
+<text x="250" y="20" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">8 Campos del Cuadro de Rotulación</text>
+<!-- Grid de campos -->
+<rect x="15" y="30" width="110" height="30" rx="4" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="70" y="49" text-anchor="middle" font-size="9" font-weight="bold" fill="#2563eb">1. PROYECTO</text>
+<rect x="15" y="65" width="110" height="30" rx="4" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="70" y="84" text-anchor="middle" font-size="9" font-weight="bold" fill="#2563eb">2. TÍTULO</text>
+<rect x="15" y="100" width="110" height="30" rx="4" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="70" y="119" text-anchor="middle" font-size="9" font-weight="bold" fill="#2563eb">3. ESCALA</text>
+<rect x="15" y="135" width="110" height="30" rx="4" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="70" y="154" text-anchor="middle" font-size="9" font-weight="bold" fill="#2563eb">4. AUTOR</text>
+<rect x="155" y="30" width="110" height="30" rx="4" fill="#fff7ed" stroke="#f97316" stroke-width="1.5"/>
+<text x="210" y="49" text-anchor="middle" font-size="9" font-weight="bold" fill="#f97316">5. FECHA</text>
+<rect x="155" y="65" width="110" height="30" rx="4" fill="#fff7ed" stroke="#f97316" stroke-width="1.5"/>
+<text x="210" y="84" text-anchor="middle" font-size="9" font-weight="bold" fill="#f97316">6. FORMATO</text>
+<rect x="155" y="100" width="110" height="30" rx="4" fill="#fff7ed" stroke="#f97316" stroke-width="1.5"/>
+<text x="210" y="119" text-anchor="middle" font-size="9" font-weight="bold" fill="#f97316">7. NORMA</text>
+<rect x="155" y="135" width="110" height="30" rx="4" fill="#fff7ed" stroke="#f97316" stroke-width="1.5"/>
+<text x="210" y="154" text-anchor="middle" font-size="9" font-weight="bold" fill="#f97316">8. Nº HOJA</text>
+<!-- Ejemplo -->
+<rect x="290" y="30" width="195" height="135" rx="6" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
+<text x="387" y="48" text-anchor="middle" font-size="9" font-weight="bold" fill="#10b981">EJEMPLO REAL</text>
+<line x1="295" y1="55" x2="480" y2="55" stroke="#10b981" stroke-width="0.5"/>
+<text x="300" y="68" font-size="8" fill="#1e293b">📁 Motor V6 3.0L</text>
+<text x="300" y="82" font-size="8" fill="#1e293b">📝 Cigüeñal — Sección</text>
+<text x="300" y="96" font-size="8" fill="#1e293b">🔍 1:2</text>
+<text x="300" y="110" font-size="8" fill="#1e293b">✍️ J. García</text>
+<text x="300" y="124" font-size="8" fill="#1e293b">📅 15/03/2025</text>
+<text x="300" y="138" font-size="8" fill="#1e293b">📄 A2</text>
+<text x="300" y="152" font-size="8" fill="#1e293b">📏 UNE-EN ISO 128</text>
+<text x="300" y="166" font-size="8" fill="#1e293b">🔢 Hoja 3 de 5</text>
+</svg>
+</div>
+</div>
+
+<div class="box box-idea" id="paso3" style="display:none">
+<strong>💡 Paso 3 — Ahora ves: La jerarquía de importancia</strong>
+<p>No todos los campos son iguales. El <strong>proyecto</strong> y el <strong>título</strong> son los más importantes (se leen primero). La <strong>escala</strong> y la <strong>norma</strong> son críticas para la fabricación. La <strong>fecha</strong> y el <strong>autor</strong> son para trazabilidad.</p>
+<div class="box box-ejemplo" style="margin:.5rem 0">
+<strong>🧮 Regla mnemotécnica</strong>
+<strong>P</strong>royecto → <strong>T</strong>ítulo → <strong>E</strong>scala → <strong>A</strong>utor → <strong>F</strong>echa → <strong>F</strong>ormato → <strong>N</strong>orma → <strong>H</strong>oja<br>
+<em>«Te Enamora Fielmente Nunca Más»</em> — cada letra = un campo
+</div>
+</div>
+
+<div class="box box-success" id="paso4" style="display:none">
+<strong>🎯 Paso 4 — Prueba: ¿Lo has pillado?</strong>
+<p>¿Cuál es el <strong>6º campo</strong> del cuadro de rotulación (después de proyecto, título, escala, autor, fecha)?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Norma</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Formato del papel</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Nº de hoja</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Escala</button>
+</div>
+<p class="feedback"></p>
+<p style="font-size:.85rem;color:var(--gris);margin-top:.5rem">Pista: «Te Enamora Fielmente Nunca Más» — 6ª letra = F = Formato</p>
+</div>
+
+<button onclick="showStep(1)" style="margin-top:.5rem">1️⃣ Mira</button>
+<button onclick="showStep(2)">2️⃣ Fíjate</button>
+<button onclick="showStep(3)">3️⃣ Ahora ves</button>
+<button onclick="showStep(4)">4️⃣ Prueba</button>
+</div>
+
 <div class="box box-teoria">
 <strong>📖 Teoría</strong>
 <strong>🔹 ¿Qué es?</strong><br>
@@ -209,6 +302,14 @@ Fecha: 2026-06-10
 <p style="margin-top:.5rem">Un operario de control de calidad encuentra el plano sin cuadro de rotulación en un cajón. No puede verificar la escala, la norma ni la fecha. <strong>Inspecciona una pieza con la escala incorrecta → detecta un eje de 24.5mm como bueno cuando debería ser 25.0mm → el motor vibra a 3000 RPM → fallo catastrófico en carretera. Coste: 200.000€ en garantías + daño a la marca.</strong></p>
 <p style="margin-top:.5rem;font-style:italic;color:var(--gris)">El cuadro de rotulación no es burocracia: es trazabilidad y seguridad.</p>
 </div>
+
+<div class="box box-teoria">
+<span class="real-world-badge">CASO REAL</span>
+<span class="difficulty-badge hard">Aeronáutica</span>
+<strong>✈️ Plano de ala — Airbus A350</strong>
+<p>En la planta de Airbus en Toulouse, cada plano de ala del A350 tiene un cuadro de rotulación con <strong>+20 campos</strong> incluyendo trazabilidad de materiales, lote de fabricación, y certificado de calidad. Un plano sin cuadro completo es <strong>rechazado automáticamente</strong> por el sistema de gestión de calidad AS9100.</p>
+<p style="margin-top:.5rem">Un error en el cuadro de rotulación de un plano de ala puede resultar en el uso de <strong>material incorrecto</strong> (titanio vs aluminio), con coste de <strong>500.000€</strong> en piezas defectuosas y riesgo de seguridad aérea.</p>
+</div>
 </section>
 
 <!-- ERROR COMÚN VISUAL -->
@@ -317,6 +418,35 @@ Colocar el cuadro de rotulación en la esquina superior derecha o en el centro d
 <p class="feedback"></p>
 </div>
 
+<!-- Ejercicio de ordenar campos -->
+<div class="exercise">
+<p><span class="difficulty-badge medium">Medio</span> 📋 Ejercicio 6 (ordenar): Ordena estos campos del cuadro de rotulación en su posición correcta (del 1º al 8º):</p>
+<div style="display:flex;flex-wrap:wrap;gap:.5rem;margin:.5rem 0" id="ordenFields">
+<button class="quiz-btn" onclick="checkOrden(this, false)" data-pos="1">Proyecto</button>
+<button class="quiz-btn" onclick="checkOrden(this, false)" data-pos="5">Fecha</button>
+<button class="quiz-btn" onclick="checkOrden(this, false)" data-pos="3">Escala</button>
+<button class="quiz-btn" onclick="checkOrden(this, false)" data-pos="8">Nº Hoja</button>
+<button class="quiz-btn" onclick="checkOrden(this, false)" data-pos="2">Título</button>
+<button class="quiz-btn" onclick="checkOrden(this, false)" data-pos="6">Formato</button>
+<button class="quiz-btn" onclick="checkOrden(this, false)" data-pos="4">Autor</button>
+<button class="quiz-btn" onclick="checkOrden(this, false)" data-pos="7">Norma</button>
+</div>
+<p class="feedback"></p>
+<p style="font-size:.85rem;color:var(--gris)">Haz clic en cada botón en orden: primero el 1º campo (Proyecto), luego el 2º (Título), etc.</p>
+</div>
+
+<!-- Completar tabla de campos -->
+<div class="exercise">
+<p><span class="difficulty-badge medium">Medio</span> 📊 Ejercicio 7 (tabla): Completa la tabla de campos del cuadro de rotulación:</p>
+<table style="width:100%;border-collapse:collapse;margin:.8rem 0;font-size:.9rem">
+<tr style="background:var(--azul-claro)"><th style="padding:.5rem;border:1px solid #e2e8f0">Campo</th><th style="padding:.5rem;border:1px solid #e2e8f0">Ejemplo</th><th style="padding:.5rem;border:1px solid #e2e8f0">Resultado</th></tr>
+<tr><td style="padding:.4rem;border:1px solid #e2e8f0;font-weight:bold">Escala</td><td id="tblE1" style="padding:.4rem;border:1px solid #e2e8f0;text-align:center;cursor:pointer" class="clickable" onclick="fillTable('tblE1','1:100')">?</td><td style="padding:.4rem;border:1px solid #e2e8f0;text-align:center">✅</td></tr>
+<tr><td style="padding:.4rem;border:1px solid #e2e8f0;font-weight:bold">Formato</td><td id="tblE2" style="padding:.4rem;border:1px solid #e2e8f0;text-align:center;cursor:pointer" class="clickable" onclick="fillTable('tblE2','A2')">?</td><td style="padding:.4rem;border:1px solid #e2e8f0;text-align:center">✅</td></tr>
+<tr><td style="padding:.4rem;border:1px solid #e2e8f0;font-weight:bold">Norma</td><td id="tblE3" style="padding:.4rem;border:1px solid #e2e8f0;text-align:center;cursor:pointer" class="clickable" onclick="fillTable('tblE3','UNE-EN ISO 128')">?</td><td style="padding:.4rem;border:1px solid #e2e8f0;text-align:center">✅</td></tr>
+</table>
+<p style="font-size:.85rem;color:var(--gris)">Haz clic en cada "?" para verificar tu respuesta</p>
+</div>
+
 </div>
 </section>
 
@@ -402,6 +532,52 @@ function checkExercise(id, correct, btn) {
     feedback.textContent = '❌ Respuesta correcta: ' + correct;
     feedback.className = 'feedback incorrect';
     input.style.borderColor = 'var(--rojo)';
+  }
+}
+
+function showStep(step) {
+  for (var i = 1; i <= 4; i++) {
+    var el = document.getElementById('paso' + i);
+    if (el) el.style.display = (i === step) ? 'block' : 'none';
+  }
+  var dots = document.querySelectorAll('.step-dot');
+  dots.forEach(function(d) { d.classList.remove('active'); });
+  var activeDot = document.querySelector('.step-dot[data-step="' + step + '"]');
+  if (activeDot) activeDot.classList.add('active');
+}
+
+function checkOrden(btn, correctPos) {
+  var exercise = btn.closest('.exercise');
+  var allBtns = exercise.querySelectorAll('.quiz-btn');
+  allBtns.forEach(function(b) { b.disabled = true; b.classList.remove('correct','wrong'); });
+  btn.classList.add(correctPos ? 'correct' : 'wrong');
+  var feedback = exercise.querySelector('.feedback');
+  if (feedback) {
+    if (correctPos) {
+      feedback.textContent = '✅ ¡Orden correcto! Proyecto(1) → Título(2) → Escala(3) → Autor(4) → Fecha(5) → Formato(6) → Norma(7) → Nº Hoja(8)';
+      feedback.className = 'feedback correct';
+    } else {
+      feedback.textContent = '❌ No es ese. Recuerda el orden: Proyecto, Título, Escala, Autor, Fecha, Formato, Norma, Nº Hoja.';
+      feedback.className = 'feedback incorrect';
+      setTimeout(function() {
+        allBtns.forEach(function(b) { b.disabled = false; b.classList.remove('correct','wrong'); });
+        feedback.textContent = '';
+        feedback.className = 'feedback';
+      }, 1500);
+    }
+  }
+}
+
+function fillTable(cellId, expected) {
+  var cell = document.getElementById(cellId);
+  if (cell.textContent === '?') {
+    cell.textContent = expected;
+    cell.style.background = 'var(--verde-claro)';
+    cell.style.fontWeight = 'bold';
+  } else {
+    cell.textContent = '?';
+    cell.style.background = '';
+    cell.style.fontWeight = '';
   }
 }
 
