@@ -1092,11 +1092,20 @@
         },
         {
           "date": "2026-06-10",
-          "description": "SVG interactivo con onclick/onmouseover para explorar corte total (3 zonas clicables + toggle mostrar/ocultar), explicación visual paso a paso 4 pasos con mini-SVGs, 3 ejercicios nuevos (V/F, identificar error visual, asociar materiales), CSS: step-indicator, step-dot, feedback.correct/incorrect, comparison-side, toggle-btn, box-problema, real-world-badge, corrección de bugs HTML (atributos onclick sin cerrar comillas)",
+          "description": "SVG interactivo con onclick/onmouseover para explorar corte total (3 zonas clicables + toggle mostrar/ocultar), explicación visual paso a paso 4 pasos con mini-SVGs, 3 ejercicios nuevos (V/F, identificar error visual, asociar materiales), CSS: step-indicator, step-dot, feedback.correct/incorrect, comparison-side, toggle-btn, box-problema, real-world-badge, corrección de bugs HTML",
           "dimensions_improved": [
             "svg_interactive",
             "text_explanation",
             "exercises",
+            "css_coherence"
+          ]
+        },
+        {
+          "date": "2026-06-12",
+          "description": "Ronda 2 Sesión 1: real_world 7→9 (3 casos: BMW S55, AP-7, GE9X), error_common 7→9 (3 errores comparativos SVG: rayado/flechas/corte vs sección), CSS clickable/connection-box/difficulty-badge, checkOrden/checkFillIn functions",
+          "dimensions_improved": [
+            "real_world",
+            "error_common",
             "css_coherence"
           ]
         }
@@ -1105,12 +1114,13 @@
         "svg_interactive": 10,
         "exercises": 10,
         "text_explanation": 10,
-        "real_world": 7,
-        "error_common": 7,
+        "real_world": 9,
+        "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-10",
-      "improvement_count": 2
+      "last_improved": "2026-06-12T09:45:00Z",
+      "improvement_count": 3,
+      "last_round": "ronda2-sesion1"
     },
     "b05-02-corte-tipos.html": {
       "status": "improved_2",
