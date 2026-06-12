@@ -533,7 +533,7 @@
       "improvement_count": 2
     },
     "b03-02-isometrica-cubos.html": {
-      "status": "improved_2",
+      "status": "improved_3",
       "bloque": "b03",
       "title": "🧊 Isométrica: cubos y prismas",
       "priority": 2,
@@ -557,18 +557,19 @@
             "text_explanation",
             "css_coherence"
           ]
-        }
+        },
+        "Ronda 2: CSS clickable/connection-box/difficulty-badge/step-line/feedback, 3 real-world cases (empaquetado+CNC+mobiliario), 8 ejercicios (quiz+VF+ordenar+completar+V/F visual), connection-box"
       ],
       "scores": {
         "svg_interactive": 9,
-        "exercises": 7,
+        "exercises": 9,
         "text_explanation": 9,
-        "real_world": 7,
-        "error_common": 7,
+        "real_world": 9,
+        "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-11",
-      "improvement_count": 2
+      "last_improved": "2026-06-12-ronda2-s3",
+      "improvement_count": 3
     },
     "b03-03-isometrica-circulos.html": {
       "status": "improved_2",

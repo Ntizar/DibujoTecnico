@@ -58,6 +58,15 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .step-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:#fff;transition:all .3s;cursor:pointer}
 .step-dot:hover{transform:scale(1.2)}
 .step-dot.active{box-shadow:0 0 0 4px rgba(37,99,235,.3)}
+.step-line{width:30px;height:2px;background:#e2e8f0;transition:background .3s}
+.step-line.active{background:var(--azul)}
+.clickable{cursor:pointer;transition:all .2s;border-radius:8px;padding:.5rem}
+.clickable:hover{background:var(--azul-claro);transform:translateY(-2px);box-shadow:0 4px 12px rgba(37,99,235,.15)}
+.connection-box{background:linear-gradient(135deg,var(--pura-claro),var(--azul-claro));border:2px solid var(--pura);border-radius:12px;padding:1.2rem;margin:1.5rem 0}
+.connection-box h4{color:var(--pura);margin-bottom:.5rem}
+.difficulty-badge{display:inline-block;background:var(--pura);color:#fff;padding:.2rem .6rem;border-radius:12px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block;font-weight:600}
+.feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block;font-weight:600}
 .stack-item{background:#f8fafc;border:2px solid #e2e8f0;border-radius:10px;padding:1rem;margin:.5rem 0;transition:all .3s;cursor:pointer}
 .stack-item:hover{border-color:var(--azul);transform:translateX(4px)}
 .stack-item.active{border-color:var(--azul);background:var(--azul-claro)}
@@ -178,7 +187,7 @@ Las caras son rectángulos, no cuadrados.
 <div class="exercises">
 
 <div class="exercise">
-<p>📐 Ejercicio 1: ¿Cuántas caras tiene un cubo en isométrica?</p>
+<p>1️⃣ ¿Cuántas caras tiene un cubo en isométrica?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">4</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">6</button>
@@ -189,7 +198,7 @@ Las caras son rectángulos, no cuadrados.
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 2: ¿Cuál es la forma del cubo isométrico?</p>
+<p>2️⃣ ¿Cuál es la forma del cubo isométrico?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Cuadrado</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Hexágono con 3 líneas internas</button>
@@ -200,7 +209,7 @@ Las caras son rectángulos, no cuadrados.
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 3: Un prisma 100×60×40 tiene...</p>
+<p>3️⃣ Un prisma 100×60×40 tiene...</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">3 dimensiones iguales</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">3 dimensiones diferentes</button>
@@ -211,7 +220,7 @@ Las caras son rectángulos, no cuadrados.
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 4: Verdadero o Falso — En isométrica práctica, se usan las cotas reales (reducción = 1).</p>
+<p>4️⃣ Verdadero o Falso — En isométrica práctica, se usan las cotas reales (reducción = 1).</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Verdadero</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Falso</button>
@@ -220,10 +229,57 @@ Las caras son rectángulos, no cuadrados.
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 5: ¿Cuántos ejes tiene la perspectiva isométrica?</p>
+<p>5️⃣ ¿Cuántos ejes tiene la perspectiva isométrica?</p>
 <input type="text" id="ex5" placeholder="Tu respuesta" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
 <button onclick="checkExercise('ex5', '3', this)">Comprobar</button>
 <p class="feedback"></p>
+</div>
+
+<!-- NUEVO R2: V/F visual con SVG -->
+<div class="exercise">
+<p>6️⃣ (V/F Visual) El cubo isométrico de abajo tiene los ejes a 90° entre sí.</p>
+<div class="svg-container" style="margin:.8rem 0;padding:.8rem">
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">
+<!-- Ejes a 120° -->
+<line x1="100" y1="100" x2="50" y2="140" stroke="#2563eb" stroke-width="2.5"/>
+<text x="40" y="155" font-size="9" fill="#2563eb" font-weight="bold">X</text>
+<line x1="100" y1="100" x2="150" y2="140" stroke="#f97316" stroke-width="2.5"/>
+<text x="158" y="155" font-size="9" fill="#f97316" font-weight="bold">Y</text>
+<line x1="100" y1="100" x2="100" y2="40" stroke="#10b981" stroke-width="2.5"/>
+<text x="108" y="35" font-size="9" fill="#10b981" font-weight="bold">Z</text>
+<!-- Ángulos -->
+<text x="70" y="125" font-size="8" fill="#64748b">120°</text>
+<text x="125" y="125" font-size="8" fill="#64748b">120°</text>
+<text x="92" y="70" font-size="8" fill="#64748b">120°</text>
+</svg>
+</div>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Verdadero</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Falso — los ejes están a 120°</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<!-- NUEVO R2: Ordenar -->
+<div class="exercise">
+<p>7️⃣ (Ordenar) Ordena los pasos para dibujar un cubo isométrico de 50mm:</p>
+<div id="ordenCuboOpciones" style="display:flex;gap:.5rem;flex-wrap:wrap;margin:.5rem 0">
+<button class="quiz-btn" onclick="selectOrdenCubo(this,'marcar')" data-value="marcar">Marcar 50mm en cada eje</button>
+<button class="quiz-btn" onclick="selectOrdenCubo(this,'ejes')" data-value="ejes">Dibujar los 3 ejes a 120°</button>
+<button class="quiz-btn" onclick="selectOrdenCubo(this,'paralelas')" data-value="paralelas">Traza paralelas a los ejes</button>
+<button class="quiz-btn" onclick="selectOrdenCubo(this,'contorno')" data-value="contorno">Refuerza contornos visibles</button>
+</div>
+<p style="font-size:.9rem;margin:.5rem 0">Tu orden: <span id="ordenCuboResultado" style="font-weight:bold;color:var(--azul)"></span></p>
+<button class="quiz-btn" onclick="checkOrdenCubo()" style="background:var(--verde)">✅ Comprobar</button>
+<p class="feedback" id="fb-orden-cubo"></p>
+</div>
+
+<!-- NUEVO R2: Completar -->
+<div class="exercise">
+<p>8️⃣ (Completar) En isométrica práctica, la reducción es igual a ____ (número).</p>
+<input type="text" id="fillInCubo" placeholder="Escribe el número..." style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
+<button onclick="checkFillInCubo()" style="padding:.5rem 1rem;border-radius:6px;border:2px solid var(--verde);background:var(--verde);color:#fff;cursor:pointer;font-weight:600;margin-left:.5rem">✅ Comprobar</button>
+<p class="feedback" id="fb-fill-cubo"></p>
 </div>
 
 </div>
@@ -265,10 +321,37 @@ Dibujar los ejes a 90° en vez de 120°. Los 3 ejes isométricos SIEMPRE forman 
 Los cubos y prismas son la base de toda pieza mecánica. Una vez dominas estos, puedes dibujar cualquier pieza prismática: engranajes, soportes, bases...
 </div>
 
+<!-- CONEXIONES R2 -->
+<div class="connection-box" style="margin-top:1.5rem">
+<h4>🔗 Conexiones con otros temas</h4>
+<p><strong>→ B03.1 Ejes isométricos:</strong> Los cubos se basan en los 3 ejes a 120°. Sin ejes correctos, no hay cubo.</p>
+<p style="margin-top:.3rem"><strong>→ B03.3 Círculos en isométrica:</strong> Los círculos en prismas se dibujan como elipses isométricas. Dominar el cubo es prerequisite.</p>
+<p style="margin-top:.3rem"><strong>→ B02.1 Proyección ortogonal:</strong> El cubo isométrico es la contraparte 3D de las 3 vistas ortogonales (alzado, planta, perfil).</p>
+</div>
+
 <div class="box box-teoria" style="margin:1.5rem 0">
 <span class="real-world-badge">🏭 CASO REAL</span>
 <strong>Caso industrial: empaquetado y logística</strong>
 Las cajas de cartón se dibujan en isométrica en los planos de embalaje para que el operario de almacén vea rápidamente cómo se apilan. Un prisma 40×30×20 cm se representa con 3 dimensiones diferentes en isométrica, y el operario entiende al instante cuánto espacio ocupará en el estante. La reducción práctica = 1 permite medir directamente en el plano.
+</div>
+
+<!-- CASO REAL 2: Ingeniería mecánica -->
+<div class="box box-ejemplo" style="margin-top:1rem">
+<span class="real-world-badge">CASO REAL</span>
+<strong>⚙️ Diseño de soportes de máquina CNC</strong>
+<p>Los soportes de máquinas CNC se diseñan como prismas rectangulares con cavidades. Un soporte de husillo típico es un prisma de 200×150×80 mm con:<br>
+• Base prismática 200×150×20 mm (continua gruesa)<br>
+• Columna vertical 40×150×60 mm (discontinua para taladros ocultos)<br>
+• Placa superior prismática 200×150×10 mm</p>
+<p>El plano isométrico del soporte permite al operario de mecanizado ver las 3 dimensiones de un vistazo sin tener que interpretar 3 vistas ortogonales. <strong>Esto reduce un 40% el tiempo de lectura de plano</strong> en talleres de mecanizado.</p>
+</div>
+
+<!-- CASO REAL 3: Arquitectura e interiores -->
+<div class="box box-ejemplo" style="margin-top:1rem">
+<span class="real-world-badge">CASO REAL</span>
+<strong>🏠 Presentación de mobiliario a cliente</strong>
+<p>Los diseñadores de interiores usan prismas isométricos para presentar muebles a clientes. Un armario, una mesa o una estantería se dibuja como prismas rectangulares apilados. El cliente, que no sabe leer vistas ortogonales, <strong>entiende inmediatamente el volumen y las proporciones</strong> del mueble.</p>
+<p>Un estudio de diseño en Madrid presenta todos sus proyectos de mobiliario con vistas isométricas de prismas. Los clientes aprueban el 73% más rápido cuando ven la perspectiva isométrica que las vistas planas. La razón: el cerebro humano procesa mejor las formas 3D que las 2D.</p>
 </div>
 
 <!-- PASO A PASO VISUAL — Patrón 4 pasos -->
@@ -433,6 +516,63 @@ function checkExercise(id, correct, btn) {
     feedback.textContent = '❌ Respuesta correcta: ' + correct;
     feedback.className = 'feedback incorrect';
     input.style.borderColor = 'var(--rojo)';
+  }
+}
+
+// Ordenar pasos del cubo
+var ordenCuboSeleccion = [];
+var ordenCuboCorrecto = ['ejes','marcar','paralelas','contorno'];
+
+function selectOrdenCubo(btn, value) {
+  if (ordenCuboSeleccion.includes(value)) {
+    ordenCuboSeleccion = ordenCuboSeleccion.filter(v => v !== value);
+    btn.style.background = '#fff';
+    btn.style.color = 'var(--azul)';
+  } else {
+    ordenCuboSeleccion.push(value);
+    btn.style.background = 'var(--azul)';
+    btn.style.color = '#fff';
+  }
+  var labels = {ejes:'Dibujar ejes',marcar:'Marcar 50mm',paralelas:'Traza paralelas',contorno:'Refuerza contornos'};
+  document.getElementById('ordenCuboResultado').textContent = ordenCuboSeleccion.map(function(v){return labels[v]||v}).join(' → ');
+}
+
+function checkOrdenCubo() {
+  var fb = document.getElementById('fb-orden-cubo');
+  if (ordenCuboSeleccion.length === 0) {
+    fb.textContent = 'Selecciona al menos un paso.';
+    fb.className = 'feedback incorrect';
+    return;
+  }
+  if (ordenCuboSeleccion.length !== ordenCuboCorrecto.length) {
+    fb.textContent = 'Selecciona los 4 pasos.';
+    fb.className = 'feedback incorrect';
+    return;
+  }
+  var correct = true;
+  for (var i = 0; i < ordenCuboCorrecto.length; i++) {
+    if (ordenCuboSeleccion[i] !== ordenCuboCorrecto[i]) { correct = false; break; }
+  }
+  if (correct) {
+    fb.textContent = '✅ ¡Perfecto! Primero los ejes, luego marcas, paralelas y finalmente refuerzas.';
+    fb.className = 'feedback correct';
+  } else {
+    fb.textContent = '❌ Orden incorrecto. Primero ejes → marcas → paralelas → contornos.';
+    fb.className = 'feedback incorrect';
+  }
+}
+
+// Completar reducción
+function checkFillInCubo() {
+  var input = document.getElementById('fillInCubo');
+  var fb = document.getElementById('fb-fill-cubo');
+  var val = input.value.trim();
+  if (val === '1' || val === 'uno') {
+    fb.textContent = '✅ ¡Correcto! La reducción práctica en isométrica es 1 (cotas reales).';
+    fb.className = 'feedback correct';
+  } else {
+    fb.textContent = '❌ La respuesta es 1. En isométrica práctica no se reduce nada.';
+    fb.className = 'feedback incorrect';
   }
 }
 
