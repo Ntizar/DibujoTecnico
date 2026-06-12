@@ -68,6 +68,16 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .plano-zone{transition:all .3s;cursor:pointer}
 .plano-zone:hover{filter:brightness(1.15);stroke-width:3}
 .plano-zone.active{stroke-width:3;filter:drop-shadow(0 0 8px rgba(37,99,235,.5))}
+.clickable{cursor:pointer;transition:transform .15s,box-shadow .15s}
+.clickable:hover{transform:scale(1.02);box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.connection-box{background:linear-gradient(135deg,var(--pura-claro),#f0f4ff);border:2px solid var(--pura);border-radius:12px;padding:1.2rem;margin:1.5rem 0}
+.connection-box h4{color:var(--pura);margin-bottom:.5rem;font-size:1rem}
+.difficulty-badge{display:inline-block;padding:.15rem .5rem;border-radius:8px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.difficulty-badge.easy{background:#d1fae5;color:#065f46}
+.difficulty-badge.medium{background:#fef3c7;color:#92400e}
+.difficulty-badge.hard{background:#fee2e2;color:#991b1b}
+.feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
+.feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
 </style>
 </head>
 <body>
@@ -389,15 +399,15 @@ Girar el PH hacia ARRIBA en vez de hacia ABAJO. Recuerda: PH gira 90° hacia ABA
 
 <!-- NUEVO: Ejercicio de completar -->
 <div class="exercise">
-<p>🧩 Ejercicio 3 (completar): Completa: El PH gira 90° hacia _____ en el abatimiento.</p>
+<p><span class="difficulty-badge medium">Medio</span> 🧩 Ejercicio 3 (completar): Completa: El PH gira 90° hacia _____ en el abatimiento.</p>
 <input type="text" id="ex3" placeholder="Tu respuesta" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
-<button onclick="checkExercise('ex3', 'abajo', this)">Comprobar</button>
+<button onclick="checkFillIn('ex3', ['abajo'])">Comprobar</button>
 <p class="feedback"></p>
 </div>
 
 <!-- NUEVO: V/F visual -->
 <div class="exercise">
-<p>✅❌ Ejercicio 4 (Verdadero/Falso): El PL (Plano Lateral) gira hacia la izquierda en el abatimiento.</p>
+<p><span class="difficulty-badge easy">Fácil</span> ✅❌ Ejercicio 4 (Verdadero/Falso): El PL (Plano Lateral) gira hacia la izquierda en el abatimiento.</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Verdadero</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Falso — gira hacia la DERECHA</button>
@@ -407,7 +417,7 @@ Girar el PH hacia ARRIBA en vez de hacia ABAJO. Recuerda: PH gira 90° hacia ABA
 
 <!-- NUEVO: Ejercicio de ordenar -->
 <div class="exercise">
-<p>🔢 Ejercicio 5 (ordenar): ¿Qué plano se mantiene FIJO durante el abatimiento?</p>
+<p><span class="difficulty-badge medium">Medio</span> 🔢 Ejercicio 5 (ordenar): ¿Qué plano se mantiene FIJO durante el abatimiento?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">PV (Plano Vertical)</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">PH (Plano Horizontal)</button>
@@ -417,17 +427,72 @@ Girar el PH hacia ARRIBA en vez de hacia ABAJO. Recuerda: PH gira 90° hacia ABA
 <p class="feedback"></p>
 </div>
 
+<!-- NUEVO: Ejercicio de ordenar pasos -->
+<div class="exercise">
+<p><span class="difficulty-badge hard">Difícil</span> 📊 Ejercicio 6 (ordenar): Ordena los pasos del abatimiento de menor a mayor:</p>
+<p style="font-size:.85rem;color:var(--gris);margin-bottom:.5rem">Haz clic en los botones en el orden correcto (1→2→3):</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkOrden(this, false)">PH gira 90° hacia abajo</button>
+<button class="quiz-btn" onclick="checkOrden(this, true)">PV se queda fijo</button>
+<button class="quiz-btn" onclick="checkOrden(this, false)">PL gira 90° hacia la derecha</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<!-- NUEVO: Completar dimensiones -->
+<div class="exercise">
+<p><span class="difficulty-badge medium">Medio</span> 📏 Ejercicio 7 (completar): El Alzado (PV) muestra las dimensiones _____ y _____.</p>
+<input type="text" id="ex7a" placeholder="Dimensión 1" style="padding:.3rem;width:80px;border:2px solid #e2e8f0;border-radius:4px">
+<input type="text" id="ex7b" placeholder="Dimensión 2" style="padding:.3rem;width:80px;border:2px solid #e2e8f0;border-radius:4px">
+<button onclick="checkFillIn('ex7a', ['x','ancho'])">Comprobar</button>
+<p class="feedback"></p>
+<p style="font-size:.8rem;color:var(--gris)">Nota: introduce X o ancho para la primera, Z o alto para la segunda</p>
+</div>
+
+<!-- NUEVO: Ejercicio de caso real -->
+<div class="exercise">
+<p><span class="difficulty-badge hard">Difícil</span> ✈️ Ejercicio 8 (caso real): Un técnico en Japón recibe un plano europeo de un soporte de tren Boeing. En Japón se usa el 3º diedro. ¿Qué error cometerá al interpretar el abatimiento?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Ninguno — los diedros son equivalentes</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Pondrá la planta ARRIBA del alzado en vez de ABAJO</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Pondrá el perfil a la izquierda en vez de a la derecha</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Confundirá el alzado con el perfil</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<!-- NUEVO: Ejercicio de cálculo -->
+<div class="exercise">
+<p><span class="difficulty-badge medium">Medio</span> 🧮 Ejercicio 9: Si una pieza tiene 300mm de largo y la dibujas a escala 1:10 en el PV, ¿cuánto mide en el plano?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">3000 mm</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">30 mm</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">300 mm</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">3 mm</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<!-- NUEVO: VF visual -->
+<div class="exercise">
+<p><span class="difficulty-badge hard">Difícil</span> 🧩 Ejercicio 10 (VF visual): Si el PH se abatiera hacia ARRIBA en vez de ABAJO, ¿qué vista obtendríamos?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">El sistema del 3º diedro (japonés)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">El sistema de perspectiva cónica</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Nada — el plano se rompería</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">El alzado en lugar de la planta</button>
+</div>
+<p class="feedback"></p>
+<p style="font-size:.85rem;color:var(--gris)">En 3º diedro (Japón, Corea), la planta va ARRIBA del alzado.</p>
+</div>
+
 </div>
 </section>
 
-<div class="box box-error">
-<strong>⚠️ Error clásico</strong>
-Girar el PH hacia ARRIBA en vez de hacia ABAJO. Recuerda: PH gira 90° hacia ABAJO (alrededor de la LT). PL gira hacia la DERECHA. PV se queda FIJO.
-</div>
-
-<div class="box box-idea">
-<strong>🔗 Conexión</strong>
-El sistema de 3 planos es la base de TODO el dibujo técnico. Alzado, planta y perfil son simplemente las tres caras de una caja transparente donde se proyecta la pieza.
+<div class="connection-box">
+<h4>🔗 Conexión con otros temas</h4>
+<p>El sistema de 3 planos es la base de TODO el dibujo técnico. Se conecta directamente con <strong>vistas principales</strong> (B02-03), <strong>correspondencia entre vistas</strong> (B02-04) y <strong>cortes y secciones</strong> (B05). Sin entender los 3 planos, no se puede leer ningún plano técnico.</p>
+<p style="margin-top:.5rem"><span class="real-world-badge">Dato</span> El sistema de 3 planos fue formalizado por Gaspard Monge en 1795 como parte de la geometría descriptiva, y sigue siendo la base de todos los CAD modernos (SolidWorks, AutoCAD, CATIA).</p>
 </div>
 
 <div class="summary">
@@ -516,6 +581,41 @@ function checkExercise(id, correct, btn) {
     feedback.textContent = '❌ Respuesta correcta: abajo';
     feedback.className = 'feedback incorrect';
     input.style.borderColor = 'var(--rojo)';
+  }
+}
+
+function checkFillIn(inputId, correctAnswers) {
+  var input = document.getElementById(inputId);
+  var feedback = input.parentElement.querySelector('.feedback');
+  var val = input.value.trim().toLowerCase();
+  if (correctAnswers.some(function(a) { return a.toLowerCase() === val; })) {
+    feedback.textContent = '✅ ¡Correcto!';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ Respuesta: ' + correctAnswers[0];
+    feedback.className = 'feedback incorrect';
+  }
+}
+
+function checkOrden(btn, correctPos) {
+  var exercise = btn.closest('.exercise');
+  var allBtns = exercise.querySelectorAll('.quiz-btn');
+  allBtns.forEach(function(b) { b.disabled = true; b.classList.remove('correct','wrong'); });
+  btn.classList.add(correctPos ? 'correct' : 'wrong');
+  var feedback = exercise.querySelector('.feedback');
+  if (feedback) {
+    if (correctPos) {
+      feedback.textContent = '✅ ¡Orden correcto!';
+      feedback.className = 'feedback correct';
+    } else {
+      feedback.textContent = '❌ No es ese. Prueba otro.';
+      feedback.className = 'feedback incorrect';
+      setTimeout(function() {
+        allBtns.forEach(function(b) { b.disabled = false; b.classList.remove('correct','wrong'); });
+        feedback.textContent = '';
+        feedback.className = 'feedback';
+      }, 1500);
+    }
   }
 }
 
