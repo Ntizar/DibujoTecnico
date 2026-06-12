@@ -416,7 +416,7 @@
       "improvement_count": 3
     },
     "b02-08-vista-auxiliar-parcial.html": {
-      "status": "improved_1",
+      "status": "improved_2",
       "bloque": "b02",
       "title": "🔎 Vista auxiliar y parcial",
       "priority": 1,
@@ -440,18 +440,28 @@
             "text_explanation",
             "css_coherence"
           ]
+        },
+        {
+          "date": "2026-06-12",
+          "description": "Ronda 2: CSS clickable/connection-box/difficulty-badge/feedback, 3 real-world cases (aeronáutica+microelectrónica), error SVG comparativo mejorado, 7 ejercicios (quiz+VF+completar+ordenar+VF visual), connection-box",
+          "dimensions_improved": [
+            "exercises",
+            "real_world",
+            "error_common",
+            "css_coherence"
+          ]
         }
       ],
       "scores": {
-        "svg_interactive": 10,
-        "exercises": 7,
-        "text_explanation": 10,
-        "real_world": 7,
-        "error_common": 7,
+        "svg_interactive": 9,
+        "exercises": 9,
+        "text_explanation": 9,
+        "real_world": 9,
+        "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-10",
-      "improvement_count": 2
+      "last_improved": "2026-06-12-ronda2-s1",
+      "improvement_count": 3
     },
     "b03-01-isometrica-ejes.html": {
       "status": "improved_2",

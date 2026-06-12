@@ -62,6 +62,15 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .stack-item:hover{border-color:var(--azul);transform:translateX(4px)}
 .stack-item.active{border-color:var(--azul);background:var(--azul-claro)}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+.clickable{cursor:pointer;transition:all .2s}.clickable:hover{transform:scale(1.02);box-shadow:0 4px 12px rgba(37,99,235,.15)}
+.connection-box{background:var(--pura-claro);border:2px solid var(--pura);border-radius:12px;padding:1.2rem 1.5rem;margin:1.5rem 0;border-left:4px solid var(--pura)}
+.connection-box strong{color:var(--pura)}
+.difficulty-badge{display:inline-block;padding:.15rem .5rem;border-radius:10px;font-size:.7rem;font-weight:700;margin-left:.5rem}
+.difficulty-badge.easy{background:#dcfce7;color:#166534}
+.difficulty-badge.medium{background:#fef3c7;color:#92400e}
+.difficulty-badge.hard{background:#fce7f3;color:#9d174d}
+.feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
+.feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
 </style>
 </head>
 <body>
@@ -255,6 +264,38 @@ Vista auxiliar = se coloca perpendicular a la zona doblada.
 <p class="feedback"></p>
 </div>
 
+<div class="exercise">
+<p>📐 Ejercicio 6 (Ordenar): <span class="difficulty-badge easy">Fácil</span> — Ordena los pasos para construir una vista auxiliar</p>
+<p style="font-size:.9rem;color:#64748b;margin-bottom:.8rem">Arrastra o selecciona el orden correcto de los pasos:</p>
+<div id="ordenar1" style="display:flex;flex-direction:column;gap:.5rem">
+<div class="stack-item" data-pos="2" onclick="selectOrden(this,'ordenar1')">Identificar la cara inclinada en la pieza</div>
+<div class="stack-item" data-pos="4" onclick="selectOrden(this,'ordenar1')">Colocar la vista auxiliar paralela a la cara</div>
+<div class="stack-item" data-pos="1" onclick="selectOrden(this,'ordenar1')">Dibujar la vista normal de la pieza</div>
+<div class="stack-item" data-pos="3" onclick="selectOrden(this,'ordenar1')">Trazar la línea de proyección perpendicular a la cara</div>
+</div>
+<button onclick="checkOrden('ordenar1', this)" style="margin-top:.8rem;padding:.5rem 1.2rem;background:var(--azul);color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:600">✅ Comprobar orden</button>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 7 (VF Visual): <span class="difficulty-badge medium">Media</span> — ¿Qué tipo de línea delimita una vista parcial?</p>
+<div class="svg-container clickable" style="cursor:pointer" onclick="checkVFVisual(this, true)">
+<svg viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg" width="100%">
+<!-- Opción A: línea ondulada -->
+<rect x="10" y="10" width="180" height="100" fill="#fff" rx="8" stroke="#e2e8f0" stroke-width="2" class="clickable" onclick="event.stopPropagation();checkVFAnswer(this, true)"/>
+<text x="100" y="30" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600">Opción A</text>
+<path d="M 30 70 Q 50 65, 70 70 Q 90 75, 110 70 Q 130 65, 150 70" fill="none" stroke="#f97316" stroke-width="3"/>
+<text x="100" y="95" text-anchor="middle" font-size="9" fill="#64748b">Línea ondulada</text>
+<!-- Opción B: línea continua gruesa -->
+<rect x="210" y="10" width="180" height="100" fill="#fff" rx="8" stroke="#e2e8f0" stroke-width="2" class="clickable" onclick="event.stopPropagation();checkVFAnswer(this, false)"/>
+<text x="300" y="30" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600">Opción B</text>
+<line x1="230" y1="70" x2="370" y2="70" stroke="#2563eb" stroke-width="5"/>
+<text x="300" y="95" text-anchor="middle" font-size="9" fill="#64748b">Línea continua gruesa</text>
+</svg>
+</div>
+<p class="feedback"></p>
+</div>
+
 </div>
 </section>
 
@@ -289,15 +330,69 @@ Vista auxiliar = se coloca perpendicular a la zona doblada.
 Colocar la vista auxiliar en cualquier dirección. Debe ser PARALELA a la cara inclinada para que se vea en verdadera magnitud. Si no es paralela, la cara se verá deformada.
 </div>
 
-<div class="box box-idea">
+<div class="box box-ejemplo" style="margin:1.5rem 0">
+<strong>🔍 Error visual comparativo</strong>
+<div class="svg-container clickable" style="margin:1rem 0" onclick="toggleErrorVisual()">
+<svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" id="errorCompareSvg">
+<!-- Error lado izquierdo -->
+<rect x="10" y="10" width="280" height="180" fill="#fef2f2" rx="8" stroke="#ef4444" stroke-width="2"/>
+<text x="150" y="35" text-anchor="middle" font-size="14" fill="#ef4444" font-weight="700">❌ ERROR: Plano NO paralelo</text>
+<!-- Pieza con cara inclinada -->
+<polygon points="60,140 140,140 160,80 60,80" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<text x="100" y="115" text-anchor="middle" font-size="10" fill="#2563eb">Pieza</text>
+<!-- Cara inclinada -->
+<line x1="140" y1="110" x2="180" y2="110" stroke="#ef4444" stroke-width="2" stroke-dasharray="5,3"/>
+<text x="210" y="114" font-size="9" fill="#ef4444">❌ Plano horizontal</text>
+<!-- Vista deformada -->
+<rect x="190" y="60" width="60" height="50" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/>
+<text x="220" y="80" text-anchor="middle" font-size="8" fill="#ef4444">DEFORMADA</text>
+<text x="220" y="95" text-anchor="middle" font-size="8" fill="#ef4444">ángulo 30°</text>
+<text x="220" y="108" text-anchor="middle" font-size="8" fill="#ef4444">→ no VM</text>
+<!-- Flecha roja -->
+<text x="150" y="175" text-anchor="middle" font-size="10" fill="#ef4444">Plano horizontal ≠ cara inclinada → vista deformada</text>
+
+<!-- Correcto lado derecho -->
+<rect x="310" y="10" width="280" height="180" fill="#ecfdf5" rx="8" stroke="#10b981" stroke-width="2"/>
+<text x="450" y="35" text-anchor="middle" font-size="14" fill="#10b981" font-weight="700">✅ CORRECTO: Plano PARALELO</text>
+<!-- Pieza con cara inclinada -->
+<polygon points="360,140 440,140 460,80 360,80" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<text x="400" y="115" text-anchor="middle" font-size="10" fill="#2563eb">Pieza</text>
+<!-- Cara inclinada -->
+<line x1="460" y1="110" x2="500" y2="90" stroke="#10b981" stroke-width="2.5"/>
+<text x="505" y="94" font-size="9" fill="#10b981">✅ Plano paralelo</text>
+<!-- Vista en VM -->
+<rect x="480" y="55" width="60" height="50" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+<text x="510" y="75" text-anchor="middle" font-size="8" fill="#10b981" font-weight="700">VERDADERA</text>
+<text x="510" y="90" text-anchor="middle" font-size="8" fill="#10b981" font-weight="700">MAGNITUD</text>
+<text x="510" y="105" text-anchor="middle" font-size="8" fill="#10b981">✓ VM ✓</text>
+<!-- Flecha verde -->
+<text x="450" y="175" text-anchor="middle" font-size="10" fill="#10b981">Plano paralelo a cara → vista en verdadera magnitud</text>
+</svg>
+</div>
+<small>👆 Click para resaltar la diferencia entre plano paralelo y no paralelo</small>
+</div>
+
+<div class="connection-box">
 <strong>🔗 Conexión</strong>
-Las vistas auxiliares y parciales son herramientas avanzadas del diédrico. Se usan cuando las vistas normales no son suficientes para representar correctamente una pieza.
+Las vistas auxiliares y parciales son herramientas avanzadas del diédrico. Se usan cuando las vistas normales no son suficientes para representar correctamente una pieza. <strong>Conecta con:</strong> <a href="b06-01-acotacion.html">acotación</a> (una vez tienes la vista en VM, puedes acotar correctamente) y <a href="b05-01-cortes.html">cortes</a> (los cortes también muestran secciones en verdadera magnitud).
 </div>
 
 <div class="box box-teoria" style="margin:1.5rem 0">
 <span class="real-world-badge">🏭 CASO REAL</span>
 <strong>Caso industrial: chapa plegada con refuerzo inclinado</strong>
 Una chapa metálica doblada a 45° con un refuerzo de soldadura en la cara inclinada. En el alzado, la cara inclinada se ve deformada. El soldador necesita ver la forma real del refuerzo para soldar correctamente. Se coloca una vista auxiliar paralela a la cara inclinada para que el refuerzo se vea en verdadera magnitud.
+</div>
+
+<div class="box box-teoria" style="margin:1.5rem 0">
+<span class="real-world-badge">✈️ AERONÁUTICA</span>
+<strong>Caso aeronáutico: aspa de turbina con ángulo variable</strong>
+En la fabricación de aspas de turbina, cada sección del aspa tiene un ángulo de incidencia diferente. Las vistas normales del alzado y planta no muestran la forma real de cada perfil aerodinámico. Se generan vistas auxiliares perpendiculares a cada sección para que el ingeniero pueda verificar las dimensiones reales del perfil. Sin estas vistas, el perfil se vería deformado y no se podrían controlar las tolerancias de fabricación (±0.1mm).
+</div>
+
+<div class="box box-teoria" style="margin:1.5rem 0">
+<span class="real-world-badge">🔬 MICROELECTRÓNICA</span>
+<strong>Caso microelectrónica: vista parcial de pad de soldadura</strong>
+Un circuito impreso de alta densidad tiene miles de pads de soldadura de 0.3mm. La vista general del circuito sería ilegible a esa escala. Se usa una vista parcial que amplifica solo la zona del conector USB, delimitada con línea ondulada. Esto permite al técnico de producción verificar la posición exacta de cada pad sin ver todo el circuito.
 </div>
 
 <div class="summary">
@@ -375,6 +470,128 @@ window.onscroll = function(){
   var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
   document.getElementById('progress').style.width = p+'%';
 };
+
+// Ordenar exercise
+var ordenarSelected = {};
+function selectOrden(el, containerId) {
+  var container = document.getElementById(containerId);
+  if (!container) return;
+  // Toggle selection
+  if (el.dataset.selected === 'true') {
+    el.dataset.selected = 'false';
+    el.style.borderColor = '#e2e8f0';
+    el.style.background = '#f8fafc';
+    delete ordenarSelected[containerId];
+  } else {
+    // Find next free position
+    var positions = {};
+    container.querySelectorAll('.stack-item[data-selected="true"]').forEach(function(item) {
+      positions[item.dataset.pos] = item;
+    });
+    var nextPos = 1;
+    while (positions[nextPos]) nextPos++;
+    el.dataset.pos = String(nextPos);
+    el.dataset.selected = 'true';
+    el.style.borderColor = 'var(--azul)';
+    el.style.background = 'var(--azul-claro)';
+    ordenarSelected[containerId] = nextPos;
+  }
+}
+
+function checkOrden(containerId, btn) {
+  var container = document.getElementById(containerId);
+  var items = container.querySelectorAll('.stack-item');
+  if (items.length === 0) return;
+  
+  // Check if all selected
+  var selected = container.querySelectorAll('.stack-item[data-selected="true"]');
+  if (selected.length < items.length) {
+    var feedback = btn.parentElement.querySelector('.feedback');
+    if (feedback) {
+      feedback.textContent = '⚠️ Selecciona todos los elementos primero';
+      feedback.className = 'feedback incorrect';
+    }
+    return;
+  }
+  
+  // Check order: items should be ordered by data-pos = 1,2,3,4...
+  var sorted = Array.from(items).sort(function(a,b) {
+    return parseInt(a.dataset.pos) - parseInt(b.dataset.pos);
+  });
+  
+  // Check if the visual order matches 1,2,3,4
+  var correct = true;
+  for (var i = 0; i < sorted.length; i++) {
+    if (sorted[i].dataset.pos !== String(i+1)) {
+      correct = false;
+      break;
+    }
+  }
+  
+  var feedback = btn.parentElement.querySelector('.feedback');
+  if (correct) {
+    feedback.textContent = '✅ ¡Correcto! El orden es: 1) Vista normal → 2) Identificar cara → 3) Trazar línea → 4) Colocar vista auxiliar';
+    feedback.className = 'feedback correct';
+    container.querySelectorAll('.stack-item').forEach(function(item) {
+      item.style.borderLeft = '4px solid var(--verde)';
+    });
+  } else {
+    feedback.textContent = '❌ Orden incorrecto. Pista: primero necesitas la vista normal de la pieza.';
+    feedback.className = 'feedback incorrect';
+    container.querySelectorAll('.stack-item').forEach(function(item) {
+      item.style.borderLeft = '4px solid var(--rojo)';
+    });
+  }
+}
+
+// VF Visual exercise
+function checkVFAnswer(el, correct) {
+  var exercise = el.closest('.exercise');
+  if (!exercise) return;
+  var feedback = exercise.querySelector('.feedback');
+  var svg = el.closest('.svg-container');
+  
+  // Reset all options
+  svg.querySelectorAll('.clickable').forEach(function(opt) {
+    opt.style.borderColor = '#e2e8f0';
+    opt.style.background = '#fff';
+  });
+  
+  if (correct) {
+    el.style.borderColor = 'var(--verde)';
+    el.style.background = 'var(--verde-claro)';
+    feedback.textContent = '✅ ¡Correcto! La vista parcial se delimita con una línea ondulada (línea de rotura).';
+    feedback.className = 'feedback correct';
+  } else {
+    el.style.borderColor = 'var(--rojo)';
+    el.style.background = 'var(--rojo-claro)';
+    feedback.textContent = '❌ Incorrecto. La línea continua gruesa se usa para contornos visibles, no para delimitar vistas parciales.';
+    feedback.className = 'feedback incorrect';
+  }
+}
+
+function checkVFVisual(container, correct) {
+  // Fallback: click on the SVG container itself
+  var exercise = container.closest('.exercise');
+  if (exercise) {
+    var feedback = exercise.querySelector('.feedback');
+    feedback.textContent = '👆 Haz click en una de las dos opciones (A o B) para responder';
+    feedback.className = 'feedback incorrect';
+  }
+}
+
+// Toggle error visual
+var errorVisualExpanded = false;
+function toggleErrorVisual() {
+  errorVisualExpanded = !errorVisualExpanded;
+  var svg = document.getElementById('errorCompareSvg');
+  if (!svg) return;
+  // Highlight the key difference
+  var errorTexts = svg.querySelectorAll('text[fill="#ef4444"]');
+  var correctTexts = svg.querySelectorAll('text[fill="#10b981"]');
+  errorTexts.forEach(function(t) { t.style.fontWeight = errorVisualExpanded ? '900' : '700'; });
+  correctTexts.forEach(function(t) { t.style.fontWeight = errorVisualExpanded ? '900' : '700'; });
+}
 </script>
 </body>
 </html>
