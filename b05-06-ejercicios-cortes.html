@@ -61,6 +61,11 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .step-indicator { display: flex; gap: 0.5rem; justify-content: center; margin: 1rem 0; }
 .step-dot { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; color: #fff; transition: all 0.3s; cursor: pointer; }
 .step-dot:hover { transform: scale(1.2); }
+.clickable { cursor: pointer; transition: all 0.2s; border: 2px solid transparent; }
+.clickable:hover { border-color: var(--azul); box-shadow: 0 2px 8px rgba(37,99,235,0.15); transform: translateY(-1px); }
+.connection-box { background: var(--pura-claro); border-left: 4px solid var(--pura); border-radius: 10px; padding: 1rem 1.2rem; margin: 1.5rem 0; }
+.connection-box strong { color: var(--pura); }
+.difficulty-badge { display: inline-block; background: var(--verde); color: #fff; padding: 0.15rem 0.5rem; border-radius: 10px; font-size: 0.7rem; font-weight: 600; margin-left: 0.5rem; }
 .step-dot.active { box-shadow: 0 0 0 4px rgba(37,99,235,0.3); }
 .clickable { cursor: pointer; }
 .clickable:hover { stroke: var(--naranja); stroke-width: 3; }
@@ -300,6 +305,16 @@ Antes de dibujar cualquier corte, pregúntate:<br>
 <p class="feedback"></p>
 </div>
 
+<!-- NUEVO R2: V/F -->
+<div class="exercise">
+<p>🔍 Ejercicio 6 (V/F): Un corte escalado permite ver detalles internos sin rayar la sección.</p>
+<div style="display:flex;gap:1rem;margin:.5rem 0">
+<button class="quiz-btn" onclick="checkVFCortes(this, false)" style="background:#ecfdf5;border-color:#10b981;color:#065f46">✅ Verdadero</button>
+<button class="quiz-btn" onclick="checkVFCortes(this, true)" style="background:#fef2f2;border-color:#ef4444;color:#991b1b">❌ Falso</button>
+</div>
+<p class="feedback"></p>
+</div>
+
 </div>
 </section>
 
@@ -434,9 +449,10 @@ Antes de dibujar cualquier corte, pregúntate:<br>
 • Poner rayados con ángulos diferentes en el mismo material (siempre 45° uniforme)
 </div>
 
-<div class="box box-idea">
+<div class="connection-box">
 <strong>🔗 Conexión</strong>
-Este ejercicio completo integra todos los conceptos del Bloque 5. En el Bloque 6 (Acotación) aprenderás a añadir las medidas a estos cortes. ¡Todo está conectado!
+<p>Este ejercicio completo integra todos los conceptos del Bloque 5. En el Bloque 6 (Acotación) aprenderás a añadir las medidas a estos cortes. ¡Todo está conectado!</p>
+<p style="margin-top:.5rem;font-size:.9rem;color:#64748b">📌 <strong>¿Sabías que...?</strong> La norma ISO 129-1 fue revisada en 2004 para incluir nuevas normas de hachura para materiales compuestos y plásticos, ampliando las opciones más allá del clásico 45°.</p>
 </div>
 
 <div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: plano de conjunto de un motor diésel MAN D0836</strong>El motor MAN D0836 tiene 850+ piezas. El plano de conjunto usa 8 cortes diferentes: corte total para el bloque, corte escalonado para los conductos de refrigeración, semicorte para la culata, cortes parciales para los cojinetes, y secciones para los árboles de levas. Cada uno de los 850 componentes tiene su lista numerada con cotas ISO 129. El dibujante usa hachuras diferentes para cada material: acero (45°), aluminio (60°), fundición (45° cruzada). Un error de corte en el bloque del motor costaría 15.000€ en piezas defectuosas.</div>
@@ -574,6 +590,25 @@ window.onscroll = function(){
   var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
   document.getElementById('progress').style.width = p+'%';
 };
+
+// Ronda 2: V/F para cortes
+function checkVFCortes(btn, correct) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) {
+    b.disabled = true; b.style.opacity = '.5';
+  });
+  btn.style.opacity = '1';
+  var feedback = parent.nextElementSibling;
+  if(correct) {
+    btn.style.background = 'var(--verde)'; btn.style.color = '#fff';
+    feedback.textContent = '✅ ¡Correcto! El semicorte permite ver detalles internos sin rayar toda la sección. Se usa en piezas simétricas.';
+    feedback.className = 'feedback correct';
+  } else {
+    btn.style.background = 'var(--rojo)'; btn.style.color = '#fff';
+    feedback.textContent = '❌ Falso. El semicorte sí permite ver detalles internos sin rayar toda la sección.';
+    feedback.className = 'feedback incorrect';
+  }
+}
 </script>
 </body>
 </html>

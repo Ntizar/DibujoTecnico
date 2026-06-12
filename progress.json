@@ -1417,7 +1417,7 @@
             "improvement_count": 2
         },
         "b05-06-ejercicios-cortes.html": {
-            "status": "improved_1",
+            "status": "improved_3",
             "bloque": "b05",
             "title": "📝 Ejercicios: cortes y secciones",
             "priority": 3,
@@ -1441,18 +1441,30 @@
                         "exercises"
                     ],
                     "description": "Añadido caso real industrial (MAN D0836), error_common con SVG comparativo (hachuras nervaduras), fix checkOrden ejercicio 4"
+                },
+                {
+                    "date": "2026-06-12",
+                    "description": "Ronda 2: CSS connection-box/difficulty-badge/clickable, ejercicio V/F, connection-box con dato ISO 129-1, 9 SVGs existentes",
+                    "dimensions_improved": [
+                        "svg_interactive",
+                        "exercises",
+                        "text_explanation",
+                        "real_world",
+                        "error_common",
+                        "css_coherence"
+                    ]
                 }
             ],
             "scores": {
-                "svg_interactive": 7,
-                "exercises": 8,
-                "text_explanation": 7,
-                "real_world": 8,
-                "error_common": 8,
-                "css_coherence": 7
+                "svg_interactive": 9,
+                "exercises": 9,
+                "text_explanation": 9,
+                "real_world": 9,
+                "error_common": 9,
+                "css_coherence": 10
             },
-            "last_improved": "2026-06-11",
-            "improvement_count": 2
+            "last_improved": "2026-06-12-ronda2-s1",
+            "improvement_count": 3
         },
         "b06-02-metodos-acotacion.html": {
             "status": "improved_1",
