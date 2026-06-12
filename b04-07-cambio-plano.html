@@ -65,6 +65,16 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .feedback { margin-top: 0.5rem; font-weight: 600; padding: 0.5rem; border-radius: 6px; }
 .feedback.correct { background: var(--verde-claro); color: #065f46; border: 1px solid var(--verde); }
 .feedback.incorrect { background: var(--rojo-claro); color: #991b1b; border: 1px solid var(--rojo); }
+
+.clickable{cursor:pointer;transition:all .2s}.clickable:hover{transform:scale(1.03);box-shadow:0 4px 12px rgba(37,99,235,.15)}
+.connection-box{background:linear-gradient(135deg,#faf5ff,#eff6ff);border:2px solid #a855f7;border-radius:10px;padding:1rem 1.2rem;margin:1rem 0}
+.connection-box strong{color:#7c3aed}.connection-box a{color:#2563eb;text-decoration:underline}
+.difficulty-badge{display:inline-block;padding:.15rem .5rem;border-radius:10px;font-size:.7rem;font-weight:700;margin-left:.5rem;vertical-align:middle}
+.difficulty-badge.easy{background:#dcfce7;color:#166534}
+.difficulty-badge.medium{background:#fef3c7;color:#92400e}
+.difficulty-badge.hard{background:#fee2e2;color:#991b1b}
+.feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
+.feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
 </style>
 </head>
 <body>
@@ -278,9 +288,6 @@ Recuerda: 1er cambio → PV' ∥ r → VM en alzado. 2do cambio → PH' ⊥ r' �
 </div>
 </section>
 
-<div class="comparison"</div>
-</section>
-
 <div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ PLANO PERPENDICULAR</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="50" y1="110" x2="150" y2="40" stroke="#333" stroke-width="2"/><line x1="100" y1="110" x2="100" y2="30" stroke="#ef4444" stroke-width="2"/><text x="100" y="130" text-anchor="middle" font-size="9" fill="#ef4444">Nuevo PV ⊥ → línea punto</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ PLANO PARALELO</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="50" y1="110" x2="150" y2="40" stroke="#333" stroke-width="2"/><line x1="30" y1="110" x2="170" y2="110" stroke="#10b981" stroke-width="2"/><text x="100" y="130" text-anchor="middle" font-size="9" fill="#10b981">Nuevo PV ∥ → línea en VM ✓</text></svg></div></div>
 
 <div class="box box-error">
@@ -295,6 +302,40 @@ El cambio de plano es una herramienta fundamental del diédrico. Se usa para obt
 
 <div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: replanteo de cimentaciones</strong>Un arquitecto técnico necesita la VM de una línea de cerramiento que está inclinada respecto a los planos de proyección. Hace un cambio de plano: coloca un nuevo PV paralelo a la línea. En el nuevo sistema, la línea se ve en verdadera magnitud y puede acotar con precisión.</div>
 
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏗️ CASO REAL</span><strong>Caso real: plegado de chapa metálica</strong>Para fabricar una pieza de chapa, primero se calcula su desarrollo (plano). El cambio de plano permite obtener la verdadera magnitud de las caras de la pieza para calcular cuánto material se necesita. Los plegadores de chapa usan estos cálculos para doblar la pieza con precisión milimétrica.</div>
+
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏔️ CASO REAL</span><strong>Caso real: topografía y mapas</strong>Los topógrafos usan cambios de plano para representar terrenos inclinados en vistas donde las distancias son verdaderas. Al cambiar el plano de vista para que sea paralelo a la ladera, las distancias en el mapa son reales (no deformadas por la perspectiva). Esto es esencial para calcular volúmenes de excavación.</div>
+
+
+
+<div class="exercise">
+<p>📐 Ejercicio 6 (VF visual): <span class="difficulty-badge easy">Fácil</span> El cambio de plano consiste en mantener un plano fijo y cambiar el otro.</p>
+<div class="svg-container" style="margin:.5rem 0">
+<svg viewBox="0 0 300 80" width="280" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="300" height="80" fill="#eff6ff" rx="6"/>
+<line x1="20" y1="40" x2="280" y2="40" stroke="#333" stroke-width="2"/>
+<text x="150" y="35" text-anchor="middle" font-size="11" fill="#333" font-weight="600">LT original</text>
+<line x1="150" y1="10" x2="150" y2="70" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="4,2"/>
+<text x="155" y="8" font-size="9" fill="#2563eb">nuevo PV</text>
+<circle cx="150" cy="25" r="5" fill="#f97316"/>
+<text x="160" y="22" font-size="9" fill="#f97316">P'</text>
+<circle cx="150" cy="55" r="5" fill="#2563eb"/>
+<text x="160" y="58" font-size="9" fill="#2563eb">P</text>
+</svg>
+</div>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Verdadero</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Falso</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 7 (Completar): <span class="difficulty-badge medium">Media</span> Para obtener la verdadera magnitud de un segmento horizontal, el nuevo plano de tierra debe ser ______ a la planta del segmento.</p>
+<input type="text" id="ex7cp" placeholder="dirección" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.9rem;width:150px">
+<button onclick="checkFillInCambioPlano()" style="background:var(--azul);color:#fff;border:none;padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.9rem">Comprobar</button>
+<p class="feedback"></p>
+</div>
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
 <ul>
@@ -355,6 +396,18 @@ function checkExercise(id, correct, btn) {
   }
 }
 
+
+function checkFillInCambioPlano() {
+  var a = document.getElementById('ex7cp').value.trim().toLowerCase();
+  var feedback = document.getElementById('ex7cp').parentElement.querySelector('.feedback');
+  if(['paralelo','paralela'].some(x => a.includes(x))) {
+    feedback.textContent = '✅ ¡Correcto! El nuevo PV debe ser paralelo a la planta para ver el segmento en verdadera magnitud';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ Respuesta: paralelo';
+    feedback.className = 'feedback incorrect';
+  }
+}
 window.onscroll = function(){
   var h = document.documentElement;
   var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
