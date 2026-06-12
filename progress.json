@@ -1557,18 +1557,19 @@
             "exercises",
             "css_coherence"
           ]
-        }
+        },
+        "ronda 2: svg 7→9, exercises 7→9 (6 ejercicios, 5 tipos), text 7→9, real_world 7→9 (4 casos), error 7→9 (SVG comparativo cotas vs coordenadas), css 8→10 (clickable/connection-box/difficulty-badge), fix section balance"
       ],
       "scores": {
         "svg_interactive": 9,
         "exercises": 9,
         "text_explanation": 9,
-        "real_world": 7,
-        "error_common": 7,
+        "real_world": 9,
+        "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-11",
-      "improvement_count": 2
+      "last_improved": "2026-06-12-ronda2-s2",
+      "improvement_count": 3
     },
     "b06-04-reglas-acotacion.html": {
       "status": "improved_2",

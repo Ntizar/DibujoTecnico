@@ -64,6 +64,11 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
 .feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
 .feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
+.clickable{cursor:pointer;transition:all .2s;border-radius:8px;padding:.5rem}
+.clickable:hover{background:var(--azul-claro);box-shadow:0 2px 8px rgba(37,99,235,.15)}
+.connection-box{background:var(--pura-claro);border:2px solid var(--pura);border-radius:12px;padding:1.2rem;margin:1.5rem 0}
+.connection-box h4{color:var(--pura);margin-bottom:.5rem}
+.difficulty-badge{display:inline-block;background:var(--naranja);color:#fff;padding:.15rem .5rem;border-radius:10px;font-size:.7rem;font-weight:600;margin-left:.5rem}
 </style>
 </head>
 <body>
@@ -321,6 +326,7 @@ Cada agujero tiene coordenadas. ¿Puedes identificar cuáles son X y cuáles Y?
 </div>
 </div>
 </div>
+</section>
 
 <section class="chapter">
 <h2 class="chapter-title">📝 Ejercicios</h2>
@@ -373,13 +379,115 @@ Cada agujero tiene coordenadas. ¿Puedes identificar cuáles son X y cuáles Y?
 <p class="feedback"></p>
 </div>
 
+<div class="exercise">
+<p>🎯 Ejercicio 5 (Decisión rápida): ¿Este plano usa acotación por coordenadas o dimensional?</p>
+<div class="svg-container">
+<svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg">
+<rect x="10" y="10" width="280" height="100" fill="#fff" stroke="#e2e8f0" rx="4"/>
+<rect x="40" y="30" width="220" height="50" fill="#fff" stroke="#2563eb" stroke-width="1.5" rx="3"/>
+<!-- Coordenadas desde origen -->
+<circle cx="40" cy="80" r="4" fill="#ef4444"/>
+<text x="25" y="95" font-size="8" fill="#ef4444">O(0,0)</text>
+<!-- Cotas X desde origen -->
+<line x1="40" y1="95" x2="100" y2="95" stroke="#2563eb" stroke-width="1"/>
+<text x="70" y="108" text-anchor="middle" font-size="8" fill="#2563eb">X=60</text>
+<line x1="40" y1="105" x2="200" y2="105" stroke="#2563eb" stroke-width="1"/>
+<text x="120" y="118" text-anchor="middle" font-size="8" fill="#2563eb">X=160</text>
+<!-- Cotas Y desde origen -->
+<line x1="25" y1="30" x2="40" y2="30" stroke="#10b981" stroke-width="1"/>
+<text x="22" y="28" text-anchor="end" font-size="8" fill="#10b981">Y=0</text>
+<line x1="25" y1="80" x2="40" y2="80" stroke="#10b981" stroke-width="1"/>
+<text x="22" y="83" text-anchor="end" font-size="8" fill="#10b981">Y=50</text>
+<text x="150" y="22" text-anchor="middle" font-size="9" fill="#64748b">¿Coordenadas o dimensional?</text>
+</svg>
+</div>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Acotación por coordenadas (todas desde el origen)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Acotación dimensional (en cadena)</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>🖼️ Ejercicio 6 (Identificar en SVG): Haz clic en el agujero con coordenadas correctas (X=50, Y=30 desde el origen):</p>
+<div class="interactive" style="margin:1rem 0">
+<div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center">
+<div class="clickable" onclick="checkIdentify(this, false)" style="flex:1;min-width:200px;border:2px solid #e2e8f0;border-radius:8px;padding:1rem;text-align:center">
+<svg viewBox="0 0 180 120" width="160">
+<rect x="5" y="5" width="170" height="110" fill="#fff" stroke="#e2e8f0" rx="4"/>
+<line x1="20" y1="100" x2="160" y2="100" stroke="#333" stroke-width="0.5"/>
+<line x1="20" y1="15" x2="20" y2="105" stroke="#333" stroke-width="0.5"/>
+<text x="10" y="105" font-size="7" fill="#ef4444">O(0,0)</text>
+<!-- Agujero en posición incorrecta -->
+<circle cx="80" cy="50" r="8" fill="none" stroke="#f97316" stroke-width="2"/>
+<text x="80" y="45" text-anchor="middle" font-size="7" fill="#f97316">X=60, Y=85</text>
+</svg>
+</div>
+<div class="clickable" onclick="checkIdentify(this, true)" style="flex:1;min-width:200px;border:2px solid #e2e8f0;border-radius:8px;padding:1rem;text-align:center">
+<svg viewBox="0 0 180 120" width="160">
+<rect x="5" y="5" width="170" height="110" fill="#fff" stroke="#e2e8f0" rx="4"/>
+<line x1="20" y1="100" x2="160" y2="100" stroke="#333" stroke-width="0.5"/>
+<line x1="20" y1="15" x2="20" y2="105" stroke="#333" stroke-width="0.5"/>
+<text x="10" y="105" font-size="7" fill="#ef4444">O(0,0)</text>
+<!-- Agujero en posición correcta -->
+<circle cx="70" cy="70" r="8" fill="none" stroke="#10b981" stroke-width="2"/>
+<text x="70" y="65" text-anchor="middle" font-size="7" fill="#10b981">X=50, Y=30</text>
+</svg>
+</div>
+</div>
+<p class="feedback"></p>
+</div>
+</div>
 </div>
 
 <div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ COTAS EN CADENA</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><circle cx="50" cy="70" r="5" fill="#ef4444"/><circle cx="80" cy="70" r="5" fill="#ef4444"/><circle cx="110" cy="70" r="5" fill="#ef4444"/><circle cx="140" cy="70" r="5" fill="#ef4444"/><text x="100" y="110" text-anchor="middle" font-size="9" fill="#ef4444">Error acumulado ❌</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ COORDENADAS</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><circle cx="50" cy="70" r="5" fill="#10b981"/><circle cx="80" cy="70" r="5" fill="#10b981"/><circle cx="110" cy="70" r="5" fill="#10b981"/><circle cx="140" cy="70" r="5" fill="#10b981"/><text x="30" y="90" text-anchor="middle" font-size="8" fill="#2563eb">X=0</text><text x="80" y="90" text-anchor="middle" font-size="8" fill="#2563eb">X=30</text><text x="110" y="90" text-anchor="middle" font-size="8" fill="#2563eb">X=60</text><text x="140" y="90" text-anchor="middle" font-size="8" fill="#2563eb">X=90</text><text x="100" y="120" text-anchor="middle" font-size="9" fill="#10b981">Precisión máxima ✓</text></svg></div></div>
 
 <div class="box box-error">
-<strong>⚠️ Error clásico</strong>
-Olvidar poner el símbolo ⌀ antes del diámetro. Sin él, no se sabe si es una distancia lineal o un diámetro. Siempre indicar ⌀10, no solo 10.
+<strong>⚠️ Error clásico: confundir cotas dimensionales con coordenadas</strong>
+<p>El error más común es usar cotas en cadena (dimensional) en lugar de coordenadas. ¡Fíjate en la diferencia de precisión!</p>
+<div class="svg-container">
+<svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+<!-- ERROR: Cotas en cadena -->
+<rect x="10" y="10" width="230" height="180" fill="#fef2f2" stroke="#ef4444" stroke-width="2" rx="8"/>
+<text x="125" y="35" text-anchor="middle" font-size="13" fill="#ef4444" font-weight="bold">❌ COTAS EN CADENA (error acumulado)</text>
+<!-- Pieza con agujeros -->
+<rect x="40" y="50" width="170" height="60" fill="#fff" stroke="#2563eb" stroke-width="1.5" rx="3"/>
+<circle cx="70" cy="80" r="6" fill="none" stroke="#f97316" stroke-width="1.5"/>
+<circle cx="110" cy="80" r="6" fill="none" stroke="#f97316" stroke-width="1.5"/>
+<circle cx="150" cy="80" r="6" fill="none" stroke="#f97316" stroke-width="1.5"/>
+<circle cx="190" cy="80" r="6" fill="none" stroke="#f97316" stroke-width="1.5"/>
+<!-- Cotas en cadena -->
+<line x1="70" y1="120" x2="110" y2="120" stroke="#ef4444" stroke-width="1"/>
+<text x="90" y="135" text-anchor="middle" font-size="8" fill="#ef4444">30</text>
+<line x1="110" y1="120" x2="150" y2="120" stroke="#ef4444" stroke-width="1"/>
+<text x="130" y="135" text-anchor="middle" font-size="8" fill="#ef4444">40</text>
+<line x1="150" y1="120" x2="190" y2="120" stroke="#ef4444" stroke-width="1"/>
+<text x="170" y="135" text-anchor="middle" font-size="8" fill="#ef4444">40</text>
+<text x="125" y="160" text-anchor="middle" font-size="9" fill="#ef4444">Error acumulado: 30+40+40 ≠ posición real</text>
+<text x="125" y="175" text-anchor="middle" font-size="9" fill="#ef4444">Cada tol se acumula → pieza defectuosa</text>
+<!-- CORRECTO: Coordenadas -->
+<rect x="260" y="10" width="230" height="180" fill="#ecfdf5" stroke="#10b981" stroke-width="2" rx="8"/>
+<text x="375" y="35" text-anchor="middle" font-size="13" fill="#10b981" font-weight="bold">✅ COORDENADAS (precisión máxima)</text>
+<!-- Pieza con agujeros -->
+<rect x="290" y="50" width="170" height="60" fill="#fff" stroke="#2563eb" stroke-width="1.5" rx="3"/>
+<circle cx="320" cy="80" r="6" fill="none" stroke="#10b981" stroke-width="2"/>
+<circle cx="360" cy="80" r="6" fill="none" stroke="#10b981" stroke-width="2"/>
+<circle cx="400" cy="80" r="6" fill="none" stroke="#10b981" stroke-width="2"/>
+<circle cx="440" cy="80" r="6" fill="none" stroke="#10b981" stroke-width="2"/>
+<!-- Origen -->
+<circle cx="290" cy="115" r="3" fill="#ef4444"/>
+<text x="290" y="130" text-anchor="middle" font-size="7" fill="#ef4444">O</text>
+<!-- Cotas desde origen -->
+<line x1="290" y1="145" x2="320" y2="145" stroke="#2563eb" stroke-width="1"/>
+<text x="305" y="158" text-anchor="middle" font-size="8" fill="#2563eb">X=30</text>
+<line x1="290" y1="165" x2="360" y2="165" stroke="#2563eb" stroke-width="1"/>
+<text x="325" y="178" text-anchor="middle" font-size="8" fill="#2563eb">X=70</text>
+<line x1="290" y1="185" x2="400" y2="185" stroke="#2563eb" stroke-width="1"/>
+<text x="345" y="198" text-anchor="middle" font-size="8" fill="#2563eb">X=110</text>
+<text x="375" y="160" text-anchor="middle" font-size="9" fill="#10b981">Cada cota desde origen → sin error acumulado</text>
+</svg>
+</div>
+<p><strong>Regla:</strong> En mecanizado CNC, SIEMPRE usa acotación por coordenadas. Las cotas en cadena acumulan tolerancias y producen piezas defectuosas.</p>
 </div>
 
 <div class="box box-idea">
@@ -388,6 +496,10 @@ Con los métodos y la acotación por coordenadas dominados, en el siguiente tema
 </div>
 
 <div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: taladrero CNC</strong>Un taladrero CNC usa acotación en coordenadas para posicionar 50 agujeros. Cada agujero tiene coordenadas (X, Y) respecto a un origen. Si el plano usa acotación dimensional, el operario tendría que sumar cotas y acumular errores. Con coordenadas, cada agujero se mide desde el origen: precisión máxima.</div>
+
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">📱 CASO REAL</span><strong>Carcasas de smartphone: patrón de tornillos</strong>Las carcasas de los smartphones tienen entre 8 y 12 tornillos que sujetan la pantalla al chasis. Los agujeros de estos tornillos se mecanizan con un taladrero CNC usando acotación por coordenadas. La tabla de coordenadas indica la posición exacta de cada agujero desde un origen definido en la esquina de la carcasa. Si un agujero está 0.1 mm desplazado, la pantalla no encaja y la carcasa se desecha.</div>
+
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🔬 CASO REAL</span><strong>Microscopio: platina con rejilla de coordenadas</strong>Las platinas de los microscopios científicos tienen una rejilla grabada con coordenadas X e Y. Esto permite al científico registrar la posición exacta de una célula: "la célula anormal está en X=45.2, Y=12.8". Cuando vuelve al microscopio días después, puede encontrar la misma célula moviendo la platina a esas coordenadas. Es acotación por coordenadas aplicada a la biología.</div>
 
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
@@ -514,6 +626,35 @@ function checkVF(btn, correct) {
     }
   }
 }
+function checkIdentify(el, correct) {
+  var parent = el.closest('.interactive');
+  parent.querySelectorAll('.clickable').forEach(function(c) {
+    c.style.pointerEvents = 'none';
+    c.style.opacity = '0.6';
+  });
+  el.style.opacity = '1';
+  el.style.borderColor = correct ? 'var(--verde)' : 'var(--rojo)';
+  el.style.borderWidth = '3px';
+  var feedback = parent.querySelector('.feedback');
+  if (correct) {
+    feedback.textContent = '✅ ¡Correcto! El agujero en X=50, Y=30 está a 50 unidades a la derecha y 30 arriba del origen.';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ Incorrecto. Las coordenadas (X=60, Y=85) no coinciden con (X=50, Y=30).';
+    feedback.className = 'feedback incorrect';
+    setTimeout(function() {
+      parent.querySelectorAll('.clickable').forEach(function(c) {
+        c.style.pointerEvents = 'auto';
+        c.style.opacity = '1';
+        c.style.borderColor = '#e2e8f0';
+        c.style.borderWidth = '2px';
+      });
+      feedback.textContent = '';
+      feedback.className = 'feedback';
+    }, 2000);
+  }
+}
+
 function showStep(n) {
   for(var i = 1; i <= 4; i++) {
     var step = document.getElementById('step' + i);
