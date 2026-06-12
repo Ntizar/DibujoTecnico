@@ -58,6 +58,15 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .step-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:#fff;transition:all .3s;cursor:pointer}
 .step-dot:hover{transform:scale(1.2)}
 .step-dot.active{box-shadow:0 0 0 4px rgba(37,99,235,.3)}
+.step-line{width:30px;height:2px;background:#e2e8f0;transition:background .3s}
+.step-line.active{background:var(--azul)}
+.clickable{cursor:pointer;transition:all .2s;border-radius:8px;padding:.5rem}
+.clickable:hover{background:var(--azul-claro);transform:translateY(-2px);box-shadow:0 4px 12px rgba(37,99,235,.15)}
+.connection-box{background:linear-gradient(135deg,var(--pura-claro),var(--azul-claro));border:2px solid var(--pura);border-radius:12px;padding:1.2rem;margin:1.5rem 0}
+.connection-box h4{color:var(--pura);margin-bottom:.5rem}
+.difficulty-badge{display:inline-block;background:var(--pura);color:#fff;padding:.2rem .6rem;border-radius:12px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block;font-weight:600}
+.feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block;font-weight:600}
 .stack-item{background:#f8fafc;border:2px solid #e2e8f0;border-radius:10px;padding:1rem;margin:.5rem 0;transition:all .3s;cursor:pointer}
 .stack-item:hover{border-color:var(--azul);transform:translateX(4px)}
 .stack-item.active{border-color:var(--azul);background:var(--azul-claro)}
@@ -292,7 +301,6 @@ A debe estar en esa horizontal
 <p class="feedback"></p>
 </div>
 
-</div></div>
 </section>
 
 <div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ NO PERTENECE</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><polygon points="50,110 150,30 160,30 60,110" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><circle cx="170" cy="50" r="6" fill="#ef4444"/><text x="100" y="130" text-anchor="middle" font-size="9" fill="#ef4444">Punto fuera del plano</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ PERTENECE</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><polygon points="50,110 150,30 160,30 60,110" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><circle cx="100" cy="70" r="6" fill="#10b981"/><line x1="80" y1="110" x2="100" y2="70" stroke="#10b981" stroke-width="1" stroke-dasharray="3,2"/><text x="100" y="130" text-anchor="middle" font-size="9" fill="#10b981">Punto en el plano ✓</text></svg></div></div>
@@ -307,7 +315,36 @@ Pensar que un punto pertenece a un plano si sus proyecciones están cerca de las
 La pertenencia es fundamental para todo lo que viene: cortes, intersecciones, abatimientos. Sin pertenencia, no se puede construir nada en el diédrico.
 </div>
 
+<!-- CASO REAL 2: Arquitectura -->
+<div class="box box-ejemplo" style="margin-top:1rem">
+<span class="real-world-badge">CASO REAL</span>
+<strong>🏗️ Verificación de puntos en fachadas inclinadas</strong>
+<p>En edificios con fachadas inclinadas (como el Museo Guggenheim Bilbao), los arquitectos necesitan verificar si un punto de anclaje (para un sistema de cortina o fachada ventilada) pertenece a la cara inclinada del edificio.</p>
+<p>Se traza una horizontal del plano de fachada por el punto de anclaje en alzado, se lleva a planta, y se verifica que el punto está en esa horizontal. <strong>Si el punto no pertenece al plano de fachada, el anclaje no es válido y la cortina no se puede instalar correctamente.</strong></p>
+</div>
+
+<!-- CASO REAL 3: Topografía -->
+<div class="box box-ejemplo" style="margin-top:1rem">
+<span class="real-world-badge">CASO REAL</span>
+<strong>📍 Topografía: verificar si un punto está en un camino</strong>
+<p>En topografía, un camino recto se representa como una recta en el sistema diédrico. Si un topógrafo marca un punto (por ejemplo, una señal de GPS) y quiere saber si está exactamente sobre el camino, verifica:</p>
+<ul style="margin:.5rem 0 .5rem 1.5rem">
+<li>¿La proyección alzada del punto está en la proyección alzada del camino?</li>
+<li>¿La proyección planta del punto está en la proyección planta del camino?</li>
+<li>¿Ambas proyecciones están en la misma línea de unión?</li>
+</ul>
+<p><strong>Si las 3 condiciones se cumplen, el punto pertenece al camino.</strong> Esto se usa en geolocalización, planificación de rutas y diseño de carreteras.</p>
+</div>
+
 <div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: verificar si un punto está en una cara</strong>En una pieza con varias caras inclinadas, el operario necesita saber si un punto de referencia (como un agujero de centrado) pertenece a la cara visible. Usa las rectas auxiliares del diedrico: si el punto está en la recta del plano, pertenece al plano.</div>
+
+<!-- CONEXIONES R2 -->
+<div class="connection-box">
+<h4>🔗 Conexiones con otros temas</h4>
+<p><strong>→ B04.3 Plano en el diédrico:</strong> Para saber si un punto pertenece a un plano, primero hay que saber representar el plano con sus trazas.</p>
+<p style="margin-top:.3rem"><strong>→ B04.6 Rectas notables:</strong> Las horizontales y frontales del plano son rectas notables. Se usan como auxiliares para verificar pertenencia.</p>
+<p style="margin-top:.3rem"><strong>→ B05.1 Cortes:</strong> Un corte es una recta auxiliar que corta el plano. La intersección punto-plano es la base del corte.</p>
+</div>
 
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
@@ -318,6 +355,7 @@ La pertenencia es fundamental para todo lo que viene: cortes, intersecciones, ab
 <li>A' y A siempre en la misma línea de unión</li>
 <li>¡Ya dominas la pertenencia! 🎉</li>
 </ul>
+</div>
 </div>
 
 <div class="nav">
