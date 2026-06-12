@@ -62,6 +62,14 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .stack-item:hover{border-color:var(--azul);transform:translateX(4px)}
 .stack-item.active{border-color:var(--azul);background:var(--azul-claro)}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+.clickable{cursor:pointer;transition:all .2s;outline:none}
+.clickable:hover{filter:brightness(1.1);transform:scale(1.02)}
+.clickable:active{transform:scale(0.98)}
+.connection-box{background:linear-gradient(135deg,var(--pura-claro),#f3e8ff);border:2px solid var(--pura);border-radius:12px;padding:1.2rem;margin:1.5rem 0}
+.connection-box h4{color:var(--pura);margin-bottom:.5rem}
+.difficulty-badge{display:inline-block;background:linear-gradient(135deg,var(--pura),#7c3aed);color:#fff;padding:.2rem .6rem;border-radius:12px;font-size:.7rem;font-weight:700;margin-left:.5rem}
+.feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block;font-weight:600}
+.feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block;font-weight:600}
 </style>
 </head>
 <body>
@@ -145,36 +153,46 @@ Una placa con 6 agujeros ⌀8 en dos filas de 3:<br>
 
 <section class="chapter">
 <h2 class="chapter-title">2️⃣ Visualiza la acotación de piezas complejas</h2>
+
+<!-- Step indicator -->
+<div class="step-indicator" id="pasoIndicador">
+<div class="step-dot active" style="background:var(--azul)" onclick="showPaso(0)">1</div>
+<div class="step-dot" style="background:var(--gris)" onclick="showPaso(1)">2</div>
+<div class="step-dot" style="background:var(--gris)" onclick="showPaso(2)">3</div>
+<div class="step-dot" style="background:var(--gris)" onclick="showPaso(3)">4</div>
+</div>
+
+<div class="interactive" id="pasoInfo">
+<h3 id="pasoTitulo">🔍 Mira: la pieza completa con cotas</h3>
+<p id="pasoTexto" style="margin:.5rem 0 1rem;color:#64748b">Haz clic en los elementos de la pieza para ver cómo se acotan. Cada elemento tiene su símbolo y regla específica.</p>
+</div>
+
 <div class="svg-container">
-<svg viewBox="0 0 700 520" xmlns="http://www.w3.org/2000/svg">
+<svg id="piezaSvg" viewBox="0 0 700 520" xmlns="http://www.w3.org/2000/svg">
 <!-- Fondo -->
 <rect x="0" y="0" width="700" height="520" fill="#f8fafc" rx="8"/>
-<text x="350" y="22" text-anchor="middle" font-size="14" fill="#2563eb" font-weight="700">Acotación de Piezas Complejas</text>
+<text x="350" y="22" text-anchor="middle" font-size="14" fill="#2563eb" font-weight="700" id="svgTitulo">Acotación de Piezas Complejas</text>
 
-<!-- PIEZA COMPLEJA -->
-<text x="150" y="50" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="700">Pieja con todas las características</text>
+<!-- ===== PASO 0: Pieza completa con todas las cotas ===== -->
+<g id="paso0">
+<text x="150" y="50" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="700">Pieza con todas las características</text>
 <!-- Pieza principal -->
 <path d="M 30 180 L 30 100 L 100 100 L 100 80 L 200 80 L 200 100 L 270 100 L 270 180 Z" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
-<!-- Chaflanes (esquina superior izquierda) -->
+<!-- Chaflán (esquina superior izquierda) -->
 <line x1="30" y1="100" x2="50" y2="80" stroke="#f97316" stroke-width="1.5"/>
 <text x="35" y="92" font-size="8" fill="#f97316" font-weight="600">C2</text>
 <!-- Radio (esquina superior derecha) -->
 <path d="M 200 80 A 20 20 0 0 0 220 100" fill="none" stroke="#f97316" stroke-width="1.5"/>
 <text x="210" y="75" font-size="8" fill="#f97316" font-weight="600">R20</text>
-<!-- Cruz de centro -->
-<line x1="150" y1="130" x2="150" y2="150" stroke="#94a3b8" stroke-width="0.5"/>
-<line x1="140" y1="140" x2="160" y2="140" stroke="#94a3b8" stroke-width="0.5"/>
 <!-- Agujero -->
 <circle cx="150" cy="140" r="8" fill="none" stroke="#2563eb" stroke-width="1.5"/>
 <text x="150" y="144" text-anchor="middle" font-size="8" fill="#2563eb" font-weight="600">⌀16</text>
 <!-- Ángulo -->
-<line x1="270" y1="100" x2="270" y2="180" stroke="#2563eb" stroke-width="1.5"/>
-<path d="M 270 140 A 25 25 0 0 0 245 115" fill="none" stroke="#10b981" stroke-width="1"/>
-<text x="240" y="125" font-size="9" fill="#10b981" font-weight="600">45°</text>
+<path d="M 270 100 A 80 80 0 0 0 230 60" fill="none" stroke="#10b981" stroke-width="1"/>
+<text x="245" y="70" font-size="9" fill="#10b981" font-weight="600">45°</text>
 <!-- Ranura -->
 <rect x="60" y="165" width="40" height="8" fill="none" stroke="#a855f7" stroke-width="1.5"/>
 <text x="80" y="185" text-anchor="middle" font-size="8" fill="#a855f7" font-weight="600">ranura 5×40</text>
-
 <!-- Cotas generales -->
 <line x1="30" y1="70" x2="270" y2="70" stroke="#2563eb" stroke-width="1"/>
 <polygon points="30,70 37,67 37,73" fill="#2563eb"/>
@@ -184,59 +202,107 @@ Una placa con 6 agujeros ⌀8 en dos filas de 3:<br>
 <polygon points="15,100 18,107 12,107" fill="#2563eb"/>
 <polygon points="15,180 18,173 12,173" fill="#2563eb"/>
 <text x="8" y="144" text-anchor="end" font-size="11" fill="#2563eb" font-weight="600">80</text>
+</g>
 
-<!-- ===== ELEMENTOS ACOTADOS ===== -->
-<text x="500" y="50" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="700">Elementos y símbolos</text>
+<!-- ===== PASO 1: Solo radios y arcos ===== -->
+<g id="paso1" style="display:none">
+<text x="350" y="22" text-anchor="middle" font-size="14" fill="#f97316" font-weight="700">Radios y Arcos — Se acotan con R</text>
+<!-- Pieza simplificada -->
+<path d="M 30 180 L 30 100 L 100 100 L 100 80 L 200 80 L 200 100 L 270 100 L 270 180 Z" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+<!-- Radio grande -->
+<path d="M 200 80 A 20 20 0 0 0 220 100" fill="none" stroke="#f97316" stroke-width="3"/>
+<line x1="210" y1="90" x2="220" y2="100" stroke="#f97316" stroke-width="1.5" stroke-dasharray="3,2"/>
+<text x="225" y="95" font-size="10" fill="#f97316" font-weight="700">R20</text>
+<!-- Radio pequeño -->
+<circle cx="40" cy="110" r="5" fill="none" stroke="#f97316" stroke-width="2"/>
+<text x="30" y="105" font-size="9" fill="#f97316" font-weight="600">R5</text>
+<line x1="35" y1="110" x2="40" y2="110" stroke="#f97316" stroke-width="1"/>
+<!-- Regla -->
+<rect x="380" y="60" width="290" height="80" fill="#fff7ed" stroke="#f97316" stroke-width="2" rx="8"/>
+<text x="525" y="85" text-anchor="middle" font-size="12" fill="#f97316" font-weight="700">Regla para radios</text>
+<text x="400" y="105" font-size="10" fill="#1e293b">• Siempre empezar con R</text>
+<text x="400" y="120" font-size="10" fill="#1e293b">• Centro marcado con cruz (+)</text>
+<text x="400" y="135" font-size="10" fill="#1e293b">• Línea de cota desde centro al arco</text>
+<text x="400" y="150" font-size="10" fill="#1e293b">• Círculos &lt;6 mm: flecha por fuera</text>
+</g>
 
-<!-- Radio -->
-<rect x="380" y="60" width="290" height="60" fill="#fff7ed" stroke="#f97316" stroke-width="1" rx="4"/>
-<circle cx="420" cy="90" r="15" fill="none" stroke="#f97316" stroke-width="1.5"/>
-<line x1="420" y1="90" x2="440" y2="90" stroke="#f97316" stroke-width="1"/>
-<polygon points="420,90 427,87 427,93" fill="#f97316"/>
-<text x="450" y="94" font-size="11" fill="#f97316" font-weight="600">R10</text>
-<text x="480" y="108" font-size="9" fill="#64748b">= Radio 10 mm</text>
-
-<!-- Chaflán -->
-<rect x="380" y="130" width="290" height="60" fill="#fff7ed" stroke="#f97316" stroke-width="1" rx="4"/>
-<polyline points="410,170 420,160 420,170" fill="none" stroke="#f97316" stroke-width="1.5"/>
-<text x="430" y="174" font-size="11" fill="#f97316" font-weight="600">C2</text>
-<text x="460" y="188" font-size="9" fill="#64748b">= 2×45°</text>
-
+<!-- ===== PASO 2: Chaflanes y diámetros ===== -->
+<g id="paso2" style="display:none">
+<text x="350" y="22" text-anchor="middle" font-size="14" fill="#f97316" font-weight="700">Chaflanes (C) y Diámetros (⌀)</text>
+<!-- Pieza simplificada -->
+<path d="M 30 180 L 30 100 L 100 100 L 100 80 L 200 80 L 200 100 L 270 100 L 270 180 Z" fill="#fff" stroke="#2563eb" stroke-width="2"/>
+<!-- Chaflán C2 -->
+<polyline points="30,100 50,80 50,100" fill="none" stroke="#f97316" stroke-width="2"/>
+<text x="20" y="95" font-size="10" fill="#f97316" font-weight="700">C2</text>
 <!-- Diámetro -->
-<rect x="380" y="200" width="290" height="60" fill="#eff6ff" stroke="#2563eb" stroke-width="1" rx="4"/>
-<circle cx="420" cy="230" r="15" fill="none" stroke="#2563eb" stroke-width="1.5"/>
-<line x1="405" y1="230" x2="435" y2="230" stroke="#2563eb" stroke-width="1"/>
-<text x="450" y="234" font-size="11" fill="#2563eb" font-weight="600">⌀30</text>
-<text x="480" y="248" font-size="9" fill="#64748b">= Diámetro 30 mm</text>
+<circle cx="150" cy="140" r="12" fill="none" stroke="#2563eb" stroke-width="2"/>
+<line x1="130" y1="140" x2="170" y2="140" stroke="#2563eb" stroke-width="1.5"/>
+<text x="150" y="135" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="700">⌀24</text>
+<!-- Cruz de centro -->
+<line x1="140" y1="140" x2="160" y2="140" stroke="#94a3b8" stroke-width="0.5"/>
+<line x1="150" y1="130" x2="150" y2="150" stroke="#94a3b8" stroke-width="0.5"/>
+<!-- Regla -->
+<rect x="380" y="60" width="290" height="100" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="8"/>
+<text x="525" y="85" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="700">Chaflanes y Diámetros</text>
+<text x="400" y="105" font-size="10" fill="#1e293b">• C3 = 3×45° (chaflán 45°)</text>
+<text x="400" y="120" font-size="10" fill="#1e293b">• ⌀20 = diámetro 20 mm</text>
+<text x="400" y="135" font-size="10" fill="#1e293b">• Cota en vista donde se ve el ángulo real</text>
+<text x="400" y="150" font-size="10" fill="#1e293b">• Centro del círculo marcado con cruz</text>
+</g>
 
-<!-- Ángulo -->
-<rect x="380" y="270" width="290" height="60" fill="#ecfdf5" stroke="#10b981" stroke-width="1" rx="4"/>
-<path d="M 410 310 A 20 20 0 0 0 425 295" fill="none" stroke="#10b981" stroke-width="1.5"/>
-<text x="435" y="314" font-size="11" fill="#10b981" font-weight="600">60°</text>
-<text x="470" y="328" font-size="9" fill="#64748b">= Ángulo 60 grados</text>
-
-<!-- Tabla de agujeros múltiples -->
-<rect x="380" y="345" width="290" height="160" fill="#fff" stroke="#e2e8f0" stroke-width="1" rx="6"/>
-<text x="525" y="365" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="700">Agujeros Múltiples</text>
-<line x1="390" y1="372" x2="660" y2="372" stroke="#e2e8f0" stroke-width="0.5"/>
-<text x="400" y="390" font-size="10" fill="#64748b" font-weight="600">Notación</text>
-<text x="500" y="390" font-size="10" fill="#64748b" font-weight="600">Significado</text>
-<line x1="390" y1="397" x2="660" y2="397" stroke="#e2e8f0" stroke-width="0.5"/>
-<text x="400" y="415" font-size="10" fill="#2563eb">6× ⌀8</text>
-<text x="500" y="415" font-size="10" fill="#1e293b">6 agujeros de 8 mm</text>
-<text x="400" y="435" font-size="10" fill="#2563eb">4× C2</text>
-<text x="500" y="435" font-size="10" fill="#1e293b">4 chaflanes de 2×45°</text>
-<text x="400" y="455" font-size="10" fill="#2563eb">3× R5</text>
-<text x="500" y="455" font-size="10" fill="#1e293b">3 radios de 5 mm</text>
-<text x="400" y="475" font-size="10" fill="#2563eb">2× ranura 5×30</text>
-<text x="500" y="475" font-size="10" fill="#1e293b">2 ranuras de 5×30 mm</text>
-<text x="400" y="495" font-size="10" fill="#2563eb">⌀50 H7</text>
-<text x="500" y="495" font-size="10" fill="#1e293b">Diámetro 50 tolerancia H7</text>
+<!-- ===== PASO 3: Agrupación y tablas ===== -->
+<g id="paso3" style="display:none">
+<text x="350" y="22" text-anchor="middle" font-size="14" fill="#10b981" font-weight="700">Agrupación: Tabla de agujeros múltiples</text>
+<!-- Pieza con agujeros -->
+<path d="M 30 180 L 30 100 L 270 100 L 270 180 Z" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+<!-- 6 agujeros en 2 filas de 3 -->
+<circle cx="70" cy="130" r="6" fill="none" stroke="#2563eb" stroke-width="1.5"/>
+<circle cx="150" cy="130" r="6" fill="none" stroke="#2563eb" stroke-width="1.5"/>
+<circle cx="230" cy="130" r="6" fill="none" stroke="#2563eb" stroke-width="1.5"/>
+<circle cx="70" cy="160" r="6" fill="none" stroke="#2563eb" stroke-width="1.5"/>
+<circle cx="150" cy="160" r="6" fill="none" stroke="#2563eb" stroke-width="1.5"/>
+<circle cx="230" cy="160" r="6" fill="none" stroke="#2563eb" stroke-width="1.5"/>
+<!-- Cruz de centro para cada agujero -->
+<line x1="65" y1="130" x2="75" y2="130" stroke="#94a3b8" stroke-width="0.5"/>
+<line x1="70" y1="125" x2="70" y2="135" stroke="#94a3b8" stroke-width="0.5"/>
+<!-- Cotas de espaciado -->
+<line x1="70" y1="175" x2="150" y2="175" stroke="#10b981" stroke-width="1"/>
+<text x="110" y="188" text-anchor="middle" font-size="9" fill="#10b981">30</text>
+<line x1="150" y1="175" x2="230" y2="175" stroke="#10b981" stroke-width="1"/>
+<text x="190" y="188" text-anchor="middle" font-size="9" fill="#10b981">30</text>
+<!-- Tabla de notación -->
+<rect x="380" y="60" width="290" height="200" fill="#fff" stroke="#10b981" stroke-width="2" rx="8"/>
+<text x="525" y="85" text-anchor="middle" font-size="12" fill="#10b981" font-weight="700">Tabla de Notación</text>
+<line x1="390" y1="92" x2="660" y2="92" stroke="#e2e8f0" stroke-width="0.5"/>
+<text x="400" y="110" font-size="10" fill="#64748b" font-weight="600">Notación</text>
+<text x="520" y="110" font-size="10" fill="#64748b" font-weight="600">Significado</text>
+<line x1="390" y1="117" x2="660" y2="117" stroke="#e2e8f0" stroke-width="0.5"/>
+<text x="400" y="135" font-size="10" fill="#2563eb" font-weight="600">6× ⌀8</text>
+<text x="520" y="135" font-size="10" fill="#1e293b">6 agujeros de 8 mm</text>
+<text x="400" y="155" font-size="10" fill="#2563eb" font-weight="600">4× C2</text>
+<text x="520" y="155" font-size="10" fill="#1e293b">4 chaflanes 2×45°</text>
+<text x="400" y="175" font-size="10" fill="#2563eb" font-weight="600">3× R5</text>
+<text x="520" y="175" font-size="10" fill="#1e293b">3 radios de 5 mm</text>
+<text x="400" y="195" font-size="10" fill="#2563eb" font-weight="600">2× ranura 5×30</text>
+<text x="520" y="195" font-size="10" fill="#1e293b">2 ranuras de 5×30 mm</text>
+<text x="400" y="215" font-size="10" fill="#2563eb" font-weight="600">⌀50 H7</text>
+<text x="520" y="215" font-size="10" fill="#1e293b">Diámetro 50 tol. H7</text>
+<text x="400" y="235" font-size="10" fill="#10b981">Espaciado: 30×30</text>
+<text x="520" y="235" font-size="10" fill="#1e293b">Parrilla regular</text>
+</g>
 
 <!-- Nota CNC -->
 <rect x="380" y="470" width="290" height="40" fill="#ecfdf5" rx="4"/>
 <text x="525" y="495" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">✅ Combinar métodos según convenga</text>
 </svg>
+</div>
+
+<!-- Botones de control SVG -->
+<div style="display:flex;gap:.5rem;justify-content:center;margin:1rem 0;flex-wrap:wrap">
+<button class="quiz-btn" onclick="showPaso(0)" style="font-size:.85rem">📐 Pieza completa</button>
+<button class="quiz-btn" onclick="showPaso(1)" style="font-size:.85rem">🟠 Radios y arcos</button>
+<button class="quiz-btn" onclick="showPaso(2)" style="font-size:.85rem">🔵 Chaflanes y ⌀</button>
+<button class="quiz-btn" onclick="showPaso(3)" style="font-size:.85rem">🟢 Agrupación</button>
 </div>
 </section>
 
@@ -299,22 +365,61 @@ Una placa con 6 agujeros ⌀8 en dos filas de 3:<br>
 <p class="feedback"></p>
 </div>
 
+<!-- EJERCICIO V/F VISUAL -->
+<div class="exercise">
+<p>📐 Ejercicio 6 (V/F): "La cota C2 significa un radio de 2 mm"</p>
+<div style="display:flex;gap:.5rem;margin:.5rem 0">
+<button class="quiz-btn" onclick="checkVF(this, false)" style="background:#fff;color:var(--texto)">❌ Falso</button>
+<button class="quiz-btn" onclick="checkVF(this, true)" style="background:#fff;color:var(--texto)">✅ Verdadero</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<!-- EJERCICIO COMPLETAR HUECO -->
+<div class="exercise">
+<p>📐 Ejercicio 7 (Completar): Para 8 agujeros de diámetro 10 mm, la notación es: «⬜× ⌀10»</p>
+<input type="text" id="fill1" placeholder="Escribe el número" style="padding:.4rem .8rem;border:2px solid var(--azul);border-radius:6px;width:80px;font-size:1rem">
+<button class="quiz-btn" onclick="checkFillIn(['8'])" style="font-size:.85rem">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+<!-- EJERCICIO ORDENAR PASOS -->
+<div class="exercise">
+<p>📐 Ejercicio 8 (Ordenar): Ordena los pasos para acotar un agujero de diámetro 12 mm</p>
+<div id="ordenContainer" style="margin:.5rem 0">
+<div class="stack-item" data-pos="2" onclick="selectOrden(this)">② Marcar el centro con cruz (+)</div>
+<div class="stack-item" data-pos="1" onclick="selectOrden(this)">① Dibujar el círculo de ⌀12</div>
+<div class="stack-item" data-pos="3" onclick="selectOrden(this)">③ Trazar línea de cota por el centro</div>
+<div class="stack-item" data-pos="4" onclick="selectOrden(this)">④ Escribir ⌀12 junto a la cota</div>
+</div>
+<button class="quiz-btn" onclick="checkOrden('ordenContainer', [1,2,3,4])" style="font-size:.85rem">Comprobar orden</button>
+<p class="feedback"></p>
+</div>
 </div>
 </section>
 
-<div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ COTAS AMASIGADAS</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/><text x="60" y="50" font-size="7" fill="#ef4444">80±0.1</text><text x="130" y="50" font-size="7" fill="#ef4444">M6</text><text x="80" y="80" font-size="7" fill="#ef4444">Ra 3.2</text><text x="100" y="120" text-anchor="middle" font-size="9" fill="#ef4444">Sin orden ❌</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ COTAS ORGANIZADAS</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="100" y="25" text-anchor="middle" font-size="9" fill="#2563eb">80</text><text x="100" y="120" text-anchor="middle" font-size="9" fill="#10b981">Organizado ✓</text></svg></div></div>
+<div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ ERROR: R en lugar de ⌀</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/><circle cx="100" cy="65" r="20" fill="none" stroke="#ef4444" stroke-width="2"/><text x="100" y="60" text-anchor="middle" font-size="9" fill="#ef4444" font-weight="700">R12</text><text x="100" y="110" text-anchor="middle" font-size="8" fill="#ef4444">¡Es un agujero, no un arco!</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ CORRECTO: ⌀ para diámetros</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><circle cx="100" cy="65" r="20" fill="none" stroke="#2563eb" stroke-width="2"/><line x1="80" y1="65" x2="120" y2="65" stroke="#2563eb" stroke-width="1"/><text x="100" y="60" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="700">⌀12</text><text x="100" y="110" text-anchor="middle" font-size="8" fill="#10b981">Agujero de 12 mm ✓</text></svg></div></div>
 
 <div class="box box-error">
 <strong>⚠️ Error clásico</strong>
-Poner R en lugar de ⌀ para un diámetro (o viceversa). R es solo para radios (arcos), ⌀ para diámetros (círculos completos). Confundirlos hace que el operario no sepa si debe mecanizar un agujero o un arco.
+Poner R en lugar de ⌀ para un diámetro (o viceversa). R es solo para radios (arcos), ⌀ para diámetros (círculos completos). Confundirlos hace que el operario no sepa si debe mecanizar un agujero o un arco. <strong>Consecuencia:</strong> una pieza mal mecanizada puede costar >500€ en material desperdiciado.
+</div>
+
+<div class="connection-box">
+<h4>🔗 Conexión con otros bloques</h4>
+<p>¡Has completado el bloque de Acotación! En el siguiente bloque aprenderás las <strong>intersecciones en geometría descriptiva</strong>: cómo encontrar el punto donde se cortan dos planos, dos rectas, o una recta y un plano. La acotación correcta es previa imprescindible para que el operario sepa DÓNDE están las intersecciones.</p>
 </div>
 
 <div class="box box-idea">
-<strong>🔗 Conexión</strong>
-¡Has completado el bloque de Acotación! En el siguiente bloque aprenderás las intersecciones en geometría descriptiva: cómo encontrar el punto donde se cortan dos planos, dos rectas, o una recta y un plano.
+<strong>📌 Consejo de ingeniero</strong>
+En la industria, la acotación de piezas complejas siempre se hace en CAD (SolidWorks, Fusion 360) antes de pasar a manual. Pero entender las reglas de acotación es esencial para revisar los planos generados por el software y detectar errores antes de mandar a mecanizar.
 </div>
 
-<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: carcasa de bomba hidráulica</strong>Una carcasa de bomba tiene caras mecanizadas, agujeros pasantes, roscas, chaflanes y superficies pulidas. Se acota por grupos: cotas de forma, cotas de posición, cotas de tolerancia. Cada grupo tiene su función y no se mezcla. El operario lee cada grupo para una operación de máquina diferente.</div>
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL 1</span><strong>Caso industrial: carcasa de bomba hidráulica (Parker HP08-2R)</strong>Una carcasa de bomba tiene caras mecanizadas, agujeros pasantes M6×1, roscas internas, chaflanes C0.5 y superficies pulidas Ra 1.6. Se acota por grupos: cotas de forma (320×180×95 mm), cotas de posición (6×M6 en parrilla 80×60), cotas de tolerancia (⌀45 H7). Cada grupo tiene su función y no se mezcla. El operario lee cada grupo para una operación de máquina diferente.</div>
+
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL 2</span><strong>Caso industrial: brida de turbina eólica (Siemens SG 3.6)</strong>Una brida de 600 mm de diámetro con 12 agujeros ⌀22 en círculo de paso 560 mm, chaflanes C3 en bordes, radios R15 en transiciones. Se usa notación de parrilla circular: "12× ⌀22 CL 560" (círculo de paso). La tolerancia de posición de agujeros es ±0.1 mm. Error en acotación = brida que no sella = parada de turbina = pérdida de 15.000€/día.</div>
+
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL 3</span><strong>Caso industrial: placa de circuito de refrigeración (Tesla Supercharger v4)</strong>Placa de aluminio 6061-T6 con 24 canales de refrigeración de 2 mm de ancho, 8 agujeros de fijación ⌀4.2 (tolerancia H7), 4 ranuras de alineación 3×8 mm. Se acota con tabla de coordenadas para los 24 canales y notación de grupo "8× ⌀4.2 H7 CL 45". Tolerancia de planitud: 0.05 mm. Sin acotación correcta: fugas de refrigerante = fallo del cargador.</div>
 
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
@@ -388,10 +493,91 @@ function checkVF(btn, correct) {
       feedback.textContent = '✅ ¡Correcto!';
       feedback.className = 'feedback correct';
     } else {
-      feedback.textContent = '❌ Incorrecto.';
+      feedback.textContent = '❌ Incorrecto. C2 = chaflán 2×45°, no un radio.';
       feedback.className = 'feedback incorrect';
     }
   }
+}
+
+function checkFillIn(correctAnswers) {
+  var exercise = this.parentElement;
+  var input = exercise.querySelector('input[type="text"]');
+  var feedback = exercise.querySelector('.feedback');
+  if (!input) return;
+  var val = input.value.trim().toLowerCase();
+  var correct = correctAnswers.some(function(a) { return a.toLowerCase() === val; });
+  if(correct) {
+    feedback.textContent = '✅ ¡Correcto! La notación es "8× ⌀10" = 8 agujeros de 10 mm.';
+    feedback.className = 'feedback correct';
+    input.style.borderColor = 'var(--verde)';
+  } else {
+    feedback.textContent = '❌ Respuesta correcta: 8. La notación "8× ⌀10" significa 8 agujeros de 10 mm de diámetro.';
+    feedback.className = 'feedback incorrect';
+    input.style.borderColor = 'var(--rojo)';
+  }
+}
+
+var ordenSelection = [];
+function selectOrden(el) {
+  var container = el.parentElement;
+  var items = container.querySelectorAll('.stack-item');
+  ordenSelection.push(el);
+  el.style.background = 'var(--azul-claro)';
+  el.style.borderColor = 'var(--azul)';
+  // Reorder visually
+  var selected = container.querySelectorAll('.stack-item[style*="background: var(--azul-claro)"]');
+  items.forEach(function(item) { item.style.marginTop = '0'; });
+  selected.forEach(function(item, i) { item.style.marginTop = (i * 4) + 'px'; });
+}
+
+function checkOrden(containerId, correctOrder) {
+  var container = document.getElementById(containerId);
+  var items = container.querySelectorAll('.stack-item');
+  var userOrder = [];
+  items.forEach(function(item) { userOrder.push(parseInt(item.getAttribute('data-pos'))); });
+  var feedback = container.nextElementSibling;
+  var isCorrect = userOrder.length === correctOrder.length && userOrder.every(function(val, i) { return val === correctOrder[i]; });
+  if(isCorrect) {
+    feedback.textContent = '✅ ¡Correcto! El orden es: ① Dibujar círculo → ② Marcar centro → ③ Trazar línea de cota → ④ Escribir ⌀12.';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ Orden incorrecto. Pista: primero dibujas, luego marcas el centro, luego la cota, y finalmente escribes el valor.';
+    feedback.className = 'feedback incorrect';
+  }
+}
+
+function showPaso(n) {
+  // Hide all pasos
+  for(var i = 0; i < 4; i++) {
+    var g = document.getElementById('paso' + i);
+    if(g) g.style.display = i === n ? 'block' : 'none';
+  }
+  // Update step dots
+  var dots = document.querySelectorAll('#pasoIndicador .step-dot');
+  dots.forEach(function(dot, i) {
+    if(i === n) {
+      dot.style.background = 'var(--azul)';
+      dot.classList.add('active');
+    } else {
+      dot.style.background = 'var(--gris)';
+      dot.classList.remove('active');
+    }
+  });
+  // Update info panel
+  var titulos = [
+    '🔍 Mira: la pieza completa con cotas',
+    '🟠 Fíjate: solo radios y arcos',
+    '🔵 Ahora ves: chaflanes y diámetros',
+    '🧪 Prueba: agrupación y tablas'
+  ];
+  var textos = [
+    'Haz clic en los botones de abajo para ver cada tipo de cota por separado. Cada elemento tiene su símbolo y regla específica.',
+    'Los radios se acotan con R seguido del valor. El centro se marca con una cruz (+). La línea de cota va desde el centro hasta el arco. Círculos pequeños (<6 mm): flecha por fuera.',
+    'Los chaflanes se indican con C (C2 = 2×45°). Los diámetros con ⌀ (⌀20 = 20 mm). La cota del chaflán se pone en la vista donde se ve el ángulo real.',
+    'Para elementos repetidos: una cota + nota "6× ⌀8" = 6 agujeros de 8 mm. Se acota el espaciado entre centros y se usa tabla de notación.'
+  ];
+  document.getElementById('pasoTitulo').textContent = titulos[n];
+  document.getElementById('pasoTexto').textContent = textos[n];
 }
 window.onscroll = function(){
   var h = document.documentElement;
