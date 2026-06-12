@@ -476,7 +476,7 @@
       "improvement_count": 3
     },
     "b03-01-isometrica-ejes.html": {
-      "status": "improved_2",
+      "status": "improved",
       "bloque": "b03",
       "title": "📐 Perspectiva isométrica: ejes",
       "priority": 2,
@@ -505,15 +505,15 @@
         }
       ],
       "scores": {
-        "svg_interactive": 10,
-        "exercises": 10,
-        "text_explanation": 10,
-        "real_world": 7,
-        "error_common": 10,
+        "svg_interactive": 9,
+        "exercises": 9,
+        "text_explanation": 9,
+        "real_world": 9,
+        "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-10",
-      "improvement_count": 2
+      "last_improved": "2026-06-12-ronda2-s3",
+      "improvement_count": 3
     },
     "b03-02-isometrica-cubos.html": {
       "status": "improved_3",
