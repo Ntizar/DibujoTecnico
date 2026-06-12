@@ -387,15 +387,39 @@ En un corte de conjunto con 3 piezas:<br>
 </div>
 <button class="quiz-btn" onclick="checkOrden('listaOrden', [1,2,3,4])" style="font-size:.85rem">Comprobar orden</button>
 <p class="feedback"></p>
+
+<!-- EJERCICIO DECIDIR OPERACIÓN -->
+<div class="exercise">
+<p>📐 Ejercicio 9 (Decidir operación): Un técnico recibe un plano de conjunto con un eje, un cojinete y una tapa. La lista de piezas solo tiene 3 filas. ¿Qué falta?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Nada, las 3 piezas están listadas</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Los tornillos de fijación (normalmente M4×12 o similares)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">El color de cada pieza</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Las vistas en perspectiva</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<!-- EJERCICIO COMPLETAR: Columnas de la lista -->
+<div class="exercise">
+<p>📐 Ejercicio 10 (Completar): La lista de piezas tiene 6 columnas: Nº, Marca, Descripción, Cantidad, Material y *.</p>
+<input type="text" id="listaFill2" placeholder="Escribe la respuesta" style="padding:.4rem .8rem;border:2px solid var(--azul);border-radius:6px;width:120px;font-size:1rem">
+<button class="quiz-btn" onclick="checkFillIn2(['observaciones','observación','observaciones','observación'])" style="font-size:.85rem">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
 </div>
 </div>
 </section>
 
-<div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ SIN MATERIAL</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><text x="20" y="30" font-size="9" fill="#333">1 | Carcasa</text><text x="20" y="45" font-size="9" fill="#333">2 | Eje</text><text x="20" y="60" font-size="9" fill="#333">3 | Junta</text><text x="100" y="90" text-anchor="middle" font-size="9" fill="#ef4444">Sin material ❌</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ CON MATERIAL</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><text x="20" y="30" font-size="9" fill="#333">1 | Carcasa | GG25</text><text x="20" y="45" font-size="9" fill="#333">2 | Eje | C45</text><text x="20" y="60" font-size="9" fill="#333">3 | Junta | NBR</text><text x="100" y="90" text-anchor="middle" font-size="9" fill="#10b981">Con material ✓</text></svg></div></div>
+<div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ SIN MATERIAL</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><text x="20" y="30" font-size="9" fill="#333">1 | Carcasa</text><text x="20" y="45" font-size="9" fill="#333">2 | Eje</text><text x="20" y="60" font-size="9" fill="#333">3 | Junta</text><text x="100" y="90" text-anchor="middle" font-size="9" fill="#ef4444">Sin material ❌</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ CON MATERIAL</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><text x="20" y="30" font-size="9" fill="#333">1 | Carcasa | GG25</text><text x="20" y="45" font-size="9" fill="#333">2 | Eje | C45</text><text x="20" y="60" font-size="9" fill="#333">3 | Junta | NBR</text><text x="100" y="90" text-anchor="middle" font-size="9" fill="#10b981">Con material ✓</text></svg></div>
+<div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ EJÉ: Pieza maciza hachurada longitudinalmente</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/><line x1="40" y1="30" x2="160" y2="100" stroke="#ef4444" stroke-width="0.5"/><line x1="50" y1="30" x2="170" y2="100" stroke="#ef4444" stroke-width="0.5"/><line x1="60" y1="30" x2="180" y2="100" stroke="#ef4444" stroke-width="0.5"/><line x1="70" y1="30" x2="190" y2="100" stroke="#ef4444" stroke-width="0.5"/><text x="100" y="120" text-anchor="middle" font-size="8" fill="#ef4444">¡Eje macizo NO se hachura!</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ CORRECTO: Eje macizo NO hachurado</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><rect x="50" y="55" width="100" height="15" fill="#fff" stroke="#2563eb" stroke-width="1.5"/><text x="100" y="66" text-anchor="middle" font-size="8" fill="#2563eb">Eje (sin hachura)</text><text x="100" y="120" text-anchor="middle" font-size="8" fill="#10b981">Maciza longitudinal = sin hachura ✓</text></svg></div></div>
+
+</div>
 
 <div class="box box-error">
 <strong>⚠️ Error clásico</strong>
-Hachurar piezas macizas (ejes, tornillos, pasadores) en corte longitudinal. Las piezas macizas NO se hachuran cuando el corte es longitudinal. Solo se hachuran en corte transversal.
+Hachurar piezas macizas (ejes, tornillos, pasadores) en corte longitudinal. Las piezas macizas NO se hachuran cuando el corte es longitudinal. Solo se hachuran en corte transversal. <strong>Truco:</strong> "Si el corte va en la dirección de la pieza → sin hachura. Si el corte corta la pieza en sección → con hachura." Imagina que cortas un salchichón: si cortas a lo largo (longitudinal), no ves el interior; si cortas transversal, sí ves la sección.
 </div>
 
 <div class="box box-idea">
@@ -407,7 +431,9 @@ Con la lista de piezas dominada, en el siguiente tema aprenderás los planos de 
 
 <div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL 2</span><strong>Caso industrial: conjunto de un tren de aterrizaje (Boeing 737)</strong>Un tren de aterrizaje tiene más de 200 piezas. La lista de piezas tiene 200 filas con: nº, marca, descripción, cantidad, material, norma (NAS, MIL-SPEC), tratamiento térmico. Cada tornillo tiene su norma. Error en la lista = pieza que no encaja = retraso de avión = 50.000€/hora de avión parado.</div>
 
-<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL 3</span><strong>Caso industrial: catálogo de repuestos de bicicleta (Shimano)</strong>Shimano publica listas de piezas para cada grupo de transmisión (105, Ultegra, Dura-Ace). Cada pieza tiene un número de catálogo, descripción, cantidad y código de pedido. El mecánico usa el diagrama explosivo + lista para identificar y pedir cada pieza. Sin lista de piezas = imposible mantener la bicicleta.</div>
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL 3</span><strong>Caso industrial: catálogo de repuestos de bicicleta (Shimano)</strong>Shimano publica listas de piezas para cada grupo de transmisión (105, Ultegra, Dura-Ace). Cada pieza tiene un número de catálogo, descripción, cantidad y código de pedido. El mecánico usa el diagrama explosivo + lista para identificar y pedir cada pieza. Sin lista de piezas = imposible mantener la bicicleta.<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL 4</span><strong>Caso industrial: lista de piezas de un robot colaborativo (Universal Robots UR10e)</strong>El robot UR10e tiene 156 piezas en su lista de materiales (BOM). La lista incluye: 42 piezas fabricadas (cuerpo, articulaciones, bracket), 38 piezas estándar (tornillos ISO 4014, rodamientos ISO 15, chavetas ISO 773), 20 cables y conectores (norma interna UR), y 56 piezas de software/configuración. Cada pieza tiene código interno (ej: 3320.001 = cuerpo base), material, tratamiento, y número de orden. Sin lista de piezas completa: imposible hacer mantenimiento predictivo, y el técnico no sabe qué piezas llevar en la caja de herramientas.</div>
+
+</div>
 
 
 <div class="connection-box">
@@ -494,16 +520,16 @@ function checkVF(btn, correct) {
 
 function showListaPaso(n) {
   var titulos = [
-    '🔍 Mira: el conjunto con marcas',
-    '🟠 Fíjate: la tabla de lista de piezas',
-    '🔵 Ahora ves: elementos normalizados',
-    '🧪 Prueba: reglas de hachuras'
+    '🔍 PASO 1 — Mira: el conjunto con marcas y lista de piezas',
+    '🟠 PASO 2 — Fíjate: la tabla de lista de piezas (6 columnas)',
+    '🔵 PASO 3 — Ahora ves: elementos normalizados (tornillos, rodamientos...)',
+    '🧪 PASO 4 — Prueba: reglas de hachuras en conjunto'
   ];
   var textos = [
-    'En un plano de conjunto, cada pieza se identifica con una marca: flecha + línea horizontal + número. La lista de piezas acompaña al plano con toda la información: descripción, cantidad, material, norma.',
-    'La tabla de lista de piezas tiene columnas: Nº (orden), Marca (código único), Descripción (nombre), Cantidad (unidades), Material, Observaciones (normas, tolerancias).',
-    'Los elementos normalizados (tornillos, rodamientos, chavetas) se representan de forma simplificada. Tornillo: línea gruesa (exterior) + fina (interior). Rodamiento: rectángulo + diagonales.',
-    'Reglas de hachuras: piezas adyacentes = ángulo diferente. Piezas macizas = NO hachurar longitudinalmente. Elementos normalizados = NO hachurar. Piezas del mismo tipo = hachuras idénticas.'
+    'En un plano de conjunto, CADA PIEZA se identifica con una MARCA: flecha que señala la pieza + línea horizontal + número de orden. La LISTA DE PIEZAS acompaña al plano con toda la información esencial: descripción, cantidad, material, norma de fabricación. Sin lista de piezas = no se puede montar ni fabricar el conjunto.',
+    'La tabla de LISTA DE PIEZAS tiene SEIS columnas: Nº (número de orden, 1, 2, 3...), Marca (código único de la pieza, 001, 002...), Descripción (nombre de la pieza), Cantidad (número de unidades), Material (C45, Al 6061, NBR...), Observaciones (normas ISO/DIN, tolerancias, tratamientos). Cada fila = una pieza del conjunto.',
+    'Los ELEMENTOS NORMALIZADOS (tornillos, rodamientos, chavetas, juntas) se representan de forma SIMPLIFICADA en los planos. Tornillo: línea gruesa para diámetro exterior, línea fina para rosca interior. Rodamiento: rectángulo con dos diagonales cruzadas. Chaveta: rectángulo en la vista del eje. Junta tórica: línea gruesa en sección transversal. ¡Nunca se hachuran longitudinalmente!',
+    'Reglas de HACHURAS en conjunto: (1) Piezas ADYACENTES = ángulo o separación diferente (45° vs 135°). (2) Piezas MACIZAS (ejes, pasadores, tornillos) = NO se hachuran en corte LONGITUDINAL, SÍ en corte TRANSVERSAL. (3) Elementos NORMALIZADOS = NO se hachuran. (4) Piezas del MISMO TIPO = hachuras idénticas. ¡Estas reglas son la clave para leer un plano de conjunto correctamente!'
   ];
   document.getElementById('listaPiezasTitulo').textContent = titulos[n];
   document.getElementById('listaPiezasTexto').textContent = textos[n];
@@ -527,6 +553,24 @@ function checkFillIn(correctAnswers) {
     input.style.borderColor = 'var(--verde)';
   } else {
     feedback.textContent = '❌ Respuesta correcta: ' + correctAnswers[0];
+    feedback.className = 'feedback incorrect';
+    input.style.borderColor = 'var(--rojo)';
+  }
+}
+
+function checkFillIn2(correctAnswers) {
+  var exercise = this.parentElement;
+  var input = exercise.querySelector('input[type="text"]');
+  var feedback = exercise.querySelector('.feedback');
+  if (!input) return;
+  var val = input.value.trim().toLowerCase();
+  var correct = correctAnswers.some(function(a) { return a.toLowerCase() === val; });
+  if(correct) {
+    feedback.textContent = '✅ ¡Correcto! La sexta columna es "Observaciones" (normas, tolerancias, tratamientos).';
+    feedback.className = 'feedback correct';
+    input.style.borderColor = 'var(--verde)';
+  } else {
+    feedback.textContent = '❌ Respuesta correcta: observaciones. La lista tiene 6 columnas: Nº, Marca, Descripción, Cantidad, Material, Observaciones.';
     feedback.className = 'feedback incorrect';
     input.style.borderColor = 'var(--rojo)';
   }
