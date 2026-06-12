@@ -67,6 +67,23 @@ tr:hover{background:var(--azul-claro)}
 .line-type-btn.active{box-shadow:0 0 0 3px rgba(37,99,235,.3)}
 .highlight-layer{opacity:0;transition:opacity .3s}
 .highlight-layer.visible{opacity:1}
+.clickable{cursor:pointer;transition:all .2s;border-radius:8px;padding:.5rem}
+.clickable:hover{background:var(--azul-claro);transform:translateY(-2px);box-shadow:0 4px 12px rgba(37,99,235,.15)}
+.connection-box{background:linear-gradient(135deg,var(--pura-claro),var(--azul-claro));border:2px solid var(--pura);border-radius:12px;padding:1.2rem;margin:1.5rem 0}
+.connection-box h4{color:var(--pura);margin-bottom:.5rem}
+.difficulty-badge{display:inline-block;background:var(--pura);color:#fff;padding:.2rem .6rem;border-radius:12px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.step-indicator{display:flex;justify-content:center;gap:.5rem;margin:1.5rem 0;align-items:center}
+.step-dot{width:32px;height:32px;border-radius:50%;background:#e2e8f0;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;color:#64748b;transition:all .3s;cursor:pointer}
+.step-dot.active{background:var(--azul);color:#fff;transform:scale(1.2);box-shadow:0 0 0 4px rgba(37,99,235,.3)}
+.step-dot.completed{background:var(--verde);color:#fff}
+.step-line{width:40px;height:2px;background:#e2e8f0;transition:background .3s}
+.step-line.active{background:var(--azul)}
+.feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block;font-weight:600}
+.feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block;font-weight:600}
+.comparison{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0}
+.comparison-side{background:#f8fafc;border-radius:10px;padding:1rem;border:2px solid #e2e8f0}
+.correct-side{border-color:var(--verde)}
+.wrong-side{border-color:var(--rojo)}
 </style>
 </head>
 <body>
@@ -79,14 +96,62 @@ tr:hover{background:var(--azul-claro)}
 <section class="chapter">
 <h2 class="chapter-title">🎯 ¿Qué vamos a aprender?</h2>
 <div class="box box-idea"><strong>💡 Idea clave</strong>Cada tipo de línea tiene un significado: continua gruesa = contornos visibles, discontinua = aristas ocultas, discontinua fina = ejes de simetría.</div>
-<p>En esta sesión aprenderás a:</p>
-<ul style="margin:.8rem 0 1rem 1.5rem">
-<li>Conocer los tipos de línea de la norma ISO 128</li>
-<li>Saber qué tipo usar en cada caso</li>
-<li>Distinguir entre línea gruesa y fina</li>
-<li>Aplicar las normas de representación</li>
-</ul>
+
+<!-- PASOS VISUALES 4 -->
+<div class="step-indicator" id="stepIndicator">
+  <div class="step-dot active" onclick="showStep(1)">1</div>
+  <div class="step-line"></div>
+  <div class="step-dot" onclick="showStep(2)">2</div>
+  <div class="step-line"></div>
+  <div class="step-dot" onclick="showStep(3)">3</div>
+  <div class="step-line"></div>
+  <div class="step-dot" onclick="showStep(4)">4</div>
+</div>
+
+<div id="stepContent">
+<div id="step1" class="step-panel">
+<div class="box box-teoria"><strong>👀 Mira</strong>Los planos técnicos usan <strong>múltiples tipos de línea</strong> para transmitir información. No es solo "dibujar líneas": cada trazo tiene un significado normativo que el operario debe leer al instante.</div>
+</div>
+<div id="step2" class="step-panel" style="display:none">
+<div class="box box-teoria"><strong>🔍 Fíjate</strong>Hay dos dimensiones: <strong>grosor</strong> (gruesa 0.5-2mm vs fina 0.25-1mm) y <strong>patrón</strong> (continua, discontinua, a trazos y puntos). La combinación define el significado.</div>
+</div>
+<div id="step3" class="step-panel" style="display:none">
+<div class="box box-teoria"><strong>🎯 Ahora ves</strong>La combinación más crítica: <strong>discontinua gruesa</strong> = arista oculta (rojo), <strong>discontinua fina</strong> = eje de simetría (púrpura). ¡Son al revés de lo que intuimos!</div>
+</div>
+<div id="step4" class="step-panel" style="display:none">
+<div class="box box-teoria"><strong>🧪 Prueba</strong>Usa los botones de abajo para ver cada tipo de línea aislado. ¡Así entrenas el ojo para distinguirlos en cualquier plano!</div>
+</div>
+</div>
+<p style="text-align:center;margin-top:1rem"><em style="color:var(--gris)">Haz clic en los números de arriba o en los botones del SVG interactivo para explorar</em></p>
 </section>
+
+<script>
+function showStep(n) {
+  // Hide all panels
+  for (var i = 1; i <= 4; i++) {
+    var panel = document.getElementById('step' + i);
+    if (panel) panel.style.display = i === n ? 'block' : 'none';
+  }
+  // Update dots
+  var dots = document.querySelectorAll('.step-dot');
+  var lines = document.querySelectorAll('.step-line');
+  for (var i = 0; i < dots.length; i++) {
+    if (i + 1 < n) {
+      dots[i].className = 'step-dot completed';
+      dots[i].innerHTML = '✓';
+    } else if (i + 1 === n) {
+      dots[i].className = 'step-dot active';
+      dots[i].innerHTML = (i + 1).toString();
+    } else {
+      dots[i].className = 'step-dot';
+      dots[i].innerHTML = (i + 1).toString();
+    }
+  }
+  for (var i = 0; i < lines.length; i++) {
+    lines[i].className = i < n - 1 ? 'step-line active' : 'step-line';
+  }
+}
+</script>
 
 <section class="chapter">
 <h2 class="chapter-title">1️⃣ Tipos de línea (ISO 128-20)</h2>
@@ -171,6 +236,42 @@ tr:hover{background:var(--azul-claro)}
 </ul>
 <p style="margin-top:.5rem">Si el dibujante usa <strong>discontinua fina</strong> en vez de <strong>discontinua gruesa</strong> para el agujero oculto, el operario de mecanizado no lo detecta como arista oculta. <strong>Se mecaniza la pieza sin el agujero → la biela es inservible → 45€ perdidos + 2 horas de parada de máquina.</strong></p>
 <p style="margin-top:.5rem;font-style:italic;color:var(--gris)">Un tipo de línea incorrecto = una pieza defectuosa = dinero perdido.</p>
+</div>
+</section>
+
+<!-- CASO REAL 2: Industria aeroespacial -->
+<section class="chapter">
+<h2 class="chapter-title">🏭 Caso real: Plano de álabes de turbina</h2>
+<div class="box box-ejemplo">
+<span class="real-world-badge">CASO REAL</span>
+<strong>✈️ Fabricación de álabes de turbina de avión</strong>
+<p>Los álabes de una turbina de avión (ej: Trent XWB) tienen geometrías complejas con cavidades internas. El plano usa:</p>
+<ul style="margin:.5rem 0 .5rem 1.5rem">
+<li><strong>Continua gruesa (A):</strong> perfil exterior del álabe — lo visible</li>
+<li><strong>Discontinua gruesa:</strong> cavidades internas de refrigeración — aristas ocultas críticas</li>
+<li><strong>A trazos y puntos (H):</strong> ejes de simetría del perfil aerodinámico</li>
+<li><strong>Continua fina (K):</strong> superficie rugosa requerida (Ra 0.8μm)</li>
+</ul>
+<p style="margin-top:.5rem">En la fabricación de álabes, un error de interpretación de líneas discontinuas ha causado <strong>fallas catastróficas en vuelo</strong>. La norma ISO 128 no es opcional: es una cuestión de seguridad aérea. Cada línea discontinua gruesa que se confunde con fina puede significar que una cavidad de refrigeración pase desapercibida → sobrecalentamiento del álabe → fallo del motor.</p>
+<p style="margin-top:.5rem;font-style:italic;color:var(--gris)">En aviación, los tipos de línea no son convención: son seguridad.</p>
+</div>
+</section>
+
+<!-- CASO REAL 3: Arquitectura -->
+<section class="chapter">
+<h2 class="chapter-title">🏗️ Caso real: Plano estructural de un puente</h2>
+<div class="box box-ejemplo">
+<span class="real-world-badge">CASO REAL</span>
+<strong>🌉 Proyecto del Puente de la Bahía de Santander</strong>
+<p>Los planos estructurales de puentes usan tipos de línea de forma estricta:</p>
+<ul style="margin:.5rem 0 .5rem 1.5rem">
+<li><strong>Continua gruesa (A):</strong> elementos estructurales visibles — pilares, tablero</li>
+<li><strong>Discontinua gruesa:</strong> armadura interior del hormigón armado — barras de acero ocultas</li>
+<li><strong>Continua fina (F):</strong> líneas de proyecto del puente anterior o terreno adyacente</li>
+<li><strong>A trazos y puntos (H):</strong> ejes de simetría de pilares y apoyos</li>
+</ul>
+<p style="margin-top:.5rem">En un puente, la armadura interior (barras de acero) se representa con <strong>discontinua gruesa</strong>. Si se dibuja como discontinua fina, el ingeniero de obra podría no notar su presencia. <strong>Consecuencia: hormigonar sin armadura → colapso estructural bajo carga.</strong> Los planos de puentes se revisan triple vez precisamente por esto.</p>
+<p style="margin-top:.5rem;font-style:italic;color:var(--gris)">En ingeniería civil, un tipo de línea mal usado puede costar vidas.</p>
 </div>
 </section>
 
@@ -394,6 +495,51 @@ Usar discontinua <em>fina</em> para aristas ocultas. La norma dice: aristas ocul
 <div class="result" id="ex6"></div>
 </div>
 
+<!-- NUEVO R2: Ejercicio V/F visual con SVG -->
+<div class="exercise">
+<p>7️⃣ (V/F Visual) Observa el SVG de abajo: la línea que marca el eje del círculo es de tipo <strong>trazos y puntos</strong>.</p>
+<div class="svg-container" style="margin:.8rem 0;padding:.8rem">
+<svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+<circle cx="100" cy="75" r="50" fill="none" stroke="#1e293b" stroke-width="3"/>
+<circle cx="100" cy="75" r="3" fill="#f97316"/>
+<line x1="40" y1="75" x2="160" y2="75" stroke="#a855f7" stroke-width="1" stroke-dasharray="20,3,3,3"/>
+<line x1="100" y1="15" x2="100" y2="135" stroke="#a855f7" stroke-width="1" stroke-dasharray="20,3,3,3"/>
+<text x="100" y="148" text-anchor="middle" font-size="9" fill="#a855f7">Línea H: trazos y puntos</text>
+</svg>
+</div>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkVF(this, true, 'ex7')">✅ Verdadero — es línea H (trazos y puntos fina) para ejes</button>
+<button class="quiz-btn" onclick="checkVF(this, false, 'ex7')">❌ Falso — es una línea continua</button>
+</div>
+<div class="result" id="ex7"></div>
+</div>
+
+<!-- NUEVO R2: Ejercicio ordenar -->
+<div class="exercise">
+<p>8️⃣ (Ordenar) Ordena de MAYOR a MENOR grosor de trazo las siguientes líneas en un plano: <em>continua fina, continua gruesa, discontinua gruesa, a trazos y puntos fina</em>.</p>
+<p style="font-size:.85rem;color:var(--gris);margin-bottom:.5rem">Arrastra o selecciona en orden correcto:</p>
+<div id="ordenContainer">
+<div style="display:flex;gap:.5rem;flex-wrap:wrap;margin:.5rem 0" id="ordenOpciones">
+<button class="quiz-btn" onclick="selectOrden(this,'continua gruesa')" data-value="continua gruesa">continua gruesa</button>
+<button class="quiz-btn" onclick="selectOrden(this,'discontinua gruesa')" data-value="discontinua gruesa">discontinua gruesa</button>
+<button class="quiz-btn" onclick="selectOrden(this,'continua fina')" data-value="continua fina">continua fina</button>
+<button class="quiz-btn" onclick="selectOrden(this,'trazos y puntos fina')" data-value="trazos y puntos fina">trazos y puntos fina</button>
+</div>
+<p style="font-size:.9rem;margin:.5rem 0">Tu orden: <span id="ordenResultado" style="font-weight:bold;color:var(--azul)"></span></p>
+<button class="quiz-btn" onclick="checkOrden()" style="background:var(--verde)">✅ Comprobar orden</button>
+<div class="result" id="ex8"></div>
+</div>
+</div>
+
+<!-- NUEVO R2: Completar huecos -->
+<div class="exercise">
+<p>9️⃣ (Completar) Escribe el tipo de línea correcto: En un plano de mecanizado, el operario ve una línea <strong>continua fina</strong> que rodea una pieza. Esa pieza está <em>al lado</em> de la que se está fabricando. ¿Qué tipo de línea es?</p>
+<input type="text" id="fillIn9" placeholder="Escribe el tipo de línea..." style="padding:.5rem;border:2px solid var(--azul);border-radius:6px;font-size:1rem;width:100%;max-width:400px">
+<br><br>
+<button class="quiz-btn" onclick="checkFillIn(['continua fina','tipo F','continua fina (tipo F)','linea continua fina','línea continua fina'])" style="background:var(--verde)">✅ Comprobar</button>
+<div class="result" id="ex9"></div>
+</div>
+
 </div>
 </section>
 
@@ -409,6 +555,14 @@ Usar discontinua <em>fina</em> para aristas ocultas. La norma dice: aristas ocul
 <li>En un plano real, cada tipo de línea transmite información diferente y esencial</li>
 <li>¡Ya dominas los tipos de línea ISO 128! 🎉</li>
 </ul>
+</div>
+
+<!-- CONEXIONES -->
+<div class="connection-box">
+<h4>🔗 Conexiones con otros temas</h4>
+<p><strong>→ B01.1 Formatos de papel:</strong> Los tipos de línea se aplican sobre formatos normalizados (A4, A3...). La norma ISO 128 y la ISO 216 trabajan juntas.</p>
+<p style="margin-top:.3rem"><strong>→ B01.3 Escalas:</strong> El grosor de línea NO cambia con la escala. Un trazo grueso es grueso tanto en escala 1:1 como en 1:100.</p>
+<p style="margin-top:.3rem"><strong>→ B05.1 Cortes:</strong> En un corte, las líneas de corte usan continua fina ondulada. Los tipos de línea determinan qué se ve en cada vista.</p>
 </div>
 
 <div class="nav">
@@ -511,6 +665,79 @@ window.onscroll = function() {
   var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
   document.getElementById('progress').style.width = p+'%';
 };
+
+// Ordenar ejercicio
+var ordenSeleccion = [];
+var ordenCorrecto = ['continua gruesa','discontinua gruesa','continua fina','trazos y puntos fina'];
+
+function selectOrden(btn, value) {
+  // Toggle selection
+  if (ordenSeleccion.includes(value)) {
+    ordenSeleccion = ordenSeleccion.filter(v => v !== value);
+    btn.style.background = '#fff';
+    btn.style.color = 'var(--azul)';
+  } else {
+    ordenSeleccion.push(value);
+    btn.style.background = 'var(--azul)';
+    btn.style.color = '#fff';
+  }
+  document.getElementById('ordenResultado').textContent = ordenSeleccion.join(' → ');
+}
+
+function checkOrden() {
+  var result = document.getElementById('ex8');
+  if (ordenSeleccion.length === 0) {
+    result.className = 'result fail';
+    result.innerHTML = 'Selecciona al menos un elemento para ordenar.';
+    return;
+  }
+  if (ordenSeleccion.length !== ordenCorrecto.length) {
+    result.className = 'result fail';
+    result.innerHTML = 'Selecciona los ' + ordenCorrecto.length + ' tipos de línea.';
+    return;
+  }
+  var correct = true;
+  for (var i = 0; i < ordenCorrecto.length; i++) {
+    if (ordenSeleccion[i] !== ordenCorrecto[i]) {
+      correct = false;
+      break;
+    }
+  }
+  if (correct) {
+    result.className = 'result ok';
+    result.innerHTML = '✅ ¡Perfecto! De mayor a menor grosor: continua gruesa (2mm) → discontinua gruesa (1.5mm) → continua fina (1mm) → trazos y puntos fina (0.5mm).';
+  } else {
+    result.className = 'result fail';
+    result.innerHTML = '❌ Orden incorrecto. Recuerda: gruesa > fina, y el grosor visual depende del stroke-width.';
+  }
+}
+
+// Completar huecos
+function checkFillIn(correctAnswers) {
+  var input = document.activeElement.parentElement.querySelector('input[type="text"]');
+  if (!input) {
+    // Try to find the input by looking for the parent exercise div
+    var btn = document.activeElement;
+    var exercise = btn.closest('.exercise');
+    if (exercise) input = exercise.querySelector('input[type="text"]');
+  }
+  if (!input) return;
+  var val = input.value.trim().toLowerCase();
+  var resultId = input.closest('.exercise').querySelector('.result').id;
+  var result = document.getElementById(resultId);
+  
+  var found = correctAnswers.some(function(a) {
+    return val === a.toLowerCase() || val.includes(a.toLowerCase()) || a.toLowerCase().includes(val);
+  });
+  
+  if (found && val.length > 1) {
+    result.className = 'result ok';
+    result.innerHTML = '✅ ¡Correcto! ' + correctAnswers[0] + ' es la respuesta adecuada.';
+  } else {
+    result.className = 'result fail';
+    result.innerHTML = '❌ No es correcto. La respuesta es: ' + correctAnswers[0] + '.';
+  }
+}
 </script>
 </body>
 </html>
