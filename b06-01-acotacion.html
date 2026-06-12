@@ -70,6 +70,9 @@ input[type="text"]:focus{outline:none;border-color:var(--azul)}
 .clickable{cursor:pointer;transition:all .2s}
 .clickable:hover{opacity:.7;filter:brightness(1.1)}
 .highlight-el{stroke-width:3;stroke:var(--naranja)}
+
+.connection-box{background:linear-gradient(135deg,var(--pura-claro),#f0f4ff);border:2px solid var(--pura);border-radius:12px;padding:1.2rem;margin:1.5rem 0}.connection-box h4{color:var(--pura);margin-bottom:.5rem;font-size:1rem}
+.difficulty-badge{display:inline-block;padding:.15rem .5rem;border-radius:8px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px}.difficulty-badge.easy{background:#d1fae5;color:#065f46}.difficulty-badge.medium{background:#fef3c7;color:#92400e}.difficulty-badge.hard{background:#fee2e2;color:#991b1b}
 </style>
 </head>
 <body>
@@ -112,6 +115,12 @@ Acotar es poner las medidas en el dibujo. Sin cotas, el dibujo no sirve para fab
 • Acotar en vistas donde se ve la verdadera magnitud<br>
 • Una sola vez cada dimensión (no repetir)
 </div>
+</section>
+<section class="chapter">
+<h2 class="chapter-title">🏭 Casos reales adicionales</h2>
+<div class="box box-ejemplo" style="margin:1rem 0"><span class="real-world-badge">🏗️ CASO REAL 2</span><strong>Caso de obra: acotación de cimentación</strong>En la construcción de un edificio de 20 plantas, la cimentación tiene 12 zapatas aisladas de 2.5m × 2.5m × 0.60m. El plano de cimentación tiene 45 cotas: 12 para las dimensiones de cada zapata, 12 para la separación entre ejes (6.00m × 6.00m), 12 para la armadura (⌀12@15cm), y 9 para la cubierta de hormigón (4cm). Si se repite alguna cota o se pone la cifra en diagonal, el aparejador interpreta mal las distancias → las zapatas se colocan mal → el edificio se inclina.</div>
+
+<div class="box box-idea" style="margin:1rem 0"><span class="real-world-badge">🚀 CASO REAL 3</span><strong>Caso aeroespacial: acotación de un ala de avión</strong>El ala de un Airbus A320 tiene más de 50.000 piezas. Cada una se acota según normas ASME Y14.5 (estándar americano) o ISO 1101 (estándar europeo). Las cotas incluyen tolerancias geométricas: planitud ±0.05mm, perpendicularidad ±0.1mm, posición ⌀0.2mm. Un error de acotación en un soporte de motor puede costar 2 millones de € en retrabajo y retrasos de producción.</div>
 </section>
 
 <section class="chapter">
@@ -275,9 +284,44 @@ Poner la cifra de la cota en diagonal. ¡NO! La cifra SIEMPRE va en horizontal, 
 
 <div class="box box-error">
 <strong>⚠️ Error común 2: Repetir cotas</strong>
-Acotar la misma dimensión en dos vistas diferentes. Cada dimensión se acota UNA SOLA VEZ, en la vista donde se ve mejor.
+<div class="comparison" style="margin:.8rem 0">
+  <div class="comparison-side" style="padding:.8rem">
+    <svg viewBox="0 0 120 80" width="100">
+      <rect x="20" y="20" width="80" height="40" fill="none" stroke="#2563eb" stroke-width="1.5"/>
+      <!-- Cota repetida en alzado -->
+      <line x1="20" y1="10" x2="100" y2="10" stroke="#ef4444" stroke-width="1"/>
+      <text x="60" y="8" text-anchor="middle" font-size="7" fill="#ef4444">150</text>
+      <!-- Cota repetida en planta -->
+      <line x1="110" y1="20" x2="110" y2="60" stroke="#ef4444" stroke-width="1"/>
+      <text x="115" y="42" font-size="7" fill="#ef4444">80</text>
+      <text x="60" y="75" text-anchor="middle" font-size="7" fill="#ef4444">❌ Cota repetida</text>
+    </svg>
+    <p style="font-size:.75rem;margin-top:.3rem"><strong style="color:var(--rojo)">❌ ERROR:</strong> Cota en 2 vistas</p>
+  </div>
+  <div class="comparison-side" style="padding:.8rem">
+    <svg viewBox="0 0 120 80" width="100">
+      <rect x="20" y="20" width="80" height="40" fill="none" stroke="#2563eb" stroke-width="1.5"/>
+      <!-- Cota solo en alzado -->
+      <line x1="20" y1="10" x2="100" y2="10" stroke="#10b981" stroke-width="1"/>
+      <text x="60" y="8" text-anchor="middle" font-size="7" fill="#10b981">150</text>
+      <text x="60" y="75" text-anchor="middle" font-size="7" fill="#10b981">✅ Una sola vez</text>
+    </svg>
+    <p style="font-size:.75rem;margin-top:.3rem"><strong style="color:var(--verde)">✅ CORRECTO:</strong> Cota en 1 vista</p>
+  </div>
 </div>
+<strong>Regla:</strong> Cada dimensión se acota UNA SOLA VEZ, en la vista donde se ve más clara.</div>
 </section>
+
+<div class="connection-box">
+<h4>🔗 Conexión con otros bloques</h4>
+La acotación se conecta con todo el sistema:
+<ul style="margin:.5rem 0 0 1.5rem">
+<li><strong>Bloque 1 (Normalización):</strong> Las cotas siguen las normas ISO 129 y UNE 1-039</li>
+<li><strong>Bloque 2 (Proyección):</strong> Se acotan las vistas donde se ve la verdadera magnitud</li>
+<li><strong>Bloque 5 (Cortes):</strong> Los cortes también se acotan con las mismas reglas</li>
+<li><strong>Bloque 6 (Métodos):</strong> La acotación en cascada y en paralelo son métodos avanzados</li>
+</ul>
+</div>
 
 <section class="chapter">
 <h2 class="chapter-title">🏭 Caso real industrial</h2>
@@ -293,7 +337,7 @@ Una brida de tubería DN200 (diámetro nominal 200mm) debe acotarse con precisi�
 <div class="exercises">
 
 <div class="exercise">
-<p>📐 Ejercicio 1 (Quiz): ¿Cuántos elementos tiene una cota completa?</p>
+<p>📐 Ejercicio 1 <span class="difficulty-badge easy">Fácil</span> (Quiz): ¿Cuántos elementos tiene una cota completa?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">2</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">5</button>
@@ -304,7 +348,7 @@ Una brida de tubería DN200 (diámetro nominal 200mm) debe acotarse con precisi�
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 2 (V/F visual): ¿Cuál de estas cotas está correctamente acotada?</p>
+<p>📐 Ejercicio 2 <span class="difficulty-badge easy">Fácil</span> (V/F visual): ¿Cuál de estas cotas está correctamente acotada?</p>
 <div class="comparison" style="margin:.5rem 0">
 <div class="comparison-side" style="padding:.8rem">
 <svg viewBox="0 0 120 80" width="100" xmlns="http://www.w3.org/2000/svg">
@@ -333,7 +377,7 @@ Una brida de tubería DN200 (diámetro nominal 200mm) debe acotarse con precisi�
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 3 (Completar): La cifra de la cota siempre va en posición __________. Las flechas apuntan hacia la __________.</p>
+<p>📐 Ejercicio 3 <span class="difficulty-badge medium">Medio</span> (Completar): La cifra de la cota siempre va en posición __________. Las flechas apuntan hacia la __________.</p>
 <input type="text" id="ex3a" placeholder="1ª respuesta" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:150px">
 <input type="text" id="ex3b" placeholder="2ª respuesta" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
 <button onclick="checkFillIn(['horizontal','horizontalmente','linea de cota','línea de cota','linea de cota','línea de cota'])">Comprobar</button>
@@ -341,7 +385,7 @@ Una brida de tubería DN200 (diámetro nominal 200mm) debe acotarse con precisi�
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 4 (Ordenar): ¿En qué orden se coloca una cota?</p>
+<p>📐 Ejercicio 4 <span class="difficulty-badge medium">Medio</span> (Ordenar): ¿En qué orden se coloca una cota?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkOrden(this, '1-3-2-4')">①→③→②→④</button>
 <button class="quiz-btn" onclick="checkOrden(this, '1-2-3-4')">①→②→③→④</button>
@@ -352,7 +396,7 @@ Una brida de tubería DN200 (diámetro nominal 200mm) debe acotarse con precisi�
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 5 (Quiz): ¿Cuántas líneas de ayuda se necesitan como mínimo para acotar una dimensión lineal?</p>
+<p>📐 Ejercicio 5 <span class="difficulty-badge hard">Difícil</span> (Quiz): ¿Cuántas líneas de ayuda se necesitan como mínimo para acotar una dimensión lineal?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">1</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">2</button>
@@ -362,6 +406,31 @@ Una brida de tubería DN200 (diámetro nominal 200mm) debe acotarse con precisi�
 <p class="feedback"></p>
 </div>
 
+
+<!-- NUEVOS EJERCICIOS RONDA 2 -->
+<div class="exercise">
+<p>📐 Ejercicio 6 (V/F): <span class="difficulty-badge easy">Fácil</span> La cifra de la cota siempre se lee de izquierda a derecha, incluso si la línea de cota es vertical.</p>
+<button onclick="checkVF(this, true)">✅ Verdadero</button>
+<button onclick="checkVF(this, false)">❌ Falso</button>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 7 (Completar): <span class="difficulty-badge medium">Medio</span> Para acotar un diámetro se usa el símbolo <input type="text" id="ex7a" placeholder="símbolo" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:80px"> y para un radio se usa la letra <input type="text" id="ex7b" placeholder="letra" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:80px">.</p>
+<button onclick="checkFillIn2(['diametro','⌀','diametro','∅','radio','r','R'])">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 8 (Ordenar): <span class="difficulty-badge medium">Medio</span> Ordena los pasos para colocar una cota lineal.</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkOrden(this, '1-2-3-4')">① Dibujar líneas de ayuda → ② Dibujar línea de cota → ③ Colocar flechas → ④ Escribir cifra</button>
+<button class="quiz-btn" onclick="checkOrden(this, '2-1-4-3')">② Escribir cifra → ① Dibujar líneas de ayuda → ④ Colocar flechas → ③ Dibujar línea de cota</button>
+<button class="quiz-btn" onclick="checkOrden(this, '3-4-1-2')">③ Colocar flechas → ④ Escribir cifra → ① Dibujar líneas de ayuda → ② Dibujar línea de cota</button>
+<button class="quiz-btn" onclick="checkOrden(this, '4-3-2-1')">④ Dibujar línea de cota → ③ Colocar flechas → ② Escribir cifra → ① Dibujar líneas de ayuda</button>
+</div>
+<p class="feedback"></p>
+</div>
 </div>
 </section>
 
@@ -513,6 +582,57 @@ window.onscroll = function(){
   var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
   document.getElementById('progress').style.width = p+'%';
 };
+
+function checkVF(btn, correct) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) {
+    b.disabled = true; b.style.opacity = '0.5';
+  });
+  btn.style.opacity = '1';
+  btn.style.background = correct ? 'var(--verde)' : 'var(--rojo)';
+  btn.style.color = '#fff';
+  var feedback = parent.querySelector('.feedback');
+  if(feedback) {
+    if(correct) {
+      feedback.textContent = '✅ ¡Correcto! La cifra SIEMPRE se lee de izquierda a derecha, nunca en diagonal.';
+      feedback.className = 'feedback correct';
+    } else {
+      feedback.textContent = '❌ Falso. La cifra siempre se lee de izquierda a derecha.';
+      feedback.className = 'feedback incorrect';
+    }
+  }
+}
+
+function checkFillIn2(correctAnswers) {
+  var inputs = document.querySelectorAll('#ex7a, #ex7b');
+  var allCorrect = true;
+  var val1 = inputs[0].value.trim().toLowerCase();
+  var val2 = inputs[1].value.trim().toLowerCase();
+  // Check first input: diámetro or ⌀
+  var symMatches = ['diametro', '⌀', '∅', 'diametro', 'diametro'];
+  var letterMatches = ['radio', 'r', 'R'];
+  if(symMatches.some(s => val1.includes(s.toLowerCase()))) {
+    inputs[0].style.borderColor = 'var(--verde)';
+  } else {
+    inputs[0].style.borderColor = 'var(--rojo)';
+    allCorrect = false;
+  }
+  if(letterMatches.some(l => val2.includes(l.toLowerCase()))) {
+    inputs[1].style.borderColor = 'var(--verde)';
+  } else {
+    inputs[1].style.borderColor = 'var(--rojo)';
+    allCorrect = false;
+  }
+  var feedback = inputs[1].parentElement.nextElementSibling;
+  if(allCorrect) {
+    feedback.textContent = '✅ ¡Correcto! ⌀ para diámetros, R para radios.';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ Respuestas: ⌀ (diámetro), R (radio).';
+    feedback.className = 'feedback incorrect';
+  }
+}
+
 </script>
 </body>
 </html>

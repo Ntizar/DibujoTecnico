@@ -585,14 +585,37 @@
       ],
       "scores": {
         "svg_interactive": 9,
-        "exercises": 7,
+        "exercises": 9,
         "text_explanation": 9,
-        "real_world": 7,
-        "error_common": 7,
+        "real_world": 9,
+        "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-11",
-      "improvement_count": 2
+      "last_improved": "2026-06-12-ronda2-s3",
+      "improvement_count": 3,
+      "improvement_history": [
+        {
+          "round": "ronda2-s3",
+          "timestamp": "2026-06-12T10:39:27.415285+00:00",
+          "dimensions_improved": "exercises, real_world, error_common (7→9)",
+          "scores_before": {
+            "svg_interactive": 9,
+            "exercises": 7,
+            "text_explanation": 9,
+            "real_world": 7,
+            "error_common": 7,
+            "css_coherence": 10
+          },
+          "scores_after": {
+            "svg_interactive": 9,
+            "exercises": 9,
+            "text_explanation": 9,
+            "real_world": 9,
+            "error_common": 9,
+            "css_coherence": 10
+          }
+        }
+      ]
     },
     "b03-04-caballera.html": {
       "status": "improved_2",
@@ -1086,15 +1109,38 @@
         }
       ],
       "scores": {
-        "svg_interactive": 7,
-        "exercises": 7,
-        "text_explanation": 7,
+        "svg_interactive": 9,
+        "exercises": 9,
+        "text_explanation": 9,
         "real_world": 9,
         "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-11",
-      "improvement_count": 2
+      "last_improved": "2026-06-12-ronda2-s3",
+      "improvement_count": 3,
+      "improvement_history": [
+        {
+          "round": "ronda2-s3",
+          "timestamp": "2026-06-12T10:39:27.415379+00:00",
+          "dimensions_improved": "svg_interactive, exercises, text_explanation (7→9), real_world+2 casos",
+          "scores_before": {
+            "svg_interactive": 7,
+            "exercises": 7,
+            "text_explanation": 7,
+            "real_world": 9,
+            "error_common": 9,
+            "css_coherence": 10
+          },
+          "scores_after": {
+            "svg_interactive": 9,
+            "exercises": 9,
+            "text_explanation": 9,
+            "real_world": 9,
+            "error_common": 9,
+            "css_coherence": 10
+          }
+        }
+      ]
     },
     "b05-01-cortes.html": {
       "status": "improved_2",
@@ -1215,12 +1261,35 @@
         "svg_interactive": 9,
         "exercises": 9,
         "text_explanation": 9,
-        "real_world": 7,
-        "error_common": 7,
+        "real_world": 9,
+        "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-11",
-      "improvement_count": 2
+      "last_improved": "2026-06-12-ronda2-s3",
+      "improvement_count": 3,
+      "improvement_history": [
+        {
+          "round": "ronda2-s3",
+          "timestamp": "2026-06-12T10:39:27.415392+00:00",
+          "dimensions_improved": "real_world, error_common (7→9), connection-box, difficulty-badge",
+          "scores_before": {
+            "svg_interactive": 9,
+            "exercises": 9,
+            "text_explanation": 9,
+            "real_world": 7,
+            "error_common": 7,
+            "css_coherence": 10
+          },
+          "scores_after": {
+            "svg_interactive": 9,
+            "exercises": 9,
+            "text_explanation": 9,
+            "real_world": 9,
+            "error_common": 9,
+            "css_coherence": 10
+          }
+        }
+      ]
     },
     "b07-01-intersecciones.html": {
       "status": "improved_2",

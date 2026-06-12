@@ -62,6 +62,12 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .stack-item:hover{border-color:var(--azul);transform:translateX(4px)}
 .stack-item.active{border-color:var(--azul);background:var(--azul-claro)}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+
+.connection-box{background:linear-gradient(135deg,var(--pura-claro),#f0f4ff);border:2px solid var(--pura);border-radius:12px;padding:1.2rem;margin:1.5rem 0}.connection-box h4{color:var(--pura);margin-bottom:.5rem;font-size:1rem}
+.difficulty-badge{display:inline-block;padding:.15rem .5rem;border-radius:8px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px}.difficulty-badge.easy{background:#d1fae5;color:#065f46}.difficulty-badge.medium{background:#fef3c7;color:#92400e}.difficulty-badge.hard{background:#fee2e2;color:#991b1b}
+.clickable{cursor:pointer;transition:transform .15s,box-shadow .15s}.clickable:hover{transform:scale(1.02);box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block;font-weight:600}
+.feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block;font-weight:600}
 </style>
 </head>
 <body>
@@ -222,6 +228,51 @@ Eje mayor vertical (cara XZ)
 <p>📐 Ejercicio 5: ¿El eje mayor es perpendicular o paralelo al plano isométrico?</p>
 <input type="text" id="ex5" placeholder="Perpendicular o Paralelo" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:250px">
 <button onclick="checkExercise('ex5', 'perpendicular', this)">Comprobar</button>
+
+<div class="exercise">
+<p>📐 Ejercicio 6 (V/F visual): <span class="difficulty-badge easy">Fácil</span> ¿Esta elipse representa correctamente una cara horizontal en isométrica?</p>
+<div class="comparison" style="margin:.5rem 0">
+  <div class="comparison-side" style="padding:.8rem">
+    <svg viewBox="0 0 120 80" width="100">
+      <ellipse cx="60" cy="40" rx="45" ry="25" fill="none" stroke="#2563eb" stroke-width="2"/>
+      <line x1="15" y1="40" x2="105" y2="40" stroke="#f97316" stroke-width="1.5" stroke-dasharray="3,2"/>
+      <text x="60" y="70" text-anchor="middle" font-size="7" fill="#2563eb">Eje mayor horizontal ✓</text>
+    </svg>
+    <p style="font-size:.8rem"><strong>Opción A</strong></p>
+  </div>
+  <div class="comparison-side" style="padding:.8rem">
+    <svg viewBox="0 0 120 80" width="100">
+      <ellipse cx="60" cy="40" rx="25" ry="45" fill="none" stroke="#2563eb" stroke-width="2"/>
+      <line x1="60" y1="5" x2="60" y2="75" stroke="#f97316" stroke-width="1.5"/>
+      <text x="60" y="70" text-anchor="middle" font-size="7" fill="#ef4444">Eje mayor vertical ✗</text>
+    </svg>
+    <p style="font-size:.8rem"><strong>Opción B</strong></p>
+  </div>
+</div>
+<p style="font-size:.9rem;color:var(--gris);margin:.3rem 0">La cara horizontal XY tiene el eje mayor a 30° (más ancho que alto)</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">La opción A</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">La opción B</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 7 (Completar): <span class="difficulty-badge medium">Medio</span> El método de 4 centros aproxima la elipse con <input type="text" id="ex7a" placeholder="número" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:80px"> arcos. El eje mayor mide <input type="text" id="ex7b" placeholder="factor" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:100px"> × D.</p>
+<button onclick="checkFillIn(['cuatro','4','1.22','1.22'])">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 8 (Ordenar): <span class="difficulty-badge medium">Medio</span> Ordena los pasos para trazar una elipse con 4 centros.</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkOrden(this, '1-2-3-4')">① Trazar ejes → ② Marcar centros → ③ Trazar arcos → ④ Unir</button>
+<button class="quiz-btn" onclick="checkOrden(this, '2-1-4-3')">② Marcar centros → ① Trazar ejes → ④ Unir → ③ Trazar arcos</button>
+<button class="quiz-btn" onclick="checkOrden(this, '3-4-1-2')">③ Trazar arcos → ④ Unir → ① Trazar ejes → ② Marcar centros</button>
+<button class="quiz-btn" onclick="checkOrden(this, '4-3-2-1')">④ Unir → ③ Trazar arcos → ② Marcar centros → ① Trazar ejes</button>
+</div>
+<p class="feedback"></p>
+</div>
 <p class="feedback"></p>
 </div>
 
@@ -231,16 +282,40 @@ Eje mayor vertical (cara XZ)
 <div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ CÍRCULO EN ISOMÉTRICA</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><circle cx="100" cy="70" r="40" fill="none" stroke="#ef4444" stroke-width="2"/><text x="100" y="75" text-anchor="middle" font-size="9" fill="#ef4444">No es un círculo</text></svg><small>En isométrica, el círculo → elipse</small></div><div class="comparison-side"><strong style="color:var(--verde)">✅ ELIPSE EN ISOMÉTRICA</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><ellipse cx="100" cy="70" rx="50" ry="30" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="100" y="75" text-anchor="middle" font-size="9" fill="#2563eb">Elipse ✓</text></svg><small>Elipse con ejes 1.22× y 0.61×</small></div></div>
 
 <div class="box box-error">
-<strong>⚠️ Error clásico</strong>
-Confundir la dirección del eje mayor. El eje mayor SIEMPRE es PERPENDICULAR al plano isométrico correspondiente. En cara XZ es vertical, en cara XY a 30°, en cara YZ a 150°.
+<strong>⚠️ Error clásico: confundir la dirección del eje mayor</strong>
+<div class="comparison" style="margin:.8rem 0">
+  <div class="comparison-side" style="padding:.8rem">
+    <svg viewBox="0 0 120 80" width="100">
+      <!-- Error: eje mayor vertical en cara horizontal -->
+      <ellipse cx="60" cy="40" rx="25" ry="45" fill="none" stroke="#ef4444" stroke-width="2"/>
+      <line x1="60" y1="5" x2="60" y2="75" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="3,2"/>
+      <text x="60" y="75" text-anchor="middle" font-size="7" fill="#ef4444">❌ Eje mayor vertical</text>
+    </svg>
+    <p style="font-size:.75rem;margin-top:.3rem"><strong style="color:var(--rojo)">❌ ERROR:</strong> Cara XY: eje mayor NO es vertical</p>
+  </div>
+  <div class="comparison-side" style="padding:.8rem">
+    <svg viewBox="0 0 120 80" width="100">
+      <!-- Correcto: eje mayor a 30° en cara horizontal -->
+      <ellipse cx="60" cy="40" rx="45" ry="25" fill="none" stroke="#10b981" stroke-width="2"/>
+      <line x1="15" y1="40" x2="105" y2="40" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3,2"/>
+      <text x="60" y="75" text-anchor="middle" font-size="7" fill="#10b981">✅ Eje mayor a 30°</text>
+    </svg>
+    <p style="font-size:.75rem;margin-top:.3rem"><strong style="color:var(--verde)">✅ CORRECTO:</strong> Cara XY: eje mayor a 30° de horizontal</p>
+  </div>
 </div>
+<strong>Regla mnemotécnica:</strong> El eje mayor SIEMPRE es perpendicular al plano isométrico. Piensa: "el mayor mira al cielo" — en cara XZ mira arriba (vertical), en cara XY mira a 30°, en cara YZ mira a 150°.</div>
 
 <div class="box box-idea">
 <strong>🔗 Conexión</strong>
 Los círculos en isométrica son las elipses. Los cilindros, taladros y agujeros se representan con elipses. ¡Dominar las elipses es clave para dibujar piezas con elementos cilíndricos!
 </div>
 
-<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: dibujo de tuercas y arandelas</strong>Una tuerca hexagonal tiene círculos en planta y en isométrica se ven como elipses. El dibujante técnico usa el método de los 8 puntos para dibujar la elipse aproximada. Si dibujara círculos en vez de elipses, el operario de CNC no sabría las cotas reales del agujero y la pieza saldría defectuosa.</div>
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: dibujo de tuercas y arandelas</strong>Una tuerca hexagonal tiene círculos en planta y en isométrica se ven como elipses. El dibujante técnico usa el método de los 8 puntos para dibujar la elipse aproximada. Si dibujara círculos en vez de elipses, el operario de CNC no sabría las cotas reales del agujero y la pieza saldría defectuosa.
+<div class="box box-ejemplo" style="margin:1.5rem 0"><span class="real-world-badge">🔧 CASO REAL 2</span><strong>Caso de taller: taladrado de piezas en serie</strong>En una fábrica de componentes aeroespaciales, se taladran 500 agujeros de 8mm en placas de aluminio. Cada agujero se representa como elipse en los planos isométricos. El operador de CNC lee las cotas de la elipse (eje mayor 9.76mm, eje menor 5.6mm) para programar la profundidad y el ángulo del taladro. Si el plano muestra un círculo en vez de una elipse, el operario taladra perpendicularmente en vez de en ángulo → la pieza de 200€ se pierde.</div>
+
+<div class="box box-idea" style="margin:1.5rem 0"><span class="real-world-badge">🎨 CASO REAL 3</span><strong>Caso creativo: diseño de engranajes en Blender</strong>Los diseñadores 3D que modelan engranajes en Blender o SolidWorks saben que los dientes de un engranaje visto en perspectiva se proyectan como elipses. Para crear renders fotorrealistas de mecanismos, el artista debe dibujar cada diente como elipse con el eje mayor correcto según la cara del cubo isométrico. Un error en la dirección del eje mayor arruina el fotorrealismo del render.</div>
+
+</div>
 
 <!-- PASO A PASO VISUAL — Patrón 4 pasos -->
 <div class="interactive" style="margin:1.5rem 0">

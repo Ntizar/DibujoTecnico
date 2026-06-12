@@ -76,7 +76,10 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .stack-item { background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 10px; padding: 1rem; margin: 0.5rem 0; transition: all 0.3s; cursor: pointer; }
 .stack-item:hover { border-color: var(--azul); transform: translateX(4px); }
 .stack-item.active { border-color: var(--azul); background: var(--azul-claro); }
-.box-problema { background: #fff7ed; border-color: var(--naranja); }</style>
+.box-problema { background: #fff7ed; border-color: var(--naranja); }
+.connection-box{background:linear-gradient(135deg,var(--pura-claro),#f0f4ff);border:2px solid var(--pura);border-radius:12px;padding:1.2rem;margin:1.5rem 0}.connection-box h4{color:var(--pura);margin-bottom:.5rem;font-size:1rem}
+.difficulty-badge{display:inline-block;padding:.15rem .5rem;border-radius:8px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px}.difficulty-badge.easy{background:#d1fae5;color:#065f46}.difficulty-badge.medium{background:#fef3c7;color:#92400e}.difficulty-badge.hard{background:#fee2e2;color:#991b1b}
+</style>
 </head>
 <body>
 <header class="header">
@@ -149,6 +152,9 @@ El sistema diédrico es el lenguaje universal de la ingeniería. Con punto, rect
 </svg>
 </div>
 <p style="text-align:center;color:var(--gris);font-size:0.85rem;margin-top:0.5rem">👆 Haz click en cada caja para resaltarla</p>
+<div style="text-align:center;margin:.5rem 0">
+<button onclick="resetMap()" style="background:var(--azul);color:#fff;border:none;padding:.4rem 1rem;border-radius:6px;cursor:pointer;font-size:.85rem">🔄 Resetear mapa</button>
+</div>
 </section>
 
 <section class="chapter">
@@ -172,7 +178,7 @@ El sistema diédrico es el lenguaje universal de la ingeniería. Con punto, rect
 
 <!-- Ejercicio 1: Quiz -->
 <div class="exercise">
-<p>📐 Ejercicio 1 (Quiz): ¿Cuántas coordenadas definen un punto en diédrico?</p>
+<p>📐 Ejercicio 1 <span class="difficulty-badge easy">Fácil</span> (Quiz): ¿Cuántas coordenadas definen un punto en diédrico?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">1</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">2</button>
@@ -184,7 +190,7 @@ El sistema diédrico es el lenguaje universal de la ingeniería. Con punto, rect
 
 <!-- Ejercicio 2: V/F Visual con SVG comparativo -->
 <div class="exercise">
-<p>📐 Ejercicio 2 (V/F visual): ¿Esta representación de una recta frontal es correcta?</p>
+<p>📐 Ejercicio 2 <span class="difficulty-badge easy">Fácil</span> (V/F visual): ¿Esta representación de una recta frontal es correcta?</p>
 <div class="comparison" style="margin:.5rem 0">
   <div class="comparison-side" style="padding:.8rem">
     <svg viewBox="0 0 120 80" width="100">
@@ -217,14 +223,14 @@ El sistema diédrico es el lenguaje universal de la ingeniería. Con punto, rect
 
 <!-- Ejercicio 3: Completar huecos -->
 <div class="exercise">
-<p>📐 Ejercicio 3 (Completar): Para obtener la verdadera magnitud de una recta oblicua, primero hay que convertir la recta en recta de <input type="text" id="ex3a" placeholder="1ª palabra" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:140px">, y luego en recta <input type="text" id="ex3b" placeholder="2ª palabra" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:140px">.</p>
+<p>📐 Ejercicio 3 <span class="difficulty-badge medium">Medio</span> (Completar): Para obtener la verdadera magnitud de una recta oblicua, primero hay que convertir la recta en recta de <input type="text" id="ex3a" placeholder="1ª palabra" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:140px">, y luego en recta <input type="text" id="ex3b" placeholder="2ª palabra" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:140px">.</p>
 <button onclick="checkFillIn(['paralela','perpendicular'])">Comprobar</button>
 <p class="feedback"></p>
 </div>
 
 <!-- Ejercicio 4: Ordenar pasos -->
 <div class="exercise">
-<p>📐 Ejercicio 4 (Ordenar): ¿Cuál es el orden correcto para abatir un punto sobre el PH?</p>
+<p>📐 Ejercicio 4 <span class="difficulty-badge medium">Medio</span> (Ordenar): ¿Cuál es el orden correcto para abatir un punto sobre el PH?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">①→②→③→④</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">②→①→④→③</button>
@@ -237,7 +243,7 @@ El sistema diédrico es el lenguaje universal de la ingeniería. Con punto, rect
 
 <!-- Ejercicio 5: Quiz -->
 <div class="exercise">
-<p>📐 Ejercicio 5 (Quiz): ¿Cuántos cambios de plano se necesitan para ver un plano oblicuo en VM?</p>
+<p>📐 Ejercicio 5 <span class="difficulty-badge hard">Difícil</span> (Quiz): ¿Cuántos cambios de plano se necesitan para ver un plano oblicuo en VM?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">1</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">2</button>
@@ -247,7 +253,31 @@ El sistema diédrico es el lenguaje universal de la ingeniería. Con punto, rect
 <p class="feedback"></p>
 </div>
 
+
+<!-- NUEVOS EJERCICIOS RONDA 2 -->
+<div class="exercise">
+<p>📐 Ejercicio 6 (V/F): <span class="difficulty-badge medium">Medio</span> Una recta de punta tiene ambas proyecciones como puntos.</p>
+<button onclick="checkVF(this, true)">✅ Verdadero</button>
+<button onclick="checkVF(this, false)">❌ Falso</button>
+<p class="feedback"></p>
 </div>
+
+<div class="exercise">
+<p>📐 Ejercicio 7 (Completar): <span class="difficulty-badge hard">Difícil</span> Para abatir un punto sobre el PH, primero se baja desde la proyección <input type="text" id="ex7a" placeholder="vertical/horizontal" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px"> hasta la LT, luego se gira hasta quedar <input type="text" id="ex7b" placeholder="paralela/perpendicular" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px"> a la LT.</p>
+<button onclick="checkFillIn2(['vertical','paralela'])">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 8 (Quiz): <span class="difficulty-badge hard">Difícil</span> ¿Cuántos cambios de plano se necesitan para ver un plano oblicuo en VM?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">1</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">2</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">3</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">4</button>
+</div>
+<p class="feedback"></p>
+</div></div>
 </section>
 
 <div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ SIN SÍMBOLO DE PROYECCIÓN</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/><text x="100" y="70" text-anchor="middle" font-size="10" fill="#ef4444">⚠️ Sin símbolo</text><text x="100" y="120" text-anchor="middle" font-size="9" fill="#ef4444">OBLIGATORIO según ISO</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ CON SÍMBOLO</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/><text x="100" y="60" text-anchor="middle" font-size="9" fill="#10b981">Símbolo ISO ✓</text><text x="100" y="120" text-anchor="middle" font-size="9" fill="#10b981">1º diedro</text></svg></div></div>
@@ -286,7 +316,22 @@ El sistema diédrico es el lenguaje universal de la ingeniería. Con punto, rect
 • No verificar que las proyecciones sean paralelas en AMBAS vistas
 </div>
 
-<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: plano de conjunto de una caja de cambios automotriz</strong>La caja de cambios ZF-6HP26 tiene 187 piezas numeradas. El plano de conjunto (hoja A0, escala 1:5) usa 12 vistas diferentes: alzado, planta, perfil, 4 vistas auxiliares para los engranajes, 3 cortes escalonados para el interior, y 2 secciones para los ejes. Cada una de las 187 piezas tiene su propio plano individual con cotas ISO 129. El dibujante usa el sistema diédrico completo: puntos en los 4 cuadrantes, rectas de máxima pendiente para VM, cambio de plano para ver los engranajes en verdadera magnitud, y abatimiento para ver los chaflanes reales. Sin este conocimiento, la pieza no se podría fabricar — y una caja de cambios cuesta 4.000€.</div>
+<div class="connection-box">
+<h4>🔗 Conexión con otros bloques</h4>
+Este resumen del diédrico conecta directamente con:
+<ul style="margin:.5rem 0 0 1.5rem">
+<li><strong>Bloque 5 (Cortes):</strong> Los cortes usan las trazas del plano para definir el plano cortante</li>
+<li><strong>Bloque 6 (Acotación):</strong> La acotación requiere VM, que se obtiene con los métodos estudiados aquí</li>
+<li><strong>Bloque 7 (Intersecciones):</strong> Las intersecciones recta-plano usan pertenencia y VM</li>
+<li><strong>Bloque 8 (Abatimientos):</strong> El abatimiento es un caso especial de cambio de plano</li>
+</ul>
+</div>
+
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: plano de conjunto de una caja de cambios automotriz</strong>La caja de cambios ZF-6HP26 tiene 187 piezas numeradas. El plano de conjunto (hoja A0, escala 1:5) usa 12 vistas diferentes: alzado, planta, perfil, 4 vistas auxiliares para los engranajes, 3 cortes escalonados para el interior, y 2 secciones para los ejes. Cada una de las 187 piezas tiene su propio plano individual con cotas ISO 129. El dibujante usa el sistema diédrico completo: puntos en los 4 cuadrantes, rectas de máxima pendiente para VM, cambio de plano para ver los engranajes en verdadera magnitud, y abatimiento para ver los chaflanes reales. Sin este conocimiento, la pieza no se podría fabricar — y una caja de cambios cuesta 4.000€.<div class="box box-ejemplo" style="margin:1.5rem 0"><span class="real-world-badge">🏗️ CASO REAL 2</span><strong>Caso de arquitectura: planos de un hospital</strong>El proyecto del Hospital La Paz en Madrid tiene 2.500 planos. Cada plano usa el sistema diédrico completo: alzado, planta, 4 perfiles, 12 cortes para instalaciones, y 8 vistas auxiliares para las fachadas curvas. Cada una de las 15.000 piezas (tuberías, vigas, conexiones) tiene su propio plano individual. El arquitecto usa el sistema diédrico para verificar que las tuberías de gas no cruzan con las de agua — un error cuesta 500.000€ en demoliciones.</div>
+
+<div class="box box-idea" style="margin:1.5rem 0"><span class="real-world-badge">🚀 CASO REAL 3</span><strong>Caso aeroespacial: ensamblaje de un satélite</strong>El satélite Galileo tiene 12.000 piezas que se ensamblan en cámara limpia. Cada pieza se fabrica según planos diédricos con tolerancias de ±0.01mm. El ingeniero de ensamblaje lee las proyecciones diédricas para orientar cada pieza en 3D: sabe exactamente cuál es la vista horizontal, cuál la vertical, y dónde están las trazas del plano de referencia. Un error de orientación en un soporte de antena de 2€ puede inutilizar un satélite de 200M€.</div>
+
+</div>
 
 
 <div class="interactive">
@@ -541,6 +586,58 @@ window.onscroll = function(){
   var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
   document.getElementById('progress').style.width = p+'%';
 };
+
+function checkVF(btn, correct) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) {
+    b.disabled = true; b.style.opacity = '0.5';
+  });
+  btn.style.opacity = '1';
+  btn.style.background = correct ? 'var(--verde)' : 'var(--rojo)';
+  btn.style.color = '#fff';
+  var feedback = parent.querySelector('.feedback');
+  if(feedback) {
+    if(correct) {
+      feedback.textContent = '✅ ¡Correcto! Una recta de punta se proyecta como punto en ambas vistas.';
+      feedback.className = 'feedback correct';
+    } else {
+      feedback.textContent = '❌ Falso. Una recta de punta se proyecta como punto en AMBAS vistas.';
+      feedback.className = 'feedback incorrect';
+    }
+  }
+}
+
+function checkFillIn2(correctAnswers) {
+  var inputs = document.querySelectorAll('#ex7a, #ex7b');
+  var allCorrect = true;
+  inputs.forEach(function(input, idx) {
+    var val = input.value.trim().toLowerCase();
+    if(idx === 0) {
+      if(val === 'vertical') { input.style.borderColor = 'var(--verde)'; }
+      else { input.style.borderColor = 'var(--rojo)'; allCorrect = false; }
+    } else {
+      if(val === 'paralela') { input.style.borderColor = 'var(--verde)'; }
+      else { input.style.borderColor = 'var(--rojo)'; allCorrect = false; }
+    }
+  });
+  var feedback = inputs[1].parentElement.nextElementSibling;
+  if(allCorrect) {
+    feedback.textContent = '✅ ¡Correcto! Se baja desde la proyección vertical hasta la LT, luego se gira hasta quedar paralela a la LT.';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ Respuestas: vertical, paralela.';
+    feedback.className = 'feedback incorrect';
+  }
+}
+
+function resetMap() {
+  document.querySelectorAll('.clickable').forEach(function(el) {
+    el.style.strokeWidth = '1.5';
+    el.style.fill = el.getAttribute('fill');
+    el.classList.remove('active');
+  });
+}
+
 </script>
 </body>
 </html>
