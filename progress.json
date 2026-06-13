@@ -360,7 +360,7 @@
             "improvement_count": 4
         },
         "b02-06-1o-3o-diedro.html": {
-            "status": "improved_1",
+            "status": "improved_2",
             "bloque": "b02",
             "title": "🌍 1º diedro vs 3º diedro",
             "priority": 1,
@@ -392,7 +392,15 @@
                         "exercises"
                     ]
                 },
-                "ronda 2: svg 7→9, exercises 7→9 (10 ejercicios, 5 tipos), text 7→9, real_world 7→9 (4 casos), error 7→9 (SVG comparativo), css 10→10"
+                "ronda 2: svg 7→9, exercises 7→9 (10 ejercicios, 5 tipos), text 7→9, real_world 7→9 (4 casos), error 7→9 (SVG comparativo), css 10→10",
+                {
+                    "date": "2026-06-13",
+                    "description": "Ronda 2 Sesión 3: añadido VF visual (Ejercicio 11) con SVG comparativo 1º vs 3º diedro + checkIdentify3 (Ejercicio 12) identificar proyección. Total 12 ejercicios, 5 tipos diferentes (quiz+VF+fill+orden+identify).",
+                    "dimensions_improved": [
+                        "svg_interactive",
+                        "exercises"
+                    ]
+                }
             ],
             "scores": {
                 "svg_interactive": 9,
@@ -402,8 +410,8 @@
                 "error_common": 9,
                 "css_coherence": 10
             },
-            "last_improved": "2026-06-12-ronda2-s2",
-            "improvement_count": 4
+            "last_improved": "2026-06-13-ronda2-s3",
+            "improvement_count": 5
         },
         "b02-07-representacion-piezas.html": {
             "status": "improved_3",

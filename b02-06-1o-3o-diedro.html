@@ -398,7 +398,65 @@ Planta = vista desde arriba → va ENCIMA del alzado.
 <p class="feedback"></p>
 </div>
 </div>
-</section>
+
+
+<div class="exercise">
+  <p><span class="difficulty-badge medium">Medio</span> 👁️ Ejercicio 11 (VF Visual): En el sistema europeo (1º diedro), la vista superior se coloca DEBAJO de la vista frontal.</p>
+  <div class="interactive">
+    <svg width="300" height="140" viewBox="0 0 300 140">
+      <!-- 1st angle projection diagram -->
+      <rect x="20" y="10" width="100" height="80" rx="4" fill="none" stroke="#2563eb" stroke-width="2"/>
+      <text x="70" y="55" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="bold">FRONTAL</text>
+      <!-- Superior view BELOW frontal (correct for 1st angle) -->
+      <rect x="20" y="100" width="100" height="30" rx="3" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+      <text x="70" y="120" text-anchor="middle" font-size="10" fill="#10b981" font-weight="bold">✅ SUPERIOR (abajo)</text>
+      <!-- Arrow -->
+      <line x1="70" y1="90" x2="70" y2="98" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow2)"/>
+      <defs><marker id="arrow2" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10" fill="#94a3b8"/></marker></defs>
+      <!-- 3rd angle projection diagram -->
+      <rect x="160" y="10" width="100" height="80" rx="4" fill="none" stroke="#2563eb" stroke-width="2"/>
+      <text x="210" y="55" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="bold">FRONTAL</text>
+      <!-- Superior view ABOVE frontal (3rd angle) -->
+      <rect x="160" y="0" width="100" height="30" rx="3" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/>
+      <text x="210" y="20" text-anchor="middle" font-size="10" fill="#ef4444" font-weight="bold">❌ SUPERIOR (arriba)</text>
+      <text x="210" y="135" text-anchor="middle" font-size="9" fill="#64748b">1º diedro (Europa)</text>
+      <text x="210" y="145" text-anchor="middle" font-size="9" fill="#64748b">3º diedro (USA)</text>
+    </svg>
+    <p style="margin-top:.5rem;font-size:.9rem;color:#64748b">Pista: En 1º diedro, la vista superior se proyecta DEBAJO de la frontal</p>
+    <div style="margin-top:.8rem;display:flex;gap:.5rem">
+      <button class="quiz-btn" onclick="checkVF3(this, true)">✅ Verdadero</button>
+      <button class="quiz-btn" onclick="checkVF3(this, false)">❌ Falso</button>
+    </div>
+    <div id="vf3Result" class="result" style="display:none"></div>
+  </div>
+</div>
+
+<div class="exercise">
+  <p><span class="difficulty-badge hard">Difícil</span> 🎯 Ejercicio 12 (Identificar): Observa las dos proyecciones y decide cuál corresponde al 1º diedro (europeo).</p>
+  <div class="interactive">
+    <div class="comparison">
+      <div class="comparison-side clickable" onclick="checkIdentify3(this, true)">
+        <svg width="160" height="120" viewBox="0 0 160 120">
+          <rect x="20" y="10" width="120" height="60" rx="3" fill="none" stroke="#2563eb" stroke-width="2"/>
+          <text x="80" y="45" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="bold">FRONTAL</text>
+          <rect x="20" y="75" width="120" height="35" rx="3" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+          <text x="80" y="97" text-anchor="middle" font-size="9" fill="#10b981">SUPERIOR (abajo)</text>
+          <text x="80" y="115" text-anchor="middle" font-size="8" fill="#64748b">1º DIEDRO</text>
+        </svg>
+      </div>
+      <div class="comparison-side clickable" onclick="checkIdentify3(this, false)">
+        <svg width="160" height="120" viewBox="0 0 160 120">
+          <rect x="20" y="40" width="120" height="60" rx="3" fill="none" stroke="#2563eb" stroke-width="2"/>
+          <text x="80" y="75" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="bold">FRONTAL</text>
+          <rect x="20" y="5" width="120" height="35" rx="3" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/>
+          <text x="80" y="27" text-anchor="middle" font-size="9" fill="#ef4444">SUPERIOR (arriba)</text>
+          <text x="80" y="115" text-anchor="middle" font-size="8" fill="#64748b">3º DIEDRO</text>
+        </svg>
+      </div>
+    </div>
+    <div id="identifyResult3" class="result" style="display:none"></div>
+  </div>
+</div></section>
 
 <div class="comparison" style="margin:1.5rem 0">
 <div class="comparison-side">
@@ -733,6 +791,48 @@ function checkFillIn() {
     feedback.className = 'feedback incorrect';
   }
 }
-</script>
+
+function checkVF3(btn, correct) {
+  const parent = btn.closest(".interactive");
+  const buttons = parent.querySelectorAll(".quiz-btn");
+  buttons.forEach(b => b.style.pointerEvents = "none");
+  const result = document.getElementById("vf3Result");
+  result.style.display = "block";
+  if (correct) {
+    btn.style.background = "var(--verde)"; btn.style.color = "#fff";
+    result.className = "result ok";
+    result.innerHTML = "<strong>¡Correcto!</strong> En el 1º diedro (europeo), la vista superior se coloca DEBAJO de la frontal. Piensa en la caja de proyección: la tapa se abre hacia ARRIBA y se pliega hacia abajo.";
+  } else {
+    btn.style.background = "var(--rojo)"; btn.style.color = "#fff";
+    result.className = "result fail";
+    result.innerHTML = "<strong>Incorrecto.</strong> En el 1º diedro europeo, la vista superior SÍ se coloca DEBAJO. En el 3º diedro americano se coloca ARRIBA.";
+    setTimeout(() => {
+      buttons.forEach(b => { b.style.background = ""; b.style.color = ""; b.style.pointerEvents = "auto"; });
+      result.style.display = "none";
+    }, 2000);
+  }
+}
+
+function checkIdentify3(el, correct) {
+  const siblings = el.parentElement.querySelectorAll(".clickable");
+  siblings.forEach(s => s.style.pointerEvents = "none");
+  const result = document.getElementById("identifyResult3");
+  result.style.display = "block";
+  if (correct) {
+    el.style.border = "3px solid #10b981";
+    el.style.background = "#ecfdf5";
+    result.className = "result ok";
+    result.innerHTML = "<strong>¡Correcto!</strong> En el 1º diedro europeo, la vista superior se coloca DEBAJO de la frontal. La tapa de la caja se abre hacia arriba y se pliega hacia abajo.";
+  } else {
+    el.style.border = "3px solid #ef4444";
+    el.style.background = "#fef2f2";
+    result.className = "result fail";
+    result.innerHTML = "<strong>Incorrecto.</strong> Esta es la proyección del 3º diedro (americano), donde la vista superior va ARRIBA. El 1º diedro europeo la coloca DEBAJO.";
+    setTimeout(() => {
+      siblings.forEach(s => { s.style.pointerEvents = "auto"; s.style.border = ""; s.style.background = ""; });
+      result.style.display = "none";
+    }, 2000);
+  }
+}</script>
 </body>
 </html>
