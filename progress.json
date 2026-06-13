@@ -1396,7 +1396,7 @@
       }
     },
     "b05-05-hachuras.html": {
-      "status": "improved_2",
+      "status": "improved_3",
       "bloque": "b05",
       "title": "✏️ Hachuras y rayado",
       "priority": 3,
@@ -1427,12 +1427,12 @@
         "svg_interactive": 9,
         "exercises": 9,
         "text_explanation": 9,
-        "real_world": 7,
-        "error_common": 7,
+        "real_world": 9,
+        "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-11",
-      "improvement_count": 2
+      "last_improved": "2026-06-13-ronda2-s1",
+      "improvement_count": 3
     },
     "b05-06-ejercicios-cortes.html": {
       "status": "improved_3",

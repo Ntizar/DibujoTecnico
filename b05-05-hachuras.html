@@ -62,6 +62,9 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .step-dot { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .85rem; color: #fff; transition: all .3s; cursor: pointer; }
 .step-dot:hover { transform: scale(1.2); }
 .step-dot.active { box-shadow: 0 0 0 4px rgba(37,99,235,.3); }
+.clickable{cursor:pointer}.clickable:hover{opacity:.8}
+.connection-box{background:linear-gradient(135deg,#faf5ff,#eff6ff);border:2px solid #a855f7;border-radius:10px;padding:1rem 1.2rem;margin:1rem 0}.connection-box strong{color:#7c3aed}.connection-box a{color:#2563eb;text-decoration:underline}
+.difficulty-badge{display:inline-block;padding:.15rem .5rem;border-radius:10px;font-size:.7rem;font-weight:700;margin-left:.5rem;vertical-align:middle}.difficulty-badge.easy{background:#dcfce7;color:#166534}.difficulty-badge.medium{background:#fef3c7;color:#92400e}.difficulty-badge.hard{background:#fee2e2;color:#991b1b}
 </style>
 </head>
 <body>
@@ -379,14 +382,51 @@ Si el plano de corte es longitudinal a la nervadura, NO se raya. Si es transvers
 </div>
 </section>
 
-<div class="comparison"</div>
-</section>
-
 <div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ MISMA HACHURA</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="50" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="1"/><line x1="40" y1="30" x2="90" y2="100" stroke="#2563eb" stroke-width="0.5"/><rect x="110" y="30" width="50" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="1"/><line x1="110" y1="30" x2="160" y2="100" stroke="#2563eb" stroke-width="0.5"/><text x="100" y="120" text-anchor="middle" font-size="9" fill="#ef4444">Mismo material = confusión</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ HACHURAS DIFERENTES</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="50" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="1"/><line x1="40" y1="30" x2="90" y2="100" stroke="#2563eb" stroke-width="0.5"/><rect x="110" y="30" width="50" height="70" fill="#fff7ed" stroke="#f97316" stroke-width="1"/><text x="100" y="120" text-anchor="middle" font-size="9" fill="#10b981">Materiales distintos ✓</text></svg></div></div>
 
-<div class="box box-error"
-<strong>⚠️ Error clásico</strong>
-Dibujar hachuras que atraviesan el texto de las cotas. ¡INCORRECTO! Las hachuras deben interrumpirse para dejar espacio a las cifras y notas. Tampoco deben salirse del contorno de la pieza.
+<div class="box box-error">
+<strong>⚠️ Error clásico: Hachuras cruzando cotas</strong>
+Dibujar hachuras que atraviesan el texto de las cotas. ¡INCORRECTO! Las hachuras deben interrumpirse para dejar espacio a las cifras y notas.
+<div class="svg-container" style="margin:.8rem 0;padding:.8rem">
+<svg viewBox="0 0 400 140" xmlns="http://www.w3.org/2000/svg">
+<!-- Panel izquierdo: ERROR -->
+<rect x="2" y="2" width="195" height="135" fill="#fef2f2" rx="6" stroke="#ef4444" stroke-width="2"/>
+<text x="100" y="18" text-anchor="middle" font-size="11" fill="#ef4444" font-weight="700">❌ ERROR</text>
+<!-- Pieza rectangular -->
+<rect x="30" y="30" width="140" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<!-- HACHURAS QUE CRUZAN COTA -->
+<line x1="25" y1="25" x2="175" y2="105" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="35" y1="25" x2="185" y2="105" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="45" y1="25" x2="195" y2="105" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="55" y1="25" x2="205" y2="105" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="65" y1="25" x2="215" y2="105" stroke="#2563eb" stroke-width="0.5"/>
+<!-- COTA CRUZADA POR HACHURAS -->
+<line x1="30" y1="20" x2="30" y2="100" stroke="#f97316" stroke-width="1.5"/>
+<text x="20" y="65" font-size="10" fill="#f97316" font-weight="700">25</text>
+<!-- X mark -->
+<line x1="140" y1="50" x2="160" y2="70" stroke="#ef4444" stroke-width="2"/>
+<line x1="160" y1="50" x2="140" y2="70" stroke="#ef4444" stroke-width="2"/>
+<!-- Panel derecho: CORRECTO -->
+<rect x="205" y="2" width="193" height="135" fill="#ecfdf5" rx="6" stroke="#10b981" stroke-width="2"/>
+<text x="302" y="18" text-anchor="middle" font-size="11" fill="#10b981" font-weight="700">✅ CORRECTO</text>
+<!-- Pieza rectangular -->
+<rect x="230" y="30" width="140" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<!-- HACHURAS QUE SE INTERRUMPEN -->
+<line x1="225" y1="25" x2="265" y2="60" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="235" y1="25" x2="275" y2="60" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="245" y1="25" x2="285" y2="60" stroke="#2563eb" stroke-width="0.5"/>
+<!-- GAP donde va la cota -->
+<line x1="275" y1="60" x2="365" y2="130" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="285" y1="60" x2="375" y2="130" stroke="#2563eb" stroke-width="0.5"/>
+<line x1="295" y1="60" x2="385" y2="130" stroke="#2563eb" stroke-width="0.5"/>
+<!-- COTA EN SU LUGAR -->
+<line x1="230" y1="20" x2="230" y2="100" stroke="#f97316" stroke-width="1.5"/>
+<text x="215" y="65" font-size="10" fill="#f97316" font-weight="700">25</text>
+<!-- Check mark -->
+<text x="340" y="65" font-size="14" fill="#10b981">✓</text>
+</svg>
+</div>
+<p style="font-size:.85rem;margin-top:.3rem"><strong>Regla:</strong> Las hachuras NUNCA deben cruzar cifras de cotas. Se interrumpen para dejar espacio limpio.</p>
 </div>
 
 <div class="box box-idea">
@@ -395,6 +435,11 @@ Las hachuras son el lenguaje universal de los materiales en dibujo técnico. Un 
 </div>
 
 <div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: hachuras diferenciadas por material</strong>En un plano de conjunto, cada material tiene su hachura: acero (líneas finas a 45°), aluminio (líneas más separadas), plástico (puntos). El operario lee las hachuras para saber qué material es cada pieza. Si dos piezas adyacentes tienen la misma hachura, se confunde cuál es cuál.</div>
+
+<div class="box box-success" style="margin:1.5rem 0">
+<span class="real-world-badge">🏭 CASO REAL</span>
+<strong>Control de calidad en fundición — Acerinox (Algeciras)</strong>
+En la fundición de perfiles de acero inoxidable, las hachuras del plano indican el tipo de aleación: AISI 304 (líneas a 45° separación 2mm), AISI 316 (líneas a 45° separación 1.5mm). El inspector verifica que el rayado del plano coincida con la ficha técnica del material. Un error en la interpretación de la hachura podría causar que se instale un perfil de acero no resistente a la corrosión marina en un muelle. La norma ISO 128-70 especifica exactamente el patrón para cada material ferroso y no ferroso.</div>
 
 <div class="summary>
 <h3>📋 Resumen de lo aprendido</h3>
