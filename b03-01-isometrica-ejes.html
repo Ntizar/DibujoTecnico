@@ -260,10 +260,23 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 </div>
 </section>
 <section class="chapter">
+
+<!-- CONEXIÓN -->
+<section class="chapter">
+<h2 class="chapter-title">🔗 Conexión con otros temas</h2>
+<div class="connection-box">
+<strong>🔗 Conexión con B03.2 — Isométrica: cubos y prismas</strong>
+Una vez que dominas los ejes isométricos (120° entre sí), puedes dibujar cualquier cubo o prisma trazando líneas paralelas a esos ejes. Los ejes son tu guía: todo lo que dibujes en isométrica debe seguir una de las tres direcciones.
+</div>
+<div class="connection-box">
+<strong>🔗 Conexión con B03.4 — Perspectiva caballera</strong>
+La perspectiva caballera también usa ejes (normalmente Z vertical y X horizontal), pero solo tiene DOS ejes con ángulo recto. La isométrica tiene TRES ejes a 120°, lo que da una visión más realista de la profundidad.
+</div>
+</section>
 <h2 class="chapter-title">📝 Ejercicios</h2>
 <div class="exercises">
 <div class="exercise">
-<p>Ejercicio 1: ¿Cuántos grados forman los ejes isométricos entre sí?</p>
+<p>Ejercicio 1 <span class="difficulty-badge easy">Fácil</span> ¿Cuántos grados forman los ejes isométricos entre sí?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkExercise(this, false)">90°</button>
 <button class="quiz-btn" onclick="checkExercise(this, true)">120°</button>
@@ -274,7 +287,7 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 </div>
 
 <div class="exercise">
-<p>Ejercicio 2: Completa — Los ejes X e Y en isométrica se sitúan a ___° de la horizontal.</p>
+<p>Ejercicio 2 <span class="difficulty-badge easy">Fácil</span> Completa — Los ejes X e Y en isométrica se sitúan a ___° de la horizontal.</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkExercise(this, false)">45°</button>
 <button class="quiz-btn" onclick="checkExercise(this, true)">30°</button>
@@ -285,7 +298,7 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 </div>
 
 <div class="exercise">
-<p>Ejercicio 3: Verdadero o Falso — La reducción teórica isométrica es 0,82, pero en la práctica se usa 1.</p>
+<p>Ejercicio 3 <span class="difficulty-badge easy">Fácil</span> Verdadero o Falso — La reducción teórica isométrica es 0,82, pero en la práctica se usa 1.</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkVF(this, true)">Verdadero</button>
 <button class="quiz-btn" onclick="checkVF(this, false)">Falso</button>
@@ -294,7 +307,7 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 </div>
 
 <div class="exercise">
-<p>Ejercicio 4: ¿Cuál de estos ejes es vertical en la perspectiva isométrica?</p>
+<p>Ejercicio 4 <span class="difficulty-badge medium">Intermedio</span> ¿Cuál de estos ejes es vertical en la perspectiva isométrica?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkExercise(this, false)">Eje X</button>
 <button class="quiz-btn" onclick="checkExercise(this, false)">Eje Y</button>
@@ -439,6 +452,64 @@ Los manuales de montaje usan perspectiva isométrica porque es la más fácil de
 </svg>
 </div>
 </div>
+
+<div class="comparison">
+<div class="comparison-side correct-side">
+<h4>✅ Correcto — Ejes a 120°</h4>
+<svg viewBox="0 0 150 150" width="120" style="margin:.5rem auto;display:block">
+<line x1="75" y1="10" x2="75" y2="130" stroke="#2563eb" stroke-width="3"/>
+<text x="80" y="20" font-size="9" fill="#2563eb" font-weight="bold">Z</text>
+<line x1="75" y1="75" x2="13" y2="125" stroke="#f97316" stroke-width="3"/>
+<text x="10" y="122" font-size="9" fill="#f97316" font-weight="bold">X</text>
+<line x1="75" y1="75" x2="137" y2="125" stroke="#10b981" stroke-width="3"/>
+<text x="142" y="122" font-size="9" fill="#10b981" font-weight="bold">Y</text>
+<text x="75" y="148" text-anchor="middle" font-size="8" fill="#10b981">120° entre cada eje</text>
+</svg>
+<p style="font-size:.75rem;color:var(--verde)">Tres ejes, ángulos iguales de 120°</p>
+</div>
+<div class="comparison-side wrong-side">
+<h4>❌ Incorrecto — Ejes a 90° (ortogonal)</h4>
+<svg viewBox="0 0 150 150" width="120" style="margin:.5rem auto;display:block">
+<line x1="75" y1="10" x2="75" y2="130" stroke="#2563eb" stroke-width="3"/>
+<text x="80" y="20" font-size="9" fill="#2563eb" font-weight="bold">Z</text>
+<line x1="75" y1="75" x2="10" y2="75" stroke="#f97316" stroke-width="3"/>
+<text x="8" y="72" font-size="9" fill="#f97316" font-weight="bold">X</text>
+<line x1="75" y1="75" x2="140" y2="75" stroke="#10b981" stroke-width="3"/>
+<text x="142" y="72" font-size="9" fill="#10b981" font-weight="bold">Y</text>
+<text x="75" y="148" text-anchor="middle" font-size="8" fill="#ef4444">90° entre ejes = NO es isométrico</text>
+</svg>
+<p style="font-size:.75rem;color:var(--rojo)">Esto es ortogonal, no isométrico</p>
+</div>
+</div>
+
+<div class="comparison">
+<div class="comparison-side correct-side">
+<h4>✅ Correcto — Ejes a 120°</h4>
+<svg viewBox="0 0 150 150" width="120" style="margin:.5rem auto;display:block">
+<line x1="75" y1="10" x2="75" y2="130" stroke="#2563eb" stroke-width="3"/>
+<text x="80" y="20" font-size="9" fill="#2563eb" font-weight="bold">Z</text>
+<line x1="75" y1="75" x2="13" y2="125" stroke="#f97316" stroke-width="3"/>
+<text x="10" y="122" font-size="9" fill="#f97316" font-weight="bold">X</text>
+<line x1="75" y1="75" x2="137" y2="125" stroke="#10b981" stroke-width="3"/>
+<text x="142" y="122" font-size="9" fill="#10b981" font-weight="bold">Y</text>
+<text x="75" y="148" text-anchor="middle" font-size="8" fill="#10b981">120° entre cada eje</text>
+</svg>
+<p style="font-size:.75rem;color:var(--verde)">Tres ejes, ángulos iguales de 120°</p>
+</div>
+<div class="comparison-side wrong-side">
+<h4>❌ Incorrecto — Ejes a 90° (ortogonal)</h4>
+<svg viewBox="0 0 150 150" width="120" style="margin:.5rem auto;display:block">
+<line x1="75" y1="10" x2="75" y2="130" stroke="#2563eb" stroke-width="3"/>
+<text x="80" y="20" font-size="9" fill="#2563eb" font-weight="bold">Z</text>
+<line x1="75" y1="75" x2="10" y2="75" stroke="#f97316" stroke-width="3"/>
+<text x="8" y="72" font-size="9" fill="#f97316" font-weight="bold">X</text>
+<line x1="75" y1="75" x2="140" y2="75" stroke="#10b981" stroke-width="3"/>
+<text x="142" y="72" font-size="9" fill="#10b981" font-weight="bold">Y</text>
+<text x="75" y="148" text-anchor="middle" font-size="8" fill="#ef4444">90° entre ejes = NO es isométrico</text>
+</svg>
+<p style="font-size:.75rem;color:var(--rojo)">Esto es ortogonal, no isométrico</p>
+</div>
+</div>
 </section>
 
 <!-- EJERCICIOS EXTRA (tipos diferentes) -->
@@ -513,6 +584,17 @@ Los manuales de montaje usan perspectiva isométrica porque es la más fácil de
 <p class="feedback"></p>
 </div>
 
+
+<!-- EJERCICIO ORDENAR: Ordenar pasos para dibujar ejes isométricos -->
+<div class="exercise">
+<p>📐 Ejercicio 9 (Ordenar): ¿En qué orden se trazan los ejes isométricos? <span class="difficulty-badge easy">Fácil</span></p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkOrden(this, '1-2-3')">① Z vertical → ② X a 30° → ③ Y a 30°</button>
+<button class="quiz-btn" onclick="checkOrden(this, '2-3-1')">① X a 30° → ② Y a 30° → ③ Z vertical</button>
+<button class="quiz-btn" onclick="checkOrden(this, '3-1-2')">① Y a 30° → ② Z vertical → ③ X a 30°</button>
+</div>
+<p class="feedback"></p>
+</div>
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
 <ul><li>Los tres ejes isométricos forman 120° entre sí</li>

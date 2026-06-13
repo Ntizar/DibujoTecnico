@@ -78,6 +78,7 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .difficulty-badge{display:inline-block;padding:.15rem .5rem;border-radius:8px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px}.difficulty-badge.easy{background:#d1fae5;color:#065f46}.difficulty-badge.medium{background:#fef3c7;color:#92400e}.difficulty-badge.hard{background:#fee2e2;color:#991b1b}
 .feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block;font-weight:600}
 .feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block;font-weight:600}
+.difficulty-badge{display:inline-block;padding:.15rem .5rem;border-radius:8px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px}.difficulty-badge.easy{background:#d1fae5;color:#065f46}.difficulty-badge.medium{background:#fef3c7;color:#92400e}.difficulty-badge.hard{background:#fee2e2;color:#991b1b}
 </style>
 </head>
 <body>
@@ -369,7 +370,7 @@ Confundir la profundidad (Y) con la altura (Z) al transportar cotas entre Planta
 <div class="exercises">
 
 <div class="exercise">
-<p>📐 Ejercicio 1: ¿Qué dimensión comparten Alzado y Planta?</p>
+<p>📐 Ejercicio 1 <span class="difficulty-badge easy">Fácil</span> ¿Qué dimensión comparten Alzado y Planta?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">X (ancho)</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Y (profundidad)</button>
@@ -380,7 +381,7 @@ Confundir la profundidad (Y) con la altura (Z) al transportar cotas entre Planta
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 2: ¿Qué dimensión comparten Alzado y Perfil?</p>
+<p>📐 Ejercicio 2 <span class="difficulty-badge easy">Fácil</span> ¿Qué dimensión comparten Alzado y Perfil?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">X (ancho)</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Y (profundidad)</button>
@@ -391,7 +392,7 @@ Confundir la profundidad (Y) con la altura (Z) al transportar cotas entre Planta
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 3: ¿Cómo se transporta la profundidad (Y) entre Planta y Perfil?</p>
+<p>📐 Ejercicio 3 <span class="difficulty-badge medium">Intermedio</span> ¿Cómo se transporta la profundidad (Y) entre Planta y Perfil?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Directamente, sin ayuda</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Con línea de 45° o escuadra/compás</button>
@@ -402,7 +403,7 @@ Confundir la profundidad (Y) con la altura (Z) al transportar cotas entre Planta
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 4: Si el alzado mide 100mm de ancho, ¿cuánto mide la planta?</p>
+<p>📐 Ejercicio 4 <span class="difficulty-badge easy">Fácil</span> Si el alzado mide 100mm de ancho, ¿cuánto mide la planta?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">100mm (mismo ancho X)</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">50mm</button>
@@ -413,7 +414,7 @@ Confundir la profundidad (Y) con la altura (Z) al transportar cotas entre Planta
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 5: ¿Cuántas vistas comparten la dimensión X?</p>
+<p>📐 Ejercicio 5 <span class="difficulty-badge medium">Intermedio</span> ¿Cuántas vistas comparten la dimensión X?</p>
 <input type="text" id="ex5" placeholder="Tu respuesta" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
 <button onclick="checkExercise('ex5', '2', this)">Comprobar</button>
 <p class="feedback"></p>
@@ -458,7 +459,7 @@ Confundir la profundidad (Y) con la altura (Z) al transportar cotas entre Planta
 
 <!-- EJERCICIO 7: Completar huecos -->
 <div class="exercise">
-<p>📐 Ejercicio 7 (Completar): Alzado y Planta comparten la dimensión ___. Alzado y Perfil comparten la dimensión ___.</p>
+<p>📐 Ejercicio 7 <span class="difficulty-badge medium">Intermedio</span> (Completar): Alzado y Planta comparten la dimensión ___. Alzado y Perfil comparten la dimensión ___.</p>
 <input type="text" id="ex7a" placeholder="1ª dimensión" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
 <input type="text" id="ex7b" placeholder="2ª dimensión" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
 <button onclick="checkFillIn(['x','ancho','X','Ancho'],['z','altura','Z','Altura'])">Comprobar</button>
@@ -467,11 +468,59 @@ Confundir la profundidad (Y) con la altura (Z) al transportar cotas entre Planta
 
 <!-- EJERCICIO 8: Ordenar pasos -->
 <div class="exercise">
-<p>📐 Ejercicio 8 (Ordenar): ¿En qué orden se transportan las dimensiones?</p>
+<p>📐 Ejercicio 8 <span class="difficulty-badge medium">Intermedio</span> (Ordenar): ¿En qué orden se transportan las dimensiones?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkOrden(this, '1-2-3')">① X vertical → ② Z horizontal → ③ Y 45°</button>
 <button class="quiz-btn" onclick="checkOrden(this, '3-2-1')">① Y 45° → ② Z horizontal → ③ X vertical</button>
 <button class="quiz-btn" onclick="checkOrden(this, '2-1-3')">① Z horizontal → ② X vertical → ③ Y 45°</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<!-- CASO REAL 3: Control de calidad en fabricación -->
+<section class="chapter">
+<h2 class="chapter-title">🔬 Caso real: Control de calidad en fabricación</h2>
+<div class="box box-ejemplo">
+<span class="real-world-badge">CASO REAL</span>
+<strong>🔬 Inspección dimensional de piezas mecanizadas</strong>
+<p>En una fábrica de componentes aeroespaciales en Madrid, cada pieza pasa por control de calidad verificando que las cotas del plano coinciden con las medidas reales. El inspector verifica que la profundidad (Y) transportada de la planta al perfil es correcta.</p>
+<p style="margin-top:.5rem">Si la correspondencia entre vistas es errónea, el plano indica 25mm cuando la pieza real tiene 22mm. La pieza no encaja en el ensamblaje final.</p>
+<p style="margin-top:.5rem"><strong>Consecuencia: lote de 50 piezas defectuosas → 12.500€ en material → penalización contractual de 25.000€.</strong></p>
+</div>
+</section>
+
+<!-- EJERCICIO 9: V/F Visual -->
+<div class="exercise">
+<p>📐 Ejercicio 9 (V/F visual): ¿Comparten Alzado y Perfil la dimensión Y (profundidad)? <span class="difficulty-badge medium">Intermedio</span></p>
+<div class="interactive" style="margin:.5rem 0">
+<div class="comparison" style="margin:0">
+<div class="comparison-side" style="padding:.8rem">
+<svg viewBox="0 0 200 120" width="160">
+<rect x="20" y="10" width="70" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="3"/>
+<text x="55" y="40" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="600">ALZADO</text>
+<rect x="110" y="10" width="70" height="50" fill="#faf5ff" stroke="#a855f7" stroke-width="2" rx="3"/>
+<text x="145" y="40" text-anchor="middle" font-size="10" fill="#a855f7" font-weight="600">PERFIL</text>
+<line x1="90" y1="35" x2="110" y2="35" stroke="#10b981" stroke-width="2" stroke-dasharray="4,3"/>
+<text x="100" y="30" text-anchor="middle" font-size="8" fill="#10b981">Y ❌</text>
+</svg>
+<p style="font-size:.7rem;color:var(--rojo);margin-top:.3rem">❌ Y NO se comparte entre Alzado y Perfil</p>
+</div>
+<div class="comparison-side" style="padding:.8rem">
+<svg viewBox="0 0 200 120" width="160">
+<rect x="20" y="10" width="70" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="3"/>
+<text x="55" y="40" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="600">ALZADO</text>
+<rect x="110" y="10" width="70" height="50" fill="#faf5ff" stroke="#a855f7" stroke-width="2" rx="3"/>
+<text x="145" y="40" text-anchor="middle" font-size="10" fill="#a855f7" font-weight="600">PERFIL</text>
+<line x1="90" y1="35" x2="110" y2="35" stroke="#a855f7" stroke-width="2" stroke-dasharray="4,3"/>
+<text x="100" y="30" text-anchor="middle" font-size="8" fill="#a855f7">Z ✅</text>
+</svg>
+<p style="font-size:.7rem;color:var(--verde);margin-top:.3rem">✅ Z SÍ se comparte entre Alzado y Perfil</p>
+</div>
+</div>
+</div>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Verdadero</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Falso</button>
 </div>
 <p class="feedback"></p>
 </div>

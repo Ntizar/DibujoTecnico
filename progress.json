@@ -43,8 +43,8 @@
         "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-12-ronda2-s1",
-      "improvement_count": 2
+      "last_improved": "2026-06-13",
+      "improvement_count": 3
     },
     "b01-02-tipos-linea.html": {
       "status": "improved_2",
@@ -266,15 +266,15 @@
     },
     "b02-04-correspondencia-vistas.html": {
       "scores": {
-        "svg_interactive": 10,
+        "svg_interactive": 9,
         "exercises": 9,
-        "text_explanation": 10,
+        "text_explanation": 9,
         "real_world": 9,
         "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-12-ronda2-s3",
-      "improvement_count": 3,
+      "last_improved": "2026-06-13",
+      "improvement_count": 4,
       "improvements": "Ronda 2: exercises 7→9 (added V/F visual, fill-in, ordenar), real_world 7→9 (added CNC case), error_common 7→9 (added Y vs Z comparison), CSS (.clickable, .connection-box, .difficulty-badge, .feedback.correct/incorrect)",
       "status": "improved"
     },
@@ -512,8 +512,8 @@
         "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-12-ronda2-s3",
-      "improvement_count": 3
+      "last_improved": "2026-06-13",
+      "improvement_count": 4
     },
     "b03-02-isometrica-cubos.html": {
       "status": "improved_3",
@@ -2033,13 +2033,13 @@
     }
   },
   "audit": {
-    "last_run": "2026-06-11",
+    "last_run": "2026-06-13",
     "random_sample": 3,
     "all_passed": true,
     "sampled_files": [
-      "b01-03-escalas.html",
-      "b01-02-tipos-linea.html",
-      "b02-07-representacion-piezas.html"
+      "b03-01-isometrica-ejes.html",
+      "b04-02-recta-diedrico.html",
+      "b09-02-lista-piezas.html"
     ]
   }
 }
