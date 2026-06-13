@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌍 S02.6: 1º diedro vs 3º diedro — Dibujo Técnico</title>
+<style>
+:root{--azul:#2563eb;--naranja:#f97316;--verde:#10b981;--rojo:#ef4444;--fondo:#fff;--texto:#1e293b;--gris:#94a3b8;--azul-claro:#eff6ff;--naranja-claro:#fff7ed;--verde-claro:#ecfdf5;--rojo-claro:#fef2f2;--pura-claro:#faf5ff;--pura:#a855f7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-gradient(135deg,#f8faff 0%,#fffaf5 100%);color:var(--texto);line-height:1.7}
+.header{background:linear-gradient(135deg,var(--azul),#1d4ed8);color:#fff;padding:2rem 1.5rem;text-align:center}
+.header h1{font-size:1.8rem;margin-bottom:.5rem}
+.header p{opacity:.9;font-size:1rem}
+.progress-bar{height:4px;background:rgba(255,255,255,.3);border-radius:2px;margin-top:1rem;overflow:hidden}
+.progress-fill{height:100%;background:#fff;border-radius:2px;width:0%;transition:width .3s}
+.container{max-width:900px;margin:0 auto;padding:1.5rem}
+.chapter{margin-bottom:2.5rem}
+.chapter-title{font-size:1.4rem;color:var(--azul);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:2px solid var(--azul-claro)}
+.box{padding:1rem 1.2rem;border-radius:10px;margin:1rem 0;border-left:4px solid;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.box-teoria{background:var(--azul-claro);border-color:var(--azul)}
+.box-ejemplo{background:var(--naranja-claro);border-color:var(--naranja)}
+.box-error{background:var(--rojo-claro);border-color:var(--rojo)}
+.box-idea{background:var(--pura-claro);border-color:var(--pura)}
+.box-success{background:var(--verde-claro);border-color:var(--verde)}
+.box strong{display:block;margin-bottom:.3rem}
+.svg-container{background:#f8fafc;border-radius:12px;padding:1.5rem;margin:1.5rem 0;text-align:center;border:2px solid #e2e8f0}
+.svg-container svg{max-width:100%;height:auto}
+.svg-container svg text{font-family:Inter,system-ui,sans-serif}
+.interactive{background:#f1f5f9;border-radius:12px;padding:1.5rem;margin:1.5rem 0}
+.interactive h3{color:var(--azul);margin-bottom:1rem;font-size:1.1rem}
+.interactive button{background:var(--azul);color:#fff;border:none;padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.95rem;margin:.3rem}
+.interactive button:hover{background:#1d4ed8}
+.result{margin-top:.8rem;padding:.8rem;border-radius:6px;font-weight:600;min-height:2rem}
+.result.ok{background:var(--verde-claro);color:#065f46}
+.result.fail{background:var(--rojo-claro);color:#991b1b}
+.exercises{margin:1.5rem 0}
+.exercise{background:#f1f5f9;border-radius:8px;padding:1rem;margin:.8rem 0}
+.exercise p{font-weight:600;margin-bottom:.5rem}
+.quiz-options{display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0}
+.quiz-btn{padding:.6rem 1.5rem;border-radius:8px;border:2px solid var(--azul);background:#fff;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all .2s}
+.quiz-btn:hover{background:var(--azul-claro)}
+.quiz-btn.correct{background:var(--verde);color:#fff;border-color:var(--verde)}
+.quiz-btn.wrong{background:var(--rojo);color:#fff;border-color:var(--rojo)}
+.summary{background:var(--azul-claro);border-radius:12px;padding:1.5rem;margin:2rem 0}
+.summary h3{color:var(--azul);margin-bottom:.8rem}
+.summary ul{list-style:none;padding:0}
+.summary li{padding:.3rem 0;padding-left:1.5rem;position:relative}
+.summary li::before{content:"✓";color:var(--verde);font-weight:bold;position:absolute;left:0}
+.nav{display:flex;justify-content:space-between;margin:2rem 0;padding:1rem 0;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0}
+.nav a{color:var(--azul);text-decoration:none;font-weight:600;padding:.5rem 1rem;border-radius:6px}
+.nav a:hover{background:var(--azul-claro)}
+.nav .disabled{color:var(--gris);cursor:default;pointer-events:none}
+/* Clases del template base */
+.comparison{display:flex;gap:1.5rem;margin:1.5rem 0;flex-wrap:wrap}
+.comparison-side{flex:1;min-width:250px;text-align:center}
+.comparison-side h4{margin-bottom:.5rem;font-size:.95rem}
+.comparison-side.correct-side h4{color:var(--verde)}
+.comparison-side.wrong-side h4{color:var(--rojo)}
+.stack-demo{display:flex;align-items:flex-end;gap:1rem;margin:1.5rem 0;justify-content:center;flex-wrap:wrap}
+.stack-item{border:2px solid var(--azul);background:#fff;border-radius:4px;display:flex;align-items:center;justify-content:center;font-weight:bold;color:var(--azul);transition:all .3s;cursor:pointer}
+.stack-item:hover{transform:scale(1.05);box-shadow:0 4px 12px rgba(37,99,235,.2)}
+.step-indicator{display:flex;gap:.5rem;margin:1rem 0;justify-content:center}
+.step-dot{width:12px;height:12px;border-radius:50%;background:#e2e8f0;transition:all .3s}
+.step-dot.active{background:var(--azul);transform:scale(1.3)}
+.real-world-badge{display:inline-block;background:var(--naranja);color:#fff;padding:.2rem .6rem;border-radius:12px;font-size:.75rem;font-weight:600;margin-bottom:.5rem}
+.feedback{font-size:.9rem;margin-top:.5rem;font-weight:600;padding:.4rem .8rem;border-radius:4px}
+.feedback.correct{background:var(--verde-claro);color:#065f46}
+.feedback.incorrect{background:var(--rojo-claro);color:#991b1b}
+.clickable{cursor:pointer;transition:all .2s;border-radius:8px;padding:.5rem}
+.clickable:hover{background:var(--azul-claro);box-shadow:0 2px 8px rgba(37,99,235,.15)}
+.box[onclick]{cursor:pointer}
+.connection-box{background:var(--pura-claro);border:2px solid var(--pura);border-radius:12px;padding:1.2rem;margin:1.5rem 0}
+.connection-box h4{color:var(--pura);margin-bottom:.5rem}
+.difficulty-badge{display:inline-block;background:var(--naranja);color:#fff;padding:.15rem .5rem;border-radius:10px;font-size:.7rem;font-weight:600;margin-left:.5rem}
+/* SVG interactivo */
+.diedro-layer{transition:all .3s;cursor:pointer}
+.diedro-layer:hover{filter:brightness(1.1)}
+.diedro-layer.active{stroke-width:3;filter:drop-shadow(0 0 8px rgba(37,99,235,.5))}
+.footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+</style>
+</head>
+<body>
+<header class="header">
+<h1>🌍 S02.6: 1º diedro vs 3º diedro</h1>
+<p>Dibujo Técnico — Proyecciones</p>
+<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+</header>
+<main class="container">
+
+<section class="chapter">
+<h2 class="chapter-title">🎯 ¿Qué vamos a aprender?</h2>
+<div class="box box-idea">
+<strong>💡 Idea clave</strong>
+Europa usa el 1º diedro (pieza entre observador y plano) y EE.UU. usa el 3º diedro (plano entre observador y pieza). Es como si uno mirara desde fuera de una caja y el otro desde dentro. ¡La diferencia está en dónde se coloca la planta!
+</div>
+<p>En esta sesión aprenderás a:</p>
+<ul style="margin:.8rem 0 1rem 1.5rem">
+<li>Distinguir entre 1º y 3º diedro</li>
+<li>Saber qué países usan cada método</li>
+<li>Entender la diferencia en la posición de la planta</li>
+<li>Identificar el símbolo de proyección obligatorio</li>
+</ul>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">1️⃣ 1º diedro vs 3º diedro</h2>
+<div class="box box-teoria">
+<strong>📖 Teoría</strong>
+Existen dos métodos de proyección, que difieren en la posición relativa de la pieza respecto a los planos:<br><br>
+<strong>🔹 1º DIEDRO (Europa):</strong><br>
+• Pieza ENTRE observador y plano<br>
+• Planta va DEBAJO del alzado<br>
+• Se usa en Europa, Asia, Sudamérica<br>
+• Es el método de la norma ISO<br><br>
+<strong>🔹 3º DIEDRO (EE.UU.):</strong><br>
+• Plano ENTRE observador y pieza<br>
+• Planta va ENCIMA del alzado<br>
+• Se usa en EE.UU., Canadá, Australia<br>
+• Común en ingeniería mecánica americana
+</div>
+<div class="box box-ejemplo">
+<strong>🔍 Ejemplo 1</strong>
+1º diedro: miras una pieza desde el frente, los rayos atraviesan la pieza y proyectan en el plano de detrás.<br>
+Planta = vista desde arriba → va DEBAJO del alzado.
+</div>
+<div class="box box-ejemplo">
+<strong>🔍 Ejemplo 2</strong>
+3º diedro: el plano está entre tus ojos y la pieza.<br>
+Planta = vista desde arriba → va ENCIMA del alzado.
+</div>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">2️⃣ Visualiza la diferencia</h2>
+<div class="svg-container">
+<svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+<!-- Fondo -->
+<rect x="0" y="0" width="600" height="300" fill="#f8fafc" rx="8"/>
+<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">1º diedro vs 3º diedro</text>
+<!-- 1º diedro -->
+<text x="150" y="55" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">1º DIEDRO (Europa)</text>
+<!-- Observador -->
+<text x="60" y="100" text-anchor="middle" font-size="24">👁️</text>
+<text x="60" y="120" text-anchor="middle" font-size="9" fill="#2563eb">Observador</text>
+<!-- Pieza -->
+<rect class="diedro-layer" x="110" y="80" width="40" height="40" fill="#eff6ff" stroke="#2563eb" stroke-width="2" onclick="toggleDiedro(this)" data-system="1"/>
+<text x="130" y="105" text-anchor="middle" font-size="8" fill="#2563eb">Pieza</text>
+<!-- Plano -->
+<rect x="160" y="70" width="5" height="60" fill="#10b981" stroke="#10b981" stroke-width="1"/>
+<text x="160" y="145" text-anchor="middle" font-size="9" fill="#10b981">Plano</text>
+<!-- Flecha de proyección -->
+<line x1="80" y1="100" x2="155" y2="100" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrow)"/>
+<!-- Resultado -->
+<rect x="100" y="170" width="100" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" rx="4"/>
+<text x="150" y="195" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="600">Alzado</text>
+<rect x="100" y="245" width="100" height="40" fill="#fff7ed" stroke="#f97316" stroke-width="1.5" rx="4"/>
+<text x="150" y="270" text-anchor="middle" font-size="10" fill="#f97316" font-weight="600">Planta (DEBAJO)</text>
+<!-- 3º diedro -->
+<text x="450" y="55" text-anchor="middle" font-size="13" font-weight="bold" fill="#f97316">3º DIEDRO (EE.UU.)</text>
+<!-- Observador -->
+<text x="360" y="100" text-anchor="middle" font-size="24">👁️</text>
+<text x="360" y="120" text-anchor="middle" font-size="9" fill="#f97316">Observador</text>
+<!-- Plano -->
+<rect x="400" y="70" width="5" height="60" fill="#10b981" stroke="#10b981" stroke-width="1"/>
+<text x="400" y="145" text-anchor="middle" font-size="9" fill="#10b981">Plano</text>
+<!-- Pieza -->
+<rect class="diedro-layer" x="450" y="80" width="40" height="40" fill="#fff7ed" stroke="#f97316" stroke-width="2" onclick="toggleDiedro(this)" data-system="3"/>
+<text x="470" y="105" text-anchor="middle" font-size="8" fill="#f97316">Pieza</text>
+<!-- Flecha de proyección -->
+<line x1="380" y1="100" x2="395" y2="100" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrow)"/>
+<!-- Resultado -->
+<rect x="400" y="170" width="100" height="70" fill="#eff6ff" stroke="#f97316" stroke-width="1.5" rx="4"/>
+<text x="450" y="195" text-anchor="middle" font-size="10" fill="#f97316" font-weight="600">Alzado</text>
+<rect x="400" y="130" width="100" height="40" fill="#fff7ed" stroke="#f97316" stroke-width="1.5" rx="4"/>
+<text x="450" y="155" text-anchor="middle" font-size="10" fill="#f97316" font-weight="600">Planta (ENCIMA)</text>
+<text x="300" y="250" text-anchor="middle" font-size="11" fill="#64748b" id="diedroInfo">👆 Clic en las piezas para ver la diferencia</text>
+<!-- Leyenda -->
+<rect x="20" y="290" width="560" height="25" fill="#faf5ff" rx="4"/>
+<text x="300" y="307" text-anchor="middle" font-size="11" fill="#a855f7" font-weight="600">¡El símbolo de proyección es OBLIGATORIO en todo plano!</text>
+</svg>
+</div>
+
+<section class="chapter">
+<h2 class="chapter-title">🎬 Paso a paso: 1º vs 3º diedro</h2>
+
+<div class="box box-teoria">
+<strong>📖 Mira</strong>
+<p>Imagina una caja transparente. Si la pieza está entre tus ojos y la caja, los rayos de proyección atraviesan la pieza y llegan a la caja. Eso es el 1º diedro.</p>
+<div class="svg-container">
+<svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+<rect x="10" y="10" width="380" height="160" fill="#f8fafc" rx="8"/>
+<text x="200" y="30" text-anchor="middle" font-size="12" fill="#64748b" font-weight="600">Paso 1: 1º diedro — ojo → pieza → plano</text>
+<text x="30" y="70" text-anchor="middle" font-size="28">👁️</text>
+<rect x="70" y="50" width="40" height="40" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5" rx="4"/>
+<text x="90" y="75" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="600">PIEZA</text>
+<rect x="130" y="45" width="5" height="50" fill="#10b981"/>
+<text x="130" y="110" text-anchor="middle" font-size="9" fill="#10b981">PLANO</text>
+<line x1="45" y1="70" x2="68" y2="70" stroke="#f97316" stroke-width="2" marker-end="url(#arrowO)"/>
+<line x1="112" y1="70" x2="128" y2="70" stroke="#f97316" stroke-width="2" marker-end="url(#arrowO)"/>
+<text x="200" y="155" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600">La pieza está entre el ojo y el plano</text>
+<defs><marker id="arrowO" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#f97316"/></marker></defs>
+</svg>
+</div>
+</div>
+
+<div class="box box-ejemplo">
+<strong>🔍 Fíjate</strong>
+<p>En el 3º diedro es al revés: el plano está entre tus ojos y la pieza. Es como si miraras a través de un cristal transparente hacia la pieza.</p>
+<div class="svg-container">
+<svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+<rect x="10" y="10" width="380" height="160" fill="#f8fafc" rx="8"/>
+<text x="200" y="30" text-anchor="middle" font-size="12" fill="#64748b" font-weight="600">Paso 2: 3º diedro — ojo → plano → pieza</text>
+<text x="30" y="70" text-anchor="middle" font-size="28">👁️</text>
+<rect x="70" y="45" width="5" height="50" fill="#10b981"/>
+<text x="70" y="110" text-anchor="middle" font-size="9" fill="#10b981">PLANO</text>
+<rect x="90" y="50" width="40" height="40" fill="#fff7ed" stroke="#f97316" stroke-width="2.5" rx="4"/>
+<text x="110" y="75" text-anchor="middle" font-size="9" fill="#f97316" font-weight="600">PIEZA</text>
+<line x1="45" y1="70" x2="68" y2="70" stroke="#f97316" stroke-width="2" marker-end="url(#arrowO2)"/>
+<line x1="132" y1="70" x2="150" y2="70" stroke="#f97316" stroke-width="2" marker-end="url(#arrowO2)"/>
+<text x="200" y="155" text-anchor="middle" font-size="11" fill="#f97316" font-weight="600">El plano está entre el ojo y la pieza</text>
+<defs><marker id="arrowO2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#f97316"/></marker></defs>
+</svg>
+</div>
+</div>
+
+<div class="box box-success">
+<strong>✅ Ahora ves</strong>
+<p>La diferencia clave: en 1º diedro la planta va DEBAJO del alzado. En 3º diedro la planta va ENCIMA. ¡Es como voltear la pieza!</p>
+<div class="svg-container">
+<svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+<rect x="10" y="10" width="380" height="160" fill="#f8fafc" rx="8"/>
+<text x="200" y="30" text-anchor="middle" font-size="12" fill="#64748b" font-weight="600">Paso 3: Resultado en el plano</text>
+<!-- 1º diedro -->
+<rect x="30" y="40" width="150" height="55" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="4"/>
+<text x="105" y="72" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600">ALZADO</text>
+<rect x="30" y="100" width="150" height="40" fill="#fff7ed" stroke="#f97316" stroke-width="2" rx="4"/>
+<text x="105" y="125" text-anchor="middle" font-size="11" fill="#f97316" font-weight="600">PLANTA (DEBAJO)</text>
+<text x="105" y="155" text-anchor="middle" font-size="10" fill="#2563eb">1º diedro</text>
+<!-- 3º diedro -->
+<rect x="220" y="40" width="150" height="55" fill="#eff6ff" stroke="#f97316" stroke-width="2" rx="4"/>
+<text x="295" y="72" text-anchor="middle" font-size="11" fill="#f97316" font-weight="600">ALZADO</text>
+<rect x="220" y="15" width="150" height="40" fill="#fff7ed" stroke="#f97316" stroke-width="2" rx="4"/>
+<text x="295" y="40" text-anchor="middle" font-size="11" fill="#f97316" font-weight="600">PLANTA (ENCIMA)</text>
+<text x="295" y="155" text-anchor="middle" font-size="10" fill="#f97316">3º diedro</text>
+</svg>
+</div>
+</div>
+
+<div class="interactive">
+<h3>🖱️ Tú prueba</h3>
+<p>Haz clic en los botones para alternar entre 1º y 3º diedro. Observa cómo cambia la posición de la planta:</p>
+<button onclick="toggleDiedroView('1')">1º Diedro (Europa)</button>
+<button onclick="toggleDiedroView('3')">3º Diedro (EE.UU.)</button>
+<button onclick="toggleDiedroView('both')">Comparar ambos</button>
+<div class="svg-container" style="margin-top:1rem">
+<svg id="diedroCompareSvg" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+<rect x="10" y="10" width="380" height="180" fill="#f8fafc" rx="8"/>
+<text x="200" y="100" text-anchor="middle" font-size="14" fill="#333">Pulsa un botón para comparar</text>
+</svg>
+</div>
+</div>
+</section>
+</section>
+
+<section class="chapter">
+<h2 class="chapter-title">📝 Ejercicios</h2>
+<div class="exercises">
+
+<div class="exercise">
+<p>📐 Ejercicio 1: ¿Dónde va la planta en el 1º diedro?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Debajo del alzado</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Encima del alzado</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">A la derecha del alzado</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">No tiene planta</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 2: ¿Qué método usa Europa?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">1º diedro</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">3º diedro</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Ambos</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Ninguno</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 3: En el 3º diedro, ¿dónde va la planta?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Debajo del alzado</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Encima del alzado</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">A la izquierda del alzado</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">No tiene planta</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 4: ¿Qué diferencia al 1º diedro del 3º?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">El tipo de línea</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">La posición de la pieza respecto al plano</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">La escala</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">El formato de papel</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 5: ¿El símbolo de proyección es obligatorio?</p>
+<input type="text" id="ex5" placeholder="Sí o No" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:200px">
+<button onclick="checkExercise('ex5', 'sí', this)">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+
+<div class="exercise">
+<p>🔍 Ejercicio 6 (Verdadero/Falso visual): En este plano, ¿es 1º o 3º diedro?</p>
+<div class="svg-container">
+<svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg">
+<rect x="10" y="10" width="280" height="140" fill="#f8fafc" rx="8"/>
+<line x1="30" y1="80" x2="270" y2="80" stroke="#333" stroke-width="2"/>
+<text x="150" y="55" text-anchor="middle" font-size="11" fill="#f97316" font-weight="600">PLANTA</text>
+<rect x="70" y="30" width="160" height="25" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+<line x1="30" y1="80" x2="270" y2="80" stroke="#333" stroke-width="2"/>
+<text x="150" y="115" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600">ALZADO</text>
+<rect x="70" y="85" width="160" height="25" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="150" y="145" text-anchor="middle" font-size="10" fill="#f97316" font-weight="bold">Planta ENCIMA = 3º diedro</text>
+</svg>
+</div>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">1º diedro (Europa)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">3º diedro (EE.UU.)</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📝 Ejercicio 7 (Completar): Rellena los huecos de la comparación:</p>
+<p style="font-size:1.05rem;line-height:2.2;margin:1rem 0">
+• 1º diedro: planta ___ del alzado<br>
+• 3º diedro: planta ___ del alzado<br>
+• 1º diedro se usa en ___
+</p>
+<div style="margin:.8rem 0">
+<input type="text" id="ex7a" placeholder="posición" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:4px;width:120px"><br>
+<input type="text" id="ex7b" placeholder="posición" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:4px;width:120px"><br>
+<input type="text" id="ex7c" placeholder="lugar" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:4px;width:120px">
+</div>
+<button onclick="checkFillIn()">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>🔢 Ejercicio 8 (Ordenar pasos): Ordena la secuencia de proyección en 1º diedro:</p>
+<div style="margin:1rem 0" id="ordenarContainer">
+<div class="box box-teoria" style="cursor:grab;padding:.8rem;margin:.5rem 0;border-radius:6px;background:#fff;border:2px solid #e2e8f0" onclick="selectOrden(this)" data-pos="3">③ La proyección llega al plano</div>
+<div class="box box-teoria" style="cursor:grab;padding:.8rem;margin:.5rem 0;border-radius:6px;background:#fff;border:2px solid #e2e8f0" onclick="selectOrden(this)" data-pos="1">① El observador mira la pieza</div>
+<div class="box box-teoria" style="cursor:grab;padding:.8rem;margin:.5rem 0;border-radius:6px;background:#fff;border:2px solid #e2e8f0" onclick="selectOrden(this)" data-pos="2">② Los rayos atraviesan la pieza</div>
+</div>
+<button onclick="checkOrden()">Comprobar orden</button>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>🎯 Ejercicio 9 (Decisión rápida): ¿Qué método de proyección se usa en este plano real?</p>
+<p style="font-size:.9rem;color:#64748b;margin-bottom:.5rem">Observa el símbolo y decide:</p>
+<div class="svg-container">
+<svg viewBox="0 0 350 120" xmlns="http://www.w3.org/2000/svg">
+<rect x="10" y="10" width="330" height="100" fill="#fff" stroke="#e2e8f0" stroke-width="1" rx="4"/>
+<!-- Símbolo de proyección ISO 2º diedro (3º diedro americano) -->
+<text x="175" y="35" text-anchor="middle" font-size="10" fill="#64748b" font-weight="600">Símbolo ISO de proyección</text>
+<!-- Cubo de proyección 3º diedro -->
+<rect x="100" y="45" width="60" height="50" fill="none" stroke="#333" stroke-width="1.5"/>
+<line x1="100" y1="60" x2="160" y2="60" stroke="#333" stroke-width="1"/>
+<line x1="130" y1="45" x2="130" y2="95" stroke="#333" stroke-width="1"/>
+<!-- Flechas desde fuera hacia dentro (3º diedro) -->
+<line x1="70" y1="50" x2="97" y2="55" stroke="#2563eb" stroke-width="2" marker-end="url(#inArrow)"/>
+<line x1="178" y1="50" x2="158" y2="55" stroke="#f97316" stroke-width="2" marker-end="url(#inArrow2)"/>
+<text x="55" y="48" font-size="8" fill="#2563eb">frente</text>
+<text x="182" y="48" font-size="8" fill="#f97316">atrás</text>
+<!-- Texto explicativo -->
+<text x="175" y="115" text-anchor="middle" font-size="9" fill="#64748b">Flechas apuntan HACIA la pieza = 3º diedro</text>
+<defs>
+<marker id="inArrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#2563eb"/></marker>
+<marker id="inArrow2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#f97316"/></marker>
+</defs>
+</svg>
+</div>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">1º diedro (Europa)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">3º diedro (EE.UU.)</button>
+</div>
+<p class="feedback"></p>
+</div>
+</div>
+</section>
+
+<div class="comparison" style="margin:1.5rem 0">
+<div class="comparison-side">
+<strong style="color:var(--rojo)">❌ 1º DIEDRO (Europa)</strong>
+<svg viewBox="0 0 200 140" width="180" style="margin:1rem 0">
+<text x="100" y="15" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="bold">Pieza entre ojo y plano</text>
+<text x="30" y="40" text-anchor="middle" font-size="20">👁️</text>
+<rect x="60" y="25" width="30" height="30" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="75" y="44" text-anchor="middle" font-size="6" fill="#2563eb">Pieza</text>
+<rect x="95" y="20" width="4" height="40" fill="#10b981"/>
+<line x1="40" y1="40" x2="58" y2="40" stroke="#f97316" stroke-width="1" marker-end="url(#arrow)"/>
+<rect x="60" y="65" width="80" height="30" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="100" y="84" text-anchor="middle" font-size="8" fill="#2563eb">Alzado</text>
+<rect x="60" y="100" width="80" height="25" fill="#fff7ed" stroke="#f97316" stroke-width="1.5"/>
+<text x="100" y="117" text-anchor="middle" font-size="8" fill="#f97316">Planta (DEBAJO)</text>
+</svg>
+</div>
+<div class="comparison-side">
+<strong style="color:var(--naranja)">❌ 3º DIEDRO (EE.UU.)</strong>
+<svg viewBox="0 0 200 140" width="180" style="margin:1rem 0">
+<text x="100" y="15" text-anchor="middle" font-size="9" fill="#f97316" font-weight="bold">Plano entre ojo y pieza</text>
+<text x="30" y="40" text-anchor="middle" font-size="20">👁️</text>
+<rect x="60" y="20" width="4" height="40" fill="#10b981"/>
+<rect x="70" y="25" width="30" height="30" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+<text x="85" y="44" text-anchor="middle" font-size="6" fill="#f97316">Pieza</text>
+<line x1="40" y1="40" x2="63" y2="40" stroke="#f97316" stroke-width="1"/>
+<rect x="60" y="65" width="80" height="30" fill="#fff7ed" stroke="#f97316" stroke-width="1.5"/>
+<text x="100" y="84" text-anchor="middle" font-size="8" fill="#f97316">Alzado</text>
+<rect x="60" y="50" width="80" height="25" fill="#fff7ed" stroke="#f97316" stroke-width="1.5"/>
+<text x="100" y="67" text-anchor="middle" font-size="8" fill="#f97316">Planta (ENCIMA)</text>
+</svg>
+</div>
+</div>
+
+<div class="box box-error">
+<strong>⚠️ Error clásico: confundir 1º y 3º diedro</strong>
+<p>El error más común es colocar la planta en el lado equivocado. ¡Fíjate en esta comparación!</p>
+<div class="svg-container">
+<svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+<!-- ERROR -->
+<rect x="10" y="10" width="230" height="180" fill="#fef2f2" stroke="#ef4444" stroke-width="2" rx="8"/>
+<text x="125" y="35" text-anchor="middle" font-size="13" fill="#ef4444" font-weight="bold">❌ ERROR: planta en sitio equivocado</text>
+<!-- Alzado -->
+<rect x="40" y="50" width="170" height="45" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="4"/>
+<text x="125" y="78" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="600">ALZADO</text>
+<!-- Planta WRONG (encima en vez de debajo) -->
+<rect x="40" y="20" width="170" height="35" fill="#fff7ed" stroke="#f97316" stroke-width="2" rx="4"/>
+<text x="125" y="42" text-anchor="middle" font-size="10" fill="#f97316" font-weight="600">PLANTA (ERRÓNEO: encima)</text>
+<line x1="15" y1="42" x2="35" y2="42" stroke="#ef4444" stroke-width="3" marker-end="url(#errArrow)"/>
+<!-- CORRECTO -->
+<rect x="260" y="10" width="230" height="180" fill="#ecfdf5" stroke="#10b981" stroke-width="2" rx="8"/>
+<text x="375" y="35" text-anchor="middle" font-size="13" fill="#10b981" font-weight="bold">✅ CORRECTO: 1º diedro</text>
+<!-- Alzado -->
+<rect x="290" y="50" width="170" height="45" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="4"/>
+<text x="375" y="78" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="600">ALZADO</text>
+<!-- Planta CORRECTA (debajo) -->
+<rect x="290" y="98" width="170" height="35" fill="#fff7ed" stroke="#10b981" stroke-width="2" rx="4"/>
+<text x="375" y="120" text-anchor="middle" font-size="10" fill="#10b981" font-weight="600">PLANTA (DEBAJO ✓)</text>
+<line x1="465" y1="115" x2="485" y2="115" stroke="#10b981" stroke-width="3" marker-end="url(#okArrow)"/>
+<text x="375" y="155" text-anchor="middle" font-size="10" fill="#64748b">Regla mnemotécnica: 1º = "debajo" (primero va abajo)</text>
+<defs>
+<marker id="errArrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#ef4444"/></marker>
+<marker id="okArrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#10b981"/></marker>
+</defs>
+</svg>
+</div>
+<p><strong>Recuerda:</strong> En 1º diedro (Europa) → planta DEBAJO. En 3º diedro (EE.UU.) → planta ENCIMA. ¡El símbolo de proyección en el plano lo indica sin ambigüedad!</p>
+</div>
+
+<div class="box box-idea">
+<strong>🔗 Conexión</strong>
+Cuando veas un plano americano, fíjate en el símbolo de proyección. Si es 3º diedro, la planta va ENCIMA del alzado — ¡todo lo contrario que en Europa!
+</div>
+
+<div class="box box-teoria" style="margin:1.5rem 0">
+<span class="real-world-badge">🏭 CASO REAL</span>
+<strong>Caso industrial: plano con símbolo de proyección</strong>
+Una empresa española compra un componente a un proveedor de Detroit. El plano lleva el símbolo de 3º diedro: la planta va ENCIMA del alzado. Si el operario español lo lee como 1º diedro (planta debajo), la pieza se fabrica al revés y no encaja. Por eso el símbolo de proyección es OBLIGATORIO en toda norma ISO.
+</div>
+
+<div class="box box-teoria" style="margin:1.5rem 0">
+<span class="real-world-badge">✈️ CASO REAL</span>
+<strong>Aeronáutica: Boeing 737 y el 3º diedro</strong>
+Los manuales de mantenimiento de Boeing (EE.UU.) usan 3º diedro en TODOS los planos de las piezas del fuselaje. Cuando Airbus (Europa) diseñó el A320, usó 1º diedro. Cuando ambas empresas colaboran en proyectos conjuntos (como el ACAR), los ingenieros deben saber interpretar ambos sistemas. Un error de proyección en un plano de estructura puede costar millones en retrabajos.
+</div>
+
+<div class="box box-teoria" style="margin:1.5rem 0">
+<span class="real-world-badge">🔧 CASO REAL</span>
+<strong>Automoción: Toyota vs Volkswagen</strong>
+La factora de Toyota en Barcelona (Japón → EE.UU. style) usa 3º diedro para sus planos de motor, heredado de la sede de Toyota en Japón que adoptó normas americanas. La factora de Volkswagen en Navarra (Europa) usa 1º diedro. Cuando Toyota y Volkswagen comparten proveedores en España, cada uno recibe planos con el sistema de proyección de su matriz. Los ingenieros de proveedores deben dominar AMBOS sistemas.
+</div>
+
+<div class="exercise">
+<p>🖼️ Ejercicio 10 (Identificar en SVG): Haz clic en el SVG donde la planta esté correctamente colocada para el 1º diedro:</p>
+<div class="interactive" style="margin:1rem 0">
+<p style="font-size:.9rem;color:#64748b">Haz clic en la opción correcta:</p>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center">
+<div class="clickable" onclick="checkIdentify(this, false)" style="flex:1;min-width:200px;border:2px solid #e2e8f0;border-radius:8px;padding:1rem;text-align:center">
+<svg viewBox="0 0 200 120" width="180">
+<rect x="5" y="5" width="190" height="110" fill="#fff" stroke="#e2e8f0" rx="4"/>
+<rect x="30" y="50" width="140" height="35" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="4"/>
+<text x="100" y="73" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600">ALZADO</text>
+<!-- Planta ARRIBA (WRONG for 1st dihedral) -->
+<rect x="30" y="10" width="140" height="30" fill="#fff7ed" stroke="#f97316" stroke-width="2" rx="4"/>
+<text x="100" y="30" text-anchor="middle" font-size="9" fill="#f97316" font-weight="600">PLANTA (ARRIBA)</text>
+<text x="100" y="105" text-anchor="middle" font-size="8" fill="#ef4444">❌ Esto es 3º diedro</text>
+</svg>
+</div>
+<div class="clickable" onclick="checkIdentify(this, true)" style="flex:1;min-width:200px;border:2px solid #e2e8f0;border-radius:8px;padding:1rem;text-align:center">
+<svg viewBox="0 0 200 120" width="180">
+<rect x="5" y="5" width="190" height="110" fill="#fff" stroke="#e2e8f0" rx="4"/>
+<rect x="30" y="50" width="140" height="35" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="4"/>
+<text x="100" y="73" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600">ALZADO</text>
+<!-- Planta ABAJO (CORRECT for 1st dihedral) -->
+<rect x="30" y="88" width="140" height="30" fill="#fff7ed" stroke="#10b981" stroke-width="2" rx="4"/>
+<text x="100" y="108" text-anchor="middle" font-size="9" fill="#10b981" font-weight="600">PLANTA (ABAJO)</text>
+<text x="100" y="15" text-anchor="middle" font-size="8" fill="#10b981">✅ 1º diedro</text>
+</svg>
+</div>
+</div>
+<p class="feedback"></p>
+</div>
+</div>
+
+<div class="summary">
+<h3>📋 Resumen de lo aprendido</h3>
+<ul>
+<li>1º diedro (Europa): pieza entre observador y plano</li>
+<li>3º diedro (EE.UU.): plano entre observador y pieza</li>
+<li>1º diedro: planta DEBAJO del alzado</li>
+<li>3º diedro: planta ENCIMA del alzado</li>
+<li>¡El símbolo de proyección es OBLIGATORIO!</li>
+<li>¡Ya dominas el 1º y 3º diedro! 🎉</li>
+</ul>
+</div>
+
+<div class="nav">
+<a href="b02-05-abatimiento-ph.html">← Anterior</a>
+<a href="b02-07-representacion-piezas.html">Siguiente →</a>
+</div>
+
+</main>
+<footer class="footer">Hecho con ❤️ por David Antizar</footer>
+<script>
+function checkAnswer(btn, correct) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) {
+    b.disabled = true; b.classList.remove('correct','wrong');
+  });
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  var feedback = parent.nextElementSibling;
+  if(feedback && feedback.classList.contains('feedback')) {
+    if(correct) {
+      feedback.textContent = '✅ ¡Correcto! ¡Muy bien!';
+      feedback.className = 'feedback correct';
+    } else {
+      feedback.textContent = '❌ ¡Intenta de nuevo!';
+      feedback.className = 'feedback incorrect';
+      setTimeout(function() {
+        parent.querySelectorAll('button').forEach(function(b) {
+          b.disabled = false; b.classList.remove('correct','wrong');
+        });
+        feedback.textContent = '';
+        feedback.className = 'feedback';
+      }, 1500);
+    }
+  }
+}
+
+function checkExercise(id, correct, btn) {
+  var input = document.getElementById(id);
+  var feedback = input.parentElement.nextElementSibling;
+  var userVal = input.value.trim().toLowerCase();
+  var correctVal = correct.toLowerCase();
+  if(userVal === correctVal) {
+    feedback.textContent = '✅ ¡Correcto! ' + correct;
+    feedback.className = 'feedback correct';
+    input.style.borderColor = 'var(--verde)';
+  } else {
+    feedback.textContent = '❌ Respuesta correcta: ' + correct;
+    feedback.className = 'feedback incorrect';
+    input.style.borderColor = 'var(--rojo)';
+  }
+}
+
+window.onscroll = function(){
+  var h = document.documentElement;
+  var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
+  document.getElementById('progress').style.width = p+'%';
+};
+
+// SVG interactivos diedro
+function toggleDiedro(el) {
+  el.classList.toggle('active');
+  var info = document.getElementById('diedroInfo');
+  if (el.classList.contains('active')) {
+    info.textContent = '✅ Pieza seleccionada — clic para desactivar';
+  } else {
+    info.textContent = '👆 Clic en las piezas para ver la diferencia';
+  }
+}
+
+function toggleDiedroView(system) {
+  var svg = document.getElementById('diedroCompareSvg');
+  if (system === '1') {
+    svg.innerHTML = '<svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">' +
+      '<rect x="10" y="10" width="380" height="180" fill="#f8fafc" rx="8"/>' +
+      '<text x="200" y="30" text-anchor="middle" font-size="13" fill="#2563eb" font-weight="600">1º DIEDRO — Europa</text>' +
+      '<text x="40" y="70" text-anchor="middle" font-size="24">👁️</text>' +
+      '<rect x="80" y="50" width="40" height="40" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5" rx="4"/>' +
+      '<text x="100" y="75" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="600">PIEZA</text>' +
+      '<rect x="140" y="45" width="5" height="50" fill="#10b981"/>' +
+      '<text x="140" y="110" text-anchor="middle" font-size="9" fill="#10b981">PLANO</text>' +
+      '<line x1="55" y1="70" x2="78" y2="70" stroke="#f97316" stroke-width="2" marker-end="url(#a1)"/>' +
+      '<line x1="147" y1="70" x2="180" y2="70" stroke="#f97316" stroke-width="2" marker-end="url(#a1)"/>' +
+      '<rect x="100" y="130" width="180" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="4"/>' +
+      '<text x="190" y="160" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="600">ALZADO</text>' +
+      '<rect x="100" y="185" width="180" height="35" fill="#fff7ed" stroke="#f97316" stroke-width="2" rx="4"/>' +
+      '<text x="190" y="208" text-anchor="middle" font-size="11" fill="#f97316" font-weight="600">PLANTA (DEBAJO)</text>' +
+      '<defs><marker id="a1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#f97316"/></marker></svg>';
+  } else if (system === '3') {
+    svg.innerHTML = '<svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">' +
+      '<rect x="10" y="10" width="380" height="180" fill="#f8fafc" rx="8"/>' +
+      '<text x="200" y="30" text-anchor="middle" font-size="13" fill="#f97316" font-weight="600">3º DIEDRO — EE.UU.</text>' +
+      '<text x="40" y="70" text-anchor="middle" font-size="24">👁️</text>' +
+      '<rect x="80" y="45" width="5" height="50" fill="#10b981"/>' +
+      '<text x="80" y="110" text-anchor="middle" font-size="9" fill="#10b981">PLANO</text>' +
+      '<rect x="100" y="50" width="40" height="40" fill="#fff7ed" stroke="#f97316" stroke-width="2.5" rx="4"/>' +
+      '<text x="120" y="75" text-anchor="middle" font-size="9" fill="#f97316" font-weight="600">PIEZA</text>' +
+      '<line x1="55" y1="70" x2="78" y2="70" stroke="#f97316" stroke-width="2" marker-end="url(#a3)"/>' +
+      '<line x1="147" y1="70" x2="180" y2="70" stroke="#f97316" stroke-width="2" marker-end="url(#a3)"/>' +
+      '<rect x="100" y="130" width="180" height="50" fill="#eff6ff" stroke="#f97316" stroke-width="2" rx="4"/>' +
+      '<text x="190" y="160" text-anchor="middle" font-size="12" fill="#f97316" font-weight="600">ALZADO</text>' +
+      '<rect x="100" y="95" width="180" height="35" fill="#fff7ed" stroke="#f97316" stroke-width="2" rx="4"/>' +
+      '<text x="190" y="118" text-anchor="middle" font-size="11" fill="#f97316" font-weight="600">PLANTA (ENCIMA)</text>' +
+      '<defs><marker id="a3" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#f97316"/></marker></svg>';
+  } else {
+    svg.innerHTML = '<svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">' +
+      '<rect x="10" y="10" width="380" height="180" fill="#f8fafc" rx="8"/>' +
+      '<text x="100" y="30" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="600">1º DIEDRO</text>' +
+      '<text x="300" y="30" text-anchor="middle" font-size="12" fill="#f97316" font-weight="600">3º DIEDRO</text>' +
+      '<rect x="30" y="50" width="140" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="4"/>' +
+      '<text x="100" y="80" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="600">ALZADO</text>' +
+      '<rect x="30" y="105" width="140" height="35" fill="#fff7ed" stroke="#f97316" stroke-width="2" rx="4"/>' +
+      '<text x="100" y="128" text-anchor="middle" font-size="10" fill="#f97316" font-weight="600">PLANTA (DEBAJO)</text>' +
+      '<rect x="230" y="50" width="140" height="50" fill="#eff6ff" stroke="#f97316" stroke-width="2" rx="4"/>' +
+      '<text x="300" y="80" text-anchor="middle" font-size="11" fill="#f97316" font-weight="600">ALZADO</text>' +
+      '<rect x="230" y="15" width="140" height="35" fill="#fff7ed" stroke="#f97316" stroke-width="2" rx="4"/>' +
+      '<text x="300" y="38" text-anchor="middle" font-size="10" fill="#f97316" font-weight="600">PLANTA (ENCIMA)</text>' +
+      '<text x="200" y="175" text-anchor="middle" font-size="11" fill="#64748b">← Planta abajo | Planta arriba →</text>' +
+      '</svg>';
+  }
+}
+
+// Ordenar ejercicios
+var selectedItems = [];
+function selectOrden(el) {
+  var container = document.getElementById('ordenarContainer');
+  var items = container.querySelectorAll('.box');
+  items.forEach(function(item) {
+    item.style.borderColor = '#e2e8f0';
+    item.style.background = '#fff';
+  });
+  el.style.borderColor = '#2563eb';
+  el.style.background = '#eff6ff';
+}
+
+function checkOrden() {
+  var container = document.getElementById('ordenarContainer');
+  var items = container.querySelectorAll('.box');
+  var correct = true;
+  items.forEach(function(item, i) {
+    var pos = parseInt(item.getAttribute('data-pos'));
+    if (pos !== i + 1) correct = false;
+  });
+  var feedback = container.parentElement.querySelector('.feedback');
+  if (correct) {
+    feedback.textContent = '✅ ¡Correcto! Observador → pieza → rayos atraviesan → plano';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ Orden incorrecto. Recuerda: primero el observador, luego la pieza, luego los rayos';
+    feedback.className = 'feedback incorrect';
+  }
+}
+
+// Completar ejercicios
+function checkIdentify(el, correct) {
+  var parent = el.closest('.interactive');
+  parent.querySelectorAll('.clickable').forEach(function(c) {
+    c.style.pointerEvents = 'none';
+    c.style.opacity = '0.6';
+  });
+  el.style.opacity = '1';
+  el.style.borderColor = correct ? 'var(--verde)' : 'var(--rojo)';
+  el.style.borderWidth = '3px';
+  var feedback = parent.querySelector('.feedback');
+  if (correct) {
+    feedback.textContent = '✅ ¡Correcto! En 1º diedro, la planta va DEBAJO del alzado.';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ Incorrecto. En 1º diedro, la planta va DEBAJO, no ARRIBA.';
+    feedback.className = 'feedback incorrect';
+    setTimeout(function() {
+      parent.querySelectorAll('.clickable').forEach(function(c) {
+        c.style.pointerEvents = 'auto';
+        c.style.opacity = '1';
+        c.style.borderColor = '#e2e8f0';
+        c.style.borderWidth = '2px';
+      });
+      feedback.textContent = '';
+      feedback.className = 'feedback';
+    }, 2000);
+  }
+}
+
+function checkFillIn() {
+  var a = document.getElementById('ex7a').value.trim().toLowerCase();
+  var b = document.getElementById('ex7b').value.trim().toLowerCase();
+  var c = document.getElementById('ex7c').value.trim().toLowerCase();
+  var feedback = document.getElementById('ex7c').parentElement.nextElementSibling;
+  
+  var ok = true;
+  if (a !== 'debajo') ok = false;
+  if (b !== 'encima') ok = false;
+  if (c !== 'europa' && c !== 'europea') ok = false;
+  
+  if (ok) {
+    feedback.textContent = '✅ ¡Perfecto! Debajo, encima, Europa';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ Pista: 1º diedro = ___ | 3º diedro = ___ | Europa = ___';
+    feedback.className = 'feedback incorrect';
+  }
+}
+</script>
+</body>
+</html>

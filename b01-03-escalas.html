@@ -534,7 +534,32 @@ Cotar según lo que se ve en el plano. Si una pieza mide 100mm y la dibujas a es
 </div>
 
 </div>
-</section>
+
+
+<div class="exercise">
+  <p><span class="difficulty-badge hard">Difícil</span> 🎯 Ejercicio 11 (Identificar): Observa las dos piezas y decide cuál está a escala 2:1 (doblada respecto al real).</p>
+  <div class="interactive">
+    <div class="comparison">
+      <div class="comparison-side clickable" onclick="checkIdentify(this, true)">
+        <svg width="200" height="120" viewBox="0 0 200 120">
+          <rect x="10" y="20" width="180" height="80" rx="4" fill="none" stroke="#2563eb" stroke-width="2"/>
+          <text x="100" y="65" text-anchor="middle" font-size="14" fill="#2563eb" font-weight="bold">300 × 160 mm</text>
+          <text x="100" y="105" text-anchor="middle" font-size="10" fill="#64748b">Real: 150 × 80 mm</text>
+          <text x="100" y="15" text-anchor="middle" font-size="11" fill="#10b981" font-weight="bold">✅ 2:1</text>
+        </svg>
+      </div>
+      <div class="comparison-side clickable" onclick="checkIdentify(this, false)">
+        <svg width="200" height="120" viewBox="0 0 200 120">
+          <rect x="10" y="20" width="180" height="80" rx="4" fill="none" stroke="#2563eb" stroke-width="2"/>
+          <text x="100" y="65" text-anchor="middle" font-size="14" fill="#2563eb" font-weight="bold">100 × 40 mm</text>
+          <text x="100" y="105" text-anchor="middle" font-size="10" fill="#64748b">Real: 200 × 80 mm</text>
+          <text x="100" y="15" text-anchor="middle" font-size="11" fill="#ef4444" font-weight="bold">✗ 1:2</text>
+        </svg>
+      </div>
+    </div>
+    <div id="identifyResult" class="result" style="display:none"></div>
+  </div>
+</div></section>
 
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
@@ -735,6 +760,28 @@ window.onscroll = function(){
 
 // Inicializar calculadora
 calculateScale();
-</script>
+
+function checkIdentify(el, correct) {
+  const siblings = el.parentElement.querySelectorAll('.clickable');
+  siblings.forEach(s => s.style.pointerEvents = 'none');
+  const result = document.getElementById('identifyResult');
+  result.style.display = 'block';
+  if (correct) {
+    el.style.border = '3px solid #10b981';
+    el.style.background = '#ecfdf5';
+    result.className = 'result ok';
+    result.innerHTML = '<strong>¡Correcto!</strong> La pieza de 300×160 mm con real 150×80 mm está a escala 2:1 (ampliación).';
+  } else {
+    el.style.border = '3px solid #ef4444';
+    el.style.background = '#fef2f2';
+    result.className = 'result fail';
+    result.innerHTML = '<strong>Incorrecto.</strong> Esta pieza de 100×40 mm con real 200×80 mm está a escala 1:2 (reducción). La escala 2:1 DOBLA el tamaño real.';
+    // Re-enable the correct one
+    setTimeout(() => {
+      siblings.forEach(s => { s.style.pointerEvents = 'auto'; s.style.border = ''; s.style.background = ''; });
+      result.style.display = 'none';
+    }, 2000);
+  }
+}</script>
 </body>
 </html>
