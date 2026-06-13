@@ -1572,7 +1572,7 @@
       "improvement_count": 3
     },
     "b06-04-reglas-acotacion.html": {
-      "status": "improved_2",
+      "status": "improved_3",
       "bloque": "b06",
       "title": "📐 Reglas de acotación ISO 129",
       "priority": 3,
@@ -1603,12 +1603,12 @@
         "svg_interactive": 9,
         "exercises": 9,
         "text_explanation": 9,
-        "real_world": 7,
-        "error_common": 7,
+        "real_world": 9,
+        "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-11",
-      "improvement_count": 2
+      "last_improved": "2026-06-13-ronda2-s1",
+      "improvement_count": 3
     },
     "b06-05-acotacion-piezas-complejas.html": {
       "status": "improved_2",

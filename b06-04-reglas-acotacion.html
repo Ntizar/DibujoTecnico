@@ -72,6 +72,9 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
 .clickable{cursor:pointer;transition:all .2s}
 .clickable:hover{filter:brightness(1.2);stroke-width:3}
+.clickable{cursor:pointer}.clickable:hover{opacity:.8}
+.connection-box{background:linear-gradient(135deg,#faf5ff,#eff6ff);border:2px solid #a855f7;border-radius:10px;padding:1rem 1.2rem;margin:1rem 0}.connection-box strong{color:#7c3aed}.connection-box a{color:#2563eb;text-decoration:underline}
+.difficulty-badge{display:inline-block;padding:.15rem .5rem;border-radius:10px;font-size:.7rem;font-weight:700;margin-left:.5rem;vertical-align:middle}.difficulty-badge.easy{background:#dcfce7;color:#166534}.difficulty-badge.medium{background:#fef3c7;color:#92400e}.difficulty-badge.hard{background:#fee2e2;color:#991b1b}
 </style>
 </head>
 <body>
@@ -401,7 +404,6 @@ Haz click en la línea de cota correcta para la medida de 80 mm.
 <button class="quiz-btn" onclick="checkAnswer(this, false)">La derecha (incorrecto)</button>
 </div>
 <p class="feedback"></p>
-</div>
 
 <div class="exercise">
 <p>📐 Ejercicio 3 (Completar): Una cota funcional se marca con la letra ___. Las cotas auxiliares van entre ___.</p>
@@ -445,7 +447,6 @@ Haz click en la línea de cota correcta para la medida de 80 mm.
 <button class="quiz-btn" onclick="checkAnswer(this, false)">La derecha (incorrecto)</button>
 </div>
 <p class="feedback"></p>
-</div>
 
 <div class="exercise">
 <p>📐 Ejercicio 3 (Completar): Una cota funcional se marca con la letra ___. Las cotas auxiliares van entre ___.</p>
@@ -464,14 +465,49 @@ Haz click en la línea de cota correcta para la medida de 80 mm.
 </div>
 <p class="feedback"></p>
 </div>
-
 </div>
-</section>
+
+<section class="chapter">
+<h2 class="chapter-title">⚠️ Reglas de acotación</h2>
 <div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ COTA DENTRO</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="50" y="40" width="100" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="100" y="70" text-anchor="middle" font-size="12" fill="#ef4444">80</text><text x="100" y="110" text-anchor="middle" font-size="9" fill="#ef4444">Cota dentro ❌</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ COTA FUERA</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="50" y="40" width="100" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><line x1="50" y1="35" x2="150" y2="35" stroke="#94a3b8" stroke-width="0.5"/><text x="100" y="30" text-anchor="middle" font-size="11" fill="#2563eb">80</text><text x="100" y="110" text-anchor="middle" font-size="9" fill="#10b981">Cota fuera ✓</text></svg></div></div>
 
 <div class="box box-error">
-<strong>⚠️ Error clásico</strong>
-Repetir la misma cota de dos formas diferentes (ej: acotar la cadena 30+40+50 Y también el total 120). Esto crea contradicciones si hay tolerancias. Elige UNO: o la cadena o el total, nunca ambos.
+<strong>⚠️ Error clásico: Repetir cotas</strong>
+Repetir la misma cota de dos formas diferentes (ej: acotar la cadena 30+40+50 Y también el total 120). Esto crea contradicciones si hay tolerancias.
+<div class="svg-container" style="margin:.8rem 0;padding:.8rem">
+<svg viewBox="0 0 400 140" xmlns="http://www.w3.org/2000/svg">
+<!-- Panel izquierdo: ERROR -->
+<rect x="2" y="2" width="195" height="135" fill="#fef2f2" rx="6" stroke="#ef4444" stroke-width="2"/>
+<text x="100" y="18" text-anchor="middle" font-size="11" fill="#ef4444" font-weight="700">❌ ERROR: Doble cota</text>
+<!-- Pieza rectangular -->
+<rect x="30" y="30" width="140" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<!-- Cadena de cotas -->
+<line x1="30" y1="105" x2="75" y2="105" stroke="#f97316" stroke-width="1"/>
+<text x="52" y="100" font-size="8" fill="#f97316">30</text>
+<line x1="75" y1="105" x2="120" y2="105" stroke="#f97316" stroke-width="1"/>
+<text x="97" y="100" font-size="8" fill="#f97316">40</text>
+<line x1="120" y1="105" x2="170" y2="105" stroke="#f97316" stroke-width="1"/>
+<text x="145" y="100" font-size="8" fill="#f97316">50</text>
+<!-- Y TAMBIÉN el total -->
+<line x1="25" y1="115" x2="175" y2="115" stroke="#ef4444" stroke-width="1.5"/>
+<text x="100" y="128" font-size="9" fill="#ef4444" font-weight="700">120 ✗</text>
+<!-- Panel derecho: CORRECTO -->
+<rect x="205" y="2" width="193" height="135" fill="#ecfdf5" rx="6" stroke="#10b981" stroke-width="2"/>
+<text x="302" y="18" text-anchor="middle" font-size="11" fill="#10b981" font-weight="700">✅ CORRECTO: Una sola forma</text>
+<!-- Pieza rectangular -->
+<rect x="230" y="30" width="140" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<!-- Solo cadena -->
+<line x1="230" y1="105" x2="275" y2="105" stroke="#f97316" stroke-width="1"/>
+<text x="252" y="100" font-size="8" fill="#f97316">30</text>
+<line x1="275" y1="105" x2="320" y2="105" stroke="#f97316" stroke-width="1"/>
+<text x="297" y="100" font-size="8" fill="#f97316">40</text>
+<line x1="320" y1="105" x2="370" y2="105" stroke="#f97316" stroke-width="1"/>
+<text x="345" y="100" font-size="8" fill="#f97316">50</text>
+<!-- Sin total duplicado -->
+<text x="302" y="125" font-size="9" fill="#10b981" font-weight="700">Solo cadena ✓</text>
+</svg>
+</div>
+<p style="font-size:.85rem;margin-top:.3rem"><strong>Regla:</strong> Elige UNO: cadena de cotas (30+40+50) O cota total (120). Nunca ambos.</p>
 </div>
 
 <div class="box box-idea">
@@ -480,6 +516,13 @@ Con las reglas de acotación dominadas, en el siguiente tema aprenderás a acota
 </div>
 
 <div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: norma ISO de acotación</strong>La norma ISO 129 define las reglas de acotación: dónde poner las cotas, cómo orientarlas, qué líneas usar. Un plano que no sigue ISO no es válido. En una empresa multinacional, un plano de España debe ser entendible por un operario en Japón. Las reglas ISO son el lenguaje universal.</div>
+
+<div class="box box-success" style="margin:1.5rem 0">
+<span class="real-world-badge">🏭 CASO REAL</span>
+<strong>Acotación funcional en motor — Motoriber (Valladolid)</strong>
+En la fabricación de un bloque de motor diesel, la acotación funcional (marcada con F) indica las dimensiones críticas para el ensamblaje: diámetro del cigüeñal F±0.01mm, distancia entre cilindros F±0.02mm, plano de empalme F. Las cotas auxiliares (entre paréntesis) son para información: peso aproximado, dimensiones de embalaje. Un operario en la línea de montaje lee las cotas F y aplica las tolerancias estrictas, mientras ignora las auxiliares. La norma ISO 1101 define las tolerancias geométricas que acompañan a cada cota funcional.</div>
+
+</section>
 
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
