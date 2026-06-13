@@ -286,10 +286,23 @@
                 "error_common": 9,
                 "css_coherence": 10
             },
-            "last_improved": "2026-06-13",
-            "improvement_count": 4,
-            "improvements": "Ronda 2: exercises 7→9 (added V/F visual, fill-in, ordenar), real_world 7→9 (added CNC case), error_common 7→9 (added Y vs Z comparison), CSS (.clickable, .connection-box, .difficulty-badge, .feedback.correct/incorrect)",
-            "status": "improved"
+            "last_improved": "2026-06-13-ronda2-s3",
+            "improvement_count": 5,
+            "improvements": [
+                {
+                    "date": "2026-06-13",
+                    "description": "Ronda 2: exercises 7→9 (added V/F visual, fill-in, ordenar), real_world 7→9 (added CNC case), error_common 7→9 (added Y vs Z comparison), CSS (.clickable, .connection-box, .difficulty-badge, .feedback.correct/incorrect)"
+                },
+                {
+                    "date": "2026-06-13",
+                    "description": "Ronda 2 Sesión 3: añadido ejercicio checkIdentify (Ejercicio 10) identificar vista frontal + VF visual (Ejercicio 11) con SVG comparativo. Total 11 ejercicios. Añadidas funciones checkIdentify y checkVF2.",
+                    "dimensions_improved": [
+                        "svg_interactive",
+                        "exercises"
+                    ]
+                }
+            ],
+            "status": "improved_2"
         },
         "b02-05-abatimiento-ph.html": {
             "status": "improved_2",
