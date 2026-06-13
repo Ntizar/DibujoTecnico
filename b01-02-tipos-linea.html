@@ -540,6 +540,62 @@ Usar discontinua <em>fina</em> para aristas ocultas. La norma dice: aristas ocul
 <div class="result" id="ex9"></div>
 </div>
 
+
+<!-- NUEVO RONDA 2: Ejercicio V/F visual con SVG — identificar tipo de línea -->
+<div class="exercise">
+<p><span class="difficulty-badge easy">Fácil</span> 🔍 Ejercicio 10 (VF visual): ¿Qué tipo de línea se usa para <strong>contornos visibles</strong> en proyección ortogonal?</p>
+<div class="interactive" style="margin:.5rem 0">
+<div class="svg-container" style="margin:0;padding:.8rem">
+<svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg">
+<!-- Tres opciones de líneas -->
+<text x="150" y="15" text-anchor="middle" font-size="10" font-weight="bold" fill="#2563eb">¿Cuál es el contorno visible?</text>
+<!-- Opción A: continua fina -->
+<rect x="15" y="25" width="80" height="75" rx="4" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1"/>
+<text x="55" y="40" text-anchor="middle" font-size="7" fill="#64748b">A</text>
+<line x1="25" y1="55" x2="85" y2="55" stroke="#94a3b8" stroke-width="1"/>
+<text x="55" y="70" text-anchor="middle" font-size="6" fill="#94a3b8">continua fina</text>
+<line x1="25" y1="80" x2="85" y2="80" stroke="#94a3b8" stroke-width="0.5"/>
+<text x="55" y="95" text-anchor="middle" font-size="6" fill="#94a3b8">puntos</text>
+<!-- Opción B: continua GRUESA -->
+<rect x="110" y="25" width="80" height="75" rx="4" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+<text x="150" y="40" text-anchor="middle" font-size="7" fill="#10b981">B</text>
+<line x1="120" y1="55" x2="180" y2="55" stroke="#2563eb" stroke-width="4"/>
+<text x="150" y="70" text-anchor="middle" font-size="6" fill="#10b981">continua GRUESA</text>
+<line x1="120" y1="80" x2="180" y2="80" stroke="#94a3b8" stroke-width="0.5"/>
+<text x="150" y="95" text-anchor="middle" font-size="6" fill="#94a3b8">puntos</text>
+<!-- Opción C: discontinua -->
+<rect x="205" y="25" width="80" height="75" rx="4" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1"/>
+<text x="245" y="40" text-anchor="middle" font-size="7" fill="#64748b">C</text>
+<line x1="215" y1="55" x2="275" y2="55" stroke="#94a3b8" stroke-width="1" stroke-dasharray="8,4"/>
+<text x="245" y="70" text-anchor="middle" font-size="6" fill="#94a3b8">discontinua</text>
+<line x1="215" y1="80" x2="275" y2="80" stroke="#94a3b8" stroke-width="0.5"/>
+<text x="245" y="95" text-anchor="middle" font-size="6" fill="#94a3b8">puntos</text>
+</svg>
+</div>
+</div>
+<button class="quiz-btn" onclick="checkIdentify(this, false)" style="margin:.3rem">A — Continua fina</button>
+<button class="quiz-btn" onclick="checkIdentify(this, true)" style="margin:.3rem">B — Continua gruesa</button>
+<button class="quiz-btn" onclick="checkIdentify(this, false)" style="margin:.3rem">C — Discontinua</button>
+<p class="feedback"></p>
+</div>
+
+<!-- NUEVO RONDA 2: Ejercicio de emparejar -->
+<div class="exercise">
+<p><span class="difficulty-badge medium">Medio</span> 🔗 Ejercicio 11 (emparejar): Empareja cada tipo de línea con su uso correcto.</p>
+<div class="interactive" style="margin:.5rem 0">
+<div style="display:flex;gap:1rem;flex-wrap:wrap" id="matchLineas">
+<div style="flex:1;min-width:200px" id="matchLeftLineas">
+<div class="box box-teoria clickable" onclick="selectMatchLineas(this, 'left')" data-match="1">➖ Continua gruesa</div>
+<div class="box box-teoria clickable" onclick="selectMatchLineas(this, 'left')" data-match="2">- - - Discontinua</div>
+<div class="box box-teoria clickable" onclick="selectMatchLineas(this, 'left')" data-match="3">・・・ Punto fina</div>
+</div>
+<div style="flex:1;min-width:200px" id="matchRightLineas">
+<!-- Se shufflea con JS -->
+</div>
+</div>
+<div id="matchLineasFeedback" style="margin-top:1rem"></div>
+</div>
+</div>
 </div>
 </section>
 
@@ -659,6 +715,109 @@ function checkVF(btn, isCorrect, resultId) {
     document.getElementById(resultId).innerHTML = '❌ Falso. La afirmación es correcta: esa es precisamente su función.';
   }
 }
+
+
+function checkIdentify(btn, correct) {
+  var exercise = btn.closest('.exercise');
+  var allBtns = exercise.querySelectorAll('.quiz-btn');
+  allBtns.forEach(function(b) { b.disabled = true; b.classList.remove('correct','wrong'); });
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  var feedback = exercise.querySelector('.feedback');
+  if (feedback) {
+    if (correct) {
+      feedback.textContent = '✅ ¡Correcto! Los contornos visibles se representan con línea continua gruesa (norma ISO 128).';
+      feedback.className = 'feedback correct';
+    } else {
+      feedback.textContent = '❌ Esa no es la línea de contorno. Recuerda: continua GRUESA = lo que se ve.';
+      feedback.className = 'feedback incorrect';
+      setTimeout(function() {
+        allBtns.forEach(function(b) { b.disabled = false; b.classList.remove('correct','wrong'); });
+        feedback.textContent = '';
+        feedback.className = 'feedback';
+      }, 2000);
+    }
+  }
+}
+
+function initMatchLineas() {
+  var rightItems = [
+    { text: '📐 Contornos y bordes visibles', match: '1' },
+    { text: '🔧 Aristas no visibles (ocultas)', match: '2' },
+    { text: '📏 Ejes y líneas de simetría', match: '3' }
+  ];
+  for (var i = rightItems.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = rightItems[i];
+    rightItems[i] = rightItems[j];
+    rightItems[j] = tmp;
+  }
+  var rightContainer = document.getElementById('matchRightLineas');
+  if (!rightContainer) return;
+  rightContainer.innerHTML = '';
+  rightItems.forEach(function(item) {
+    var div = document.createElement('div');
+    div.className = 'box box-ejemplo clickable';
+    div.textContent = item.text;
+    div.setAttribute('data-match', item.match);
+    div.setAttribute('data-selected', 'false');
+    div.onclick = function() { selectMatchLineas(this, 'right'); };
+    rightContainer.appendChild(div);
+  });
+}
+
+var matchLineasState = { left: null, right: null, matched: 0, total: 3 };
+
+function selectMatchLineas(el, side) {
+  if (el.getAttribute('data-selected') === 'true') return;
+  matchLineasState[side] = el;
+  var container = document.getElementById('matchLineas');
+  container.querySelectorAll('.clickable').forEach(function(b) { b.style.borderColor = '#e2e8f0'; });
+  el.style.borderColor = 'var(--azul)';
+  el.style.background = 'var(--azul-claro)';
+  
+  if (matchLineasState.left && matchLineasState.right) {
+    var leftMatch = matchLineasState.left.getAttribute('data-match');
+    var rightMatch = matchLineasState.right.getAttribute('data-match');
+    var feedback = document.getElementById('matchLineasFeedback');
+    
+    if (leftMatch === rightMatch) {
+      matchLineasState.left.setAttribute('data-selected', 'true');
+      matchLineasState.right.setAttribute('data-selected', 'true');
+      matchLineasState.left.style.borderColor = 'var(--verde)';
+      matchLineasState.left.style.background = 'var(--verde-claro)';
+      matchLineasState.right.style.borderColor = 'var(--verde)';
+      matchLineasState.right.style.background = 'var(--verde-claro)';
+      matchLineasState.left.style.cursor = 'default';
+      matchLineasState.right.style.cursor = 'default';
+      matchLineasState.matched++;
+      feedback.textContent = '✅ ¡Bien! ' + matchLineasState.matched + '/3 emparejados.';
+      feedback.className = 'feedback correct';
+      
+      if (matchLineasState.matched === matchLineasState.total) {
+        feedback.textContent = '🎉 ¡Todos! Gruesa=Contornos, Discontinua=Ocultas, Punto=Ejes.';
+      }
+      
+      matchLineasState.left = null;
+      matchLineasState.right = null;
+    } else {
+      feedback.textContent = '❌ No coinciden. Intenta de nuevo.';
+      feedback.className = 'feedback incorrect';
+      setTimeout(function() {
+        matchLineasState.left.style.borderColor = '#e2e8f0';
+        matchLineasState.left.style.background = '';
+        matchLineasState.right.style.borderColor = '#e2e8f0';
+        matchLineasState.right.style.background = '';
+        matchLineasState.left = null;
+        matchLineasState.right = null;
+        feedback.textContent = '';
+        feedback.className = 'feedback';
+      }, 1500);
+    }
+  }
+}
+
+initMatchLineas();
+
 
 window.onscroll = function() {
   var h = document.documentElement;
