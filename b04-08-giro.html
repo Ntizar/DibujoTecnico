@@ -72,6 +72,15 @@ input[type="text"]:focus{outline:none;border-color:var(--azul)}
 .giro-layer.highlight{stroke-width:3;stroke:var(--naranja)}
 .clickable{cursor:pointer}
 .clickable:hover{opacity:.8}
+
+.connection-box{background:linear-gradient(135deg,#faf5ff,#eff6ff);border:2px solid #a855f7;border-radius:10px;padding:1rem 1.2rem;margin:1rem 0}
+.connection-box strong{color:#7c3aed}.connection-box a{color:#2563eb;text-decoration:underline}
+.difficulty-badge{display:inline-block;padding:.15rem .5rem;border-radius:10px;font-size:.7rem;font-weight:700;margin-left:.5rem;vertical-align:middle}
+.difficulty-badge.easy{background:#dcfce7;color:#166534}
+.difficulty-badge.medium{background:#fef3c7;color:#92400e}
+.difficulty-badge.hard{background:#fee2e2;color:#991b1b}
+.feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
+.feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
 </style>
 </head>
 <body>
@@ -354,13 +363,79 @@ Para elegir el eje de giro, busca un punto que pertenezca al elemento que quiere
 </div>
 
 <div class="box box-error">
-<strong>⚠️ Error clásico</strong>
-Olvidar que al girar un punto alrededor de un eje vertical, la cota z NO cambia. La proyección vertical se desplaza horizontalmente, nunca verticalmente. Si mueves la cota, el giro es incorrecto.
+<strong>⚠️ Error clásico: Cambiar la cota z</strong>
+Olvidar que al girar un punto alrededor de un eje vertical, la cota z NO cambia. La proyección vertical se desplaza horizontalmente, nunca verticalmente.
+<div class="svg-container" style="margin:.8rem 0;padding:.8rem">
+<svg viewBox="0 0 400 140" xmlns="http://www.w3.org/2000/svg">
+<!-- Panel izquierdo: ERROR -->
+<rect x="2" y="2" width="195" height="135" fill="#fef2f2" rx="6" stroke="#ef4444" stroke-width="2"/>
+<text x="100" y="18" text-anchor="middle" font-size="11" fill="#ef4444" font-weight="700">❌ ERROR</text>
+<line x1="20" y1="70" x2="180" y2="70" stroke="#333" stroke-width="1.5"/>
+<text x="185" y="74" font-size="8" fill="#333">LT</text>
+<circle cx="50" cy="70" r="2" fill="#a855f7"/>
+<text x="38" y="65" font-size="8" fill="#a855f7">e</text>
+<circle cx="50" cy="40" r="3" fill="#2563eb"/>
+<text x="55" y="38" font-size="8" fill="#2563eb">A</text>
+<!-- ERROR: cota cambiada -->
+<circle cx="150" cy="25" r="3" fill="#ef4444"/>
+<text x="155" y="23" font-size="8" fill="#ef4444">A₁ ✗</text>
+<path d="M 50 40 A 100 15 0 0 1 150 25" fill="none" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="3,2"/>
+<text x="90" y="20" font-size="7" fill="#ef4444">z cambió ✗</text>
+<!-- Panel derecho: CORRECTO -->
+<rect x="205" y="2" width="193" height="135" fill="#ecfdf5" rx="6" stroke="#10b981" stroke-width="2"/>
+<text x="302" y="18" text-anchor="middle" font-size="11" fill="#10b981" font-weight="700">✅ CORRECTO</text>
+<line x1="220" y1="70" x2="380" y2="70" stroke="#333" stroke-width="1.5"/>
+<text x="385" y="74" font-size="8" fill="#333">LT</text>
+<circle cx="250" cy="70" r="2" fill="#a855f7"/>
+<text x="238" y="65" font-size="8" fill="#a855f7">e</text>
+<circle cx="250" cy="40" r="3" fill="#2563eb"/>
+<text x="255" y="38" font-size="8" fill="#2563eb">A</text>
+<!-- CORRECTO: misma cota -->
+<circle cx="350" cy="40" r="3" fill="#10b981"/>
+<text x="355" y="38" font-size="8" fill="#10b981">A₁ ✓</text>
+<path d="M 250 40 A 100 30 0 0 1 350 40" fill="none" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3,2"/>
+<text x="290" y="35" font-size="7" fill="#10b981">z = cte ✓</text>
+</svg>
+</div>
+<p style="font-size:.85rem;margin-top:.3rem"><strong>Regla de oro:</strong> Eje vertical → la cota z es constante. La proyección vertical se mueve en línea horizontal (paralela a LT), nunca sube ni baja.</p>
 </div>
 
 <div class="box box-error">
 <strong>⚠️ Error común 2: Radio de giro</strong>
-Confundir el radio de giro. El radio es la distancia en VERDADERA MAGNITUD desde el punto al eje, medida en el plano de proyección perpendicular al eje. Para eje vertical, se mide en PH. Para eje horizontal, se mide en PV.
+Confundir el radio de giro. El radio es la distancia en VERDADERA MAGNITUD desde el punto al eje, medida en el plano de proyección perpendicular al eje.
+<div class="svg-container" style="margin:.8rem 0;padding:.8rem">
+<svg viewBox="0 0 400 140" xmlns="http://www.w3.org/2000/svg">
+<!-- Panel izquierdo: ERROR -->
+<rect x="2" y="2" width="195" height="135" fill="#fef2f2" rx="6" stroke="#ef4444" stroke-width="2"/>
+<text x="100" y="18" text-anchor="middle" font-size="11" fill="#ef4444" font-weight="700">❌ ERROR: radio en PV</text>
+<line x1="20" y1="70" x2="180" y2="70" stroke="#333" stroke-width="1.5"/>
+<text x="185" y="74" font-size="8" fill="#333">LT</text>
+<circle cx="50" cy="70" r="2" fill="#a855f7"/>
+<text x="38" y="65" font-size="8" fill="#a855f7">e</text>
+<circle cx="50" cy="40" r="3" fill="#2563eb"/>
+<text x="42" y="36" font-size="7" fill="#2563eb">a'</text>
+<!-- ERROR: radio medido en PV (incorrecto para eje vertical) -->
+<line x1="50" y1="70" x2="50" y2="40" stroke="#ef4444" stroke-width="2" stroke-dasharray="3,2"/>
+<text x="55" y="55" font-size="7" fill="#ef4444">radio ✗</text>
+<text x="100" y="125" font-size="7" fill="#ef4444">Para eje vertical → medir en PH</text>
+<!-- Panel derecho: CORRECTO -->
+<rect x="205" y="2" width="193" height="135" fill="#ecfdf5" rx="6" stroke="#10b981" stroke-width="2"/>
+<text x="302" y="18" text-anchor="middle" font-size="11" fill="#10b981" font-weight="700">✅ CORRECTO: radio en PH</text>
+<line x1="220" y1="70" x2="380" y2="70" stroke="#333" stroke-width="1.5"/>
+<text x="385" y="74" font-size="8" fill="#333">LT</text>
+<circle cx="250" cy="70" r="2" fill="#a855f7"/>
+<text x="238" y="65" font-size="8" fill="#a855f7">e</text>
+<circle cx="250" cy="40" r="3" fill="#2563eb"/>
+<text x="242" y="36" font-size="7" fill="#2563eb">a'</text>
+<circle cx="250" cy="100" r="3" fill="#2563eb"/>
+<text x="242" y="115" font-size="7" fill="#2563eb">a</text>
+<!-- CORRECTO: radio medido en PH -->
+<line x1="250" y1="70" x2="250" y2="100" stroke="#10b981" stroke-width="2" stroke-dasharray="3,2"/>
+<text x="255" y="88" font-size="7" fill="#10b981">radio ✓</text>
+<text x="290" y="125" font-size="7" fill="#10b981">Eje vertical → medir distancia en PH</text>
+</svg>
+</div>
+<p style="font-size:.85rem;margin-top:.3rem"><strong>Regla:</strong> Eje vertical ⊥ PH → radio medido en PH. Eje horizontal ⊥ PV → radio medido en PV.</p>
 </div>
 </section>
 
@@ -371,6 +446,16 @@ Confundir el radio de giro. El radio es la distancia en VERDADERA MAGNITUD desde
 <strong>Rebaje en eje de transmisión — Fábrica de motores (SEAT Martorell)</strong>
 Un rebaje cilíndrico en un eje de transmisión se encuentra en una posición oblicua que impide acotar su diámetro y longitud directamente. El operario gira el eje con un eje de giro vertical que pasa por el extremo del rebaje. Al girar el eje hasta que el rebaje quede paralelo al PV, el rebaje se ve en verdadera forma y se acota fácilmente: diámetro Ø24mm, longitud 35mm. La posición original se indica con línea discontinua gris. Sin el giro, el operario tendría que calcular trigonométricamente las dimensiones reales.
 </div>
+
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🎡 CASO REAL</span><strong>Caso real: puertas y compuertas</strong>Las puertas giran alrededor de un eje (las bisagras). En el diedrico, al girar un punto alrededor de un eje vertical, su planta describe un arco de circunferencia. Las compuertas de presas usan el mismo principio: giran alrededor de un eje horizontal para abrir o cerrar el paso del agua.</div>
+
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🛠️ CASO REAL</span><strong>Caso real: desarrollo de superficies</strong>Para fabricar una pieza metálica con forma de cilindro cortado, primero se gira la pieza hasta que su eje sea paralelo a un plano de proyección. Así se ve en verdadera magnitud y se puede calcular el desarrollo (plano) de la superficie. Los caldereros usan esta técnica para fabricar tuberías y conductos.</div>
+
+<div class="box box-success" style="margin:1.5rem 0">
+<span class="real-world-badge">🏗️ CASO REAL</span>
+<strong>Diseño de engranajes cónicos — Industria aeronáutica (Airbus Sevilla)</strong>
+Los engranajes cónicos de un sistema de orientación de antena satelital requieren medidas exactas de sus dientes oblicuos. El ingeniero aplica el giro para llevar cada diente a una posición paralela al PV, donde se mide directamente el perfil real del diente (módulo 1.5, ángulo de presión 20°). Sin el giro, las proyecciones distorsionadas darían un error de hasta 0.3mm en la medida, suficiente para causar vibraciones en el sistema de orientación. El giro permite verificar que cada diente cumple la tolerancia ISO 1328 clase 6.</div>
+
 </section>
 
 <section class="chapter">
@@ -454,6 +539,35 @@ Un rebaje cilíndrico en un eje de transmisión se encuentra en una posición ob
 </div>
 </section>
 
+
+<div class="exercise">
+<p>📐 Ejercicio 6 (VF visual): <span class="difficulty-badge easy">Fácil</span> Al girar un punto alrededor de un eje vertical, su alzado describe un arco de circunferencia.</p>
+<div class="svg-container" style="margin:.5rem 0">
+<svg viewBox="0 0 300 100" width="280" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="300" height="100" fill="#fff7ed" rx="6"/>
+<line x1="20" y1="50" x2="280" y2="50" stroke="#333" stroke-width="2"/>
+<text x="150" y="45" text-anchor="middle" font-size="11" fill="#333" font-weight="600">LT</text>
+<!-- Eje vertical -->
+<line x1="150" y1="10" x2="150" y2="90" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="4,2"/>
+<text x="155" y="8" font-size="9" fill="#a855f7">eje ⊥ HT</text>
+<!-- Arco de giro en alzado -->
+<path d="M 130 50 A 20 20 0 0 1 170 50" fill="none" stroke="#f97316" stroke-width="2" stroke-dasharray="3,2"/>
+<text x="150" y="75" text-anchor="middle" font-size="9" fill="#f97316">arco de giro (alzado)</text>
+</svg>
+</div>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Verdadero</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Falso</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 7 (Completar): <span class="difficulty-badge medium">Media</span> Al girar un punto alrededor de un eje vertical, la planta del punto describe un(a) ______.</p>
+<input type="text" id="ex7giro" placeholder="forma geométrica" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.9rem;width:150px">
+<button onclick="checkFillInGiro()" style="background:var(--azul);color:#fff;border:none;padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.9rem">Comprobar</button>
+<p class="feedback"></p>
+</div>
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
 <ul>
@@ -592,6 +706,18 @@ function toggleGiro() {
   }
 }
 
+
+function checkFillInGiro() {
+  var a = document.getElementById('ex7giro').value.trim().toLowerCase();
+  var feedback = document.getElementById('ex7giro').parentElement.querySelector('.feedback');
+  if(['circunferencia','circulo','arco'].some(x => a.includes(x))) {
+    feedback.textContent = '✅ ¡Correcto! La planta describe un arco de circunferencia';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ Respuesta: circunferencia (o arco de circunferencia)';
+    feedback.className = 'feedback incorrect';
+  }
+}
 window.onscroll = function(){
   var h = document.documentElement;
   var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
