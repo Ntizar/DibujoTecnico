@@ -152,46 +152,21 @@ La traza horizontal de α es perpendicular a la traza vertical de β.
 
 <section class="chapter">
 <h2 class="chapter-title">3️⃣ Visualiza paralelismo y perpendicularidad</h2>
+<div style="margin:1.5rem 0">
+<h4 style="text-align:center;margin-bottom:.8rem">🎮 Visualizador interactivo — haz clic para cambiar el modo</h4>
+<div style="display:flex;gap:.5rem;justify-content:center;margin-bottom:1rem">
+  <button class="quiz-btn" onclick="showGeoMode('par')" id="btnGeoPar" style="font-size:.85rem;padding:.4rem .8rem;background:var(--azul);color:#fff">🔵 Rectas ∥</button>
+  <button class="quiz-btn" onclick="showGeoMode('perp')" id="btnGeoPerp" style="font-size:.85rem;padding:.4rem .8rem">🟢 Recta ⊥ Plano</button>
+  <button class="quiz-btn" onclick="showGeoMode('planes')" id="btnGeoPlanes" style="font-size:.85rem;padding:.4rem .8rem">🟠 Planos ∥</button>
+</div>
 <div class="svg-container">
-<svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
-<!-- Fondo -->
+<svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg" id="geoSvg">
 <rect x="0" y="0" width="600" height="300" fill="#f8fafc" rx="8"/>
-<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Paralelismo y perpendicularidad en el diédrico</text>
-<!-- LT -->
-<line x1="50" y1="150" x2="550" y2="150" stroke="#333" stroke-width="2"/>
-<text x="560" y="154" font-size="11" fill="#333">LT</text>
-<!-- Rectas paralelas -->
-<text x="100" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">Rectas ∥</text>
-<line x1="60" y1="80" x2="140" y2="80" stroke="#2563eb" stroke-width="2" class="par-line" onclick="toggleLayer('par')" style="cursor:pointer"/>
-<text x="150" y="84" font-size="10" fill="#2563eb" class="svg-label">r'</text>
-<line x1="60" y1="100" x2="140" y2="100" stroke="#2563eb" stroke-width="2" class="par-line" onclick="toggleLayer('par')" style="cursor:pointer"/>
-<text x="150" y="104" font-size="10" fill="#2563eb" class="svg-label">s'</text>
-<line x1="60" y1="200" x2="140" y2="200" stroke="#f97316" stroke-width="2" class="par-line" onclick="toggleLayer('par')" style="cursor:pointer"/>
-<text x="150" y="204" font-size="10" fill="#f97316" class="svg-label">r</text>
-<line x1="60" y1="220" x2="140" y2="220" stroke="#f97316" stroke-width="2" class="par-line" onclick="toggleLayer('par')" style="cursor:pointer"/>
-<text x="150" y="224" font-size="10" fill="#f97316" class="svg-label">s</text>
-<!-- Recta ⊥ plano -->
-<text x="300" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#f97316">Recta ⊥ Plano</text>
-<line x1="250" y1="80" x2="350" y2="80" stroke="#2563eb" stroke-width="2" class="perp-line" onclick="toggleLayer('perp')" style="cursor:pointer"/>
-<text x="360" y="84" font-size="10" fill="#2563eb" class="svg-label">α₂</text>
-<line x1="250" y1="220" x2="350" y2="220" stroke="#f97316" stroke-width="2" class="perp-line" onclick="toggleLayer('perp')" style="cursor:pointer"/>
-<text x="360" y="224" font-size="10" fill="#f97316" class="svg-label">α₁</text>
-<line x1="300" y1="80" x2="300" y2="220" stroke="#a855f7" stroke-width="2.5" class="perp-line" onclick="toggleLayer('perp')" style="cursor:pointer"/>
-<text x="310" y="155" font-size="10" fill="#a855f7" class="svg-label">r ⊥ α</text>
-<!-- Planos paralelos -->
-<text x="500" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#10b981">Planos ∥</text>
-<line x1="450" y1="80" x2="550" y2="80" stroke="#2563eb" stroke-width="2" class="plane-line" onclick="toggleLayer('planes')" style="cursor:pointer"/>
-<text x="560" y="84" font-size="10" fill="#2563eb" class="svg-label">α₂</text>
-<line x1="450" y1="100" x2="550" y2="100" stroke="#2563eb" stroke-width="2" class="plane-line" onclick="toggleLayer('planes')" style="cursor:pointer"/>
-<text x="560" y="104" font-size="10" fill="#2563eb" class="svg-label">β₂</text>
-<line x1="450" y1="220" x2="550" y2="220" stroke="#f97316" stroke-width="2" class="plane-line" onclick="toggleLayer('planes')" style="cursor:pointer"/>
-<text x="560" y="224" font-size="10" fill="#f97316" class="svg-label">α₁</text>
-<line x1="450" y1="240" x2="550" y2="240" stroke="#f97316" stroke-width="2" class="plane-line" onclick="toggleLayer('planes')" style="cursor:pointer"/>
-<text x="560" y="244" font-size="10" fill="#f97316" class="svg-label">β₁</text>
-<!-- Leyenda -->
-<rect x="20" y="260" width="560" height="30" fill="#ecfdf5" rx="6"/>
-<text x="300" y="280" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">Rectas ∥: proyecciones ∥ | Recta ⊥ plano: r' ⊥ α₂ y r ⊥ α₁ | Planos ∥: trazas ∥</text>
+<g id="geoContent"></g>
+<rect x="50" y="265" width="500" height="28" fill="#ecfdf5" rx="6"/>
+<text x="300" y="283" text-anchor="middle" font-size="11" fill="#065f46" font-weight="600" id="geoInfo">Cargando...</text>
 </svg>
+</div>
 </div>
 </section>
 
@@ -274,7 +249,7 @@ La traza horizontal de α es perpendicular a la traza vertical de β.
 <div class="exercises">
 
 <div class="exercise">
-<p>📐 Ejercicio 1 (Quiz): ¿Cuántas proyecciones deben ser paralelas para que dos rectas sean paralelas?</p>
+<p>📐 Ejercicio 1 (Quiz): <span class="difficulty-badge easy">Fácil</span> ¿Cuántas proyecciones deben ser paralelas para que dos rectas sean paralelas?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Solo en alzado</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Solo en planta</button>
@@ -346,21 +321,30 @@ La traza horizontal de α es perpendicular a la traza vertical de β.
 <p class="feedback"></p>
 </div>
 
-<!-- NUEVO: Ejercicio de completar -->
 <div class="exercise">
-<p>🧩 Ejercicio 5 (completar): Para que dos rectas sean paralelas, sus proyecciones deben ser paralelas en _____ y _____ .</p>
-<input type="text" id="ex5a" placeholder="1ª proyección" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
-<input type="text" id="ex5b" placeholder="2ª proyección" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
-<button onclick="checkFillIn(['vertical','α₂','horizontal','α₁'])" style="padding:.5rem 1.2rem;border-radius:6px;border:none;background:var(--azul);color:#fff;cursor:pointer;font-size:.95rem;margin:.5rem 0">Comprobar</button>
-<p class="feedback"></p>
+<p>📐 Ejercicio 7 (Emparejar): Empareja cada relación geométrica con su condición.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0" id="geoMatchContainer">
+<div id="geoMatchLeft">
+<button class="quiz-btn" onclick="selectGeoMatch('left','par')" style="width:100%;text-align:left;font-size:.85rem">🔵 Rectas paralelas</button>
+<button class="quiz-btn" onclick="selectGeoMatch('left','perp')" style="width:100%;text-align:left;font-size:.85rem">🟢 Recta ⊥ Plano</button>
+<button class="quiz-btn" onclick="selectGeoMatch('left','ppar')" style="width:100%;text-align:left;font-size:.85rem">🟠 Planos paralelos</button>
+</div>
+<div id="geoMatchRight">
+<button class="quiz-btn" onclick="selectGeoMatch('right','ppar_prop')" style="width:100%;text-align:left;font-size:.85rem">α₁ ∥ β₁ y α₂ ∥ β₂</button>
+<button class="quiz-btn" onclick="selectGeoMatch('right','par_prop')" style="width:100%;text-align:left;font-size:.85rem">r' ∥ s' y r ∥ s</button>
+<button class="quiz-btn" onclick="selectGeoMatch('right','perp_prop')" style="width:100%;text-align:left;font-size:.85rem">r' ⊥ α₂ y r ⊥ α₁</button>
+</div>
+</div>
+<p class="feedback" id="geoMatchFeedback"></p>
 </div>
 
-<!-- NUEVO: Ejercicio V/F -->
 <div class="exercise">
-<p>✅❌ Ejercicio 6 (V/F): Dos planos son perpendiculares si una traza de uno es perpendicular a la otra traza del otro.</p>
+<p>📐 Ejercicio 8 (Problema contextual): <span class="difficulty-badge hard">Avanzado</span></p>
+<p>Un ingeniero verifica planos de una pieza mecánica. Encuentra que la traza horizontal α₁ de un plano es paralela a la traza horizontal β₁ de otro plano, pero la traza vertical α₂ NO es paralela a β₂. ¿Son paralelos los planos?</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, true)">Verdadero — α₁ ⊥ β₂ o α₂ ⊥ β₁</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Falso — necesitan ser paralelas</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Sí — α₁ ∥ β₁ es suficiente</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">No — necesitan α₁ ∥ β₁ Y α₂ ∥ β₂</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">No se puede saber sin más datos</button>
 </div>
 <p class="feedback"></p>
 </div>
@@ -540,6 +524,67 @@ function checkOrden(btn, answer) {
     }, 2000);
   }
 }
+
+function showGeoMode(mode) {
+  document.querySelectorAll('#btnGeoPar, #btnGeoPerp, #btnGeoPlanes').forEach(function(b) {
+    b.style.background = '#fff';
+    b.style.color = 'var(--azul)';
+  });
+  var btnId = mode === 'par' ? 'btnGeoPar' : mode === 'perp' ? 'btnGeoPerp' : 'btnGeoPlanes';
+  var btn = document.getElementById(btnId);
+  if(btn) { btn.style.background = 'var(--azul)'; btn.style.color = '#fff'; }
+  var g = document.getElementById('geoContent');
+  var info = document.getElementById('geoInfo');
+  var html = '';
+  if(mode === 'par') {
+    info.textContent = '🔵 RECTAS PARALELAS: r' ∥ s' y r ∥ s — Ambas proyecciones paralelas → rectas paralelas';
+    info.setAttribute('fill', '#2563eb');
+    html += '<text x="100" y="55" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">Rectas ∥</text>';
+    html += '<line x1="50" y1="150" x2="550" y2="150" stroke="#333" stroke-width="2"/>';
+    html += '<text x="560" y="154" font-size="10" fill="#333">LT</text>';
+    html += '<line x1="60" y1="80" x2="140" y2="80" stroke="#2563eb" stroke-width="3"/>';
+    html += '<text x="148" y="84" font-size="10" fill="#2563eb">r'</text>';
+    html += '<line x1="60" y1="100" x2="140" y2="100" stroke="#2563eb" stroke-width="3"/>';
+    html += '<text x="148" y="104" font-size="10" fill="#2563eb">s'</text>';
+    html += '<line x1="60" y1="200" x2="140" y2="200" stroke="#f97316" stroke-width="3"/>';
+    html += '<text x="148" y="204" font-size="10" fill="#f97316">r</text>';
+    html += '<line x1="60" y1="220" x2="140" y2="220" stroke="#f97316" stroke-width="3"/>';
+    html += '<text x="148" y="224" font-size="10" fill="#f97316">s</text>';
+    html += '<text x="100" y="250" text-anchor="middle" font-size="10" fill="#10b981">✓ Ambas ∥ → rectas ∥</text>';
+  } else if(mode === 'perp') {
+    info.textContent = '🟢 RECTA ⊥ PLANO: r' ⊥ α₂ y r ⊥ α₁ — La recta es perpendicular a AMBAS trazas del plano';
+    info.setAttribute('fill', '#10b981');
+    html += '<text x="300" y="55" text-anchor="middle" font-size="12" font-weight="bold" fill="#f97316">Recta ⊥ Plano</text>';
+    html += '<line x1="50" y1="150" x2="550" y2="150" stroke="#333" stroke-width="2"/>';
+    html += '<text x="560" y="154" font-size="10" fill="#333">LT</text>';
+    html += '<line x1="250" y1="80" x2="350" y2="80" stroke="#2563eb" stroke-width="2.5"/>';
+    html += '<text x="358" y="84" font-size="10" fill="#2563eb">α₂</text>';
+    html += '<line x1="250" y1="220" x2="350" y2="220" stroke="#f97316" stroke-width="2.5"/>';
+    html += '<text x="358" y="224" font-size="10" fill="#f97316">α₁</text>';
+    html += '<line x1="300" y1="80" x2="300" y2="220" stroke="#a855f7" stroke-width="3"/>';
+    html += '<rect x="300" y="80" width="8" height="8" fill="none" stroke="#a855f7" stroke-width="1"/>';
+    html += '<rect x="292" y="220" width="8" height="8" fill="none" stroke="#a855f7" stroke-width="1"/>';
+    html += '<text x="315" y="155" font-size="11" fill="#a855f7" font-weight="bold">r ⊥ α</text>';
+    html += '<text x="300" y="250" text-anchor="middle" font-size="10" fill="#10b981">✓ r' ⊥ α₂ y r ⊥ α₁ → recta ⊥ plano</text>';
+  } else {
+    info.textContent = '🟠 PLANOS PARALELOS: α₁ ∥ β₁ y α₂ ∥ β₂ — Ambas trazas de un plano paralelas a las del otro';
+    info.setAttribute('fill', '#f97316');
+    html += '<text x="500" y="55" text-anchor="middle" font-size="12" font-weight="bold" fill="#10b981">Planos ∥</text>';
+    html += '<line x1="50" y1="150" x2="550" y2="150" stroke="#333" stroke-width="2"/>';
+    html += '<text x="560" y="154" font-size="10" fill="#333">LT</text>';
+    html += '<line x1="450" y1="80" x2="550" y2="80" stroke="#2563eb" stroke-width="2.5"/>';
+    html += '<text x="558" y="84" font-size="10" fill="#2563eb">α₂</text>';
+    html += '<line x1="450" y1="100" x2="550" y2="100" stroke="#2563eb" stroke-width="2.5"/>';
+    html += '<text x="558" y="104" font-size="10" fill="#2563eb">β₂</text>';
+    html += '<line x1="450" y1="220" x2="550" y2="220" stroke="#f97316" stroke-width="2.5"/>';
+    html += '<text x="558" y="224" font-size="10" fill="#f97316">α₁</text>';
+    html += '<line x1="450" y1="240" x2="550" y2="240" stroke="#f97316" stroke-width="2.5"/>';
+    html += '<text x="558" y="244" font-size="10" fill="#f97316">β₁</text>';
+    html += '<text x="500" y="250" text-anchor="middle" font-size="10" fill="#10b981">✓ Ambas trazas ∥ → planos ∥</text>';
+  }
+  g.innerHTML = html;
+}
+showGeoMode('par');
 </script>
 </body>
 </html>

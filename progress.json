@@ -910,15 +910,15 @@
         }
       ],
       "scores": {
-        "svg_interactive": 8,
+        "svg_interactive": 9,
         "exercises": 9,
-        "text_explanation": 8,
+        "text_explanation": 9,
         "real_world": 9,
-        "error_common": 8,
+        "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-12-ronda2-s2",
-      "improvement_count": 3,
+      "last_improved": "2026-06-13-ronda2-s3",
+      "improvement_count": 4,
       "improvement_history": [
         {
           "round": "ronda2-s2",
@@ -937,6 +937,9 @@
             "css_coherence": 10
           }
         }
+      ],
+      "ronda2_improvements": [
+        "svg_interactive 8→9, text 8→9, error 8→9: visualizador 3-estados interactivo (rectas∥/recta⊥plano/planos∥), ejercicio emparejar, problema contextual, badges dificultad, ejercicio duplicado eliminado"
       ]
     },
     "b04-06-vm.html": {
