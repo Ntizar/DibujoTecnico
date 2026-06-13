@@ -447,6 +447,76 @@ Colocar el cuadro de rotulación en la esquina superior derecha o en el centro d
 <p style="font-size:.85rem;color:var(--gris)">Haz clic en cada "?" para verificar tu respuesta</p>
 </div>
 
+
+<!-- NUEVO RONDA 2: Ejercicio V/F visual con SVG — identificar campo correcto -->
+<div class="exercise">
+<p><span class="difficulty-badge easy">Fácil</span> 🔍 Ejercicio 8 (VF visual): En el siguiente cuadro de rotulación, ¿cuál es el campo de <strong>Fecha</strong>?</p>
+<div class="interactive" style="margin:.5rem 0">
+<div class="svg-container" style="margin:0;padding:.8rem">
+<svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg">
+<!-- Cuadro de rotulación simplificado -->
+<rect x="10" y="10" width="280" height="140" fill="#fff" stroke="#333" stroke-width="2" rx="4"/>
+<!-- Campo 1: Proyecto -->
+<rect x="15" y="15" width="130" height="22" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" rx="2" id="field1"/>
+<text x="80" y="30" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="bold">Motor V6 3.0L</text>
+<!-- Campo 2: Título -->
+<rect x="150" y="15" width="130" height="22" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" rx="2" id="field2"/>
+<text x="215" y="30" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="bold">Cigüeñal</text>
+<!-- Campo 3: Escala -->
+<rect x="15" y="42" width="130" height="22" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" rx="2" id="field3"/>
+<text x="80" y="57" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="bold">1:2</text>
+<!-- Campo 4: Autor -->
+<rect x="150" y="42" width="130" height="22" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" rx="2" id="field4"/>
+<text x="215" y="57" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="bold">J. García</text>
+<!-- Campo 5: FECHA -->
+<rect x="15" y="69" width="130" height="22" fill="#fff7ed" stroke="#f97316" stroke-width="2.5" rx="2" id="field5"/>
+<text x="80" y="84" text-anchor="middle" font-size="9" fill="#f97316" font-weight="bold">15/03/2025</text>
+<!-- Campo 6: Formato -->
+<rect x="150" y="69" width="130" height="22" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" rx="2" id="field6"/>
+<text x="215" y="84" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="bold">A2</text>
+<!-- Campo 7: Norma -->
+<rect x="15" y="96" width="130" height="22" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" rx="2" id="field7"/>
+<text x="80" y="111" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="bold">UNE-EN ISO 128</text>
+<!-- Campo 8: Nº Hoja -->
+<rect x="150" y="96" width="130" height="22" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" rx="2" id="field8"/>
+<text x="215" y="111" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="bold">Hoja 3 de 5</text>
+<!-- Labels -->
+<text x="80" y="135" text-anchor="middle" font-size="7" fill="#94a3b8">1</text>
+<text x="215" y="135" text-anchor="middle" font-size="7" fill="#94a3b8">2</text>
+<text x="80" y="150" text-anchor="middle" font-size="7" fill="#94a3b8">3</text>
+<text x="215" y="150" text-anchor="middle" font-size="7" fill="#94a3b8">4</text>
+</svg>
+</div>
+</div>
+<p style="font-size:.9rem;margin-bottom:.5rem">Haz clic en el número del campo que corresponde a la <strong>Fecha</strong>:</p>
+<button class="quiz-btn" onclick="checkIdentify(this, false)" style="margin:.3rem">1 — Proyecto</button>
+<button class="quiz-btn" onclick="checkIdentify(this, false)" style="margin:.3rem">2 — Título</button>
+<button class="quiz-btn" onclick="checkIdentify(this, false)" style="margin:.3rem">3 — Escala</button>
+<button class="quiz-btn" onclick="checkIdentify(this, false)" style="margin:.3rem">4 — Autor</button>
+<button class="quiz-btn" onclick="checkIdentify(this, true)" style="margin:.3rem">5 — Fecha</button>
+<button class="quiz-btn" onclick="checkIdentify(this, false)" style="margin:.3rem">6 — Formato</button>
+<button class="quiz-btn" onclick="checkIdentify(this, false)" style="margin:.3rem">7 — Norma</button>
+<button class="quiz-btn" onclick="checkIdentify(this, false)" style="margin:.3rem">8 — Nº Hoja</button>
+<p class="feedback"></p>
+</div>
+
+<!-- NUEVO RONDA 2: Ejercicio de emparejar -->
+<div class="exercise">
+<p><span class="difficulty-badge medium">Medio</span> 🔗 Ejercicio 9 (emparejar): Empareja cada campo con su descripción correcta.</p>
+<div class="interactive" style="margin:.5rem 0">
+<div style="display:flex;gap:1rem;flex-wrap:wrap" id="matchCuadro">
+<div style="flex:1;min-width:200px" id="matchLeftCuadro">
+<div class="box box-teoria clickable" onclick="selectMatchCuadro(this, 'left')" data-match="1">📁 Proyecto</div>
+<div class="box box-teoria clickable" onclick="selectMatchCuadro(this, 'left')" data-match="2">📏 Norma</div>
+<div class="box box-teoria clickable" onclick="selectMatchCuadro(this, 'left')" data-match="3">📅 Fecha</div>
+</div>
+<div style="flex:1;min-width:200px" id="matchRightCuadro">
+<!-- Se shufflea con JS -->
+</div>
+</div>
+<div id="matchCuadroFeedback" style="margin-top:1rem"></div>
+</div>
+</div>
 </div>
 </section>
 
@@ -580,6 +650,111 @@ function fillTable(cellId, expected) {
     cell.style.fontWeight = '';
   }
 }
+
+
+function checkIdentify(btn, correct) {
+  var exercise = btn.closest('.exercise');
+  var allBtns = exercise.querySelectorAll('.quiz-btn');
+  allBtns.forEach(function(b) { b.disabled = true; b.classList.remove('correct','wrong'); });
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  var feedback = exercise.querySelector('.feedback');
+  if (feedback) {
+    if (correct) {
+      feedback.textContent = '✅ ¡Correcto! El campo 5 es la Fecha (15/03/2025).';
+      feedback.className = 'feedback correct';
+    } else {
+      feedback.textContent = '❌ Ese no es el campo Fecha. Busca el dato con formato de fecha.';
+      feedback.className = 'feedback incorrect';
+      setTimeout(function() {
+        allBtns.forEach(function(b) { b.disabled = false; b.classList.remove('correct','wrong'); });
+        feedback.textContent = '';
+        feedback.className = 'feedback';
+      }, 2000);
+    }
+  }
+}
+
+function initMatchCuadro() {
+  var rightItems = [
+    { text: '📝 Qué se está diseñando', match: '1' },
+    { text: '📄 Norma de ejecución', match: '2' },
+    { text: '🗓️ Cuándo se creó el plano', match: '3' }
+  ];
+  // Shuffle
+  for (var i = rightItems.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = rightItems[i];
+    rightItems[i] = rightItems[j];
+    rightItems[j] = tmp;
+  }
+  var rightContainer = document.getElementById('matchRightCuadro');
+  if (!rightContainer) return;
+  rightContainer.innerHTML = '';
+  rightItems.forEach(function(item) {
+    var div = document.createElement('div');
+    div.className = 'box box-ejemplo clickable';
+    div.textContent = item.text;
+    div.setAttribute('data-match', item.match);
+    div.setAttribute('data-selected', 'false');
+    div.onclick = function() { selectMatchCuadro(this, 'right'); };
+    rightContainer.appendChild(div);
+  });
+}
+
+var matchCuadroState = { left: null, right: null, matched: 0, total: 3 };
+
+function selectMatchCuadro(el, side) {
+  if (el.getAttribute('data-selected') === 'true') return;
+  matchCuadroState[side] = el;
+  var container = document.getElementById('matchCuadro');
+  container.querySelectorAll('.clickable').forEach(function(b) { b.style.borderColor = '#e2e8f0'; });
+  el.style.borderColor = 'var(--azul)';
+  el.style.background = 'var(--azul-claro)';
+  
+  if (matchCuadroState.left && matchCuadroState.right) {
+    var leftMatch = matchCuadroState.left.getAttribute('data-match');
+    var rightMatch = matchCuadroState.right.getAttribute('data-match');
+    var feedback = document.getElementById('matchCuadroFeedback');
+    
+    if (leftMatch === rightMatch) {
+      matchCuadroState.left.setAttribute('data-selected', 'true');
+      matchCuadroState.right.setAttribute('data-selected', 'true');
+      matchCuadroState.left.style.borderColor = 'var(--verde)';
+      matchCuadroState.left.style.background = 'var(--verde-claro)';
+      matchCuadroState.right.style.borderColor = 'var(--verde)';
+      matchCuadroState.right.style.background = 'var(--verde-claro)';
+      matchCuadroState.left.style.cursor = 'default';
+      matchCuadroState.right.style.cursor = 'default';
+      matchCuadroState.matched++;
+      feedback.textContent = '✅ ¡Bien! ' + matchCuadroState.matched + '/3 emparejados.';
+      feedback.className = 'feedback correct';
+      
+      if (matchCuadroState.matched === matchCuadroState.total) {
+        feedback.textContent = '🎉 ¡Todos emparejados! Proyecto=Qué se diseña, Norma=Norma ejecución, Fecha=Cuándo se creó.';
+      }
+      
+      matchCuadroState.left = null;
+      matchCuadroState.right = null;
+    } else {
+      feedback.textContent = '❌ No coinciden. Intenta de nuevo.';
+      feedback.className = 'feedback incorrect';
+      setTimeout(function() {
+        matchCuadroState.left.style.borderColor = '#e2e8f0';
+        matchCuadroState.left.style.background = '';
+        matchCuadroState.right.style.borderColor = '#e2e8f0';
+        matchCuadroState.right.style.background = '';
+        matchCuadroState.left = null;
+        matchCuadroState.right = null;
+        feedback.textContent = '';
+        feedback.className = 'feedback';
+      }, 1500);
+    }
+  }
+}
+
+// Init match exercise on load
+initMatchCuadro();
+
 
 window.onscroll = function(){
   var h = document.documentElement;
