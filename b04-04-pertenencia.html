@@ -126,38 +126,23 @@ A debe estar en esa horizontal
 <section class="chapter">
 <h2 class="chapter-title">2️⃣ Visualiza la pertenencia</h2>
 <div class="svg-container">
-<svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
-<!-- Fondo -->
-<rect x="0" y="0" width="600" height="300" fill="#f8fafc" rx="8"/>
-<text x="300" y="25" text-anchor="middle" font-size="14" fill="#64748b" font-weight="600">Pertenencia: punto en recta y plano</text>
-<!-- LT -->
-<line x1="50" y1="150" x2="550" y2="150" stroke="#333" stroke-width="2"/>
-<!-- Recta r -->
-<line x1="100" y1="200" x2="500" y2="80" stroke="#2563eb" stroke-width="2.5" class="recta-line" onclick="toggleLayer('r')" style="cursor:pointer"/>
-<text x="510" y="85" font-size="11" fill="#2563eb" class="svg-label">r'</text>
-<line x1="100" y1="100" x2="500" y2="220" stroke="#2563eb" stroke-width="2.5" class="recta-line" onclick="toggleLayer('r')" style="cursor:pointer"/>
-<text x="510" y="225" font-size="11" fill="#2563eb" class="svg-label">r</text>
-<!-- Punto A en r -->
-<circle cx="300" cy="140" r="8" fill="#10b981" class="svg-point" onclick="togglePoint(this)" style="cursor:pointer"/>
-<text x="310" y="135" font-size="12" font-weight="bold" fill="#10b981" class="svg-label">A'</text>
-<circle cx="300" cy="160" r="8" fill="#10b981" class="svg-point" onclick="togglePoint(this)" style="cursor:pointer"/>
-<text x="310" y="175" font-size="12" font-weight="bold" fill="#10b981" class="svg-label">A</text>
-<!-- Línea de unión -->
-<line x1="300" y1="140" x2="300" y2="160" stroke="#a855f7" stroke-width="1.5" class="union-line" id="unionLine"/>
-<!-- Plano α -->
-<line x1="350" y1="80" x2="550" y2="150" stroke="#f97316" stroke-width="2"/>
-<text x="560" y="145" font-size="11" fill="#f97316">α₁</text>
-<line x1="350" y1="220" x2="550" y2="150" stroke="#f97316" stroke-width="2"/>
-<text x="560" y="165" font-size="11" fill="#f97316">α₂</text>
-<!-- Punto B en α -->
-<circle cx="450" cy="130" r="5" fill="#a855f7"/>
-<text x="460" y="125" font-size="11" font-weight="bold" fill="#a855f7">B'</text>
-<circle cx="450" cy="170" r="5" fill="#a855f7"/>
-<text x="460" y="185" font-size="11" font-weight="bold" fill="#a855f7">B</text>
-<!-- Leyenda -->
-<rect x="20" y="250" width="560" height="35" fill="#ecfdf5" rx="6"/>
-<text x="300" y="270" text-anchor="middle" font-size="11" fill="#10b981" font-weight="600">Punto en recta: proyecciones en proyecciones | Punto en plano: está en recta del plano</text>
+<h4 style="margin-bottom:.8rem;text-align:center">🎮 Selector de casos — haz clic para cambiar</h4>
+<div style="display:flex;gap:.5rem;justify-content:center;margin-bottom:1rem;flex-wrap:wrap">
+  <button class="quiz-btn" onclick="showPertenencia('recta')" id="btnRecta" style="font-size:.9rem;padding:.4rem 1rem">📍 Punto en recta</button>
+  <button class="quiz-btn" onclick="showPertenencia('plano')" id="btnPlano" style="font-size:.9rem;padding:.4rem 1rem">📐 Punto en plano</button>
+  <button class="quiz-btn" onclick="showPertenencia('fuera')" id="btnFuera" style="font-size:.9rem;padding:.4rem 1rem">❌ No pertenece</button>
+</div>
+<div id="pertSvgContainer" style="text-align:center">
+<svg viewBox="0 0 600 320" width="550" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="600" height="320" fill="#f8fafc" rx="8"/>
+<text x="300" y="22" text-anchor="middle" font-size="13" fill="#64748b" font-weight="600" id="pertTitle">Pertenencia: punto en recta</text>
+<line x1="50" y1="160" x2="550" y2="160" stroke="#333" stroke-width="2"/>
+<text x="555" y="164" font-size="10" fill="#333">LT</text>
+<g id="pertContent"></g>
+<rect x="100" y="270" width="400" height="35" fill="#ecfdf5" rx="8" stroke="#10b981" stroke-width="1.5"/>
+<text x="300" y="293" text-anchor="middle" font-size="11" fill="#065f46" font-weight="600" id="pertInfo">Cargando...</text>
 </svg>
+</div>
 </div>
 </section>
 
@@ -300,6 +285,44 @@ A debe estar en esa horizontal
 </div>
 <p class="feedback"></p>
 </div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 5 (Emparejar): Empareja cada concepto con su definición. Haz clic en un elemento de la izquierda y luego en su definición.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0" id="matchContainer">
+<div id="matchLeft">
+<button class="quiz-btn" onclick="selectMatch('left','p1')" style="width:100%;text-align:left;font-size:.9rem">📍 Pertenencia punto-recta</button>
+<button class="quiz-btn" onclick="selectMatch('left','p2')" style="width:100%;text-align:left;font-size:.9rem">📐 Pertenencia punto-plano</button>
+<button class="quiz-btn" onclick="selectMatch('left','p3')" style="width:100%;text-align:left;font-size:.9rem">↕️ Línea de unión</button>
+</div>
+<div id="matchRight">
+<button class="quiz-btn" onclick="selectMatch('right','d3')" style="width:100%;text-align:left;font-size:.9rem">Vertical que une A' y A</button>
+<button class="quiz-btn" onclick="selectMatch('right','d1')" style="width:100%;text-align:left;font-size:.9rem">A' ∈ r' y A ∈ r</button>
+<button class="quiz-btn" onclick="selectMatch('right','d2')" style="width:100%;text-align:left;font-size:.9rem">Punto en recta auxiliar del plano</button>
+</div>
+</div>
+<p class="feedback" id="matchFeedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 6 (Problema contextual): <span class="difficulty-badge" style="background:var(--naranja)">Avanzado</span></p>
+<p>Un ingeniero diseña una estructura metálica. En el plano hay una viga recta <strong>r</strong>. Quiere colocar un soporte en un punto <strong>P</strong> que está a 3m de la línea de tierra en alzado y 4m en planta. Si la viga pasa por (2, 3) en alzado y (2, 3) en planta, ¿pertenece P a la viga?</p>
+<p><em>Pista: verifica las 3 condiciones de pertenencia.</em></p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Sí, porque P está cerca de r</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">No, las proyecciones no están en las proyecciones de r</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Sí, porque P y r están en el mismo plano</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 7 (Completar): <span class="difficulty-badge" style="background:var(--verde)">Fácil</span></p>
+<p>Para verificar si un punto pertenece a un plano, se traza una recta auxiliar por el punto. Las rectas auxiliares más usadas son las <input type="text" id="ex7a" placeholder="horizontales" style="padding:.3rem .6rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.9rem;width:100px"> y las <input type="text" id="ex7b" placeholder="frontales" style="padding:.3rem .6rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.9rem;width:100px"> del plano.</p>
+<button onclick="checkFillIn(['horizontal','horizontales'],['frontal','frontales'])" style="padding:.5rem 1.2rem;border-radius:6px;border:none;background:var(--azul);color:#fff;cursor:pointer;font-size:.95rem;margin:.5rem 0">Comprobar</button>
+<p class="feedback"></p>
+</div>
 
 </section>
 
@@ -338,6 +361,8 @@ La pertenencia es fundamental para todo lo que viene: cortes, intersecciones, ab
 
 <div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: verificar si un punto está en una cara</strong>En una pieza con varias caras inclinadas, el operario necesita saber si un punto de referencia (como un agujero de centrado) pertenece a la cara visible. Usa las rectas auxiliares del diedrico: si el punto está en la recta del plano, pertenece al plano.</div>
 
+<div class="box box-idea" style="margin-top:1rem"><span class="real-world-badge">🔬 CASO REAL</span><strong>Control de calidad en fabricación CNC</strong>En mecanizado CNC, las piezas se fabrican según planos técnicos. El inspector de calidad debe verificar que los orificios de fijación (puntos) están exactamente en las caras del plano de la pieza. Usa el método de las rectas auxiliares: traza una horizontal del plano por la proyección del orificio y verifica que la otra proyección está en esa horizontal. <strong>Si el orificio no pertenece al plano de la cara, la pieza no encaja en el ensamblaje final.</strong></div>
+
 <!-- CONEXIONES R2 -->
 <div class="connection-box">
 <h4>🔗 Conexiones con otros temas</h4>
@@ -355,7 +380,6 @@ La pertenencia es fundamental para todo lo que viene: cortes, intersecciones, ab
 <li>A' y A siempre en la misma línea de unión</li>
 <li>¡Ya dominas la pertenencia! 🎉</li>
 </ul>
-</div>
 </div>
 
 <div class="nav">
@@ -488,6 +512,116 @@ function checkOrden(btn, answer) {
     }, 2000);
   }
 }
+
+var matchSelected = null;
+var matchLeftId = null;
+var matchPairs = {
+  'p1': 'd1',
+  'p2': 'd2',
+  'p3': 'd3'
+};
+var matchFound = {};
+
+function selectMatch(side, id) {
+  if(side === 'left') {
+    matchLeftId = id;
+    document.querySelectorAll('#matchLeft .quiz-btn').forEach(function(b) {
+      b.style.background = 'var(--azul-claro)';
+      b.style.borderColor = 'var(--azul)';
+    });
+    event.target.style.background = 'var(--azul)';
+    event.target.style.color = '#fff';
+  } else if(side === 'right' && matchLeftId) {
+    var feedback = document.getElementById('matchFeedback');
+    if(matchPairs[matchLeftId] === id && !matchFound[matchLeftId]) {
+      matchFound[matchLeftId] = true;
+      event.target.style.background = 'var(--verde)';
+      event.target.style.color = '#fff';
+      event.target.style.borderColor = 'var(--verde)';
+      event.target.disabled = true;
+      document.querySelectorAll('#matchLeft .quiz-btn').forEach(function(b) {
+        if(b.onclick && b.onclick.toString().includes(matchLeftId)) {
+          b.style.background = 'var(--verde)';
+          b.style.color = '#fff';
+          b.style.borderColor = 'var(--verde)';
+          b.disabled = true;
+        }
+      });
+      feedback.textContent = '✅ ¡Correcto!';
+      feedback.className = 'feedback correct';
+      if(Object.keys(matchFound).length === 3) {
+        feedback.textContent = '🎉 ¡Todos emparejados correctamente!';
+      }
+    } else {
+      feedback.textContent = '❌ Intenta de nuevo. Piensa en la relación entre los conceptos.';
+      feedback.className = 'feedback incorrect';
+      setTimeout(function() {
+        feedback.textContent = '';
+        feedback.className = 'feedback';
+      }, 2000);
+    }
+    matchLeftId = null;
+  }
+}
+
+function showPertenencia(caso) {
+  document.querySelectorAll('#pertSvgContainer .quiz-btn').forEach(function(b) {
+    b.style.background = '#fff';
+    b.style.color = 'var(--azul)';
+  });
+  var activeBtn = document.getElementById('btn' + caso.charAt(0).toUpperCase() + caso.slice(1));
+  if(activeBtn) { activeBtn.style.background = 'var(--azul)'; activeBtn.style.color = '#fff'; }
+  var g = document.getElementById('pertContent');
+  var title = document.getElementById('pertTitle');
+  var info = document.getElementById('pertInfo');
+  var html = '';
+  if(caso === 'recta') {
+    title.textContent = 'Pertenencia: punto en recta';
+    info.textContent = 'A\' ∈ r\'  |  A ∈ r  |  Misma vertical → PERTENECE';
+    html += '<line x1="80" y1="200" x2="300" y2="120" stroke="#2563eb" stroke-width="3"/>';
+    html += '<text x="305" y="118" font-size="12" fill="#2563eb" font-weight="bold">r\'</text>';
+    html += '<line x1="80" y1="120" x2="300" y2="200" stroke="#2563eb" stroke-width="3"/>';
+    html += '<text x="305" y="208" font-size="12" fill="#2563eb" font-weight="bold">r</text>';
+    html += '<circle cx="190" cy="160" r="10" fill="#10b981" stroke="#065f46" stroke-width="2"/>';
+    html += '<text x="205" y="155" font-size="13" fill="#10b981" font-weight="bold">A\'</text>';
+    html += '<circle cx="190" cy="160" r="10" fill="#10b981" stroke="#065f46" stroke-width="2"/>';
+    html += '<text x="205" y="180" font-size="13" fill="#10b981" font-weight="bold">A</text>';
+    html += '<line x1="190" y1="150" x2="190" y2="170" stroke="#a855f7" stroke-width="2" stroke-dasharray="4,2"/>';
+    html += '<text x="300" y="250" text-anchor="middle" font-size="12" fill="#10b981">✓ A\' en r\'  ✓ A en r  ✓ Misma vertical</text>';
+  } else if(caso === 'plano') {
+    title.textContent = 'Pertenencia: punto en plano';
+    info.textContent = 'B\' en h\'  |  B en h  → PERTENECE al plano α';
+    html += '<line x1="50" y1="200" x2="550" y2="200" stroke="#f97316" stroke-width="2"/>';
+    html += '<text x="555" y="205" font-size="11" fill="#f97316" font-weight="bold">α₁</text>';
+    html += '<line x1="50" y1="80" x2="550" y2="80" stroke="#f97316" stroke-width="2"/>';
+    html += '<text x="555" y="85" font-size="11" fill="#f97316" font-weight="bold">α₂</text>';
+    html += '<line x1="100" y1="130" x2="400" y2="130" stroke="#a855f7" stroke-width="2" stroke-dasharray="6,3"/>';
+    html += '<text x="405" y="128" font-size="11" fill="#a855f7" font-weight="bold">h\'</text>';
+    html += '<line x1="100" y1="190" x2="400" y2="190" stroke="#a855f7" stroke-width="2" stroke-dasharray="6,3"/>';
+    html += '<text x="405" y="195" font-size="11" fill="#a855f7" font-weight="bold">h</text>';
+    html += '<circle cx="250" cy="130" r="10" fill="#10b981" stroke="#065f46" stroke-width="2"/>';
+    html += '<text x="265" y="125" font-size="13" fill="#10b981" font-weight="bold">B\'</text>';
+    html += '<circle cx="250" cy="190" r="10" fill="#10b981" stroke="#065f46" stroke-width="2"/>';
+    html += '<text x="265" y="205" font-size="13" fill="#10b981" font-weight="bold">B</text>';
+    html += '<line x1="250" y1="140" x2="250" y2="180" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="4,2"/>';
+  } else {
+    title.textContent = 'No pertenece: punto fuera';
+    info.textContent = 'C\' ∉ r\'  o  C ∉ r  o  No en misma vertical → NO PERTENECE';
+    info.setAttribute('fill', '#991b1b');
+    html += '<line x1="80" y1="200" x2="300" y2="120" stroke="#2563eb" stroke-width="3"/>';
+    html += '<text x="305" y="118" font-size="12" fill="#2563eb" font-weight="bold">r\'</text>';
+    html += '<line x1="80" y1="120" x2="300" y2="200" stroke="#2563eb" stroke-width="3"/>';
+    html += '<text x="305" y="208" font-size="12" fill="#2563eb" font-weight="bold">r</text>';
+    html += '<circle cx="220" cy="130" r="10" fill="#ef4444" stroke="#991b1b" stroke-width="2"/>';
+    html += '<text x="235" y="125" font-size="13" fill="#ef4444" font-weight="bold">C\'</text>';
+    html += '<circle cx="200" cy="180" r="10" fill="#ef4444" stroke="#991b1b" stroke-width="2"/>';
+    html += '<text x="215" y="195" font-size="13" fill="#ef4444" font-weight="bold">C</text>';
+    html += '<line x1="210" y1="140" x2="210" y2="170" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4,2"/>';
+    html += '<text x="300" y="250" text-anchor="middle" font-size="12" fill="#ef4444">✗ C\' no está en r\'  ✗ C no está en r</text>';
+  }
+  g.innerHTML = html;
+}
+showPertenencia('recta');
 </script>
 </body>
 </html>

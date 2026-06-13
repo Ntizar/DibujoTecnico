@@ -865,16 +865,19 @@
         }
       ],
       "scores": {
-        "svg_interactive": 8,
-        "exercises": 8,
+        "svg_interactive": 9,
+        "exercises": 9,
         "text_explanation": 9,
-        "real_world": 8,
-        "error_common": 8,
+        "real_world": 9,
+        "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-12T09:32:32.791157+00:00",
-      "improvement_count": 3,
-      "last_round": "ronda2-s3"
+      "last_improved": "2026-06-13-ronda2-s3",
+      "improvement_count": 4,
+      "last_round": "ronda2-s3",
+      "ronda2_improvements": [
+        "svg_interactive 8→9, exercises 8→9, real_world 8→9, error_common 8→9: SVG 3-estados interactivo, ejercicio emparejar, problema contextual, caso CNC"
+      ]
     },
     "b04-05-paralelismo-perpendicularidad.html": {
       "status": "improved_2",
