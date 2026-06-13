@@ -1902,13 +1902,13 @@
       "scores": {
         "svg_interactive": 9,
         "exercises": 9,
-        "text_explanation": 8,
+        "text_explanation": 9,
         "real_world": 9,
         "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-12-ronda2-s2",
-      "improvement_count": 2
+      "last_improved": "2026-06-13-ronda2-s3",
+      "improvement_count": 3
     },
     "b09-02-lista-piezas.html": {
       "status": "improved_2",
