@@ -62,6 +62,15 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .stack-item:hover{border-color:var(--azul);transform:translateX(4px)}
 .stack-item.active{border-color:var(--azul);background:var(--azul-claro)}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
+.connection-box{background:var(--azul-claro);border:2px solid var(--azul);border-radius:12px;padding:1rem 1.2rem;margin:1.5rem 0}.connection-box strong{color:var(--azul)}
+.difficulty-badge{display:inline-block;background:var(--verde);color:#fff;padding:.15rem .5rem;border-radius:10px;font-size:.7rem;font-weight:700;margin-left:.5rem;vertical-align:middle}
+.difficulty-badge.easy{background:var(--verde)}
+.difficulty-badge.medium{background:var(--naranja)}
+.difficulty-badge.hard{background:var(--rojo)}
+.clickable{cursor:pointer;transition:all .2s}
+.clickable:hover{filter:brightness(1.2);stroke-width:3}
+.feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
+.feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
 </style>
 </head>
 <body>
@@ -247,7 +256,7 @@ Clic en Th → info de traza horizontal. Clic en Tv → info de traza vertical.
 <div class="exercises">
 
 <div class="exercise">
-<p>📐 Ejercicio 1 (Quiz): ¿Cuántas proyecciones tiene una recta?</p>
+<p>📐 Ejercicio 1 (Quiz): <span class="difficulty-badge easy">Fácil</span> ¿Cuántas proyecciones tiene una recta?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">1</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">2</button>
@@ -258,7 +267,7 @@ Clic en Th → info de traza horizontal. Clic en Tv → info de traza vertical.
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 2 (V/F visual): ¿Esta recta tiene Th y Tv correctas?</p>
+<p>📐 Ejercicio 2 (V/F visual): <span class="difficulty-badge easy">Fácil</span> ¿Esta recta tiene Th y Tv correctas?</p>
 <div class="comparison" style="margin:.5rem 0">
 <div class="comparison-side" style="padding:.8rem">
 <svg viewBox="0 0 120 80" width="100"><line x1="10" y1="40" x2="110" y2="40" stroke="#333" stroke-width="1.5"/><line x1="20" y1="60" x2="100" y2="20" stroke="#2563eb" stroke-width="1.5"/><circle cx="60" cy="40" r="4" fill="#10b981"/><text x="60" y="55" text-anchor="middle" font-size="7" fill="#10b981">Th</text></svg>
@@ -278,7 +287,7 @@ Clic en Th → info de traza horizontal. Clic en Tv → info de traza vertical.
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 3 (Completar): La traza horizontal Th tiene z = ___. La traza vertical Tv tiene y = ___.</p>
+<p>📐 Ejercicio 3 (Completar): <span class="difficulty-badge medium">Medio</span> La traza horizontal Th tiene z = ___. La traza vertical Tv tiene y = ___.</p>
 <input type="text" id="ex3a" placeholder="1ª (número)" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:80px">
 <input type="text" id="ex3b" placeholder="2ª (número)" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:80px">
 <button onclick="checkFillIn()">Comprobar</button>
@@ -286,7 +295,7 @@ Clic en Th → info de traza horizontal. Clic en Tv → info de traza vertical.
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 4 (Ordenar pasos): ¿En qué orden se encuentran las trazas?</p>
+<p>📐 Ejercicio 4 (Ordenar pasos): <span class="difficulty-badge medium">Medio</span> ¿En qué orden se encuentran las trazas?</p>
 <p style="font-weight:400;font-size:.9rem">① Extender r' hasta LT → Th' ② Extender r hasta LT → Tv ③ Trazar recta r' y r</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkOrden(this, '3-1-2')">③→①→②</button>
@@ -297,7 +306,7 @@ Clic en Th → info de traza horizontal. Clic en Tv → info de traza vertical.
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 5 (Quiz): Una recta horizontal tiene r'...</p>
+<p>📐 Ejercicio 5 (Quiz): <span class="difficulty-badge medium">Medio</span> Una recta horizontal tiene r'...</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Paralela a la LT</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Perpendicular a la LT</button>
@@ -306,6 +315,21 @@ Clic en Th → info de traza horizontal. Clic en Tv → info de traza vertical.
 <p class="feedback"></p>
 </div>
 
+
+<div class="exercise">
+<p>📐 Ejercicio 6 (Identificar): Haz clic en el SVG que muestra una recta frontal (paralela a PV, r ∥ LT)</p>
+<div class="interactive" style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+<div class="clickable" onclick="checkIdentify(this, false)" style="padding:1rem;border:2px solid #e2e8f0;border-radius:8px;background:#fff;text-align:center">
+<svg viewBox="0 0 120 80" width="100"><line x1="10" y1="40" x2="110" y2="40" stroke="#333" stroke-width="1.5"/><line x1="20" y1="60" x2="100" y2="20" stroke="#2563eb" stroke-width="1.5"/><text x="60" y="75" text-anchor="middle" font-size="7" fill="#64748b">r'∥LT ✓</text></svg>
+<p style="font-size:.75rem;margin-top:.3rem">Opción A</p>
+</div>
+<div class="clickable" onclick="checkIdentify(this, true)" style="padding:1rem;border:2px solid #e2e8f0;border-radius:8px;background:#fff;text-align:center">
+<svg viewBox="0 0 120 80" width="100"><line x1="10" y1="40" x2="110" y2="40" stroke="#333" stroke-width="1.5"/><line x1="20" y1="60" x2="100" y2="60" stroke="#2563eb" stroke-width="1.5"/><text x="60" y="75" text-anchor="middle" font-size="7" fill="#64748b">r∥LT ✓</text></svg>
+<p style="font-size:.75rem;margin-top:.3rem">Opción B</p>
+</div>
+</div>
+<p class="feedback"></p>
+</div>
 </div>
 </section>
 
@@ -335,7 +359,16 @@ Confundir Th con Tv. Th = traza horizontal = corta el PH → z = 0. Tv = traza v
 La recta es el segundo elemento del diédrico. Con puntos y rectas, podemos construir planos y piezas completas.
 </div>
 
+<div class="connection-box">
+<strong>🔗 Conexión cruzada</strong>
+Con la recta dominada, el siguiente paso es el plano (B04.03). Un plano se define por tres puntos no alineados o por una recta y un punto exterior. ¡La recta es el bloque de construcción del plano!
+</div>
+
 <div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏭 CASO REAL</span><strong>Caso industrial: cableado y tuberías</strong>Una tubería que va de un punto A a un punto B en una planta industrial se representa con su proyección en alzado y planta. La recta en el diedrico permite saber la longitud real de la tubería y su orientación. Sin diedrico, no se podría fabricar el trazado de tuberías de una refinería.</div>
+
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏔️ CASO REAL</span><strong>Caso topográfico: perfil de terreno</strong>Un topógrafo toma cotas a lo largo de una línea de terreno. Cada punto del terreno forma una recta en el sistema diédrico. La recta resultante permite calcular la pendiente del terreno y el desnivel entre dos puntos. Sin diedrico, no se podrían diseñar carreteras ni canales de riego.</div>
+
+<div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">✈️ CASO REAL</span><strong>Caso aeronáutico: rutas de vuelo</strong>Las rutas de vuelo se representan como rectas en el espacio tridimensional. En el sistema diédrico, la proyección en alzado muestra la altitud (r') y la planta muestra la dirección (r). Los controladores aéreos usan estas proyecciones para verificar que las rutas no se intersectan peligrosamente.</div>
 
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
@@ -356,6 +389,35 @@ La recta es el segundo elemento del diédrico. Con puntos y rectas, podemos cons
 </main>
 <footer class="footer">Hecho con ❤️ por David Antizar</footer>
 <script>
+function checkIdentify(el, correct) {
+  var parent = el.parentElement;
+  parent.querySelectorAll('.clickable').forEach(function(c) {
+    c.style.pointerEvents = 'none';
+  });
+  var feedback = el.parentElement.nextElementSibling;
+  if(correct) {
+    el.style.borderColor = 'var(--verde)';
+    el.style.background = 'var(--verde-claro)';
+    feedback.textContent = '✅ ¡Correcto! Una recta frontal tiene r ∥ LT en planta.';
+    feedback.className = 'feedback correct';
+  } else {
+    el.style.borderColor = 'var(--rojo)';
+    el.style.background = 'var(--rojo-claro)';
+    feedback.textContent = '❌ Esa es una recta horizontal (r'∥LT). Busca r∥LT.';
+    feedback.className = 'feedback incorrect';
+    setTimeout(function() {
+      parent.querySelectorAll('.clickable').forEach(function(c) {
+        c.style.pointerEvents = 'auto';
+        c.style.borderColor = '#e2e8f0';
+        c.style.background = '#fff';
+      });
+      feedback.textContent = '';
+      feedback.className = 'feedback';
+    }, 2000);
+  }
+}
+
+
 function toggleLayer(id) {
   var el = document.getElementById(id);
   if(el) {

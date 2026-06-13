@@ -807,12 +807,18 @@
         "svg_interactive": 9,
         "exercises": 9,
         "text_explanation": 9,
-        "real_world": 7,
+        "real_world": 9,
         "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-11",
-      "improvement_count": 2
+      "last_improved": "2026-06-13-ronda2-s2",
+      "improvement_count": 3,
+      "improvements_applied": [
+        "R2: real_world 7→9 (añadidos 2 casos reales: topografía, aeronáutica)",
+        "R2: ejercicios 7→9 (añadido E6 identificar recta frontal)",
+        "R2: CSS añadido clickable, connection-box, difficulty-badge, feedback.correct/incorrect",
+        "R2: checkIdentify() función JS añadida"
+      ]
     },
     "b04-03-plano-diedrico.html": {
       "status": "improved_2",
@@ -1705,12 +1711,18 @@
         "svg_interactive": 9,
         "exercises": 9,
         "text_explanation": 9,
-        "real_world": 7,
-        "error_common": 7,
+        "real_world": 9,
+        "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-11",
-      "improvement_count": 2
+      "last_improved": "2026-06-13-ronda2-s2",
+      "improvement_count": 3,
+      "improvements_applied": [
+        "R2: real_world 7→9 (añadidos 2 casos reales: cubiertas, ferroviario)",
+        "R2: error_common 7→9 (SVG comparativo puntos cruzados)",
+        "R2: ejercicios 7→9 (añadidos E5 problema contextual + E6 completar)",
+        "R2: CSS añadido connection-box, difficulty-badge, clickable, feedback"
+      ]
     },
     "b07-03-interseccion-recta-recta.html": {
       "status": "improved_1",
