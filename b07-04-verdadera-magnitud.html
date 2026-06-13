@@ -465,9 +465,41 @@ Paso 3: Medir α con transportador = 35°.
 <p class="feedback"></p>
 </div>
 
+
+<div class="exercise">
+<p>📐 Ejercicio 9 (Emparejar): Empareja cada tipo de recta con su proyección en VM:</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0" id="matchExercise">
+<div style="display:flex;flex-direction:column;gap:.5rem" id="matchLeft">
+<div class="stack-item" data-match="a" onclick="selectMatch('left',this)">① Horizontal</div>
+<div class="stack-item" data-match="b" onclick="selectMatch('left',this)">② Frontal</div>
+<div class="stack-item" data-match="c" onclick="selectMatch('left',this)">③ Oblicua general</div>
 </div>
+<div style="display:flex;flex-direction:column;gap:.5rem" id="matchRight">
+<div class="stack-item" data-match="c" onclick="selectMatch('right',this)">Necesita giro o cambio de plano</div>
+<div class="stack-item" data-match="b" onclick="selectMatch('right',this)">VM en alzado</div>
+<div class="stack-item" data-match="a" onclick="selectMatch('right',this)">VM en planta</div>
+</div>
+</div>
+<button class="quiz-btn" onclick="checkMatch()">Comprobar emparejamiento</button>
+<p class="feedback"></p>
+</div></div>
 </section>
 
+
+<div class="box box-ejemplo" style="margin:1.5rem 0">
+<span class="real-world-badge">🌉 PROBLEMA CONTEXTUAL</span>
+<strong>Problema: Longitud real de un tirante de puente atirantado</strong>
+<p>En el diseño de un puente atirantado, un tirante va desde la torre (punto A: alzado A'(30,120), planta A(30,80)) hasta el tablero (punto B: alzado B'(150,40), planta B(150,200)). El ingeniero necesita saber la longitud exacta del cable de acero para fabricarlo.</p>
+<p><strong>Pregunta:</strong> ¿Qué tipo de recta es AB y cómo se obtiene su verdadera magnitud?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Recta horizontal — VM en planta</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Recta frontal — VM en alzado</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Recta oblicua — necesita giro o cambio de plano</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Recta de perfil — necesita cambio doble</button>
+</div>
+<p class="feedback"></p>
+<p style="font-size:.85rem;color:var(--gris);margin-top:.5rem">💡 Pista: Comprueba si A y B tienen la misma Y (horizontal) o la misma Z (frontal). Si ni Y ni Z son constantes, la recta es oblicua.</p>
+</div>
 <div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ NO es VM</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="40" y1="110" x2="160" y2="40" stroke="#ef4444" stroke-width="3"/><text x="100" y="80" text-anchor="middle" font-size="9" fill="#ef4444">Acortada</text><text x="100" y="130" text-anchor="middle" font-size="9" fill="#ef4444">No es VM ❌</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ Es VM</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="20" y1="70" x2="180" y2="70" stroke="#10b981" stroke-width="3"/><text x="100" y="60" text-anchor="middle" font-size="9" fill="#10b981">Longitud real</text><text x="100" y="120" text-anchor="middle" font-size="9" fill="#10b981">VM ✓</text></svg></div></div>
 
 <div class="box box-error">
@@ -635,6 +667,82 @@ function checkVF(btn, correct) {
     }
   }
 }
+
+function checkIdentify(el, correct) {
+  var parent = el.closest('.interactive');
+  parent.querySelectorAll('.clickable').forEach(function(c) {
+    c.style.pointerEvents = 'none';
+  });
+  var feedback = parent.querySelector('.feedback');
+  if (feedback) {
+    if (correct) {
+      feedback.textContent = '✅ ¡Correcto!';
+      feedback.className = 'feedback correct';
+      el.style.outline = '3px solid var(--verde)';
+    } else {
+      feedback.textContent = '❌ Incorrecto. Inténtalo de nuevo.';
+      feedback.className = 'feedback incorrect';
+      el.style.outline = '3px solid var(--rojo)';
+      setTimeout(function() {
+        parent.querySelectorAll('.clickable').forEach(function(c) {
+          c.style.pointerEvents = 'auto';
+          c.style.outline = '';
+        });
+        feedback.textContent = '';
+        feedback.className = 'feedback';
+      }, 2000);
+    }
+  }
+}
+
+
+var matchSelected = {left: null, right: []};
+function selectMatch(side, el) {
+  if (side === 'left') {
+    document.querySelectorAll('#matchLeft .stack-item').forEach(function(i) {
+      i.style.borderColor = 'var(--gris)';
+      i.style.background = '#fff';
+    });
+    el.style.borderColor = 'var(--azul)';
+    el.style.background = 'var(--azul-claro)';
+    matchSelected.left = el;
+  } else {
+    var exists = matchSelected.right.find(function(m) { return m.el === el; });
+    if (!exists) {
+      el.style.borderColor = 'var(--azul)';
+      el.style.background = 'var(--azul-claro)';
+      matchSelected.right.push({el: el, match: el.getAttribute('data-match')});
+    }
+  }
+}
+function checkMatch() {
+  if (!matchSelected.left || matchSelected.right.length < 3) {
+    var fb = document.querySelector('#matchExercise .feedback');
+    if (fb) { fb.textContent = 'Selecciona todos los elementos primero.'; fb.className = 'feedback incorrect'; }
+    return;
+  }
+  var rightItems = document.querySelectorAll('#matchRight .stack-item');
+  var correct = true;
+  rightItems.forEach(function(ri) {
+    var matchVal = ri.getAttribute('data-match');
+    var li = document.querySelector('#matchLeft .stack-item[data-match="' + matchVal + '"]');
+    if (!li || li.style.borderColor !== 'var(--azul)') {
+      correct = false;
+    }
+  });
+  var fb = document.querySelector('#matchExercise .feedback');
+  if (fb) {
+    if (correct) {
+      fb.textContent = '✅ ¡Todos los pares correctos!';
+      fb.className = 'feedback correct';
+      rightItems.forEach(function(ri) { ri.style.borderColor = 'var(--verde)'; ri.style.background = 'var(--verde-claro)'; });
+    } else {
+      fb.textContent = '❌ Algunos pares son incorrectos. Revisa las correspondencias.';
+      fb.className = 'feedback incorrect';
+    }
+  }
+}
+
 window.onscroll = function(){
   var h = document.documentElement;
   var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;

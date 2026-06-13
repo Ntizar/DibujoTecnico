@@ -433,9 +433,41 @@ Si Y₁ > Y₂ → r₁ domina en planta (r₁ tapa a r₂).
 <p class="feedback"></p>
 </div>
 
+
+<div class="exercise">
+<p>📐 Ejercicio 9 (Emparejar): Empareja cada tipo de recta con su método para determinar intersección:</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0" id="matchExercise">
+<div style="display:flex;flex-direction:column;gap:.5rem" id="matchLeft">
+<div class="stack-item" data-match="a" onclick="selectMatch('left',this)">① Se cortan</div>
+<div class="stack-item" data-match="b" onclick="selectMatch('left',this)">② Cruz. horizontales</div>
+<div class="stack-item" data-match="c" onclick="selectMatch('left',this)">③ Cruz. verticales</div>
 </div>
+<div style="display:flex;flex-direction:column;gap:.5rem" id="matchRight">
+<div class="stack-item" data-match="c" onclick="selectMatch('right',this)">Dominan por Y (profundidad)</div>
+<div class="stack-item" data-match="a" onclick="selectMatch('right',this)">I' e I en misma vertical</div>
+<div class="stack-item" data-match="b" onclick="selectMatch('right',this)">Dominan por Z (altura)</div>
+</div>
+</div>
+<button class="quiz-btn" onclick="checkMatch()">Comprobar emparejamiento</button>
+<p class="feedback"></p>
+</div></div>
 </section>
 
+
+<div class="box box-ejemplo" style="margin:1.5rem 0">
+<span class="real-world-badge">🔧 PROBLEMA CONTEXTUAL</span>
+<strong>Problema: Dos tuberías que se cruzan en una planta industrial</strong>
+<p>En una planta química, dos tuberías de gas natural se cruzan en el espacio. La tubería A tiene proyecciones: A'(50,80) → planta A(50,60). La tubería B tiene proyecciones: B'(50,40) → planta B(90,60). Ambas tuberías tienen un diámetro de 200mm.</p>
+<p><strong>Pregunta:</strong> ¿Se cortan o se cruzan estas tuberías? Si se cruzan, ¿de qué tipo son los puntos cruzados y cuál tubería domina en alzado?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Se cortan en un punto real</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Se cruzan horizontales — B domina (mayor Z)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Se cruzan verticales — A domina</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Son paralelas</button>
+</div>
+<p class="feedback"></p>
+<p style="font-size:.85rem;color:var(--gris);margin-top:.5rem">💡 Pista: A' y B' tienen la misma X (50), lo que indica que están en la misma vertical en alzado. Verifica si las intersecciones en planta también están en la misma vertical.</p>
+</div>
 <div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ ERROR: NO misma vertical</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="40" y1="50" x2="160" y2="50" stroke="#1e293b" stroke-width="1"/><line x1="50" y1="30" x2="150" y2="70" stroke="#2563eb" stroke-width="2"/><line x1="50" y1="70" x2="150" y2="30" stroke="#f97316" stroke-width="2"/><circle cx="100" cy="50" r="4" fill="#a855f7"/><text x="100" y="45" text-anchor="middle" font-size="7" fill="#a855f7">P'</text><line x1="100" y1="54" x2="100" y2="100" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,2"/><text x="100" y="115" text-anchor="middle" font-size="8" fill="#ef4444">✗ NO misma vertical</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ CORRECTO: Misma vertical</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="40" y1="50" x2="160" y2="50" stroke="#1e293b" stroke-width="1"/><line x1="50" y1="30" x2="150" y2="70" stroke="#2563eb" stroke-width="2"/><line x1="50" y1="70" x2="150" y2="30" stroke="#f97316" stroke-width="2"/><circle cx="100" cy="50" r="4" fill="#10b981"/><text x="100" y="45" text-anchor="middle" font-size="7" fill="#10b981">I'</text><line x1="100" y1="54" x2="100" y2="100" stroke="#10b981" stroke-width="1" stroke-dasharray="3,2"/><circle cx="100" cy="100" r="4" fill="#10b981"/><text x="100" y="115" text-anchor="middle" font-size="8" fill="#10b981">✓ Misma vertical</text></svg></div></div>
 
 <div class="box box-error">
@@ -637,6 +669,104 @@ function checkVF(btn, correct) {
     }
   }
 }
+
+function checkIdentify(el, correct) {
+  var parent = el.closest('.interactive');
+  parent.querySelectorAll('.clickable').forEach(function(c) {
+    c.style.pointerEvents = 'none';
+  });
+  var feedback = parent.querySelector('.feedback');
+  if (feedback) {
+    if (correct) {
+      feedback.textContent = '✅ ¡Correcto!';
+      feedback.className = 'feedback correct';
+      el.style.outline = '3px solid var(--verde)';
+    } else {
+      feedback.textContent = '❌ Incorrecto. Inténtalo de nuevo.';
+      feedback.className = 'feedback incorrect';
+      el.style.outline = '3px solid var(--rojo)';
+      setTimeout(function() {
+        parent.querySelectorAll('.clickable').forEach(function(c) {
+          c.style.pointerEvents = 'auto';
+          c.style.outline = '';
+        });
+        feedback.textContent = '';
+        feedback.className = 'feedback';
+      }, 2000);
+    }
+  }
+}
+
+
+var matchSelected = {left: null, right: []};
+function selectMatch(side, el) {
+  if (side === 'left') {
+    document.querySelectorAll('#matchLeft .stack-item').forEach(function(i) {
+      i.style.borderColor = 'var(--gris)';
+      i.style.background = '#fff';
+    });
+    el.style.borderColor = 'var(--azul)';
+    el.style.background = 'var(--azul-claro)';
+    matchSelected.left = el;
+  } else {
+    var exists = matchSelected.right.find(function(m) { return m.el === el; });
+    if (!exists) {
+      el.style.borderColor = 'var(--azul)';
+      el.style.background = 'var(--azul-claro)';
+      matchSelected.right.push({el: el, match: el.getAttribute('data-match')});
+    }
+  }
+}
+function checkMatch() {
+  if (!matchSelected.left || matchSelected.right.length < 3) {
+    var fb = document.querySelector('#matchExercise .feedback');
+    if (fb) { fb.textContent = 'Selecciona todos los elementos primero.'; fb.className = 'feedback incorrect'; }
+    return;
+  }
+  var allCorrect = true;
+  matchSelected.right.forEach(function(m) {
+    if (m.match !== m.el.closest('#matchRight').parentElement.querySelector('[data-match="' + m.match + '"]')?.getAttribute('data-match')) {
+      // Check by comparing left item's data-match
+    }
+  });
+  // Simpler approach: check each right item against its matched left item
+  var leftItems = document.querySelectorAll('#matchLeft .stack-item');
+  var rightItems = document.querySelectorAll('#matchRight .stack-item');
+  var pairs = [];
+  rightItems.forEach(function(ri) {
+    var matchVal = ri.getAttribute('data-match');
+    var li = document.querySelector('#matchLeft .stack-item[data-match="' + matchVal + '"]');
+    if (li && li.style.borderColor === 'var(--azul)') {
+      pairs.push({left: li, right: ri, match: matchVal});
+    }
+  });
+  if (pairs.length < 3) {
+    var fb = document.querySelector('#matchExercise .feedback');
+    if (fb) { fb.textContent = 'Selecciona todos los pares primero.'; fb.className = 'feedback incorrect'; }
+    return;
+  }
+  // Check: each right item's data-match should match the selected left item's data-match
+  var correct = true;
+  rightItems.forEach(function(ri) {
+    var matchVal = ri.getAttribute('data-match');
+    var li = document.querySelector('#matchLeft .stack-item[data-match="' + matchVal + '"]');
+    if (!li || li.style.borderColor !== 'var(--azul)') {
+      correct = false;
+    }
+  });
+  var fb = document.querySelector('#matchExercise .feedback');
+  if (fb) {
+    if (correct) {
+      fb.textContent = '✅ ¡Todos los pares correctos!';
+      fb.className = 'feedback correct';
+      rightItems.forEach(function(ri) { ri.style.borderColor = 'var(--verde)'; ri.style.background = 'var(--verde-claro)'; });
+    } else {
+      fb.textContent = '❌ Algunos pares son incorrectos. Revisa las correspondencias.';
+      fb.className = 'feedback incorrect';
+    }
+  }
+}
+
 window.onscroll = function(){
   var h = document.documentElement;
   var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;

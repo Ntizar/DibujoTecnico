@@ -1734,7 +1734,7 @@
       ]
     },
     "b07-03-interseccion-recta-recta.html": {
-      "status": "improved_1",
+      "status": "improved_2",
       "bloque": "b07",
       "title": "🔀 Intersección recta-recta",
       "priority": 3,
@@ -1749,6 +1749,15 @@
             "error_common",
             "css_coherence"
           ]
+        },
+        {
+          "date": "2026-06-13",
+          "description": "Ronda 2: matching exercise (emparejar), problema contextual, checkIdentify() función JS, 9 ejercicios totales (6 tipos diferentes)",
+          "dimensions_improved": [
+            "svg_interactive",
+            "exercises",
+            "real_world"
+          ]
         }
       ],
       "scores": {
@@ -1759,8 +1768,8 @@
         "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-12",
-      "improvement_count": 2,
+      "last_improved": "2026-06-13-ronda2-s1",
+      "improvement_count": 3,
       "dimensions_improved": [
         "svg_interactive",
         "exercises",
@@ -1771,7 +1780,7 @@
       ]
     },
     "b07-04-verdadera-magnitud.html": {
-      "status": "improved_1",
+      "status": "improved_2",
       "bloque": "b07",
       "title": "↗️ Verdadera magnitud",
       "priority": 3,
@@ -1786,6 +1795,15 @@
             "error_common",
             "css_coherence"
           ]
+        },
+        {
+          "date": "2026-06-13",
+          "description": "Ronda 2: matching exercise (emparejar), problema contextual, checkIdentify() función JS, 9 ejercicios totales (6 tipos diferentes)",
+          "dimensions_improved": [
+            "svg_interactive",
+            "exercises",
+            "real_world"
+          ]
         }
       ],
       "scores": {
@@ -1796,8 +1814,8 @@
         "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-12",
-      "improvement_count": 2,
+      "last_improved": "2026-06-13-ronda2-s1",
+      "improvement_count": 3,
       "dimensions_improved": [
         "svg_interactive",
         "exercises",
