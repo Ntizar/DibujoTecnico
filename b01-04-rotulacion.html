@@ -95,6 +95,24 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 <div class="step-dot" data-step="2"></div>
 <div class="step-dot" data-step="3"></div>
 <div class="step-dot" data-step="4"></div>
+
+<!-- NUEVO RONDA 2: Ejercicio de emparejar -->
+<div class="exercise">
+<p><span class="difficulty-badge medium">Medio</span> 🔗 Ejercicio 11 (emparejar): Empareja cada concepto con su definición correcta.</p>
+<div class="interactive" style="margin:.5rem 0">
+<div style="display:flex;gap:1rem;flex-wrap:wrap" id="matchContainer">
+<div style="flex:1;min-width:200px" id="matchLeft">
+<div class="box box-teoria clickable" onclick="selectMatch(this, 'left')" data-match="1">b = 2/3 h</div>
+<div class="box box-teoria clickable" onclick="selectMatch(this, 'left')" data-match="2">e = h/14</div>
+<div class="box box-teoria clickable" onclick="selectMatch(this, 'left')" data-match="3">b = h</div>
+</div>
+<div style="flex:1;min-width:200px" id="matchRight">
+<!-- Se shufflea con JS -->
+</div>
+</div>
+<div id="matchFeedback" style="margin-top:1rem"></div>
+</div>
+</div>
 </div>
 
 <div class="box box-idea">
@@ -464,6 +482,49 @@ Usar diferentes alturas de letra en un mismo plano. Todas las letras de un mismo
 <p style="font-size:.85rem;color:var(--gris)">Haz clic en cada "?" para verificar tu respuesta</p>
 </div>
 
+
+<!-- NUEVO RONDA 2: Ejercicio V/F visual -->
+<div class="exercise">
+<p><span class="difficulty-badge easy">Fácil</span> 🔍 Ejercicio 10 (VF visual): ¿Cuál de estos dos textos está rotulado correctamente según la norma UNE?</p>
+<div class="interactive" style="margin:.5rem 0">
+<div class="comparison" style="margin:0">
+<div class="comparison-side correct-side">
+<h4>Opción A</h4>
+<div class="svg-container" style="margin:0;padding:.8rem">
+<svg viewBox="0 0 250 120" xmlns="http://www.w3.org/2000/svg">
+<!-- Texto uniforme y legible -->
+<rect x="10" y="10" width="230" height="100" fill="#ecfdf5" stroke="#10b981" stroke-width="2" rx="6"/>
+<text x="125" y="40" text-anchor="middle" font-size="14" font-weight="bold" fill="#2563eb">CARCASA PRINCIPAL</text>
+<line x1="20" y1="46" x2="230" y2="46" stroke="#2563eb" stroke-width="0.5"/>
+<text x="125" y="65" text-anchor="middle" font-size="10" fill="#1e293b">Escala: 1:2 | Material: ACIERO</text>
+<line x1="20" y1="71" x2="230" y2="71" stroke="#94a3b8" stroke-width="0.5"/>
+<text x="125" y="85" text-anchor="middle" font-size="8" fill="#1e293b">Dib.: J. García | Rev.2</text>
+<line x1="20" y1="91" x2="230" y2="91" stroke="#94a3b8" stroke-width="0.5"/>
+<text x="125" y="103" text-anchor="middle" font-size="6" fill="#94a3b8">UNE 1-039-88 | Tipo A</text>
+<text x="125" y="118" text-anchor="middle" font-size="10" fill="#10b981" font-weight="bold">✅ Uniforme y legible</text>
+</svg>
+</div>
+</div>
+<div class="comparison-side wrong-side">
+<h4>Opción B</h4>
+<div class="svg-container" style="margin:0;padding:.8rem">
+<svg viewBox="0 0 250 120" xmlns="http://www.w3.org/2000/svg">
+<!-- Texto con alturas mezcladas -->
+<rect x="10" y="10" width="230" height="100" fill="#fef2f2" stroke="#ef4444" stroke-width="2" rx="6"/>
+<text x="125" y="35" text-anchor="middle" font-size="8" font-weight="bold" fill="#2563eb">CARCASA</text>
+<text x="125" y="55" text-anchor="middle" font-size="14" fill="#1e293b">Escala: 1:2</text>
+<text x="125" y="75" text-anchor="middle" font-size="18" fill="#1e293b">J. García</text>
+<text x="125" y="90" text-anchor="middle" font-size="5" fill="#94a3b8">UNE</text>
+<text x="125" y="110" text-anchor="middle" font-size="10" fill="#ef4444" font-weight="bold">✗ Alturas inconsistentes</text>
+</svg>
+</div>
+</div>
+</div>
+</div>
+<button class="quiz-btn" onclick="checkIdentify(this, true)" style="margin:.5rem">✅ Opción A — Correcto</button>
+<button class="quiz-btn" onclick="checkIdentify(this, false)" style="margin:.5rem">❌ Opción B — Incorrecto</button>
+<p class="feedback"></p>
+</div>
 </div>
 </section>
 
@@ -629,6 +690,90 @@ function fillTable(cellId, expected) {
     cell.style.fontWeight = '';
   }
 }
+
+
+function initMatchEso1() {
+  var rightItems = [
+    { text: 'Tipo A — proporción ancho/altura', match: '1' },
+    { text: 'Tipo A y B — espesor de línea', match: '2' },
+    { text: 'Tipo B — proporción ancho/altura', match: '3' }
+  ];
+  // Shuffle
+  for (var i = rightItems.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = rightItems[i];
+    rightItems[i] = rightItems[j];
+    rightItems[j] = tmp;
+  }
+  var rightContainer = document.getElementById('matchRight');
+  if (!rightContainer) return;
+  rightContainer.innerHTML = '';
+  rightItems.forEach(function(item) {
+    var div = document.createElement('div');
+    div.className = 'box box-ejemplo clickable';
+    div.textContent = item.text;
+    div.setAttribute('data-match', item.match);
+    div.setAttribute('data-selected', 'false');
+    div.onclick = function() { selectMatch(this, 'right'); };
+    rightContainer.appendChild(div);
+  });
+}
+
+var matchState = { left: null, right: null, matched: 0, total: 3 };
+
+function selectMatch(el, side) {
+  if (el.getAttribute('data-selected') === 'true') return;
+  matchState[side] = el;
+  // Highlight selected
+  var container = document.getElementById('matchContainer');
+  container.querySelectorAll('.clickable').forEach(function(b) { b.style.borderColor = '#e2e8f0'; });
+  el.style.borderColor = 'var(--azul)';
+  el.style.background = 'var(--azul-claro)';
+  
+  if (matchState.left && matchState.right) {
+    var leftMatch = matchState.left.getAttribute('data-match');
+    var rightMatch = matchState.right.getAttribute('data-match');
+    var feedback = document.getElementById('matchFeedback');
+    
+    if (leftMatch === rightMatch) {
+      matchState.left.setAttribute('data-selected', 'true');
+      matchState.right.setAttribute('data-selected', 'true');
+      matchState.left.style.borderColor = 'var(--verde)';
+      matchState.left.style.background = 'var(--verde-claro)';
+      matchState.right.style.borderColor = 'var(--verde)';
+      matchState.right.style.background = 'var(--verde-claro)';
+      matchState.left.style.cursor = 'default';
+      matchState.right.style.cursor = 'default';
+      matchState.matched++;
+      feedback.textContent = '✅ ¡Bien! ' + matchState.matched + '/3 emparejados.';
+      feedback.className = 'feedback correct';
+      
+      if (matchState.matched === matchState.total) {
+        feedback.textContent = '🎉 ¡Todos emparejados! Tipo A: b=2/3h, Espesor: e=h/14, Tipo B: b=h';
+      }
+      
+      matchState.left = null;
+      matchState.right = null;
+    } else {
+      feedback.textContent = '❌ No coinciden. Intenta de nuevo.';
+      feedback.className = 'feedback incorrect';
+      setTimeout(function() {
+        matchState.left.style.borderColor = '#e2e8f0';
+        matchState.left.style.background = '';
+        matchState.right.style.borderColor = '#e2e8f0';
+        matchState.right.style.background = '';
+        matchState.left = null;
+        matchState.right = null;
+        feedback.textContent = '';
+        feedback.className = 'feedback';
+      }, 1500);
+    }
+  }
+}
+
+// Init match exercise on load
+initMatchEso1();
+
 
 window.onscroll = function(){
   var h = document.documentElement;
