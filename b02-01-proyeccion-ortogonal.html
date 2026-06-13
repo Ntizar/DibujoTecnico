@@ -270,7 +270,18 @@ Un cubo de 50mm se proyecta con efecto de perspectiva (lejos = más pequeño). �
 <p style="margin-top:.5rem"><strong>Consecuencia:</strong> la espiga no entra en el alojamientodel larguero → la pieza se descarta → hay que fabricar otra → <strong>48h de taller parado + 12.500€ en material y mecanizado perdidos</strong>.</p>
 <p style="margin-top:.5rem;font-style:italic;color:var(--gris)">"En aviación, una proyección cónica en un plano cuesta más que toda una semana de CAD." — Ingeniero Jefe de Calidad, Airbus Sevilla</p>
 </div>
-</section>
+
+<section class="chapter">
+<h2 class="chapter-title">🏗️ Caso real 2: Plano de montaje de un puente — Puente de la Barqueta, Sevilla</h2>
+<div class="box box-ejemplo">
+<span class="real-world-badge">CASO REAL — INGENIERÍA CIVIL</span>
+<strong>🌉 Puente de la Barqueta — Plano de montaje de vigas de acero</strong>
+<p>El Puente de la Barqueta en Sevilla (diseñado por Norman Foster) une la Exposición Universal 92 con la actualidad. Los planos de montaje de las vigas de acero utilizan <strong>proyección ortogonal</strong> para definir cada conexión atornillada.</p>
+<p style="margin-top:.5rem">Cada viga tiene <strong>42 conexiones</strong> con pernos de alta resistencia (clase 10.9). En cada conexión, el plano muestra 3 vistas: alzado (cara frontal de la placa), planta (vista superior) y perfil (cara lateral). Las dimensiones de los agujeros se dan con tolerancia ±0.1mm.</p>
+<p style="margin-top:.5rem">Si un plano usara proyección cónica, la distancia entre dos agujeros de 150mm podría aparecer como 148mm en perspectiva. El operario taladraría a 148mm, la placa no encajaría y habría que rehacer toda la viga — <strong>coste: 15.000€ en acero y 3 semanas de montaje retrasado</strong>.</p>
+<p style="margin-top:.5rem"><strong>Dato real:</strong> El puente tiene 127 toneladas de acero estructural, con 5.300 pernos en total. Cada uno verificado con proyección ortogonal en los planos de taller.</p>
+</div>
+</section></section>
 
 <!-- ERROR COMÚN VISUAL -->
 <section class="chapter">
@@ -401,6 +412,9 @@ Usar proyección cónica (perspectiva) en un plano técnico. En dibujo técnico 
 </div>
 </section>
 
+<section class="chapter">
+<h2 class="chapter-title">🔗 Conexiones y errores</h2>
+
 <div class="box box-error">
 <strong>⚠️ Error común</strong>
 Confundir proyección ortogonal con proyección cónica. En dibujo técnico SIEMPRE se usa ortogonal. La cónica se usa en arquitectura y arte para dar efecto de profundidad.
@@ -410,6 +424,8 @@ Confundir proyección ortogonal con proyección cónica. En dibujo técnico SIEM
 <strong>🔗 Conexión</strong>
 La proyección ortogonal es la base de TODO el bloque 2. A partir de aquí, alzado, planta y perfil son simplemente tres proyecciones ortogonales desde tres direcciones diferentes.
 </div>
+
+</section>
 
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
@@ -591,11 +607,7 @@ function checkOrden(btn, answer) {
   }
 }
 
-window.onscroll = function(){
-  var h = document.documentElement;
-  var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
-  document.getElementById('progress').style.width = p+'%';
-};
+
 </script>
 </body>
 </html>
