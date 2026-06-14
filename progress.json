@@ -2,9 +2,9 @@
   "curso": "Dibujo Técnico Completo",
   "autor": "David Antizar",
   "total_temas": 49,
-  "last_improved": "2026-06-14-ronda2-s6",
-  "last_run": "2026-06-14T08:33:30.268265+00:00",
-  "total_runs": 18,
+  "last_improved": "2026-06-14-ronda2-s3",
+  "last_run": "2026-06-14T12:55:50.637497",
+  "total_runs": 19,
   "topics": {
     "b01-01-formatos-papel.html": {
       "status": "improved_2",
@@ -392,14 +392,14 @@
       ],
       "scores": {
         "svg_interactive": 9,
-        "exercises": 9,
+        "exercises": 11,
         "text_explanation": 9,
         "real_world": 9,
         "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-12-ronda2-s1",
-      "improvement_count": 4
+      "last_improved": "2026-06-14-ronda2-s3",
+      "improvement_count": 5
     },
     "b02-06-1o-3o-diedro.html": {
       "status": "improved_2",
@@ -1447,14 +1447,14 @@
       ],
       "scores": {
         "svg_interactive": 9,
-        "exercises": 9,
+        "exercises": 10,
         "text_explanation": 9,
         "real_world": 9,
         "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-12-ronda2-s1",
-      "improvement_count": 3
+      "last_improved": "2026-06-14-ronda2-s3",
+      "improvement_count": 4
     },
     "b09-01-planos-conjunto.html": {
       "scores": {
@@ -1986,14 +1986,14 @@
       ],
       "scores": {
         "svg_interactive": 9,
-        "exercises": 9,
+        "exercises": 13,
         "text_explanation": 9,
         "real_world": 9,
         "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-12-ronda2-s1",
-      "improvement_count": 3,
+      "last_improved": "2026-06-14-ronda2-s3",
+      "improvement_count": 4,
       "improvement_history": [
         {
           "round": "ronda2",
