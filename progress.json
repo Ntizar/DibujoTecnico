@@ -769,7 +769,14 @@
       "bloque": "b03",
       "title": "🔩 Caballera: piezas con cilindros",
       "priority": 2,
-      "improvements": "Ronda 2: exercises 7→9 (6 tipos, ordenar+reducción), real_world 7→9 (3 casos), error_common 7→9 (SVG comparativo), CSS clickable/connection-box/difficulty-badge, fix broken onclicks",
+      "improvements": [
+        "Ronda 2: exercises 7→9 (6 tipos, ordenar+reducción), real_world 7→9 (3 casos), error_common 7→9 (SVG comparativo), CSS clickable/connection-box/difficulty-badge, fix broken onclicks",
+        {
+          "session": "2026-06-14-ronda2-s3",
+          "dimensions": "exercises",
+          "desc": "Ejercicio 10: VF visual SVG comparando isométrica vs dimétrica"
+        }
+      ],
       "scores": {
         "svg_interactive": 9,
         "exercises": 9,
@@ -778,8 +785,8 @@
         "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-14-ronda2-s2",
-      "improvement_count": 4
+      "last_improved": "2026-06-14-ronda2-s3",
+      "improvement_count": 5
     },
     "b03-06-perspectivas-resumen.html": {
       "status": "improved_2",

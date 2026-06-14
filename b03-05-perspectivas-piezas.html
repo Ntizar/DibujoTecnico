@@ -411,6 +411,37 @@ Selecciona un paso arriba para ver la explicación.
 <p class="feedback" id="ex8-fb"></p>
 </div>
 
+<div class="exercise">
+<p>📐 Ejercicio 10: <span class="difficulty-badge">FÁCIL</span> — Verdadero o Falso Visual — ¿Qué perspectiva es dimétrica?</p>
+<p style="font-size:.9rem;color:#64748b;margin-bottom:.8rem">Haz clic en el SVG que muestra perspectiva dimétrica:</p>
+<div style="display:flex;gap:1rem;flex-wrap:wrap">
+<div class="clickable" onclick="checkIdentifyDim(this, false)" style="flex:1;min-width:200px;background:#fff;border:2px solid #e2e8f0;padding:1rem;border-radius:8px;text-align:center">
+<strong style="color:var(--rojo)">Opción A</strong>
+<svg viewBox="0 0 200 160" width="180" style="margin:.5rem 0">
+<line x1="100" y1="100" x2="50" y2="130" stroke="#2563eb" stroke-width="2"/>
+<line x1="100" y1="100" x2="150" y2="130" stroke="#f97316" stroke-width="2"/>
+<line x1="100" y1="100" x2="100" y2="40" stroke="#10b981" stroke-width="2"/>
+<text x="40" y="140" font-size="10" fill="#ef4444">30°</text>
+<text x="155" y="140" font-size="10" fill="#ef4444">30°</text>
+<text x="100" y="30" font-size="10" fill="#10b981">120°</text>
+</svg>
+<p style="font-size:.8rem;color:#64748b">Isométrica</p>
+</div>
+<div class="clickable" onclick="checkIdentifyDim(this, true)" style="flex:1;min-width:200px;background:#fff;border:2px solid #e2e8f0;padding:1rem;border-radius:8px;text-align:center">
+<strong style="color:var(--verde)">Opción B</strong>
+<svg viewBox="0 0 200 160" width="180" style="margin:.5rem 0">
+<line x1="100" y1="100" x2="55" y2="107" stroke="#2563eb" stroke-width="2"/>
+<line x1="100" y1="100" x2="150" y2="82" stroke="#f97316" stroke-width="2"/>
+<line x1="100" y1="100" x2="100" y2="40" stroke="#10b981" stroke-width="2"/>
+<text x="45" y="115" font-size="10" fill="#2563eb">7°</text>
+<text x="155" y="75" font-size="10" fill="#f97316">42°</text>
+</svg>
+<p style="font-size:.8rem;color:#64748b">Dimétrica</p>
+</div>
+</div>
+<p class="feedback" id="ex10-fb"></p>
+</div>
+
 <div class="summary">
    204|<h3>📋 Resumen de lo aprendido</h3>
    205|<ul>
@@ -742,6 +773,33 @@ initMatchExercise('perspTipos',
   [{text: 'Isométrica', value: 'isometrica'}, {text: 'Dimétrica', value: 'dimetrica'}, {text: 'Monométrica', value: 'monometrica'}],
   [{text: '3 ejes iguales (1:1)', value: 'isometrica'}, {text: '2 ejes iguales, 1 diferente (½)', value: 'dimetrica'}, {text: '1 eje (vertical)', value: 'monometrica'}]
 );
+
+// VF Visual: dimetric vs isometric
+function checkIdentifyDim(el, correct) {
+  var siblings = el.parentElement.querySelectorAll('.clickable');
+  var fb = document.getElementById('ex10-fb');
+  siblings.forEach(function(s) { s.style.pointerEvents = 'none'; });
+  if (correct) {
+    el.style.borderColor = '#10b981';
+    el.style.background = '#ecfdf5';
+    fb.textContent = '✅ ¡Correcto! La dimétrica tiene ejes a 7° y 42°, no a 30° como la isométrica.';
+    fb.className = 'feedback correct';
+  } else {
+    el.style.borderColor = '#ef4444';
+    el.style.background = '#fef2f2';
+    fb.textContent = '❌ Eso es isométrica (30°-30°). Busca los ángulos 7° y 42°.';
+    fb.className = 'feedback incorrect';
+    setTimeout(function() {
+      siblings.forEach(function(s) {
+        s.style.pointerEvents = 'auto';
+        s.style.borderColor = '#e2e8f0';
+        s.style.background = '#fff';
+      });
+      fb.textContent = '';
+    }, 2000);
+  }
+}
+
 </script>
    270|</body>
    271|</html>
