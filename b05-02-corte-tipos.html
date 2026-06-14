@@ -62,6 +62,20 @@
 .difficulty-badge{display:inline-block;background:var(--naranja);color:#fff;padding:.15rem .5rem;border-radius:10px;font-size:.7rem;font-weight:700;margin-left:.5rem;vertical-align:middle}
 .feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
 .feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
+
+.comparison {
+    display: flex; gap: 1rem; margin: 1rem 0;
+}
+.comparison-side {
+    flex: 1; padding: 1rem; border-radius: 8px;
+    border: 2px solid var(--gris); text-align: center;
+}
+.comparison-side.correct {
+    border-color: var(--verde); background: var(--verde-claro);
+}
+.comparison-side.incorrect {
+    border-color: var(--rojo); background: var(--rojo-claro);
+}
 </style>
     55|</head>
     56|<body>
