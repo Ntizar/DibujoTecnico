@@ -675,8 +675,8 @@
         "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-12-ronda2-s3",
-      "improvement_count": 3,
+      "last_improved": "2026-06-14-ronda2-s3",
+      "improvement_count": 4,
       "improvement_history": [
         {
           "round": "ronda2-s3",
@@ -923,8 +923,8 @@
         "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-12-ronda2-s3",
-      "improvement_count": 3
+      "last_improved": "2026-06-14-ronda2-s3",
+      "improvement_count": 4
     },
     "b04-04-pertenencia.html": {
       "status": "improved_2",
@@ -1282,8 +1282,8 @@
         "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-12-ronda2-s3",
-      "improvement_count": 3
+      "last_improved": "2026-06-14-ronda2-s3",
+      "improvement_count": 4
     },
     "b06-01-acotacion.html": {
       "status": "improved_2",

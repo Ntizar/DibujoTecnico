@@ -317,7 +317,7 @@ Añade la horizontal del plano (∥ α₁ en alzado) y la máxima pendiente (⊥
 </div>
 
 </div>
-</section>
+
 
 
 
@@ -360,7 +360,50 @@ Añade la horizontal del plano (∥ α₁ en alzado) y la máxima pendiente (⊥
 <p style="font-size:.9rem;color:#64748b;margin-bottom:.8rem">Un plano <input type="text" id="pos1" placeholder="?" style="width:80px;padding:.4rem;border:2px solid #e2e8f0;border-radius:6px;text-align:center"> tiene α₂ ∥ LT. Un plano <input type="text" id="pos2" placeholder="?" style="width:80px;padding:.4rem;border:2px solid #e2e8f0;border-radius:6px;text-align:center"> tiene α₁ ∥ LT.</p>
 <button onclick="checkPosPlano()" style="background:var(--azul);color:#fff;border:none;padding:.5rem 1.5rem;border-radius:6px;cursor:pointer;font-size:.95rem">Comprobar</button>
 <p class="feedback"></p>
-</div><div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ PLANO PERPENDICULAR</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="20" y1="70" x2="180" y2="70" stroke="#333" stroke-width="2"/><text x="100" y="65" text-anchor="middle" font-size="9" fill="#333">LT</text><rect x="80" y="20" width="40" height="50" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/><text x="100" y="50" text-anchor="middle" font-size="8" fill="#ef4444">Plano ⊥</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ PLANO OBLICUO</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="20" y1="70" x2="180" y2="70" stroke="#333" stroke-width="2"/><text x="100" y="65" text-anchor="middle" font-size="9" fill="#333">LT</text><polygon points="60,110 140,30 150,30 70,110" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="100" y="75" text-anchor="middle" font-size="8" fill="#2563eb">Plano oblicuo ✓</text></svg></div></div>
+</div>
+<div class="exercise">
+<p>📐 Ejercicio 10 (Emparejar): <span class="difficulty-badge medium">Medio</span> Une cada tipo de plano con su representación:</p>
+<div class="match-container" id="match-ej10">
+  <div class="match-left" style="display:flex;flex-direction:column;gap:.5rem">
+    <button class="quiz-btn" onclick="selectMatchLeft('match-ej10', this, 'horizontal')" data-match="horizontal" style="width:100%">Plano Horizontal</button>
+    <button class="quiz-btn" onclick="selectMatchLeft('match-ej10', this, 'vertical')" data-match="vertical" style="width:100%">Plano Vertical</button>
+    <button class="quiz-btn" onclick="selectMatchLeft('match-ej10', this, 'perfil')" data-match="perfil" style="width:100%">Plano de Perfil</button>
+  </div>
+  <div class="match-right" id="match-right-ej10" style="display:flex;flex-direction:column;gap:.5rem;margin-top:1rem">
+    <button class="quiz-btn" onclick="selectMatchRight('match-ej10', this, 'perpendicular')" data-match="perpendicular" style="width:100%">Perpendicular al PL</button>
+    <button class="quiz-btn" onclick="selectMatchRight('match-ej10', this, 'paralelo')" data-match="paralelo" style="width:100%">Paralelo al PL</button>
+    <button class="quiz-btn" onclick="selectMatchRight('match-ej10', this, 'perpendicular2')" data-match="perpendicular2" style="width:100%">Perpendicular a PL y PP</button>
+  </div>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 11 (Identificar): <span class="difficulty-badge easy">Fácil</span> ¿Qué tipo de plano tiene su traza horizontal paralela al eje de tierra?</p>
+<div style="display:flex;gap:1rem;justify-content:center;margin:1rem 0;flex-wrap:wrap">
+  <div class="clickable" onclick="checkIdentify(this, true)" style="text-align:center;padding:1rem;border:2px solid #e2e8f0;border-radius:8px;flex:1;min-width:180px">
+    <svg viewBox="0 0 120 100" width="110">
+      <line x1="10" y1="50" x2="110" y2="50" stroke="#2563eb" stroke-width="2"/>
+      <text x="60" y="45" text-anchor="middle" font-size="7" fill="#2563eb">Eje de tierra</text>
+      <line x1="20" y1="50" x2="100" y2="50" stroke="#10b981" stroke-width="3"/>
+      <text x="60" y="70" text-anchor="middle" font-size="7" fill="#10b981">Paralela ✓</text>
+    </svg>
+    <p style="font-size:.75rem;margin-top:.5rem"><strong>Plano Horizontal</strong></p>
+  </div>
+  <div class="clickable" onclick="checkIdentify(this, false)" style="text-align:center;padding:1rem;border:2px solid #e2e8f0;border-radius:8px;flex:1;min-width:180px">
+    <svg viewBox="0 0 120 100" width="110">
+      <line x1="10" y1="50" x2="110" y2="50" stroke="#2563eb" stroke-width="2"/>
+      <line x1="60" y1="10" x2="60" y2="90" stroke="#ef4444" stroke-width="3"/>
+      <text x="60" y="70" text-anchor="middle" font-size="7" fill="#ef4444">Perpendicular ✗</text>
+    </svg>
+    <p style="font-size:.75rem;margin-top:.5rem"><strong>Plano Vertical</strong></p>
+  </div>
+</div>
+<p class="feedback"></p>
+</div>
+</section>
+
+<div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ PLANO PERPENDICULAR</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="20" y1="70" x2="180" y2="70" stroke="#333" stroke-width="2"/><text x="100" y="65" text-anchor="middle" font-size="9" fill="#333">LT</text><rect x="80" y="20" width="40" height="50" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/><text x="100" y="50" text-anchor="middle" font-size="8" fill="#ef4444">Plano ⊥</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ PLANO OBLICUO</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="20" y1="70" x2="180" y2="70" stroke="#333" stroke-width="2"/><text x="100" y="65" text-anchor="middle" font-size="9" fill="#333">LT</text><polygon points="60,110 140,30 150,30 70,110" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="100" y="75" text-anchor="middle" font-size="8" fill="#2563eb">Plano oblicuo ✓</text></svg></div></div>
 
 <div class="box box-error">
 <strong>⚠️ Error clásico</strong>
@@ -390,6 +433,30 @@ Añade la horizontal del plano (∥ α₁ en alzado) y la máxima pendiente (⊥
 <p>Truco mnemotécnico: <strong>α₁ = 1ª letra = horizontal</strong>, <strong>α₂ = 2ª letra = vertical</strong></p>
 </div>
 
+
+<div class="box box-error">
+<strong>⚠️ Error al representar trazas: confundir α₁ con α₂</strong>
+<div class="comparison" style="margin:.8rem 0">
+  <div class="comparison-side" style="padding:.8rem">
+    <svg viewBox="0 0 120 80" width="100">
+      <line x1="10" y1="40" x2="110" y2="40" stroke="#333" stroke-width="2"/>
+      <text x="115" y="44" font-size="7" fill="#333">LT</text>
+      <line x1="20" y1="10" x2="100" y2="40" stroke="#ef4444" stroke-width="2.5"/>
+      <text x="70" y="25" font-size="7" fill="#ef4444">α₁ (❌)</text>
+    </svg>
+    <p style="font-size:.75rem;margin-top:.3rem"><strong style="color:var(--rojo)">❌ ERROR:</strong> α₁ no corta el PV</p>
+  </div>
+  <div class="comparison-side" style="padding:.8rem">
+    <svg viewBox="0 0 120 80" width="100">
+      <line x1="10" y1="40" x2="110" y2="40" stroke="#333" stroke-width="2"/>
+      <text x="115" y="44" font-size="7" fill="#333">LT</text>
+      <line x1="20" y1="70" x2="100" y2="40" stroke="#2563eb" stroke-width="2.5"/>
+      <text x="70" y="60" font-size="7" fill="#2563eb">α₁ ✓</text>
+    </svg>
+    <p style="font-size:.75rem;margin-top:.3rem"><strong style="color:var(--verde)">✅ CORRECTO:</strong> α₁ corta el PH (abajo)</p>
+  </div>
+</div>
+<strong>Truco:</strong> α₁ = 1ª letra = horizontal = PH. α₂ = 2ª letra = vertical = PV.</div>
 <div class="box box-idea">
 <strong>🔗 Conexión</strong>
 El plano es el elemento más importante del diédrico. Todo punto y recta pertenece a un plano. Dominar el plano es clave para cortes, secciones e intersecciones.
@@ -611,6 +678,84 @@ window.onscroll = function(){
   var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
   document.getElementById('progress').style.width = p+'%';
 };
+
+
+// checkIdentify - ejercicio SVG clickeable
+function checkIdentify(el, correct) {
+  var parent = el.closest('.exercise');
+  var feedback = parent.querySelector('.feedback');
+  var allClickables = parent.querySelectorAll('.clickable');
+  allClickables.forEach(function(c) { c.style.pointerEvents = 'none'; });
+  if (correct) {
+    el.style.borderColor = 'var(--verde)';
+    el.style.background = 'var(--verde-claro)';
+    feedback.textContent = '✅ ¡Correcto! El plano horizontal tiene su traza horizontal paralela al eje de tierra.';
+    feedback.className = 'feedback correct';
+  } else {
+    el.style.borderColor = 'var(--rojo)';
+    el.style.background = 'var(--rojo-claro)';
+    feedback.textContent = '❌ Incorrecto. El plano vertical tiene su traza horizontal PERPENDICULAR al eje de tierra.';
+    feedback.className = 'feedback incorrect';
+    setTimeout(function() {
+      el.style.borderColor = '#e2e8f0';
+      el.style.background = '';
+      allClickables.forEach(function(c) { c.style.pointerEvents = 'auto'; });
+      feedback.textContent = '';
+      feedback.className = 'feedback';
+    }, 2000);
+  }
+}
+
+// Matching exercise functions
+var matchState = {};
+function selectMatchLeft(containerId, btn, matchKey) {
+  if (matchState[containerId] && matchState[containerId].selectedLeft) return;
+  var container = document.getElementById(containerId);
+  var leftBtns = container.querySelectorAll('.match-left .quiz-btn');
+  leftBtns.forEach(function(b) { b.style.background = '#fff'; b.style.color = 'var(--texto)'; });
+  btn.style.background = 'var(--azul)';
+  btn.style.color = '#fff';
+  matchState[containerId] = { selectedLeft: matchKey };
+}
+function selectMatchRight(containerId, btn, matchKey) {
+  var state = matchState[containerId];
+  if (!state || !state.selectedLeft) return;
+  var container = document.getElementById(containerId);
+  var feedback = container.closest('.exercise').querySelector('.feedback');
+  var correctMatches = {
+    'horizontal': 'perpendicular',
+    'vertical': 'paralelo',
+    'perfil': 'perpendicular2'
+  };
+  if (state.selectedLeft === matchKey && correctMatches[state.selectedLeft] === matchKey) {
+    btn.style.background = 'var(--verde)';
+    btn.style.color = '#fff';
+    btn.style.pointerEvents = 'none';
+    var leftBtns = container.querySelectorAll('.match-left .quiz-btn');
+    leftBtns.forEach(function(b) {
+      if (b.getAttribute('data-match') === state.selectedLeft) {
+        b.style.background = 'var(--verde)';
+        b.style.color = '#fff';
+        b.style.pointerEvents = 'none';
+      }
+    });
+    state['matched_' + state.selectedLeft] = true;
+    var allMatched = true;
+    for (var key in correctMatches) {
+      if (!state['matched_' + key]) { allMatched = false; break; }
+    }
+    if (allMatched) {
+      feedback.textContent = '🏆 ¡Perfecto! Todos los planos emparejados correctamente.';
+      feedback.className = 'feedback correct';
+    }
+  } else {
+    btn.style.background = 'var(--rojo)';
+    btn.style.color = '#fff';
+    setTimeout(function() { btn.style.background = '#fff'; btn.style.color = 'var(--texto)'; }, 1000);
+    feedback.textContent = '❌ No coincide. Inténtalo de nuevo.';
+    feedback.className = 'feedback incorrect';
+  }
+}
 </script>
 </body>
 </html>

@@ -276,6 +276,23 @@ Eje mayor vertical (cara XZ)
 <p class="feedback"></p>
 </div>
 
+
+<div class="exercise">
+<p>📐 Ejercicio 9 (Emparejar): <span class="difficulty-badge easy">Fácil</span> Une cada cara con la dirección de su eje mayor:</p>
+<div class="match-container" id="match-ej9">
+  <div class="match-left" style="display:flex;flex-direction:column;gap:.5rem">
+    <button class="quiz-btn" onclick="selectMatchLeft('match-ej9', this, 'xy')" data-match="xy" style="width:100%">Cara XY</button>
+    <button class="quiz-btn" onclick="selectMatchLeft('match-ej9', this, 'xz')" data-match="xz" style="width:100%">Cara XZ</button>
+    <button class="quiz-btn" onclick="selectMatchLeft('match-ej9', this, 'yz')" data-match="yz" style="width:100%">Cara YZ</button>
+  </div>
+  <div class="match-right" id="match-right-ej9" style="display:flex;flex-direction:column;gap:.5rem;margin-top:1rem">
+    <button class="quiz-btn" onclick="selectMatchRight('match-ej9', this, 'vertical')" data-match="vertical" style="width:100%">Eje mayor vertical</button>
+    <button class="quiz-btn" onclick="selectMatchRight('match-ej9', this, '30grados')" data-match="30grados" style="width:100%">Eje mayor a 30°</button>
+    <button class="quiz-btn" onclick="selectMatchRight('match-ej9', this, '150grados')" data-match="150grados" style="width:100%">Eje mayor a 150°</button>
+  </div>
+</div>
+<p class="feedback"></p>
+</div>
 </div>
 </section>
 
@@ -305,6 +322,26 @@ Eje mayor vertical (cara XZ)
 </div>
 <strong>Regla mnemotécnica:</strong> El eje mayor SIEMPRE es perpendicular al plano isométrico. Piensa: "el mayor mira al cielo" — en cara XZ mira arriba (vertical), en cara XY mira a 30°, en cara YZ mira a 150°.</div>
 
+
+<div class="box box-error">
+<strong>⚠️ Error al trazar ejes: confundir mayor con menor</strong>
+<div class="comparison" style="margin:.8rem 0">
+  <div class="comparison-side" style="padding:.8rem">
+    <svg viewBox="0 0 120 80" width="100">
+      <ellipse cx="60" cy="40" rx="25" ry="45" fill="none" stroke="#ef4444" stroke-width="2"/>
+      <text x="60" y="75" text-anchor="middle" font-size="7" fill="#ef4444">❌ Eje menor = 1.22×D</text>
+    </svg>
+    <p style="font-size:.75rem;margin-top:.3rem"><strong style="color:var(--rojo)">❌ ERROR:</strong> El eje MAYOR es 1.22×D, no el menor</p>
+  </div>
+  <div class="comparison-side" style="padding:.8rem">
+    <svg viewBox="0 0 120 80" width="100">
+      <ellipse cx="60" cy="40" rx="45" ry="25" fill="none" stroke="#10b981" stroke-width="2"/>
+      <text x="60" y="75" text-anchor="middle" font-size="7" fill="#10b981">✅ Eje mayor = 1.22×D</text>
+    </svg>
+    <p style="font-size:.75rem;margin-top:.3rem"><strong style="color:var(--verde)">✅ CORRECTO:</strong> El eje MAYOR es 1.22×D</p>
+  </div>
+</div>
+<strong>Regla:</strong> Eje mayor = 1.22 × Diámetro (siempre más largo). Eje menor = 0.7 × Diámetro (siempre más corto).</div>
 <div class="box box-idea">
 <strong>🔗 Conexión</strong>
 Los círculos en isométrica son las elipses. Los cilindros, taladros y agujeros se representan con elipses. ¡Dominar las elipses es clave para dibujar piezas con elementos cilíndricos!
@@ -462,6 +499,102 @@ window.onscroll = function(){
   var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
   document.getElementById('progress').style.width = p+'%';
 };
+
+
+// checkIdentify - ejercicio SVG clickeable
+function checkIdentify(el, correct) {
+  var parent = el.closest('.exercise');
+  var feedback = parent.querySelector('.feedback');
+  var allClickables = parent.querySelectorAll('.clickable');
+  
+  allClickables.forEach(function(c) { c.style.pointerEvents = 'none'; });
+  
+  if (correct) {
+    el.style.borderColor = 'var(--verde)';
+    el.style.background = 'var(--verde-claro)';
+    feedback.textContent = '✅ ¡Correcto! En cara XZ, el agujero se representa como elipse con eje mayor vertical.';
+    feedback.className = 'feedback correct';
+  } else {
+    el.style.borderColor = 'var(--rojo)';
+    el.style.background = 'var(--rojo-claro)';
+    feedback.textContent = '❌ Incorrecto. En cara XZ, el eje mayor es VERTICAL, no un círculo.';
+    feedback.className = 'feedback incorrect';
+    setTimeout(function() {
+      el.style.borderColor = '#e2e8f0';
+      el.style.background = '';
+      allClickables.forEach(function(c) { c.style.pointerEvents = 'auto'; });
+      feedback.textContent = '';
+      feedback.className = 'feedback';
+    }, 2000);
+  }
+}
+
+// Matching exercise functions
+var matchState = {};
+
+function selectMatchLeft(containerId, btn, matchKey) {
+  if (matchState[containerId] && matchState[containerId].selectedLeft) return;
+  
+  var container = document.getElementById(containerId);
+  var leftBtns = container.querySelectorAll('.match-left .quiz-btn');
+  leftBtns.forEach(function(b) { b.style.background = '#fff'; b.style.color = 'var(--texto)'; });
+  
+  btn.style.background = 'var(--azul)';
+  btn.style.color = '#fff';
+  matchState[containerId] = { selectedLeft: matchKey, selectedRight: null };
+  
+  var rightBtns = container.querySelectorAll('.match-right .quiz-btn');
+  rightBtns.forEach(function(b) { b.style.pointerEvents = 'auto'; });
+}
+
+function selectMatchRight(containerId, btn, matchKey) {
+  var state = matchState[containerId];
+  if (!state || !state.selectedLeft) return;
+  
+  var container = document.getElementById(containerId);
+  var feedback = container.closest('.exercise').querySelector('.feedback');
+  
+  var correctMatches = {
+    'xy': '30grados',
+    'xz': 'vertical',
+    'yz': '150grados'
+  };
+  
+  if (state.selectedLeft === matchKey && correctMatches[state.selectedLeft] === matchKey) {
+    btn.style.background = 'var(--verde)';
+    btn.style.color = '#fff';
+    btn.style.pointerEvents = 'none';
+    
+    var leftBtns = container.querySelectorAll('.match-left .quiz-btn');
+    leftBtns.forEach(function(b) {
+      if (b.getAttribute('data-match') === state.selectedLeft) {
+        b.style.background = 'var(--verde)';
+        b.style.color = '#fff';
+        b.style.pointerEvents = 'none';
+      }
+    });
+    
+    state['matched_' + state.selectedLeft] = true;
+    
+    var allMatched = true;
+    for (var key in correctMatches) {
+      if (!state['matched_' + key]) { allMatched = false; break; }
+    }
+    if (allMatched) {
+      feedback.textContent = '🏆 ¡Perfecto! Has emparejado todas las caras con sus ejes mayores correctamente.';
+      feedback.className = 'feedback correct';
+    }
+  } else {
+    btn.style.background = 'var(--rojo)';
+    btn.style.color = '#fff';
+    setTimeout(function() {
+      btn.style.background = '#fff';
+      btn.style.color = 'var(--texto)';
+    }, 1000);
+    feedback.textContent = '❌ No coincide. Inténtalo de nuevo.';
+    feedback.className = 'feedback incorrect';
+  }
+}
 </script>
 </body>
 </html>

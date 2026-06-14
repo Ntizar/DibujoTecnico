@@ -188,6 +188,48 @@
 
 <div class="exercise">
 <p>📐 Ejercicio 2 (V/F visual): ¿Esta representación de semicorte es correcta?</p>
+
+<div class="exercise">
+<p>📐 Ejercicio 8 (Emparejar): <span class="difficulty-badge easy">Fácil</span> Une cada tipo de corte con su descripción:</p>
+<div class="match-container" id="match-ej8">
+  <div class="match-left" style="display:flex;flex-direction:column;gap:.5rem">
+    <button class="quiz-btn" onclick="selectMatchLeft('match-ej8', this, 'corte')" data-match="corte" style="width:100%">Corte Total</button>
+    <button class="quiz-btn" onclick="selectMatchLeft('match-ej8', this, 'parcial')" data-match="parcial" style="width:100%">Corte Parcial</button>
+    <button class="quiz-btn" onclick="selectMatchLeft('match-ej8', this, 'escalonado')" data-match="escalonado" style="width:100%">Corte Escalonado</button>
+  </div>
+  <div class="match-right" id="match-right-ej8" style="display:flex;flex-direction:column;gap:.5rem;margin-top:1rem">
+    <button class="quiz-btn" onclick="selectMatchRight('match-ej8', this, 'despiece')" data-match="despiece" style="width:100%">Atraviesa toda la pieza</button>
+    <button class="quiz-btn" onclick="selectMatchRight('match-ej8', this, 'rotura')" data-match="rotura" style="width:100%">Solo muestra lo necesario</button>
+    <button class="quiz-btn" onclick="selectMatchRight('match-ej8', this, 'paralelos')" data-match="paralelos" style="width:100%">Planos paralelos entre sí</button>
+  </div>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 9 (Identificar): <span class="difficulty-badge easy">Fácil</span> ¿Qué tipo de corte tiene línea de rotura ondulada?</p>
+<div style="display:flex;gap:1rem;justify-content:center;margin:1rem 0;flex-wrap:wrap">
+  <div class="clickable" onclick="checkIdentify(this, false)" style="text-align:center;padding:1rem;border:2px solid #e2e8f0;border-radius:8px;flex:1;min-width:180px">
+    <svg viewBox="0 0 120 80" width="110">
+      <rect x="20" y="10" width="80" height="60" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+      <line x1="20" y1="40" x2="100" y2="40" stroke="#ef4444" stroke-width="2" stroke-dasharray="5,3"/>
+      <text x="60" y="75" text-anchor="middle" font-size="6" fill="#ef4444">Línea recta</text>
+    </svg>
+    <p style="font-size:.75rem;margin-top:.5rem"><strong>Corte Total</strong></p>
+  </div>
+  <div class="clickable" onclick="checkIdentify(this, true)" style="text-align:center;padding:1rem;border:2px solid #e2e8f0;border-radius:8px;flex:1;min-width:180px">
+    <svg viewBox="0 0 120 80" width="110">
+      <rect x="20" y="10" width="80" height="60" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+      <path d="M 20 40 Q 40 30 60 40 Q 80 50 100 40" fill="none" stroke="#f97316" stroke-width="2.5"/>
+      <text x="60" y="75" text-anchor="middle" font-size="6" fill="#f97316">Línea ondulada</text>
+    </svg>
+    <p style="font-size:.75rem;margin-top:.5rem"><strong>Corte Parcial</strong></p>
+  </div>
+</div>
+<p class="feedback"></p>
+</div>
+</section>
+
 <div class="comparison" style="margin:.5rem 0">
 <div class="comparison-side" style="padding:.6rem">
 <svg viewBox="0 0 100 60" width="90"><rect x="10" y="10" width="80" height="40" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/><line x1="50" y1="10" x2="50" y2="50" stroke="#10b981" stroke-width="1" stroke-dasharray="5,3"/><rect x="10" y="10" width="40" height="40" fill="#ecfdf5" stroke="none"/></svg>
@@ -235,7 +277,7 @@
 </div>
 
 </div>
-</section>
+
    206|
    207|
 
@@ -294,7 +336,29 @@
 <p>Regla: <strong>corte = vista cortada + lo que hay detrás</strong> | <strong>sección = solo la superficie cortada con rayado</strong></p>
 </div>
    211|
-   212|<div class="box box-idea">
+   212|
+<div class="box box-error">
+<strong>⚠️ Error al representar cortes: confundir línea de corte con línea de rotura</strong>
+<div class="comparison" style="margin:.8rem 0">
+  <div class="comparison-side" style="padding:.8rem">
+    <svg viewBox="0 0 120 80" width="100">
+      <rect x="15" y="10" width="90" height="60" fill="#fef2f2" stroke="#ef4444" stroke-width="1.5"/>
+      <line x1="15" y1="40" x2="105" y2="40" stroke="#ef4444" stroke-width="3"/>
+      <text x="60" y="75" text-anchor="middle" font-size="7" fill="#ef4444">❌ Línea continua = corte total</text>
+    </svg>
+    <p style="font-size:.75rem;margin-top:.3rem"><strong style="color:var(--rojo)">❌ ERROR:</strong> No usar línea continua para corte parcial</p>
+  </div>
+  <div class="comparison-side" style="padding:.8rem">
+    <svg viewBox="0 0 120 80" width="100">
+      <rect x="15" y="10" width="90" height="60" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
+      <path d="M 15 40 Q 35 30 60 40 Q 85 50 105 40" fill="none" stroke="#10b981" stroke-width="2.5"/>
+      <text x="60" y="75" text-anchor="middle" font-size="7" fill="#10b981">✅ Línea ondulada = corte parcial</text>
+    </svg>
+    <p style="font-size:.75rem;margin-top:.3rem"><strong style="color:var(--verde)">✅ CORRECTO:</strong> Corte parcial usa línea de rotura ondulada</p>
+  </div>
+</div>
+<strong>Regla:</strong> Corte total = línea continua gruesa. Corte parcial = línea ondulada (rotura).</div>
+<div class="box box-idea">
    213|<strong>🔗 Conexión</strong>
    214|Los cortes son esenciales para mostrar interiores de piezas. Sin cortes, no se verían agujeros, cámaras, o elementos internos.
    215|</div>
@@ -412,7 +476,160 @@ function checkOrden(btn, answer) {
    280|  var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
    281|  document.getElementById('progress').style.width = p+'%';
    282|};
-   283|</script>
+   283|
+
+function checkIdentify(el, correct) {
+  var parent = el.closest('.exercise');
+  var feedback = parent.querySelector('.feedback');
+  var allClickables = parent.querySelectorAll('.clickable');
+  allClickables.forEach(function(c) { c.style.pointerEvents = 'none'; });
+  if (correct) {
+    el.style.borderColor = 'var(--verde)';
+    el.style.background = 'var(--verde-claro)';
+    feedback.textContent = '✅ ¡Correcto! Es un corte parcial: solo se representa lo necesario con línea de rotura ondulada.';
+    feedback.className = 'feedback correct';
+  } else {
+    el.style.borderColor = 'var(--rojo)';
+    el.style.background = 'var(--rojo-claro)';
+    feedback.textContent = '❌ Incorrecto. El corte total tiene línea de corte recta, no ondulada.';
+    feedback.className = 'feedback incorrect';
+    setTimeout(function() {
+      el.style.borderColor = '#e2e8f0';
+      el.style.background = '';
+      allClickables.forEach(function(c) { c.style.pointerEvents = 'auto'; });
+      feedback.textContent = '';
+      feedback.className = 'feedback';
+    }, 2000);
+  }
+}
+var matchState = {};
+function selectMatchLeft(containerId, btn, matchKey) {
+  if (matchState[containerId] && matchState[containerId].selectedLeft) return;
+  var container = document.getElementById(containerId);
+  var leftBtns = container.querySelectorAll('.match-left .quiz-btn');
+  leftBtns.forEach(function(b) { b.style.background = '#fff'; b.style.color = 'var(--texto)'; });
+  btn.style.background = 'var(--azul)';
+  btn.style.color = '#fff';
+  matchState[containerId] = { selectedLeft: matchKey };
+}
+function selectMatchRight(containerId, btn, matchKey) {
+  var state = matchState[containerId];
+  if (!state || !state.selectedLeft) return;
+  var container = document.getElementById(containerId);
+  var feedback = container.closest('.exercise').querySelector('.feedback');
+  var correctMatches = {
+    'corte': 'despiece',
+    'parcial': 'rotura',
+    'escalonado': 'paralelos'
+  };
+  if (state.selectedLeft === matchKey && correctMatches[state.selectedLeft] === matchKey) {
+    btn.style.background = 'var(--verde)';
+    btn.style.color = '#fff';
+    btn.style.pointerEvents = 'none';
+    var leftBtns = container.querySelectorAll('.match-left .quiz-btn');
+    leftBtns.forEach(function(b) {
+      if (b.getAttribute('data-match') === state.selectedLeft) {
+        b.style.background = 'var(--verde)';
+        b.style.color = '#fff';
+        b.style.pointerEvents = 'none';
+      }
+    });
+    state['matched_' + state.selectedLeft] = true;
+    var allMatched = true;
+    for (var key in correctMatches) {
+      if (!state['matched_' + key]) { allMatched = false; break; }
+    }
+    if (allMatched) {
+      feedback.textContent = '🏆 ¡Perfecto! Todos los cortes emparejados correctamente.';
+      feedback.className = 'feedback correct';
+    }
+  } else {
+    btn.style.background = 'var(--rojo)';
+    btn.style.color = '#fff';
+    setTimeout(function() { btn.style.background = '#fff'; btn.style.color = 'var(--texto)'; }, 1000);
+    feedback.textContent = '❌ No coincide. Inténtalo de nuevo.';
+    feedback.className = 'feedback incorrect';
+  }
+}
+
+
+// checkIdentify - ejercicio SVG clickeable
+function checkIdentify(el, correct) {
+  var parent = el.closest('.exercise');
+  var feedback = parent.querySelector('.feedback');
+  var allClickables = parent.querySelectorAll('.clickable');
+  allClickables.forEach(function(c) { c.style.pointerEvents = 'none'; });
+  if (correct) {
+    el.style.borderColor = 'var(--verde)';
+    el.style.background = 'var(--verde-claro)';
+    feedback.textContent = '✅ ¡Correcto! Es un corte parcial: solo se representa lo necesario con línea de rotura ondulada.';
+    feedback.className = 'feedback correct';
+  } else {
+    el.style.borderColor = 'var(--rojo)';
+    el.style.background = 'var(--rojo-claro)';
+    feedback.textContent = '❌ Incorrecto. El corte total tiene línea de corte recta, no ondulada.';
+    feedback.className = 'feedback incorrect';
+    setTimeout(function() {
+      el.style.borderColor = '#e2e8f0';
+      el.style.background = '';
+      allClickables.forEach(function(c) { c.style.pointerEvents = 'auto'; });
+      feedback.textContent = '';
+      feedback.className = 'feedback';
+    }, 2000);
+  }
+}
+
+// Matching exercise functions
+var matchState = {};
+function selectMatchLeft(containerId, btn, matchKey) {
+  if (matchState[containerId] && matchState[containerId].selectedLeft) return;
+  var container = document.getElementById(containerId);
+  var leftBtns = container.querySelectorAll('.match-left .quiz-btn');
+  leftBtns.forEach(function(b) { b.style.background = '#fff'; b.style.color = 'var(--texto)'; });
+  btn.style.background = 'var(--azul)';
+  btn.style.color = '#fff';
+  matchState[containerId] = { selectedLeft: matchKey };
+}
+function selectMatchRight(containerId, btn, matchKey) {
+  var state = matchState[containerId];
+  if (!state || !state.selectedLeft) return;
+  var container = document.getElementById(containerId);
+  var feedback = container.closest('.exercise').querySelector('.feedback');
+  var correctMatches = {
+    'corte': 'despiece',
+    'parcial': 'rotura',
+    'escalonado': 'paralelos'
+  };
+  if (state.selectedLeft === matchKey && correctMatches[state.selectedLeft] === matchKey) {
+    btn.style.background = 'var(--verde)';
+    btn.style.color = '#fff';
+    btn.style.pointerEvents = 'none';
+    var leftBtns = container.querySelectorAll('.match-left .quiz-btn');
+    leftBtns.forEach(function(b) {
+      if (b.getAttribute('data-match') === state.selectedLeft) {
+        b.style.background = 'var(--verde)';
+        b.style.color = '#fff';
+        b.style.pointerEvents = 'none';
+      }
+    });
+    state['matched_' + state.selectedLeft] = true;
+    var allMatched = true;
+    for (var key in correctMatches) {
+      if (!state['matched_' + key]) { allMatched = false; break; }
+    }
+    if (allMatched) {
+      feedback.textContent = '🏆 ¡Perfecto! Todos los cortes emparejados correctamente.';
+      feedback.className = 'feedback correct';
+    }
+  } else {
+    btn.style.background = 'var(--rojo)';
+    btn.style.color = '#fff';
+    setTimeout(function() { btn.style.background = '#fff'; btn.style.color = 'var(--texto)'; }, 1000);
+    feedback.textContent = '❌ No coincide. Inténtalo de nuevo.';
+    feedback.className = 'feedback incorrect';
+  }
+}
+</script>
    284|</body>
    285|</html>
    286|
