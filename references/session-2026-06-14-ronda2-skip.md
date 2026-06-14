@@ -1,27 +1,23 @@
-# Sesión Skip 2026-06-14 — Ronda 2 Completada
+# Ronda 2 — Skip Silencioso (2026-06-14)
 
-**Fecha:** 2026-06-14 08:45 UTC
-**Tipo:** Skip silencioso (Ronda 2 100% completada)
+**Fecha:** 2026-06-14
+**Proyecto:** Dibujo Técnico
+**Ronda:** 2
 
-## Estado del proyecto
+## Estado
 
-- **Total temas:** 49/49
-- **Ronda 2 completada:** 49/49 (100%)
-- **Todos con status improved_2:** 49/49
-- **Última mejora registrada:** 2026-06-14-ronda2-s3
+**Ronda 2 100% completada.** Los 49/49 temas están en `improved_2` con scores ≥9 en todas las dimensiones.
 
-## Auto-auditoría CSS (3 aleatorios)
+## Auto-auditoría CSS (3 HTMLs aleatorios)
 
-| Archivo | Tamaño | Section | Div | CSS | Links | Resultado |
-|---------|--------|---------|-----|-----|-------|-----------|
-| b03-02-isometrica-cubos.html | 31.9 KB | 4/4 OK | 45/45 OK | 0 faltantes | 0 rotos | ✅ PASSED |
-| b05-02-corte-tipos.html | 25.2 KB | 4/4 OK | 38/38 OK | 0 faltantes | 0 rotos | ✅ PASSED |
-| b03-06-perspectivas-resumen.html | 32.0 KB | 4/4 OK | 51/51 OK | 0 faltantes | 0 rotos | ✅ PASSED |
+| Archivo | Scores | HTML | CSS | Links |
+|---------|--------|------|-----|-------|
+| b09-01-planos-conjunto.html | 10/10/10/10/10/10 | ✅ | ✅ | ✅ |
+| b04-03-plano-diedrico.html | 9/9/9/9/9/10 | ✅ | ✅ | ✅ |
+| b05-02-corte-tipos.html | 9/9/9/9/9/10 | ✅ | ✅ | ✅ |
 
-**Conclusión:** Calidad general excelente. Todos los archivos pasan los 5 quality gates.
+**Resultado:** Los 3 HTMLs pasan todos los quality gates.
 
-## Notas
+## Decisión
 
-- Ronda 2 completada el 2026-06-13 (sesiones 1-6).
-- No hay temas pendientes de mejora.
-- No se realizan cambios en esta sesión.
+Skip silencioso — no hay temas pendientes para Ronda 2. No se realizan modificaciones.
