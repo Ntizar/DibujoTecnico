@@ -328,6 +328,87 @@ Selecciona un paso arriba para ver la explicación.
 <strong>🔗 Conexión con otras perspectivas</strong>
 <p>La dimétrica es el punto medio entre isométrica (3 ejes iguales) y caballera (2 ejes en VM, 1 oblicuo). Cuando necesitas más precisión que caballera pero no tanta como isométrica, la dimétrica es tu opción. Piensa en ella como un "ajuste fino" de la perspectiva.</p>
 </div>
+
+<!-- ===== RONDA 2: Matching + V/F Visual + Fill In ===== -->
+
+<div class="exercise">
+<p>🔗 <span class="difficulty-badge">AVANZADO</span> — Ejercicio 9: Empareja tipo de perspectiva con sus características</p>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;margin:1rem 0">
+<div style="flex:1;min-width:200px">
+<p style="font-weight:600;margin-bottom:.5rem">Tipo:</p>
+<button class="quiz-btn left-item clickable" style="width:100%;text-align:left;margin:.3rem 0" onclick="selectMatchLeft('perspTipos', this)" data-value="isometrica">Isométrica</button>
+<button class="quiz-btn left-item clickable" style="width:100%;text-align:left;margin:.3rem 0" onclick="selectMatchLeft('perspTipos', this)" data-value="dimetrica">Dimétrica</button>
+<button class="quiz-btn left-item clickable" style="width:100%;text-align:left;margin:.3rem 0" onclick="selectMatchLeft('perspTipos', this)" data-value="monometrica">Monométrica</button>
+</div>
+<div style="flex:1;min-width:200px">
+<p style="font-weight:600;margin-bottom:.5rem">Característica:</p>
+<div id="perspTipos-right" style="display:flex;flex-direction:column;gap:.3rem"></div>
+</div>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>👁️ <span class="difficulty-badge">VISUAL</span> — Ejercicio 10: ¿Cuál es la perspectiva dimétrica CORRECTA?</p>
+<div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin:1rem 0">
+<div class="clickable" onclick="checkIdentify(this, true)" style="flex:1;min-width:200px;padding:1rem;border:2px dashed var(--azul);border-radius:8px;cursor:pointer;text-align:center">
+<svg viewBox="0 0 160 160" width="140">
+<polygon points="80,15 145,55 145,125 80,155 15,125 15,55" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<line x1="80" y1="15" x2="80" y2="85" stroke="#f97316" stroke-width="3"/>
+<line x1="80" y1="85" x2="145" y2="55" stroke="#2563eb" stroke-width="2"/>
+<line x1="80" y1="85" x2="15" y2="55" stroke="#2563eb" stroke-width="2"/>
+<text x="80" y="10" text-anchor="middle" font-size="8" fill="#f97316">Z (½)</text>
+<text x="155" y="50" text-anchor="middle" font-size="8" fill="#2563eb">X (1:1)</text>
+<text x="5" y="50" text-anchor="middle" font-size="8" fill="#2563eb">Y (1:1)</text>
+<text x="80" y="170" text-anchor="middle" font-size="9" fill="#10b981" font-weight="700">✓ 2 ejes iguales, 1 diferente</text>
+</svg>
+<p style="font-size:.85rem;margin-top:.5rem">Opción A</p>
+</div>
+<div class="clickable" onclick="checkIdentify(this, false)" style="flex:1;min-width:200px;padding:1rem;border:2px dashed var(--azul);border-radius:8px;cursor:pointer;text-align:center">
+<svg viewBox="0 0 160 160" width="140">
+<polygon points="80,15 145,55 145,125 80,155 15,125 15,55" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<line x1="80" y1="15" x2="80" y2="85" stroke="#2563eb" stroke-width="2"/>
+<line x1="80" y1="85" x2="145" y2="55" stroke="#2563eb" stroke-width="2"/>
+<line x1="80" y1="85" x2="15" y2="55" stroke="#2563eb" stroke-width="2"/>
+<text x="80" y="10" text-anchor="middle" font-size="8" fill="#2563eb">Z (1:1)</text>
+<text x="155" y="50" text-anchor="middle" font-size="8" fill="#2563eb">X (1:1)</text>
+<text x="5" y="50" text-anchor="middle" font-size="8" fill="#2563eb">Y (1:1)</text>
+<text x="80" y="170" text-anchor="middle" font-size="9" fill="#ef4444" font-weight="700">✗ 3 ejes iguales = isométrica</text>
+</svg>
+<p style="font-size:.85rem;margin-top:.5rem">Opción B</p>
+</div>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>✏️ <span class="difficulty-badge">COMPLETAR</span> — Ejercicio 11: Completa sobre la perspectiva dimétrica</p>
+<p>En la perspectiva dimétrica, ___ eje(s) tiene(n) la misma escala y ___ eje tiene una escala diferente (normalmente la mitad).</p>
+<div style="display:flex;gap:1rem;margin:1rem 0;flex-wrap:wrap">
+<div>
+<label style="font-weight:600">Ejes iguales:</label><br>
+<input type="text" id="dim1" placeholder="número" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;width:120px">
+</div>
+<div>
+<label style="font-weight:600">Escala diferente:</label><br>
+<input type="text" id="dim2" placeholder="fracción" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;width:120px">
+</div>
+</div>
+<button onclick="
+  var a1 = document.getElementById('dim1').value.trim().toLowerCase();
+  var a2 = document.getElementById('dim2').value.trim().toLowerCase();
+  var fb = document.getElementById('ex8-fb');
+  if ((a1 === '2' || a1 === 'dos') && (a2 === '1/2' || a2 === 'mitad' || a2 === '0.5')) {
+    fb.textContent = '✅ ¡Correcto! 2 ejes iguales, 1 eje a mitad de escala.';
+    fb.className = 'feedback correct';
+  } else {
+    fb.textContent = '❌ Pista: 2 ejes iguales, 1 eje diferente.';
+    fb.className = 'feedback incorrect';
+  }
+" style="margin-top:.5rem;padding:.5rem 1.2rem;background:var(--azul);color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:600">Comprobar</button>
+<p class="feedback" id="ex8-fb"></p>
+</div>
+
 <div class="summary">
    204|<h3>📋 Resumen de lo aprendido</h3>
    205|<ul>
@@ -515,6 +596,150 @@ window.onscroll = function(){
   var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
   document.getElementById('progress').style.width = p+'%';
 };
+
+// ===== 4-Step Visual Pattern =====
+var currentStep = 0;
+function showStep(step) {
+  currentStep = step;
+  var dots = document.querySelectorAll('.step-dot');
+  dots.forEach(function(dot, i) {
+    dot.classList.toggle('active', i === step);
+  });
+  var contents = document.querySelectorAll('.step-content');
+  contents.forEach(function(c, i) {
+    c.style.display = i === step ? 'block' : 'none';
+  });
+}
+showStep(0);
+
+// ===== V/F Visual =====
+function checkIdentify(el, correct) {
+  var exercise = el.closest('.exercise');
+  var feedback = exercise.querySelector('.feedback');
+  var siblings = exercise.querySelectorAll('.clickable');
+  if (correct) {
+    el.style.outline = '3px solid var(--verde)';
+    feedback.textContent = '✅ ¡Correcto!';
+    feedback.className = 'feedback correct';
+    siblings.forEach(function(s) { s.style.pointerEvents = 'none'; });
+  } else {
+    el.style.outline = '3px solid var(--rojo)';
+    feedback.textContent = '❌ Incorrecto. Inténtalo de nuevo.';
+    feedback.className = 'feedback incorrect';
+    setTimeout(function() {
+      el.style.outline = '2px dashed var(--azul)';
+      feedback.textContent = '';
+      feedback.className = 'feedback';
+    }, 2000);
+  }
+}
+
+// ===== Matching =====
+var matchState = {};
+function initMatchExercise(name, leftItems, rightItems) {
+  matchState[name] = { selected: null, matched: 0, total: leftItems.length };
+  var shuffled = rightItems.slice();
+  for (var i = shuffled.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = shuffled[i]; shuffled[i] = shuffled[j]; shuffled[j] = tmp;
+  }
+  var rightContainer = document.getElementById(name + '-right');
+  if (rightContainer) {
+    rightContainer.innerHTML = '';
+    shuffled.forEach(function(item, i) {
+      var btn = document.createElement('button');
+      btn.className = 'quiz-btn';
+      btn.textContent = item.text;
+      btn.dataset.value = item.value;
+      btn.onclick = function() { selectMatchRight(name, this); };
+      rightContainer.appendChild(btn);
+    });
+  }
+}
+function selectMatchLeft(name, el) {
+  var exercise = el.closest('.exercise');
+  var feedback = exercise.querySelector('.feedback');
+  exercise.querySelectorAll('.clickable.left-item').forEach(function(b) {
+    b.style.background = '#fff';
+    b.style.borderColor = 'var(--azul)';
+  });
+  el.style.background = 'var(--azul-claro)';
+  el.style.borderColor = 'var(--azul)';
+  matchState[name].selected = el;
+  var rightContainer = document.getElementById(name + '-right');
+  if (rightContainer) {
+    rightContainer.querySelectorAll('.quiz-btn').forEach(function(b) {
+      b.style.pointerEvents = 'auto';
+      b.style.opacity = '1';
+    });
+  }
+}
+function selectMatchRight(name, el) {
+  var state = matchState[name];
+  if (!state || !state.selected) return;
+  if (state.selected.dataset.value === el.dataset.value) {
+    state.selected.style.background = 'var(--verde-claro)';
+    state.selected.style.borderColor = 'var(--verde)';
+    state.selected.style.pointerEvents = 'none';
+    el.style.background = 'var(--verde-claro)';
+    el.style.borderColor = 'var(--verde)';
+    el.style.pointerEvents = 'none';
+    state.matched++;
+    feedback.textContent = '✅ ¡Par correcto!';
+    feedback.className = 'feedback correct';
+    if (state.matched === state.total) {
+      feedback.textContent = '🎉 ¡Todos los pares emparejados!';
+    }
+  } else {
+    el.style.background = 'var(--rojo-claro)';
+    el.style.borderColor = 'var(--rojo)';
+    var fb = el.closest('.exercise').querySelector('.feedback');
+    fb.textContent = '❌ No coinciden. Prueba otro.';
+    fb.className = 'feedback incorrect';
+    setTimeout(function() {
+      el.style.background = '#fff';
+      el.style.borderColor = 'var(--azul)';
+      fb.textContent = '';
+      fb.className = 'feedback';
+    }, 1500);
+  }
+}
+
+// ===== Fill In =====
+function checkFillIn(correctAnswers) {
+  var exercise = correctAnswers[0] ? this : null;
+  if (!exercise) return;
+  var inputs = exercise.querySelectorAll('input[type="text"]');
+  var feedback = exercise.querySelector('.feedback');
+  var allCorrect = true;
+  inputs.forEach(function(input, i) {
+    var val = input.value.trim().toLowerCase();
+    if (i < correctAnswers.length) {
+      var answers = correctAnswers[i];
+      if (Array.isArray(answers) && answers.some(function(a) { return a.toLowerCase() === val; })) {
+        input.style.borderColor = 'var(--verde)';
+        input.style.background = 'var(--verde-claro)';
+      } else {
+        input.style.borderColor = 'var(--rojo)';
+        input.style.background = 'var(--rojo-claro)';
+        allCorrect = false;
+      }
+    }
+  });
+  if (allCorrect && inputs.length > 0) {
+    feedback.textContent = '✅ ¡Correcto!';
+    feedback.className = 'feedback correct';
+  } else if (!allCorrect) {
+    feedback.textContent = '❌ Revisa tus respuestas.';
+    feedback.className = 'feedback incorrect';
+  }
+}
+
+// Initialize matching exercise
+initMatchExercise('perspTipos',
+  [{text: 'Isométrica', value: 'isometrica'}, {text: 'Dimétrica', value: 'dimetrica'}, {text: 'Monométrica', value: 'monometrica'}],
+  [{text: '3 ejes iguales (1:1)', value: 'isometrica'}, {text: '2 ejes iguales, 1 diferente (½)', value: 'dimetrica'}, {text: '1 eje (vertical)', value: 'monometrica'}]
+);
 </script>
    270|</body>
    271|</html>

@@ -296,6 +296,60 @@ Vista auxiliar = se coloca perpendicular a la zona doblada.
 <p class="feedback"></p>
 </div>
 
+
+
+<!-- ===== RONDA 2: Matching + V/F Visual ===== -->
+
+<div class="exercise">
+<p>🔗 <span class="difficulty-badge">AVANZADO</span> — Ejercicio 8: Empareja concepto con definición</p>
+<p>Arrastra o selecciona el par correcto:</p>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;margin:1rem 0">
+<div style="flex:1;min-width:200px">
+<p style="font-weight:600;margin-bottom:.5rem">Concepto:</p>
+<button class="quiz-btn left-item clickable" style="width:100%;text-align:left;margin:.3rem 0" onclick="selectMatchLeft('vistaAux', this)" data-value="aux">Vista auxiliar</button>
+<button class="quiz-btn left-item clickable" style="width:100%;text-align:left;margin:.3rem 0" onclick="selectMatchLeft('vistaAux', this)" data-value="parcial">Vista parcial</button>
+<button class="quiz-btn left-item clickable" style="width:100%;text-align:left;margin:.3rem 0" onclick="selectMatchLeft('vistaAux', this)" data-value="rotura">Línea de rotura</button>
+</div>
+<div style="flex:1;min-width:200px">
+<p style="font-weight:600;margin-bottom:.5rem">Definición:</p>
+<div id="vistaAux-right" style="display:flex;flex-direction:column;gap:.3rem"></div>
+</div>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>👁️ <span class="difficulty-badge">VISUAL</span> — Ejercicio 9: ¿Cuál es la vista auxiliar CORRECTA?</p>
+<p>Mira las dos opciones y haz clic en la que muestra correctamente una vista auxiliar:</p>
+<div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin:1rem 0">
+<div class="clickable" onclick="checkIdentify(this, true)" style="flex:1;min-width:200px;padding:1rem;border:2px dashed var(--azul);border-radius:8px;cursor:pointer;text-align:center">
+<svg viewBox="0 0 160 120" width="150">
+<!-- Vista auxiliar CORRECTA: paralela a la cara inclinada -->
+<rect x="10" y="10" width="60" height="80" fill="none" stroke="#2563eb" stroke-width="2"/>
+<text x="40" y="55" text-anchor="middle" font-size="8" fill="#2563eb">ALZADO</text>
+<!-- Cara inclinada -->
+<polygon points="70,20 70,90 130,55" fill="none" stroke="#f97316" stroke-width="2"/>
+<!-- Vista auxiliar paralela a la cara -->
+<polygon points="135,20 135,90 185,55" fill="#eff6ff" stroke="#10b981" stroke-width="2" stroke-dasharray="4"/>
+<text x="160" y="110" text-anchor="middle" font-size="7" fill="#10b981">✓ AUX CORRECTA</text>
+</svg>
+<p style="font-size:.85rem;margin-top:.5rem">Opción A</p>
+</div>
+<div class="clickable" onclick="checkIdentify(this, false)" style="flex:1;min-width:200px;padding:1rem;border:2px dashed var(--azul);border-radius:8px;cursor:pointer;text-align:center">
+<svg viewBox="0 0 160 120" width="150">
+<!-- Vista auxiliar INCORRECTA: perpendicular a la cara -->
+<rect x="10" y="10" width="60" height="80" fill="none" stroke="#2563eb" stroke-width="2"/>
+<text x="40" y="55" text-anchor="middle" font-size="8" fill="#2563eb">ALZADO</text>
+<polygon points="70,20 70,90 130,55" fill="none" stroke="#f97316" stroke-width="2"/>
+<!-- Error: vista perpendicular, no paralela -->
+<rect x="135" y="10" width="50" height="80" fill="#fef2f2" stroke="#ef4444" stroke-width="2" stroke-dasharray="4"/>
+<text x="160" y="110" text-anchor="middle" font-size="7" fill="#ef4444">✗ PERPENDICULAR</text>
+</svg>
+<p style="font-size:.85rem;margin-top:.5rem">Opción B</p>
+</div>
+</div>
+<p class="feedback"></p>
+</div>
 </div>
 </section>
 
@@ -592,6 +646,170 @@ function toggleErrorVisual() {
   errorTexts.forEach(function(t) { t.style.fontWeight = errorVisualExpanded ? '900' : '700'; });
   correctTexts.forEach(function(t) { t.style.fontWeight = errorVisualExpanded ? '900' : '700'; });
 }
+
+// ===== 4-Step Visual Pattern =====
+var currentStep = 0;
+function showStep(step) {
+  currentStep = step;
+  // Update step indicators
+  var dots = document.querySelectorAll('.step-dot');
+  dots.forEach(function(dot, i) {
+    dot.classList.toggle('active', i === step);
+  });
+  // Update step content visibility
+  var contents = document.querySelectorAll('.step-content');
+  contents.forEach(function(c, i) {
+    c.style.display = i === step ? 'block' : 'none';
+  });
+}
+// Initialize: show first step
+showStep(0);
+
+function checkIdentify(el, correct) {
+  var exercise = el.closest('.exercise');
+  var feedback = exercise.querySelector('.feedback');
+  var siblings = exercise.querySelectorAll('.clickable');
+  
+  if (correct) {
+    el.style.outline = '3px solid var(--verde)';
+    feedback.textContent = '✅ ¡Correcto!';
+    feedback.className = 'feedback correct';
+    siblings.forEach(function(s) { s.style.pointerEvents = 'none'; });
+  } else {
+    el.style.outline = '3px solid var(--rojo)';
+    feedback.textContent = '❌ Incorrecto. Inténtalo de nuevo.';
+    feedback.className = 'feedback incorrect';
+    setTimeout(function() {
+      el.style.outline = '2px dashed var(--azul)';
+      feedback.textContent = '';
+      feedback.className = 'feedback';
+    }, 2000);
+  }
+}
+
+// ===== Matching Exercise =====
+var matchState = {};
+function initMatchExercise(name, leftItems, rightItems) {
+  matchState[name] = { selected: null, matched: 0, total: leftItems.length };
+  // Shuffle right items
+  var shuffled = rightItems.slice();
+  for (var i = shuffled.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = shuffled[i]; shuffled[i] = shuffled[j]; shuffled[j] = tmp;
+  }
+  var rightContainer = document.getElementById(name + '-right');
+  if (rightContainer) {
+    rightContainer.innerHTML = '';
+    shuffled.forEach(function(item, i) {
+      var btn = document.createElement('button');
+      btn.className = 'quiz-btn';
+      btn.textContent = item.text;
+      btn.dataset.value = item.value;
+      btn.onclick = function() { selectMatchRight(name, this); };
+      rightContainer.appendChild(btn);
+    });
+  }
+}
+function selectMatchLeft(name, el) {
+  var exercise = el.closest('.exercise');
+  var feedback = exercise.querySelector('.feedback');
+  // Deselect previous
+  exercise.querySelectorAll('.clickable.left-item').forEach(function(b) {
+    b.style.background = '#fff';
+    b.style.borderColor = 'var(--azul)';
+  });
+  el.style.background = 'var(--azul-claro)';
+  el.style.borderColor = 'var(--azul)';
+  matchState[name].selected = el;
+  // Activate right items
+  var rightContainer = document.getElementById(name + '-right');
+  if (rightContainer) {
+    rightContainer.querySelectorAll('.quiz-btn').forEach(function(b) {
+      b.style.pointerEvents = 'auto';
+      b.style.opacity = '1';
+    });
+  }
+}
+function selectMatchRight(name, el) {
+  var state = matchState[name];
+  if (!state || !state.selected) return;
+  var leftVal = state.selected.dataset.value;
+  var rightVal = el.dataset.value;
+  var exercise = el.closest('.exercise');
+  var feedback = exercise.querySelector('.feedback');
+  
+  if (leftVal === rightVal) {
+    state.selected.style.background = 'var(--verde-claro)';
+    state.selected.style.borderColor = 'var(--verde)';
+    el.style.background = 'var(--verde-claro)';
+    el.style.borderColor = 'var(--verde)';
+    state.selected.style.pointerEvents = 'none';
+    el.style.pointerEvents = 'none';
+    state.matched++;
+    feedback.textContent = '✅ ¡Par correcto!';
+    feedback.className = 'feedback correct';
+    if (state.matched === state.total) {
+      feedback.textContent = '🎉 ¡Todos los pares emparejados!';
+    }
+  } else {
+    el.style.background = 'var(--rojo-claro)';
+    el.style.borderColor = 'var(--rojo)';
+    feedback.textContent = '❌ No coinciden. Prueba otro.';
+    feedback.className = 'feedback incorrect';
+    setTimeout(function() {
+      el.style.background = '#fff';
+      el.style.borderColor = 'var(--azul)';
+      feedback.textContent = '';
+      feedback.className = 'feedback';
+    }, 1500);
+  }
+}
+
+function checkFillIn(correctAnswers) {
+  var exercise = correctAnswers[0] ? this : null;
+  if (!exercise) {
+    // Called without this context — find inputs by ID
+    return;
+  }
+  var inputs = exercise.querySelectorAll('input[type="text"]');
+  var feedback = exercise.querySelector('.feedback');
+  var allCorrect = true;
+  inputs.forEach(function(input, i) {
+    var val = input.value.trim().toLowerCase();
+    if (i < correctAnswers.length) {
+      var answers = correctAnswers[i];
+      if (Array.isArray(answers) && answers.some(function(a) { return a.toLowerCase() === val; })) {
+        input.style.borderColor = 'var(--verde)';
+        input.style.background = 'var(--verde-claro)';
+      } else {
+        input.style.borderColor = 'var(--rojo)';
+        input.style.background = 'var(--rojo-claro)';
+        allCorrect = false;
+      }
+    }
+  });
+  if (allCorrect && inputs.length > 0) {
+    feedback.textContent = '✅ ¡Correcto!';
+    feedback.className = 'feedback correct';
+  } else if (!allCorrect) {
+    feedback.textContent = '❌ Revisa tus respuestas.';
+    feedback.className = 'feedback incorrect';
+  }
+}
+
+// Initialize matching exercise for vista auxiliar
+initMatchExercise('vistaAux',
+  [
+    {text: 'Vista auxiliar', value: 'aux'},
+    {text: 'Vista parcial', value: 'parcial'},
+    {text: 'Línea de rotura', value: 'rotura'}
+  ],
+  [
+    {text: 'Paralela a cara inclinada → verdadera magnitud', value: 'aux'},
+    {text: 'Solo zona de interés, delimitada con ondulada', value: 'parcial'},
+    {text: 'Línea ondulada que delimita la vista parcial', value: 'rotura'}
+  ]
+);
 </script>
 </body>
 </html>

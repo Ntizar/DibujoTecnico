@@ -282,6 +282,66 @@ Las caras son rectángulos, no cuadrados.
 <p class="feedback" id="fb-fill-cubo"></p>
 </div>
 
+
+
+<!-- ===== RONDA 2: Matching + V/F Visual ===== -->
+
+<div class="exercise">
+<p>🔗 <span class="difficulty-badge">AVANZADO</span> — Ejercicio 9: Empareja eje con su ángulo en isométrica</p>
+<p>Selecciona el par correcto:</p>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;margin:1rem 0">
+<div style="flex:1;min-width:200px">
+<p style="font-weight:600;margin-bottom:.5rem">Eje:</p>
+<button class="quiz-btn left-item clickable" style="width:100%;text-align:left;margin:.3rem 0" onclick="selectMatchLeft('isoEjes', this)" data-value="x">Eje X</button>
+<button class="quiz-btn left-item clickable" style="width:100%;text-align:left;margin:.3rem 0" onclick="selectMatchLeft('isoEjes', this)" data-value="y">Eje Y</button>
+<button class="quiz-btn left-item clickable" style="width:100%;text-align:left;margin:.3rem 0" onclick="selectMatchLeft('isoEjes', this)" data-value="z">Eje Z</button>
+</div>
+<div style="flex:1;min-width:200px">
+<p style="font-weight:600;margin-bottom:.5rem">Ángulo:</p>
+<div id="isoEjes-right" style="display:flex;flex-direction:column;gap:.3rem"></div>
+</div>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>👁️ <span class="difficulty-badge">VISUAL</span> — Ejercicio 10: ¿Cuál es el cubo isométrico CORRECTO?</p>
+<div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin:1rem 0">
+<div class="clickable" onclick="checkIdentify(this, true)" style="flex:1;min-width:200px;padding:1rem;border:2px dashed var(--azul);border-radius:8px;cursor:pointer;text-align:center">
+<svg viewBox="0 0 160 160" width="140">
+<!-- Cubo isométrico correcto: 3 caras visibles -->
+<polygon points="80,20 140,55 140,115 80,150 20,115 20,55" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<!-- Aristas internas -->
+<line x1="80" y1="20" x2="80" y2="85" stroke="#2563eb" stroke-width="2"/>
+<line x1="80" y1="85" x2="20" y2="55" stroke="#2563eb" stroke-width="2"/>
+<line x1="80" y1="85" x2="140" y2="55" stroke="#2563eb" stroke-width="2"/>
+<!-- Caras coloreadas -->
+<polygon points="80,20 140,55 80,85 20,55" fill="#eff6ff" opacity="0.5"/>
+<polygon points="80,85 140,55 140,115 80,150" fill="#fff7ed" opacity="0.5"/>
+<polygon points="20,55 80,85 80,150 20,115" fill="#ecfdf5" opacity="0.5"/>
+<text x="80" y="170" text-anchor="middle" font-size="9" fill="#10b981" font-weight="700">✓ 3 caras visibles</text>
+</svg>
+<p style="font-size:.85rem;margin-top:.5rem">Opción A</p>
+</div>
+<div class="clickable" onclick="checkIdentify(this, false)" style="flex:1;min-width:200px;padding:1rem;border:2px dashed var(--azul);border-radius:8px;cursor:pointer;text-align:center">
+<svg viewBox="0 0 160 160" width="140">
+<!-- Cubo incorrecto: solo 2 caras (cabeza de clavó) -->
+<polygon points="80,20 140,55 140,115 80,150 20,115 20,55" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<!-- Arista central FALTANTE -->
+<line x1="80" y1="20" x2="80" y2="85" stroke="#2563eb" stroke-width="2"/>
+<line x1="80" y1="85" x2="140" y2="55" stroke="#2563eb" stroke-width="2"/>
+<!-- Falta la arista izquierda -->
+<!-- Caras -->
+<polygon points="80,20 140,55 80,85 20,55" fill="#eff6ff" opacity="0.5"/>
+<polygon points="80,85 140,55 140,115 80,150" fill="#fff7ed" opacity="0.5"/>
+<!-- Cara izquierda faltante -->
+<text x="80" y="170" text-anchor="middle" font-size="9" fill="#ef4444" font-weight="700">✗ Falta arista</text>
+</svg>
+<p style="font-size:.85rem;margin-top:.5rem">Opción B</p>
+</div>
+</div>
+<p class="feedback"></p>
+</div>
 </div>
 </section>
 
@@ -581,6 +641,120 @@ window.onscroll = function(){
   var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
   document.getElementById('progress').style.width = p+'%';
 };
+
+// ===== 4-Step Visual Pattern =====
+var currentStep = 0;
+function showStep(step) {
+  currentStep = step;
+  var dots = document.querySelectorAll('.step-dot');
+  dots.forEach(function(dot, i) {
+    dot.classList.toggle('active', i === step);
+  });
+  var contents = document.querySelectorAll('.step-content');
+  contents.forEach(function(c, i) {
+    c.style.display = i === step ? 'block' : 'none';
+  });
+}
+showStep(0);
+
+// ===== V/F Visual =====
+function checkIdentify(el, correct) {
+  var exercise = el.closest('.exercise');
+  var feedback = exercise.querySelector('.feedback');
+  var siblings = exercise.querySelectorAll('.clickable');
+  if (correct) {
+    el.style.outline = '3px solid var(--verde)';
+    feedback.textContent = '✅ ¡Correcto!';
+    feedback.className = 'feedback correct';
+    siblings.forEach(function(s) { s.style.pointerEvents = 'none'; });
+  } else {
+    el.style.outline = '3px solid var(--rojo)';
+    feedback.textContent = '❌ Incorrecto. Inténtalo de nuevo.';
+    feedback.className = 'feedback incorrect';
+    setTimeout(function() {
+      el.style.outline = '2px dashed var(--azul)';
+      feedback.textContent = '';
+      feedback.className = 'feedback';
+    }, 2000);
+  }
+}
+
+// ===== Matching =====
+var matchState = {};
+function initMatchExercise(name, leftItems, rightItems) {
+  matchState[name] = { selected: null, matched: 0, total: leftItems.length };
+  var shuffled = rightItems.slice();
+  for (var i = shuffled.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = shuffled[i]; shuffled[i] = shuffled[j]; shuffled[j] = tmp;
+  }
+  var rightContainer = document.getElementById(name + '-right');
+  if (rightContainer) {
+    rightContainer.innerHTML = '';
+    shuffled.forEach(function(item, i) {
+      var btn = document.createElement('button');
+      btn.className = 'quiz-btn';
+      btn.textContent = item.text;
+      btn.dataset.value = item.value;
+      btn.onclick = function() { selectMatchRight(name, this); };
+      rightContainer.appendChild(btn);
+    });
+  }
+}
+function selectMatchLeft(name, el) {
+  var exercise = el.closest('.exercise');
+  var feedback = exercise.querySelector('.feedback');
+  exercise.querySelectorAll('.clickable.left-item').forEach(function(b) {
+    b.style.background = '#fff';
+    b.style.borderColor = 'var(--azul)';
+  });
+  el.style.background = 'var(--azul-claro)';
+  el.style.borderColor = 'var(--azul)';
+  matchState[name].selected = el;
+  var rightContainer = document.getElementById(name + '-right');
+  if (rightContainer) {
+    rightContainer.querySelectorAll('.quiz-btn').forEach(function(b) {
+      b.style.pointerEvents = 'auto';
+      b.style.opacity = '1';
+    });
+  }
+}
+function selectMatchRight(name, el) {
+  var state = matchState[name];
+  if (!state || !state.selected) return;
+  if (state.selected.dataset.value === el.dataset.value) {
+    state.selected.style.background = 'var(--verde-claro)';
+    state.selected.style.borderColor = 'var(--verde)';
+    state.selected.style.pointerEvents = 'none';
+    el.style.background = 'var(--verde-claro)';
+    el.style.borderColor = 'var(--verde)';
+    el.style.pointerEvents = 'none';
+    state.matched++;
+    feedback.textContent = '✅ ¡Par correcto!';
+    feedback.className = 'feedback correct';
+    if (state.matched === state.total) {
+      feedback.textContent = '🎉 ¡Todos los pares emparejados!';
+    }
+  } else {
+    el.style.background = 'var(--rojo-claro)';
+    el.style.borderColor = 'var(--rojo)';
+    var fb = el.closest('.exercise').querySelector('.feedback');
+    fb.textContent = '❌ No coinciden. Prueba otro.';
+    fb.className = 'feedback incorrect';
+    setTimeout(function() {
+      el.style.background = '#fff';
+      el.style.borderColor = 'var(--azul)';
+      fb.textContent = '';
+      fb.className = 'feedback';
+    }, 1500);
+  }
+}
+
+// Initialize matching exercise
+initMatchExercise('isoEjes',
+  [{text: 'Eje X', value: 'x'}, {text: 'Eje Y', value: 'y'}, {text: 'Eje Z', value: 'z'}],
+  [{text: '30° abajo-derecha', value: 'x'}, {text: '30° abajo-izquierda', value: 'y'}, {text: 'Vertical arriba', value: 'z'}]
+);
 </script>
 </body>
 </html>
