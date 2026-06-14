@@ -399,8 +399,76 @@ Se mide con transportador sobre el papel.
 
 </div>
 </div>
+
+<!-- ===== RONDA 2: EJERCICIOS ADICIONALES ===== -->
+
+<div class="exercise" style="margin:1rem 0">
+<h4 style="margin:0 0 .5rem">Ejercicio 12 — Identifica el abatimiento correcto (V/F Visual)</h4>
+<p>¿Qué representación muestra correctamente el abatimiento del PH?</p>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;margin:1rem 0">
+<div class="clickable" style="flex:1;min-width:250px;border:2px solid var(--gris);border-radius:8px;padding:1rem;cursor:pointer;transition:all .2s" onclick="checkIdentify(this, true)">
+<svg viewBox="0 0 200 120" width="100%" style="margin:.5rem 0">
+<line x1="20" y1="60" x2="180" y2="60" stroke="#333" stroke-width="2"/>
+<text x="100" y="55" text-anchor="middle" font-size="9" fill="#333">LT</text>
+<rect x="50" y="15" width="100" height="35" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="100" y="37" text-anchor="middle" font-size="8" fill="#2563eb">Alzado</text>
+<rect x="50" y="65" width="100" height="35" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+<text x="100" y="87" text-anchor="middle" font-size="8" fill="#f97316">PH abatido</text>
+<path d="M 150,35 Q 150,50 150,65" stroke="#10b981" stroke-width="2" marker-end="url(#arrowG)"/>
+<defs><marker id="arrowG" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto"><polygon points="0 0, 6 3, 0 6" fill="#10b981"/></marker></defs>
+</svg>
+<p style="margin:0;font-size:.85rem;text-align:center">✅ PH gira abajo</p>
+</div>
+<div class="clickable" style="flex:1;min-width:250px;border:2px solid var(--gris);border-radius:8px;padding:1rem;cursor:pointer;transition:all .2s" onclick="checkIdentify(this, false)">
+<svg viewBox="0 0 200 120" width="100%" style="margin:.5rem 0">
+<line x1="20" y1="60" x2="180" y2="60" stroke="#333" stroke-width="2"/>
+<text x="100" y="55" text-anchor="middle" font-size="9" fill="#333">LT</text>
+<rect x="50" y="15" width="100" height="35" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="100" y="37" text-anchor="middle" font-size="8" fill="#2563eb">Alzado</text>
+<rect x="50" y="-15" width="100" height="35" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/>
+<text x="100" y="5" text-anchor="middle" font-size="8" fill="#ef4444">PH ❌</text>
+</svg>
+<p style="margin:0;font-size:.85rem;text-align:center">❌ PH gira arriba</p>
+</div>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise" style="margin:1rem 0">
+<h4 style="margin:0 0 .5rem">Ejercicio 13 — Empareja elemento con su función</h4>
+<p>Relaciona cada elemento del abatimiento con su función:</p>
+<div class="interactive" id="matchAbat2">
+<div style="display:flex;gap:1rem;flex-wrap:wrap;margin:1rem 0">
+<div style="flex:1;min-width:200px">
+<div class="clickable match-left" data-pair="1" style="padding:.6rem 1rem;margin:.3rem 0;border:2px solid var(--gris);border-radius:6px;cursor:pointer;transition:all .2s" onclick="selectMatchLeft(this, 'matchAbat2')">
+<strong>Plano Horizontal (PH)</strong>
+</div>
+<div class="clickable match-left" data-pair="2" style="padding:.6rem 1rem;margin:.3rem 0;border:2px solid var(--gris);border-radius:6px;cursor:pointer;transition:all .2s" onclick="selectMatchLeft(this, 'matchAbat2')">
+<strong>Línea de Tierra (LT)</strong>
+</div>
+<div class="clickable match-left" data-pair="3" style="padding:.6rem 1rem;margin:.3rem 0;border:2px solid var(--gris);border-radius:6px;cursor:pointer;transition:all .2s" onclick="selectMatchLeft(this, 'matchAbat2')">
+<strong>Plano Vertical (PV)</strong>
+</div>
+</div>
+<div style="flex:1;min-width:200px" id="matchAbat2-right">
+<div class="clickable match-right" data-pair="2" style="padding:.6rem 1rem;margin:.3rem 0;border:2px solid var(--gris);border-radius:6px;cursor:pointer;transition:all .2s" onclick="selectMatchRight(this, 'matchAbat2')">
+Eje de giro del abatimiento
+</div>
+<div class="clickable match-right" data-pair="1" style="padding:.6rem 1rem;margin:.3rem 0;border:2px solid var(--gris);border-radius:6px;cursor:pointer;transition:all .2s" onclick="selectMatchRight(this, 'matchAbat2')">
+Se abate 90° hacia abajo
+</div>
+<div class="clickable match-right" data-pair="3" style="padding:.6rem 1rem;margin:.3rem 0;border:2px solid var(--gris);border-radius:6px;cursor:pointer;transition:all .2s" onclick="selectMatchRight(this, 'matchAbat2')">
+Permanece fijo
+</div>
+</div>
+</div>
+<p id="matchAbat2-feedback" class="feedback"></p>
+</div>
+</div>
 </section>
 
+<section class="chapter">
+<h2 class="chapter-title">⚠️ Errores, conexiones y casos reales</h2>
 <div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ PLANTA NO ABATIDA</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="20" y1="70" x2="180" y2="70" stroke="#333" stroke-width="2"/><text x="100" y="65" text-anchor="middle" font-size="9" fill="#333">LT</text><circle cx="100" cy="100" r="8" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/><text x="100" y="120" text-anchor="middle" font-size="9" fill="#ef4444">No abatida ❌</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ PLANTA ABATIDA</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="20" y1="70" x2="180" y2="70" stroke="#333" stroke-width="2"/><text x="100" y="65" text-anchor="middle" font-size="9" fill="#333">LT</text><circle cx="100" cy="40" r="8" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/><text x="100" y="120" text-anchor="middle" font-size="9" fill="#10b981">Abatida ✓</text></svg></div>
 <div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ ERROR: α₂ como eje de abatimiento</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/><line x1="50" y1="100" x2="150" y2="100" stroke="#ef4444" stroke-width="2"/><text x="100" y="95" text-anchor="middle" font-size="9" fill="#ef4444" font-weight="700">α₂ (vertical)</text><text x="100" y="115" text-anchor="middle" font-size="8" fill="#ef4444">¡α₂ es vertical, no horizontal!</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ CORRECTO: α₁ como eje</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><line x1="50" y1="100" x2="150" y2="100" stroke="#2563eb" stroke-width="2"/><text x="100" y="95" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="700">α₁ (horizontal)</text><text x="100" y="115" text-anchor="middle" font-size="8" fill="#10b981">α₁ = eje de abatimiento ✓</text></svg></div></div>
 
@@ -429,6 +497,8 @@ En el siguiente tema aprenderás los giros en sistema diédrico, otra herramient
 <h4>🔗 Conexión con otros bloques</h4>
 <p>¡Has completado el tema de abatimiento sobre PH! Este concepto es fundamental para el resto del bloque de Abatimientos y Giros. En el siguiente tema aprenderás los <strong>giros en sistema diédrico</strong>: otra herramienta para obtener verdadera magnitud. El abatimiento y el giro son complementarios: el abatimiento "aplasta" el plano, el giro "mueve" el objeto dentro del espacio.</p>
 </div>
+
+</section>
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
 <ul>
@@ -598,6 +668,80 @@ window.onscroll = function(){
   var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
   document.getElementById('progress').style.width = p+'%';
 };
+
+
+// ===== RONDA 2: checkIdentify + selectMatch =====
+var matchState = {};
+
+function checkIdentify(el, correct) {
+  var siblings = el.parentElement.querySelectorAll('.clickable');
+  var feedback = el.closest('.exercise').querySelector('.feedback');
+  siblings.forEach(function(s) { s.style.pointerEvents = 'none'; });
+  if (correct) {
+    el.style.borderColor = '#10b981';
+    el.style.background = '#ecfdf5';
+    feedback.textContent = '✅ ¡Correcto! El PH se abate 90° hacia abajo.';
+    feedback.className = 'feedback correct';
+  } else {
+    el.style.borderColor = '#ef4444';
+    el.style.background = '#fef2f2';
+    feedback.textContent = '❌ Incorrecto. El PH gira hacia ABAJO.';
+    feedback.className = 'feedback incorrect';
+    setTimeout(function() {
+      el.style.borderColor = '';
+      el.style.background = '';
+      siblings.forEach(function(s) { s.style.pointerEvents = 'auto'; });
+      feedback.textContent = '';
+    }, 2000);
+  }
+}
+
+function selectMatchLeft(el, containerId) {
+  var container = document.getElementById(containerId);
+  var leftBtns = container.querySelectorAll('.match-left');
+  leftBtns.forEach(function(b) { b.style.background = ''; b.style.borderColor = 'var(--gris)'; });
+  el.style.background = '#eff6ff';
+  el.style.borderColor = '#2563eb';
+  var rightBtns = container.querySelectorAll('.match-right');
+  rightBtns.forEach(function(b) { b.style.pointerEvents = 'auto'; });
+}
+
+function selectMatchRight(el, containerId) {
+  var container = document.getElementById(containerId);
+  var selectedLeft = container.querySelector('.match-left[style*="background"]');
+  if (!selectedLeft) return;
+  var leftPair = selectedLeft.getAttribute('data-pair');
+  var rightPair = el.getAttribute('data-pair');
+  if (leftPair === rightPair) {
+    selectedLeft.style.background = '#ecfdf5';
+    selectedLeft.style.borderColor = '#10b981';
+    selectedLeft.style.pointerEvents = 'none';
+    el.style.background = '#ecfdf5';
+    el.style.borderColor = '#10b981';
+    el.style.pointerEvents = 'none';
+    var feedback = container.querySelector('.feedback');
+    feedback.textContent = '✅ ¡Correcto!';
+    feedback.className = 'feedback correct';
+    var allDone = true;
+    container.querySelectorAll('.match-left').forEach(function(b) {
+      if (b.style.pointerEvents !== 'none') allDone = false;
+    });
+    if (allDone) {
+      feedback.textContent = '🎉 ¡Todos emparejados correctamente!';
+    }
+  } else {
+    el.style.borderColor = '#ef4444';
+    el.style.background = '#fef2f2';
+    var feedback = container.querySelector('.feedback');
+    feedback.textContent = '❌ No coinciden. Prueba otra función.';
+    feedback.className = 'feedback incorrect';
+    setTimeout(function() {
+      el.style.borderColor = '';
+      el.style.background = '';
+      feedback.textContent = '';
+    }, 1500);
+  }
+}
 </script>
 </body>
 </html>
