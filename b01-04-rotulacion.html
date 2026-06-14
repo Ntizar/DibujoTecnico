@@ -524,6 +524,27 @@ Usar diferentes alturas de letra en un mismo plano. Todas las letras de un mismo
 <button class="quiz-btn" onclick="checkIdentify(this, true)" style="margin:.5rem">✅ Opción A — Correcto</button>
 <button class="quiz-btn" onclick="checkIdentify(this, false)" style="margin:.5rem">❌ Opción B — Incorrecto</button>
 <p class="feedback"></p>
+
+<div class="exercise">
+<p>📐 Ejercicio 12 (Verdadero/Falso): La norma UNE 1-039-88 establece que la altura de la letra h debe ser un número entero.</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkVF(this, false)">VERDADERO</button>
+<button class="quiz-btn" onclick="checkVF(this, true)">FALSO</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+
+
+<div class="exercise">
+<p>📐 Ejercicio 13 (Completar): La proporción del Tipo A es b = ___ × h. El espaciado entre palabras es mínimo ___.</p>
+<input type="text" id="b04-f1" placeholder="proporción" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:100px">
+<input type="text" id="b04-f2" placeholder="espaciado" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:100px">
+<button onclick="checkFillIn(['2/3','0.67'],['h','hmm'])">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
+
 </div>
 </div>
 </section>

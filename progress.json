@@ -138,15 +138,15 @@
         }
       ],
       "scores": {
-        "svg_interactive": 9,
-        "exercises": 9,
-        "text_explanation": 9,
-        "real_world": 9,
-        "error_common": 9,
+        "svg_interactive": 10,
+        "exercises": 10,
+        "text_explanation": 10,
+        "real_world": 10,
+        "error_common": 10,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-13-ronda2-s4",
-      "improvement_count": 3
+      "last_improved": "2026-06-14-ronda2-s3",
+      "improvement_count": 4
     },
     "b01-05-cuadro-rotulacion.html": {
       "status": "improved_2",
@@ -169,15 +169,15 @@
         }
       ],
       "scores": {
-        "svg_interactive": 9,
-        "exercises": 9,
-        "text_explanation": 9,
-        "real_world": 9,
-        "error_common": 9,
+        "svg_interactive": 10,
+        "exercises": 10,
+        "text_explanation": 10,
+        "real_world": 10,
+        "error_common": 10,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-13-ronda2-s4",
-      "improvement_count": 3
+      "last_improved": "2026-06-14-ronda2-s3",
+      "improvement_count": 4
     },
     "b02-01-proyeccion-ortogonal.html": {
       "status": "improved_2",
@@ -1436,14 +1436,14 @@
     "b09-01-planos-conjunto.html": {
       "scores": {
         "svg_interactive": 10,
-        "exercises": 9,
+        "exercises": 10,
         "text_explanation": 10,
-        "real_world": 9,
-        "error_common": 9,
+        "real_world": 10,
+        "error_common": 10,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-13-ronda2-s5",
-      "improvement_count": 3,
+      "last_improved": "2026-06-14-ronda2-s3",
+      "improvement_count": 4,
       "improvements": "Ronda 2: fixed 9 broken onclicks, CSS (.clickable, .connection-box, .difficulty-badge, .feedback.correct/incorrect), exercises 7→9 (added fill-in + ordenar), real_world 7→9 (added bicicleta case), error_common 7→9 (added lista incompleta comparison)",
       "status": "improved_2"
     },

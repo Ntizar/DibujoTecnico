@@ -327,6 +327,33 @@ Plano de conjunto de un soporte:<br>
 <p class="feedback"></p>
 </div>
 
+
+<div class="exercise">
+<p>📐 Ejercicio 8 (Verdadero/Falso): ¿Verdadero o Falso?</p>
+
+<div class="interactive">
+<h4>El plano de conjunto incluye cotas de fabricación de cada pieza</h4>
+<div style="display:flex;gap:1rem;margin-top:1rem">
+<div class="clickable" onclick="checkVF(this, false)" style="background:#fff;border:2px solid var(--azul);border-radius:8px;padding:1rem 2rem;cursor:pointer;text-align:center;flex:1;transition:all .2s">
+<svg viewBox="0 0 40 40" width="40" height="40" style="display:block;margin:0 auto .5rem">
+<circle cx="20" cy="20" r="18" fill="none" stroke="#ef4444" stroke-width="2"/>
+<line x1="10" y1="10" x2="30" y2="30" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/>
+</svg>
+<strong style="color:var(--rojo)">FALSO</strong>
+</div>
+<div class="clickable" onclick="checkVF(this, true)" style="background:#fff;border:2px solid var(--azul);border-radius:8px;padding:1rem 2rem;cursor:pointer;text-align:center;flex:1;transition:all .2s">
+<svg viewBox="0 0 40 40" width="40" height="40" style="display:block;margin:0 auto .5rem">
+<circle cx="20" cy="20" r="18" fill="none" stroke="#10b981" stroke-width="2"/>
+<polyline points="12,20 18,26 28,14" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+<strong style="color:var(--verde)">VERDADERO</strong>
+</div>
+</div>
+<p class="feedback"></p>
+</div>
+</div>
+
+
 </div>
 
 
@@ -348,6 +375,25 @@ Plano de conjunto de un soporte:<br>
 <button class="quiz-btn" onclick="checkOrden(this, '2-3-1')">① Numerar piezas → ② Hacer lista → ③ Dibujar conjunto</button>
 </div>
 <p class="feedback"></p>
+
+<div class="exercise">
+<p>📐 Ejercicio 9 (Emparejar): Relaciona cada elemento del plano de conjunto con su descripción</p>
+<div class="interactive">
+<div id="match-b09-01-left" style="display:flex;flex-direction:column;gap:.5rem">
+<div class="clickable" id="mb09-01-l1" onclick="selectMatchB0901('l1')">① Baloncete</div>
+<div class="clickable" id="mb09-01-l2" onclick="selectMatchB0901('l2')">② Lista de piezas</div>
+<div class="clickable" id="mb09-01-l3" onclick="selectMatchB0901('l3')">③ Cotas de montaje</div>
+</div>
+<div id="mb09-01-right" style="display:flex;flex-direction:column;gap:.5rem">
+<div class="clickable" id="mb09-01-r1" onclick="selectMatchB0901('r1')">Circunferencia con nº de pieza</div>
+<div class="clickable" id="mb09-01-r2" onclick="selectMatchB0901('r2')">Distancias entre piezas ensambladas</div>
+<div class="clickable" id="mb09-01-r3" onclick="selectMatchB0901('r3')">Tabla con nº, nombre, material, cantidad</div>
+</div>
+<p class="feedback" id="mb09-01-feedback"></p>
+</div>
+</div>
+
+
 </div>
 </section>
 
@@ -475,6 +521,68 @@ function checkFillIn(correctAnswers) {
     feedback.className = 'feedback incorrect';
   }
 }
+
+// Matching exercise for b09-01
+var matchB0901State = {selected: null, pairs: {
+    'l1': 'r1', // Baloncete -> Circunferencia con nº
+    'l2': 'r3', // Lista -> Tabla con nº, nombre...
+    'l3': 'r2'  // Cotas -> Distancias entre piezas
+}, found: {}};
+
+function selectMatchB0901(id) {
+    var isLeft = id.startsWith('l');
+    var isRight = id.startsWith('r');
+    
+    if (isLeft && !matchB0901State.selected) {
+        // Select left item
+        document.querySelectorAll('[id^="mb09-01-l"]').forEach(function(el) {
+            el.style.borderColor = 'var(--azul)';
+            el.style.background = '#fff';
+        });
+        document.getElementById('mb09-01-' + id).style.background = 'var(--azul-claro)';
+        matchB0901State.selected = id;
+    } else if (isRight && matchB0901State.selected) {
+        // Check match
+        var leftId = matchB0901State.selected;
+        var rightId = id;
+        var expectedRight = matchB0901State.pairs[leftId];
+        var feedback = document.getElementById('mb09-01-feedback');
+        
+        if (rightId === expectedRight) {
+            // Correct match
+            document.getElementById('mb09-01-' + leftId).style.background = 'var(--verde-claro)';
+            document.getElementById('mb09-01-' + leftId).style.borderColor = 'var(--verde)';
+            document.getElementById('mb09-01-' + rightId).style.background = 'var(--verde-claro)';
+            document.getElementById('mb09-01-' + rightId).style.borderColor = 'var(--verde)';
+            document.getElementById('mb09-01-' + leftId).onclick = null;
+            document.getElementById('mb09-01-' + rightId).onclick = null;
+            matchB0901State.found[leftId] = true;
+            feedback.textContent = '✅ ¡Correcto!';
+            feedback.className = 'feedback correct';
+            
+            // Check if all found
+            var allFound = true;
+            for (var key in matchB0901State.pairs) {
+                if (!matchB0901State.found[key]) { allFound = false; break; }
+            }
+            if (allFound) {
+                feedback.textContent = '🎉 ¡Todas las parejas encontradas!';
+            }
+        } else {
+            // Wrong match
+            document.getElementById('mb09-01-' + rightId).style.background = 'var(--rojo-claro)';
+            feedback.textContent = '❌ No es esa pareja. Intenta de nuevo.';
+            feedback.className = 'feedback incorrect';
+            setTimeout(function() {
+                document.getElementById('mb09-01-' + rightId).style.background = '#fff';
+                feedback.textContent = '';
+                feedback.className = 'feedback';
+            }, 1500);
+        }
+        matchB0901State.selected = null;
+    }
+}
+
 </script>
 </body>
 </html>
