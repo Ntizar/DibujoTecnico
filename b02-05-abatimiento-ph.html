@@ -420,8 +420,77 @@ Todo lo que está en el PH gira alrededor de la LT
 <p class="feedback"></p>
 </div>
 </div>
+
+<!-- ===== RONDA 2: EJERCICIOS ADICIONALES ===== -->
+
+<div class="exercise" style="margin:1rem 0">
+<h4 style="margin:0 0 .5rem">Ejercicio 11 — Identifica el abatimiento correcto (V/F Visual)</h4>
+<p>¿Cuál de estos dos esquemas muestra correctamente el abatimiento del plano horizontal?</p>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;margin:1rem 0">
+<div class="clickable" style="flex:1;min-width:250px;border:2px solid var(--gris);border-radius:8px;padding:1rem;cursor:pointer;transition:all .2s" onclick="checkIdentify(this, true)">
+<svg viewBox="0 0 200 120" width="100%" style="margin:.5rem 0">
+<line x1="20" y1="60" x2="180" y2="60" stroke="#333" stroke-width="2"/>
+<text x="100" y="55" text-anchor="middle" font-size="9" fill="#333">LT</text>
+<rect x="60" y="20" width="80" height="35" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="100" y="42" text-anchor="middle" font-size="8" fill="#2563eb">Alzado</text>
+<rect x="60" y="65" width="80" height="35" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+<text x="100" y="87" text-anchor="middle" font-size="8" fill="#f97316">Planta abatida</text>
+<path d="M 100,55 Q 100,60 100,65" stroke="#10b981" stroke-width="2" marker-end="url(#arrowGreen)"/>
+<defs><marker id="arrowGreen" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto"><polygon points="0 0, 6 3, 0 6" fill="#10b981"/></marker></defs>
+</svg>
+<p style="margin:0;font-size:.85rem;text-align:center">✅ PH gira hacia ABAJO</p>
+</div>
+<div class="clickable" style="flex:1;min-width:250px;border:2px solid var(--gris);border-radius:8px;padding:1rem;cursor:pointer;transition:all .2s" onclick="checkIdentify(this, false)">
+<svg viewBox="0 0 200 120" width="100%" style="margin:.5rem 0">
+<line x1="20" y1="60" x2="180" y2="60" stroke="#333" stroke-width="2"/>
+<text x="100" y="55" text-anchor="middle" font-size="9" fill="#333">LT</text>
+<rect x="60" y="20" width="80" height="35" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="100" y="42" text-anchor="middle" font-size="8" fill="#2563eb">Alzado</text>
+<rect x="60" y="-10" width="80" height="35" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/>
+<text x="100" y="15" text-anchor="middle" font-size="8" fill="#ef4444">Planta ❌</text>
+<path d="M 100,55 Q 100,50 100,45" stroke="#ef4444" stroke-width="2"/>
+</svg>
+<p style="margin:0;font-size:.85rem;text-align:center">❌ PH gira hacia ARRIBA</p>
+</div>
+</div>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise" style="margin:1rem 0">
+<h4 style="margin:0 0 .5rem">Ejercicio 12 — Empareja concepto con definición</h4>
+<p>Haz clic en un concepto de la izquierda y luego en su definición correcta a la derecha:</p>
+<div class="interactive" id="matchAbatimiento">
+<div style="display:flex;gap:1rem;flex-wrap:wrap;margin:1rem 0">
+<div style="flex:1;min-width:200px">
+<div class="clickable match-left" data-pair="1" style="padding:.6rem 1rem;margin:.3rem 0;border:2px solid var(--gris);border-radius:6px;cursor:pointer;transition:all .2s" onclick="selectMatchLeft(this, 'matchAbatimiento')">
+<strong>Línea de Tierra</strong>
+</div>
+<div class="clickable match-left" data-pair="2" style="padding:.6rem 1rem;margin:.3rem 0;border:2px solid var(--gris);border-radius:6px;cursor:pointer;transition:all .2s" onclick="selectMatchLeft(this, 'matchAbatimiento')">
+<strong>Abatimiento</strong>
+</div>
+<div class="clickable match-left" data-pair="3" style="padding:.6rem 1rem;margin:.3rem 0;border:2px solid var(--gris);border-radius:6px;cursor:pointer;transition:all .2s" onclick="selectMatchLeft(this, 'matchAbatimiento')">
+<strong>PV (Plano Vertical)</strong>
+</div>
+</div>
+<div style="flex:1;min-width:200px" id="matchAbatimiento-right">
+<div class="clickable match-right" data-pair="2" style="padding:.6rem 1rem;margin:.3rem 0;border:2px solid var(--gris);border-radius:6px;cursor:pointer;transition:all .2s" onclick="selectMatchRight(this, 'matchAbatimiento')">
+Giro del PH 90° hacia abajo
+</div>
+<div class="clickable match-right" data-pair="3" style="padding:.6rem 1rem;margin:.3rem 0;border:2px solid var(--gris);border-radius:6px;cursor:pointer;transition:all .2s" onclick="selectMatchRight(this, 'matchAbatimiento')">
+Eje de giro del abatimiento
+</div>
+<div class="clickable match-right" data-pair="1" style="padding:.6rem 1rem;margin:.3rem 0;border:2px solid var(--gris);border-radius:6px;cursor:pointer;transition:all .2s" onclick="selectMatchRight(this, 'matchAbatimiento')">
+Eje donde se apoyan alzado y planta
+</div>
+</div>
+</div>
+<p id="matchAbatimiento-feedback" class="feedback"></p>
+</div>
+</div>
 </section>
 
+<section class="chapter">
+<h2 class="chapter-title">⚠️ Errores, conexiones y casos reales</h2>
 <div class="comparison" style="margin:1.5rem 0">
 <div class="comparison-side">
 <strong style="color:var(--rojo)">❌ ERROR</strong>
@@ -521,6 +590,8 @@ Un bloque de motor tiene conductos de refrigerante internos en planos oblicuos. 
 Un implante de cadera se fabrica a medida para cada paciente. El plano del implante muestra las superficies articulares abatidas para que el ingeniero pueda verificar las dimensiones reales de la cabeza femoral y el cuello. Sin abatimiento, las curvaturas se verían deformadas y el implante no encajaría en el hueso del paciente.
 </div>
 
+
+</section>
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
 <ul>
@@ -744,6 +815,80 @@ function togglePHError() {
   var correctTexts = svg.querySelectorAll('text[fill="#10b981"]');
   errorTexts.forEach(function(t) { t.style.fontWeight = phErrorExpanded ? '900' : '700'; });
   correctTexts.forEach(function(t) { t.style.fontWeight = phErrorExpanded ? '900' : '700'; });
+}
+
+
+// ===== RONDA 2: checkIdentify + selectMatch =====
+var matchState = {};
+
+function checkIdentify(el, correct) {
+  var siblings = el.parentElement.querySelectorAll('.clickable');
+  var feedback = el.closest('.exercise').querySelector('.feedback');
+  siblings.forEach(function(s) { s.style.pointerEvents = 'none'; });
+  if (correct) {
+    el.style.borderColor = '#10b981';
+    el.style.background = '#ecfdf5';
+    feedback.textContent = '✅ ¡Correcto! El PH gira 90° hacia ABAJO.';
+    feedback.className = 'feedback correct';
+  } else {
+    el.style.borderColor = '#ef4444';
+    el.style.background = '#fef2f2';
+    feedback.textContent = '❌ Incorrecto. El PH gira hacia ABAJO, no hacia ARRIBA.';
+    feedback.className = 'feedback incorrect';
+    setTimeout(function() {
+      el.style.borderColor = '';
+      el.style.background = '';
+      siblings.forEach(function(s) { s.style.pointerEvents = 'auto'; });
+      feedback.textContent = '';
+    }, 2000);
+  }
+}
+
+function selectMatchLeft(el, containerId) {
+  var container = document.getElementById(containerId);
+  var leftBtns = container.querySelectorAll('.match-left');
+  leftBtns.forEach(function(b) { b.style.background = ''; b.style.borderColor = 'var(--gris)'; });
+  el.style.background = '#eff6ff';
+  el.style.borderColor = '#2563eb';
+  var rightBtns = container.querySelectorAll('.match-right');
+  rightBtns.forEach(function(b) { b.style.pointerEvents = 'auto'; });
+}
+
+function selectMatchRight(el, containerId) {
+  var container = document.getElementById(containerId);
+  var selectedLeft = container.querySelector('.match-left[style*="background"]');
+  if (!selectedLeft) return;
+  var leftPair = selectedLeft.getAttribute('data-pair');
+  var rightPair = el.getAttribute('data-pair');
+  if (leftPair === rightPair) {
+    selectedLeft.style.background = '#ecfdf5';
+    selectedLeft.style.borderColor = '#10b981';
+    selectedLeft.style.pointerEvents = 'none';
+    el.style.background = '#ecfdf5';
+    el.style.borderColor = '#10b981';
+    el.style.pointerEvents = 'none';
+    var feedback = container.querySelector('.feedback');
+    feedback.textContent = '✅ ¡Correcto!';
+    feedback.className = 'feedback correct';
+    var allDone = true;
+    container.querySelectorAll('.match-left').forEach(function(b) {
+      if (b.style.pointerEvents !== 'none') allDone = false;
+    });
+    if (allDone) {
+      feedback.textContent = '🎉 ¡Todos emparejados correctamente!';
+    }
+  } else {
+    el.style.borderColor = '#ef4444';
+    el.style.background = '#fef2f2';
+    var feedback = container.querySelector('.feedback');
+    feedback.textContent = '❌ No coinciden. Prueba otra definición.';
+    feedback.className = 'feedback incorrect';
+    setTimeout(function() {
+      el.style.borderColor = '';
+      el.style.background = '';
+      feedback.textContent = '';
+    }, 1500);
+  }
 }
 </script>
 </body>
