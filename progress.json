@@ -539,6 +539,11 @@
             "error_common",
             "css_coherence"
           ]
+        },
+        {
+          "session": "2026-06-14-ronda2-s3",
+          "dimensions": "exercises",
+          "desc": "Ejercicio 10: Problema contextual de mecanizado con cara inclinada a 35°"
         }
       ],
       "scores": {
@@ -549,8 +554,8 @@
         "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-14-ronda2-s2",
-      "improvement_count": 4
+      "last_improved": "2026-06-14-ronda2-s3",
+      "improvement_count": 5
     },
     "b03-01-isometrica-ejes.html": {
       "status": "improved_2",

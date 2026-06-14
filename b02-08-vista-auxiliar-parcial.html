@@ -449,6 +449,32 @@ En la fabricación de aspas de turbina, cada sección del aspa tiene un ángulo 
 Un circuito impreso de alta densidad tiene miles de pads de soldadura de 0.3mm. La vista general del circuito sería ilegible a esa escala. Se usa una vista parcial que amplifica solo la zona del conector USB, delimitada con línea ondulada. Esto permite al técnico de producción verificar la posición exacta de cada pad sin ver todo el circuito.
 </div>
 
+<div class="exercise">
+<p>📐 <span class="difficulty-badge">AVANZADO</span> — Ejercicio 10: Problema contextual — Dibujo técnico de una pieza real</p>
+<div style="background:#fff;border:2px solid var(--azul-claro);border-radius:8px;padding:1rem;margin:.8rem 0">
+<p style="font-weight:600;margin-bottom:.5rem">🏗️ Situación: Tienes que dibujar una pieza de mecanizado con una cara inclinada a 35°</p>
+<p style="font-size:.9rem;color:#64748b;margin-bottom:.8rem">La pieza es un bloque rectangular de 100×60×40mm con una cara superior inclinada a 35° respecto a la horizontal. En el alzado normal, la cara inclinada se ve deformada (no en VM). ¿Qué tipo de vista auxiliar necesitas y cómo la colocas?</p>
+<div style="display:flex;flex-direction:column;gap:.5rem">
+<p><strong>Paso 1:</strong> ¿El plano de la cara inclinada es paralelo o perpendicular a un plano de proyección principal?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Paralelo al plano frontal</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Perpendicular a todos los planos</button>
+</div>
+<p><strong>Paso 2:</strong> ¿Qué tipo de vista necesitas?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Vista auxiliar de primer ángulo</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Vista auxiliar perpendicular al plano frontal</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Vista parcial</button>
+</div>
+<p><strong>Paso 3:</strong> ¿Se verá la cara inclinada en verdadera magnitud?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Sí, porque la vista es perpendicular al plano paralelo a la cara</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">No, siempre se verá deformada</button>
+</div>
+</div>
+</div>
+</div>
+
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
 <ul>
