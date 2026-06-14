@@ -84,8 +84,9 @@
         "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-12-ronda2-s3",
-      "improvement_count": 2
+      "last_improved": "2026-06-14-ronda2-s2",
+      "improvement_count": 3,
+      "description": "Ronda 2: refinamiento SVG interactivo, verificación calidad"
     },
     "b01-03-escalas.html": {
       "status": "improved_2",
@@ -114,8 +115,9 @@
         "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-13-ronda2-s3",
-      "improvement_count": 3
+      "last_improved": "2026-06-14-ronda2-s2",
+      "improvement_count": 4,
+      "description": "Ronda 2: añadidos ejercicio VF visual SVG, matching exercise (6 tipos), problema optimización, funciones checkVF/selectMatch"
     },
     "b01-04-rotulacion.html": {
       "status": "improved_2",
@@ -498,8 +500,9 @@
         "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-13-ronda2-s5",
-      "improvement_count": 3
+      "last_improved": "2026-06-14-ronda2-s2",
+      "improvement_count": 4,
+      "description": "Ronda 2: añadidos ejercicio identify SVG, matching exercise, problema optimización, wrapped orphan content in section"
     },
     "b02-08-vista-auxiliar-parcial.html": {
       "status": "improved_2",

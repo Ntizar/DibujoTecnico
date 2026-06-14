@@ -305,6 +305,78 @@ No necesitas 10 vistas para describir una pieza. Con las mínimas necesarias par
 <button class="quiz-btn" onclick="checkVF2(this, true)" style="background:#fef2f2;border-color:#ef4444;color:#991b1b">❌ Falso</button>
 </div>
 <p class="feedback"></p>
+
+<!-- V/F Visual SVG con checkIdentify -->
+<div class="exercise">
+<p><span class="difficulty-badge medium">Medio</span> 👁️ Ejercicio 9 (Identificar): Haz clic en la representación que muestra CORRECTAMENTE la vista principal de una pieza con un agujero pasante.</p>
+<div class="interactive">
+<div class="comparison">
+<div class="comparison-side clickable" onclick="checkIdentify(this, false)">
+<div style="background:#fff;padding:.5rem;border-radius:8px;border:2px solid #e2e8f0">
+<svg viewBox="0 0 200 150" width="180">
+<rect x="20" y="20" width="80" height="80" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<circle cx="60" cy="60" r="15" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="4,2"/>
+<text x="60" y="120" text-anchor="middle" font-size="9" fill="#64748b">Solo alzado sin corte</text>
+<text x="60" y="135" text-anchor="middle" font-size="12">❌</text>
+</svg>
+</div>
+</div>
+<div class="comparison-side clickable" onclick="checkIdentify(this, true)">
+<div style="background:#fff;padding:.5rem;border-radius:8px;border:2px solid #e2e8f0">
+<svg viewBox="0 0 200 150" width="180">
+<rect x="20" y="20" width="80" height="80" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<line x1="30" y1="60" x2="90" y2="60" stroke="#ef4444" stroke-width="2" stroke-dasharray="6,3"/>
+<text x="60" y="45" text-anchor="middle" font-size="8" fill="#ef4444">Corte A-A</text>
+<text x="60" y="120" text-anchor="middle" font-size="9" fill="#64748b">Alzado con corte</text>
+<text x="60" y="135" text-anchor="middle" font-size="12">✅</text>
+</svg>
+</div>
+</div>
+</div>
+<div id="identifyResult" class="result" style="display:none;margin-top:1rem"></div>
+</div>
+</div>
+
+<!-- Matching exercise -->
+<div class="exercise">
+<p><span class="difficulty-badge hard">Difícil</span> 🔗 Ejercicio 10 (Emparejar): Relaciona cada pieza con el número mínimo de vistas necesarias.</p>
+<div class="interactive" id="matchContainer2">
+<div style="display:flex;gap:1rem;flex-wrap:wrap">
+<div style="flex:1;min-width:200px">
+<h4 style="color:var(--azul);margin-bottom:.5rem">Pieza</h4>
+<div id="matchLeft2">
+<button class="quiz-btn" style="width:100%;text-align:left;margin:.3rem 0" onclick="selectMatchLeft2(this, 'a')">🔵 Esfera</button>
+<button class="quiz-btn" style="width:100%;text-align:left;margin:.3rem 0" onclick="selectMatchLeft2(this, 'b')">📦 Cubo</button>
+<button class="quiz-btn" style="width:100%;text-align:left;margin:.3rem 0" onclick="selectMatchLeft2(this, 'c')">🧱 Prisma rectangular</button>
+<button class="quiz-btn" style="width:100%;text-align:left;margin:.3rem 0" onclick="selectMatchLeft2(this, 'd')">⚙️ Pieza con agujero</button>
+</div>
+</div>
+<div style="flex:1;min-width:200px">
+<h4 style="color:var(--naranja);margin-bottom:.5rem">Vistas mínimas</h4>
+<div id="matchRight2">
+<button class="quiz-btn" style="width:100%;text-align:left;margin:.3rem 0" onclick="selectMatchRight2(this, 'c')">2 vistas</button>
+<button class="quiz-btn" style="width:100%;text-align:left;margin:.3rem 0" onclick="selectMatchRight2(this, 'd')">3 vistas</button>
+<button class="quiz-btn" style="width:100%;text-align:left;margin:.3rem 0" onclick="selectMatchRight2(this, 'a')">1 vista</button>
+<button class="quiz-btn" style="width:100%;text-align:left;margin:.3rem 0" onclick="selectMatchRight2(this, 'b')">1 vista</button>
+</div>
+</div>
+</div>
+<div id="matchResult2" class="result" style="display:none;margin-top:1rem"></div>
+</div>
+</div>
+
+<!-- Problema de optimización -->
+<div class="exercise">
+<p><span class="difficulty-badge hard">Difícil</span> 🏭 Ejercicio 11 (Problema real): Estás dibujando un plano para una pieza de maquinaria con forma de T y 3 agujeros. ¿Cuántas vistas como MÍNIMO necesitas?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">1 (solo alzado)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">2 (alzado + planta con corte)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">5 (todas las caras)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">3 (alzado + planta + perfil)</button>
+</div>
+<p class="feedback"></p>
+<p style="font-size:.85rem;color:var(--gris);margin-top:.5rem">Pista: El alzado muestra la forma de T. La planta revela los 3 agujeros. ¿Necesitas el perfil?</p>
+</div>
 </div>
 
 </div>
@@ -553,6 +625,75 @@ window.onscroll = function(){
   var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
   document.getElementById('progress').style.width = p+'%';
 };
+
+// Identify exercise
+function checkIdentify(el, correct) {
+  const siblings = el.parentElement.querySelectorAll('.clickable');
+  siblings.forEach(s => s.style.pointerEvents = 'none');
+  const result = document.getElementById('identifyResult');
+  result.style.display = 'block';
+  if (correct) {
+    el.style.border = '3px solid #10b981';
+    el.style.background = '#ecfdf5';
+    result.className = 'result ok';
+    result.innerHTML = '<strong>¡Correcto!</strong> El alzado con corte A-A muestra correctamente el agujero interno con línea discontinua roja.';
+  } else {
+    el.style.border = '3px solid #ef4444';
+    el.style.background = '#fef2f2';
+    result.className = 'result fail';
+    result.innerHTML = '<strong>Incorrecto.</strong> Sin corte, el agujero no se puede representar correctamente. Se necesita un corte A-A con línea discontinua.';
+    setTimeout(() => {
+      siblings.forEach(s => { s.style.pointerEvents = 'auto'; s.style.border = ''; s.style.background = ''; });
+      result.style.display = 'none';
+    }, 2500);
+  }
+}
+
+// Matching exercise 2
+var matchSelected2 = null;
+var matchSelectedId2 = null;
+var matchFound2 = {};
+
+function selectMatchLeft2(btn, id) {
+  document.querySelectorAll('#matchLeft2 .quiz-btn').forEach(function(b) {
+    b.style.background = '#fff'; b.style.color = 'var(--azul)';
+  });
+  matchSelected2 = btn;
+  matchSelectedId2 = id;
+  btn.style.background = 'var(--azul)'; btn.style.color = '#fff';
+  document.querySelectorAll('#matchRight2 .quiz-btn').forEach(function(b) {
+    b.style.pointerEvents = 'auto';
+  });
+}
+
+function selectMatchRight2(btn, rightId) {
+  if (!matchSelected2) return;
+  if (matchFound2[rightId]) return;
+  
+  if (matchSelectedId2 === rightId) {
+    matchSelected2.style.background = 'var(--verde)'; matchSelected2.style.color = '#fff';
+    btn.style.background = 'var(--verde)'; btn.style.color = '#fff';
+    matchSelected2.style.pointerEvents = 'none';
+    btn.style.pointerEvents = 'none';
+    matchFound2[rightId] = true;
+    
+    var allMatched = Object.keys(matchFound2).length === 4;
+    var result = document.getElementById('matchResult2');
+    result.style.display = 'block';
+    if (allMatched) {
+      result.className = 'result ok';
+      result.innerHTML = '<strong>¡Perfecto!</strong> Esfera(1) + Cubo(1) + Prisma(2) + Pieza agujero(3).';
+    } else {
+      result.className = 'result ok';
+      result.textContent = '✅ ¡Bien! Sigue así...';
+    }
+  } else {
+    btn.style.background = 'var(--rojo)'; btn.style.color = '#fff';
+    setTimeout(function() {
+      btn.style.background = '#fff'; btn.style.color = 'var(--azul)';
+    }, 1000);
+  }
+}
 </script>
 </body>
 </html>

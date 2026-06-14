@@ -559,6 +559,73 @@ Cotar según lo que se ve en el plano. Si una pieza mide 100mm y la dibujas a es
     </div>
     <div id="identifyResult" class="result" style="display:none"></div>
   </div>
+
+<!-- VF Visual SVG -->
+<div class="exercise">
+<p><span class="difficulty-badge medium">Medio</span> 👁️ Ejercicio 12 (VF Visual): Una pieza de 5mm en la realidad se dibuja de 25mm en el plano. ¿Es una escala de ampliación o reducción?</p>
+<div class="svg-container" style="margin:.5rem 0;padding:.8rem">
+<svg viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
+<!-- Pieza real -->
+<rect x="10" y="25" width="40" height="50" fill="#ecfdf5" stroke="#10b981" stroke-width="2" rx="3"/>
+<text x="30" y="55" text-anchor="middle" font-size="9" fill="#10b981" font-weight="bold">5 mm</text>
+<text x="30" y="88" text-anchor="middle" font-size="8" fill="#64748b">Real</text>
+<!-- Flecha -->
+<line x1="55" y1="50" x2="85" y2="50" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<!-- Pieza ampliada -->
+<rect x="95" y="5" width="80" height="90" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="3"/>
+<text x="135" y="55" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="bold">25 mm</text>
+<text x="135" y="100" text-anchor="middle" font-size="8" fill="#64748b">Plano</text>
+</svg>
+</div>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkVF(this, true)">Ampliación</button>
+<button class="quiz-btn" onclick="checkVF(this, false)">Reducción</button>
+<button class="quiz-btn" onclick="checkVF(this, false)">Natural</button>
+</div>
+<p class="feedback"></p>
+<p style="font-size:.85rem;color:var(--gris);margin-top:.5rem">Pista: 25/5 = 5 → el plano es 5 veces mayor</p>
+</div>
+
+<!-- Matching exercise -->
+<div class="exercise">
+<p><span class="difficulty-badge hard">Difícil</span> 🔗 Ejercicio 13 (Emparejar): Relaciona cada escala con su tipo correcto:</p>
+<div class="interactive" id="matchContainer">
+<div style="display:flex;gap:1rem;flex-wrap:wrap">
+<div style="flex:1;min-width:200px">
+<h4 style="color:var(--azul);margin-bottom:.5rem">Escala</h4>
+<div id="matchLeft">
+<button class="quiz-btn" style="width:100%;text-align:left;margin:.3rem 0" onclick="selectMatchLeft(this, 'a')">1:100</button>
+<button class="quiz-btn" style="width:100%;text-align:left;margin:.3rem 0" onclick="selectMatchLeft(this, 'b')">10:1</button>
+<button class="quiz-btn" style="width:100%;text-align:left;margin:.3rem 0" onclick="selectMatchLeft(this, 'c')">1:1</button>
+<button class="quiz-btn" style="width:100%;text-align:left;margin:.3rem 0" onclick="selectMatchLeft(this, 'd')">2:1</button>
+</div>
+</div>
+<div style="flex:1;min-width:200px">
+<h4 style="color:var(--naranja);margin-bottom:.5rem">Tipo</h4>
+<div id="matchRight">
+<button class="quiz-btn" style="width:100%;text-align:left;margin:.3rem 0" onclick="selectMatchRight(this, 'c')">Natural</button>
+<button class="quiz-btn" style="width:100%;text-align:left;margin:.3rem 0" onclick="selectMatchRight(this, 'a')">Reducción</button>
+<button class="quiz-btn" style="width:100%;text-align:left;margin:.3rem 0" onclick="selectMatchRight(this, 'd')">Ampliación</button>
+<button class="quiz-btn" style="width:100%;text-align:left;margin:.3rem 0" onclick="selectMatchRight(this, 'b')">Ampliación</button>
+</div>
+</div>
+</div>
+<div id="matchResult" class="result" style="display:none;margin-top:1rem"></div>
+</div>
+</div>
+
+<!-- Problema de optimización -->
+<div class="exercise">
+<p><span class="difficulty-badge hard">Difícil</span> 🏗️ Ejercicio 14 (Problema real): Un arquitecto debe dibujar un edificio de 45m de altura en un plano A1 (841mm de alto). ¿Qué escala necesita como MÁXIMA para que quepa?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">1:40</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">1:50</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">1:100</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">1:200</button>
+</div>
+<p class="feedback"></p>
+<p style="font-size:.85rem;color:var(--gris);margin-top:.5rem">Pista: 45m = 45000mm. 45000/841 ≈ 53.5 → necesitas al menos 1:54, así que 1:50 no basta. Pero 1:100 sí. ¿Cuál es la escala MAYOR que cabe?</p>
+</div>
 </div></section>
 
 <div class="summary">
@@ -782,6 +849,85 @@ function checkIdentify(el, correct) {
       result.style.display = 'none';
     }, 2000);
   }
-}</script>
+}
+// VF exercise helper
+function checkVF(btn, correct) {
+  var parent = btn.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) {
+    b.disabled = true; b.classList.remove('correct','wrong');
+  });
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  var feedback = parent.nextElementSibling;
+  if(feedback && feedback.classList.contains('feedback')) {
+    if(correct) {
+      feedback.textContent = '✅ ¡Correcto! 25mm/5mm = 5 → ampliación 5:1';
+      feedback.className = 'feedback correct';
+    } else {
+      feedback.textContent = '❌ No es ese. 25mm > 5mm → es ampliación.';
+      feedback.className = 'feedback incorrect';
+      setTimeout(function() {
+        parent.querySelectorAll('button').forEach(function(b) {
+          b.disabled = false; b.classList.remove('correct','wrong');
+        });
+        feedback.textContent = '';
+        feedback.className = 'feedback';
+      }, 2000);
+    }
+  }
+}
+
+// Matching exercise
+var matchSelected = null;
+var matchSelectedId = null;
+var matchCorrect = {'a':'a','b':'b','c':'c','d':'d'};
+var matchFound = {};
+
+function selectMatchLeft(btn, id) {
+  // Deselect previous
+  document.querySelectorAll('#matchLeft .quiz-btn').forEach(function(b) {
+    b.style.background = '#fff'; b.style.color = 'var(--azul)';
+  });
+  matchSelected = btn;
+  matchSelectedId = id;
+  btn.style.background = 'var(--azul)'; btn.style.color = '#fff';
+  // Enable all right buttons
+  document.querySelectorAll('#matchRight .quiz-btn').forEach(function(b) {
+    b.style.pointerEvents = 'auto';
+  });
+}
+
+function selectMatchRight(btn, rightId) {
+  if (!matchSelected) return;
+  if (matchFound[rightId]) return; // already matched
+  
+  // Check if correct
+  if (matchSelectedId === rightId) {
+    // Correct match
+    matchSelected.style.background = 'var(--verde)'; matchSelected.style.color = '#fff';
+    btn.style.background = 'var(--verde)'; btn.style.color = '#fff';
+    matchSelected.style.pointerEvents = 'none';
+    btn.style.pointerEvents = 'none';
+    matchFound[rightId] = true;
+    
+    // Check if all matched
+    var allMatched = Object.keys(matchFound).length === 4;
+    var result = document.getElementById('matchResult');
+    result.style.display = 'block';
+    if (allMatched) {
+      result.className = 'result ok';
+      result.innerHTML = '<strong>¡Perfecto!</strong> Todos emparejados correctamente.';
+    } else {
+      result.className = 'result ok';
+      result.textContent = '✅ ¡Bien! Sigue así...';
+    }
+  } else {
+    // Wrong match
+    btn.style.background = 'var(--rojo)'; btn.style.color = '#fff';
+    setTimeout(function() {
+      btn.style.background = '#fff'; btn.style.color = 'var(--azul)';
+    }, 1000);
+  }
+}
+</script>
 </body>
 </html>
