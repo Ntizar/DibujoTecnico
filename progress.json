@@ -1777,6 +1777,11 @@
             "real_world",
             "error_common"
           ]
+        },
+        {
+          "session": "2026-06-14-ronda2-s3",
+          "dimensions": "exercises",
+          "desc": "Ejercicio 13: VF visual SVG acotación + Ejercicio 14: matching notación de acotación"
         }
       ],
       "scores": {
@@ -1787,8 +1792,8 @@
         "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-12-ronda2-s1",
-      "improvement_count": 3,
+      "last_improved": "2026-06-14-ronda2-s3",
+      "improvement_count": 4,
       "improvement_history": [
         {
           "round": "ronda2",

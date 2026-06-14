@@ -480,6 +480,51 @@ En la industria, la acotación de piezas complejas siempre se hace en CAD (Solid
 
 </div>
 
+
+<div class="exercise">
+<p>📐 <span class="difficulty-badge">FÁCIL</span> — Ejercicio 13: Verdadero o Falso Visual — ¿Cuál es la acotación CORRECTA?</p>
+<p style="font-size:.9rem;color:#64748b;margin-bottom:.8rem">Haz clic en el SVG que muestra la acotación correcta de un agujero:</p>
+<div style="display:flex;gap:1rem;flex-wrap:wrap">
+<div class="clickable" onclick="checkIdentifyCota(this, false)" style="flex:1;min-width:200px;background:#fff;border:2px solid #e2e8f0;padding:1rem;border-radius:8px;text-align:center">
+<strong style="color:var(--rojo)">❌ INCORRECTA</strong>
+<svg viewBox="0 0 200 160" width="180" style="margin:.5rem 0">
+<rect x="40" y="30" width="120" height="100" fill="none" stroke="#333" stroke-width="2" rx="4"/>
+<circle cx="100" cy="80" r="20" fill="none" stroke="#ef4444" stroke-width="2"/>
+<line x1="100" y1="80" x2="140" y2="50" stroke="#ef4444" stroke-width="1.5" marker-end="url(#arrowR)"/>
+<text x="145" y="48" font-size="11" fill="#ef4444">R8</text>
+<text x="100" y="150" text-anchor="middle" font-size="9" fill="#ef4444">Error: agujero usa ⌀, no R</text>
+</svg>
+</div>
+<div class="clickable" onclick="checkIdentifyCota(this, true)" style="flex:1;min-width:200px;background:#fff;border:2px solid #e2e8f0;padding:1rem;border-radius:8px;text-align:center">
+<strong style="color:var(--verde)">✅ CORRECTA</strong>
+<svg viewBox="0 0 200 160" width="180" style="margin:.5rem 0">
+<rect x="40" y="30" width="120" height="100" fill="none" stroke="#333" stroke-width="2" rx="4"/>
+<circle cx="100" cy="80" r="20" fill="none" stroke="#10b981" stroke-width="2"/>
+<line x1="100" y1="80" x2="140" y2="50" stroke="#10b981" stroke-width="1.5" marker-end="url(#arrowG)"/>
+<text x="145" y="48" font-size="11" fill="#10b981">⌀8</text>
+<text x="100" y="150" text-anchor="middle" font-size="9" fill="#10b981">Correcto: agujero usa ⌀</text>
+</svg>
+</div>
+</div>
+<p class="feedback" id="ex13-fb"></p>
+</div>
+
+<div class="exercise">
+<p>🔗 <span class="difficulty-badge">AVANZADO</span> — Ejercicio 14: Empareja notación de acotación con su significado</p>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;margin:1rem 0">
+<div style="flex:1;min-width:200px">
+<p style="font-weight:600;margin-bottom:.5rem">Notación:</p>
+<button class="quiz-btn left-item clickable" style="width:100%;text-align:left;margin:.3rem 0" onclick="selectMatchLeft('cotaNot', this)" data-value="c3">C3</button>
+<button class="quiz-btn left-item clickable" style="width:100%;text-align:left;margin:.3rem 0" onclick="selectMatchLeft('cotaNot', this)" data-value="r10">R10</button>
+<button class="quiz-btn left-item clickable" style="width:100%;text-align:left;margin:.3rem 0" onclick="selectMatchLeft('cotaNot', this)" data-value="8x8">8× ⌀8</button>
+</div>
+<div style="flex:1;min-width:200px">
+<p style="font-weight:600;margin-bottom:.5rem">Significado:</p>
+<div id="cotaNot-right" style="display:flex;flex-direction:column;gap:.3rem"></div>
+</div>
+</div>
+<p class="feedback" id="ex14-fb"></p>
+</div>
 <div class="summary">
 <h3>📋 Resumen de lo aprendido</h3>
 <ul>
@@ -664,6 +709,104 @@ window.onscroll = function(){
   var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
   document.getElementById('progress').style.width = p+'%';
 };
+
+// VF Visual: acotación correcta vs incorrecta
+function checkIdentifyCota(el, correct) {
+  var siblings = el.parentElement.querySelectorAll('.clickable');
+  var fb = document.getElementById('ex13-fb');
+  siblings.forEach(function(s) { s.style.pointerEvents = 'none'; });
+  if (correct) {
+    el.style.borderColor = '#10b981';
+    el.style.background = '#ecfdf5';
+    fb.textContent = '✅ ¡Correcto! Los agujeros se acotan con ⌀ (diámetro), no con R (radio).';
+    fb.className = 'feedback correct';
+  } else {
+    el.style.borderColor = '#ef4444';
+    el.style.background = '#fef2f2';
+    fb.textContent = '❌ Los agujeros se acotan con ⌀, no con R. R se usa solo para arcos y círculos completos no perforados.';
+    fb.className = 'feedback incorrect';
+    setTimeout(function() {
+      siblings.forEach(function(s) {
+        s.style.pointerEvents = 'auto';
+        s.style.borderColor = '#e2e8f0';
+        s.style.background = '#fff';
+      });
+      fb.textContent = '';
+    }, 2000);
+  }
+}
+
+// Matching: notación de acotación
+var matchCotaState = {selected: null};
+function selectMatchLeft(name, el) {
+  var leftBtns = el.parentElement.querySelectorAll('.left-item');
+  leftBtns.forEach(function(b) { b.style.background = '#fff'; b.style.borderColor = '#2563eb'; });
+  el.style.background = '#eff6ff';
+  el.style.borderColor = '#2563eb';
+  matchCotaState.selected = {el: el, value: el.getAttribute('data-value')};
+  var rightDiv = document.getElementById(name + '-right');
+  var rightBtns = rightDiv.querySelectorAll('.quiz-btn');
+  rightBtns.forEach(function(b) { b.style.pointerEvents = 'auto'; b.style.opacity = '1'; });
+}
+
+function initMatchCota() {
+  var rightItems = [
+    {text: 'Chamfer 3×45° (esquina cortada)', value: 'c3'},
+    {text: 'Radio exterior de 10 mm', value: 'r10'},
+    {text: '8 agujeros de diámetro 8 mm', value: '8x8'}
+  ];
+  // Shuffle
+  for (var i = rightItems.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = rightItems[i]; rightItems[i] = rightItems[j]; rightItems[j] = tmp;
+  }
+  var rightDiv = document.getElementById('cotaNot-right');
+  rightDiv.innerHTML = '';
+  rightItems.forEach(function(item) {
+    var btn = document.createElement('button');
+    btn.className = 'quiz-btn right-item';
+    btn.textContent = item.text;
+    btn.setAttribute('data-value', item.value);
+    btn.onclick = function() { selectMatchRight('cotaNot', this); };
+    rightDiv.appendChild(btn);
+  });
+}
+
+function selectMatchRight(name, el) {
+  if (!matchCotaState.selected) return;
+  var leftVal = matchCotaState.selected.value;
+  var rightVal = el.getAttribute('data-value');
+  if (leftVal === rightVal) {
+    matchCotaState.el.style.background = '#ecfdf5';
+    matchCotaState.el.style.borderColor = '#10b981';
+    matchCotaState.el.style.pointerEvents = 'none';
+    el.style.background = '#ecfdf5';
+    el.style.borderColor = '#10b981';
+    el.style.pointerEvents = 'none';
+    matchCotaState.selected = null;
+    // Check if all matched
+    var remaining = document.querySelectorAll('.left-item:not([style*="pointer-events: none"])');
+    if (remaining.length === 0) {
+      document.getElementById('ex14-fb').textContent = '✅ ¡Perfecto! Has emparejado todas las notaciones correctamente.';
+      document.getElementById('ex14-fb').className = 'feedback correct';
+    }
+  } else {
+    el.style.borderColor = '#ef4444';
+    el.style.background = '#fef2f2';
+    document.getElementById('ex14-fb').textContent = '❌ No coincide. Intenta de nuevo.';
+    document.getElementById('ex14-fb').className = 'feedback incorrect';
+    setTimeout(function() {
+      el.style.borderColor = '#2563eb';
+      el.style.background = '#fff';
+      document.getElementById('ex14-fb').textContent = '';
+    }, 1500);
+  }
+}
+
+// Init on load
+window.addEventListener('DOMContentLoaded', function() {
+  if (document.getElementById('cotaNot-right')) initMatchCota();
+});
 </script>
 </body>
 </html>
