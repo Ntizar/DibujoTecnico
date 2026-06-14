@@ -2,9 +2,9 @@
   "curso": "Dibujo Técnico Completo",
   "autor": "David Antizar",
   "total_temas": 49,
-  "last_improved": "2026-06-14-ronda2-s5",
-  "last_run": "2026-06-14T08:01:36.562189+00:00",
-  "total_runs": 17,
+  "last_improved": "2026-06-14-ronda2-s6",
+  "last_run": "2026-06-14T08:33:30.268265+00:00",
+  "total_runs": 18,
   "topics": {
     "b01-01-formatos-papel.html": {
       "status": "improved_2",
@@ -2131,13 +2131,13 @@
     }
   },
   "audit": {
-    "last_run": "2026-06-13",
+    "last_run": "2026-06-14",
     "random_sample": 3,
     "all_passed": true,
     "sampled_files": [
-      "b06-04-reglas-acotacion.html",
-      "b02-03-vistas-principales.html",
-      "b01-02-tipos-linea.html"
+      "b01-05-cuadro-rotulacion.html",
+      "b06-02-metodos-acotacion.html",
+      "b03-03-isometrica-circulos.html"
     ]
   }
 }
