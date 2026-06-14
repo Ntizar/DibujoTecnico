@@ -331,6 +331,19 @@ Clic en Th → info de traza horizontal. Clic en Tv → info de traza vertical.
 <p class="feedback"></p>
 </div>
 </div>
+
+<div class="exercise">
+<p>📐 Ejercicio 7 (Emparejar): Relaciona cada tipo de recta con su posición en el diédrico</p>
+<div class="match-container" style="display:flex;gap:1rem;flex-wrap:wrap;margin:1rem 0">
+<div class="match-left" id="matchLeft402">
+<div class="clickable match-item-left" data-pair="horizontal" onclick="selectMatchLeft402(this)" style="padding:.6rem 1rem;border:2px solid var(--azul);border-radius:8px;background:#fff;margin:.3rem 0;cursor:pointer;transition:all .2s">↔️ Horizontal</div>
+<div class="clickable match-item-left" data-pair="frontal" onclick="selectMatchLeft402(this)" style="padding:.6rem 1rem;border:2px solid var(--azul);border-radius:8px;background:#fff;margin:.3rem 0;cursor:pointer;transition:all .2s">↕️ Frontal</div>
+<div class="clickable match-item-left" data-pair="oblicua" onclick="selectMatchLeft402(this)" style="padding:.6rem 1rem;border:2px solid var(--azul);border-radius:8px;background:#fff;margin:.3rem 0;cursor:pointer;transition:all .2s">↗️ Oblicua</div>
+</div>
+<div class="match-right" id="matchRight402"></div>
+</div>
+<p class="feedback" id="matchFeedback402"></p>
+</div>
 </section>
 
 <div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ RECTA PARALELA A LT</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="20" y1="70" x2="180" y2="70" stroke="#333" stroke-width="2"/><text x="100" y="65" text-anchor="middle" font-size="9" fill="#333">LT</text><line x1="50" y1="40" x2="150" y2="40" stroke="#ef4444" stroke-width="2"/><text x="100" y="35" text-anchor="middle" font-size="9" fill="#ef4444">Paralela a LT → VF en alzado</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ RECTA OBLICUA</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="20" y1="70" x2="180" y2="70" stroke="#333" stroke-width="2"/><text x="100" y="65" text-anchor="middle" font-size="9" fill="#333">LT</text><line x1="50" y1="100" x2="150" y2="40" stroke="#10b981" stroke-width="2"/><text x="100" y="120" text-anchor="middle" font-size="9" fill="#10b981">Oblicua → VM en auxiliar</text></svg></div></div>
@@ -522,6 +535,52 @@ window.onscroll = function(){
   var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
   document.getElementById('progress').style.width = p+'%';
 };
+
+// Matching exercise for recta-diedrico (Ronda 2)
+let matchState402 = { selected: null, matched: 0, total: 3 };
+function selectMatchLeft402(el) {
+  document.querySelectorAll('.match-item-left').forEach(i => i.style.borderColor = 'var(--azul)');
+  el.style.borderColor = 'var(--naranja)';
+  matchState402.selected = el.dataset.pair;
+  document.getElementById('matchRight402').querySelectorAll('.match-item-right').forEach(i => { i.style.pointerEvents = 'auto'; i.style.opacity = '1'; });
+}
+function selectMatchRight402(el) {
+  if (!matchState402.selected) return;
+  if (el.dataset.pair === matchState402.selected) {
+    el.style.borderColor = 'var(--verde)'; el.style.background = 'var(--verde-claro)';
+    el.style.pointerEvents = 'none';
+    const leftEl = document.querySelector(`.match-item-left[data-pair="${matchState402.selected}"]`);
+    leftEl.style.borderColor = 'var(--verde)'; leftEl.style.background = 'var(--verde-claro)';
+    leftEl.style.pointerEvents = 'none';
+    matchState402.matched++;
+    if (matchState402.matched === matchState402.total) {
+      document.getElementById('matchFeedback402').className = 'feedback correct';
+      document.getElementById('matchFeedback402').textContent = '🎉 ¡Perfecto! Has emparejado todas las rectas.';
+    }
+  } else {
+    el.style.borderColor = 'var(--rojo)'; el.style.background = 'var(--rojo-claro)';
+    setTimeout(() => { el.style.borderColor = 'var(--azul)'; el.style.background = '#fff'; }, 800);
+  }
+}
+function initMatch402() {
+  const pairs = [
+    { left: 'horizontal', right: 'Paralela a LT (r' ∥ LT)' },
+    { left: 'frontal', right: 'Paralela a PV (r ∥ LT)' },
+    { left: 'oblicua', right: 'Oblicua a LT (VM en auxiliar)' }
+  ];
+  const rightContainer = document.getElementById('matchRight402');
+  const shuffled = [...pairs].sort(() => Math.random() - 0.5);
+  shuffled.forEach(p => {
+    const div = document.createElement('div');
+    div.className = 'clickable match-item-right';
+    div.dataset.pair = p.left;
+    div.style.cssText = 'padding:.6rem 1rem;border:2px solid var(--naranja);border-radius:8px;background:#fff;margin:.3rem 0;cursor:pointer;transition:all .2s;';
+    div.textContent = p.right;
+    div.onclick = function() { selectMatchRight402(this); };
+    rightContainer.appendChild(div);
+  });
+}
+window.addEventListener('load', initMatch402);
 </script>
 </body>
 </html>

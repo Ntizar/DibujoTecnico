@@ -807,6 +807,10 @@
             "exercises",
             "css_coherence"
           ]
+        },
+        {
+          "session": "2026-06-14-ronda2-s2",
+          "description": "Ronda 2: matching exercise + VF visual checkIdentify (5 tipos ejercicio)"
         }
       ],
       "scores": {
@@ -817,8 +821,8 @@
         "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-12-ronda2-s3",
-      "improvement_count": 3,
+      "last_improved": "2026-06-14-ronda2-s2",
+      "improvement_count": 4,
       "last_improvement_deltas": {
         "svg_interactive": 0,
         "exercises": 0,
@@ -893,6 +897,10 @@
             "exercises",
             "error_common"
           ]
+        },
+        {
+          "session": "2026-06-14-ronda2-s2",
+          "description": "Ronda 2: matching exercise (6 tipos ejercicio)"
         }
       ],
       "scores": {
@@ -903,8 +911,8 @@
         "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-13-ronda2-s2",
-      "improvement_count": 3,
+      "last_improved": "2026-06-14-ronda2-s2",
+      "improvement_count": 4,
       "improvements_applied": [
         "R2: real_world 7→9 (añadidos 2 casos reales: topografía, aeronáutica)",
         "R2: ejercicios 7→9 (añadido E6 identificar recta frontal)",
@@ -1490,6 +1498,10 @@
             "exercises",
             "css_coherence"
           ]
+        },
+        {
+          "session": "2026-06-14-ronda2-s2",
+          "description": "Ronda 2: matching exercise, replaced duplicate fill (5 tipos ejercicio)"
         }
       ],
       "scores": {
@@ -1500,8 +1512,8 @@
         "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-12-ronda2-s3",
-      "improvement_count": 3,
+      "last_improved": "2026-06-14-ronda2-s2",
+      "improvement_count": 4,
       "last_improvement_deltas": {
         "svg_interactive": 0,
         "exercises": 0,

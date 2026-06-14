@@ -296,9 +296,9 @@ Haz clic en la perspectiva adecuada para cada tipo de pieza.
 <p>📐 Ejercicio 1: ¿Cuál es la perspectiva más usada?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Isométrica</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Caballera</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)")Dimétrica</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)")Monométrica</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">>Caballera</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Dimétrica</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Monométrica</button>
 </div>
 <p class="feedback"></p>
 </div>
@@ -306,10 +306,10 @@ Haz clic en la perspectiva adecuada para cada tipo de pieza.
 <div class="exercise">
 <p>📐 Ejercicio 2: ¿Cuál tiene la cara frontal en verdadera magnitud?</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Isométrica</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">>Isométrica</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Caballera</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)")Dimétrica</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)")Monométrica</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Dimétrica</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Monométrica</button>
 </div>
 <p class="feedback"></p>
 </div>
@@ -317,10 +317,10 @@ Haz clic en la perspectiva adecuada para cada tipo de pieza.
 <div class="exercise">
 <p>📐 Ejercicio 3: ¿Cuál tiene ángulos de 7° y 42°?</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Isométrica</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)")Caballera</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">>Isométrica</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Caballera</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Dimétrica</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)")Monométrica</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Monométrica</button>
 </div>
 <p class="feedback"></p>
 </div>
@@ -328,9 +328,9 @@ Haz clic en la perspectiva adecuada para cada tipo de pieza.
 <div class="exercise">
 <p>📐 Ejercicio 4: ¿Cuál es la menos usada?</p>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Isométrica</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)")Caballera</button>
-<button class="quiz-btn" onclick="checkAnswer(this, false)")Dimétrica</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">>Isométrica</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Caballera</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Dimétrica</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Monométrica</button>
 </div>
 <p class="feedback"></p>
@@ -357,7 +357,7 @@ Haz clic en la perspectiva adecuada para cada tipo de pieza.
 </div>
 </div>
 <div class="quiz-options">
-<button class="quiz-btn" onclick="checkAnswer(this, false)">Isométrica</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">>Isométrica</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Caballera (tiene agujeros en cara frontal)</button>
 </div>
 <p class="feedback"></p>
@@ -373,6 +373,40 @@ Haz clic en la perspectiva adecuada para cada tipo de pieza.
 <p class="feedback"></p>
 </div>
 
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 8 (Emparejar): Relaciona cada perspectiva con su característica principal</p>
+<div class="match-container" style="display:flex;gap:1rem;flex-wrap:wrap;margin:1rem 0">
+<div class="match-left" id="matchLeft306">
+<div class="clickable match-item-left" data-pair="isometrica" onclick="selectMatchLeft(this)" style="padding:.6rem 1rem;border:2px solid var(--azul);border-radius:8px;background:#fff;margin:.3rem 0;cursor:pointer;transition:all .2s">🔷 Isométrica</div>
+<div class="clickable match-item-left" data-pair="caballera" onclick="selectMatchLeft(this)" style="padding:.6rem 1rem;border:2px solid var(--azul);border-radius:8px;background:#fff;margin:.3rem 0;cursor:pointer;transition:all .2s">🔶 Caballera</div>
+<div class="clickable match-item-left" data-pair="dimetrica" onclick="selectMatchLeft(this)" style="padding:.6rem 1rem;border:2px solid var(--azul);border-radius:8px;background:#fff;margin:.3rem 0;cursor:pointer;transition:all .2s">🔷 Dimétrica</div>
+<div class="clickable match-item-left" data-pair="monometrica" onclick="selectMatchLeft(this)" style="padding:.6rem 1rem;border:2px solid var(--azul);border-radius:8px;background:#fff;margin:.3rem 0;cursor:pointer;transition:all .2s">🔷 Monométrica</div>
+</div>
+<div class="match-right" id="matchRight306">
+</div>
+</div>
+<p class="feedback" id="matchFeedback306"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 9 (Identificar): Haz clic en la perspectiva que tiene los 3 ejes iguales a 120°</p>
+<div class="interactive" style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+<div class="clickable" onclick="checkIdentify(this, false)" style="padding:1rem;border:2px solid #e2e8f0;border-radius:8px;background:#fff;text-align:center">
+<svg viewBox="0 0 100 80" width="90"><line x1="50" y1="10" x2="50" y2="70" stroke="#333" stroke-width="1.5"/><line x1="50" y1="40" x2="15" y2="70" stroke="#2563eb" stroke-width="1.5"/><line x1="50" y1="40" x2="85" y2="70" stroke="#2563eb" stroke-width="1.5"/><text x="50" y="8" text-anchor="middle" font-size="6" fill="#64748b">Z</text><text x="10" y="75" font-size="6" fill="#64748b">X</text><text x="90" y="75" font-size="6" fill="#64748b">Y</text></svg>
+<p style="font-size:.7rem;margin-top:.3rem">Caballera</p>
+</div>
+<div class="clickable" onclick="checkIdentify(this, true)" style="padding:1rem;border:2px solid #e2e8f0;border-radius:8px;background:#fff;text-align:center">
+<svg viewBox="0 0 100 80" width="90"><line x1="50" y1="10" x2="50" y2="70" stroke="#333" stroke-width="1.5"/><line x1="50" y1="40" x2="15" y2="25" stroke="#2563eb" stroke-width="1.5"/><line x1="50" y1="40" x2="85" y2="25" stroke="#2563eb" stroke-width="1.5"/><text x="50" y="8" text-anchor="middle" font-size="6" fill="#64748b">Z</text><text x="10" y="22" font-size="6" fill="#64748b">X</text><text x="90" y="22" font-size="6" fill="#64748b">Y</text></svg>
+<p style="font-size:.7rem;margin-top:.3rem">Isométrica</p>
+</div>
+<div class="clickable" onclick="checkIdentify(this, false)" style="padding:1rem;border:2px solid #e2e8f0;border-radius:8px;background:#fff;text-align:center">
+<svg viewBox="0 0 100 80" width="90"><line x1="50" y1="10" x2="50" y2="70" stroke="#333" stroke-width="1.5"/><line x1="50" y1="40" x2="15" y2="70" stroke="#2563eb" stroke-width="1.5"/><line x1="50" y1="40" x2="85" y2="70" stroke="#2563eb" stroke-width="1.5"/><text x="50" y="8" text-anchor="middle" font-size="6" fill="#64748b">Z</text><text x="10" y="75" font-size="6" fill="#64748b">X</text><text x="90" y="75" font-size="6" fill="#64748b">Y</text></svg>
+<p style="font-size:.7rem;margin-top:.3rem">Monométrica</p>
+</div>
+</div>
+<p class="feedback"></p>
 </div>
 </section>
 
@@ -554,6 +588,81 @@ window.onscroll = function(){
   var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
   document.getElementById('progress').style.width = p+'%';
 };
+
+// checkIdentify — ejercicio SVG clickeable (Ronda 2)
+function checkIdentify(el, correct) {
+  const parent = el.closest('.interactive') || el.closest('.exercise');
+  const clickables = parent.querySelectorAll('.clickable');
+  clickables.forEach(c => c.style.pointerEvents = 'none');
+  const feedback = parent.querySelector('.feedback');
+  if (correct) {
+    el.style.borderColor = 'var(--verde)';
+    el.style.background = 'var(--verde-claro)';
+    feedback.className = 'feedback correct';
+    feedback.textContent = '✅ ¡Correcto! La isométrica tiene los 3 ejes iguales a 120°.';
+  } else {
+    el.style.borderColor = 'var(--rojo)';
+    el.style.background = 'var(--rojo-claro)';
+    feedback.className = 'feedback incorrect';
+    feedback.textContent = '❌ Incorrecto. Busca la que tiene los 3 ejes a 120°.';
+    setTimeout(() => {
+      clickables.forEach(c => { c.style.pointerEvents = 'auto'; c.style.borderColor = '#e2e8f0'; c.style.background = '#fff'; });
+      feedback.className = 'feedback';
+      feedback.textContent = '';
+    }, 2000);
+  }
+}
+
+// selectMatchLeft — para ejercicios de emparejar (Ronda 2)
+let matchState306 = { selected: null, matched: 0, total: 4 };
+function selectMatchLeft(el) {
+  const rightContainer = document.getElementById('matchRight306');
+  document.querySelectorAll('.match-item-left').forEach(i => i.style.borderColor = 'var(--azul)');
+  el.style.borderColor = 'var(--naranja)';
+  matchState306.selected = el.dataset.pair;
+  rightContainer.querySelectorAll('.match-item-right').forEach(i => { i.style.pointerEvents = 'auto'; i.style.opacity = '1'; });
+}
+function selectMatchRight(el) {
+  if (!matchState306.selected) return;
+  const leftEl = document.querySelector(`.match-item-left[data-pair="${matchState306.selected}"]`);
+  if (el.dataset.pair === matchState306.selected) {
+    el.style.borderColor = 'var(--verde)';
+    el.style.background = 'var(--verde-claro)';
+    el.style.pointerEvents = 'none';
+    leftEl.style.borderColor = 'var(--verde)';
+    leftEl.style.background = 'var(--verde-claro)';
+    leftEl.style.pointerEvents = 'none';
+    matchState306.matched++;
+    if (matchState306.matched === matchState306.total) {
+      document.getElementById('matchFeedback306').className = 'feedback correct';
+      document.getElementById('matchFeedback306').textContent = '🎉 ¡Perfecto! Has emparejado todas las perspectivas.';
+    }
+  } else {
+    el.style.borderColor = 'var(--rojo)';
+    el.style.background = 'var(--rojo-claro)';
+    setTimeout(() => { el.style.borderColor = 'var(--azul)'; el.style.background = '#fff'; }, 800);
+  }
+}
+function initMatch306() {
+  const pairs = [
+    { left: 'isometrica', right: '3 ejes iguales a 120°' },
+    { left: 'caballera', right: 'Cara frontal en VM' },
+    { left: 'dimetrica', right: '2 ejes iguales, 1 diferente' },
+    { left: 'monometrica', right: 'Solo 1 eje perpendicular' }
+  ];
+  const rightContainer = document.getElementById('matchRight306');
+  const shuffled = [...pairs].sort(() => Math.random() - 0.5);
+  shuffled.forEach(p => {
+    const div = document.createElement('div');
+    div.className = 'clickable match-item-right';
+    div.dataset.pair = p.left;
+    div.style.cssText = 'padding:.6rem 1rem;border:2px solid var(--naranja);border-radius:8px;background:#fff;margin:.3rem 0;cursor:pointer;transition:all .2s;';
+    div.textContent = p.right;
+    div.onclick = function() { selectMatchRight(this); };
+    rightContainer.appendChild(div);
+  });
+}
+window.addEventListener('load', initMatch306);
 </script>
 </body>
 </html>

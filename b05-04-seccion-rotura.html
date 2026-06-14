@@ -378,12 +378,16 @@ Para un eje largo, añade una rotura en forma de "S" en el centro.
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 6 (Completar): La sección muestra solo la ___ cortada. La rotura sirve para ___ piezas largas. La cota indica la ___ real.</p>
-<input type="text" id="ex6a" placeholder="1ª" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
-<input type="text" id="ex6b" placeholder="2ª" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
-<input type="text" id="ex6c" placeholder="3ª" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
-<button onclick="checkFillIn()">Comprobar</button>
-<p class="feedback"></p>
+<p>📐 Ejercicio 6 (Emparejar): Relaciona cada término con su definición</p>
+<div class="match-container" style="display:flex;gap:1rem;flex-wrap:wrap;margin:1rem 0">
+<div class="match-left" id="matchLeft504">
+<div class="clickable match-item-left" data-pair="seccion" onclick="selectMatchLeft504(this)" style="padding:.6rem 1rem;border:2px solid var(--azul);border-radius:8px;background:#fff;margin:.3rem 0;cursor:pointer;transition:all .2s">📐 Sección</div>
+<div class="clickable match-item-left" data-pair="rotura" onclick="selectMatchLeft504(this)" style="padding:.6rem 1rem;border:2px solid var(--azul);border-radius:8px;background:#fff;margin:.3rem 0;cursor:pointer;transition:all .2s">〰️ Rotura</div>
+<div class="clickable match-item-left" data-pair="hachura" onclick="selectMatchLeft504(this)" style="padding:.6rem 1rem;border:2px solid var(--azul);border-radius:8px;background:#fff;margin:.3rem 0;cursor:pointer;transition:all .2s">〰 Hachura</div>
+</div>
+<div class="match-right" id="matchRight504"></div>
+</div>
+<p class="feedback" id="matchFeedback504"></p>
 </div>
 
 </div>
@@ -562,6 +566,52 @@ window.onscroll = function(){
   var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
   document.getElementById('progress').style.width = p+'%';
 };
+
+// Matching exercise for seccion-rotura (Ronda 2)
+let matchState504 = { selected: null, matched: 0, total: 3 };
+function selectMatchLeft504(el) {
+  document.querySelectorAll('.match-item-left').forEach(i => i.style.borderColor = 'var(--azul)');
+  el.style.borderColor = 'var(--naranja)';
+  matchState504.selected = el.dataset.pair;
+  document.getElementById('matchRight504').querySelectorAll('.match-item-right').forEach(i => { i.style.pointerEvents = 'auto'; i.style.opacity = '1'; });
+}
+function selectMatchRight504(el) {
+  if (!matchState504.selected) return;
+  if (el.dataset.pair === matchState504.selected) {
+    el.style.borderColor = 'var(--verde)'; el.style.background = 'var(--verde-claro)';
+    el.style.pointerEvents = 'none';
+    const leftEl = document.querySelector(`.match-item-left[data-pair="${matchState504.selected}"]`);
+    leftEl.style.borderColor = 'var(--verde)'; leftEl.style.background = 'var(--verde-claro)';
+    leftEl.style.pointerEvents = 'none';
+    matchState504.matched++;
+    if (matchState504.matched === matchState504.total) {
+      document.getElementById('matchFeedback504').className = 'feedback correct';
+      document.getElementById('matchFeedback504').textContent = '🎉 ¡Perfecto! Has emparejado todos los términos.';
+    }
+  } else {
+    el.style.borderColor = 'var(--rojo)'; el.style.background = 'var(--rojo-claro)';
+    setTimeout(() => { el.style.borderColor = 'var(--azul)'; el.style.background = '#fff'; }, 800);
+  }
+}
+function initMatch504() {
+  const pairs = [
+    { left: 'seccion', right: 'Muestra solo la cara cortada' },
+    { left: 'rotura', right: 'Elimina parte de pieza larga' },
+    { left: 'hachura', right: 'Rayado que identifica material' }
+  ];
+  const rightContainer = document.getElementById('matchRight504');
+  const shuffled = [...pairs].sort(() => Math.random() - 0.5);
+  shuffled.forEach(p => {
+    const div = document.createElement('div');
+    div.className = 'clickable match-item-right';
+    div.dataset.pair = p.left;
+    div.style.cssText = 'padding:.6rem 1rem;border:2px solid var(--naranja);border-radius:8px;background:#fff;margin:.3rem 0;cursor:pointer;transition:all .2s;';
+    div.textContent = p.right;
+    div.onclick = function() { selectMatchRight504(this); };
+    rightContainer.appendChild(div);
+  });
+}
+window.addEventListener('load', initMatch504);
 </script>
 </body>
 </html>
