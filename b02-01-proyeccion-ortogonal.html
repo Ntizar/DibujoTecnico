@@ -409,7 +409,32 @@ Usar proyección cónica (perspectiva) en un plano técnico. En dibujo técnico 
 <p class="feedback"></p>
 </div>
 
+
+<!-- NUEVO RONDA 2: Ejercicio de emparejar -->
+<div class="exercise">
+<p>🔗 Ejercicio 8 (emparejar): Une cada concepto con su definición correcta. Haz clic en un concepto de la izquierda y luego en su definición a la derecha.</p>
+<div class="interactive" style="background:#fff;border:2px solid #e2e8f0;border-radius:8px;padding:1rem">
+<div style="display:flex;gap:1rem;flex-wrap:wrap">
+<div style="flex:1;min-width:200px">
+<h4 style="margin-bottom:.5rem;color:var(--azul)">Conceptos</h4>
+<div id="matchLeft02" style="display:flex;flex-direction:column;gap:.4rem">
+<button class="quiz-btn" style="width:100%;text-align:left;font-size:.9rem;padding:.5rem 1rem" onclick="selectMatchLeft('ml02', 0)" id="ml02_0">Rayos perpendiculares</button>
+<button class="quiz-btn" style="width:100%;text-align:left;font-size:.9rem;padding:.5rem 1rem" onclick="selectMatchLeft('ml02', 1)" id="ml02_1">Centro de proyección</button>
+<button class="quiz-btn" style="width:100%;text-align:left;font-size:.9rem;padding:.5rem 1rem" onclick="selectMatchLeft('ml02', 2)" id="ml02_2">Sin deformación</button>
 </div>
+</div>
+<div style="flex:1;min-width:200px">
+<h4 style="margin-bottom:.5rem;color:var(--naranja)">Definiciones</h4>
+<div id="matchRight02" style="display:flex;flex-direction:column;gap:.4rem">
+<button class="quiz-btn" style="width:100%;text-align:left;font-size:.9rem;padding:.5rem 1rem" onclick="selectMatchRight('ml02', 0, 2)" id="mr02_0">Proyección cónica</button>
+<button class="quiz-btn" style="width:100%;text-align:left;font-size:.9rem;padding:.5rem 1rem" onclick="selectMatchRight('ml02', 1, 0)" id="mr02_1">Proyección ortogonal</button>
+<button class="quiz-btn" style="width:100%;text-align:left;font-size:.9rem;padding:.5rem 1rem" onclick="selectMatchRight('ml02', 2, 1)" id="mr02_2">Proyección cónica</button>
+</div>
+</div>
+</div>
+<p class="feedback" id="matchFeedback02"></p>
+</div>
+</div></div>
 </section>
 
 <section class="chapter">
@@ -608,6 +633,62 @@ function checkOrden(btn, answer) {
 }
 
 
-</script>
+
+// Matching exercise: proyección ortogonal
+var matchState02 = {selected: null, correct: 0, total: 3, pairs: {0: 1, 1: 0, 2: 2}};
+
+function selectMatchLeft(prefix, idx) {
+  // Deselect all left buttons
+  for (var i = 0; i < 3; i++) {
+    var btn = document.getElementById(prefix + '_' + i);
+    if (btn) { btn.style.background = '#fff'; btn.style.borderColor = 'var(--azul)'; }
+  }
+  // Select this one
+  var selected = document.getElementById(prefix + '_' + idx);
+  if (selected) { selected.style.background = 'var(--azul-claro)'; selected.style.borderColor = 'var(--azul)'; }
+  matchState02.selected = idx;
+}
+
+function selectMatchRight(prefix, rightIdx, correctLeftIdx) {
+  if (matchState02.selected === null) return;
+  var leftBtn = document.getElementById(prefix + '_' + matchState02.selected);
+  var rightBtn = document.getElementById(prefix + '_' + rightIdx);
+  
+  if (matchState02.selected === correctLeftIdx) {
+    // Correct match!
+    leftBtn.style.background = 'var(--verde-claro)'; leftBtn.style.borderColor = 'var(--verde)'; leftBtn.style.color = '#065f46';
+    rightBtn.style.background = 'var(--verde-claro)'; rightBtn.style.borderColor = 'var(--verde)'; rightBtn.style.color = '#065f46';
+    leftBtn.disabled = true; rightBtn.disabled = true;
+    leftBtn.style.cursor = 'default'; rightBtn.style.cursor = 'default';
+    matchState02.correct++;
+    
+    if (matchState02.correct === matchState02.total) {
+      var fb = document.getElementById('matchFeedback02');
+      if (fb) { fb.textContent = '🎉 ¡Perfecto! Has emparejado todos los conceptos.'; fb.className = 'feedback correct'; }
+    }
+  } else {
+    // Wrong match
+    rightBtn.style.background = 'var(--rojo-claro)'; rightBtn.style.borderColor = 'var(--rojo)';
+    setTimeout(function() {
+      rightBtn.style.background = '#fff'; rightBtn.style.borderColor = 'var(--azul)';
+    }, 1000);
+    var fb = document.getElementById('matchFeedback02');
+    if (fb) { fb.textContent = '❌ No coincide. Intenta de nuevo.'; fb.className = 'feedback incorrect'; }
+  }
+}
+
+// Initialize shuffle
+window.addEventListener('load', function() {
+  // Shuffle right column on load (simple swap for demo)
+  var rightContainer = document.getElementById('matchRight02');
+  if (rightContainer) {
+    var buttons = Array.from(rightContainer.querySelectorAll('button'));
+    // Fisher-Yates shuffle
+    for (var i = buttons.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      rightContainer.appendChild(buttons[j]);
+    }
+  }
+});</script>
 </body>
 </html>

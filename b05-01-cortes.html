@@ -515,7 +515,32 @@ onmouseover="showZoneInfo(3)" onmouseout="hideZoneInfo()" onclick="selectZone(3)
 <p class="feedback"></p>
 </div>
 
+
+<!-- NUEVO RONDA 2: Ejercicio de emparejar -->
+<div class="exercise">
+<p>🔗 Ejercicio 9 (emparejar): Une cada tipo de corte/sección con su descripción. Haz clic en un concepto de la izquierda y luego en su definición.</p>
+<div class="interactive" style="background:#fff;border:2px solid #e2e8f0;border-radius:8px;padding:1rem">
+<div style="display:flex;gap:1rem;flex-wrap:wrap">
+<div style="flex:1;min-width:200px">
+<h4 style="margin-bottom:.5rem;color:var(--azul)">Conceptos</h4>
+<div id="matchLeft05" style="display:flex;flex-direction:column;gap:.4rem">
+<button class="quiz-btn" style="width:100%;text-align:left;font-size:.9rem;padding:.5rem 1rem" onclick="selectMatchLeft('ml05', 0)" id="ml05_0">Corte total</button>
+<button class="quiz-btn" style="width:100%;text-align:left;font-size:.9rem;padding:.5rem 1rem" onclick="selectMatchLeft('ml05', 1)" id="ml05_1">Sección</button>
+<button class="quiz-btn" style="width:100%;text-align:left;font-size:.9rem;padding:.5rem 1rem" onclick="selectMatchLeft('ml05', 2)" id="ml05_2">Corte parcial</button>
 </div>
+</div>
+<div style="flex:1;min-width:200px">
+<h4 style="margin-bottom:.5rem;color:var(--naranja)">Definiciones</h4>
+<div id="matchRight05" style="display:flex;flex-direction:column;gap:.4rem">
+<button class="quiz-btn" style="width:100%;text-align:left;font-size:.9rem;padding:.5rem 1rem" onclick="selectMatchRight('ml05', 0, 2)" id="mr05_0">Solo muestra la zona cortada</button>
+<button class="quiz-btn" style="width:100%;text-align:left;font-size:.9rem;padding:.5rem 1rem" onclick="selectMatchRight('ml05', 1, 0)" id="mr05_1">Elimina la mitad del objeto</button>
+<button class="quiz-btn" style="width:100%;text-align:left;font-size:.9rem;padding:.5rem 1rem" onclick="selectMatchRight('ml05', 2, 1)" id="mr05_2">Muestra solo la zona cortada</button>
+</div>
+</div>
+</div>
+<p class="feedback" id="matchFeedback05"></p>
+</div>
+</div></div>
 </section>
 
 <!-- ===== ERROR COMÚN 1: Rayado incorrecto ===== -->

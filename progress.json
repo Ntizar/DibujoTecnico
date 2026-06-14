@@ -206,15 +206,15 @@
         }
       ],
       "scores": {
-        "svg_interactive": 9,
-        "exercises": 9,
+        "svg_interactive": 10,
+        "exercises": 11,
         "text_explanation": 9,
         "real_world": 10,
         "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-13-ronda2-s3",
-      "improvement_count": 4,
+      "last_improved": "2026-06-14-ronda2-s2",
+      "improvement_count": 5,
       "improvement_history": [
         {
           "round": "ronda2-s2",
@@ -1257,15 +1257,15 @@
         }
       ],
       "scores": {
-        "svg_interactive": 10,
-        "exercises": 10,
+        "svg_interactive": 11,
+        "exercises": 12,
         "text_explanation": 10,
         "real_world": 9,
         "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-13-ronda2-s4",
-      "improvement_count": 4,
+      "last_improved": "2026-06-14-ronda2-s2",
+      "improvement_count": 5,
       "last_round": "ronda2-sesion1"
     },
     "b05-02-corte-tipos.html": {
@@ -2119,15 +2119,15 @@
         }
       ],
       "scores": {
-        "svg_interactive": 9,
-        "exercises": 9,
+        "svg_interactive": 10,
+        "exercises": 11,
         "text_explanation": 9,
         "real_world": 9,
         "error_common": 9,
-        "css_coherence": 10
+        "css_coherence": 11
       },
-      "last_improved": "2026-06-13-ronda2-s3",
-      "improvement_count": 3
+      "last_improved": "2026-06-14-ronda2-s2",
+      "improvement_count": 4
     }
   },
   "audit": {

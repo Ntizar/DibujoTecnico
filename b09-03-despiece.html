@@ -63,7 +63,10 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .stack-item.active{border-color:var(--azul);background:var(--azul-claro)}
 .clickable{cursor:pointer;transition:all .2s}.clickable:hover{box-shadow:0 4px 12px rgba(37,99,235,.15);transform:translateY(-2px)}.connection-box{background:linear-gradient(135deg,#faf5ff,#f3e8ff);border:2px solid #a855f7;border-radius:12px;padding:1.2rem;margin:1.5rem 0}.connection-box strong{color:#7c3aed}.difficulty-badge{display:inline-block;background:linear-gradient(135deg,#a855f7,#7c3aed);color:#fff;padding:.2rem .6rem;border-radius:12px;font-size:.7rem;font-weight:700;margin-left:.5rem}
 .footer{text-align:center;padding:2rem 1rem;color:var(--gris);font-size:.85rem;border-top:1px solid #e2e8f0;margin-top:2rem}
-</style>
+
+.feedback{font-weight:600;margin-top:.5rem;display:inline-block}
+.feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
+.feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}</style>
 </head>
 <body>
 <header class="header">
@@ -473,6 +476,31 @@ Representar piezas estándar (tornillos, tuercas, arandelas) en el despiece con 
 <div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🚗 CASO REAL 2</span><strong>Caso automoción: caja de cambios Porsche 911</strong>La caja de cambios de 7 velocidades PDK tiene 180 piezas en su despiece completo. Cada eje, engranaje y sincronizador tiene su plano individual con cotas, tolerancias h7/H7 y rugosidad Ra 0.8. Los cojinetes SKF y los retenes de aceite son piezas estándar que solo se listan. La vista explosiva del manual de taller muestra el orden de montaje con 47 pasos numerados.</div>
 
 <div class="box box-teoria" style="margin:1.5rem 0"><span class="real-world-badge">🏗️ CASO REAL 3</span><strong>Caso civil: puente colgante de Akashi Kaikyō</strong>El puente más largo del mundo (1991m de luz central) tiene un despiece de más de 50000 piezas. Los anclajes, torres, cables y tablero tienen planos de despiece individuales. Cada perno de alta resistencia (ASTM A325) es estándar; cada placa de unión es fabricada. La vista explosiva del tablero muestra 230 secciones modulares ensambladas en obra.</div>
+<!-- NUEVO RONDA 2: Ejercicio de emparejar -->
+<div class="exercise">
+<p>🔗 Ejercicio 8 (emparejar): Une cada elemento del despiece con su descripción. Haz clic en un concepto de la izquierda y luego en su definición.</p>
+<div class="interactive" style="background:#fff;border:2px solid #e2e8f0;border-radius:8px;padding:1rem">
+<div style="display:flex;gap:1rem;flex-wrap:wrap">
+<div style="flex:1;min-width:200px">
+<h4 style="margin-bottom:.5rem;color:var(--azul)">Elementos</h4>
+<div id="matchLeft09" style="display:flex;flex-direction:column;gap:.4rem">
+<button class="quiz-btn" style="width:100%;text-align:left;font-size:.9rem;padding:.5rem 1rem" onclick="selectMatchLeft('ml09', 0)" id="ml09_0">Plano de pieza</button>
+<button class="quiz-btn" style="width:100%;text-align:left;font-size:.9rem;padding:.5rem 1rem" onclick="selectMatchLeft('ml09', 1)" id="ml09_1">Tabla de componentes</button>
+<button class="quiz-btn" style="width:100%;text-align:left;font-size:.9rem;padding:.5rem 1rem" onclick="selectMatchLeft('ml09', 2)" id="ml09_2">Vista isométrica</button>
+</div>
+</div>
+<div style="flex:1;min-width:200px">
+<h4 style="margin-bottom:.5rem;color:var(--naranja)">Descripciones</h4>
+<div id="matchRight09" style="display:flex;flex-direction:column;gap:.4rem">
+<button class="quiz-btn" style="width:100%;text-align:left;font-size:.9rem;padding:.5rem 1rem" onclick="selectMatchRight('ml09', 0, 2)" id="mr09_0">Representa el conjunto ensamblado</button>
+<button class="quiz-btn" style="width:100%;text-align:left;font-size:.9rem;padding:.5rem 1rem" onclick="selectMatchRight('ml09', 1, 0)" id="mr09_1">Lista cada pieza con número y material</button>
+<button class="quiz-btn" style="width:100%;text-align:left;font-size:.9rem;padding:.5rem 1rem" onclick="selectMatchRight('ml09', 2, 1)" id="mr09_2">Muestra la pieza en 3D</button>
+</div>
+</div>
+</div>
+<p class="feedback" id="matchFeedback09"></p>
+</div>
+</div>
 
 
 </section>
