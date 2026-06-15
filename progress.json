@@ -2183,5 +2183,18 @@
   },
   "run": 1,
   "date": "2026-06-15",
-  "added": "v2-r2: b07-03-interseccion-recta-recta.html - ronda 2: 1) Eliminado checkVF duplicada (línea 655-671), 2) difficulty-badge en los 10 ejercicios (3 easy, 3 medium, 3 hard + 1 hard), 3) box-success añadido con mnemotécnicas 'Vertical=Verdadero' y 'Z arriba, Y adelante', 4) Animaciones CSS: pulse-point (pulsing dots), draw-line (líneas animadas), fade-in (transición pasos), 5) SVG mejorado: 12 círculos con clase pulse, 4 líneas con clase animate, re-trigger de animación en showPaso, 6) Ejercicio 10 nuevo (Problema) — vigas de acero nave industrial, 7) SVG coherente con animaciones en los 4 pasos (paso0, paso1, paso2)"
+  "added": "v2-r2: b07-03-interseccion-recta-recta.html - ronda 2: 1) Eliminado checkVF duplicada (línea 655-671), 2) difficulty-badge en los 10 ejercicios (3 easy, 3 medium, 3 hard + 1 hard), 3) box-success añadido con mnemotécnicas 'Vertical=Verdadero' y 'Z arriba, Y adelante', 4) Animaciones CSS: pulse-point (pulsing dots), draw-line (líneas animadas), fade-in (transición pasos), 5) SVG mejorado: 12 círculos con clase pulse, 4 líneas con clase animate, re-trigger de animación en showPaso, 6) Ejercicio 10 nuevo (Problema) — vigas de acero nave industrial, 7) SVG coherente con animaciones en los 4 pasos (paso0, paso1, paso2)",
+  "runs": [
+    {
+      "run": 1,
+      "date": "2026-06-15",
+      "session": "dt-ronda2-s2",
+      "topics_improved": [
+        "b09-02-lista-piezas.html",
+        "b04-06-vm.html",
+        "b07-04-verdadera-magnitud.html"
+      ],
+      "added": "Ronda 2 Sesión 2: difficulty badges on all exercises, box-success tips, SVG interactivity with toggleHighlight, broken onclicks fixed (checkFillIn closure), CSS animations (@keyframes pulse/drawLine), clickable SVG elements, comparison-side interactivity"
+    }
+  ]
 }

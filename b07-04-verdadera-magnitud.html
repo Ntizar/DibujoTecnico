@@ -59,6 +59,12 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .step-dot:hover{transform:scale(1.2)}
 .step-dot.active{box-shadow:0 0 0 4px rgba(37,99,235,.3)}
 .clickable{cursor:pointer;transition:all .2s}.clickable:hover{filter:brightness(1.1)}
+.svg-element{transition:all .3s;cursor:pointer}.svg-element:hover{filter:brightness(1.15) drop-shadow(0 0 4px rgba(37,99,235,.3))}
+.svg-element.active{filter:brightness(1.2) drop-shadow(0 0 6px rgba(37,99,235,.5))}
+.svg-pulse{animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+@keyframes drawLine{from{stroke-dashoffset:1000}to{stroke-dashoffset:0}}
+.svg-draw{stroke-dasharray:1000;animation:drawLine 2s ease forwards}
 .connection-box{background:var(--pura-claro);border-color:var(--pura)}
 .difficulty-badge{display:inline-block;background:var(--azul);color:#fff;padding:.15rem .5rem;border-radius:8px;font-size:.7rem;font-weight:600;margin-left:.5rem}
 .feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
@@ -173,8 +179,8 @@ Paso 3: Medir α con transportador = 35°.
 <text x="180" y="62" text-anchor="middle" font-size="11" fill="#10b981" font-weight="700">✅ PARALELA → VM</text>
 <line x1="40" y1="90" x2="320" y2="90" stroke="#1e293b" stroke-width="1.5"/>
 <text x="325" y="94" font-size="8" fill="#1e293b">PH</text>
-<line x1="60" y1="110" x2="280" y2="110" stroke="#2563eb" stroke-width="3"/>
-<text x="170" y="105" text-anchor="middle" font-size="9" fill="#64748b">recta paralela</text>
+<line x1="60" y1="110" x2="280" y2="110" stroke="#2563eb" stroke-width="3" class="svg-element clickable" onclick="toggleHighlight(this)" data-info="Recta paralela al PH: se ve en verdadera magnitud en planta"/>
+<text x="170" y="105" text-anchor="middle" font-size="9" fill="#64748b" class="svg-element clickable" onclick="toggleHighlight(this)" data-info="Paralela = VM en la proyección correspondiente">recta paralela</text>
 <text x="170" y="135" text-anchor="middle" font-size="12" fill="#10b981" font-weight="700">Longitud real = 220 mm ✓</text>
 <text x="170" y="160" text-anchor="middle" font-size="9" fill="#1e293b">En planta se ve en VM</text>
 <!-- Recta oblicua -->
@@ -182,8 +188,8 @@ Paso 3: Medir α con transportador = 35°.
 <text x="520" y="62" text-anchor="middle" font-size="11" fill="#ef4444" font-weight="700">❌ OBLICUA → NO VM</text>
 <line x1="380" y1="90" x2="660" y2="90" stroke="#1e293b" stroke-width="1.5"/>
 <text x="665" y="94" font-size="8" fill="#1e293b">PH</text>
-<line x1="400" y1="110" x2="640" y2="150" stroke="#2563eb" stroke-width="3"/>
-<text x="520" y="135" text-anchor="middle" font-size="9" fill="#64748b">recta oblicua</text>
+<line x1="400" y1="110" x2="640" y2="150" stroke="#2563eb" stroke-width="3" class="svg-element clickable" onclick="toggleHighlight(this)" data-info="Recta oblicua: NO se ve en VM, necesita giro o cambio de plano"/>
+<text x="520" y="135" text-anchor="middle" font-size="9" fill="#64748b" class="svg-element clickable" onclick="toggleHighlight(this)" data-info="Oblicua = no paralela a ningún plano">recta oblicua</text>
 <text x="520" y="160" text-anchor="middle" font-size="12" fill="#ef4444" font-weight="700">Acortada ✗</text>
 <text x="520" y="185" text-anchor="middle" font-size="9" fill="#1e293b">Necesita giro o cambio de plano</text>
 <!-- Dimension line -->
@@ -202,18 +208,22 @@ Paso 3: Medir α con transportador = 35°.
 <text x="675" y="54" font-size="9" fill="#1e293b" font-weight="600">LT</text>
 <!-- Segmento original oblicuo -->
 <text x="350" y="75" text-anchor="middle" font-size="10" fill="#64748b">1. Segmento original (no VM)</text>
-<line x1="100" y1="100" x2="300" y2="140" stroke="#2563eb" stroke-width="2.5"/>
-<circle cx="100" cy="100" r="4" fill="#2563eb"/><text x="85" y="95" font-size="9" fill="#2563eb" font-weight="600">A</text>
-<circle cx="300" cy="140" r="4" fill="#2563eb"/><text x="305" y="145" font-size="9" fill="#2563eb" font-weight="600">B</text>
+<line x1="100" y1="100" x2="300" y2="140" stroke="#2563eb" stroke-width="2.5" class="svg-element clickable" onclick="toggleHighlight(this)" data-info="Segmento original oblicuo: NO en VM"/>
+<circle cx="100" cy="100" r="4" fill="#2563eb" class="svg-element clickable" onclick="toggleHighlight(this)" data-info="Punto A: (30, 20, 40)"/>
+<text x="85" y="95" font-size="9" fill="#2563eb" font-weight="600">A</text>
+<circle cx="300" cy="140" r="4" fill="#2563eb" class="svg-element clickable" onclick="toggleHighlight(this)" data-info="Punto B: (80, 60, 70)"/>
+<text x="305" y="145" font-size="9" fill="#2563eb" font-weight="600">B</text>
 <text x="200" y="115" text-anchor="middle" font-size="9" fill="#ef4444">No es VM</text>
 <!-- Arco de giro -->
 <path d="M 300 140 A 200 200 0 0 0 300 50" fill="none" stroke="#f97316" stroke-width="2" stroke-dasharray="6,3"/>
 <text x="420" y="100" font-size="10" fill="#f97316" font-weight="600">Giro →</text>
 <!-- Segmento girado paralelo a LT -->
 <text x="350" y="180" text-anchor="middle" font-size="10" fill="#10b981">2. Segmento girado (paralelo a LT → VM)</text>
-<line x1="100" y1="210" x2="300" y2="210" stroke="#10b981" stroke-width="3.5"/>
-<circle cx="100" cy="210" r="4" fill="#10b981"/><text x="85" y="205" font-size="9" fill="#10b981" font-weight="600">A'</text>
-<circle cx="300" cy="210" r="4" fill="#10b981"/><text x="305" y="205" font-size="9" fill="#10b981" font-weight="600">B'</text>
+<line x1="100" y1="210" x2="300" y2="210" stroke="#10b981" stroke-width="3.5" class="svg-element clickable" onclick="toggleHighlight(this)" data-info="Segmento girado paralelo a LT: VM = 200 mm"/>
+<circle cx="100" cy="210" r="4" fill="#10b981" class="svg-element clickable" onclick="toggleHighlight(this)" data-info="A' = posición girada de A"/>
+<text x="85" y="205" font-size="9" fill="#10b981" font-weight="600">A'</text>
+<circle cx="300" cy="210" r="4" fill="#10b981" class="svg-element clickable" onclick="toggleHighlight(this)" data-info="B' = posición girada de B"/>
+<text x="305" y="205" font-size="9" fill="#10b981" font-weight="600">B'</text>
 <text x="200" y="235" text-anchor="middle" font-size="12" fill="#10b981" font-weight="700">A'B' = 200 mm = VM ✓</text>
 <!-- Regla -->
 <rect x="30" y="260" width="640" height="100" fill="#eff6ff" stroke="#2563eb" stroke-width="1" rx="6"/>
@@ -391,7 +401,7 @@ Paso 3: Medir α con transportador = 35°.
 <h3>📝 Ejercicios interactivos</h3>
 
 <div class="exercise">
-<p>📐 Ejercicio 1 (Quiz): ¿Cuándo se ve un segmento en verdadera magnitud?</p>
+<p>📐 Ejercicio 1 (Quiz): ¿Cuándo se ve un segmento en verdadera magnitud? <span class="difficulty-badge easy">Fácil</span></p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Cuando la recta es paralela al plano de proyección</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Siempre en alzado</button>
@@ -402,7 +412,7 @@ Paso 3: Medir α con transportador = 35°.
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 2 (V/F): Una recta frontal tiene su verdadera magnitud en planta.</p>
+<p>📐 Ejercicio 2 (V/F): Una recta frontal tiene su verdadera magnitud en planta. <span class="difficulty-badge easy">Fácil</span></p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkVF(this, false)">Verdadero</button>
 <button class="quiz-btn" onclick="checkVF(this, true)">Falso</button>
@@ -411,7 +421,7 @@ Paso 3: Medir α con transportador = 35°.
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 3 (V/F): En el método del giro, el centro de giro se coloca en la proyección donde se gira.</p>
+<p>📐 Ejercicio 3 (V/F): En el método del giro, el centro de giro se coloca en la proyección donde se gira. <span class="difficulty-badge medium">Medio</span></p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkVF(this, true)">Verdadero</button>
 <button class="quiz-btn" onclick="checkVF(this, false)">Falso</button>
@@ -420,21 +430,21 @@ Paso 3: Medir α con transportador = 35°.
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 4 (Completar): En el método del cambio de plano, la nueva LT debe ser ___ a la proyección de la recta.</p>
+<p>📐 Ejercicio 4 (Completar): En el método del cambio de plano, la nueva LT debe ser ___ a la proyección de la recta. <span class="difficulty-badge medium">Medio</span></p>
 <input type="text" placeholder="Escribe la palabra..." style="padding:.4rem;border:1px solid var(--gris);border-radius:4px;width:200px"/>
-<button class="quiz-btn" onclick="checkFillIn(['paralela'])()" style="margin-left:.5rem">Comprobar</button>
+<button class="quiz-btn" onclick="checkFillIn(['paralela'])(this)" style="margin-left:.5rem">Comprobar</button>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 5 (Completar): Una recta horizontal tiene su VM en la proyección de ___ .</p>
+<p>📐 Ejercicio 5 (Completar): Una recta horizontal tiene su VM en la proyección de ___ . <span class="difficulty-badge easy">Fácil</span></p>
 <input type="text" placeholder="Escribe la proyección..." style="padding:.4rem;border:1px solid var(--gris);border-radius:4px;width:200px"/>
-<button class="quiz-btn" onclick="checkFillIn(['planta'])()" style="margin-left:.5rem">Comprobar</button>
+<button class="quiz-btn" onclick="checkFillIn(['planta'])(this)" style="margin-left:.5rem">Comprobar</button>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 6 (Ordenar): Ordena los pasos del método del giro para obtener VM:</p>
+<p>📐 Ejercicio 6 (Ordenar): Ordena los pasos del método del giro para obtener VM. <span class="difficulty-badge medium">Medio</span></p>
 <div style="display:flex;flex-direction:column;gap:.4rem;margin:.5rem 0">
 <div class="orden-item clickable" style="padding:.5rem .8rem;border:2px solid var(--gris);border-radius:6px;background:#fff;cursor:pointer" onclick="selectOrden(this,4)" data-correct="4">4. La otra proyección muestra la VM</div>
 <div class="orden-item clickable" style="padding:.5rem .8rem;border:2px solid var(--gris);border-radius:6px;background:#fff;cursor:pointer" onclick="selectOrden(this,1)" data-correct="1">1. Elegir centro de giro</div>
@@ -446,7 +456,7 @@ Paso 3: Medir α con transportador = 35°.
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 7 (V/F): Una recta oblicua a ambos planos se ve en VM en ninguna de sus proyecciones.</p>
+<p>📐 Ejercicio 7 (V/F): Una recta oblicua a ambos planos se ve en VM en ninguna de sus proyecciones. <span class="difficulty-badge easy">Fácil</span></p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkVF(this, true)">Verdadero</button>
 <button class="quiz-btn" onclick="checkVF(this, false)">Falso</button>
@@ -455,7 +465,7 @@ Paso 3: Medir α con transportador = 35°.
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 8 (Quiz): ¿Qué método se usa para obtener VM de una recta oblicua?</p>
+<p>📐 Ejercicio 8 (Quiz): ¿Qué método se usa para obtener VM de una recta oblicua? <span class="difficulty-badge medium">Medio</span></p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Giro o cambio de plano</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Acotación</button>
@@ -467,7 +477,7 @@ Paso 3: Medir α con transportador = 35°.
 
 
 <div class="exercise">
-<p>📐 Ejercicio 9 (Emparejar): Empareja cada tipo de recta con su proyección en VM:</p>
+<p>📐 Ejercicio 9 (Emparejar): Empareja cada tipo de recta con su proyección en VM. <span class="difficulty-badge hard">Difícil</span></p>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0" id="matchExercise">
 <div style="display:flex;flex-direction:column;gap:.5rem" id="matchLeft">
 <div class="stack-item" data-match="a" onclick="selectMatch('left',this)">① Horizontal</div>
@@ -500,11 +510,37 @@ Paso 3: Medir α con transportador = 35°.
 <p class="feedback"></p>
 <p style="font-size:.85rem;color:var(--gris);margin-top:.5rem">💡 Pista: Comprueba si A y B tienen la misma Y (horizontal) o la misma Z (frontal). Si ni Y ni Z son constantes, la recta es oblicua.</p>
 </div>
-<div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ NO es VM</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="40" y1="110" x2="160" y2="40" stroke="#ef4444" stroke-width="3"/><text x="100" y="80" text-anchor="middle" font-size="9" fill="#ef4444">Acortada</text><text x="100" y="130" text-anchor="middle" font-size="9" fill="#ef4444">No es VM ❌</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ Es VM</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="20" y1="70" x2="180" y2="70" stroke="#10b981" stroke-width="3"/><text x="100" y="60" text-anchor="middle" font-size="9" fill="#10b981">Longitud real</text><text x="100" y="120" text-anchor="middle" font-size="9" fill="#10b981">VM ✓</text></svg></div></div>
+
+<div class="comparison" style="margin:1.5rem 0">
+<div class="comparison-side clickable" onclick="toggleHighlight(this)">
+<strong style="color:var(--rojo)">❌ NO es VM</strong>
+<svg viewBox="0 0 200 140" width="180" style="margin:1rem 0">
+<line x1="40" y1="110" x2="160" y2="40" stroke="#ef4444" stroke-width="3" class="svg-element clickable" onclick="toggleHighlight(this)" data-info="Segmento oblicuo: se ve acortado en ambas proyecciones"/>
+<text x="100" y="80" text-anchor="middle" font-size="9" fill="#ef4444" class="svg-element clickable" onclick="toggleHighlight(this)" data-info="Acortada = no es verdadera magnitud">Acortada</text>
+<text x="100" y="130" text-anchor="middle" font-size="9" fill="#ef4444">No es VM ❌</text>
+</svg>
+</div>
+<div class="comparison-side clickable" onclick="toggleHighlight(this)">
+<strong style="color:var(--verde)">✅ Es VM</strong>
+<svg viewBox="0 0 200 140" width="180" style="margin:1rem 0">
+<line x1="20" y1="70" x2="180" y2="70" stroke="#10b981" stroke-width="3" class="svg-element clickable" onclick="toggleHighlight(this)" data-info="Segmento paralelo al plano: se ve en verdadera magnitud"/>
+<text x="100" y="60" text-anchor="middle" font-size="9" fill="#10b981" class="svg-element clickable" onclick="toggleHighlight(this)" data-info="Longitud real = lo que se ve en la proyección">Longitud real</text>
+<text x="100" y="120" text-anchor="middle" font-size="9" fill="#10b981">VM ✓</text>
+</svg>
+</div>
+</div>
+<p style="font-size:.85rem;color:var(--gris);margin-top:.5rem">💡 Pista: Comprueba si A y B tienen la misma Y (horizontal) o la misma Z (frontal). Si ni Y ni Z son constantes, la recta es oblicua.</p>
+</div>
+
 
 <div class="box box-error">
 <strong>⚠️ Error clásico</strong>
 Confundir la proyección de un segmento con su verdadera magnitud. Un segmento oblicuo NUNCA se ve en VM en ninguna de sus proyecciones. Solo las rectas horizontales (VM en planta) y frontales (VM en alzado) muestran VM sin métodos auxiliares. <strong>Regla mnemotécnica:</strong> "Paralela = VM, Oblicua = GIRO".
+</div>
+
+<div class="box box-success">
+<strong>💡 Truco</strong>
+Para recordar rápido: <strong>"H = Planta, F = Alzado"</strong>. Si la recta es Horizontal, mira la planta; si es Frontal, mira el alzado. Si es oblicua, no hay atajo: usa giro o cambio de plano.
 </div>
 
 <div class="box connection-box">
@@ -555,6 +591,24 @@ function showVMStep(n) {
   ];
   document.getElementById('vmPasoTitulo').textContent = titulos[n];
   document.getElementById('vmPasoTexto').textContent = textos[n];
+}
+
+var svgInfoPanel = null;
+function toggleHighlight(el) {
+  el.classList.toggle('active');
+  var info = el.getAttribute('data-info');
+  if (info) {
+    if (!svgInfoPanel) {
+      svgInfoPanel = document.createElement('div');
+      svgInfoPanel.className = 'interactive';
+      svgInfoPanel.style.marginTop = '1rem';
+      svgInfoPanel.innerHTML = '<h3 id="svgInfoTitle">ℹ️ Info</h3><p id="svgInfoText" style="color:#64748b;margin:.5rem 0"></p>';
+      var svgContainer = document.querySelector('.svg-container');
+      svgContainer.parentNode.insertBefore(svgInfoPanel, svgContainer.nextSibling);
+    }
+    document.getElementById('svgInfoTitle').textContent = 'ℹ️ ' + info.split(':')[0];
+    document.getElementById('svgInfoText').textContent = info;
+  }
 }
 
 function checkFillIn(correctAnswers) {

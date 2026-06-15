@@ -144,6 +144,11 @@ En un corte de conjunto con 3 piezas:<br>
 • Pieza 3 (tapa): hachura 135° (diferente ángulo)<br>
 ✅ Las hachuras diferentes distinguen las piezas adyacentes.
 </div>
+
+<div class="box box-success">
+<strong>💡 Truco rápido</strong>
+Para recordar las columnas de la lista de piezas, piensa en la sigla <strong>N-M-D-C-M-O</strong>: <strong>N</strong>º (número), <strong>M</strong>arca, <strong>D</strong>escripción, <strong>C</strong>antidad, <strong>M</strong>aterial, <strong>O</strong>bservaciones. Cada fila es una pieza del conjunto, y cada columna es un dato esencial para fabricarla o comprarla.
+</div>
 </section>
 
 <section class="chapter">
@@ -170,8 +175,8 @@ En un corte de conjunto con 3 piezas:<br>
 <!-- ===== CONJUNTO ===== -->
 <text x="160" y="50" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="700">Conjunto con marcas</text>
 <!-- Cuerpo -->
-<rect x="30" y="70" width="120" height="100" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
-<text x="90" y="125" text-anchor="middle" font-size="9" fill="#2563eb">Cuerpo</text>
+<rect x="30" y="70" width="120" height="100" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" class="clickable" onclick="togglePieza(this, 'cuerpo')" style="transition:all .3s" id="pieza-cuerpo"/>
+<text x="90" y="125" text-anchor="middle" font-size="9" fill="#2563eb" id="pieza-cuerpo-label">Cuerpo</text>
 <!-- Hachura cuerpo -->
 <line x1="30" y1="70" x2="150" y2="170" stroke="#2563eb" stroke-width="0.3"/>
 <line x1="40" y1="70" x2="160" y2="170" stroke="#2563eb" stroke-width="0.3"/>
@@ -179,12 +184,12 @@ En un corte de conjunto con 3 piezas:<br>
 <line x1="60" y1="70" x2="180" y2="170" stroke="#2563eb" stroke-width="0.3"/>
 
 <!-- Eje (no hachurado) -->
-<rect x="60" y="90" width="60" height="15" fill="#fff" stroke="#1e293b" stroke-width="1.5"/>
-<text x="90" y="102" text-anchor="middle" font-size="8" fill="#1e293b">Eje</text>
+<rect x="60" y="90" width="60" height="15" fill="#fff" stroke="#1e293b" stroke-width="1.5" class="clickable" onclick="togglePieza(this, 'eje')" style="transition:all .3s" id="pieza-eje"/>
+<text x="90" y="102" text-anchor="middle" font-size="8" fill="#1e293b" id="pieza-eje-label">Eje</text>
 
 <!-- Tapa -->
-<rect x="10" y="60" width="160" height="10" fill="#fff7ed" stroke="#f97316" stroke-width="1.5"/>
-<text x="90" y="68" text-anchor="middle" font-size="8" fill="#f97316">Tapa</text>
+<rect x="10" y="60" width="160" height="10" fill="#fff7ed" stroke="#f97316" stroke-width="1.5" class="clickable" onclick="togglePieza(this, 'tapa')" style="transition:all .3s" id="pieza-tapa"/>
+<text x="90" y="68" text-anchor="middle" font-size="8" fill="#f97316" id="pieza-tapa-label">Tapa</text>
 <!-- Hachura tapa -->
 <line x1="10" y1="60" x2="170" y2="70" stroke="#f97316" stroke-width="0.3"/>
 <line x1="10" y1="63" x2="170" y2="73" stroke="#f97316" stroke-width="0.3"/>
@@ -256,8 +261,8 @@ En un corte de conjunto con 3 piezas:<br>
 <text x="480" y="265" text-anchor="middle" font-size="12" fill="#f97316" font-weight="700">Elementos Normalizados</text>
 
 <!-- Tornillo -->
-<rect x="280" y="275" width="190" height="110" fill="#eff6ff" rx="4" stroke="#2563eb" stroke-width="1"/>
-<text x="375" y="293" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="600">Tornillo</text>
+<rect x="280" y="275" width="190" height="110" fill="#eff6ff" rx="4" stroke="#2563eb" stroke-width="1" class="clickable" onclick="toggleNormalizado(this, 'tornillo')" style="transition:all .3s" id="normal-tornillo"/>
+<text x="375" y="293" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="600" id="normal-tornillo-label">Tornillo</text>
 <!-- Representación simplificada -->
 <rect x="310" y="300" width="130" height="12" fill="#fff" stroke="#2563eb" stroke-width="1.5"/>
 <line x1="310" y1="300" x2="440" y2="300" stroke="#2563eb" stroke-width="2"/>
@@ -272,8 +277,8 @@ En un corte de conjunto con 3 piezas:<br>
 <text x="375" y="375" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="600">ISO 4014-M6×20</text>
 
 <!-- Rodamiento -->
-<rect x="490" y="275" width="190" height="110" fill="#fff7ed" rx="4" stroke="#f97316" stroke-width="1"/>
-<text x="585" y="293" text-anchor="middle" font-size="10" fill="#f97316" font-weight="600">Rodamiento</text>
+<rect x="490" y="275" width="190" height="110" fill="#fff7ed" rx="4" stroke="#f97316" stroke-width="1" class="clickable" onclick="toggleNormalizado(this, 'rodamiento')" style="transition:all .3s" id="normal-rodamiento"/>
+<text x="585" y="293" text-anchor="middle" font-size="10" fill="#f97316" font-weight="600" id="normal-rodamiento-label">Rodamiento</text>
 <!-- Representación simplificada -->
 <rect x="520" y="305" width="130" height="25" fill="#fff" stroke="#f97316" stroke-width="1.5"/>
 <line x1="520" y1="305" x2="650" y2="330" stroke="#f97316" stroke-width="1"/>
@@ -297,6 +302,12 @@ En un corte de conjunto con 3 piezas:<br>
 <text x="310" y="518" font-size="9" fill="#1e293b">Corte transversal de eje: SÍ se hachura</text>
 </svg>
 </div>
+
+<!-- SVG Info Panel -->
+<div class="interactive" id="svgInfoPanel" style="display:none">
+<h3 id="svgInfoTitle">📌 Información de la pieza</h3>
+<p id="svgInfoText" style="color:#64748b;margin:.5rem 0">Haz clic en una pieza del conjunto o en un elemento normalizado para ver su información.</p>
+</div>
 </section>
 
 <section class="chapter">
@@ -304,7 +315,7 @@ En un corte de conjunto con 3 piezas:<br>
 <div class="exercises">
 
 <div class="exercise">
-<p>📐 Ejercicio 1: ¿Qué información NO incluye la lista de piezas?</p>
+<p>📐 Ejercicio 1: ¿Qué información NO incluye la lista de piezas? <span class="difficulty-badge easy">Fácil</span></p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Descripción</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Cantidad</button>
@@ -315,7 +326,7 @@ En un corte de conjunto con 3 piezas:<br>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 2: ¿Cómo se representan las piezas macizas en un corte longitudinal?</p>
+<p>📐 Ejercicio 2: ¿Cómo se representan las piezas macizas en un corte longitudinal? <span class="difficulty-badge easy">Fácil</span></p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">No se hachuran</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Se hachuran con 45°</button>
@@ -326,7 +337,7 @@ En un corte de conjunto con 3 piezas:<br>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 3: ¿Qué norma se usa para rodamientos?</p>
+<p>📐 Ejercicio 3: ¿Qué norma se usa para rodamientos? <span class="difficulty-badge easy">Fácil</span></p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">ISO 4014</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">ISO 15</button>
@@ -337,7 +348,7 @@ En un corte de conjunto con 3 piezas:<br>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 4: ¿Cómo se diferencian las hachuras de piezas adyacentes?</p>
+<p>📐 Ejercicio 4: ¿Cómo se diferencian las hachuras de piezas adyacentes? <span class="difficulty-badge easy">Fácil</span></p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Con diferente color</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Con ángulo o separación diferente</button>
@@ -348,7 +359,7 @@ En un corte de conjunto con 3 piezas:<br>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 5: ¿Las piezas estándar se representan en el despiece?</p>
+<p>📐 Ejercicio 5: ¿Las piezas estándar se representan en el despiece? <span class="difficulty-badge medium">Medio</span></p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Sí, con todas las vistas</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">No, solo se indican en la lista de piezas</button>
@@ -360,7 +371,7 @@ En un corte de conjunto con 3 piezas:<br>
 
 <!-- EJERCICIO V/F VISUAL -->
 <div class="exercise">
-<p>📐 Ejercicio 6 (V/F): "Las piezas estándar se representan con todas las vistas en el plano de despiece"</p>
+<p>📐 Ejercicio 6 (V/F): "Las piezas estándar se representan con todas las vistas en el plano de despiece" <span class="difficulty-badge medium">Medio</span></p>
 <div style="display:flex;gap:.5rem;margin:.5rem 0">
 <button class="quiz-btn" onclick="checkVF(this, false)" style="background:#fff;color:var(--texto)">❌ Falso</button>
 <button class="quiz-btn" onclick="checkVF(this, true)" style="background:#fff;color:var(--texto)">✅ Verdadero</button>
@@ -370,7 +381,7 @@ En un corte de conjunto con 3 piezas:<br>
 
 <!-- EJERCICIO COMPLETAR HUECO -->
 <div class="exercise">
-<p>📐 Ejercicio 7 (Completar): Los tornillos se representan con línea * (exterior) y línea fina (interior)</p>
+<p>📐 Ejercicio 7 (Completar): Los tornillos se representan con línea * (exterior) y línea fina (interior) <span class="difficulty-badge easy">Fácil</span></p>
 <input type="text" id="listaFill1" placeholder="Escribe la respuesta" style="padding:.4rem .8rem;border:2px solid var(--azul);border-radius:6px;width:120px;font-size:1rem">
 <button class="quiz-btn" onclick="checkFillIn(['gruesa','gruesas','grueso','gruesas'])" style="font-size:.85rem">Comprobar</button>
 <p class="feedback"></p>
@@ -378,7 +389,7 @@ En un corte de conjunto con 3 piezas:<br>
 
 <!-- EJERCICIO ORDENAR PASOS -->
 <div class="exercise">
-<p>📐 Ejercicio 8 (Ordenar): Ordena los pasos para crear una marca de pieza</p>
+<p>📐 Ejercicio 8 (Ordenar): Ordena los pasos para crear una marca de pieza <span class="difficulty-badge medium">Medio</span></p>
 <div id="listaOrden" style="margin:.5rem 0">
 <div class="stack-item" data-pos="2" onclick="selectOrden(this)">② Trazar línea horizontal con número</div>
 <div class="stack-item" data-pos="1" onclick="selectOrden(this)">① Colocar flecha señalando la pieza</div>
@@ -390,7 +401,7 @@ En un corte de conjunto con 3 piezas:<br>
 
 <!-- EJERCICIO DECIDIR OPERACIÓN -->
 <div class="exercise">
-<p>📐 Ejercicio 9 (Decidir operación): Un técnico recibe un plano de conjunto con un eje, un cojinete y una tapa. La lista de piezas solo tiene 3 filas. ¿Qué falta?</p>
+<p>📐 Ejercicio 9 (Decidir operación): Un técnico recibe un plano de conjunto con un eje, un cojinete y una tapa. La lista de piezas solo tiene 3 filas. ¿Qué falta? <span class="difficulty-badge hard">Difícil</span></p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Nada, las 3 piezas están listadas</button>
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Los tornillos de fijación (normalmente M4×12 o similares)</button>
@@ -402,7 +413,7 @@ En un corte de conjunto con 3 piezas:<br>
 
 <!-- EJERCICIO COMPLETAR: Columnas de la lista -->
 <div class="exercise">
-<p>📐 Ejercicio 10 (Completar): La lista de piezas tiene 6 columnas: Nº, Marca, Descripción, Cantidad, Material y *.</p>
+<p>📐 Ejercicio 10 (Completar): La lista de piezas tiene 6 columnas: Nº, Marca, Descripción, Cantidad, Material y *. <span class="difficulty-badge medium">Medio</span></p>
 <input type="text" id="listaFill2" placeholder="Escribe la respuesta" style="padding:.4rem .8rem;border:2px solid var(--azul);border-radius:6px;width:120px;font-size:1rem">
 <button class="quiz-btn" onclick="checkFillIn2(['observaciones','observación','observaciones','observación'])" style="font-size:.85rem">Comprobar</button>
 <p class="feedback"></p>
@@ -601,6 +612,41 @@ function checkOrden(containerId, correctOrder) {
   } else {
     feedback.textContent = '❌ Orden incorrecto. Inténtalo de nuevo.';
     feedback.className = 'feedback incorrect';
+  }
+}
+
+// SVG interactivity: toggle pieza info
+var piezaData = {
+  'cuerpo': { title: '🔧 Cuerpo principal', text: 'Pieza fabricada (no estándar). En un reductor típico, es la carcasa de aluminio 6061 que aloja el eje y los cojinetes. Se representa con hachura a 45° y se hachura en corte transversal. Es la pieza base sobre la que se monta todo el conjunto.' },
+  'eje': { title: '⚙️ Eje principal', text: 'Pieza fabricada de acero C45. En un corte LONGITUDINAL NO se hachura (regla de oro: pieza maciza longitudinal = sin hachura). En corte TRANSVERSAL SÍ se hachura. Su función es transmitir movimiento y soportar los cojinetes.' },
+  'tapa': { title: '🔩 Tapa de cierre', text: 'Pieza fabricada de aluminio 6061 que cierra el conjunto. Se representa con hachura a 135° (diferente del cuerpo para distinguirla). Se fija con tornillos ISO 4014. En conjunto, lleva marca con número de orden.' },
+  'tornillo': { title: '🔩 Tornillo normalizado', text: 'Elemento normalizado ISO 4014. Representación simplificada: línea gruesa (2px) para diámetro exterior, línea fina (0.5px) para rosca interior. NO se hachura longitudinalmente. En la lista de piezas se indica con norma, no con vistas.' },
+  'rodamiento': { title: '⭕ Rodamiento normalizado', text: 'Elemento normalizado ISO 15. Representación simplificada: rectángulo con dos diagonales cruzadas. Código 6205 (6=serie, 2=diámetro interno 25mm, 05=código de tamaño). En la lista: cantidad, norma ISO 15, material acero.' }
+};
+
+function togglePieza(el, nombre) {
+  var panel = document.getElementById('svgInfoPanel');
+  var title = document.getElementById('svgInfoTitle');
+  var text = document.getElementById('svgInfoText');
+  var data = piezaData[nombre];
+  if (data) {
+    title.textContent = data.title;
+    text.textContent = data.text;
+    panel.style.display = 'block';
+    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+}
+
+function toggleNormalizado(el, nombre) {
+  var panel = document.getElementById('svgInfoPanel');
+  var title = document.getElementById('svgInfoTitle');
+  var text = document.getElementById('svgInfoText');
+  var data = piezaData[nombre];
+  if (data) {
+    title.textContent = data.title;
+    text.textContent = data.text;
+    panel.style.display = 'block';
+    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 }
 
