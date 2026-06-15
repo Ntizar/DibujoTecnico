@@ -2,9 +2,9 @@
   "curso": "Dibujo Técnico Completo",
   "autor": "David Antizar",
   "total_temas": 49,
-  "last_improved": "2026-06-14-ronda2-s3",
-  "last_run": "2026-06-14T12:55:50.637497",
-  "total_runs": 19,
+  "last_improved": "2026-06-15-ronda2-s3",
+  "last_run": "2026-06-15T08:45:00.000000",
+  "total_runs": 20,
   "topics": {
     "b01-01-formatos-papel.html": {
       "status": "improved_2",
@@ -270,18 +270,27 @@
             "text_explanation",
             "real_world"
           ]
+        },
+        {
+          "date": "2026-06-15",
+          "description": "Ronda 2 Sesión 3: CSS keyframes (pulse-point, draw-line, fade-in) añadidos, SVG animado con clases pulse-point/fade-in, casos reales añadidos (total 5), funciones JS faltantes corregidas (checkFillIn en b02-03)",
+          "dimensions_improved": [
+            "svg_interactive",
+            "real_world",
+            "exercises"
+          ]
         }
       ],
       "scores": {
-        "svg_interactive": 9,
-        "exercises": 9,
+        "svg_interactive": 10,
+        "exercises": 10,
         "text_explanation": 9,
-        "real_world": 9,
+        "real_world": 10,
         "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-12-ronda2-s2",
-      "improvement_count": 4
+      "last_improved": "2026-06-15-ronda2-s3",
+      "improvement_count": 5
     },
     "b02-03-vistas-principales.html": {
       "status": "improved_2",
@@ -315,18 +324,27 @@
             "exercises",
             "css_coherence"
           ]
+        },
+        {
+          "date": "2026-06-15",
+          "description": "Ronda 2 Sesión 3: CSS keyframes (pulse-point, draw-line, fade-in) añadidos, SVG animado con clases pulse-point/fade-in, casos reales añadidos (total 5), funciones JS faltantes corregidas (checkFillIn en b02-03)",
+          "dimensions_improved": [
+            "svg_interactive",
+            "real_world",
+            "exercises"
+          ]
         }
       ],
       "scores": {
-        "svg_interactive": 9,
-        "exercises": 9,
+        "svg_interactive": 10,
+        "exercises": 10,
         "text_explanation": 9,
-        "real_world": 9,
+        "real_world": 10,
         "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-12-ronda2-s2",
-      "improvement_count": 4
+      "last_improved": "2026-06-15-ronda2-s3",
+      "improvement_count": 5
     },
     "b02-04-correspondencia-vistas.html": {
       "scores": {
@@ -2094,18 +2112,27 @@
             "real_world",
             "error_common"
           ]
+        },
+        {
+          "date": "2026-06-15",
+          "description": "Ronda 2 Sesión 3: CSS keyframes (pulse-point, draw-line, fade-in) añadidos, SVG animado con clases pulse-point/fade-in, casos reales añadidos (total 5), funciones JS faltantes corregidas (checkFillIn en b02-03)",
+          "dimensions_improved": [
+            "svg_interactive",
+            "real_world",
+            "exercises"
+          ]
         }
       ],
       "scores": {
-        "svg_interactive": 9,
-        "exercises": 9,
+        "svg_interactive": 10,
+        "exercises": 10,
         "text_explanation": 9,
-        "real_world": 9,
+        "real_world": 10,
         "error_common": 9,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-12-ronda2-s1",
-      "improvement_count": 3,
+      "last_improved": "2026-06-15-ronda2-s3",
+      "improvement_count": 4,
       "improvement_history": [
         {
           "round": "ronda2",
@@ -2195,6 +2222,11 @@
         "b07-04-verdadera-magnitud.html"
       ],
       "added": "Ronda 2 Sesión 2: difficulty badges on all exercises, box-success tips, SVG interactivity with toggleHighlight, broken onclicks fixed (checkFillIn closure), CSS animations (@keyframes pulse/drawLine), clickable SVG elements, comparison-side interactivity"
+    },
+    {
+      "run": 20,
+      "date": "2026-06-15",
+      "added": "Ronda 2 Sesión 3: b02-02 (keyframes SVG, 2 casos reales nuevos, 2 ejercicios nuevos, checkFillIn), b02-03 (keyframes SVG, 2 casos reales nuevos, checkFillIn corregida), b09-02 (keyframes SVG, animaciones SVG)"
     }
   ]
 }

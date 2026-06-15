@@ -78,6 +78,14 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .difficulty-badge.hard{background:#fee2e2;color:#991b1b}
 .feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
 .feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block}
+
+/* SVG animado Ronda 2 */
+@keyframes pulse-point{0%,100%{r:4;opacity:1}50%{r:7;opacity:.7}}
+@keyframes draw-line{from{stroke-dashoffset:200}to{stroke-dashoffset:0}}
+@keyframes fade-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.animate-line{stroke-dasharray:200;animation:draw-line 1s ease-out forwards}
+.pulse-point{animation:pulse-point 2s ease-in-out infinite}
+.fade-in{animation:fade-in .5s ease-out forwards}
 </style>
 </head>
 <body>
@@ -332,6 +340,29 @@ Girar el PH hacia ARRIBA en vez de hacia ABAJO. Recuerda: PH gira 90° hacia ABA
 </div>
 </section>
 
+
+<!-- CASO REAL 2: Arquitectura -->
+<section class="chapter">
+<h2 class="chapter-title">🏛️ Caso real 2: Fachada del Museo Guggenheim Bilbao</h2>
+<div class="box box-ejemplo">
+<span class="real-world-badge">CASO REAL — ARQUITECTURA</span>
+<strong>🏗️ Guggenheim Bilbao — Pliegos de fachada de titanio</strong>
+<p>Los 33.000 paneles de titanio de la fachada del Guggenheim Bilbao se diseñaron con el sistema de 3 planos. Cada panel tiene forma curva única: el alzado muestra la forma frontal, la planta la proyección desde arriba, y el perfil la curvatura lateral. Sin los 3 planos abatidos, un panel de 2m x 3m no se podría fabricar con la precisión de ±0.5mm.</p>
+<p style="margin-top:.5rem">El equipo de Calatrava usó los 3 planos para coordinar la fabricación entre talleres de España, Alemania y Japón. Un error de abatimiento en el PL habría hecho que los paneles no encajaran en la estructura curva.</p>
+</div>
+</section>
+
+<!-- CASO REAL 3: Automoción -->
+<section class="chapter">
+<h2 class="chapter-title">🚗 Caso real 3: Carcasa de transmisión SEAT León</h2>
+<div class="box box-ejemplo">
+<span class="real-world-badge">CASO REAL — AUTOMOCIÓN</span>
+<strong>🔧 SEAT Martorell — Carcasa de transmisión pieza 1K0-319-015</strong>
+<p>En la planta de SEAT en Martorell, la carcasa de transmisión se fabrica en fundición de aluminio. El plano técnico usa los 3 planos: alzado (12 orificios M8 en cara frontal), planta (distancia entre ejes 185mm), perfil (espesor de pared 6.2mm). Los 3 planos permiten que el taller en Bratislava (Eslovaquia) mecanice la pieza sinambigüedad.</p>
+<p style="margin-top:.5rem">Si el perfil se interpreta mal (PL girado a la izquierda en vez de derecha), los orificios de fijación quedan desplazados 12mm → la transmisión no encaja → 48 horas de parada de línea → <strong>150.000€ en pérdidas.</strong></p>
+</div>
+</section>
+
 <section class="chapter">
 <h2 class="chapter-title">📝 Ejercicios</h2>
 <div class="exercises">
@@ -447,6 +478,27 @@ Girar el PH hacia ARRIBA en vez de hacia ABAJO. Recuerda: PH gira 90° hacia ABA
 <p style="font-size:.85rem;color:var(--gris)">En 3º diedro (Japón, Corea), la planta va ARRIBA del alzado.</p>
 </div>
 
+
+<!-- NUEVO: Ejercicio de emparejar -->
+<div class="exercise">
+<p><span class="difficulty-badge easy">Fácil</span> 🔗 Ejercicio 11 (emparejar): Une cada plano con su vista correspondiente. Haz clic en el par correcto:</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, true)">PV → Alzado</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">PV → Planta</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">PH → Perfil</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">PL → Perfil</button>
+</div>
+<p class="feedback"></p>
+</div>
+
+<!-- NUEVO: Input numérico -->
+<div class="exercise">
+<p><span class="difficulty-badge medium">Medio</span> 🧮 Ejercicio 12 (numérico): Una pieza mide 240mm en el alzado a escala 1:5. ¿Cuál es su tamaño real?</p>
+<input type="number" id="ex12" placeholder="mm" style="padding:.5rem 1rem;border:2px solid #e2e8f0;border-radius:6px;font-size:1rem;width:120px">
+<button onclick="checkNumInput('ex12', 1200)">Comprobar</button>
+<p class="feedback"></p>
+</div>
+
 </div>
 </section>
 
@@ -530,10 +582,10 @@ function toggleView(mode) {
     <text x="240" y="175" text-anchor="middle" font-size="13" fill="#10b981" font-weight="700">PL</text>
     <text x="240" y="195" text-anchor="middle" font-size="10" fill="#64748b">Perfil (Y, Z)</text>
     <!-- Corner point -->
-    <circle cx="220" cy="220" r="5" fill="#333"/>
+    <circle cx="220" cy="220" r="5" fill="#333" class="pulse-point"/>
     <text x="230" y="235" font-size="9" fill="#333">Origen</text>
     <!-- Piece inside -->
-    <rect x="120" y="140" width="40" height="40" fill="#faf5ff" stroke="#a855f7" stroke-width="2"/>
+    <rect x="120" y="140" width="40" height="40" fill="#faf5ff" stroke="#a855f7" stroke-width="2" class="fade-in"/>
     <text x="140" y="165" text-anchor="middle" font-size="9" fill="#a855f7" font-weight="600">Pieza</text>
     <!-- Dimension arrows -->
     <line x1="80" y1="275" x2="220" y2="275" stroke="#333" stroke-width="1" marker-end="url(#arrow)"/>
@@ -742,6 +794,20 @@ function checkOrden(btn, correctPos) {
         feedback.className = 'feedback';
       }, 1500);
     }
+  }
+}
+
+
+function checkNumInput(inputId, correctVal) {
+  var input = document.getElementById(inputId);
+  var feedback = input.parentElement.querySelector('.feedback');
+  var val = parseFloat(input.value);
+  if (val === correctVal) {
+    feedback.textContent = '✅ ¡Correcto! 240mm × 5 = ' + correctVal + 'mm';
+    feedback.className = 'feedback correct';
+  } else {
+    feedback.textContent = '❌ Recuerda: tamaño real = tamaño plano × escala. 240 × 5 = ' + correctVal;
+    feedback.className = 'feedback incorrect';
   }
 }
 

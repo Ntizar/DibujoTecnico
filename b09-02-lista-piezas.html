@@ -68,7 +68,15 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .difficulty-badge{display:inline-block;background:linear-gradient(135deg,var(--pura),#7c3aed);color:#fff;padding:.2rem .6rem;border-radius:12px;font-size:.7rem;font-weight:700;margin-left:.5rem}
 .feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block;font-weight:600}
 .feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block;font-weight:600}
-</style>
+
+/* SVG animado Ronda 2 */
+@keyframes pulse-point{0%,100%{r:4;opacity:1}50%{r:7;opacity:.7}}
+@keyframes draw-line{from{stroke-dashoffset:200}to{stroke-dashoffset:0}}
+@keyframes fade-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.animate-line{stroke-dasharray:200;animation:draw-line 1s ease-out forwards}
+.pulse-point{animation:pulse-point 2s ease-in-out infinite}
+.fade-in{animation:fade-in .5s ease-out forwards}
+</style
 </head>
 <body>
 <header class="header">
@@ -196,7 +204,7 @@ Para recordar las columnas de la lista de piezas, piensa en la sigla <strong>N-M
 
 <!-- Marca 1: Eje -->
 <line x1="90" y1="105" x2="90" y2="130" stroke="#a855f7" stroke-width="1"/>
-<polygon points="90,105 87,110 93,110" fill="#a855f7"/>
+<polygon points="90,105 87,110 93,110" fill="#a855f7" class="pulse-point"/>
 <line x1="90" y1="130" x2="130" y2="130" stroke="#a855f7" stroke-width="1"/>
 <text x="135" y="134" font-size="10" fill="#a855f7" font-weight="700">1</text>
 
@@ -210,7 +218,7 @@ Para recordar las columnas de la lista de piezas, piensa en la sigla <strong>N-M
 <text x="175" y="54" font-size="10" fill="#a855f7" font-weight="700">3</text>
 
 <!-- ===== LISTA DE PIEZAS ===== -->
-<rect x="280" y="40" width="400" height="200" fill="#fff" stroke="#e2e8f0" stroke-width="1.5" rx="6"/>
+<rect x="280" y="40" width="400" height="200" fill="#fff" stroke="#e2e8f0" stroke-width="1.5" rx="6" class="fade-in"/>
 <text x="480" y="62" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="700">Lista de Piezas</text>
 <line x1="290" y1="70" x2="670" y2="70" stroke="#e2e8f0" stroke-width="1"/>
 <!-- Cabeceras -->
