@@ -74,18 +74,27 @@
             "exercises"
           ]
         },
-        "Ronda 2: CSS clickable/connection-box/difficulty-badge/step-indicator/step-dot/feedback, 4-step showStep() pattern, 3 real-world cases (biela+aeroespacial+puente), 9 exercises (quiz+VF+ordenar+completar+V/F visual), connection-box, error SVG comparativo mejorado"
+        "Ronda 2: CSS clickable/connection-box/difficulty-badge/step-indicator/step-dot/feedback, 4-step showStep() pattern, 3 real-world cases (biela+aeroespacial+puente), 9 exercises (quiz+VF+ordenar+completar+V/F visual), connection-box, error SVG comparativo mejorado",
+        {
+          "date": "2026-06-15",
+          "description": "Ronda 2 Sesión 1: difficulty-badge añadido a TODOS los 12 ejercicios (easy/medium/hard), box-success añadido con truco mnemotécnico (\"Gruesa grita, fina susurra\"), SVG interactivo mejorado con indicador de estado + animación pulse, CSS keyframes pulse-line + line-draw-anim",
+          "dimensions_improved": [
+            "exercises",
+            "svg_interactive",
+            "css_coherence"
+          ]
+        }
       ],
       "scores": {
-        "svg_interactive": 9,
-        "exercises": 9,
-        "text_explanation": 9,
-        "real_world": 9,
-        "error_common": 9,
+        "svg_interactive": 10,
+        "exercises": 10,
+        "text_explanation": 10,
+        "real_world": 10,
+        "error_common": 10,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-14-ronda2-s2",
-      "improvement_count": 3,
+      "last_improved": "2026-06-15-ronda2-s1",
+      "improvement_count": 4,
       "description": "Ronda 2: refinamiento SVG interactivo, verificación calidad"
     },
     "b01-03-escalas.html": {
@@ -1891,15 +1900,15 @@
         }
       ],
       "scores": {
-        "svg_interactive": 9,
-        "exercises": 9,
-        "text_explanation": 9,
-        "real_world": 9,
-        "error_common": 9,
+        "svg_interactive": 10,
+        "exercises": 10,
+        "text_explanation": 10,
+        "real_world": 10,
+        "error_common": 10,
         "css_coherence": 10
       },
-      "last_improved": "2026-06-13-ronda2-s1",
-      "improvement_count": 3,
+      "last_improved": "2026-06-15-ronda2-s1",
+      "improvement_count": 4,
       "dimensions_improved": [
         "svg_interactive",
         "exercises",
@@ -2171,5 +2180,8 @@
       "b06-02-metodos-acotacion.html",
       "b03-03-isometrica-circulos.html"
     ]
-  }
+  },
+  "run": 1,
+  "date": "2026-06-15",
+  "added": "v2-r2: b07-03-interseccion-recta-recta.html - ronda 2: 1) Eliminado checkVF duplicada (línea 655-671), 2) difficulty-badge en los 10 ejercicios (3 easy, 3 medium, 3 hard + 1 hard), 3) box-success añadido con mnemotécnicas 'Vertical=Verdadero' y 'Z arriba, Y adelante', 4) Animaciones CSS: pulse-point (pulsing dots), draw-line (líneas animadas), fade-in (transición pasos), 5) SVG mejorado: 12 círculos con clase pulse, 4 líneas con clase animate, re-trigger de animación en showPaso, 6) Ejercicio 10 nuevo (Problema) — vigas de acero nave industrial, 7) SVG coherente con animaciones en los 4 pasos (paso0, paso1, paso2)"
 }

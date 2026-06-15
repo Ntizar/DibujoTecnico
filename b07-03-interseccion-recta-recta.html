@@ -70,6 +70,12 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .difficulty-badge{display:inline-block;background:linear-gradient(135deg,var(--pura),#7c3aed);color:#fff;padding:.2rem .6rem;border-radius:12px;font-size:.7rem;font-weight:700;margin-left:.5rem}
 .feedback.correct{color:#065f46;background:var(--verde-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block;font-weight:600}
 .feedback.incorrect{color:#991b1b;background:var(--rojo-claro);padding:.4rem .8rem;border-radius:4px;display:inline-block;font-weight:600}
+@keyframes pulse-point{0%,100%{r:5;opacity:1}50%{r:7;opacity:.7}}
+@keyframes draw-line{from{stroke-dashoffset:200}to{stroke-dashoffset:0}}
+@keyframes fade-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.svg-container svg g{animation:fade-in .3s ease-out}
+.svg-container svg circle.pulse{animation:pulse-point 2s infinite}
+.svg-container svg line.animate{stroke-dasharray:200;animation:draw-line .8s ease-out}
 </style>
 </head>
 <body>
@@ -169,7 +175,7 @@ Si Y₁ > Y₂ → r₁ domina en planta (r₁ tapa a r₂).
 <text x="185" y="85" font-size="8" fill="#2563eb">r₁'</text>
 <line x1="50" y1="80" x2="180" y2="40" stroke="#f97316" stroke-width="2.5" class="clickable" onclick="highlightRecta('r2')"/>
 <text x="185" y="38" font-size="8" fill="#f97316">r₂'</text>
-<circle cx="115" cy="60" r="5" fill="#ef4444"/>
+<circle cx="115" cy="60" r="5" fill="#ef4444" class="pulse"/>
 <text x="125" y="55" font-size="10" fill="#ef4444" font-weight="700">I'</text>
 <!-- Planta -->
 <text x="120" y="120" text-anchor="middle" font-size="11" fill="#64748b" font-weight="600">Planta</text>
@@ -178,10 +184,10 @@ Si Y₁ > Y₂ → r₁ domina en planta (r₁ tapa a r₂).
 <text x="185" y="195" font-size="8" fill="#2563eb">r₁</text>
 <line x1="50" y1="190" x2="180" y2="150" stroke="#f97316" stroke-width="2.5"/>
 <text x="185" y="148" font-size="8" fill="#f97316">r₂</text>
-<circle cx="115" cy="170" r="5" fill="#ef4444"/>
+<circle cx="115" cy="170" r="5" fill="#ef4444" class="pulse"/>
 <text x="125" y="185" font-size="10" fill="#ef4444" font-weight="700">I</text>
 <!-- Línea de referencia -->
-<line x1="115" y1="64" x2="115" y2="166" stroke="#10b981" stroke-width="2" stroke-dasharray="6,3"/>
+<line x1="115" y1="64" x2="115" y2="166" stroke="#10b981" stroke-width="2" stroke-dasharray="6,3" class="animate"/>
 <text x="125" y="120" font-size="9" fill="#10b981" font-weight="700">misma vertical ✓</text>
 <!-- Resultado -->
 <rect x="300" y="40" width="370" height="140" fill="#ecfdf5" stroke="#10b981" stroke-width="2" rx="8"/>
@@ -208,7 +214,7 @@ Si Y₁ > Y₂ → r₁ domina en planta (r₁ tapa a r₂).
 <text x="185" y="85" font-size="8" fill="#2563eb">r₁'</text>
 <line x1="50" y1="80" x2="180" y2="40" stroke="#f97316" stroke-width="2.5"/>
 <text x="185" y="38" font-size="8" fill="#f97316">r₂'</text>
-<circle cx="115" cy="60" r="5" fill="#a855f7"/>
+<circle cx="115" cy="60" r="5" fill="#a855f7" class="pulse"/>
 <text x="125" y="55" font-size="10" fill="#a855f7" font-weight="600">P'</text>
 <!-- Planta -->
 <text x="120" y="120" text-anchor="middle" font-size="11" fill="#64748b" font-weight="600">Planta</text>
@@ -222,7 +228,7 @@ Si Y₁ > Y₂ → r₁ domina en planta (r₁ tapa a r₂).
 <circle cx="155" cy="170" r="4" fill="#f97316"/>
 <text x="160" y="175" font-size="8" fill="#f97316">P₂</text>
 <!-- NO misma vertical -->
-<line x1="115" y1="64" x2="115" y2="166" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4,3"/>
+<line x1="115" y1="64" x2="115" y2="166" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4,3" class="animate"/>
 <text x="125" y="120" font-size="9" fill="#ef4444" font-weight="700">NO misma vertical ✗</text>
 <!-- Resultado -->
 <rect x="300" y="40" width="370" height="140" fill="#fef2f2" stroke="#ef4444" stroke-width="2" rx="8"/>
@@ -258,10 +264,10 @@ Si Y₁ > Y₂ → r₁ domina en planta (r₁ tapa a r₂).
 <text x="185" y="195" font-size="8" fill="#2563eb">r₁</text>
 <line x1="50" y1="190" x2="180" y2="150" stroke="#f97316" stroke-width="2.5"/>
 <text x="185" y="148" font-size="8" fill="#f97316">r₂</text>
-<circle cx="115" cy="170" r="5" fill="#a855f7"/>
+<circle cx="115" cy="170" r="5" fill="#a855f7" class="pulse"/>
 <text x="125" y="185" font-size="10" fill="#a855f7" font-weight="600">Q</text>
 <!-- NO misma vertical en alzado -->
-<line x1="115" y1="64" x2="115" y2="166" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4,3"/>
+<line x1="115" y1="64" x2="115" y2="166" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4,3" class="animate"/>
 <text x="125" y="120" font-size="9" fill="#ef4444" font-weight="700">NO misma vertical ✗</text>
 <!-- Resultado -->
 <rect x="300" y="40" width="370" height="140" fill="#fef2f2" stroke="#ef4444" stroke-width="2" rx="8"/>
@@ -359,7 +365,7 @@ Si Y₁ > Y₂ → r₁ domina en planta (r₁ tapa a r₂).
 <h3>📝 Ejercicios interactivos</h3>
 
 <div class="exercise">
-<p>📐 Ejercicio 1 (Quiz): Si I' = r₁' ∩ r₂' en alzado y I = r₁ ∩ r₂ en planta, y I' e I están en la misma vertical, entonces...</p>
+<p>📐 Ejercicio 1 (Quiz) <span class="difficulty-badge easy">Fácil</span>: Si I' = r₁' ∩ r₂' en alzado y I = r₁ ∩ r₂ en planta, y I' e I están en la misma vertical, entonces...</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Las rectas se cortan en el punto I</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Las rectas se cruzan</button>
@@ -370,7 +376,7 @@ Si Y₁ > Y₂ → r₁ domina en planta (r₁ tapa a r₂).
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 2 (V/F): En rectas cruzadas horizontales, la intersección de proyecciones en alzado (P') está en la misma vertical que las intersecciones en planta.</p>
+<p>📐 Ejercicio 2 (V/F) <span class="difficulty-badge easy">Fácil</span>: En rectas cruzadas horizontales, la intersección de proyecciones en alzado (P') está en la misma vertical que las intersecciones en planta.</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkVF(this, false)">Verdadero</button>
 <button class="quiz-btn" onclick="checkVF(this, true)">Falso</button>
@@ -379,7 +385,7 @@ Si Y₁ > Y₂ → r₁ domina en planta (r₁ tapa a r₂).
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 3 (V/F): En rectas cruzadas verticales, la intersección de proyecciones en planta (Q) está en la misma vertical que las intersecciones en alzado.</p>
+<p>📐 Ejercicio 3 (V/F) <span class="difficulty-badge easy">Fácil</span>: En rectas cruzadas verticales, la intersección de proyecciones en planta (Q) está en la misma vertical que las intersecciones en alzado.</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkVF(this, false)">Verdadero</button>
 <button class="quiz-btn" onclick="checkVF(this, true)">Falso</button>
@@ -388,21 +394,21 @@ Si Y₁ > Y₂ → r₁ domina en planta (r₁ tapa a r₂).
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 4 (Completar): En cruzados horizontales, la coordenada que determina cuál recta domina en alzado es la ___ .</p>
+<p>📐 Ejercicio 4 (Completar) <span class="difficulty-badge medium">Medio</span>: En cruzados horizontales, la coordenada que determina cuál recta domina en alzado es la ___ .</p>
 <input type="text" placeholder="Escribe la coordenada..." style="padding:.4rem;border:1px solid var(--gris);border-radius:4px;width:200px"/>
 <button class="quiz-btn" onclick="checkFillIn(['z','altura','z (altura)'])()" style="margin-left:.5rem">Comprobar</button>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 5 (Completar): En cruzados verticales, la coordenada que determina cuál recta domina en planta es la ___ .</p>
+<p>📐 Ejercicio 5 (Completar) <span class="difficulty-badge medium">Medio</span>: En cruzados verticales, la coordenada que determina cuál recta domina en planta es la ___ .</p>
 <input type="text" placeholder="Escribe la coordenada..." style="padding:.4rem;border:1px solid var(--gris);border-radius:4px;width:200px"/>
 <button class="quiz-btn" onclick="checkFillIn(['y','profundidad','y (profundidad)'])()" style="margin-left:.5rem">Comprobar</button>
 <p class="feedback"></p>
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 6 (Ordenar): Ordena los pasos para determinar si dos rectas se cortan o se cruzan:</p>
+<p>📐 Ejercicio 6 (Ordenar) <span class="difficulty-badge medium">Medio</span>: Ordena los pasos para determinar si dos rectas se cortan o se cruzan:</p>
 <div style="display:flex;flex-direction:column;gap:.4rem;margin:.5rem 0">
 <div class="orden-item clickable" style="padding:.5rem .8rem;border:2px solid var(--gris);border-radius:6px;background:#fff;cursor:pointer" onclick="selectOrden(this,3)" data-correct="3">3. Comparar coordenadas para visibilidad</div>
 <div class="orden-item clickable" style="padding:.5rem .8rem;border:2px solid var(--gris);border-radius:6px;background:#fff;cursor:pointer" onclick="selectOrden(this,1)" data-correct="1">1. Proyectar intersección en alzado</div>
@@ -414,7 +420,7 @@ Si Y₁ > Y₂ → r₁ domina en planta (r₁ tapa a r₂).
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 7 (V/F): Si dos rectas se cruzan, sus proyecciones nunca se intersectan en ninguna vista.</p>
+<p>📐 Ejercicio 7 (V/F) <span class="difficulty-badge medium">Medio</span>: Si dos rectas se cruzan, sus proyecciones nunca se intersectan en ninguna vista.</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkVF(this, false)">Verdadero</button>
 <button class="quiz-btn" onclick="checkVF(this, true)">Falso</button>
@@ -423,7 +429,7 @@ Si Y₁ > Y₂ → r₁ domina en planta (r₁ tapa a r₂).
 </div>
 
 <div class="exercise">
-<p>📐 Ejercicio 8 (Quiz): ¿Qué tipo de puntos cruzados se usan para determinar visibilidad en planta?</p>
+<p>📐 Ejercicio 8 (Quiz) <span class="difficulty-badge hard">Difícil</span>: ¿Qué tipo de puntos cruzados se usan para determinar visibilidad en planta?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkAnswer(this, true)">Cruzados verticales</button>
 <button class="quiz-btn" onclick="checkAnswer(this, false)">Cruzados horizontales</button>
@@ -435,7 +441,7 @@ Si Y₁ > Y₂ → r₁ domina en planta (r₁ tapa a r₂).
 
 
 <div class="exercise">
-<p>📐 Ejercicio 9 (Emparejar): Empareja cada tipo de recta con su método para determinar intersección:</p>
+<p>📐 Ejercicio 9 (Emparejar) <span class="difficulty-badge hard">Difícil</span>: Empareja cada tipo de recta con su método para determinar intersección:</p>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0" id="matchExercise">
 <div style="display:flex;flex-direction:column;gap:.5rem" id="matchLeft">
 <div class="stack-item" data-match="a" onclick="selectMatch('left',this)">① Se cortan</div>
@@ -449,6 +455,17 @@ Si Y₁ > Y₂ → r₁ domina en planta (r₁ tapa a r₂).
 </div>
 </div>
 <button class="quiz-btn" onclick="checkMatch()">Comprobar emparejamiento</button>
+<p class="feedback"></p>
+</div>
+
+<div class="exercise">
+<p>📐 Ejercicio 10 (Problema) <span class="difficulty-badge hard">Difícil</span>: Dos vigas de acero se cruzan en una nave industrial. En alzado, sus proyecciones se intersectan en P'(100, 45). En planta, la proyección de P' cae en (100, 130) para la viga A y (140, 130) para la viga B. La viga A tiene Z=60 y la viga B tiene Z=40. ¿Se cortan o se cruzan? Si se cruzan, ¿qué tipo de puntos cruzados son y qué viga domina?</p>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Se cortan — P' e I están en la misma vertical</button>
+<button class="quiz-btn" onclick="checkAnswer(this, true)">Se cruzan horizontales — A domina (Z=60 > Z=40)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Se cruzan verticales — B domina (Y mayor)</button>
+<button class="quiz-btn" onclick="checkAnswer(this, false)">Son paralelas — no hay intersección</button>
+</div>
 <p class="feedback"></p>
 </div></div>
 </section>
@@ -473,6 +490,12 @@ Si Y₁ > Y₂ → r₁ domina en planta (r₁ tapa a r₂).
 <div class="box box-error">
 <strong>⚠️ Error clásico</strong>
 Confundir rectas que se cruzan con rectas que se cortan. Solo porque las proyecciones se intersectan en alzado NO significa que las rectas se cortan. Hay que verificar que la intersección esté en la MISMA vertical en planta también. <strong>Regla mnemotécnica:</strong> "Si I' e I no están en la misma vertical, las rectas se cruzan."
+</div>
+
+<div class="box box-success">
+<strong>💡 Truco mnemotécnico</strong>
+<strong>"Vertical = Verdadero"</strong> — Si la línea vertical que une I' e I es recta y continua, las rectas se cortan (verdadero). Si la línea se rompe o no existe, se cruzan (falso). <br>
+<strong>"Z arriba, Y adelante"</strong> — En cruzados horizontales, el que está más ARRIBA (Z mayor) domina. En cruzados verticales, el que está más ADELANTE (Y mayor) domina.
 </div>
 
 <div class="box connection-box">
@@ -508,7 +531,17 @@ Con la intersección recta-recta dominada, en el siguiente tema aprenderás a en
 function showPaso(n) {
   for (var i = 0; i < 4; i++) {
     var g = document.getElementById('paso' + i);
-    if (g) g.style.display = i === n ? '' : 'none';
+    if (g) {
+      if (i === n) {
+        g.style.display = '';
+        // Re-trigger fade-in animation
+        g.style.animation = 'none';
+        g.offsetHeight; // force reflow
+        g.style.animation = '';
+      } else {
+        g.style.display = 'none';
+      }
+    }
   }
   var dots = document.querySelectorAll('#pasoIndicador .step-dot');
   dots.forEach(function(d, i) {
@@ -649,24 +682,6 @@ function checkExercise(id, correct, btn) {
     feedback.textContent = '❌ Respuesta correcta: ' + correct;
     feedback.className = 'feedback incorrect';
     input.style.borderColor = 'var(--rojo)';
-  }
-}
-
-function checkVF(btn, correct) {
-  var parent = btn.parentElement;
-  parent.querySelectorAll('button').forEach(function(b) {
-    b.disabled = true; b.classList.remove('correct','wrong');
-  });
-  btn.classList.add(correct ? 'correct' : 'wrong');
-  var feedback = parent.nextElementSibling;
-  if(feedback && feedback.classList.contains('feedback')) {
-    if(correct) {
-      feedback.textContent = '✅ ¡Correcto!';
-      feedback.className = 'feedback correct';
-    } else {
-      feedback.textContent = '❌ Incorrecto.';
-      feedback.className = 'feedback incorrect';
-    }
   }
 }
 

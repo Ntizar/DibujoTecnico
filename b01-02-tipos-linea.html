@@ -69,6 +69,10 @@ tr:hover{background:var(--azul-claro)}
 .highlight-layer.visible{opacity:1}
 .clickable{cursor:pointer;transition:all .2s;border-radius:8px;padding:.5rem}
 .clickable:hover{background:var(--azul-claro);transform:translateY(-2px);box-shadow:0 4px 12px rgba(37,99,235,.15)}
+@keyframes pulse-line{0%,100%{opacity:1}50%{opacity:.6}}
+.pulse-highlight{animation:pulse-line 2s ease-in-out infinite}
+@keyframes line-draw{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
+.line-draw-anim{stroke-dasharray:100;animation:line-draw 1.5s ease forwards}
 .connection-box{background:linear-gradient(135deg,var(--pura-claro),var(--azul-claro));border:2px solid var(--pura);border-radius:12px;padding:1.2rem;margin:1.5rem 0}
 .connection-box h4{color:var(--pura);margin-bottom:.5rem}
 .difficulty-badge{display:inline-block;background:var(--pura);color:#fff;padding:.2rem .6rem;border-radius:12px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
@@ -218,6 +222,12 @@ function showStep(n) {
 ⚠️ <strong>Error común:</strong> ¡No confundas discontinua gruesa con fina! La <strong>discontinua gruesa</strong> es para aristas <em>ocultas</em>. La <strong>discontinua fina</strong> es para <em>ejes de simetría</em>. ¡Es al revés de lo que mucha gente piensa!
 </div>
 
+<!-- TRUCO / BOX-SUCCESS -->
+<div class="box box-success">
+<strong>💡 Truco para recordar</strong>
+Piensa en las líneas como un lenguaje: <strong>gruesa = importante</strong> (lo que se ve o lo que existe pero hay que notar), <strong>fina = informativa</strong> (lo que ayuda pero no es la pieza). Mnemotecnia: <em>"Gruesa grita, fina susurra"</em>.
+</div>
+
 </section>
 
 <!-- CASO REAL INDUSTRIAL -->
@@ -347,7 +357,7 @@ Usar discontinua <em>fina</em> para aristas ocultas. La norma dice: aristas ocul
 <!-- SVG INTERACTIVO: Toggle entre tipos de línea -->
 <div class="interactive">
 <h3>🎮 Interactivo: Muestra/oculta tipos de línea</h3>
-<p style="margin-bottom:1rem;color:#64748b;font-size:.95rem">Haz clic en los botones para mostrar solo ese tipo de línea en el dibujo. ¡Así aprendes a distinguirlas!</p>
+<p style="margin-bottom:1rem;color:#64748b;font-size:.95rem">Haz clic en los botones para mostrar solo ese tipo de línea en el dibujo. ¡Así aprendes a distinguirlas! Los botones tienen animación para que veas cuál está activo.</p>
 
 <div style="margin-bottom:1rem">
 <button onclick="showLineType('all')" style="background:var(--azul)">👁️ Todas</button>
@@ -356,7 +366,9 @@ Usar discontinua <em>fina</em> para aristas ocultas. La norma dice: aristas ocul
 <button onclick="showLineType('axes')" style="background:var(--pura)">⭐ Ejes</button>
 </div>
 
-<div class="svg-container" style="margin:0">
+<div class="svg-container" style="margin:0;position:relative">
+<!-- Indicador de estado -->
+<div id="lineTypeStatus" style="position:absolute;top:10px;right:10px;background:var(--azul);color:#fff;padding:.3rem .8rem;border-radius:12px;font-size:.8rem;font-weight:600;z-index:10;transition:all .3s">👁️ Mostrando: todas</div>
 <svg viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg" id="interactiveLineSvg">
 <!-- Título -->
 <text x="250" y="20" text-anchor="middle" font-size="14" font-weight="bold" fill="#1e293b">Cubo con diferentes tipos de línea</text>
@@ -427,7 +439,7 @@ Usar discontinua <em>fina</em> para aristas ocultas. La norma dice: aristas ocul
 
 <!-- Ejercicio 1: Quiz -->
 <div class="exercise">
-<p>1️⃣ ¿Cuál de las siguientes afirmaciones es correcta según la norma ISO 128?</p>
+<p><span class="difficulty-badge easy">Fácil</span> 1️⃣ ¿Cuál de las siguientes afirmaciones es correcta según la norma ISO 128?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkExercise(this, false, 'ex1')">La línea discontinua gruesa se usa para ejes de simetría</button>
 <button class="quiz-btn" onclick="checkExercise(this, true, 'ex1')">La línea continua gruesa se usa para contornos visibles</button>
@@ -439,7 +451,7 @@ Usar discontinua <em>fina</em> para aristas ocultas. La norma dice: aristas ocul
 
 <!-- Ejercicio 2: Completar -->
 <div class="exercise">
-<p>2️⃣ Completa: La línea <span style="color:var(--azul);font-weight:bold">________</span> se usa para las aristas ocultas, mientras que la línea <span style="color:var(--azul);font-weight:bold">________</span> se usa para los ejes de simetría.</p>
+<p><span class="difficulty-badge easy">Fácil</span> 2️⃣ Completa: La línea <span style="color:var(--azul);font-weight:bold">________</span> se usa para las aristas ocultas, mientras que la línea <span style="color:var(--azul);font-weight:bold">________</span> se usa para los ejes de simetría.</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkExercise(this, false, 'ex2')">continua gruesa / continua fina</button>
 <button class="quiz-btn" onclick="checkExercise(this, true, 'ex2')">discontinua gruesa / discontinua fina</button>
@@ -451,7 +463,7 @@ Usar discontinua <em>fina</em> para aristas ocultas. La norma dice: aristas ocul
 
 <!-- Ejercicio 3: Verdadero/Falso -->
 <div class="exercise">
-<p>3️⃣ Verdadero o Falso: La línea a trazos y puntos fina se usa para marcar el centro de círculos y los ejes de simetría.</p>
+<p><span class="difficulty-badge easy">Fácil</span> 3️⃣ Verdadero o Falso: La línea a trazos y puntos fina se usa para marcar el centro de círculos y los ejes de simetría.</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkVF(this, true, 'ex3')">✅ Verdadero</button>
 <button class="quiz-btn" onclick="checkVF(this, false, 'ex3')">❌ Falso</button>
@@ -461,7 +473,7 @@ Usar discontinua <em>fina</em> para aristas ocultas. La norma dice: aristas ocul
 
 <!-- Ejercicio 4: Identificar -->
 <div class="exercise">
-<p>4️⃣ Identifica el tipo de línea: En un plano, una pieza adyacente a la que estamos dibujando se representa con:</p>
+<p><span class="difficulty-badge medium">Medio</span> 4️⃣ Identifica el tipo de línea: En un plano, una pieza adyacente a la que estamos dibujando se representa con:</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkExercise(this, false, 'ex4')">Línea continua gruesa</button>
 <button class="quiz-btn" onclick="checkExercise(this, false, 'ex4')">Línea discontinua gruesa</button>
@@ -473,7 +485,7 @@ Usar discontinua <em>fina</em> para aristas ocultas. La norma dice: aristas ocul
 
 <!-- NUEVO: Ejercicio de caso real -->
 <div class="exercise">
-<p>5️⃣ (Caso real) En el plano de una biela de motor, ¿qué tipo de línea usarías para el agujero del piñón que está oculto dentro de la pieza?</p>
+<p><span class="difficulty-badge medium">Medio</span> 5️⃣ (Caso real) En el plano de una biela de motor, ¿qué tipo de línea usarías para el agujero del piñón que está oculto dentro de la pieza?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkExercise(this, false, 'ex5')">Línea continua gruesa — porque es un agujero importante</button>
 <button class="quiz-btn" onclick="checkExercise(this, true, 'ex5')">Discontinua gruesa — porque es una arista que existe pero no se ve</button>
@@ -485,7 +497,7 @@ Usar discontinua <em>fina</em> para aristas ocultas. La norma dice: aristas ocul
 
 <!-- NUEVO: Ejercicio visual de error -->
 <div class="exercise">
-<p>6️⃣ (Error visual) Si ves una línea discontinua FINA (trazos de 8px, grosor 1px) en un plano indicando una arista oculta, ¿qué problema hay?</p>
+<p><span class="difficulty-badge medium">Medio</span> 6️⃣ (Error visual) Si ves una línea discontinua FINA (trazos de 8px, grosor 1px) en un plano indicando una arista oculta, ¿qué problema hay?</p>
 <div class="quiz-options">
 <button class="quiz-btn" onclick="checkExercise(this, false, 'ex6')">Ninguno, las discontinuas son equivalentes</button>
 <button class="quiz-btn" onclick="checkExercise(this, true, 'ex6')">El dibujante cometió un error: aristas ocultas requieren discontinua GRUESA, no fina</button>
@@ -495,9 +507,9 @@ Usar discontinua <em>fina</em> para aristas ocultas. La norma dice: aristas ocul
 <div class="result" id="ex6"></div>
 </div>
 
-<!-- NUEVO R2: Ejercicio V/F visual con SVG -->
+<!-- NUEVO RONDA 2: Ejercicio V/F visual con SVG -->
 <div class="exercise">
-<p>7️⃣ (V/F Visual) Observa el SVG de abajo: la línea que marca el eje del círculo es de tipo <strong>trazos y puntos</strong>.</p>
+<p><span class="difficulty-badge easy">Fácil</span> 7️⃣ (V/F Visual) Observa el SVG de abajo: la línea que marca el eje del círculo es de tipo <strong>trazos y puntos</strong>.</p>
 <div class="svg-container" style="margin:.8rem 0;padding:.8rem">
 <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
 <circle cx="100" cy="75" r="50" fill="none" stroke="#1e293b" stroke-width="3"/>
@@ -516,7 +528,7 @@ Usar discontinua <em>fina</em> para aristas ocultas. La norma dice: aristas ocul
 
 <!-- NUEVO R2: Ejercicio ordenar -->
 <div class="exercise">
-<p>8️⃣ (Ordenar) Ordena de MAYOR a MENOR grosor de trazo las siguientes líneas en un plano: <em>continua fina, continua gruesa, discontinua gruesa, a trazos y puntos fina</em>.</p>
+<p><span class="difficulty-badge medium">Medio</span> 8️⃣ (Ordenar) Ordena de MAYOR a MENOR grosor de trazo las siguientes líneas en un plano: <em>continua fina, continua gruesa, discontinua gruesa, a trazos y puntos fina</em>.</p>
 <p style="font-size:.85rem;color:var(--gris);margin-bottom:.5rem">Arrastra o selecciona en orden correcto:</p>
 <div id="ordenContainer">
 <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin:.5rem 0" id="ordenOpciones">
@@ -533,11 +545,25 @@ Usar discontinua <em>fina</em> para aristas ocultas. La norma dice: aristas ocul
 
 <!-- NUEVO R2: Completar huecos -->
 <div class="exercise">
-<p>9️⃣ (Completar) Escribe el tipo de línea correcto: En un plano de mecanizado, el operario ve una línea <strong>continua fina</strong> que rodea una pieza. Esa pieza está <em>al lado</em> de la que se está fabricando. ¿Qué tipo de línea es?</p>
+<p><span class="difficulty-badge medium">Medio</span> 9️⃣ (Completar) Escribe el tipo de línea correcto: En un plano de mecanizado, el operario ve una línea <strong>continua fina</strong> que rodea una pieza. Esa pieza está <em>al lado</em> de la que se está fabricando. ¿Qué tipo de línea es?</p>
 <input type="text" id="fillIn9" placeholder="Escribe el tipo de línea..." style="padding:.5rem;border:2px solid var(--azul);border-radius:6px;font-size:1rem;width:100%;max-width:400px">
 <br><br>
 <button class="quiz-btn" onclick="checkFillIn(['continua fina','tipo F','continua fina (tipo F)','linea continua fina','línea continua fina'])" style="background:var(--verde)">✅ Comprobar</button>
 <div class="result" id="ex9"></div>
+</div>
+
+
+<!-- NUEVO RONDA 2: Ejercicio problem — optimización de líneas en plano -->
+<div class="exercise">
+<p><span class="difficulty-badge hard">Difícil</span> ⚙️ Ejercicio 12 (Problema): En un plano de mecanizado de una pieza de aluminio, necesitas representar: contornos visibles, aristas ocultas de 3 agujeros internos, ejes de simetría de 2 círculos, y líneas de acotación. ¿Cuántos tipos de línea diferentes necesitas y cuáles son?</p>
+<div class="box box-idea" style="margin:.5rem 0"><strong>💡 Pista:</strong> Piensa en qué información transmite cada tipo de línea y qué se ve / no se ve en la pieza.</div>
+<div class="quiz-options">
+<button class="quiz-btn" onclick="checkProblem(this, false, 'ex12')">2 tipos: continua y discontinua</button>
+<button class="quiz-btn" onclick="checkProblem(this, true, 'ex12')">4 tipos: continua gruesa (contornos), discontinua gruesa (aristas ocultas), discontinua fina (ejes), continua fina (acotación)</button>
+<button class="quiz-btn" onclick="checkProblem(this, false, 'ex12')">3 tipos: continua gruesa, discontinua, y puntos</button>
+<button class="quiz-btn" onclick="checkProblem(this, false, 'ex12')">5 tipos: incluyendo línea de corte y línea de rotura</button>
+</div>
+<div class="result" id="ex12"></div>
 </div>
 
 
@@ -635,6 +661,7 @@ function showLineType(type) {
   var axes = document.getElementById('layer-axes');
   var dimension = document.getElementById('layer-dimension');
   var legend = document.getElementById('layer-legend');
+  var status = document.getElementById('lineTypeStatus');
   
   // Reset all
   visible.style.opacity = '1';
@@ -646,19 +673,33 @@ function showLineType(type) {
   if (type === 'all') {
     hidden.style.opacity = '1';
     axes.style.opacity = '1';
+    status.textContent = '👁️ Mostrando: todas';
+    status.style.background = 'var(--azul)';
   } else if (type === 'visible') {
     hidden.style.opacity = '0';
     axes.style.opacity = '0';
+    status.textContent = '✅ Mostrando: visibles (continua gruesa)';
+    status.style.background = 'var(--verde)';
   } else if (type === 'hidden') {
     visible.style.opacity = '0.3';
     hidden.style.opacity = '1';
     axes.style.opacity = '0';
     dimension.style.opacity = '0.3';
+    status.textContent = '👻 Mostrando: ocultas (discontinua gruesa)';
+    status.style.background = 'var(--rojo)';
   } else if (type === 'axes') {
     visible.style.opacity = '0.3';
     hidden.style.opacity = '0';
     axes.style.opacity = '1';
     dimension.style.opacity = '0.3';
+    status.textContent = '⭐ Mostrando: ejes (trazos y puntos)';
+    status.style.background = 'var(--pura)';
+  }
+  
+  // Add pulse animation to hidden layer when shown
+  if (hidden.style.opacity === '1' && type !== 'all') {
+    hidden.classList.add('pulse-highlight');
+    setTimeout(function() { hidden.classList.remove('pulse-highlight'); }, 4000);
   }
 }
 
@@ -716,6 +757,24 @@ function checkVF(btn, isCorrect, resultId) {
   }
 }
 
+
+function checkProblem(btn, isCorrect, resultId) {
+  var parent = btn.parentElement;
+  var buttons = parent.querySelectorAll('.quiz-btn');
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].classList.remove('correct', 'wrong');
+    buttons[i].disabled = true;
+  }
+  if (isCorrect) {
+    btn.classList.add('correct');
+    document.getElementById(resultId).className = 'result ok';
+    document.getElementById(resultId).innerHTML = '✅ ¡Correcto! 4 tipos: continua gruesa (contornos visibles), discontinua gruesa (aristas ocultas), discontinua fina/trazos y puntos (ejes de simetría), continua fina (acotación). En un plano real, cada tipo transmite información esencial.';
+  } else {
+    btn.classList.add('wrong');
+    document.getElementById(resultId).className = 'result fail';
+    document.getElementById(resultId).innerHTML = '❌ Incorrecto. La respuesta es 4 tipos diferentes: continua gruesa, discontinua gruesa, discontinua fina y continua fina. Cada uno tiene un significado normativo específico.';
+  }
+}
 
 function checkIdentify(btn, correct) {
   var exercise = btn.closest('.exercise');
