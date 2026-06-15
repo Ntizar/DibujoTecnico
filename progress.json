@@ -2,8 +2,8 @@
   "curso": "Dibujo Técnico Completo",
   "autor": "David Antizar",
   "total_temas": 49,
-  "last_improved": "2026-06-15-ronda2-s3",
-  "last_run": "2026-06-15T08:45:00.000000",
+  "last_improved": "2026-06-15-ronda2-s4",
+  "last_run": "2026-06-15T08:54:26.085356",
   "total_runs": 20,
   "topics": {
     "b01-01-formatos-papel.html": {
@@ -1079,44 +1079,32 @@
       ]
     },
     "b04-06-vm.html": {
-      "status": "improved_2",
+      "status": "improved_v2",
       "bloque": "b04",
       "title": "↗️ Rectas notables del plano",
       "priority": 2,
       "improvements": [
-        {
-          "date": "2026-06-10",
-          "description": "CSS template base, caso real industrial, error comparativo SVG",
-          "dimensions_improved": [
-            "svg_interactive",
-            "text_explanation",
-            "real_world",
-            "error_common",
-            "css_coherence"
-          ]
-        },
-        {
-          "date": "2026-06-11",
-          "description": "4-step visual pattern (mira→fíjate→ahora ves→prueba) con 4 SVGs + step-dots + showStep(), 4 ejercicios variados (quiz, V/F visual con SVGs comparativos, completar huecos con checkFillIn, ordenar pasos con checkOrden), CSS: .feedback.correct/.incorrect añadidos, broken onclicks fixados, funciones JS: showStep(), checkFillIn(), checkOrden()",
-          "dimensions_improved": [
-            "text_explanation",
-            "svg_interactive",
-            "exercises",
-            "css_coherence"
-          ]
-        },
-        "ronda 2: svg 7→9, exercises 7→9 (6 ejercicios, 5 tipos), text 7→9, real_world 7→9 (4 casos), error 7→9 (SVG comparativo), css 8→10 (clickable/connection-box/difficulty-badge), fix section balance + broken div"
+        "SVG animation keyframes (pulse/animate/fade-in/highlight-glow)",
+        "SVG interactivity (toggleHighlight con data-info)",
+        "showStep mejorado con re-trigger de animaciones CSS",
+        "Ejercicio nuevo: input numérico (checkVMInput)",
+        "SVG step 1: clickable + pulse en puntos de intersección",
+        "SVG step 2/3: animate + fade-in en líneas y textos",
+        "Eliminado showStep duplicado",
+        "CSS coherence: todas las clases requeridas presentes"
       ],
       "scores": {
-        "svg_interactive": 9,
-        "exercises": 9,
-        "text_explanation": 9,
-        "real_world": 9,
-        "error_common": 9,
-        "css_coherence": 10
+        "dimension_scores": {
+          "svg_interactive": 9,
+          "exercises": 9,
+          "text_explanation": 9,
+          "real_world": 9,
+          "error_common": 9,
+          "css_coherence": 10
+        }
       },
-      "last_improved": "2026-06-12-ronda2-s2",
-      "improvement_count": 3
+      "last_improved": "2026-06-15-ronda2-s4",
+      "improvement_count": 5
     },
     "b04-07-cambio-plano.html": {
       "status": "improved_2",
@@ -1197,42 +1185,32 @@
       "improvement_count": 3
     },
     "b04-09-resumen-diedrico.html": {
-      "status": "improved_2",
+      "status": "improved_v2",
       "bloque": "b04",
       "title": "⊥ Perpendicularidad recta-plano",
       "priority": 2,
       "improvements": [
-        {
-          "date": "2026-06-10",
-          "description": "CSS template base, caso real industrial, error comparativo SVG",
-          "dimensions_improved": [
-            "svg_interactive",
-            "text_explanation",
-            "real_world",
-            "error_common",
-            "css_coherence"
-          ]
-        },
-        {
-          "date": "2026-06-11",
-          "description": "SVG comparativo error común (recta frontal vs horizontal con 2 SVGs lado a lado), caso real industrial detallado (caja ZF-6HP26 con 187 piezas, 12 vistas, 4.000€), fix exercise 4 (checkOrden en lugar de checkAnswer), botón resetIdentify añadido, CSS duplicado limpiado",
-          "dimensions_improved": [
-            "real_world",
-            "error_common",
-            "css_coherence"
-          ]
-        }
+        "SVG animation keyframes (pulse/animate/fade-in/highlight-glow)",
+        "SVG interactivity (svg-element + data-info en círculos interactivos)",
+        "showStep mejorado con re-trigger de animaciones CSS",
+        "Ejercicio nuevo: input numérico (checkDiedricoInput)",
+        "box box-success añadido: truco mnemotécnico P-R-P-G",
+        "SVG step 1: línea de referencia animate + punto 3D pulse",
+        "Eliminado showStep duplicado",
+        "CSS coherence: todas las clases requeridas presentes"
       ],
       "scores": {
-        "svg_interactive": 9,
-        "exercises": 9,
-        "text_explanation": 9,
-        "real_world": 9,
-        "error_common": 9,
-        "css_coherence": 10
+        "dimension_scores": {
+          "svg_interactive": 9,
+          "exercises": 9,
+          "text_explanation": 9,
+          "real_world": 9,
+          "error_common": 9,
+          "css_coherence": 10
+        }
       },
-      "last_improved": "2026-06-12-ronda2-s3",
-      "improvement_count": 3,
+      "last_improved": "2026-06-15-ronda2-s4",
+      "improvement_count": 6,
       "improvement_history": [
         {
           "round": "ronda2-s3",
@@ -2208,7 +2186,7 @@
       "b03-03-isometrica-circulos.html"
     ]
   },
-  "run": 1,
+  "run": 2,
   "date": "2026-06-15",
   "added": "v2-r2: b07-03-interseccion-recta-recta.html - ronda 2: 1) Eliminado checkVF duplicada (línea 655-671), 2) difficulty-badge en los 10 ejercicios (3 easy, 3 medium, 3 hard + 1 hard), 3) box-success añadido con mnemotécnicas 'Vertical=Verdadero' y 'Z arriba, Y adelante', 4) Animaciones CSS: pulse-point (pulsing dots), draw-line (líneas animadas), fade-in (transición pasos), 5) SVG mejorado: 12 círculos con clase pulse, 4 líneas con clase animate, re-trigger de animación en showPaso, 6) Ejercicio 10 nuevo (Problema) — vigas de acero nave industrial, 7) SVG coherente con animaciones en los 4 pasos (paso0, paso1, paso2)",
   "runs": [
@@ -2227,6 +2205,17 @@
       "run": 20,
       "date": "2026-06-15",
       "added": "Ronda 2 Sesión 3: b02-02 (keyframes SVG, 2 casos reales nuevos, 2 ejercicios nuevos, checkFillIn), b02-03 (keyframes SVG, 2 casos reales nuevos, checkFillIn corregida), b09-02 (keyframes SVG, animaciones SVG)"
+    }
+  ],
+  "history": [
+    {
+      "run": 2,
+      "date": "2026-06-15",
+      "topics": [
+        "b04-06-vm.html",
+        "b04-09-resumen-diedrico.html"
+      ],
+      "added": "Ronda 2: SVG animado (keyframes pulse/animate/fade-in), interactividad SVG (toggleHighlight, data-info), showStep re-trigger, ejercicios input numérico, box-success truco mnemotécnico"
     }
   ]
 }

@@ -79,6 +79,17 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .box-problema { background: #fff7ed; border-color: var(--naranja); }
 .connection-box{background:linear-gradient(135deg,var(--pura-claro),#f0f4ff);border:2px solid var(--pura);border-radius:12px;padding:1.2rem;margin:1.5rem 0}.connection-box h4{color:var(--pura);margin-bottom:.5rem;font-size:1rem}
 .difficulty-badge{display:inline-block;padding:.15rem .5rem;border-radius:8px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px}.difficulty-badge.easy{background:#d1fae5;color:#065f46}.difficulty-badge.medium{background:#fef3c7;color:#92400e}.difficulty-badge.hard{background:#fee2e2;color:#991b1b}
+@keyframes pulse-point { 0%,100%{r:4;opacity:1} 50%{r:7;opacity:.6} }
+@keyframes draw-line { 0%{stroke-dashoffset:200} 100%{stroke-dashoffset:0} }
+@keyframes fade-in { 0%{opacity:0;transform:translateY(10px)} 100%{opacity:1;transform:translateY(0)} }
+@keyframes highlight-glow { 0%,100%{filter:drop-shadow(0 0 3px rgba(16,185,129,.4))} 50%{filter:drop-shadow(0 0 8px rgba(16,185,129,.8))} }
+.svg-element { transition: all .3s ease; cursor: pointer; }
+.svg-element:hover { filter: brightness(1.15) drop-shadow(0 0 4px rgba(37,99,235,.3)); }
+.svg-element.active { filter: brightness(1.2) drop-shadow(0 0 6px rgba(16,185,129,.6)); stroke-width: 4 !important; }
+.pulse { animation: pulse-point 1.5s ease-in-out infinite; }
+.animate { stroke-dasharray: 200; stroke-dashoffset: 200; animation: draw-line 1s ease forwards; }
+.fade-in { animation: fade-in .5s ease forwards; }
+.highlight-glow { animation: highlight-glow 2s ease-in-out infinite; }
 </style>
 </head>
 <body>
@@ -280,6 +291,14 @@ El sistema diédrico es el lenguaje universal de la ingeniería. Con punto, rect
 </div></div>
 </section>
 
+<!-- NUEVO EJERCICIO RONDA 2: Input numérico -->
+<div class="exercise">
+<p>🎯 Ejercicio 9 (Input numérico): <span class="difficulty-badge hard">Difícil</span> Un plano tiene su traza horizontal α₁ a 40° de la LT y su traza vertical α₂ a 55° de la LT. ¿Cuántas proyecciones tiene un punto en el sistema diédrico?</p>
+<input type="number" id="diedricoNum" placeholder="Nº proyecciones" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
+<button onclick="checkDiedricoInput()">Comprobar</button>
+<p class="feedback" id="diedricoFeedback"></p>
+</div>
+
 <div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ SIN SÍMBOLO DE PROYECCIÓN</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/><text x="100" y="70" text-anchor="middle" font-size="10" fill="#ef4444">⚠️ Sin símbolo</text><text x="100" y="120" text-anchor="middle" font-size="9" fill="#ef4444">OBLIGATORIO según ISO</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ CON SÍMBOLO</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><rect x="40" y="30" width="120" height="70" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/><text x="100" y="60" text-anchor="middle" font-size="9" fill="#10b981">Símbolo ISO ✓</text><text x="100" y="120" text-anchor="middle" font-size="9" fill="#10b981">1º diedro</text></svg></div></div>
 
 <div class="box box-error">
@@ -314,6 +333,11 @@ El sistema diédrico es el lenguaje universal de la ingeniería. Con punto, rect
 • Olvidar que VM solo se obtiene con recta ∥ al plano de proyección<br>
 • Pensar que un cambio de plano basta para VM de un plano oblicuo (se necesitan 2)<br>
 • No verificar que las proyecciones sean paralelas en AMBAS vistas
+</div>
+
+<div class="box box-success">
+<strong>💡 Truco mnemotécnico: "P-R-P-G"</strong>
+Para recordar el orden de los conceptos en diédrico: <strong>P</strong>unto → <strong>R</strong>ecta → <strong>P</strong>lano → <strong>G</strong>iro. Primero entiendes el punto (x,y,z), luego la recta (2 puntos o trazas), luego el plano (2 trazas), y finalmente los métodos auxiliares como el giro. Si dominas este orden, todo lo demás fluye naturalmente.
 </div>
 
 <div class="connection-box">
@@ -359,10 +383,10 @@ Este resumen del diédrico conecta directamente con:
           <!-- Proyección vertical -->
           <circle cx="150" cy="30" r="5" fill="#f97316"/>
           <text x="150" y="20" text-anchor="middle" font-size="9" fill="#f97316" font-weight="600">r' (vertical)</text>
-          <!-- Línea de referencia -->
-          <line x1="150" y1="35" x2="150" y2="105" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,2"/>
+          <!-- Línea de referencia animada -->
+          <line x1="150" y1="35" x2="150" y2="105" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,2" class="animate"/>
           <!-- Punto 3D -->
-          <circle cx="320" cy="75" r="6" fill="#a855f7"/>
+          <circle cx="320" cy="75" r="6" fill="#a855f7" class="pulse"/>
           <text x="320" y="55" text-anchor="middle" font-size="10" fill="#a855f7" font-weight="600">P(x,y,z)</text>
           <line x1="320" y1="81" x2="320" y2="110" stroke="#2563eb" stroke-width="1" stroke-dasharray="3,2"/>
           <line x1="320" y1="69" x2="320" y2="40" stroke="#f97316" stroke-width="1" stroke-dasharray="3,2"/>
@@ -419,12 +443,12 @@ Este resumen del diédrico conecta directamente con:
         <svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
           <line x1="20" y1="75" x2="380" y2="75" stroke="#1e293b" stroke-width="2"/>
           <text x="370" y="70" text-anchor="end" font-size="10" fill="#64748b">LT</text>
-          <!-- Elementos interactivos -->
-          <circle cx="100" cy="30" r="8" fill="#f97316" class="clickable" onclick="identifyElement(this,'r\': proyección vertical de la recta')"/>
+<!-- Elementos interactivos -->
+          <circle cx="100" cy="30" r="8" fill="#f97316" class="clickable svg-element" onclick="identifyElement(this,'r\\': proyección vertical de la recta')" data-info="r': proyección vertical de la recta"/>
           <text x="100" y="35" text-anchor="middle" font-size="8" fill="#fff" font-weight="600">?</text>
-          <circle cx="100" cy="120" r="8" fill="#2563eb" class="clickable" onclick="identifyElement(this,'r: proyección horizontal de la recta')"/>
+          <circle cx="100" cy="120" r="8" fill="#2563eb" class="clickable svg-element" onclick="identifyElement(this,'r: proyección horizontal de la recta')" data-info="r: proyección horizontal de la recta"/>
           <text x="100" y="125" text-anchor="middle" font-size="8" fill="#fff" font-weight="600">?</text>
-          <circle cx="300" cy="75" r="8" fill="#ef4444" class="clickable" onclick="identifyElement(this,'Th: traza horizontal (intersección con PH)')"/>
+          <circle cx="300" cy="75" r="8" fill="#ef4444" class="clickable svg-element pulse" onclick="identifyElement(this,'Th: traza horizontal (intersección con PH)')" data-info="Th: traza horizontal (intersección con PH)"/>
           <text x="300" y="80" text-anchor="middle" font-size="8" fill="#fff" font-weight="600">?</text>
           <text x="200" y="145" text-anchor="middle" font-size="9" fill="#64748b">👆 Click en cada ? para identificar</text>
         </svg>
@@ -564,23 +588,6 @@ function checkExercise(id, correct, btn) {
   }
 }
 
-function showStep(n) {
-  for(var i = 1; i <= 4; i++) {
-    var step = document.getElementById('step' + i);
-    var dot = document.getElementById('sd' + i);
-    if(step) step.style.display = (i === n) ? 'block' : 'none';
-    if(dot) {
-      if(i === n) {
-        dot.classList.add('active');
-        dot.style.background = 'var(--azul)';
-      } else {
-        dot.classList.remove('active');
-        dot.style.background = '#94a3b8';
-      }
-    }
-  }
-}
-
 window.onscroll = function(){
   var h = document.documentElement;
   var p = (window.scrollY/(h.scrollHeight-h.clientHeight))*100;
@@ -636,6 +643,61 @@ function resetMap() {
     el.style.fill = el.getAttribute('fill');
     el.classList.remove('active');
   });
+}
+
+function checkDiedricoInput() {
+  var val = parseInt(document.getElementById('diedricoNum').value);
+  var feedback = document.getElementById('diedricoFeedback');
+  if(val === 2) {
+    feedback.textContent = '✅ ¡Correcto! Un punto tiene 2 proyecciones: horizontal (r) y vertical (r\').';
+    feedback.className = 'feedback correct';
+    document.getElementById('diedricoNum').style.borderColor = 'var(--verde)';
+  } else {
+    feedback.textContent = '❌ Respuesta correcta: 2. Proyección horizontal + proyección vertical.';
+    feedback.className = 'feedback incorrect';
+    document.getElementById('diedricoNum').style.borderColor = 'var(--rojo)';
+  }
+}
+
+function toggleHighlight(el) {
+  el.classList.toggle('active');
+  var info = el.getAttribute('data-info');
+  if (info) {
+    var result = document.getElementById('element-result');
+    if (result) {
+      result.textContent = '📌 ' + info;
+      result.style.color = 'var(--azul)';
+    }
+  }
+}
+
+function showStep(n) {
+  for(var i = 1; i <= 4; i++) {
+    var step = document.getElementById('step' + i);
+    var dot = document.getElementById('sd' + i);
+    if(step) step.style.display = (i === n) ? 'block' : 'none';
+    if(dot) {
+      if(i === n) {
+        dot.classList.add('active');
+        dot.style.background = 'var(--azul)';
+      } else {
+        dot.classList.remove('active');
+        dot.style.background = '#94a3b8';
+      }
+    }
+  }
+  // Re-trigger SVG animations when switching steps
+  if(n >= 2) {
+    var activeStep = document.getElementById('step' + n);
+    if(activeStep) {
+      var animElements = activeStep.querySelectorAll('.animate, .fade-in, .pulse');
+      animElements.forEach(function(el) {
+        el.style.animation = 'none';
+        el.offsetHeight;
+        el.style.animation = '';
+      });
+    }
+  }
 }
 
 </script>

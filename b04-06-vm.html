@@ -72,6 +72,17 @@ body{font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-grad
 .difficulty-badge { display: inline-block; background: var(--naranja); color: #fff; padding: .15rem .5rem; border-radius: 10px; font-size: .7rem; font-weight: 600; margin-left: .5rem; }
 .vm-line { transition: all .5s ease; }
 .vm-line.vm-active { stroke: #10b981 !important; stroke-width: 4 !important; }
+@keyframes pulse-point { 0%,100%{r:4;opacity:1} 50%{r:7;opacity:.6} }
+@keyframes draw-line { 0%{stroke-dashoffset:200} 100%{stroke-dashoffset:0} }
+@keyframes fade-in { 0%{opacity:0;transform:translateY(10px)} 100%{opacity:1;transform:translateY(0)} }
+@keyframes highlight-glow { 0%,100%{filter:drop-shadow(0 0 3px rgba(16,185,129,.4))} 50%{filter:drop-shadow(0 0 8px rgba(16,185,129,.8))} }
+.svg-element { transition: all .3s ease; cursor: pointer; }
+.svg-element:hover { filter: brightness(1.15) drop-shadow(0 0 4px rgba(37,99,235,.3)); }
+.svg-element.active { filter: brightness(1.2) drop-shadow(0 0 6px rgba(16,185,129,.6)); stroke-width: 4 !important; }
+.pulse { animation: pulse-point 1.5s ease-in-out infinite; }
+.animate { stroke-dasharray: 200; stroke-dashoffset: 200; animation: draw-line 1s ease forwards; }
+.fade-in { animation: fade-in .5s ease forwards; }
+.highlight-glow { animation: highlight-glow 2s ease-in-out infinite; }
 </style>
 </head>
 <body>
@@ -144,10 +155,13 @@ Esta recta r no es paralela a ningún plano de proyección. Ni en alzado ni en p
 <rect x="0" y="0" width="400" height="160" fill="#f8fafc" rx="8"/>
 <line x1="20" y1="80" x2="380" y2="80" stroke="#333" stroke-width="1.5"/>
 <text x="390" y="84" font-size="10" fill="#333">LT</text>
-<line x1="80" y1="130" x2="320" y2="50" stroke="#2563eb" stroke-width="2.5" id="r-prime"/>
+<line x1="80" y1="130" x2="320" y2="50" stroke="#2563eb" stroke-width="2.5" id="r-prime" class="svg-element clickable" onclick="toggleHighlight(this)" data-info="r': proyección vertical — acortada, no es VM"/>
 <text x="330" y="48" font-size="11" fill="#2563eb" font-weight="bold">r'</text>
-<line x1="80" y1="50" x2="320" y2="130" stroke="#f97316" stroke-width="2.5" id="r" class="vm-line"/>
+<line x1="80" y1="50" x2="320" y2="130" stroke="#f97316" stroke-width="2.5" id="r" class="vm-line svg-element clickable" onclick="toggleHighlight(this)" data-info="r: proyección horizontal — también acortada"/>
 <text x="330" y="135" font-size="11" fill="#f97316" font-weight="bold">r</text>
+<!-- Puntos de intersección pulsantes -->
+<circle cx="80" cy="50" r="4" fill="#ef4444" class="pulse" onclick="toggleHighlight(this)" data-info="Punto A: extremo de la recta"/>
+<circle cx="320" cy="130" r="4" fill="#ef4444" class="pulse" onclick="toggleHighlight(this)" data-info="Punto B: extremo de la recta"/>
 <text x="200" y="155" text-anchor="middle" font-size="10" fill="#ef4444" id="vm-status">⚠️ No es VM — recta oblicua (clic para interactuar)</text>
 </svg>
 </div>
@@ -166,7 +180,7 @@ Giramos la recta alrededor de un eje perpendicular al PH. La proyección horizon
 <!-- Flecha de giro -->
 <path d="M 200 120 Q 220 100 240 110" fill="none" stroke="#a855f7" stroke-width="1.5" marker-end="url(#arrow)"/>
 <defs><marker id="arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#a855f7"/></marker></defs>
-<text x="210" y="140" font-size="10" fill="#a855f7">Giro → r' ∥ LT</text>
+<text x="210" y="140" font-size="10" fill="#a855f7" class="fade-in">Giro → r' ∥ LT</text>
 </svg>
 </div>
 </div>
@@ -178,14 +192,17 @@ Cuando r' es paralela a LT, la proyección horizontal r muestra la VERDADERA MAG
 <rect x="0" y="0" width="400" height="160" fill="#f8fafc" rx="8"/>
 <line x1="20" y1="80" x2="380" y2="80" stroke="#333" stroke-width="1.5"/>
 <text x="390" y="84" font-size="10" fill="#333">LT</text>
-<!-- Recta en VM -->
-<line x1="80" y1="80" x2="320" y2="80" class="vm-line" stroke="#10b981" stroke-width="3"/>
-<text x="330" y="84" font-size="11" fill="#10b981" font-weight="bold">r' (VM)</text>
+<!-- Recta en VM con animación -->
+<line x1="80" y1="80" x2="320" y2="80" class="vm-line animate" stroke="#10b981" stroke-width="3"/>
+<text x="330" y="84" font-size="11" fill="#10b981" font-weight="bold" class="fade-in">r' (VM)</text>
+<!-- Puntos de intersección pulsantes -->
+<circle cx="80" cy="80" r="4" fill="#10b981" class="pulse" onclick="toggleHighlight(this)" data-info="VM empieza aquí"/>
+<circle cx="320" cy="80" r="4" fill="#10b981" class="pulse" onclick="toggleHighlight(this)" data-info="VM termina aquí"/>
 <!-- Cotas de VM -->
-<line x1="80" y1="100" x2="80" y2="130" stroke="#10b981" stroke-width="1"/>
-<line x1="320" y1="100" x2="320" y2="130" stroke="#10b981" stroke-width="1"/>
-<line x1="80" y1="130" x2="320" y2="130" stroke="#10b981" stroke-width="1"/>
-<text x="200" y="148" text-anchor="middle" font-size="11" fill="#10b981" font-weight="bold">VM = 240 unidades</text>
+<line x1="80" y1="100" x2="80" y2="130" stroke="#10b981" stroke-width="1" class="animate"/>
+<line x1="320" y1="100" x2="320" y2="130" stroke="#10b981" stroke-width="1" class="animate"/>
+<line x1="80" y1="130" x2="320" y2="130" stroke="#10b981" stroke-width="1" class="animate"/>
+<text x="200" y="148" text-anchor="middle" font-size="11" fill="#10b981" font-weight="bold" class="fade-in">VM = 240 unidades</text>
 </svg>
 </div>
 </div>
@@ -327,6 +344,14 @@ Pulsa en el SVG del paso 1 para ver cómo la recta gira. La clase vm-active camb
 </div>
 </section>
 
+<!-- NUEVO EJERCICIO RONDA 2: Input numérico -->
+<div class="exercise">
+<p>🎯 Ejercicio 7 (Input numérico): <span class="difficulty-badge medium">Medio</span> Si una recta tiene en alzado una proyección de 120 mm y en planta de 90 mm, ¿cuántos cambios de plano necesita como mínimo para ver su verdadera magnitud?</p>
+<input type="number" id="vmNum" placeholder="Número de cambios" style="padding:.4rem .8rem;border:2px solid #e2e8f0;border-radius:6px;font-size:.95rem;width:120px">
+<button onclick="checkVMInput()">Comprobar</button>
+<p class="feedback" id="vmFeedback"></p>
+</div>
+
 <div class="comparison" style="margin:1.5rem 0"><div class="comparison-side"><strong style="color:var(--rojo)">❌ MEDIDA ACORTADA</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="50" y1="110" x2="150" y2="40" stroke="#ef4444" stroke-width="3"/><text x="100" y="80" text-anchor="middle" font-size="9" fill="#ef4444">Acortada en alzado</text><text x="100" y="130" text-anchor="middle" font-size="9" fill="#ef4444">No es la VM</text></svg></div><div class="comparison-side"><strong style="color:var(--verde)">✅ VERDADERA MAGNITUD</strong><svg viewBox="0 0 200 140" width="180" style="margin:1rem 0"><line x1="30" y1="70" x2="170" y2="70" stroke="#10b981" stroke-width="3"/><text x="100" y="60" text-anchor="middle" font-size="9" fill="#10b981">VM = longitud real</text><text x="100" y="130" text-anchor="middle" font-size="9" fill="#10b981">Cambio de plano paralelo ✓</text></svg></div></div>
 
 <div class="box box-error">
@@ -454,23 +479,6 @@ window.onscroll = function(){
   document.getElementById('progress').style.width = p+'%';
 };
 
-function showStep(n) {
-  for(var i = 1; i <= 4; i++) {
-    var step = document.getElementById('step' + i);
-    var dot = document.getElementById('sd' + i);
-    if(step) step.style.display = (i === n) ? 'block' : 'none';
-    if(dot) {
-      if(i === n) {
-        dot.classList.add('active');
-        dot.style.background = 'var(--azul)';
-      } else {
-        dot.classList.remove('active');
-        dot.style.background = '#94a3b8';
-      }
-    }
-  }
-}
-
 function checkOrden(btn, answer) {
   var correct = '1-2-3';
   var text = btn.textContent.trim();
@@ -535,6 +543,20 @@ function checkFillIn() {
   }
 }
 
+function checkVMInput() {
+  var val = parseInt(document.getElementById('vmNum').value);
+  var feedback = document.getElementById('vmFeedback');
+  if(val === 1) {
+    feedback.textContent = '✅ ¡Correcto! Solo se necesita 1 cambio de plano (el nuevo plano paralelo a la recta).';
+    feedback.className = 'feedback correct';
+    document.getElementById('vmNum').style.borderColor = 'var(--verde)';
+  } else {
+    feedback.textContent = '❌ Respuesta correcta: 1. Con 1 cambio de plano paralelo a la recta, la proyección muestra la VM.';
+    feedback.className = 'feedback incorrect';
+    document.getElementById('vmNum').style.borderColor = 'var(--rojo)';
+  }
+}
+
 function toggleVMLine(svg) {
   var line = svg.querySelector('.vm-line');
   var status = document.getElementById('vm-status');
@@ -546,6 +568,47 @@ function toggleVMLine(svg) {
     } else {
       status.textContent = '⚠️ No es VM — recta oblicua (clic para interactuar)';
       status.setAttribute('fill', '#ef4444');
+    }
+  }
+}
+
+function toggleHighlight(el) {
+  el.classList.toggle('active');
+  var info = el.getAttribute('data-info');
+  if (info) {
+    var result = document.getElementById('vm-status');
+    if (result) {
+      result.textContent = '📌 ' + info;
+      result.setAttribute('fill', '#64748b');
+    }
+  }
+}
+
+function showStep(n) {
+  for(var i = 1; i <= 4; i++) {
+    var step = document.getElementById('step' + i);
+    var dot = document.getElementById('sd' + i);
+    if(step) step.style.display = (i === n) ? 'block' : 'none';
+    if(dot) {
+      if(i === n) {
+        dot.classList.add('active');
+        dot.style.background = 'var(--azul)';
+      } else {
+        dot.classList.remove('active');
+        dot.style.background = '#94a3b8';
+      }
+    }
+  }
+  // Re-trigger SVG animations when switching steps
+  if(n >= 2) {
+    var activeStep = document.getElementById('step' + n);
+    if(activeStep) {
+      var animElements = activeStep.querySelectorAll('.animate, .fade-in, .pulse');
+      animElements.forEach(function(el) {
+        el.style.animation = 'none';
+        el.offsetHeight;
+        el.style.animation = '';
+      });
     }
   }
 }
